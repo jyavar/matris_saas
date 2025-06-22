@@ -13,6 +13,10 @@
   ],
   "scripts": {
     "test": "vitest run",
+    "@validate:repo": "tsx scripts/validate-repo.ts",
+    "@test:all": "tsx scripts/run-all-tests.ts",
+    "@status": "tsx scripts/report-status.ts",
+    "@preflight-check": "npm run @validate:repo && npm run @test:all",
     "@fixmasivo": "eslint . --ext .ts,.tsx --fix && prettier --write .",
     "@qa": "echo 'AI Quality Agent not implemented yet.'",
     "@ux": "echo 'AI UX Agent not implemented yet.'",
@@ -40,6 +44,7 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "execa": "^9.6.0",
     "fs-extra": "^11.3.0",
     "husky": "^9.1.7",
     "inquirer": "^12.6.3",
