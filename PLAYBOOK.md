@@ -191,8 +191,8 @@ Esto se ejecuta **antes de escribir una sola línea de código**:
     - Documentación pública autogenerada (`/docs`) + documentación interna técnica.
     - FAQ, onboarding, contacto, fallback AI de soporte técnico (ej: `supportAgent`).
 
-Sección 9: Generador de Código con IA
-=====================================
+# Sección 9: Generador de Código con IA
+
 Se ha implementado un script (`scripts/generate-code.ts`) que utiliza la capa de IA para generar código a partir de `prompts` en formato Markdown. Esto acelera el desarrollo de componentes repetitivos, como tests unitarios.
 
 **Uso:**
@@ -202,8 +202,8 @@ El prompt debe contener una descripción clara de la tarea y, crucialmente, la r
 
 ---
 
-Sección 10: El Guardián de la Noche
-====================================
+# Sección 10: El Guardián de la Noche
+
 Para garantizar que la fortaleza del código nunca se debilite, se ha implementado un "Guardián de la Noche" (`scripts/night-watchman.ts`). Es un proceso de vigilancia constante que ejecuta automáticamente todos los chequeos de calidad (`@preflight-check`) cada vez que se guarda un cambio en cualquier archivo del proyecto.
 
 Este sistema proporciona un ciclo de feedback inmediato, previniendo la introducción de deuda técnica en tiempo real.
