@@ -7,11 +7,10 @@
   "author": "STRATO",
   "license": "MIT",
   "workspaces": [
-    "packages/*",
-    "modules/*",
     "frontend",
     "backend",
-    "agent"
+    "agent",
+    "packages/*"
   ],
   "scripts": {
     "test": "vitest run",
