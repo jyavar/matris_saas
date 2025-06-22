@@ -27,6 +27,7 @@
     "@refactor": "echo 'AI Refactor Agent not implemented yet.'",
     "@report:defense": "tsx scripts/report-strato-defense.ts",
     "@clone:saas": "tsx scripts/create-saas-clone.ts",
+    "@watch:fortress": "tsx scripts/night-watchman.ts",
     "prepare": "husky"
   },
   "keywords": [
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.5.2",
     "autoprefixer": "^10.4.21",
+    "chokidar": "^4.0.3",
     "dotenv": "^16.5.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
