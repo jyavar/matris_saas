@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { useTodos } from '../hooks/useTodos.js'
+import { Button } from '@/components/ui/button.jsx'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card.jsx'
+import { Input } from '@/components/ui/input.jsx'
+import { useTodos } from '@/hooks/useTodos.js'
+
 import { TodoItem } from './TodoItem.jsx'
 
 export function TodoList() {
   const { todos, addTodo, toggleTodo, removeTodo } = useTodos()
-  const [newTodoText, setNewTodoText] = useState('')
+  const [newTodoText, setNewTodoText] = React.useState('')
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,39 +25,31 @@ export function TodoList() {
   }
 
   return (
-    <div
-      style={{
-        fontFamily: 'sans-serif',
-        width: '400px',
-        margin: '2rem auto',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '16px',
-      }}
-    >
-      <h1 style={{ textAlign: 'center' }}>STRATO TODOs</h1>
-      <form onSubmit={handleAddTodo} style={{ display: 'flex', gap: '8px' }}>
-        <input
-          type="text"
-          value={newTodoText}
-          onChange={(e) => setNewTodoText(e.target.value)}
-          placeholder="What needs to be done?"
-          style={{ flexGrow: 1, padding: '8px' }}
-        />
-        <button type="submit" style={{ padding: '8px 16px' }}>
-          Add
-        </button>
-      </form>
-      <ul style={{ listStyle: 'none', padding: 0, marginTop: '16px' }}>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            toggleTodo={toggleTodo}
-            removeTodo={removeTodo}
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>STRATO TODOs</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleAddTodo} style={{ display: 'flex', gap: '8px' }}>
+          <Input
+            type="text"
+            value={newTodoText}
+            onChange={(e) => setNewTodoText(e.target.value)}
+            placeholder="What needs to be done?"
           />
-        ))}
-      </ul>
-    </div>
+          <Button type="submit">Add</Button>
+        </form>
+        <ul style={{ listStyle: 'none', padding: 0, marginTop: '16px' }}>
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              toggleTodo={toggleTodo}
+              removeTodo={removeTodo}
+            />
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
   )
 }

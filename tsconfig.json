@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["frontend/src/*"]
+    },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
@@ -32,4 +36,4 @@
     "noImplicitReturns": true
   },
   "include": ["frontend/src", "packages/utils/src", "scripts"]
-} 
+}

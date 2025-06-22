@@ -1,4 +1,5 @@
-import type { Todo } from '../hooks/useTodos.js'
+import { Button } from '@/components/ui/button.jsx'
+import type { Todo } from '@/hooks/useTodos.js'
 
 interface TodoItemProps {
   todo: Todo
@@ -26,18 +27,13 @@ export function TodoItem({ todo, toggleTodo, removeTodo }: TodoItemProps) {
       >
         {todo.text}
       </span>
-      <button
+      <Button
+        variant="destructive"
+        size="sm"
         onClick={() => removeTodo(todo.id)}
-        style={{
-          marginLeft: '8px',
-          background: 'none',
-          border: '1px solid red',
-          color: 'red',
-          cursor: 'pointer',
-        }}
       >
         Remove
-      </button>
+      </Button>
     </li>
   )
 }
