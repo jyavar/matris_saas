@@ -92,5 +92,27 @@ Estos son los guardianes que protegen activamente el código en cada etapa del c
         - `npm run @report:defense`: Ejecuta el script de reporte de defensas.
         - `@qa`, `@ux`, `@data`, `@refactor`: Placeholders para futuros agentes de IA.
     - **Estado:** Activos y listos para usar.
+
+---
+
+## **SECCIÓN 3 – Estrategia Modular Clonable**
+
+El objetivo de STRATO Core OS no es ser un monolito, sino una "fábrica de SaaS". Esta sección define cómo creamos nuevos proyectos de forma rápida, segura y consistente.
+
+1.  **Filosofía de Módulos Activables:**
+    - **Concepto:** Las funcionalidades no core (dashboard, billing, etc.) no viven en el proyecto principal. Residen en la carpeta `/modules` como plantillas autocontenidas y listas para ser activadas.
+    - **Estructura de un Módulo:** Cada módulo en `/modules` debe ser un paquete independiente con su propio `package.json`, código fuente en `/src` y, fundamentalmente, sus propios tests. Un módulo sin tests es un módulo inválido.
+    - **Propósito:** Evitar el "bloatware" en la plantilla base. Cada nuevo SaaS empieza siendo minimalista y solo activa la funcionalidad que necesita.
+
+2.  **El Clonador STRATO (`@clone:saas`):**
+    - **Tecnología:** Un script interactivo (`scripts/create-saas-clone.ts`) que orquesta la creación de nuevos proyectos.
+    - **Comando:** `npm run @clone:saas`
+    - **Funcionamiento:**
+        1.  El script te pide un nombre para tu nuevo proyecto.
+        2.  Te presenta una lista de todos los módulos disponibles en la carpeta `/modules`.
+        3.  Clona la estructura completa y limpia de STRATO Core OS en un nuevo directorio.
+        4.  Copia los módulos que seleccionaste a la carpeta `/packages` del nuevo proyecto.
+        5.  Actualiza automáticamente el `package.json` del clon para incluir los nuevos módulos en los `workspaces` del monorepo.
+    - **Resultado:** En menos de un minuto, tienes un nuevo repositorio, configurado, con sus defensas activas y con los módulos de funcionalidad que elegiste, listo para empezar a desarrollar.
 ``` 
 </rewritten_file>
