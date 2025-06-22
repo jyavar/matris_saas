@@ -1,7 +1,5 @@
 # **PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**
 
-Este es un documento maestro que funcionará como:
-
 - Guía de inicio limpio para cualquier clon SaaS
 - Blindaje estructural desde el minuto 1
 - Escudo contra deuda técnica, errores invisibles y caos arquitectónico
@@ -9,171 +7,186 @@ Este es un documento maestro que funcionará como:
 
 ---
 
-## **SECCIÓN 1 – Setup Base Blindado**
+**ESTRUCTURA DEL PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**
 
-Esto se ejecuta **antes de escribir una sola línea de código** para garantizar que cada proyecto nace sobre una fundación sólida y a prueba de errores.
+El Playbook se divide en 10 secciones principales, modulares y replicables para cualquier nuevo proyecto.
+
+**SECCIÓN 1 – Setup Base Blindado (Antes del primer commit)**
+
+**SECCIÓN 2 – Guardias Técnicos Activos**
+
+**SECCIÓN 3 – Estrategia Modular Clonable**
+
+**SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**
+
+**SECCIÓN 5 – Validaciones, Reporting y Alertas**
+
+**SECCIÓN 6 – Reglas de Oro para el Founder**
+
+**SECCIÓN 7 – Desarrollo Funcional Robusto (Frontend y Backend)**
+
+**SECCIÓN 8 – Integraciones Estratégicas y Capas de AI**
+
+**SECCIÓN 9 – Escalabilidad Real y Multi-SaaS**
+
+**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**
+
+---
+
+### **SECCIÓN 1 – Setup Base Blindado**
+
+Esto se ejecuta **antes de escribir una sola línea de código**:
 
 1.  **Crear repo nuevo con plantilla STRATO Core OS™:**
-
-    - Monorepo con `frontend/`, `backend/`, `agent/`, `scripts/`, `packages/`.
-    - `tsconfig.base.json` con `strict: true`, `noImplicitAny: true`, `exactOptionalPropertyTypes: true`.
-    - ESLint y Prettier con reglas STRATO (`no-console`, `no-any`, `sort-imports`, `max-lines-per-file`).
-    - `.gitignore` robusto.
-
+    -   Monorepo con `frontend/`, `backend/`, `agent/`, `scripts/`, `packages/`.
+    -   `tsconfig.base.json` con `strict: true`, `noImplicitAny: true`, `exactOptionalPropertyTypes: true`.
+    -   ESLint y Prettier con reglas STRATO (`no-console`, `no-any`, `sort-imports`, `max-lines-per-file`).
+    -   `.gitignore` robusto.
 2.  **Instalar defensas automáticas:**
-
-    - `Husky`, `lint-staged`, `commitlint` para blindar cada `commit`.
-    - `prettier-plugin-organize-imports` para ordenamiento automático.
-    - Scripts de validación: `scripts/validate-repo.ts`, `scripts/run-all-tests.ts`, `scripts/check-blindaje-real.ts`.
-
+    -   `Husky`, `lint-staged`, `commitlint`, `prettier-plugin-organize-imports`.
+    -   Scripts: `scripts/validate-repo.ts`, `scripts/run-all-tests.ts`, `scripts/check-blindaje-real.ts`.
 3.  **Configurar CI/CD desde el inicio:**
-
-    - GitHub Actions con validación en cada `push` y `PR`: `lint`, `tsc`, `test`.
-    - Workflows por cada `workspace` (`/frontend`, `/backend`, `/agent`).
-
+    -   GitHub Actions con validación en cada `push` y `PR`: `lint`, `tsc`, `test`.
+    -   Workflows por carpeta (`/frontend`, `/backend`, `/agent`).
 4.  **Conexiones core:**
-    - Conexión a servicios como Supabase, Stripe, Resend con tipado estricto desde el día cero.
-    - `scripts/validate-env.ts` como guardia para asegurar que todas las variables necesarias están presentes en el entorno de desarrollo.
+    -   Supabase, Stripe, Resend conectados con tipado estricto desde el principio.
+    -   `.env.example` obligatorio. `validate-env.ts` como guardia.
 
 ---
 
-### **Variables de Entorno (.env)**
+### **SECCIÓN 2 – Guardias Técnicos Activos**
 
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-```
-# Supabase
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
-
-# Stripe
-STRIPE_SECRET_KEY=
-STRIPE_PUBLISHABLE_KEY=
-
-# Resend (Email)
-RESEND_API_KEY=
-
-# Other
-DATABASE_URL=
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-
----
-
-## **SECCIÓN 2 – Guardias Técnicos Activos**
-
-Estos son los guardianes que protegen activamente el código en cada etapa del ciclo de vida del desarrollo.
-
-1.  **Defensa Pre-commit:**
-
-    - **Tecnología:** `Husky` + `lint-staged`.
-    - **Misión:** Bloquear cualquier commit que intente introducir código que no cumpla con las reglas STRATO.
-    - **Checks Activos:**
-      - `Prettier`: Formatea el código automáticamente.
-      - `ESLint`: Impide commits con `console.log`, `any`, imports sin ordenar o cualquier otro error de linting.
-    - **Estado:** Activo y verificado en combate.
-
-2.  **Capa de Tests en CI/CD:**
-
-    - **Tecnología:** `GitHub Actions` + `Vitest`.
-    - **Misión:** Ejecutar toda la suite de tests unitarios en cada `push` y `PR` a `main`.
-    - **Checks Activos:** Un `merge` a `main` es imposible si un test falla.
-    - **Estado:** Activo. El job `test` ejecuta `npm test` y valida la lógica de negocio.
-
+1.  **Pre-commit:**
+    -   `Lint` + `Prettier` + `tsc` sin errores.
+    -   Bloquea commits con `console.log`, `any`, imports sin orden, código no tipado.
+2.  **CI/CD Layer:**
+    -   Validaciones estrictas de tipos + test unitarios.
+    -   Rechaza merge si no pasan los checks.
 3.  **Runtime Defense System™:**
-
-    - **Tecnología:** Scripts de `Node.js/TypeScript` ejecutados con `tsx`.
-    - **Misión:** Proveer un sistema de auditoría continua sobre la salud y arquitectura del proyecto.
-    - **Artefactos:** Todos los logs y reportes se centralizan en la carpeta `audit-artifacts/`.
-    - **Guardianes Desplegados (Placeholders):**
-      - `scripts/angel-vigilante.ts`: Futuro guardián de la integridad arquitectónica.
-      - `scripts/validate-test-templates.ts`: Futuro guardián de la calidad y cobertura de los tests.
-      - `scripts/report-strato-defense.ts`: Genera un reporte del estado de las defensas.
-    - **Estado:** Infraestructura y scripts base creados.
-
+    -   Scripts como `angel-vigilante.ts`, `validate-test-templates.ts`, `report-strato-defense.ts`.
+    -   Logs estructurados enviados a `/audit-artifacts/logs` y Slack.
 4.  **Autofix Agents:**
-    - **Tecnología:** `npm scripts`.
-    - **Misión:** Proveer atajos para tareas comunes y futuras integraciones con IA.
-    - **Agentes Disponibles:**
-      - `npm run @fixmasivo`: Formatea y corrige errores de linting en todo el proyecto.
-      - `npm run @report:defense`: Ejecuta el script de reporte de defensas.
-      - `@qa`, `@ux`, `@data`, `@refactor`: Placeholders para futuros agentes de IA.
-    - **Estado:** Activos y listos para usar.
+    -   Agentes como `@fixmasivo`, `@qa`, `@ux`, `@data`, `@refactor` activables en CI o manualmente.
 
 ---
 
-## **SECCIÓN 3 – Estrategia Modular Clonable**
+### **SECCIÓN 3 – Estrategia Modular Clonable**
 
-El objetivo de STRATO Core OS no es ser un monolito, sino una "fábrica de SaaS". Esta sección define cómo creamos nuevos proyectos de forma rápida, segura y consistente.
-
-1.  **Filosofía de Módulos Activables:**
-
-    - **Concepto:** Las funcionalidades no core (dashboard, billing, etc.) no viven en el proyecto principal. Residen en la carpeta `/modules` como plantillas autocontenidas y listas para ser activadas.
-    - **Estructura de un Módulo:** Cada módulo en `/modules` debe ser un paquete independiente con su propio `package.json`, código fuente en `/src` y, fundamentalmente, sus propios tests. Un módulo sin tests es un módulo inválido.
-    - **Propósito:** Evitar el "bloatware" en la plantilla base. Cada nuevo SaaS empieza siendo minimalista y solo activa la funcionalidad que necesita.
-
-2.  **El Clonador STRATO (`@clone:saas`):**
-    - **Tecnología:** Un script interactivo (`scripts/create-saas-clone.ts`) que orquesta la creación de nuevos proyectos.
-    - **Comando:** `npm run @clone:saas`
-    - **Funcionamiento:**
-      1.  El script te pide un nombre para tu nuevo proyecto.
-      2.  Te presenta una lista de todos los módulos disponibles en la carpeta `/modules`.
-      3.  Clona la estructura completa y limpia de STRATO Core OS en un nuevo directorio.
-      4.  Copia los módulos que seleccionaste a la carpeta `/packages` del nuevo proyecto.
-      5.  Actualiza automáticamente el `package.json` del clon para incluir los nuevos módulos en los `workspaces` del monorepo.
-    - **Resultado:** En menos de un minuto, tienes un nuevo repositorio, configurado, con sus defensas activas y con los módulos de funcionalidad que elegiste, listo para empezar a desarrollar.
+1.  **Todo módulo debe ser:**
+    -   Independiente (sin acoplamientos cruzados).
+    -   Clonable (sin referencias duras a paths).
+    -   Auditable (con tests + logs).
+2.  **Cada nuevo SaaS parte con:**
+    -   `create-saas-clone.ts` que copia la estructura base + scripts + CI.
+    -   Personalización mínima (nombre, rutas, branding).
+    -   Módulos activables (`campaigns`, `launch`, `dashboard`, `agent`, etc.).
 
 ---
 
-## **SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**
+### **SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**
 
-Esta sección define el "cómo": el proceso diario y las reglas inquebrantables para escribir código dentro del ecosistema STRATO.
-
-1.  **Estrategia "Prompt a Prompt" (Paso a Paso):**
-    - **Principio:** No se le pide a una IA "haz una feature". Se le dan instrucciones atómicas y verificables.
-    - **Proceso:**
-        1.  Copia `prompts/template-feature.md` a un nuevo archivo (ej: `prompts/nombre-feature.md`).
-        2.  Rellena cada sección con el máximo detalle. Sé explícito sobre la ubicación, los tipos, la lógica y los casos de test.
-        3.  Usa estas instrucciones para guiar a tu asistente de IA (Cursor, Copilot, etc.).
-    - **Repositorio de Prompts:** La carpeta `/prompts` actúa como un registro de arquitectura. Al verla, cualquiera puede entender qué se ha construido y con qué especificaciones.
-
-2.  **La Regla de Oro: El "Preflight Check"**
-    - **Comando:** `npm run @preflight-check`
-    - **Misión:** Este comando es el guardián final antes de que tu código intente integrarse con la base principal. Ejecuta las validaciones de `linting`, `type-checking` y `tests` en secuencia.
-    - **Regla Inquebrantable:** **NUNCA** se debe hacer `git push` a una rama si `@preflight-check` no pasa con un 100% de éxito. No hay excusas. No hay "lo arreglo después".
-
-3.  **Exploración vs. Producción (Gestión de Ramas):**
-    - **`feat/nombre-experimento`:** Ramas para exploración, pruebas y desarrollo de nuevas funcionalidades. Aquí es donde vives el 99% del tiempo.
-    - **`main`:** Rama sagrada. Representa el código estable y validado.
-    - **Proceso de Merge:** Absolutamente ningún código se fusiona a `main` sin haber pasado el `@preflight-check` y una revisión (aunque sea por ti mismo o un agente AI) vía Pull Request.
+1.  **Estrategia Prompt a Prompt (Cursor, Copilot, GPT):**
+    -   Cada módulo con su archivo `.txt` que incluye: contexto, instrucciones, resultado esperado, commit esperado.
+2.  **Prohibido hacer commits sin haber corrido:**
+    -   `validate-repo.ts`
+    -   `run-all-tests.ts`
+    -   `report-status.ts`
+3.  **Exploración ≠ Producción:**
+    -   Ramas: `feat/experimento`, `prod/estable`.
+    -   Nunca se sube a `main` sin snapshot, test y revisión AI.
 
 ---
 
-## **SECCIÓN 5 – Validaciones, Reporting y Alertas**
+### **SECCIÓN 5 – Validaciones, Reporting y Alertas**
 
-Esta sección define las herramientas para realizar "radiografías" del estado de salud de cualquier módulo o del proyecto en su totalidad.
+1.  **Scripts obligatorios por módulo:**
+    -   `validate-module.ts`
+    -   `audit-lint.ts`
+    -   `report-health.ts`
+    -   `generate-snapshot.ts`
+2.  **Reporting estructurado:**
+    -   Todos los agentes reportan en `audit-artifacts/reports/`.
+    -   Logs subidos a Notion + Slack en tiempo real (opcional).
+3.  **Dashboard STRATO CONTROL TOWER™:**
+    -   Visualiza estado técnico, errores, cobertura, auditorías.
 
-1.  **Auditoría de Módulos (`@audit:module`):**
-    - **Comando:** `npm run @audit:module -- --modulePath path/to/module`
-    - **Misión:** Ejecutar un análisis exhaustivo sobre un módulo o paquete específico.
-    - **Proceso de Auditoría:**
-        1.  **Validación de Estructura:** Comprueba que existen `package.json` y `src/`.
-        2.  **Análisis de Linter:** Ejecuta `ESLint` para detectar problemas de código.
-        3.  **Reporte de Salud:** Calcula la proporción de archivos de test vs. de código.
-    - **Artefactos Generados:**
-        1.  **Snapshot Local:** Crea un archivo `snapshot.json` dentro del módulo auditado con los resultados detallados.
-        2.  **Registro Central:** Guarda una copia del reporte en `audit-artifacts/reports/` con un timestamp, creando un historial de auditorías.
+---
 
-2.  **Reporting Estructurado:**
-    - **Principio:** Toda la información generada por nuestras herramientas de auditoría y defensa se almacena de forma predecible en `audit-artifacts/`.
-    - **`/logs`:** Destinado a logs de ejecución en tiempo real (aún no implementado).
-    - **`/reports`:** Destinado a los reportes en formato JSON generados por las auditorías.
-    - **Propósito:** Crear una base de datos de hechos sobre la salud del proyecto, que puede ser usada para generar dashboards, enviar alertas o realizar análisis de tendencias.
+### **SECCIÓN 6 – Reglas de Oro para el Founder**
 
-3.  **Dashboard STRATO CONTROL TOWER™ (Visión a Futuro):**
-    - **Concepto:** Una futura aplicación web (o un dashboard en una herramienta como Notion/Retool) que leerá los archivos de `audit-artifacts/reports/`.
-    - **Funcionalidad:**
-        - Visualizar el estado de salud de todos los módulos de un vistazo.
-        - Mostrar tendencias históricas (ej: ¿la cobertura de tests está mejorando o empeorando?).
-        - Enviar alertas a Slack o por email si una auditoría detecta una regresión crítica.
-    - **Estado:** Visión. La generación de artefactos JSON estructurados es el primer paso para hacerla realidad.
+1.  Nunca subestimes un bug oculto en exploración: **te va a costar 5x más después.**
+2.  Toda funcionalidad debe tener mínimo un test, una validación y un rollback posible.
+3.  **No existe módulo "simple" en STRATO.** Todos deben pasar por defensa estructural.
+4.  No desarrolles de noche sin CI activo, test mínimo y control de versiones claro.
+5.  Si una feature tarda más de 2h sin feedback, **detén el avance, ejecuta auditoría y reestructura.**
+6.  **Siempre ten al menos un agente validando cada push**: incluso si estás solo.
+
+---
+
+### **SECCIÓN 7 – Desarrollo Funcional Robusto (Frontend y Backend)**
+
+1.  **Frontend**
+    -   Implementar componentes visuales reutilizables bajo `frontend/components/ui/`.
+    -   Rutas productivas bajo `frontend/app/` con autenticación, dashboard, settings, campañas, etc.
+    -   Validaciones visuales (forms tipados, states seguros, diseño limpio).
+    -   Dark mode, loading states, fallback de errores, componentes accesibles.
+    -   Conexión con API del backend (`/api/`) con `fetcher.ts` y tipado.
+2.  **Backend**
+    -   Endpoints REST seguros bajo `backend/src/routes/` + `controllers/`.
+    -   Integración real con Supabase, Stripe, Resend, OpenAI, PostHog (con guards y logging).
+    -   Control de errores centralizado y logging estructurado (`logger.ts`).
+    -   Middleware de autorización, rate limit y fallback.
+    -   Unit tests por servicio + E2E tests por ruta con Vitest + Playwright.
+3.  **Interconexión API real**
+    -   `frontend/lib/api.ts` con tipado por endpoint (OpenAPI o Zod schemas).
+    -   Seguridad en cada request con JWT/API key/token.
+    -   Ensayo y validación manual + automática de cada flujo completo (signup → pago → dashboard).
+
+---
+
+### **SECCIÓN 8 – Integraciones Estratégicas y Capas de AI**
+
+1.  **OpenAI / LLM Layer**
+    -   Integrar cliente de OpenAI como servicio reutilizable (`services/openaiClient.ts`).
+    -   Agentes con lógica por módulo (ej: `campaignAgent`, `qaAgent`).
+    -   Uso de embeddings con pgvector si aplica: `packages/ai/embeddings.ts`.
+    -   Prompt modular por archivo `.prompt.txt` con inyección de contexto dinámico.
+2.  **Integraciones Estratégicas**
+    -   Stripe: precios, billing hooks, upgrade/downgrade, sesiones seguras.
+    -   Supabase: auth + storage + funciones SQL custom.
+    -   Resend: onboarding, alertas técnicas, marketing automatizado.
+    -   GitHub: si aplica, conexión a repos para agentes de código.
+    -   PostHog / Amplitude: tracking, métricas de comportamiento, feature flags.
+
+---
+
+### **SECCIÓN 9 – Escalabilidad Real y Multi-SaaS**
+
+1.  **Soporte multi-tenant:**
+    -   Arquitectura lista para múltiples espacios por usuario o por SaaS.
+    -   Validación de sesión con `tenantId` o `org_id` en todas las queries.
+    -   Dashboard STRATO CONTROL TOWER™ conectado a múltiples instancias.
+2.  **Sistema de clonación inteligente**
+    -   Script `clone-saas.ts` con prompts para generar un nuevo SaaS en 1 minuto.
+    -   Templates preconfigurados para diferentes verticales (ventas, cursos, ecommerce, etc.).
+3.  **Orquestador de agentes**
+    -   Sistema `orchestrator.ts` para activar agentes por demanda o cron.
+    -   Control por feature flag, toggle o comando CLI.
+
+---
+
+### **SECCIÓN 10 – Comercialización, Pricing y Control Operativo**
+
+1.  **Planes y precios**
+    -   Plan Free, Pro, Elite desde Stripe Dashboard con enforcement real.
+    -   Bloqueo de funciones por plan desde backend y frontend (ej: acceso a agentes premium).
+    -   Fallback visual + CTA para upgrade (marketing + UX real).
+2.  **Sistema de lanzamientos**
+    -   Módulo `launchboard/` para lanzar productos (Product Hunt, X, correos, actualizaciones).
+    -   Scheduling, tracking, reporting.
+3.  **Métricas y control operativo**
+    -   STRATO CONTROL TOWER™ muestra: errores, usage, logs, health, ingresos.
+    -   Hooks para enviar alertas a Slack o Notion.
+4.  **Documentación y soporte**
+    -   Documentación pública autogenerada (`/docs`) + documentación interna técnica.
+    -   FAQ, onboarding, contacto, fallback AI de soporte técnico (ej: `supportAgent`).
