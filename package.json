@@ -11,7 +11,7 @@
     "audit:full": "echo 'Audit script not implemented yet. This will run turbo lint, test, and build.'",
     "prepare": "husky",
     "db:new": "supabase migrations new",
-    "db:push": "supabase db push"
+    "db:push": "supabase db push --db-url \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
   },
   "keywords": [
     "saas",
