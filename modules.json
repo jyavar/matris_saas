@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json.schemastore.org/modules.json",
+  "modules": [
+    {
+      "name": "core",
+      "version": "1.0.0",
+      "description": "La fundación del sistema STRATO, incluyendo todos los scripts, defensas y configuraciones base.",
+      "path": "./",
+      "dependencies": [],
+      "agents": [
+        "@fixmasivo",
+        "@validate:repo",
+        "@preflight-check"
+      ],
+      "readiness": "clone-ready",
+      "tags": ["infra", "core"]
+    }
+  ]
+} 
