@@ -8,15 +8,14 @@ const envSchema = z.object({
   OPENAI_API_KEY: z.string().min(1, 'OPENAI_API_KEY is required.'),
 })
 
-try {
-  envSchema.parse(process.env)
-  console.log('✅ Environment variables are valid.')
-} catch (error) {
-  if (error instanceof z.ZodError) {
-    console.error('❌ Invalid environment variables:')
-    error.errors.forEach((err) => {
-      console.error(`- ${err.path.join('.')}: ${err.message}`)
-    })
-  }
-  process.exit(1)
+const parsedEnv = envSchema.safeParse(process.env)
+
+if (!parsedEnv.success) {
+  console.error(
+    '❌ Invalid environment variables:',
+    parsedEnv.error.flatten().fieldErrors,
+  )
+  throw new Error('Invalid environment variables')
 }
+
+export const env = parsedEnv.data

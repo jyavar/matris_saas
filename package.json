@@ -15,7 +15,7 @@
   "scripts": {
     "test": "vitest run",
     "@validate:repo": "tsx scripts/validate-repo.ts",
-    "@test:all": "tsx scripts/run-all-tests.ts",
+    "@test:all": "vitest run --config ./vitest.config.ts",
     "@status": "tsx scripts/report-status.ts",
     "@preflight-check": "npm run @validate:env && npm run @validate:repo && npm run @test:all",
     "@validate:env": "tsx scripts/validate-env.ts",
@@ -44,6 +44,7 @@
     "@types/inquirer": "^9.0.8",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -68,7 +69,6 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
     "yargs": "^18.0.0",
     "zod": "^3.25.67"

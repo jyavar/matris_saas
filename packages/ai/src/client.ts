@@ -1,7 +1,11 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Añadiremos la validación de esto más tarde
-})
+import { env } from '../../../scripts/validate-env'
 
-export default openai
+export const createOpenAIClient = (OpenAIClass = OpenAI) => {
+  return new OpenAIClass({
+    apiKey: env.OPENAI_API_KEY,
+  })
+}
+
+export default createOpenAIClient()
