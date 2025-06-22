@@ -17,7 +17,8 @@
     "@validate:repo": "tsx scripts/validate-repo.ts",
     "@test:all": "tsx scripts/run-all-tests.ts",
     "@status": "tsx scripts/report-status.ts",
-    "@preflight-check": "npm run @validate:repo && npm run @test:all",
+    "@preflight-check": "npm run @validate:env && npm run @validate:repo && npm run @test:all",
+    "@validate:env": "tsx scripts/validate-env.ts",
     "@audit:module": "tsx scripts/audit-module.ts",
     "@fixmasivo": "eslint . --ext .ts,.tsx --fix && prettier --write .",
     "@qa": "echo 'AI Quality Agent not implemented yet.'",
@@ -48,6 +49,7 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.5.2",
     "autoprefixer": "^10.4.21",
+    "dotenv": "^16.5.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.0",
@@ -68,7 +70,8 @@
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
-    "yargs": "^18.0.0"
+    "yargs": "^18.0.0",
+    "zod": "^3.25.67"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
