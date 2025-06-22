@@ -9,7 +9,9 @@
   "packageManager": "pnpm@9.7.0",
   "scripts": {
     "audit:full": "echo 'Audit script not implemented yet. This will run turbo lint, test, and build.'",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:new": "supabase migrations new",
+    "db:push": "supabase db push"
   },
   "keywords": [
     "saas",
@@ -25,6 +27,7 @@
     "lint-staged": "^16.1.2",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
+    "supabase": "^2.26.9",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },

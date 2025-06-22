@@ -1,0 +1,3 @@
+-- 0000_initial_schema.sql
+-- This is the foundational migration for the project.
+-- All subsequent schema changes will be added in new migration files. 
