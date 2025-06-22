@@ -146,3 +146,34 @@ Esta sección define el "cómo": el proceso diario y las reglas inquebrantables 
     - **`feat/nombre-experimento`:** Ramas para exploración, pruebas y desarrollo de nuevas funcionalidades. Aquí es donde vives el 99% del tiempo.
     - **`main`:** Rama sagrada. Representa el código estable y validado.
     - **Proceso de Merge:** Absolutamente ningún código se fusiona a `main` sin haber pasado el `@preflight-check` y una revisión (aunque sea por ti mismo o un agente AI) vía Pull Request.
+
+---
+
+## **SECCIÓN 5 – Validaciones, Reporting y Alertas**
+
+Esta sección define las herramientas para realizar "radiografías" del estado de salud de cualquier módulo o del proyecto en su totalidad.
+
+1.  **Auditoría de Módulos (`@audit:module`):**
+    - **Comando:** `npm run @audit:module -- --modulePath path/to/module`
+    - **Misión:** Ejecutar un análisis exhaustivo sobre un módulo o paquete específico.
+    - **Proceso de Auditoría:**
+        1.  **Validación de Estructura:** Comprueba que existen `package.json` y `src/`.
+        2.  **Análisis de Linter:** Ejecuta `ESLint` para detectar problemas de código.
+        3.  **Reporte de Salud:** Calcula la proporción de archivos de test vs. de código.
+    - **Artefactos Generados:**
+        1.  **Snapshot Local:** Crea un archivo `snapshot.json` dentro del módulo auditado con los resultados detallados.
+        2.  **Registro Central:** Guarda una copia del reporte en `audit-artifacts/reports/` con un timestamp, creando un historial de auditorías.
+
+2.  **Reporting Estructurado:**
+    - **Principio:** Toda la información generada por nuestras herramientas de auditoría y defensa se almacena de forma predecible en `audit-artifacts/`.
+    - **`/logs`:** Destinado a logs de ejecución en tiempo real (aún no implementado).
+    - **`/reports`:** Destinado a los reportes en formato JSON generados por las auditorías.
+    - **Propósito:** Crear una base de datos de hechos sobre la salud del proyecto, que puede ser usada para generar dashboards, enviar alertas o realizar análisis de tendencias.
+
+3.  **Dashboard STRATO CONTROL TOWER™ (Visión a Futuro):**
+    - **Concepto:** Una futura aplicación web (o un dashboard en una herramienta como Notion/Retool) que leerá los archivos de `audit-artifacts/reports/`.
+    - **Funcionalidad:**
+        - Visualizar el estado de salud de todos los módulos de un vistazo.
+        - Mostrar tendencias históricas (ej: ¿la cobertura de tests está mejorando o empeorando?).
+        - Enviar alertas a Slack o por email si una auditoría detecta una regresión crítica.
+    - **Estado:** Visión. La generación de artefactos JSON estructurados es el primer paso para hacerla realidad.

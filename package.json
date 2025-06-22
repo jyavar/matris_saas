@@ -17,6 +17,7 @@
     "@test:all": "tsx scripts/run-all-tests.ts",
     "@status": "tsx scripts/report-status.ts",
     "@preflight-check": "npm run @validate:repo && npm run @test:all",
+    "@audit:module": "tsx scripts/audit-module.ts",
     "@fixmasivo": "eslint . --ext .ts,.tsx --fix && prettier --write .",
     "@qa": "echo 'AI Quality Agent not implemented yet.'",
     "@ux": "echo 'AI UX Agent not implemented yet.'",
@@ -36,8 +37,10 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
     "@types/inquirer": "^9.0.8",
     "@types/node": "^24.0.3",
+    "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",
@@ -46,6 +49,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "execa": "^9.6.0",
     "fs-extra": "^11.3.0",
+    "glob": "^11.0.3",
     "husky": "^9.1.7",
     "inquirer": "^12.6.3",
     "lint-staged": "^16.1.2",
@@ -54,7 +58,8 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "yargs": "^18.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
