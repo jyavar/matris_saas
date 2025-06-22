@@ -12,7 +12,13 @@
     "agent"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "@fixmasivo": "eslint . --ext .ts,.tsx --fix && prettier --write .",
+    "@qa": "echo 'AI Quality Agent not implemented yet.'",
+    "@ux": "echo 'AI UX Agent not implemented yet.'",
+    "@data": "echo 'AI Data Agent not implemented yet.'",
+    "@refactor": "echo 'AI Refactor Agent not implemented yet.'",
+    "@report:defense": "tsx scripts/report-strato-defense.ts",
     "prepare": "husky"
   },
   "keywords": [
@@ -25,9 +31,9 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^24.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.34.1",
-    "@typescript-eslint/parser": "^8.34.1",
-    "eslint": "^9.29.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
@@ -36,7 +42,9 @@
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
