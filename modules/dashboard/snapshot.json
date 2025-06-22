@@ -1,0 +1,20 @@
+{
+  "modulePath": "modules/dashboard",
+  "timestamp": "2025-06-22T19:16:55.380Z",
+  "checks": {
+    "structure": {
+      "hasPackageJson": true,
+      "hasSrcDir": true,
+      "status": "PASS"
+    },
+    "lint": {
+      "passed": true,
+      "output": "Linter passed."
+    },
+    "health": {
+      "codeFiles": 2,
+      "testFiles": 2,
+      "coverageRatio": "1 test per 1.0 code files"
+    }
+  }
+}

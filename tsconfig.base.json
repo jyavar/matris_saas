@@ -35,7 +35,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+
+    /* If your code runs in the DOM: */
+    "lib": ["es2022", "dom", "dom.iterable"],
+    
+    /* JSX */
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "dist"]
 }
