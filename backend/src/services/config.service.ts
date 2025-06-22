@@ -12,6 +12,15 @@ const configSchema = z.object({
   LOG_LEVEL: z
     .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'])
     .default('info'),
+
+  // External Services
+  SUPABASE_URL: z.string().url().optional(),
+  SUPABASE_ANON_KEY: z.string().optional(),
+  STRIPE_SECRET_KEY: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  RESEND_API_KEY: z.string().optional(),
+  OPENAI_API_KEY: z.string().optional(),
+  POSTHOG_API_KEY: z.string().optional(),
 })
 
 let validatedConfig: z.infer<typeof configSchema> | null = null

@@ -7,13 +7,9 @@
       "description": "La fundación del sistema STRATO, incluyendo todos los scripts, defensas y configuraciones base.",
       "path": "./",
       "dependencies": [],
-      "agents": [
-        "@fixmasivo",
-        "@validate:repo",
-        "@preflight-check"
-      ],
+      "agents": ["@fixmasivo", "@validate:repo", "@preflight-check"],
       "readiness": "clone-ready",
       "tags": ["infra", "core"]
     }
   ]
-} 
+}
