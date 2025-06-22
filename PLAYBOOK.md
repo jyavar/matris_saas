@@ -190,3 +190,24 @@ Esto se ejecuta **antes de escribir una sola línea de código**:
 4.  **Documentación y soporte**
     - Documentación pública autogenerada (`/docs`) + documentación interna técnica.
     - FAQ, onboarding, contacto, fallback AI de soporte técnico (ej: `supportAgent`).
+
+Sección 9: Generador de Código con IA
+=====================================
+Se ha implementado un script (`scripts/generate-code.ts`) que utiliza la capa de IA para generar código a partir de `prompts` en formato Markdown. Esto acelera el desarrollo de componentes repetitivos, como tests unitarios.
+
+**Uso:**
+`npx tsx scripts/generate-code.ts <ruta_al_prompt.md>`
+
+El prompt debe contener una descripción clara de la tarea y, crucialmente, la ruta del archivo de destino envuelta en `backticks`.
+
+---
+
+Sección 10: El Guardián de la Noche
+====================================
+Para garantizar que la fortaleza del código nunca se debilite, se ha implementado un "Guardián de la Noche" (`scripts/night-watchman.ts`). Es un proceso de vigilancia constante que ejecuta automáticamente todos los chequeos de calidad (`@preflight-check`) cada vez que se guarda un cambio en cualquier archivo del proyecto.
+
+Este sistema proporciona un ciclo de feedback inmediato, previniendo la introducción de deuda técnica en tiempo real.
+
+**Uso:**
+Para despertar al Guardián, ejecuta en una terminal separada:
+`npm run @watch:fortress`
