@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
-import { type Todo, useTodos } from '../hooks/useTodos'
+import { type Todo, useTodos } from '../hooks/useTodos.js'
 
 describe('useTodos hook', () => {
   test('should initialize with a default list of todos', () => {

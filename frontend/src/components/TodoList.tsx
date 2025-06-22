@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { useTodos } from '../hooks/useTodos'
-import { TodoItem } from './TodoItem'
+import { useTodos } from '../hooks/useTodos.js'
+import { TodoItem } from './TodoItem.jsx'
 
 export function TodoList() {
   const { todos, addTodo, toggleTodo, removeTodo } = useTodos()

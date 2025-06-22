@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-    /* Base Options: */
-    "esModuleInterop": true,
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "target": "es2022",
-    "allowJs": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "moduleDetection": "force",
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
 
     /* Strictness */
     "strict": true,
@@ -22,26 +25,11 @@
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": true,
 
-    /* If transpiling with TypeScript: */
-    "module": "NodeNext",
-    "outDir": "dist",
-    "sourceMap": true,
-
-    /* If NOT transpiling with TypeScript: */
-    "module": "preserve",
-    "noEmit": true,
-
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-
-    /* If your code runs in the DOM: */
-    "lib": ["es2022", "dom", "dom.iterable"],
-    
-    /* JSX */
-    "jsx": "react-jsx"
+    "noImplicitReturns": true
   },
-  "exclude": ["node_modules", "dist"]
-}
+  "include": ["frontend/src", "packages/utils/src", "scripts"]
+} 

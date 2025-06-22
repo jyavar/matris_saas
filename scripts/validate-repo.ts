@@ -8,7 +8,7 @@ function validateRepo() {
     console.log('  ✅  Linting passed.')
 
     console.log('\n  🔍  Step 2: Type-checking all files...')
-    execSync('tsc -p tsconfig.base.json --noEmit', { stdio: 'inherit' })
+    execSync('tsc --noEmit', { stdio: 'inherit' })
     console.log('  ✅  Type-checking passed.')
 
     console.log('\n✅ Repository Validation Succeeded!')
