@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "tsx ./src/server.ts",
     "build": "echo 'Build script not implemented yet'",
-    "test": "tsx src/tests/health.test.ts",
-    "lint": "eslint . --ext .ts"
+    "test": "tsx --import=./src/tests/setup.ts --test src/tests/health.test.ts",
+    "lint": "eslint . --ext .ts --fix"
   },
   "dependencies": {
     "@repo/db-types": "workspace:*",

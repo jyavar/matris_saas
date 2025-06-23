@@ -1,6 +1,7 @@
-import { describe, test } from 'node:test'
 import { strict as assert } from 'node:assert'
+import { describe, test } from 'node:test'
 import supertest from 'supertest'
+
 import { app } from '../index.js'
 
 describe('GET /health', () => {
