@@ -1,0 +1,46 @@
+{
+  "modules": {
+    "todos": {
+      "status": "absent"
+    },
+    "campaigns": {
+      "status": "absent"
+    },
+    "auth": {
+      "status": "absent"
+    },
+    "payments": {
+      "status": "absent"
+    },
+    "users": {
+      "status": "absent"
+    },
+    "launches": {
+      "status": "absent"
+    },
+    "metrics": {
+      "status": "absent"
+    },
+    "settings": {
+      "status": "absent"
+    },
+    "projects": {
+      "status": "absent"
+    },
+    "refactor": {
+      "status": "absent"
+    },
+    "support": {
+      "status": "absent"
+    },
+    "runtime": {
+      "status": "absent"
+    }
+  },
+  "score": {
+    "validatedModules": 0,
+    "totalModulesExpected": 12,
+    "completionRate": "0%",
+    "criticalModulesWithoutTests": []
+  }
+}

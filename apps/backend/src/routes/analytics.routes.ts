@@ -4,7 +4,7 @@ import { analyticsController } from '../controllers/analytics.controller.js'
 
 const router = Router()
 
-router.get('/', analyticsController.getAllAnalyticss)
+router.get('/', analyticsController.getAllAnalytics)
 router.get('/:id', analyticsController.getAnalyticsById)
 router.post('/', analyticsController.createAnalytics)
 router.patch('/:id', analyticsController.updateAnalytics)
