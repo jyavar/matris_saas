@@ -42,6 +42,10 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
+
+      - name: Validate Project Structure
+        run: pnpm tsx scripts/agents/context-watchdog.ts
+
       - name: Run tests
-        run: npm test
+        run: pnpm test

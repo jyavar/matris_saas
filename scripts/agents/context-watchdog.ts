@@ -1,40 +1,52 @@
-import { execSync } from 'child_process'
-import * as fs from 'fs'
-import { minimatch } from 'minimatch'
-import * as path from 'path'
 import * as process from 'process'
 
-const manifestPath = path.resolve('.strato-manifest.json')
-const root = path.resolve('.')
+import {
+  getChangedFilesAgainstMain,
+  getManifest,
+  validateFiles,
+  writeLog,
+} from './strato.logic.js'
 
-// Use `git diff` to get a reliable list of staged files.
-const stagedFilesOutput = execSync('git diff --name-only --cached').toString()
-const stagedFiles = stagedFilesOutput.split('\n').filter(Boolean)
+try {
+  const manifest = getManifest()
+  const filesToValidate = getChangedFilesAgainstMain()
+  const invalidFiles = validateFiles(filesToValidate, manifest)
 
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+  if (invalidFiles.length > 0) {
+    const timestamp = new Date().toISOString()
+    let commitAuthor = 'N/A'
+    try {
+      commitAuthor = process.env.GIT_AUTHOR_NAME || 'N/A'
+    } catch {
+      // Ignore if git author is not available
+    }
 
-function isValidPath(file: string) {
-  return manifest.validPaths.some((pattern: string) => minimatch(file, pattern))
-}
+    console.error(
+      '\n⛔ STRATO Context Guard: Se detectaron archivos en rutas inválidas.\n',
+    )
+    invalidFiles.forEach((file) => {
+      const logMessage = `[${timestamp}] [${commitAuthor}] Archivo: ${file}, Motivo: Ruta no permitida por manifiesto.`
+      console.error(`  - Archivo: ${file}`)
+      console.error(
+        `    Motivo: La ruta no es válida según las reglas de '.strato-manifest.json'.`,
+      )
+      console.error(
+        `    Acción: Mueva el archivo a una ruta permitida (ej: 'apps/frontend/...' o 'packages/core/...').`,
+      )
+      console.error(
+        `    Ayuda: Revise las reglas de contribución en 'README.cursor.md'.\n`,
+      )
+      writeLog(logMessage)
+    })
 
-function isForbiddenPath(file: string) {
-  return manifest.forbiddenPaths.some((pattern: string) =>
-    minimatch(file, pattern),
-  )
-}
+    console.error(
+      'Bloqueando el commit. Por favor, corrija los problemas listados.',
+    )
+    process.exit(1)
+  }
 
-const invalidFiles = stagedFiles.filter((file) => {
-  const relativePath = path.relative(root, file)
-  return !isValidPath(relativePath) || isForbiddenPath(relativePath)
-})
-
-if (invalidFiles.length > 0) {
-  console.error('\n⛔ Archivos fuera de contexto válido detectados:')
-  invalidFiles.forEach((f) => console.error(' - ' + f))
-  console.error(
-    '\nBloqueando el commit. Usa rutas válidas declaradas en .strato-manifest.json\n',
-  )
-  process.exit(1)
-} else {
   process.exit(0)
+} catch (error) {
+  console.error((error as Error).message)
+  process.exit(1)
 }

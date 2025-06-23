@@ -10,7 +10,8 @@
     ".strato-manifest.json",
     "README.cursor.md",
     "package.json",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    ".github/workflows/ci.yml"
   ],
   "forbiddenPaths": [
     "node_modules/**",

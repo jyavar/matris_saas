@@ -17,6 +17,7 @@
     "audit:core": "tsx scripts/audit/generate-core-audit.ts",
     "audit:global": "tsx scripts/audit/audit-global.ts",
     "audit:deps": "tsx scripts/audit/audit-dependencies.ts",
+    "guardian:watch": "tsx scripts/agents/context-watchdog.watch.ts",
     "prepare": "husky",
     "db:new": "supabase migrations new",
     "db:push": "supabase db push --db-url \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\"",
@@ -37,6 +38,7 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^3.2.4",
     "chalk": "^5.4.1",
+    "chokidar": "^4.0.3",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -52,7 +54,8 @@
     "tsx": "^4.20.3",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "zod": "^3.25.67"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": "eslint --fix"
