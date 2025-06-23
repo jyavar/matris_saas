@@ -6,9 +6,9 @@
     "packages/core/**",
     "scripts/**",
     "types/**",
+    "*.md",
     ".husky/pre-commit",
     ".strato-manifest.json",
-    "README.cursor.md",
     "package.json",
     "pnpm-lock.yaml",
     ".github/workflows/ci.yml"
