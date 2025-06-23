@@ -11,7 +11,13 @@
     ".strato-manifest.json",
     "package.json",
     "pnpm-lock.yaml",
-    ".github/workflows/ci.yml"
+    ".github/workflows/ci.yml",
+    "apps/web/**",
+    "apps/web/.gitignore",
+    "agent/**",
+    "modules/**",
+    "audit-artifacts/**",
+    "public/**"
   ],
   "forbiddenPaths": [
     "node_modules/**",
