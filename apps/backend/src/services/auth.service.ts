@@ -1,48 +1,35 @@
-import { TablesInsert, TablesUpdate } from '@repo/db-types'
+import { z } from 'zod'
 
-import { supabase } from './supabase.service.js'
+import { createUsersSchema } from '../controllers/users.controller.js' // Assuming this schema exists
+import { supabase } from '../lib/supabase.js'
 
 export const authService = {
-  async getAllAuths() {
-    const { data, error } = await supabase.from('auths').select('*')
-    if (error) throw error
+  async signUp(credentials: z.infer<typeof createUsersSchema>) {
+    const { data, error } = await supabase.auth.signUp({
+      email: credentials.email,
+      password: credentials.password, // This needs to be added to your Zod schema
+      options: {
+        data: {
+          username: credentials.username,
+        },
+      },
+    })
+
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 
-  async getAuthById(id: number) {
-    const { data, error } = await supabase
-      .from('auths')
-      .select('*')
-      .eq('id', id)
-      .single()
-    if (error) throw error
-    return data
-  },
+  async signIn(credentials: z.infer<typeof createUsersSchema>) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: credentials.email,
+      password: credentials.password, // This needs to be added to your Zod schema
+    })
 
-  async createAuth(auth: TablesInsert<'auths'>) {
-    const { data, error } = await supabase
-      .from('auths')
-      .insert(auth)
-      .select()
-      .single()
-    if (error) throw error
-    return data
-  },
-
-  async updateAuth(id: number, auth: TablesUpdate<'auths'>) {
-    const { data, error } = await supabase
-      .from('auths')
-      .update(auth)
-      .eq('id', id)
-      .select()
-      .single()
-    if (error) throw error
-    return data
-  },
-
-  async deleteAuth(id: number) {
-    const { data, error } = await supabase.from('auths').delete().eq('id', id)
-    if (error) throw error
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 }

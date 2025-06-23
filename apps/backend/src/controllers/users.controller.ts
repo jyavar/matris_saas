@@ -3,9 +3,10 @@ import { z } from 'zod'
 
 import { usersService } from '../services/users.service.js'
 
-const createUsersSchema = z.object({
+export const createUsersSchema = z.object({
   username: z.string(),
   email: z.string().email(),
+  password: z.string().min(8),
 })
 
 const updateUsersSchema = z.object({
