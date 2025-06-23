@@ -1,12 +1,13 @@
 {
-  "extends": "@repo/typescript-config/tsconfig.base.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "ES2020",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "vite.config.ts", "src/tests/setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 

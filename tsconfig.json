@@ -1,3 +1,10 @@
 {
-  "extends": "@repo/typescript-config/tsconfig.base.json"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/typescript-config/*": ["packages/typescript-config/*"],
+      "@/components/*": ["apps/frontend/src/components/*"],
+      "@/lib/*": ["apps/frontend/src/lib/*"]
+    }
+  }
 }
