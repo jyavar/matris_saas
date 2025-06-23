@@ -42,7 +42,7 @@ describe('Auth Controller', () => {
   })
 
   it('should fail to access protected route without a token', async () => {
-    const response = await request(app).get('/users/me')
+    const response = await request(app).get('/profiles/me')
     expect(response.status).toBe(401)
     expect(response.body.message).toBe('No authentication token provided.')
   })
@@ -56,7 +56,7 @@ describe('Auth Controller', () => {
     const token = signInResponse.body.access_token
 
     const response = await request(app)
-      .get('/users/me')
+      .get('/profiles/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toBe(200)

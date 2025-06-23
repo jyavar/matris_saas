@@ -17,3 +17,12 @@ CREATE TABLE analytics (
     user_id BIGINT REFERENCES users(id),
     created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
 );
+
+-- Profiles Table
+CREATE TABLE profiles (
+    id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    username TEXT,
+    full_name TEXT,
+    avatar_url TEXT,
+    updated_at TIMESTAMPTZ DEFAULT timezone('utc', now())
+);

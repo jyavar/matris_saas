@@ -21,7 +21,8 @@
     "tsconfig.json",
     "*.sh",
     "apps/**/.eslintignore",
-    "packages/**/.eslintignore"
+    "packages/**/.eslintignore",
+    "supabase/**"
   ],
   "forbiddenPaths": [
     "node_modules/**",

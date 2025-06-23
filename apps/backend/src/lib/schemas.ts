@@ -18,3 +18,24 @@ export const updateUserSchema = z.object({
     .optional(),
   email: z.string().email().optional(),
 })
+
+export const createProfileSchema = z.object({
+  username: z.string().min(3, 'Username must be at least 3 characters long'),
+  full_name: z
+    .string()
+    .min(3, 'Full name must be at least 3 characters long')
+    .optional(),
+  avatar_url: z.string().url('Invalid avatar URL').optional(),
+})
+
+export const updateProfileSchema = z.object({
+  username: z
+    .string()
+    .min(3, 'Username must be at least 3 characters long')
+    .optional(),
+  full_name: z
+    .string()
+    .min(3, 'Full name must be at least 3 characters long')
+    .optional(),
+  avatar_url: z.string().url('Invalid avatar URL').optional(),
+})
