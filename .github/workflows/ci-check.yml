@@ -1,0 +1,39 @@
+name: STRATO CI Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 2. Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 3. Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 4. Install Dependencies
+        run: pnpm install
+
+      - name: 5. Run Lint
+        run: pnpm run lint
+
+      - name: 6. Run Tests
+        run: pnpm run test
+
+      - name: 7. Run Build
+        run: pnpm run build

@@ -8,14 +8,15 @@
   "license": "MIT",
   "packageManager": "pnpm@9.7.0",
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
-    "build": "pnpm -r build",
-    "test": "pnpm -r test --no-bail",
-    "dev": "pnpm -r dev",
+    "lint": "turbo run lint",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "dev": "turbo run dev --parallel",
     "audit:full": "echo 'Audit script not implemented yet. This will run turbo lint, test, and build.'",
     "prepare": "husky",
     "db:new": "supabase migrations new",
-    "db:push": "supabase db push --db-url \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
+    "db:push": "supabase db push --db-url \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\"",
+    "module:create": "node ./scripts/create-module.mjs"
   },
   "keywords": [
     "saas",
@@ -39,6 +40,7 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "supabase": "^2.26.9",
     "tsx": "^4.20.3",
+    "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "lint-staged": {
