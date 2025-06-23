@@ -2,9 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/typescript-config/*": ["packages/typescript-config/*"],
-      "@/components/*": ["apps/frontend/src/components/*"],
-      "@/lib/*": ["apps/frontend/src/lib/*"]
+      "@repo/typescript-config/*": ["packages/typescript-config/*"]
     }
   }
 }

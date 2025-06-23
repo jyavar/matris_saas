@@ -17,7 +17,8 @@
     "agent/**",
     "modules/**",
     "audit-artifacts/**",
-    "public/**"
+    "public/**",
+    "tsconfig.json"
   ],
   "forbiddenPaths": [
     "node_modules/**",
