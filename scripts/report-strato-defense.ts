@@ -1,6 +1,6 @@
 // STRATO Defense Reporter: Generates a health report of the defense systems.
-import fs from 'fs'
-import path from 'path'
+import * as fs from 'fs'
+import * as path from 'path'
 
 function generateReport() {
   console.log('Generating STRATO Defense Report...')

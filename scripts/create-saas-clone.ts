@@ -1,6 +1,6 @@
-import fs from 'fs-extra'
-import inquirer from 'inquirer'
-import path from 'path'
+import * as fs from 'fs-extra'
+import * as inquirer from 'inquirer'
+import * as path from 'path'
 
 // Function to validate the project name (must be a valid directory name)
 function isValidProjectName(name: string): boolean | string {
@@ -32,7 +32,7 @@ async function main() {
   console.log('🚀 Welcome to the STRATO SaaS Cloner!')
   const availableModules = getAvailableModules()
 
-  const answers = await inquirer.prompt([
+  const answers = await inquirer.default.prompt([
     {
       type: 'input',
       name: 'projectName',

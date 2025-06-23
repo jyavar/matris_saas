@@ -1,5 +1,5 @@
-import fs from 'fs-extra'
-import path from 'path'
+import * as fs from 'fs-extra'
+import * as path from 'path'
 import { z } from 'zod'
 
 const moduleSchema = z.object({

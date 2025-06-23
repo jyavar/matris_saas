@@ -1,5 +1,5 @@
 import chokidar from 'chokidar'
-import { execa, type ExecaError } from 'execa'
+import * as execa from 'execa'
 
 console.log('👁️  Iniciando Guardián de la Noche...')
 
@@ -33,7 +33,7 @@ const runPreflightCheck = async () => {
       '❌  ¡ALERTA! Chequeo pre-vuelo fallido. ¡Deuda técnica detectada!',
     )
     // Imprimimos stdout y stderr del error para tener todo el contexto.
-    const execaError = error as ExecaError
+    const execaError = error as execa.ExecaError
     if (execaError.stdout) console.error(execaError.stdout)
     if (execaError.stderr) console.error(execaError.stderr)
   } finally {

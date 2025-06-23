@@ -1,8 +1,8 @@
 import { execSync } from 'child_process'
-import fs from 'fs-extra'
+import * as fs from 'fs-extra'
 import { glob } from 'glob'
-import path from 'path'
-import yargs from 'yargs'
+import * as path from 'path'
+import * as yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 interface AuditResult {
