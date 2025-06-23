@@ -5,9 +5,9 @@
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "tsx ./src/server.ts",
+    "dev": "tsx ./src/start.ts",
     "build": "tsc",
-    "test": "tsx --import=./src/tests/setup.ts --test src/tests/health.test.ts"
+    "test": "dotenv -e .env.test -- tsx --test src/tests/health.test.ts"
   },
   "dependencies": {
     "@repo/db-types": "workspace:*",
@@ -27,6 +27,7 @@
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.3",
     "@types/supertest": "^6.0.3",
+    "dotenv-cli": "^8.0.0",
     "pino-pretty": "^13.0.0",
     "supertest": "^7.1.1",
     "tsx": "^4.20.3"
