@@ -4,19 +4,21 @@ import { z } from 'zod'
 import { analyticsService } from '../services/analytics.service.js'
 
 const createAnalyticsSchema = z.object({
-  task: z.string(),
-  is_completed: z.boolean().optional(),
+  event_name: z.string(),
+  payload: z.record(z.any()).optional(),
+  user_id: z.number().optional(),
 })
 
 const updateAnalyticsSchema = z.object({
-  task: z.string().optional(),
-  is_completed: z.boolean().optional(),
+  event_name: z.string().optional(),
+  payload: z.record(z.any()).optional(),
+  user_id: z.number().optional(),
 })
 
 export const analyticsController = {
-  async getAllAnalyticss(req: Request, res: Response, next: NextFunction) {
+  async getAllAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
-      const analyticss = await analyticsService.getAllAnalyticss()
+      const analyticss = await analyticsService.getAllAnalytics()
       res.json(analyticss)
     } catch (error) {
       next(error)
@@ -36,7 +38,10 @@ export const analyticsController = {
   async createAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
       const validatedAnalytics = createAnalyticsSchema.parse(req.body)
-      const newAnalytics = await analyticsService.createAnalytics(validatedAnalytics)
+      const newAnalytics = await analyticsService.createAnalytics({
+        ...validatedAnalytics,
+        event_name: validatedAnalytics.event_name,
+      })
       res.status(201).json(newAnalytics)
     } catch (error) {
       next(error)
@@ -47,7 +52,10 @@ export const analyticsController = {
     try {
       const id = Number(req.params.id)
       const validatedAnalytics = updateAnalyticsSchema.parse(req.body)
-      const updatedAnalytics = await analyticsService.updateAnalytics(id, validatedAnalytics)
+      const updatedAnalytics = await analyticsService.updateAnalytics(
+        id,
+        validatedAnalytics,
+      )
       res.json(updatedAnalytics)
     } catch (error) {
       next(error)

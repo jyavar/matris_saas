@@ -36,7 +36,10 @@ export const todoController = {
   async createTodo(req: Request, res: Response, next: NextFunction) {
     try {
       const validatedTodo = createTodoSchema.parse(req.body)
-      const newTodo = await todoService.createTodo(validatedTodo)
+      const newTodo = await todoService.createTodo({
+        ...validatedTodo,
+        task: validatedTodo.task,
+      })
       res.status(201).json(newTodo)
     } catch (error) {
       next(error)

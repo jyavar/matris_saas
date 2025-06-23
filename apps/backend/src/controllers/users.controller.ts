@@ -4,13 +4,13 @@ import { z } from 'zod'
 import { usersService } from '../services/users.service.js'
 
 const createUsersSchema = z.object({
-  task: z.string(),
-  is_completed: z.boolean().optional(),
+  username: z.string(),
+  email: z.string().email(),
 })
 
 const updateUsersSchema = z.object({
-  task: z.string().optional(),
-  is_completed: z.boolean().optional(),
+  username: z.string().optional(),
+  email: z.string().email().optional(),
 })
 
 export const usersController = {
@@ -36,7 +36,11 @@ export const usersController = {
   async createUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const validatedUsers = createUsersSchema.parse(req.body)
-      const newUsers = await usersService.createUsers(validatedUsers)
+      const newUsers = await usersService.createUsers({
+        ...validatedUsers,
+        username: validatedUsers.username,
+        email: validatedUsers.email,
+      })
       res.status(201).json(newUsers)
     } catch (error) {
       next(error)
