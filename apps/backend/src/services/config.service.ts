@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv'
 import { z } from 'zod'
 
 dotenv.config()
@@ -7,7 +8,7 @@ const configSchema = z.object({
   LOG_LEVEL: z.string().default('info'),
   PORT: z.coerce.number().default(3001),
   SUPABASE_URL: z.string().url(),
-  SUPABASE_ANON_KEY: z.string(),
+  SUPABASE_SERVICE_ROLE_KEY: z.string(),
 })
 
 let config

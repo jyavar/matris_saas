@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button.jsx'
-import type { Todo } from '@/hooks/useTodos.js'
+
+import type { Todo } from '../lib/todos.api.js'
 
 interface TodoItemProps {
   todo: Todo
-  toggleTodo: (id: number) => void
+  toggleTodo: (id: number, is_completed: boolean) => void
   removeTodo: (id: number) => void
 }
 
@@ -20,12 +21,12 @@ export function TodoItem({ todo, toggleTodo, removeTodo }: TodoItemProps) {
     >
       <span
         style={{
-          textDecoration: todo.completed ? 'line-through' : 'none',
-          opacity: todo.completed ? 0.5 : 1,
+          textDecoration: todo.is_completed ? 'line-through' : 'none',
+          opacity: todo.is_completed ? 0.5 : 1,
         }}
-        onClick={() => toggleTodo(todo.id)}
+        onClick={() => toggleTodo(todo.id, todo.is_completed)}
       >
-        {todo.text}
+        {todo.task}
       </span>
       <Button
         variant="destructive"

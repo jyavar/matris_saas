@@ -41,6 +41,9 @@ importers:
 
   apps/backend:
     dependencies:
+      '@repo/db-types':
+        specifier: workspace:*
+        version: link:../../packages/db-types
       '@supabase/supabase-js':
         specifier: ^2.50.0
         version: 2.50.0
@@ -142,6 +145,21 @@ importers:
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.0.3)(jsdom@26.1.0)
+
+  packages/db-types:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.1
+      typescript:
+        specifier: ^5.3.3
+        version: 5.8.3
 
   packages/eslint-config:
     dependencies:
