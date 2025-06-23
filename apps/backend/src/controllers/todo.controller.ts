@@ -1,4 +1,3 @@
-import { TablesInsert, TablesUpdate } from '@repo/db-types'
 import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
@@ -36,9 +35,7 @@ export const todoController = {
 
   async createTodo(req: Request, res: Response, next: NextFunction) {
     try {
-      const validatedTodo: TablesInsert<'todos'> = createTodoSchema.parse(
-        req.body,
-      )
+      const validatedTodo = createTodoSchema.parse(req.body)
       const newTodo = await todoService.createTodo(validatedTodo)
       res.status(201).json(newTodo)
     } catch (error) {
@@ -49,9 +46,7 @@ export const todoController = {
   async updateTodo(req: Request, res: Response, next: NextFunction) {
     try {
       const id = Number(req.params.id)
-      const validatedTodo: TablesUpdate<'todos'> = updateTodoSchema.parse(
-        req.body,
-      )
+      const validatedTodo = updateTodoSchema.parse(req.body)
       const updatedTodo = await todoService.updateTodo(id, validatedTodo)
       res.json(updatedTodo)
     } catch (error) {

@@ -1,12 +1,14 @@
 {
-  "extends": "@repo/typescript-config/tsconfig.base.json",
+  "extends": "../../packages/typescript-config/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "noEmit": false,
+    "esModuleInterop": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]

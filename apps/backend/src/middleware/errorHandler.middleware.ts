@@ -11,14 +11,15 @@ export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
     logger.error(err)
 
     if (err instanceof ApiError) {
-      return res.status(err.statusCode).json({
+      res.status(err.statusCode).json({
         success: false,
         message: err.message,
         ...(config.NODE_ENV === 'development' && { stack: err.stack }),
       })
+      return
     }
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: 'An unexpected internal server error occurred.',
       ...(config.NODE_ENV === 'development' && { stack: err.stack }),

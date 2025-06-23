@@ -1,17 +1,20 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import { type pino } from 'pino'
 import pinoHttp from 'pino-http'
 
-export const createLoggerMiddleware = (logger: pino.Logger) => {
-  const pinoMiddleware = pinoHttp({
-    logger,
-    autoLogging: {
-      ignore: (req) => req.originalUrl === '/health',
-    },
-  })
+import logger from '../services/logger.service.js'
 
-  return (req: Request, res: Response, next: NextFunction) => {
-    pinoMiddleware(req, res)
-    next()
-  }
+const pinoMiddleware = pinoHttp({
+  logger,
+  autoLogging: {
+    ignore: (req: Request) => req.originalUrl === '/health',
+  },
+})
+
+export const loggerMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  pinoMiddleware(req, res)
+  next()
 }

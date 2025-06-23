@@ -11,18 +11,20 @@ const configSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string(),
 })
 
-let config
+type Config = z.infer<typeof configSchema>
+let config: Config | undefined
 
-export const getConfig = () => {
+export const getConfig = (): Config => {
   if (config) {
     return config
   }
 
-  config = configSchema.safeParse(process.env)
+  const parsedConfig = configSchema.safeParse(process.env)
 
-  if (!config.success) {
-    throw new Error('Invalid configuration: ' + config.error.message)
+  if (!parsedConfig.success) {
+    throw new Error('Invalid configuration: ' + parsedConfig.error.message)
   }
 
-  return config.data
+  config = parsedConfig.data
+  return config
 }
