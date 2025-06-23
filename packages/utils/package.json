@@ -6,10 +6,13 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "test": "vitest run"
+    "test": "echo 'No tests in @strato/utils'"
   },
   "keywords": [
     "utils",
     "strato"
-  ]
+  ],
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
 }
