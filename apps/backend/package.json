@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "tsx ./src/start.ts",
+    "dev": "NODE_ENV=development dotenv -e ../../.env -- tsx ./src/start.ts",
     "build": "tsc",
     "test": "dotenv -e .env.test -- tsx --test src/tests/health.test.ts",
     "lint": "eslint ."
