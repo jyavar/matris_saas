@@ -1,32 +1,33 @@
 import { NextFunction, Request, Response } from 'express'
 
 import { supabase } from '../lib/supabase.js'
+import { ApiError } from '../utils/ApiError.js'
 
-export const authMiddleware = async (
+export async function authMiddleware(
   req: Request,
   res: Response,
   next: NextFunction,
-): Promise<void> => {
-  const token = req.headers.authorization?.split(' ')[1]
+) {
+  try {
+    const authHeader = req.headers.authorization
 
-  if (!token) {
-    res.status(401).json({ error: 'No token provided' })
-    return
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new ApiError(401, 'No authentication token provided.')
+    }
+
+    const jwt = authHeader.split(' ')[1]
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser(jwt)
+
+    if (error || !user) {
+      throw new ApiError(401, 'Invalid or expired token.')
+    }
+
+    req.user = user
+    next()
+  } catch (error) {
+    next(error)
   }
-
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser(token)
-
-  if (error) {
-    res.status(401).json({ error: 'Invalid token' })
-    return
-  }
-
-  // Extend the Express Request type to include the user object
-  // You might want to do this in a separate .d.ts file for better organization
-  // @ts-expect-error - Express types do not have a user property by default
-  req.user = user
-  next()
 }

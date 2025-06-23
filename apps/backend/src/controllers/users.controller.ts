@@ -4,6 +4,15 @@ import { createUserSchema, updateUserSchema } from '../lib/schemas.js'
 import { usersService } from '../services/users.service.js'
 
 export const usersController = {
+  async getMe(req: Request, res: Response, next: NextFunction) {
+    try {
+      // The user object is attached by the authMiddleware
+      res.json(req.user)
+    } catch (error) {
+      next(error)
+    }
+  },
+
   async getAllUserss(req: Request, res: Response, next: NextFunction) {
     try {
       const userss = await usersService.getAllUserss()
