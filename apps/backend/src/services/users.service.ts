@@ -1,5 +1,7 @@
-import { TablesInsert, TablesUpdate } from '@repo/db-types'
+import { TablesUpdate } from '@repo/db-types'
+import { z } from 'zod'
 
+import { createUserSchema } from '../lib/schemas.js'
 import { supabase } from './supabase.service'
 
 export const usersService = {
@@ -19,7 +21,7 @@ export const usersService = {
     return data
   },
 
-  async createUsers(users: TablesInsert<'users'>) {
+  async createUsers(users: z.infer<typeof createUserSchema>) {
     const { data, error } = await supabase
       .from('users')
       .insert(users)

@@ -1,18 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { z } from 'zod'
 
+import { createUserSchema, updateUserSchema } from '../lib/schemas.js'
 import { usersService } from '../services/users.service.js'
-
-export const createUsersSchema = z.object({
-  username: z.string(),
-  email: z.string().email(),
-  password: z.string().min(8),
-})
-
-const updateUsersSchema = z.object({
-  username: z.string().optional(),
-  email: z.string().email().optional(),
-})
 
 export const usersController = {
   async getAllUserss(req: Request, res: Response, next: NextFunction) {
@@ -36,7 +25,7 @@ export const usersController = {
 
   async createUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      const validatedUsers = createUsersSchema.parse(req.body)
+      const validatedUsers = createUserSchema.parse(req.body)
       const newUsers = await usersService.createUsers({
         ...validatedUsers,
         username: validatedUsers.username,
@@ -51,7 +40,7 @@ export const usersController = {
   async updateUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const id = Number(req.params.id)
-      const validatedUsers = updateUsersSchema.parse(req.body)
+      const validatedUsers = updateUserSchema.parse(req.body)
       const updatedUsers = await usersService.updateUsers(id, validatedUsers)
       res.json(updatedUsers)
     } catch (error) {
