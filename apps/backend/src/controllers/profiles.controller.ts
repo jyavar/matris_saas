@@ -15,7 +15,9 @@ export const profilesController = {
 
   async getAllProfiles(req: Request, res: Response, next: NextFunction) {
     try {
-      const profiles = await profilesService.getAllProfiles()
+      if (!req.user) throw new Error('User not authenticated')
+      const tenantId = req.user.tenant_id
+      const profiles = await profilesService.getAllProfiles(tenantId)
       res.json(profiles)
     } catch (error) {
       next(error)
@@ -24,8 +26,10 @@ export const profilesController = {
 
   async getProfileById(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = req.params.id as string // asegurar string
-      const profile = await profilesService.getProfileById(id)
+      if (!req.user) throw new Error('User not authenticated')
+      const id = req.params.id as string
+      const tenantId = req.user.tenant_id
+      const profile = await profilesService.getProfileById(id, tenantId)
       res.json(profile)
     } catch (error) {
       next(error)
@@ -35,12 +39,14 @@ export const profilesController = {
   async createProfile(req: Request, res: Response, next: NextFunction) {
     try {
       if (!req.user) throw new Error('User not authenticated')
+      const tenantId = req.user.tenant_id
       const validatedProfile = createProfileSchema.parse(req.body)
       const newProfile = await profilesService.createProfile({
         id: req.user.id,
         username: validatedProfile.username,
         full_name: validatedProfile.full_name,
         avatar_url: validatedProfile.avatar_url,
+        tenant_id: tenantId,
       })
       res.status(201).json(newProfile)
     } catch (error) {
@@ -50,10 +56,13 @@ export const profilesController = {
 
   async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new Error('User not authenticated')
       const id = req.params.id as string
+      const tenantId = req.user.tenant_id
       const validatedProfile = updateProfileSchema.parse(req.body)
       const updatedProfile = await profilesService.updateProfile(
         id,
+        tenantId,
         validatedProfile,
       )
       res.json(updatedProfile)
@@ -64,8 +73,10 @@ export const profilesController = {
 
   async deleteProfile(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new Error('User not authenticated')
       const id = req.params.id as string
-      await profilesService.deleteProfile(id)
+      const tenantId = req.user.tenant_id
+      await profilesService.deleteProfile(id, tenantId)
       res.status(204).send()
     } catch (error) {
       next(error)
