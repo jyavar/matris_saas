@@ -57,4 +57,19 @@ junit.xml
 
 # Misc
 .npm/
-.eslintcache 
+.eslintcache
+
+# testing
+/coverage
+/playwright-report/
+/test-results/
+
+# turbo
+.turbo
+.next
+.output
+.vercel
+/build
+/dist
+.svelte-kit
+.netlify
