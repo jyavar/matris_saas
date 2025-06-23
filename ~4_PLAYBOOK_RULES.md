@@ -68,6 +68,7 @@ Eres un arquitecto técnico senior. Vas a crear un repositorio nuevo siguiendo l
 - ❌ No uses dependencias sin declarar (require sin import, etc.)
 - ❌ No ejecutes node archivo.ts directamente
 - ❌ No uses alias no resueltos en tsconfig.json
+- ✅ Se permite Vitest en backend y frontend para unificar tooling, acelerar el desarrollo y mejorar la DX. Si surge una limitación real, se reevalúa.
 
 ---
 

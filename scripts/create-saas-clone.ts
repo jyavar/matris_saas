@@ -106,7 +106,7 @@ async function main() {
     console.log('\n🎉 Success! Your new SaaS project is ready.')
     console.log(`\nNext steps:`)
     console.log(`  1. cd ../${projectName}`)
-    console.log(`  2. npm install`)
+    console.log(`  2. pnpm install`)
     console.log(`  3. git init && git add . && git commit -m "Initial commit"`)
     console.log(`  4. Start building!`)
   } catch (error) {
