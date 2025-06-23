@@ -1,48 +1,59 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
-import { supabase } from './supabase.service.js'
+import { supabase } from './supabase.service'
 
 export const analyticsService = {
-  async getAllAnalyticss() {
-    const { data, error } = await supabase.from('analyticss').select('*')
-    if (error) throw error
+  async getAllAnalytics() {
+    const { data, error } = await supabase.from('analytics').select('*')
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 
   async getAnalyticsById(id: number) {
     const { data, error } = await supabase
-      .from('analyticss')
+      .from('analytics')
       .select('*')
       .eq('id', id)
       .single()
-    if (error) throw error
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 
-  async createAnalytics(analytics: TablesInsert<'analyticss'>) {
+  async createAnalytics(analytics: TablesInsert<'analytics'>) {
     const { data, error } = await supabase
-      .from('analyticss')
-      .insert(analytics)
+      .from('analytics')
+      .insert([analytics])
       .select()
-      .single()
-    if (error) throw error
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 
-  async updateAnalytics(id: number, analytics: TablesUpdate<'analyticss'>) {
+  async updateAnalytics(id: number, analytics: TablesUpdate<'analytics'>) {
     const { data, error } = await supabase
-      .from('analyticss')
+      .from('analytics')
       .update(analytics)
       .eq('id', id)
       .select()
-      .single()
-    if (error) throw error
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 
   async deleteAnalytics(id: number) {
-    const { data, error } = await supabase.from('analyticss').delete().eq('id', id)
-    if (error) throw error
+    const { data, error } = await supabase
+      .from('analytics')
+      .delete()
+      .eq('id', id)
+    if (error) {
+      throw new Error(error.message)
+    }
     return data
   },
 }
