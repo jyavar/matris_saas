@@ -1,50 +1,34 @@
 {
-  "root": "./",
+  "project": "STRATO Core OS",
+  "version": "1.0.0",
+  "modules": [
+    "frontend",
+    "backend",
+    "agent"
+  ],
+  "createdAt": "2024-06-22T00:00:00.000Z",
+  "root": ".",
   "validPaths": [
-    "apps/frontend/**",
-    "apps/backend/**",
-    "apps/web/**",
-    "packages/**",
-    "scripts/**",
-    "agent/**",
-    "modules/**",
-    "audit-artifacts/**",
-    "public/**",
-    "types/**",
-    ".github/**",
-    ".husky/**",
-    "package.json",
-    "pnpm-lock.yaml",
-    ".strato-manifest.json",
-    "tsconfig.base.json",
-    "*.md",
-    "tsconfig.json",
-    "*.sh",
-    "apps/**/.eslintignore",
-    "packages/**/.eslintignore",
-    "supabase/**",
-    ".gitignore",
-    "matrix.audit.json",
-    "matrix.coverage.json",
-    "matrix.logic.json",
-    "matrix.report.json",
-    "matrix.verified.json",
-    "audit.extract-audit.auditable.json",
-    "audit.verify-coverage.auditable.json",
-    "audit.verify-exists.auditable.json",
-    "audit.verify-logic.auditable.json",
-    "logic.overrides.json",
-    "validate-md-checklist.ts"
+    "apps/frontend",
+    "apps/backend",
+    "agent",
+    "packages/utils",
+    ".",
+    "audit-artifacts"
   ],
   "forbiddenPaths": [
-    "node_modules/**",
-    "apps/**/build/**",
-    "**/__tests__/**/__snapshots__/**"
+    "node_modules",
+    ".tmp-scripts",
+    "dist",
+    "build"
   ],
   "namingConventions": {
-    "testFiles": "*.test.ts",
-    "componentFiles": "*.tsx",
-    "routeFiles": "route.ts"
+    "files": "kebab-case",
+    "folders": "kebab-case",
+    "modules": "kebab-case",
+    "testFiles": "kebab-case",
+    "componentFiles": "kebab-case",
+    "routeFiles": "kebab-case"
   },
-  "preferredEntryDir": "apps/frontend/app/"
+  "preferredEntryDir": "apps/frontend"
 } 

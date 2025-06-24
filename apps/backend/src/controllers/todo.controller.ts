@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 import { z, ZodError } from 'zod'
 
-import type { Database, TablesInsert } from '../../../../supabase.types'
 import { numericIdParamSchema } from '../lib/schemas.js'
 import { todoService } from '../services/todo.service.js'
+import type { Database, TablesInsert } from '../types/supabase.types'
 import { ApiError } from '../utils/ApiError.js'
 
 const createTodoSchema = z.object({

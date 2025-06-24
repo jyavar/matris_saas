@@ -1,8 +1,0 @@
-{
-  "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ CLI de validación y snapshot/rollback": {
-    "detalle": "Override: validación y snapshot implementados manualmente."
-  },
-  "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::✅ Configuración de TailwindCSS y PostCSS": {
-    "detalle": "Override: configuración verificada manualmente en tailwind.config.js y postcss.config.js."
-  }
-} 
