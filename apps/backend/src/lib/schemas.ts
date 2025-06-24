@@ -39,3 +39,15 @@ export const updateProfileSchema = z.object({
     .optional(),
   avatar_url: z.string().url('Invalid avatar URL').optional(),
 })
+
+export const idParamSchema = z.object({
+  id: z.string().uuid('Invalid ID format'),
+})
+
+export const numericIdParamSchema = z.object({
+  id: z.string().regex(/^\d+$/, 'ID must be a number'),
+})
+
+export const analyticsQuerySchema = z.object({
+  range: z.string().optional(),
+})

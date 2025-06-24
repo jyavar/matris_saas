@@ -1,7 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
+import { ZodError } from 'zod'
 
-import { createProfileSchema, updateProfileSchema } from '../lib/schemas.js'
+import {
+  createProfileSchema,
+  idParamSchema,
+  updateProfileSchema,
+} from '../lib/schemas.js'
 import { profilesService } from '../services/profiles.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const profilesController = {
   async getMe(req: Request, res: Response, next: NextFunction) {
@@ -15,7 +21,7 @@ export const profilesController = {
 
   async getAllProfiles(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new Error('User not authenticated')
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const tenantId = req.user.tenant_id
       const profiles = await profilesService.getAllProfiles(tenantId)
       res.json(profiles)
@@ -26,10 +32,11 @@ export const profilesController = {
 
   async getProfileById(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new Error('User not authenticated')
-      const id = req.params.id as string
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
+      const { id } = idParamSchema.parse(req.params)
       const tenantId = req.user.tenant_id
       const profile = await profilesService.getProfileById(id, tenantId)
+      if (!profile) throw new ApiError(404, 'Profile not found')
       res.json(profile)
     } catch (error) {
       next(error)
@@ -38,9 +45,20 @@ export const profilesController = {
 
   async createProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new Error('User not authenticated')
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const tenantId = req.user.tenant_id
-      const validatedProfile = createProfileSchema.parse(req.body)
+      let validatedProfile
+      try {
+        validatedProfile = createProfileSchema.parse(req.body)
+      } catch (zodError: unknown) {
+        if (zodError instanceof ZodError) {
+          throw new ApiError(
+            400,
+            zodError.errors?.[0]?.message || 'Invalid profile data',
+          )
+        }
+        throw zodError
+      }
       const newProfile = await profilesService.createProfile({
         id: req.user.id,
         username: validatedProfile.username,
@@ -56,10 +74,33 @@ export const profilesController = {
 
   async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new Error('User not authenticated')
-      const id = req.params.id as string
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
+      const { id } = idParamSchema.parse(req.params)
       const tenantId = req.user.tenant_id
-      const validatedProfile = updateProfileSchema.parse(req.body)
+      let validatedProfile
+      try {
+        validatedProfile = updateProfileSchema.parse(req.body)
+      } catch (zodError: unknown) {
+        if (zodError instanceof ZodError) {
+          throw new ApiError(
+            400,
+            zodError.errors?.[0]?.message || 'Invalid profile data',
+          )
+        }
+        throw zodError
+      }
+      let profile
+      try {
+        profile = await profilesService.getProfileById(id, tenantId)
+        if (!profile) throw new ApiError(404, 'Profile not found')
+      } catch (error: unknown) {
+        if (error instanceof ApiError && error.statusCode === 404) {
+          // Si el perfil no existe, lanzar 404
+          throw error
+        }
+        throw error
+      }
+      if (profile.id !== req.user.id) throw new ApiError(403, 'Forbidden')
       const updatedProfile = await profilesService.updateProfile(
         id,
         tenantId,
@@ -73,8 +114,8 @@ export const profilesController = {
 
   async deleteProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new Error('User not authenticated')
-      const id = req.params.id as string
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
+      const { id } = idParamSchema.parse(req.params)
       const tenantId = req.user.tenant_id
       await profilesService.deleteProfile(id, tenantId)
       res.status(204).send()

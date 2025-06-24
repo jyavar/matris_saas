@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
+import { analyticsQuerySchema, numericIdParamSchema } from '../lib/schemas.js'
 import { analyticsService } from '../services/analytics.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
@@ -18,6 +20,10 @@ const updateAnalyticsSchema = z.object({
 export const analyticsController = {
   async getAllAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.query || Object.keys(req.query).length === 0) {
+        throw new ApiError(400, 'Query is required')
+      }
+      analyticsQuerySchema.parse(req.query)
       const analyticss = await analyticsService.getAllAnalytics()
       res.json(analyticss)
     } catch (error) {
@@ -27,8 +33,8 @@ export const analyticsController = {
 
   async getAnalyticsById(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = Number(req.params.id)
-      const analytics = await analyticsService.getAnalyticsById(id)
+      const { id } = numericIdParamSchema.parse(req.params)
+      const analytics = await analyticsService.getAnalyticsById(Number(id))
       res.json(analytics)
     } catch (error) {
       next(error)
@@ -50,10 +56,10 @@ export const analyticsController = {
 
   async updateAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = Number(req.params.id)
+      const { id } = numericIdParamSchema.parse(req.params)
       const validatedAnalytics = updateAnalyticsSchema.parse(req.body)
       const updatedAnalytics = await analyticsService.updateAnalytics(
-        id,
+        Number(id),
         validatedAnalytics,
       )
       res.json(updatedAnalytics)
@@ -64,8 +70,8 @@ export const analyticsController = {
 
   async deleteAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = Number(req.params.id)
-      await analyticsService.deleteAnalytics(id)
+      const { id } = numericIdParamSchema.parse(req.params)
+      await analyticsService.deleteAnalytics(Number(id))
       res.status(204).send()
     } catch (error) {
       next(error)
