@@ -4,9 +4,11 @@ import { describe, expect, it } from 'vitest'
 import { app } from '../index.js'
 
 describe('Auth Controller', () => {
+  const tenantId = '00000000-0000-0000-0000-000000000001'
   const userCredentials = {
     email: `test-${Date.now()}@example.com`,
     password: 'password123',
+    tenant_id: tenantId,
   }
 
   it('should sign up a new user', async () => {
@@ -49,12 +51,12 @@ describe('Auth Controller', () => {
 
   it('should access protected route with a valid token', async () => {
     // Sign in to get the token
+    await request(app).post('/auth/signup').send(userCredentials)
     const signInResponse = await request(app)
       .post('/auth/signin')
       .send(userCredentials)
 
     const token = signInResponse.body.access_token
-
     const response = await request(app)
       .get('/profiles/me')
       .set('Authorization', `Bearer ${token}`)
