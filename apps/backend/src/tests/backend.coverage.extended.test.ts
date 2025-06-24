@@ -136,7 +136,7 @@ describe('Backend Extended Coverage', () => {
     expect(res.status).toBe(404)
   })
 
-  it.skip('Todos: should return empty list for user with no todos', async () => {
+  it('Todos: should return empty list for user with no todos', async () => {
     const token = await getRealToken()
     // Decodificar el user_id del token
     const decoded = jwt.decode(token) as Record<string, unknown> | null

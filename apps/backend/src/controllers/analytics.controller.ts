@@ -20,6 +20,7 @@ const updateAnalyticsSchema = z.object({
 export const analyticsController = {
   async getAllAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       if (!req.query || Object.keys(req.query).length === 0) {
         throw new ApiError(400, 'Query is required')
       }
@@ -33,6 +34,7 @@ export const analyticsController = {
 
   async getAnalyticsById(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
       const analytics = await analyticsService.getAnalyticsById(Number(id))
       res.json(analytics)
@@ -43,6 +45,7 @@ export const analyticsController = {
 
   async createAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const validatedAnalytics = createAnalyticsSchema.parse(req.body)
       const newAnalytics = await analyticsService.createAnalytics({
         ...validatedAnalytics,
@@ -56,6 +59,7 @@ export const analyticsController = {
 
   async updateAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
       const validatedAnalytics = updateAnalyticsSchema.parse(req.body)
       const updatedAnalytics = await analyticsService.updateAnalytics(
@@ -70,6 +74,7 @@ export const analyticsController = {
 
   async deleteAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
       await analyticsService.deleteAnalytics(Number(id))
       res.status(204).send()

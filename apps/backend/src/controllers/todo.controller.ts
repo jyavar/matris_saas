@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { z, ZodError } from 'zod'
 
+import type { Database, TablesInsert } from '../../../../supabase.types'
 import { numericIdParamSchema } from '../lib/schemas.js'
 import { todoService } from '../services/todo.service.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -30,8 +31,16 @@ export const todoController = {
 
   async getTodoById(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
-      const todo = await todoService.getTodoById(Number(id))
+      const userId = req.user.id
+      const tenantId = req.user.tenant_id
+      const todo = (await todoService.getTodoById(Number(id))) as
+        | Database['public']['Tables']['todos']['Row']
+        | null
+      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
+        throw new ApiError(404, 'Todo not found')
+      }
       res.json(todo)
     } catch (error) {
       next(error)
@@ -53,13 +62,12 @@ export const todoController = {
         }
         throw zodError
       }
-      // TODO: Añadir user_id y tenant_id cuando la migración y los tipos estén listos
       const newTodo = await todoService.createTodo({
         ...validatedTodo,
         task: validatedTodo.task,
-        // user_id: req.user.id,
-        // tenant_id: req.user.tenant_id,
-      })
+        user_id: req.user.id,
+        tenant_id: req.user.tenant_id,
+      } as TablesInsert<'todos'>)
       res.status(201).json(newTodo)
     } catch (error) {
       next(error)
@@ -68,7 +76,16 @@ export const todoController = {
 
   async updateTodo(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
+      const userId = req.user.id
+      const tenantId = req.user.tenant_id
+      const todo = (await todoService.getTodoById(Number(id))) as
+        | Database['public']['Tables']['todos']['Row']
+        | null
+      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
+        throw new ApiError(404, 'Todo not found')
+      }
       const validatedTodo = updateTodoSchema.parse(req.body)
       const updatedTodo = await todoService.updateTodo(
         Number(id),
@@ -82,7 +99,16 @@ export const todoController = {
 
   async deleteTodo(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = numericIdParamSchema.parse(req.params)
+      const userId = req.user.id
+      const tenantId = req.user.tenant_id
+      const todo = (await todoService.getTodoById(Number(id))) as
+        | Database['public']['Tables']['todos']['Row']
+        | null
+      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
+        throw new ApiError(404, 'Todo not found')
+      }
       await todoService.deleteTodo(Number(id))
       res.status(204).send()
     } catch (error) {
