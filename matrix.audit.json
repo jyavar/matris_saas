@@ -1,0 +1,4196 @@
+[
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Crear carpeta `/backend/` con estructura clara: `/routes`, `/middleware`, `/services`, `/tests`",
+    "feature": "✅ Crear carpeta `/backend/` con estructura clara: `/routes`, `/middleware`, `/services`, `/tests`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Estructura pendiente: `/lib`, `/validators`, `/types`",
+    "feature": "⬜️ Estructura pendiente: `/lib`, `/validators`, `/types`",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Inicializar `tsconfig.json` estricto y `vitest.config.ts`",
+    "feature": "✅ Inicializar `tsconfig.json` estricto y `vitest.config.ts`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Instalar dependencias críticas: `zod`, `vitest`, `supertest`, `@supabase/supabase-js`, `stripe`, `resend`, `openai`, `dotenv`, etc.",
+    "feature": "✅ Instalar dependencias críticas: `zod`, `vitest`, `supertest`, `@supabase/supabase-js`, `stripe`, `resend`, `openai`, `dotenv`, etc.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Crear router.ts central y modularidad avanzada",
+    "feature": "⬜️ Crear router.ts central y modularidad avanzada",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Rutas y middleware básico iniciado",
+    "feature": "✅ Rutas y middleware básico iniciado",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Middleware de validación y seguridad completo (falta rateLimit, Zod en todos los inputs)",
+    "feature": "⬜️ Middleware de validación y seguridad completo (falta rateLimit, Zod en todos los inputs)",
+    "tipo": "seguridad",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Integraciones externas (Stripe, Resend, OpenAI, PostHog) completas",
+    "feature": "⬜️ Integraciones externas (Stripe, Resend, OpenAI, PostHog) completas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Billing modular y enforcement por plan",
+    "feature": "⬜️ Billing modular y enforcement por plan",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Módulos de negocio (ej: campaigns) completos",
+    "feature": "⬜️ Módulos de negocio (ej: campaigns) completos",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Tests unitarios e integración iniciados",
+    "feature": "✅ Tests unitarios e integración iniciados",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Fixtures de datos dummy y seeding básico implementados",
+    "feature": "✅ Fixtures de datos dummy y seeding básico implementados",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::✅ Logger estructurado básico",
+    "feature": "✅ Logger estructurado básico",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Logs a PostHog y bitácora de acciones clave",
+    "feature": "⬜️ Logs a PostHog y bitácora de acciones clave",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ CLI de validación y snapshot/rollback",
+    "feature": "⬜️ CLI de validación y snapshot/rollback",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::1. ~1_BACKEND_ROADMAP.md::⬜️ Backend 100% modularizado, validado, protegido y listo para producción",
+    "feature": "⬜️ Backend 100% modularizado, validado, protegido y listo para producción",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::✅ Estructura base en `/frontend/` con carpetas `/components`, `/pages` o `/app`, `/hooks`, `/contexts`, `/services`, `/lib`",
+    "feature": "✅ Estructura base en `/frontend/` con carpetas `/components`, `/pages` o `/app`, `/hooks`, `/contexts`, `/services`, `/lib`",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::✅ Configuración de TailwindCSS y PostCSS",
+    "feature": "✅ Configuración de TailwindCSS y PostCSS",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::✅ Uso de shadcn/ui y clsx para UI",
+    "feature": "✅ Uso de shadcn/ui y clsx para UI",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::✅ Integración de Context Guard y convenciones de rutas",
+    "feature": "✅ Integración de Context Guard y convenciones de rutas",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Componentes UI reutilizables completos (botones, cards, inputs, etc.)",
+    "feature": "⬜️ Componentes UI reutilizables completos (botones, cards, inputs, etc.)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Tests de componentes con Testing Library",
+    "feature": "⬜️ Tests de componentes con Testing Library",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Tests E2E con Playwright para flujos críticos",
+    "feature": "⬜️ Tests E2E con Playwright para flujos críticos",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Validación de accesibilidad (a11y), dark mode, loading states, fallback de errores",
+    "feature": "⬜️ Validación de accesibilidad (a11y), dark mode, loading states, fallback de errores",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Integración real con API del backend (fetcher tipado, Zod/OpenAPI)",
+    "feature": "⬜️ Integración real con API del backend (fetcher tipado, Zod/OpenAPI)",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Cobertura de UI y lógica ≥ 90%",
+    "feature": "⬜️ Cobertura de UI y lógica ≥ 90%",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::2. Frontend (Next.js/React)::⬜️ Soporte para theming y personalización visual por SaaS clonado",
+    "feature": "⬜️ Soporte para theming y personalización visual por SaaS clonado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Fase 0: Planificación y roadmap creado",
+    "feature": "✅ Fase 0: Planificación y roadmap creado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Middleware de autenticación implementado",
+    "feature": "✅ Middleware de autenticación implementado",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Rutas protegidas y endpoint `/me` implementado",
+    "feature": "✅ Rutas protegidas y endpoint `/me` implementado",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Refactor de users a profiles y tabla en Supabase",
+    "feature": "✅ Refactor de users a profiles y tabla en Supabase",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Migraciones y tipos documentados y sincronizados (pendiente sólo migración de todos multiusuario)",
+    "feature": "✅ Migraciones y tipos documentados y sincronizados (pendiente sólo migración de todos multiusuario)",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::⬜️ Script de inicialización de proyecto (init-project)",
+    "feature": "⬜️ Script de inicialización de proyecto (init-project)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::✅ Seeding de base de datos básico implementado",
+    "feature": "✅ Seeding de base de datos básico implementado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::⬜️ Documentación exhaustiva y plantilla README",
+    "feature": "⬜️ Documentación exhaustiva y plantilla README",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::3. ~3_MATRIX_ROADMAP.md::⬜️ Limpieza final y conversión a repo plantilla",
+    "feature": "⬜️ Limpieza final y conversión a repo plantilla",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::4. ~4_PLAYBOOK_RULES.md::✅ Stack y convenciones STRATO aplicadas (pnpm, tsconfig.base.json, zod, turbo, eslint, etc.)",
+    "feature": "✅ Stack y convenciones STRATO aplicadas (pnpm, tsconfig.base.json, zod, turbo, eslint, etc.)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::4. ~4_PLAYBOOK_RULES.md::✅ Prohibiciones y reglas de oro respetadas (no any, no console.log, no alias rotos, etc.)",
+    "feature": "✅ Prohibiciones y reglas de oro respetadas (no any, no console.log, no alias rotos, etc.)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::4. ~4_PLAYBOOK_RULES.md::✅ Validaciones de estructura y convenciones activas",
+    "feature": "✅ Validaciones de estructura y convenciones activas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Setup base blindado (estructura, tooling, CI/CD, conexiones core)",
+    "feature": "✅ Setup base blindado (estructura, tooling, CI/CD, conexiones core)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Guardias técnicos activos (pre-commit, CI/CD, runtime defense)",
+    "feature": "✅ Guardias técnicos activos (pre-commit, CI/CD, runtime defense)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Estrategia modular y clonable",
+    "feature": "✅ Estrategia modular y clonable",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Flujo de desarrollo AI-assistido y validaciones",
+    "feature": "✅ Flujo de desarrollo AI-assistido y validaciones",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Validaciones, reporting y alertas",
+    "feature": "✅ Validaciones, reporting y alertas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::✅ Reglas de oro para el founder",
+    "feature": "✅ Reglas de oro para el founder",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::⬜️ Desarrollo funcional robusto completo (falta cobertura total de tests, integración avanzada)",
+    "feature": "⬜️ Desarrollo funcional robusto completo (falta cobertura total de tests, integración avanzada)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::⬜️ Integraciones estratégicas y AI (OpenAI, Stripe, Resend, PostHog, etc.)",
+    "feature": "⬜️ Integraciones estratégicas y AI (OpenAI, Stripe, Resend, PostHog, etc.)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::⬜️ Escalabilidad real y multi-SaaS (clonación, orquestador de agentes)",
+    "feature": "⬜️ Escalabilidad real y multi-SaaS (clonación, orquestador de agentes)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::⬜️ Comercialización y control operativo (planes, dashboard, docs públicas)",
+    "feature": "⬜️ Comercialización y control operativo (planes, dashboard, docs públicas)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::5. ~5_PLAYBOOK.md::⬜️ Sistema modular de productos SaaS y ciclo de vida de módulos",
+    "feature": "⬜️ Sistema modular de productos SaaS y ciclo de vida de módulos",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::6. ~6_README.cursor.md::✅ Context Guard y reglas de estructura activas",
+    "feature": "✅ Context Guard y reglas de estructura activas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::6. ~6_README.cursor.md::✅ Ejemplo de manifiesto y uso de guardianes",
+    "feature": "✅ Ejemplo de manifiesto y uso de guardianes",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::6. ~6_README.cursor.md::✅ Instrucciones claras para contribución y validación",
+    "feature": "✅ Instrucciones claras para contribución y validación",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::7. ~7_SAAS_MATRIX_ROADMAP.md::⬜️ Módulo de AuthN/AuthZ completo",
+    "feature": "⬜️ Módulo de AuthN/AuthZ completo",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::7. ~7_SAAS_MATRIX_ROADMAP.md::✅ Multi-tenancy (aislamiento de clientes y RLS) implementado en backend",
+    "feature": "✅ Multi-tenancy (aislamiento de clientes y RLS) implementado en backend",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::7. ~7_SAAS_MATRIX_ROADMAP.md::⬜️ Billing (Stripe) integrado",
+    "feature": "⬜️ Billing (Stripe) integrado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::7. ~7_SAAS_MATRIX_ROADMAP.md::⬜️ UI compartida y theming",
+    "feature": "⬜️ UI compartida y theming",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::7. ~7_SAAS_MATRIX_ROADMAP.md::⬜️ Admin dashboard",
+    "feature": "⬜️ Admin dashboard",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::✅ Calidad de código y cero deuda técnica (95/100)",
+    "feature": "✅ Calidad de código y cero deuda técnica (95/100)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::⬜️ Cobertura y calidad de tests (15/100, falta tests en frontend y lógica de negocio)",
+    "feature": "⬜️ Cobertura y calidad de tests (15/100, falta tests en frontend y lógica de negocio)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::⬜️ Automatización y CI/CD en la nube (60/100, falta pipeline en GitHub Actions)",
+    "feature": "⬜️ Automatización y CI/CD en la nube (60/100, falta pipeline en GitHub Actions)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::✅ Arquitectura y estructura del monorepo (100/100)",
+    "feature": "✅ Arquitectura y estructura del monorepo (100/100)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::✅ Gestión de base de datos (90/100, falta generación de tipos TS)",
+    "feature": "✅ Gestión de base de datos (90/100, falta generación de tipos TS)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::8. ~8_SCORECARD.md::⬜️ Seguridad (75/100, falta auditoría de dependencias y gestión de secretos en prod)",
+    "feature": "⬜️ Seguridad (75/100, falta auditoría de dependencias y gestión de secretos en prod)",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::9. ~9_STRATO_FULL_CLEAN_COVERAGE.md::⬜️ Auditoría técnica completa (tsc, eslint, context-watchdog, .env)",
+    "feature": "⬜️ Auditoría técnica completa (tsc, eslint, context-watchdog, .env)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::9. ~9_STRATO_FULL_CLEAN_COVERAGE.md::⬜️ Tests y coverage backend y frontend ≥ 90%",
+    "feature": "⬜️ Tests y coverage backend y frontend ≥ 90%",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::9. ~9_STRATO_FULL_CLEAN_COVERAGE.md::⬜️ Limpieza de paths, dependencias y archivos",
+    "feature": "⬜️ Limpieza de paths, dependencias y archivos",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::9. ~9_STRATO_FULL_CLEAN_COVERAGE.md::⬜️ Blindaje técnico avanzado (manifest, hooks, validate-clean-system)",
+    "feature": "⬜️ Blindaje técnico avanzado (manifest, hooks, validate-clean-system)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::9. ~9_STRATO_FULL_CLEAN_COVERAGE.md::⬜️ Validación final y reporte",
+    "feature": "⬜️ Validación final y reporte",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Tests y coverage backend/frontend completos",
+    "feature": "⬜️ Tests y coverage backend/frontend completos",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Implementación de módulos clave (auth, multi-tenancy, billing, UI, admin)",
+    "feature": "⬜️ Implementación de módulos clave (auth, multi-tenancy, billing, UI, admin)",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Integraciones estratégicas (Supabase, Stripe, Resend, OpenAI, PostHog)",
+    "feature": "⬜️ Integraciones estratégicas (Supabase, Stripe, Resend, OpenAI, PostHog)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Clonabilidad y automatización (scripts, templates)",
+    "feature": "⬜️ Clonabilidad y automatización (scripts, templates)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Reporting, dashboard y auditoría",
+    "feature": "⬜️ Reporting, dashboard y auditoría",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Documentación y scorecard actualizados",
+    "feature": "⬜️ Documentación y scorecard actualizados",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::10. ~10_CHECKLIST_FULL_STRATO.md::⬜️ Validaciones y blindaje final",
+    "feature": "⬜️ Validaciones y blindaje final",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::11. ~11_LOCAL_WORKAROUNDS.md::✅ Workaround temporal para tenant_id en middleware documentado",
+    "feature": "✅ Workaround temporal para tenant_id en middleware documentado",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::11. ~11_LOCAL_WORKAROUNDS.md::✅ Pendiente de custom claims en Supabase documentado",
+    "feature": "✅ Pendiente de custom claims en Supabase documentado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::11. ~11_LOCAL_WORKAROUNDS.md::✅ Revisión obligatoria antes de producción documentada",
+    "feature": "✅ Revisión obligatoria antes de producción documentada",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::11. ~11_LOCAL_WORKAROUNDS.md::✅ Workaround documentado para tests que fallan por esquema de profiles",
+    "feature": "✅ Workaround documentado para tests que fallan por esquema de profiles",
+    "tipo": "test",
+    "area": "perfiles",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::12. SEO y SEO Avanzado::⬜️ Módulo SEO con generación de sitemap automático",
+    "feature": "⬜️ Módulo SEO con generación de sitemap automático",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::12. SEO y SEO Avanzado::⬜️ Metatags por página y soporte para OpenGraph/Schema.org",
+    "feature": "⬜️ Metatags por página y soporte para OpenGraph/Schema.org",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::12. SEO y SEO Avanzado::⬜️ Soporte para blogs y landings específicas",
+    "feature": "⬜️ Soporte para blogs y landings específicas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::12. SEO y SEO Avanzado::⬜️ Integración de analytics y tracking de SEO",
+    "feature": "⬜️ Integración de analytics y tracking de SEO",
+    "tipo": "otro",
+    "area": "analytics",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::12. SEO y SEO Avanzado::⬜️ Automatización de assets para lanzamientos (Product Hunt, X, newsletters)",
+    "feature": "⬜️ Automatización de assets para lanzamientos (Product Hunt, X, newsletters)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::NOTA: Tests backend pendientes por error de esquema::⬜️ Algunos tests de backend fallan porque la columna `email` no existe en la tabla `profiles`.",
+    "feature": "⬜️ Algunos tests de backend fallan porque la columna `email` no existe en la tabla `profiles`.",
+    "tipo": "test",
+    "area": "perfiles",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::NOTA: Tests backend pendientes por error de esquema::Acción requerida: restaurar la columna o adaptar los tests/código al nuevo esquema.",
+    "feature": "Acción requerida: restaurar la columna o adaptar los tests/código al nuevo esquema.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::NOTA: Tests backend pendientes por error de esquema::Ver detalles en `~11_LOCAL_WORKAROUNDS.md`.",
+    "feature": "Ver detalles en `~11_LOCAL_WORKAROUNDS.md`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::RESUMEN Y PORCENTAJE DE IMPLEMENTACIÓN::**Total de ítems principales:** 70",
+    "feature": "**Total de ítems principales:** 70",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::RESUMEN Y PORCENTAJE DE IMPLEMENTACIÓN::**Ítems implementados (✅):** 28",
+    "feature": "**Ítems implementados (✅):** 28",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::RESUMEN Y PORCENTAJE DE IMPLEMENTACIÓN::**Ítems pendientes (⬜️):** 42",
+    "feature": "**Ítems pendientes (⬜️):** 42",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::Diagnóstico::**Fortalezas:**",
+    "feature": "**Fortalezas:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~12_CHECKLIST_MAESTRO.md::Diagnóstico::**Debilidades/Pendientes:**",
+    "feature": "**Debilidades/Pendientes:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Backend: Tests unitarios para todos los servicios, controladores y middlewares",
+    "feature": "[ ] Backend: Tests unitarios para todos los servicios, controladores y middlewares",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Backend: Tests de integración para rutas principales (supertest)",
+    "feature": "[ ] Backend: Tests de integración para rutas principales (supertest)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Backend: Fixtures de datos dummy para tests",
+    "feature": "[ ] Backend: Fixtures de datos dummy para tests",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Backend: Validar cobertura con `vitest run --coverage` y guardar reporte",
+    "feature": "[ ] Backend: Validar cobertura con `vitest run --coverage` y guardar reporte",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Frontend: Tests de componentes con Testing Library",
+    "feature": "[ ] Frontend: Tests de componentes con Testing Library",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Frontend: Tests E2E con Playwright para flujos críticos",
+    "feature": "[ ] Frontend: Tests E2E con Playwright para flujos críticos",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Frontend: Validar cobertura de UI y lógica",
+    "feature": "[ ] Frontend: Validar cobertura de UI y lógica",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::1. Testing y Coverage::[ ] Cobertura global ≥ 90% líneas / 80% funciones",
+    "feature": "[ ] Cobertura global ≥ 90% líneas / 80% funciones",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] AuthN/AuthZ: Lógica completa de autenticación y autorización",
+    "feature": "[ ] AuthN/AuthZ: Lógica completa de autenticación y autorización",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] AuthN/AuthZ: Proteger rutas y crear endpoints de perfil",
+    "feature": "[ ] AuthN/AuthZ: Proteger rutas y crear endpoints de perfil",
+    "tipo": "api",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] Multi-Tenancy: Aislamiento de datos por tenant (RLS en Supabase)",
+    "feature": "[ ] Multi-Tenancy: Aislamiento de datos por tenant (RLS en Supabase)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] Multi-Tenancy: Validar queries y endpoints multi-tenant",
+    "feature": "[ ] Multi-Tenancy: Validar queries y endpoints multi-tenant",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] Billing: Integrar Stripe (planes, pagos, webhooks, enforcement)",
+    "feature": "[ ] Billing: Integrar Stripe (planes, pagos, webhooks, enforcement)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] Billing: Lógica de upgrade/downgrade y fallback visual",
+    "feature": "[ ] Billing: Lógica de upgrade/downgrade y fallback visual",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] UI Compartida: Crear/expandir `packages/ui` con componentes y theming",
+    "feature": "[ ] UI Compartida: Crear/expandir `packages/ui` con componentes y theming",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::2. Implementación de Módulos Clave::[ ] Admin Dashboard: Implementar panel de control para operadores",
+    "feature": "[ ] Admin Dashboard: Implementar panel de control para operadores",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::3. Integraciones Estratégicas::[ ] Supabase: Validar conexión, migraciones, seeds y tipos generados",
+    "feature": "[ ] Supabase: Validar conexión, migraciones, seeds y tipos generados",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::3. Integraciones Estratégicas::[ ] Stripe: Validar pagos, webhooks y lógica de enforcement",
+    "feature": "[ ] Stripe: Validar pagos, webhooks y lógica de enforcement",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::3. Integraciones Estratégicas::[ ] Resend: Integrar para onboarding y alertas técnicas",
+    "feature": "[ ] Resend: Integrar para onboarding y alertas técnicas",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::3. Integraciones Estratégicas::[ ] OpenAI: Integrar cliente y lógica de agentes AI",
+    "feature": "[ ] OpenAI: Integrar cliente y lógica de agentes AI",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::3. Integraciones Estratégicas::[ ] PostHog: Integrar tracking técnico y de producto",
+    "feature": "[ ] PostHog: Integrar tracking técnico y de producto",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::4. Clonabilidad y Automatización::[ ] Completar y testear `create-saas-clone.ts` y `scripts/init-project.ts`",
+    "feature": "[ ] Completar y testear `create-saas-clone.ts` y `scripts/init-project.ts`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::4. Clonabilidad y Automatización::[ ] Crear y documentar templates de configuración y branding",
+    "feature": "[ ] Crear y documentar templates de configuración y branding",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::4. Clonabilidad y Automatización::[ ] Validar proceso de clonación y actualización de workspaces",
+    "feature": "[ ] Validar proceso de clonación y actualización de workspaces",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::5. Reporting, Dashboard y Auditoría::[ ] Implementar dashboard STRATO CONTROL TOWER™",
+    "feature": "[ ] Implementar dashboard STRATO CONTROL TOWER™",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::5. Reporting, Dashboard y Auditoría::[ ] Automatizar generación de reportes de sanidad y coverage",
+    "feature": "[ ] Automatizar generación de reportes de sanidad y coverage",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::5. Reporting, Dashboard y Auditoría::[ ] Integrar alertas a Slack/Notion (opcional)",
+    "feature": "[ ] Integrar alertas a Slack/Notion (opcional)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::6. Documentación y Scorecard::[ ] Actualizar README, roadmaps y scorecard tras cada avance",
+    "feature": "[ ] Actualizar README, roadmaps y scorecard tras cada avance",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::6. Documentación y Scorecard::[ ] Documentar cada módulo, integración y script",
+    "feature": "[ ] Documentar cada módulo, integración y script",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::6. Documentación y Scorecard::[ ] Mantener checklist pre-deploy y coverage actualizado",
+    "feature": "[ ] Mantener checklist pre-deploy y coverage actualizado",
+    "tipo": "test",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::7. Validaciones y Blindaje Final::[ ] Validar `.strato-manifest.json` con todas las rutas y convenciones",
+    "feature": "[ ] Validar `.strato-manifest.json` con todas las rutas y convenciones",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::7. Validaciones y Blindaje Final::[ ] Ejecutar `pnpm audit:full` y `scripts/validate-clean-system.ts` antes de cada release",
+    "feature": "[ ] Ejecutar `pnpm audit:full` y `scripts/validate-clean-system.ts` antes de cada release",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~10_CHECKLIST_FULL_STRATO.md::7. Validaciones y Blindaje Final::[ ] Validar hooks (pre-commit, pre-push) y CI/CD bloqueando cualquier error",
+    "feature": "[ ] Validar hooks (pre-commit, pre-push) y CI/CD bloqueando cualquier error",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 1 – Infraestructura Base Blindada::[x] Crear carpeta `/backend/` con estructura clara: `/routes`, `/middleware`, `/services`, `/tests`.",
+    "feature": "[x] Crear carpeta `/backend/` con estructura clara: `/routes`, `/middleware`, `/services`, `/tests`.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 1 – Infraestructura Base Blindada::[ ] Estructura pendiente: `/lib`, `/validators`, `/types`.",
+    "feature": "[ ] Estructura pendiente: `/lib`, `/validators`, `/types`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 1 – Infraestructura Base Blindada::[x] Inicializar `tsconfig.json` estricto y `vitest.config.ts`.",
+    "feature": "[x] Inicializar `tsconfig.json` estricto y `vitest.config.ts`.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 1 – Infraestructura Base Blindada::[ ] Instalar dependencias críticas: `zod`, `vitest`, `supertest`, `@supabase/supabase-js`, `stripe`, `resend`, `openai`, `dotenv`, etc.",
+    "feature": "[ ] Instalar dependencias críticas: `zod`, `vitest`, `supertest`, `@supabase/supabase-js`, `stripe`, `resend`, `openai`, `dotenv`, etc.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 2 – Sistema de Enrutamiento Modular::[ ] Crear un `router.ts` central que despache requests a rutas por módulo (`/auth`, `/billing`, `/launch`, etc.).",
+    "feature": "[ ] Crear un `router.ts` central que despache requests a rutas por módulo (`/auth`, `/billing`, `/launch`, etc.).",
+    "tipo": "api",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 2 – Sistema de Enrutamiento Modular::[x] Cada archivo en `/routes/` tendrá su endpoint y middleware asociado (iniciado con `health.routes.ts`).",
+    "feature": "[x] Cada archivo en `/routes/` tendrá su endpoint y middleware asociado (iniciado con `health.routes.ts`).",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 2 – Sistema de Enrutamiento Modular::[ ] Agregar `createRouter()` con inyección de dependencias para testeo desacoplado.",
+    "feature": "[ ] Agregar `createRouter()` con inyección de dependencias para testeo desacoplado.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 3 – Middleware de Validación y Seguridad::[ ] `middleware/auth.ts` para validación de JWT Supabase.",
+    "feature": "[ ] `middleware/auth.ts` para validación de JWT Supabase.",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 3 – Middleware de Validación y Seguridad::[ ] `middleware/rateLimit.ts` con defensa contra spam.",
+    "feature": "[ ] `middleware/rateLimit.ts` con defensa contra spam.",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 3 – Middleware de Validación y Seguridad::[x] `middleware/errorHandler.ts` para capturar fallos estructurados.",
+    "feature": "[x] `middleware/errorHandler.ts` para capturar fallos estructurados.",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 3 – Middleware de Validación y Seguridad::[ ] Conectar Zod a todos los inputs (`validators/*.ts`).",
+    "feature": "[ ] Conectar Zod a todos los inputs (`validators/*.ts`).",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 4 – Integraciones Externas Operativas::[ ] Configurar conexión a Supabase (auth y DB).",
+    "feature": "[ ] Configurar conexión a Supabase (auth y DB).",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 4 – Integraciones Externas Operativas::[ ] Integrar Stripe con claves dummy + modo de pruebas activado.",
+    "feature": "[ ] Integrar Stripe con claves dummy + modo de pruebas activado.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 4 – Integraciones Externas Operativas::[ ] Integrar Resend para envíos controlados.",
+    "feature": "[ ] Integrar Resend para envíos controlados.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 4 – Integraciones Externas Operativas::[ ] Integrar OpenAI con fallback local.",
+    "feature": "[ ] Integrar OpenAI con fallback local.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 4 – Integraciones Externas Operativas::[ ] Conectar PostHog para tracking técnico.",
+    "feature": "[ ] Conectar PostHog para tracking técnico.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 5 – Sistema de Billing Modular::[ ] Crear `billingService.ts` con:",
+    "feature": "[ ] Crear `billingService.ts` con:",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 5 – Sistema de Billing Modular::[ ] Creación y sincronización de clientes.",
+    "feature": "[ ] Creación y sincronización de clientes.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 5 – Sistema de Billing Modular::[ ] Validación de suscripción activa.",
+    "feature": "[ ] Validación de suscripción activa.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 5 – Sistema de Billing Modular::[ ] Webhooks de Stripe (`/webhooks/stripe`).",
+    "feature": "[ ] Webhooks de Stripe (`/webhooks/stripe`).",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 5 – Sistema de Billing Modular::[ ] Incluir lógica de `enforcement.ts` que restringe features por plan.",
+    "feature": "[ ] Incluir lógica de `enforcement.ts` que restringe features por plan.",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Crear módulo `/routes/campaigns.ts`.",
+    "feature": "[ ] Crear módulo `/routes/campaigns.ts`.",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Conectar a base de datos Supabase.",
+    "feature": "[ ] Conectar a base de datos Supabase.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Agregar endpoints: `GET /campaigns`, `POST /campaign`, `PUT`, `DELETE`.",
+    "feature": "[ ] Agregar endpoints: `GET /campaigns`, `POST /campaign`, `PUT`, `DELETE`.",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Validar con Zod.",
+    "feature": "[ ] Validar con Zod.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Agregar lógica AI opcional vía OpenAI.",
+    "feature": "[ ] Agregar lógica AI opcional vía OpenAI.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 6 – Lógica Modular por Módulo (ej. Campaigns)::[ ] Conectar a PostHog para tracking.",
+    "feature": "[ ] Conectar a PostHog para tracking.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 7 – Suite de Tests Total (Unitarios + Integración)::[x] Crear tests unitarios por servicio, endpoint y validación (Vitest + mocks) - (Iniciado).",
+    "feature": "[x] Crear tests unitarios por servicio, endpoint y validación (Vitest + mocks) - (Iniciado).",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 7 – Suite de Tests Total (Unitarios + Integración)::[x] Crear tests de integración con `supertest` - (Iniciado).",
+    "feature": "[x] Crear tests de integración con `supertest` - (Iniciado).",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 7 – Suite de Tests Total (Unitarios + Integración)::[ ] Usar fixtures de datos dummy (ej: usuarios, planes, campañas).",
+    "feature": "[ ] Usar fixtures de datos dummy (ej: usuarios, planes, campañas).",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 7 – Suite de Tests Total (Unitarios + Integración)::[x] Ejecutar en CI o `preflight-check`.",
+    "feature": "[x] Ejecutar en CI o `preflight-check`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 8 – Sistema de Logs, Alerts y Auditoría::[x] Crear `logger.ts` estructurado con niveles (info, error, warn).",
+    "feature": "[x] Crear `logger.ts` estructurado con niveles (info, error, warn).",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 8 – Sistema de Logs, Alerts y Auditoría::[x] Guardar logs en consola.",
+    "feature": "[x] Guardar logs en consola.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 8 – Sistema de Logs, Alerts y Auditoría::[ ] Conectar logs a PostHog.",
+    "feature": "[ ] Conectar logs a PostHog.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 8 – Sistema de Logs, Alerts y Auditoría::[ ] Integrar sistema de bitácora (`auditLog.ts`) que registre acciones clave (login, pago, deploy).",
+    "feature": "[ ] Integrar sistema de bitácora (`auditLog.ts`) que registre acciones clave (login, pago, deploy).",
+    "tipo": "otro",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] Crear `validate-backend.ts` que revise:",
+    "feature": "[ ] Crear `validate-backend.ts` que revise:",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] `.env` completo y sin claves dummy.",
+    "feature": "[ ] `.env` completo y sin claves dummy.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] Tipos correctos.",
+    "feature": "[ ] Tipos correctos.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] Endpoints funcionales.",
+    "feature": "[ ] Endpoints funcionales.",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] Tests ejecutables.",
+    "feature": "[ ] Tests ejecutables.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 9 – Validaciones Automáticas y CLI Interna::[ ] Agregar a CLI: `pnpm strato validate-backend`.",
+    "feature": "[ ] Agregar a CLI: `pnpm strato validate-backend`.",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 10 – Snapshot, Rollback y Deploy Ready::[ ] Crear script `generate-backend-snapshot.ts`.",
+    "feature": "[ ] Crear script `generate-backend-snapshot.ts`.",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 10 – Snapshot, Rollback y Deploy Ready::[ ] Crear `rollback-backend.ts` para volver a último estado válido.",
+    "feature": "[ ] Crear `rollback-backend.ts` para volver a último estado válido.",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 10 – Snapshot, Rollback y Deploy Ready::[ ] Validar deploy a Vercel o serverless (ej. edge functions o API Route).",
+    "feature": "[ ] Validar deploy a Vercel o serverless (ej. edge functions o API Route).",
+    "tipo": "api",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::PASO 10 – Snapshot, Rollback y Deploy Ready::[ ] Preparar `backend/.env.example` y CI de staging.",
+    "feature": "[ ] Preparar `backend/.env.example` y CI de staging.",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::ENTREGABLE FINAL (STRATO BACKEND MOTOR™)::[ ] `/backend/` modularizado, validado, protegido.",
+    "feature": "[ ] `/backend/` modularizado, validado, protegido.",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::ENTREGABLE FINAL (STRATO BACKEND MOTOR™)::[ ] Servicios listos para producción (auth, billing, campaigns, AI, email).",
+    "feature": "[ ] Servicios listos para producción (auth, billing, campaigns, AI, email).",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::ENTREGABLE FINAL (STRATO BACKEND MOTOR™)::[ ] Testeado al 100%.",
+    "feature": "[ ] Testeado al 100%.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::ENTREGABLE FINAL (STRATO BACKEND MOTOR™)::[ ] Con defensa legal, técnica, financiera y operativa.",
+    "feature": "[ ] Con defensa legal, técnica, financiera y operativa.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~1_BACKEND_ROADMAP.md::ENTREGABLE FINAL (STRATO BACKEND MOTOR™)::[ ] Exportable, clonable y escalable.",
+    "feature": "[ ] Exportable, clonable y escalable.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::1. Builds limpias::[ ] `pnpm --filter web build` (Frontend)",
+    "feature": "[ ] `pnpm --filter web build` (Frontend)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::1. Builds limpias::[ ] `pnpm --filter backend build` (Backend)",
+    "feature": "[ ] `pnpm --filter backend build` (Backend)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::2. Tests automáticos::[ ] `pnpm --filter web test:ui`",
+    "feature": "[ ] `pnpm --filter web test:ui`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::2. Tests automáticos::[ ] `pnpm --filter web test:e2e`",
+    "feature": "[ ] `pnpm --filter web test:e2e`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::2. Tests automáticos::[ ] `pnpm --filter backend test`",
+    "feature": "[ ] `pnpm --filter backend test`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::2. Tests automáticos::[ ] Revisar cobertura (coverage) si está configurado",
+    "feature": "[ ] Revisar cobertura (coverage) si está configurado",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::3. Lint y formato::[ ] `pnpm --filter web lint`",
+    "feature": "[ ] `pnpm --filter web lint`",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::3. Lint y formato::[ ] `pnpm --filter backend lint` (si existe)",
+    "feature": "[ ] `pnpm --filter backend lint` (si existe)",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::3. Lint y formato::[ ] `pnpm format` o Prettier (si existe)",
+    "feature": "[ ] `pnpm format` o Prettier (si existe)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::4. TypeScript estricto::[ ] `pnpm --filter web tsc --noEmit`",
+    "feature": "[ ] `pnpm --filter web tsc --noEmit`",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::4. TypeScript estricto::[ ] `pnpm --filter backend tsc --noEmit`",
+    "feature": "[ ] `pnpm --filter backend tsc --noEmit`",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::5. Dependencias::[ ] Sin dependencias duplicadas ni warnings de seguridad",
+    "feature": "[ ] Sin dependencias duplicadas ni warnings de seguridad",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::5. Dependencias::[ ] `pnpm install` no muestra errores",
+    "feature": "[ ] `pnpm install` no muestra errores",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::6. Variables de entorno::[ ] `.env.example` actualizado",
+    "feature": "[ ] `.env.example` actualizado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::6. Variables de entorno::[ ] `.env` con todos los valores requeridos para backend y frontend",
+    "feature": "[ ] `.env` con todos los valores requeridos para backend y frontend",
+    "tipo": "frontend",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::7. Archivos y estructura::[ ] Sin archivos temporales, logs, ni basura en el repo",
+    "feature": "[ ] Sin archivos temporales, logs, ni basura en el repo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::7. Archivos y estructura::[ ] `.gitignore` bien configurado",
+    "feature": "[ ] `.gitignore` bien configurado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::8. Readme y documentación::[ ] `README.md` actualizado",
+    "feature": "[ ] `README.md` actualizado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::8. Readme y documentación::[ ] Roadmaps y scorecards presentes",
+    "feature": "[ ] Roadmaps y scorecards presentes",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~2_CHECKLIST_PRE_DEPLOY.md::9. CI/CD::[ ] Workflows de GitHub Actions o similar configurados (opcional, pero recomendado)",
+    "feature": "[ ] Workflows de GitHub Actions o similar configurados (opcional, pero recomendado)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::✅ Fase 0: Planificación (Commit: `docs: create saas matrix transformation roadmap`)::[x] Crear este archivo `MATRIX_ROADMAP.md` para documentar y seguir el progreso.",
+    "feature": "[x] Crear este archivo `MATRIX_ROADMAP.md` para documentar y seguir el progreso.",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 1: Completar y Generalizar el Núcleo de Funcionalidades::**1.1: Implementar Middleware de Autenticación**",
+    "feature": "**1.1: Implementar Middleware de Autenticación**",
+    "tipo": "seguridad",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 1: Completar y Generalizar el Núcleo de Funcionalidades::**1.2: Proteger Rutas y Crear Rutas de Perfil**",
+    "feature": "**1.2: Proteger Rutas y Crear Rutas de Perfil**",
+    "tipo": "api",
+    "area": "perfiles",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 1: Completar y Generalizar el Núcleo de Funcionalidades::**1.3: Refactorizar `users` a `profiles`**",
+    "feature": "**1.3: Refactorizar `users` a `profiles`**",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 2: Automatización y Experiencia de Desarrollador (DX)::**2.1: Script de Inicialización de Proyecto**",
+    "feature": "**2.1: Script de Inicialización de Proyecto**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 2: Automatización y Experiencia de Desarrollador (DX)::**2.2: Seeding de Base de Datos**",
+    "feature": "**2.2: Seeding de Base de Datos**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 3: Documentación Exhaustiva::**3.1: Crear `TEMPLATE_README.md`**",
+    "feature": "**3.1: Crear `TEMPLATE_README.md`**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 4: Finalización y Distribución::**4.1: Limpieza Final**",
+    "feature": "**4.1: Limpieza Final**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~3_MATRIX_ROADMAP.md::Fase 4: Finalización y Distribución::**4.2: Convertir a Repositorio Plantilla de GitHub**",
+    "feature": "**4.2: Convertir a Repositorio Plantilla de GitHub**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa pnpm con pnpm-workspace.yaml bien definido",
+    "feature": "Usa pnpm con pnpm-workspace.yaml bien definido",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Configura un tsconfig.base.json en la raíz y extiéndelo en todos los módulos",
+    "feature": "Configura un tsconfig.base.json en la raíz y extiéndelo en todos los módulos",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa tsx para ejecutar archivos .ts sin transpilar",
+    "feature": "Usa tsx para ejecutar archivos .ts sin transpilar",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa vitest solo en frontend o utils (no en backend)",
+    "feature": "Usa vitest solo en frontend o utils (no en backend)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Para backend, usa tsup o tsc como bundler",
+    "feature": "Para backend, usa tsup o tsc como bundler",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Estructura como monorepo: frontend/, backend/, packages/, agents/",
+    "feature": "Estructura como monorepo: frontend/, backend/, packages/, agents/",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Cada módulo debe tener su propio package.json, tsconfig.json, vitest.config.ts (si aplica)",
+    "feature": "Cada módulo debe tener su propio package.json, tsconfig.json, vitest.config.ts (si aplica)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa zod como validador único de esquema",
+    "feature": "Usa zod como validador único de esquema",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa shadcn/ui con TailwindCSS para el frontend",
+    "feature": "Usa shadcn/ui con TailwindCSS para el frontend",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa clsx para composición de clases",
+    "feature": "Usa clsx para composición de clases",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Integra turbo para orquestación de scripts (test, build, lint)",
+    "feature": "Integra turbo para orquestación de scripts (test, build, lint)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Ejecuta pnpm audit:full como script único de validación",
+    "feature": "Ejecuta pnpm audit:full como script único de validación",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Integra audit:full en CI/CD como paso obligatorio",
+    "feature": "Integra audit:full en CI/CD como paso obligatorio",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "critico",
+    "critico": true
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa @repo/typescript-config, @repo/eslint-config como paquetes centrales",
+    "feature": "Usa @repo/typescript-config, @repo/eslint-config como paquetes centrales",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Usa eslint con parsing basado en parserOptions.project",
+    "feature": "Usa eslint con parsing basado en parserOptions.project",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Tipado estricto en todo el sistema (noImplicitAny, strict, noUncheckedIndexAccess)",
+    "feature": "Tipado estricto en todo el sistema (noImplicitAny, strict, noUncheckedIndexAccess)",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Tests en todos los módulos, mínimo 1 por agente",
+    "feature": "Tests en todos los módulos, mínimo 1 por agente",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Cero any, eslint-disable, @ts-ignore (auditable)",
+    "feature": "Cero any, eslint-disable, @ts-ignore (auditable)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Logging estructurado, sin console.log",
+    "feature": "Logging estructurado, sin console.log",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(STACK OFICIAL – 50 YES)**::Rutas con alias (@/modules/...), nunca con ../",
+    "feature": "Rutas con alias (@/modules/...), nunca con ../",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses vitest en backend",
+    "feature": "❌ No uses vitest en backend",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses vite como bundler backend",
+    "feature": "❌ No uses vite como bundler backend",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses babel, ts-node, esbuild crudo",
+    "feature": "❌ No uses babel, ts-node, esbuild crudo",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses yarn, npm (solo pnpm)",
+    "feature": "❌ No uses yarn, npm (solo pnpm)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses patch-package",
+    "feature": "❌ No uses patch-package",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses eslint-disable, @ts-ignore, any",
+    "feature": "❌ No uses eslint-disable, @ts-ignore, any",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses ../ como rutas de import",
+    "feature": "❌ No uses ../ como rutas de import",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses class-validator, typeorm, mongoose sin validación externa",
+    "feature": "❌ No uses class-validator, typeorm, mongoose sin validación externa",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses UI frameworks cerrados (Chakra, MUI)",
+    "feature": "❌ No uses UI frameworks cerrados (Chakra, MUI)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses redux, react-router, recoil, zustand",
+    "feature": "❌ No uses redux, react-router, recoil, zustand",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses console.log en producción",
+    "feature": "❌ No uses console.log en producción",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses agentes sin tests ni package.json",
+    "feature": "❌ No uses agentes sin tests ni package.json",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses pnpm sin packageManager declarado",
+    "feature": "❌ No uses pnpm sin packageManager declarado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses pnpm sin definir workspaces correctamente",
+    "feature": "❌ No uses pnpm sin definir workspaces correctamente",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No ignores los errores de CI o fallas de audit:full",
+    "feature": "❌ No ignores los errores de CI o fallas de audit:full",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No permitas CI sin auditoría completa automatizada",
+    "feature": "❌ No permitas CI sin auditoría completa automatizada",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses dependencias sin declarar (require sin import, etc.)",
+    "feature": "❌ No uses dependencias sin declarar (require sin import, etc.)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No ejecutes node archivo.ts directamente",
+    "feature": "❌ No ejecutes node archivo.ts directamente",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::❌ No uses alias no resueltos en tsconfig.json",
+    "feature": "❌ No uses alias no resueltos en tsconfig.json",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**(BLACKLIST – 50 NO)**::✅ Se permite Vitest en backend y frontend para unificar tooling, acelerar el desarrollo y mejorar la DX. Si surge una limitación real, se reevalúa.",
+    "feature": "✅ Se permite Vitest en backend y frontend para unificar tooling, acelerar el desarrollo y mejorar la DX. Si surge una limitación real, se reevalúa.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**📌 Instrucciones Finales para el Sistema AI:**::Antes de crear cualquier archivo, valida si las reglas están correctamente inicializadas.",
+    "feature": "Antes de crear cualquier archivo, valida si las reglas están correctamente inicializadas.",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**📌 Instrucciones Finales para el Sistema AI:**::Si algún paso no se puede ejecutar por problemas estructurales, no continúes. Devuelve un error y explica qué está mal.",
+    "feature": "Si algún paso no se puede ejecutar por problemas estructurales, no continúes. Devuelve un error y explica qué está mal.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**📌 Instrucciones Finales para el Sistema AI:**::Cada carpeta debe tener tests mínimos, sin ellos el sistema se considera incompleto.",
+    "feature": "Cada carpeta debe tener tests mínimos, sin ellos el sistema se considera incompleto.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**📌 Instrucciones Finales para el Sistema AI:**::La primera acción será crear la raíz del monorepo con estructura segura (apps/, packages/, etc.).",
+    "feature": "La primera acción será crear la raíz del monorepo con estructura segura (apps/, packages/, etc.).",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~4_PLAYBOOK_RULES.md::**📌 Instrucciones Finales para el Sistema AI:**::Asegúrate de que la estructura de tipos y la inferencia se mantengan en todo el sistema.",
+    "feature": "Asegúrate de que la estructura de tipos y la inferencia se mantengan en todo el sistema.",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**::Guía de inicio limpio para cualquier clon SaaS",
+    "feature": "Guía de inicio limpio para cualquier clon SaaS",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**::Blindaje estructural desde el minuto 1",
+    "feature": "Blindaje estructural desde el minuto 1",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**::Escudo contra deuda técnica, errores invisibles y caos arquitectónico",
+    "feature": "Escudo contra deuda técnica, errores invisibles y caos arquitectónico",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**::Manual operativo para ti, agentes AI y cualquier desarrollador que se sume",
+    "feature": "Manual operativo para ti, agentes AI y cualquier desarrollador que se sume",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 1 – Setup Base Blindado**::. **Crear repo nuevo con plantilla STRATO Core OS™:**",
+    "feature": ". **Crear repo nuevo con plantilla STRATO Core OS™:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 1 – Setup Base Blindado**::. **Instalar defensas automáticas:**",
+    "feature": ". **Instalar defensas automáticas:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 1 – Setup Base Blindado**::. **Configurar CI/CD desde el inicio:**",
+    "feature": ". **Configurar CI/CD desde el inicio:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 1 – Setup Base Blindado**::. **Conexiones core:**",
+    "feature": ". **Conexiones core:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 2 – Guardias Técnicos Activos**::. **Pre-commit:**",
+    "feature": ". **Pre-commit:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 2 – Guardias Técnicos Activos**::. **CI/CD Layer:**",
+    "feature": ". **CI/CD Layer:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 2 – Guardias Técnicos Activos**::. **Runtime Defense System™:**",
+    "feature": ". **Runtime Defense System™:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 2 – Guardias Técnicos Activos**::. **Autofix Agents:**",
+    "feature": ". **Autofix Agents:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 3 – Estrategia Modular Clonable**::. **Todo módulo debe ser:**",
+    "feature": ". **Todo módulo debe ser:**",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 3 – Estrategia Modular Clonable**::. **Cada nuevo SaaS parte con:**",
+    "feature": ". **Cada nuevo SaaS parte con:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**::. **Estrategia Prompt a Prompt (Cursor, Copilot, GPT):**",
+    "feature": ". **Estrategia Prompt a Prompt (Cursor, Copilot, GPT):**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**::. **Prohibido hacer commits sin haber corrido:**",
+    "feature": ". **Prohibido hacer commits sin haber corrido:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 4 – Flujo Real de Desarrollo AI-Assistido**::. **Exploración ≠ Producción:**",
+    "feature": ". **Exploración ≠ Producción:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 5 – Validaciones, Reporting y Alertas**::. **Scripts obligatorios por módulo:**",
+    "feature": ". **Scripts obligatorios por módulo:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "critico",
+    "critico": true
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 5 – Validaciones, Reporting y Alertas**::. **Reporting estructurado:**",
+    "feature": ". **Reporting estructurado:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 5 – Validaciones, Reporting y Alertas**::. **Dashboard STRATO CONTROL TOWER™:**",
+    "feature": ". **Dashboard STRATO CONTROL TOWER™:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. Nunca subestimes un bug oculto en exploración: **te va a costar 5x más después.**",
+    "feature": ". Nunca subestimes un bug oculto en exploración: **te va a costar 5x más después.**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. Toda funcionalidad debe tener mínimo un test, una validación y un rollback posible.",
+    "feature": ". Toda funcionalidad debe tener mínimo un test, una validación y un rollback posible.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. **No existe módulo \"simple\" en STRATO.** Todos deben pasar por defensa estructural.",
+    "feature": ". **No existe módulo \"simple\" en STRATO.** Todos deben pasar por defensa estructural.",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. No desarrolles de noche sin CI activo, test mínimo y control de versiones claro.",
+    "feature": ". No desarrolles de noche sin CI activo, test mínimo y control de versiones claro.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. Si una feature tarda más de 2h sin feedback, **detén el avance, ejecuta auditoría y reestructura.**",
+    "feature": ". Si una feature tarda más de 2h sin feedback, **detén el avance, ejecuta auditoría y reestructura.**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 6 – Reglas de Oro para el Founder**::. **Siempre ten al menos un agente validando cada push**: incluso si estás solo.",
+    "feature": ". **Siempre ten al menos un agente validando cada push**: incluso si estás solo.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 7 – Desarrollo Funcional Robusto (Frontend y Backend)**::. **Frontend**",
+    "feature": ". **Frontend**",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 7 – Desarrollo Funcional Robusto (Frontend y Backend)**::. **Backend**",
+    "feature": ". **Backend**",
+    "tipo": "backend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 7 – Desarrollo Funcional Robusto (Frontend y Backend)**::. **Interconexión API real**",
+    "feature": ". **Interconexión API real**",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 8 – Integraciones Estratégicas y Capas de AI**::. **OpenAI / LLM Layer**",
+    "feature": ". **OpenAI / LLM Layer**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 8 – Integraciones Estratégicas y Capas de AI**::. **Integraciones Estratégicas**",
+    "feature": ". **Integraciones Estratégicas**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 9 – Escalabilidad Real y Multi-SaaS**::. **Soporte multi-tenant:**",
+    "feature": ". **Soporte multi-tenant:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 9 – Escalabilidad Real y Multi-SaaS**::. **Sistema de clonación inteligente**",
+    "feature": ". **Sistema de clonación inteligente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 9 – Escalabilidad Real y Multi-SaaS**::. **Orquestador de agentes**",
+    "feature": ". **Orquestador de agentes**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::. **Planes y precios**",
+    "feature": ". **Planes y precios**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::. **Sistema de lanzamientos**",
+    "feature": ". **Sistema de lanzamientos**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::. **Métricas y control operativo**",
+    "feature": ". **Métricas y control operativo**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::. **Documentación y soporte**",
+    "feature": ". **Documentación y soporte**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Ser autocontenible (carpeta propia con estructura uniforme)",
+    "feature": "Ser autocontenible (carpeta propia con estructura uniforme)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Tener sus propios agentes (@refactor, @qa, @docs, etc.)",
+    "feature": "Tener sus propios agentes (@refactor, @qa, @docs, etc.)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Contar con tests, endpoints REST o RPC, reporting, validación, CLI y sistema de deploy",
+    "feature": "Contar con tests, endpoints REST o RPC, reporting, validación, CLI y sistema de deploy",
+    "tipo": "test",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Tener bitácora y estado de readiness (dev, tested, clone-ready, etc.)",
+    "feature": "Tener bitácora y estado de readiness (dev, tested, clone-ready, etc.)",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::validate-module.ts: chequea estructura, imports, agentes, tests, rutas, prompts, CLI",
+    "feature": "validate-module.ts: chequea estructura, imports, agentes, tests, rutas, prompts, CLI",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Sistema de versionado y snapshots por módulo",
+    "feature": "Sistema de versionado y snapshots por módulo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Integración completa con CI/CD, con triggers por carpeta",
+    "feature": "Integración completa con CI/CD, con triggers por carpeta",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Agentes: @refactor, @fixmasivo, @qa, @ux, @support, @data, @docs, @merge-strategist",
+    "feature": "Agentes: @refactor, @fixmasivo, @qa, @ux, @support, @data, @docs, @merge-strategist",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Cada agente tiene su script, memoria local, fallback y logs en audit-artifacts/",
+    "feature": "Cada agente tiene su script, memoria local, fallback y logs en audit-artifacts/",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Permite auditoría continua, generación de tests, refactor, alertas, feedback",
+    "feature": "Permite auditoría continua, generación de tests, refactor, alertas, feedback",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Carpeta prompts/ por módulo (nombrados, versionados y con fallback)",
+    "feature": "Carpeta prompts/ por módulo (nombrados, versionados y con fallback)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::prompts/index.json: índice maestro para trazabilidad y orquestación",
+    "feature": "prompts/index.json: índice maestro para trazabilidad y orquestación",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Separación clara por capas:",
+    "feature": "Separación clara por capas:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::check-prompts.ts: lint sintáctico y semántico de prompts",
+    "feature": "check-prompts.ts: lint sintáctico y semántico de prompts",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::validate-agents.ts: verifica que las funciones ejecutadas por los agentes coincidan con su prompt, tipo y output esperado",
+    "feature": "validate-agents.ts: verifica que las funciones ejecutadas por los agentes coincidan con su prompt, tipo y output esperado",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::strato init: inicializa proyecto o módulo",
+    "feature": "strato init: inicializa proyecto o módulo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::strato audit: ejecuta auditoría modular",
+    "feature": "strato audit: ejecuta auditoría modular",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::strato validate: corre validaciones por capa",
+    "feature": "strato validate: corre validaciones por capa",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::strato clone: clona SaaS basado en módulos",
+    "feature": "strato clone: clona SaaS basado en módulos",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::strato release: genera release firmada, deploy y changelog",
+    "feature": "strato release: genera release firmada, deploy y changelog",
+    "tipo": "otro",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Previsualización por módulo (Next.js + dev-server hot reload)",
+    "feature": "Previsualización por módulo (Next.js + dev-server hot reload)",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Sistema de fallback UI/CLI para errores de build",
+    "feature": "Sistema de fallback UI/CLI para errores de build",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Proxy inteligente para consumir APIs locales/externas sin romper rutas ni sesión",
+    "feature": "Proxy inteligente para consumir APIs locales/externas sin romper rutas ni sesión",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Autenticación Supabase + OTP",
+    "feature": "Autenticación Supabase + OTP",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Opcional: 2FA",
+    "feature": "Opcional: 2FA",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Rate limiting por IP, Zod en endpoints, validaciones estrictas por agente",
+    "feature": "Rate limiting por IP, Zod en endpoints, validaciones estrictas por agente",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Logs firmados con hash (SHA256)",
+    "feature": "Logs firmados con hash (SHA256)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Bitácoras de cambios automáticas por commit, deploy, rollback",
+    "feature": "Bitácoras de cambios automáticas por commit, deploy, rollback",
+    "tipo": "otro",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Exportación legal para auditorías o licencias",
+    "feature": "Exportación legal para auditorías o licencias",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Términos y licencias por módulo (auto-generados desde /config/licencia)",
+    "feature": "Términos y licencias por módulo (auto-generados desde /config/licencia)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Sistema de licencias: Free, SaaS, API, Enterprise",
+    "feature": "Sistema de licencias: Free, SaaS, API, Enterprise",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Contratos digitales firmados para planes Elite",
+    "feature": "Contratos digitales firmados para planes Elite",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Por módulo y por release (/snapshots/module-x/)",
+    "feature": "Por módulo y por release (/snapshots/module-x/)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Versión, hash, autor, changelog",
+    "feature": "Versión, hash, autor, changelog",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Script rollback-snapshot.ts",
+    "feature": "Script rollback-snapshot.ts",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Validación automática antes de aplicar: diffs, tests, lint",
+    "feature": "Validación automática antes de aplicar: diffs, tests, lint",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Backup manual o automático (por cron o evento) de:",
+    "feature": "Backup manual o automático (por cron o evento) de:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Backup GitHub/GitLab opcional con exportación vía CLI",
+    "feature": "Backup GitHub/GitLab opcional con exportación vía CLI",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::deploy-strato.ts: deploy a staging, prod, test, con flags opcionales",
+    "feature": "deploy-strato.ts: deploy a staging, prod, test, con flags opcionales",
+    "tipo": "test",
+    "area": "infra",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Validación pre-deploy y fallback automático si falla",
+    "feature": "Validación pre-deploy y fallback automático si falla",
+    "tipo": "otro",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Actualiza solo lo necesario por carpeta",
+    "feature": "Actualiza solo lo necesario por carpeta",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Modo full o selectivo",
+    "feature": "Modo full o selectivo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Alertas Slack o email",
+    "feature": "Alertas Slack o email",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Update en audit-artifacts/",
+    "feature": "Update en audit-artifacts/",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Validación del sistema post-deploy (liveness check, tests, diffs)",
+    "feature": "Validación del sistema post-deploy (liveness check, tests, diffs)",
+    "tipo": "test",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Módulo SEO con:",
+    "feature": "Módulo SEO con:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::campaignAgent: email outbound + seguimiento",
+    "feature": "campaignAgent: email outbound + seguimiento",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Integración PostHog + reporting visual",
+    "feature": "Integración PostHog + reporting visual",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Aprendizaje progresivo de comportamiento de usuario",
+    "feature": "Aprendizaje progresivo de comportamiento de usuario",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Sistema auto-generador de assets para:",
+    "feature": "Sistema auto-generador de assets para:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Autogenerador de updates + newsletters",
+    "feature": "Autogenerador de updates + newsletters",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Módulo /analytics con métricas técnicas y de negocio",
+    "feature": "Módulo /analytics con métricas técnicas y de negocio",
+    "tipo": "otro",
+    "area": "analytics",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Visualización interna + exportación a Notion, Slack, CSV",
+    "feature": "Visualización interna + exportación a Notion, Slack, CSV",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Integración con Supabase, PostHog, Segment",
+    "feature": "Integración con Supabase, PostHog, Segment",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Agente @data: propone mejoras por módulo según logs y performance",
+    "feature": "Agente @data: propone mejoras por módulo según logs y performance",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Compara ramas, releases y sugerencias de rollback o refactor automático",
+    "feature": "Compara ramas, releases y sugerencias de rollback o refactor automático",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Entrenado con:",
+    "feature": "Entrenado con:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Puede responder desde:",
+    "feature": "Puede responder desde:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::fallback-ui.tsx y fallback-api.ts",
+    "feature": "fallback-ui.tsx y fallback-api.ts",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Alertas automáticas por error, AI fallida, render caído",
+    "feature": "Alertas automáticas por error, AI fallida, render caído",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Compatible con:",
+    "feature": "Compatible con:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Capa STRATO CDN opcional (para despliegue en edge global)",
+    "feature": "Capa STRATO CDN opcional (para despliegue en edge global)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Cada módulo puede elegirse como:",
+    "feature": "Cada módulo puede elegirse como:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Licencia STRATO comercial y MIT selectiva",
+    "feature": "Licencia STRATO comercial y MIT selectiva",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Clonación por vertical SaaS",
+    "feature": "Clonación por vertical SaaS",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Planes de despliegue global (LATAM, US, EU, etc.)",
+    "feature": "Planes de despliegue global (LATAM, US, EU, etc.)",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Exportación automática a partners con branding white-label",
+    "feature": "Exportación automática a partners con branding white-label",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::**Falta de Matriz de Dependencias Formal entre Módulos**",
+    "feature": "**Falta de Matriz de Dependencias Formal entre Módulos**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::**Pricing aún no Validado ni Simulado con Datos Dummy**",
+    "feature": "**Pricing aún no Validado ni Simulado con Datos Dummy**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::**Falta un Visualizador Maestro de Módulos y Estado Técnico Global**",
+    "feature": "**Falta un Visualizador Maestro de Módulos y Estado Técnico Global**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::**Validaciones de Flujo AI aún no Completas**",
+    "feature": "**Validaciones de Flujo AI aún no Completas**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Prompts rotos o desalineados",
+    "feature": "Prompts rotos o desalineados",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Errores comunes de output",
+    "feature": "Errores comunes de output",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::Conflictos entre frontend, backend y lógica AI",
+    "feature": "Conflictos entre frontend, backend y lógica AI",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~5_PLAYBOOK.md::**SECCIÓN 10 – Comercialización, Pricing y Control Operativo**::**Reforzar Defensa Legal Modular**",
+    "feature": "**Reforzar Defensa Legal Modular**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Cómo Funcionan los Guardianes::.  **Guardián de Commits (Pre-commit Hook)**:",
+    "feature": ".  **Guardián de Commits (Pre-commit Hook)**:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Cómo Funcionan los Guardianes::.  **Guardián de CI/CD (GitHub Actions)**:",
+    "feature": ".  **Guardián de CI/CD (GitHub Actions)**:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Cómo Funcionan los Guardianes::.  **Guardián de Vigilancia (Real-time Watcher)**:",
+    "feature": ".  **Guardián de Vigilancia (Real-time Watcher)**:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Qué Hacer si una Validación Falla::.  **Lee el error**: El mensaje te dirá qué archivo falló y por qué.",
+    "feature": ".  **Lee el error**: El mensaje te dirá qué archivo falló y por qué.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Qué Hacer si una Validación Falla::.  **Consulta el manifiesto**: Abre `.strato-manifest.json` para ver las `validPaths` y `forbiddenPaths` permitidas.",
+    "feature": ".  **Consulta el manifiesto**: Abre `.strato-manifest.json` para ver las `validPaths` y `forbiddenPaths` permitidas.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Qué Hacer si una Validación Falla::.  **Mueve el archivo**: Ubica tu archivo en una ruta válida.",
+    "feature": ".  **Mueve el archivo**: Ubica tu archivo en una ruta válida.",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Qué Hacer si una Validación Falla::.  **Intenta de nuevo**: Haz el commit o push otra vez.",
+    "feature": ".  **Intenta de nuevo**: Haz el commit o push otra vez.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Ejemplo de Manifiesto (`.strato-manifest.json`)::**`validPaths`**: Lista de patrones glob donde los archivos *pueden* existir.",
+    "feature": "**`validPaths`**: Lista de patrones glob donde los archivos *pueden* existir.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Ejemplo de Manifiesto (`.strato-manifest.json`)::**`forbiddenPaths`**: Lista de patrones glob donde los archivos *nunca* deben existir. Tiene prioridad sobre `validPaths`.",
+    "feature": "**`forbiddenPaths`**: Lista de patrones glob donde los archivos *nunca* deben existir. Tiene prioridad sobre `validPaths`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Ejemplo de Manifiesto (`.strato-manifest.json`)::**`namingConventions`**: Reglas de nombrado para tipos específicos de archivos (actualmente informativo).",
+    "feature": "**`namingConventions`**: Reglas de nombrado para tipos específicos de archivos (actualmente informativo).",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~6_README.cursor.md::Ejemplo de Manifiesto (`.strato-manifest.json`)::**`preferredEntryDir`**: Directorio preferido para nuevos componentes de frontend (informativo).",
+    "feature": "**`preferredEntryDir`**: Directorio preferido para nuevos componentes de frontend (informativo).",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::1. Módulo de Autenticación y Autorización (AuthN/AuthZ)::**Descripción:** Lógica completa de registro, inicio de sesión, cierre de sesión, y recuperación de contraseña. Incluirá la gestión de roles y permisos (ej: `admin`, `miembro`, `invitado`).",
+    "feature": "**Descripción:** Lógica completa de registro, inicio de sesión, cierre de sesión, y recuperación de contraseña. Incluirá la gestión de roles y permisos (ej: `admin`, `miembro`, `invitado`).",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::1. Módulo de Autenticación y Autorización (AuthN/AuthZ)::**Estado:** 🚧 **Pendiente**",
+    "feature": "**Estado:** 🚧 **Pendiente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::1. Módulo de Autenticación y Autorización (AuthN/AuthZ)::**Prioridad:** **Crítica**",
+    "feature": "**Prioridad:** **Crítica**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::2. Módulo de Multi-Tenancy (Aislamiento de Clientes)::**Descripción:** Implementar el mecanismo que asegura que los datos de un cliente (tenant) sean completamente inaccesibles para otros. Con Supabase, esto se logrará mediante **Row-Level Security (RLS)**.",
+    "feature": "**Descripción:** Implementar el mecanismo que asegura que los datos de un cliente (tenant) sean completamente inaccesibles para otros. Con Supabase, esto se logrará mediante **Row-Level Security (RLS)**.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::2. Módulo de Multi-Tenancy (Aislamiento de Clientes)::**Estado:** 🚧 **Pendiente**",
+    "feature": "**Estado:** 🚧 **Pendiente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::2. Módulo de Multi-Tenancy (Aislamiento de Clientes)::**Prioridad:** **Crítica**",
+    "feature": "**Prioridad:** **Crítica**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::3. Módulo de Facturación (Billing)::**Descripción:** Integración con un proveedor de pagos como **Stripe**. Incluirá la creación de planes de suscripción, gestión de pagos, y manejo de webhooks para eventos clave (pago exitoso/fallido, cancelación).",
+    "feature": "**Descripción:** Integración con un proveedor de pagos como **Stripe**. Incluirá la creación de planes de suscripción, gestión de pagos, y manejo de webhooks para eventos clave (pago exitoso/fallido, cancelación).",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::3. Módulo de Facturación (Billing)::**Estado:** 🚧 **Pendiente**",
+    "feature": "**Estado:** 🚧 **Pendiente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::3. Módulo de Facturación (Billing)::**Prioridad:** **Alta**",
+    "feature": "**Prioridad:** **Alta**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::4. Módulo de UI Compartida y Theming::**Descripción:** Un paquete (`packages/ui`) que contenga todos los componentes de React (Botones, Inputs, Cards, etc.). Debe incluir un sistema de \"theming\" para personalizar la apariencia (logo, colores) de cada SaaS clonado editando un único archivo de configuración.",
+    "feature": "**Descripción:** Un paquete (`packages/ui`) que contenga todos los componentes de React (Botones, Inputs, Cards, etc.). Debe incluir un sistema de \"theming\" para personalizar la apariencia (logo, colores) de cada SaaS clonado editando un único archivo de configuración.",
+    "tipo": "frontend",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::4. Módulo de UI Compartida y Theming::**Estado:** 🚧 **Pendiente**",
+    "feature": "**Estado:** 🚧 **Pendiente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::4. Módulo de UI Compartida y Theming::**Prioridad:** **Media**",
+    "feature": "**Prioridad:** **Media**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::5. Módulo de Administración (Admin Dashboard)::**Descripción:** Un panel de control interno para los operadores de la matriz. Permitirá ver estadísticas de uso, gestionar usuarios de todos los tenants, y configurar aspectos globales de las aplicaciones.",
+    "feature": "**Descripción:** Un panel de control interno para los operadores de la matriz. Permitirá ver estadísticas de uso, gestionar usuarios de todos los tenants, y configurar aspectos globales de las aplicaciones.",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::5. Módulo de Administración (Admin Dashboard)::**Estado:** 🚧 **Pendiente**",
+    "feature": "**Estado:** 🚧 **Pendiente**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::5. Módulo de Administración (Admin Dashboard)::**Prioridad:** **Media**",
+    "feature": "**Prioridad:** **Media**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::Proceso de Lanzamiento de un Nuevo SaaS::.  Clonar el repositorio de la matriz.",
+    "feature": ".  Clonar el repositorio de la matriz.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::Proceso de Lanzamiento de un Nuevo SaaS::.  Configurar el \"tema\" (colores, fuentes, logo).",
+    "feature": ".  Configurar el \"tema\" (colores, fuentes, logo).",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::Proceso de Lanzamiento de un Nuevo SaaS::.  Definir los planes de suscripción en Stripe y en la configuración.",
+    "feature": ".  Definir los planes de suscripción en Stripe y en la configuración.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::Proceso de Lanzamiento de un Nuevo SaaS::.  Desplegar en la infraestructura de producción.",
+    "feature": ".  Desplegar en la infraestructura de producción.",
+    "tipo": "otro",
+    "area": "infra",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~7_SAAS_MATRIX_ROADMAP.md::Proceso de Lanzamiento de un Nuevo SaaS::.  ¡Lanzar!",
+    "feature": ".  ¡Lanzar!",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~8_SCORECARD.md::Diagnóstico General::**Fortalezas:** Nuestra **base arquitectónica (100/100)** y nuestra **disciplina de calidad de código (95/100)** son de clase mundial. Esto es lo más difícil de corregir a posteriori, y nosotros lo tenemos bien desde el principio.",
+    "feature": "**Fortalezas:** Nuestra **base arquitectónica (100/100)** y nuestra **disciplina de calidad de código (95/100)** son de clase mundial. Esto es lo más difícil de corregir a posteriori, y nosotros lo tenemos bien desde el principio.",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~8_SCORECARD.md::Diagnóstico General::**Debilidades Críticas:** La **falta casi total de tests (15/100)** es la que hunde nuestra puntuación media. Es el talón de Aquiles de la plataforma en este momento.",
+    "feature": "**Debilidades Críticas:** La **falta casi total de tests (15/100)** es la que hunde nuestra puntuación media. Es el talón de Aquiles de la plataforma en este momento.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 1: Auditoría Técnica Completa::Ejecutar `tsc --noEmit` en todo el monorepo y corregir errores de tipo.",
+    "feature": "Ejecutar `tsc --noEmit` en todo el monorepo y corregir errores de tipo.",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 1: Auditoría Técnica Completa::Ejecutar `eslint . --ext .ts,.tsx` y dejar output en `audit-artifacts/eslint-report.json`.",
+    "feature": "Ejecutar `eslint . --ext .ts,.tsx` y dejar output en `audit-artifacts/eslint-report.json`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 1: Auditoría Técnica Completa::Validar que `context-watchdog.ts` esté corriendo en cada pre-commit.",
+    "feature": "Validar que `context-watchdog.ts` esté corriendo en cada pre-commit.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 1: Auditoría Técnica Completa::Auditar `console.log`, `any`, imports relativos, rutas rotas o duplicadas.",
+    "feature": "Auditar `console.log`, `any`, imports relativos, rutas rotas o duplicadas.",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 1: Auditoría Técnica Completa::Revisar `.env.example` y variables en `.env.local`, `.env.production`.",
+    "feature": "Revisar `.env.example` y variables en `.env.local`, `.env.production`.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 2: FIX COVERAGE – Backend & Logic::Generar tests unitarios y de integración para todos los servicios con cobertura < 70%.",
+    "feature": "Generar tests unitarios y de integración para todos los servicios con cobertura < 70%.",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 2: FIX COVERAGE – Backend & Logic::Usar @qa agent para autogenerar tests en:",
+    "feature": "Usar @qa agent para autogenerar tests en:",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 2: FIX COVERAGE – Backend & Logic::Validar coverage con `vitest run --coverage` y dejar reportes en `audit-artifacts/coverage-final.json`.",
+    "feature": "Validar coverage con `vitest run --coverage` y dejar reportes en `audit-artifacts/coverage-final.json`.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 3: FIX COVERAGE – Frontend & UI::Validar que todos los componentes visuales tengan `__tests__/componente.test.tsx`.",
+    "feature": "Validar que todos los componentes visuales tengan `__tests__/componente.test.tsx`.",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 3: FIX COVERAGE – Frontend & UI::Revisar con @ux agent accesibilidad (a11y), estados aria-*, dark mode, navegación.",
+    "feature": "Revisar con @ux agent accesibilidad (a11y), estados aria-*, dark mode, navegación.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 3: FIX COVERAGE – Frontend & UI::Usar playwright o @testing-library/react para testear rutas y flujos críticos.",
+    "feature": "Usar playwright o @testing-library/react para testear rutas y flujos críticos.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 4: CLEAN PATHS, FILES & DEPENDENCIES::Usar depcheck para detectar:",
+    "feature": "Usar depcheck para detectar:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 4: CLEAN PATHS, FILES & DEPENDENCIES::Eliminar:",
+    "feature": "Eliminar:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 4: CLEAN PATHS, FILES & DEPENDENCIES::Validar package.json limpio, sin duplicados de versión, con scripts reales en uso",
+    "feature": "Validar package.json limpio, sin duplicados de versión, con scripts reales en uso",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 5: BLINDAJE TÉCNICO AVANZADO::Verificar `.strato-manifest.json` tenga TODAS las rutas actuales y sus convenciones",
+    "feature": "Verificar `.strato-manifest.json` tenga TODAS las rutas actuales y sus convenciones",
+    "tipo": "api",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 5: BLINDAJE TÉCNICO AVANZADO::Validar husky, lint-staged, runtime-defense.ts, validate-test-templates.ts",
+    "feature": "Validar husky, lint-staged, runtime-defense.ts, validate-test-templates.ts",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 5: BLINDAJE TÉCNICO AVANZADO::Agregar prepush con:",
+    "feature": "Agregar prepush con:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 5: BLINDAJE TÉCNICO AVANZADO::Agregar `scripts/validate-clean-system.ts` para correr CI local completo",
+    "feature": "Agregar `scripts/validate-clean-system.ts` para correr CI local completo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 6: VALIDACIÓN FINAL::Ejecutar todos los tests (`vitest run`, `playwright`, etc.)",
+    "feature": "Ejecutar todos los tests (`vitest run`, `playwright`, etc.)",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 6: VALIDACIÓN FINAL::Validar que coverage global sea >= 90% líneas / 80% funciones",
+    "feature": "Validar que coverage global sea >= 90% líneas / 80% funciones",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 6: VALIDACIÓN FINAL::Generar reporte final con status + semáforo por módulo",
+    "feature": "Generar reporte final con status + semáforo por módulo",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~9_STRATO_FULL_CLEAN_COVERAGE.md::Sección 6: VALIDACIÓN FINAL::Commit final:",
+    "feature": "Commit final:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::1. Workaround temporal en middleware de autenticación::Si el JWT recibido no contiene el claim `tenant_id` y el entorno es `test`, se inyecta un `tenant_id` dummy (`00000000-0000-0000-0000-000000000001`) para que los tests pasen en local.",
+    "feature": "Si el JWT recibido no contiene el claim `tenant_id` y el entorno es `test`, se inyecta un `tenant_id` dummy (`00000000-0000-0000-0000-000000000001`) para que los tests pasen en local.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::1. Workaround temporal en middleware de autenticación::**Este workaround debe eliminarse cuando Supabase esté configurado para incluir `tenant_id` en el JWT mediante custom claims.**",
+    "feature": "**Este workaround debe eliminarse cuando Supabase esté configurado para incluir `tenant_id` en el JWT mediante custom claims.**",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::2. Configuración pendiente de custom claims en Supabase::Falta configurar la función `jwt_custom_claims` en Supabase para que el claim `tenant_id` se incluya automáticamente en el JWT de los usuarios.",
+    "feature": "Falta configurar la función `jwt_custom_claims` en Supabase para que el claim `tenant_id` se incluya automáticamente en el JWT de los usuarios.",
+    "tipo": "otro",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::2. Configuración pendiente de custom claims en Supabase::Cuando se tenga acceso a la consola de Supabase, ejecutar:",
+    "feature": "Cuando se tenga acceso a la consola de Supabase, ejecutar:",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::2. Configuración pendiente de custom claims en Supabase::Luego, configurar en la consola de Supabase Auth que use esta función para los custom claims.",
+    "feature": "Luego, configurar en la consola de Supabase Auth que use esta función para los custom claims.",
+    "tipo": "seguridad",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::3. Revisión obligatoria antes de producción::Eliminar todos los workarounds temporales documentados aquí.",
+    "feature": "Eliminar todos los workarounds temporales documentados aquí.",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::3. Revisión obligatoria antes de producción::Confirmar que los JWT generados por Supabase incluyen `tenant_id` y que el backend ya no depende de hacks para los tests.",
+    "feature": "Confirmar que los JWT generados por Supabase incluyen `tenant_id` y que el backend ya no depende de hacks para los tests.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::3. Revisión obligatoria antes de producción::Validar que los tests siguen pasando tras la migración.",
+    "feature": "Validar que los tests siguen pasando tras la migración.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Migración para todos multiusuario::**Descripción:** La migración para agregar las columnas `user_id` y `tenant_id` a la tabla `todos` no se ha aplicado aún en el entorno local/test.",
+    "feature": "**Descripción:** La migración para agregar las columnas `user_id` y `tenant_id` a la tabla `todos` no se ha aplicado aún en el entorno local/test.",
+    "tipo": "test",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Migración para todos multiusuario::**Impacto:** Los tests de `/todos` multiusuario fallarán con error `column todos.user_id does not exist` hasta aplicar la migración y regenerar los tipos de Supabase.",
+    "feature": "**Impacto:** Los tests de `/todos` multiusuario fallarán con error `column todos.user_id does not exist` hasta aplicar la migración y regenerar los tipos de Supabase.",
+    "tipo": "test",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Migración para todos multiusuario::**Acción requerida:**",
+    "feature": "**Acción requerida:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::Tests afectados por la migración pendiente de todos multiusuario::**Archivo:** `apps/backend/src/tests/backend.coverage.extended.test.ts`",
+    "feature": "**Archivo:** `apps/backend/src/tests/backend.coverage.extended.test.ts`",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::Tests afectados por la migración pendiente de todos multiusuario::**Tests afectados:**",
+    "feature": "**Tests afectados:**",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::Workaround temporal para que los tests pasen::**Acción:** Marcar los tests afectados con `.skip` o `.todo` en Vitest/Jest mientras la migración no esté aplicada.",
+    "feature": "**Acción:** Marcar los tests afectados con `.skip` o `.todo` en Vitest/Jest mientras la migración no esté aplicada.",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::Workaround temporal para que los tests pasen::**Ejemplo:**",
+    "feature": "**Ejemplo:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::Workaround temporal para que los tests pasen::**Nota:** El test debe ser reactivado (`it` en vez de `it.skip`) en cuanto la migración y los tipos estén sincronizados.",
+    "feature": "**Nota:** El test debe ser reactivado (`it` en vez de `it.skip`) en cuanto la migración y los tipos estén sincronizados.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`::**Descripción:** Los tests de backend que dependen de la columna `email` en la tabla `profiles` fallan porque dicha columna no existe en el esquema actual de la base de datos.",
+    "feature": "**Descripción:** Los tests de backend que dependen de la columna `email` en la tabla `profiles` fallan porque dicha columna no existe en el esquema actual de la base de datos.",
+    "tipo": "test",
+    "area": "perfiles",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`::**Impacto:** Los tests de `profiles.controller.test.ts`, `auth.test.ts` y posiblemente otros que esperan `email` en el perfil fallan con error de esquema.",
+    "feature": "**Impacto:** Los tests de `profiles.controller.test.ts`, `auth.test.ts` y posiblemente otros que esperan `email` en el perfil fallan con error de esquema.",
+    "tipo": "test",
+    "area": "usuarios",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`::**Acción requerida:**",
+    "feature": "**Acción requerida:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`::**Workaround temporal:** Marcar los tests afectados con `.skip` o `.todo` hasta que se resuelva el esquema.",
+    "feature": "**Workaround temporal:** Marcar los tests afectados con `.skip` o `.todo` hasta que se resuelva el esquema.",
+    "tipo": "test",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~11_LOCAL_WORKAROUNDS.md::[PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`::**Tests afectados:**",
+    "feature": "**Tests afectados:**",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Alcance::Aplica a todo el monorepo STRATO (backend, frontend, scripts, infra, etc.).",
+    "feature": "Aplica a todo el monorepo STRATO (backend, frontend, scripts, infra, etc.).",
+    "tipo": "frontend",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Alcance::Permite auditar features, tests, cobertura, lógica y existencia real de cada requisito.",
+    "feature": "Permite auditar features, tests, cobertura, lógica y existencia real de cada requisito.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Alcance::Genera reportes JSON estructurados, listos para visualización, CI/CD, dashboards o auditoría externa.",
+    "feature": "Genera reportes JSON estructurados, listos para visualización, CI/CD, dashboards o auditoría externa.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Funcionamiento: Pasos del PIPE::. **Extracción de Expectativas**",
+    "feature": ". **Extracción de Expectativas**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Funcionamiento: Pasos del PIPE::. **Verificación de Existencia**",
+    "feature": ". **Verificación de Existencia**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Funcionamiento: Pasos del PIPE::. **Verificación de Test y Cobertura**",
+    "feature": ". **Verificación de Test y Cobertura**",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Funcionamiento: Pasos del PIPE::. **Verificación de Lógica**",
+    "feature": ". **Verificación de Lógica**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Funcionamiento: Pasos del PIPE::. **Fusión y Scoring**",
+    "feature": ". **Fusión y Scoring**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Archivos Generados::`matrix.audit.json` — Expectativas extraídas de los checklists.",
+    "feature": "`matrix.audit.json` — Expectativas extraídas de los checklists.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Archivos Generados::`matrix.verified.json` — Verificación de existencia real en el código.",
+    "feature": "`matrix.verified.json` — Verificación de existencia real en el código.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Archivos Generados::`matrix.coverage.json` — Estado de tests y cobertura por feature.",
+    "feature": "`matrix.coverage.json` — Estado de tests y cobertura por feature.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Archivos Generados::`matrix.logic.json` — Verificación heurística de lógica implementada.",
+    "feature": "`matrix.logic.json` — Verificación heurística de lógica implementada.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Archivos Generados::`matrix.report.json` — Fusión y scoring final por feature.",
+    "feature": "`matrix.report.json` — Fusión y scoring final por feature.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejecución del PIPE::**Manual:**",
+    "feature": "**Manual:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejecución del PIPE::**Automatizado:**",
+    "feature": "**Automatizado:**",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::¿Para qué sirve?::Permite saber, de forma objetiva y automatizada, **qué tan alineado está el código con los requisitos y mejores prácticas**.",
+    "feature": "Permite saber, de forma objetiva y automatizada, **qué tan alineado está el código con los requisitos y mejores prácticas**.",
+    "tipo": "frontend",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::¿Para qué sirve?::Facilita la detección de deuda técnica, gaps de test, cobertura y lógica.",
+    "feature": "Facilita la detección de deuda técnica, gaps de test, cobertura y lógica.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::¿Para qué sirve?::Es base para reporting, dashboards, y mejora continua.",
+    "feature": "Es base para reporting, dashboards, y mejora continua.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": false,
+    "tag": "mejora",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::¿Para qué sirve?::Permite auditoría externa y validación de cumplimiento en tiempo real.",
+    "feature": "Permite auditoría externa y validación de cumplimiento en tiempo real.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. Se extraen los features esperados desde los checklists.",
+    "feature": ". Se extraen los features esperados desde los checklists.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. Se verifica si existen en el código.",
+    "feature": ". Se verifica si existen en el código.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. Se verifica si tienen tests y cobertura.",
+    "feature": ". Se verifica si tienen tests y cobertura.",
+    "tipo": "test",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. Se verifica si la lógica está implementada.",
+    "feature": ". Se verifica si la lógica está implementada.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. Se fusionan los resultados y se calcula el score técnico.",
+    "feature": ". Se fusionan los resultados y se calcula el score técnico.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Ejemplo de Flujo Completo::. El resultado puede visualizarse en el dashboard, exportarse o integrarse en CI/CD.",
+    "feature": ". El resultado puede visualizarse en el dashboard, exportarse o integrarse en CI/CD.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Notas::El PIPE es extensible: puedes agregar más scripts, validaciones o integraciones según las necesidades del proyecto.",
+    "feature": "El PIPE es extensible: puedes agregar más scripts, validaciones o integraciones según las necesidades del proyecto.",
+    "tipo": "otro",
+    "area": "core",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  },
+  {
+    "id": "~13_PIPE_AUDITORIA_STRATO.md::Notas::Todos los scripts y outputs están versionados y auditados para máxima trazabilidad.",
+    "feature": "Todos los scripts y outputs están versionados y auditados para máxima trazabilidad.",
+    "tipo": "otro",
+    "area": "todos",
+    "requerido": true,
+    "tag": "core",
+    "critico": false
+  }
+]

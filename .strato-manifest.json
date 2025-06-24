@@ -22,7 +22,19 @@
     "*.sh",
     "apps/**/.eslintignore",
     "packages/**/.eslintignore",
-    "supabase/**"
+    "supabase/**",
+    ".gitignore",
+    "matrix.audit.json",
+    "matrix.coverage.json",
+    "matrix.logic.json",
+    "matrix.report.json",
+    "matrix.verified.json",
+    "audit.extract-audit.auditable.json",
+    "audit.verify-coverage.auditable.json",
+    "audit.verify-exists.auditable.json",
+    "audit.verify-logic.auditable.json",
+    "logic.overrides.json",
+    "validate-md-checklist.ts"
   ],
   "forbiddenPaths": [
     "node_modules/**",
