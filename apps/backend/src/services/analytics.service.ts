@@ -1,12 +1,13 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
+import { ApiError } from '../utils/ApiError.js'
 import { supabase } from './supabase.service'
 
 export const analyticsService = {
   async getAllAnalytics() {
     const { data, error } = await supabase.from('analytics').select('*')
     if (error) {
-      throw new Error(error.message)
+      throw new ApiError(400, error.message)
     }
     return data
   },
@@ -18,7 +19,11 @@ export const analyticsService = {
       .eq('id', id)
       .single()
     if (error) {
-      throw new Error(error.message)
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Analytics not found')
+      }
+      throw new ApiError(400, error.message)
     }
     return data
   },
@@ -29,7 +34,11 @@ export const analyticsService = {
       .insert([analytics])
       .select()
     if (error) {
-      throw new Error(error.message)
+      if (error.code === '23505') {
+        // Unique violation
+        throw new ApiError(409, 'Analytics already exists')
+      }
+      throw new ApiError(400, error.message)
     }
     return data
   },
@@ -41,7 +50,11 @@ export const analyticsService = {
       .eq('id', id)
       .select()
     if (error) {
-      throw new Error(error.message)
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Analytics not found')
+      }
+      throw new ApiError(400, error.message)
     }
     return data
   },
@@ -52,7 +65,11 @@ export const analyticsService = {
       .delete()
       .eq('id', id)
     if (error) {
-      throw new Error(error.message)
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Analytics not found')
+      }
+      throw new ApiError(400, error.message)
     }
     return data
   },

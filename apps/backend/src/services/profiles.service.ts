@@ -1,3 +1,4 @@
+import { ApiError } from '../utils/ApiError.js'
 import { supabase } from './supabase.service'
 
 export const profilesService = {
@@ -6,7 +7,9 @@ export const profilesService = {
       .from('profiles')
       .select('*')
       .eq('tenant_id', tenantId)
-    if (error) throw error
+    if (error) {
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -17,7 +20,13 @@ export const profilesService = {
       .eq('id', id)
       .eq('tenant_id', tenantId)
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Profile not found')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -33,7 +42,13 @@ export const profilesService = {
       .insert(profile)
       .select()
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === '23505') {
+        // Unique violation
+        throw new ApiError(409, 'Profile already exists')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -49,7 +64,13 @@ export const profilesService = {
       .eq('tenant_id', tenantId)
       .select()
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Profile not found')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -59,7 +80,13 @@ export const profilesService = {
       .delete()
       .eq('id', id)
       .eq('tenant_id', tenantId)
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Profile not found')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 }

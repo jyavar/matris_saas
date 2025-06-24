@@ -1,11 +1,18 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
+import { ApiError } from '../utils/ApiError.js'
 import { supabase } from './supabase.service.js'
 
 export const todoService = {
-  async getAllTodos() {
-    const { data, error } = await supabase.from('todos').select('*')
-    if (error) throw error
+  async getAllTodos(userId: string, tenantId: string) {
+    const { data, error } = await supabase
+      .from('todos')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('tenant_id', tenantId)
+    if (error) {
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -15,7 +22,13 @@ export const todoService = {
       .select('*')
       .eq('id', id)
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Todo not found')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -25,7 +38,13 @@ export const todoService = {
       .insert(todo)
       .select()
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === '23505') {
+        // Unique violation
+        throw new ApiError(409, 'Todo already exists')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
@@ -36,13 +55,32 @@ export const todoService = {
       .eq('id', id)
       .select()
       .single()
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Todo not found')
+      }
+      throw new ApiError(400, error.message)
+    }
     return data
   },
 
   async deleteTodo(id: number) {
-    const { data, error } = await supabase.from('todos').delete().eq('id', id)
-    if (error) throw error
-    return data
+    const { data, error } = await supabase
+      .from('todos')
+      .delete()
+      .eq('id', id)
+      .select()
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Not found
+        throw new ApiError(404, 'Todo not found')
+      }
+      throw new ApiError(400, error.message)
+    }
+    if (!data || data.length === 0) {
+      throw new ApiError(404, 'Todo not found')
+    }
+    return data[0]
   },
 }
