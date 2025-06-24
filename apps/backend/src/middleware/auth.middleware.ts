@@ -15,6 +15,24 @@ export async function authMiddleware(
   next: NextFunction,
 ) {
   try {
+    // Permitir bypass en entorno de test con headers simulados
+    if (
+      process.env.NODE_ENV === 'test' &&
+      typeof req.headers['x-test-user-id'] === 'string' &&
+      typeof req.headers['x-test-tenant-id'] === 'string'
+    ) {
+      req.user = {
+        id: req.headers['x-test-user-id'],
+        email: 'testuser@example.com',
+        tenant_id: req.headers['x-test-tenant-id'],
+        aud: 'authenticated',
+        app_metadata: {},
+        user_metadata: {},
+        created_at: new Date().toISOString(),
+      }
+      return next()
+    }
+
     const authHeader = req.headers.authorization
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {

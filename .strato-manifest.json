@@ -14,7 +14,8 @@
     "agent",
     "packages/utils",
     ".",
-    "audit-artifacts"
+    "audit-artifacts",
+    "apps/backend/src/tests"
   ],
   "forbiddenPaths": [
     "node_modules",
