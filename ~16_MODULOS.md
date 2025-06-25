@@ -9,7 +9,7 @@
 | Módulo      | Descripción breve                | % Avance | Estado      | Tickets / Validaciones                | Última actualización |
 |-------------|----------------------------------|----------|-------------|---------------------------------------|----------------------|
 | auth        | Autenticación y sesiones         | 100%     | ✅ Validado | Lint, test, typecheck, docs, commit   | 2024-06-25           |
-| profiles    | Gestión de perfiles de usuario   |  ?%      | ⏳ Parcial  | Falta test, docs, types, utils        |                      |
+| profiles    | Gestión de perfiles de usuario   | 100%     | ✅ Validado | Lint, test, typecheck, docs, commit   | 2024-06-25           |
 | analytics   | Métricas y tracking              |  ?%      | ⏳ Parcial  | Falta test, docs, types, utils        |                      |
 | todo        | Ejemplo/demo de tareas           |  ?%      | ⏳ Parcial  | Falta test, docs, types, utils        |                      |
 | health      | Endpoint de salud del sistema    |  ?%      | ⏳ Parcial  | Falta docs, types, utils              |                      |
