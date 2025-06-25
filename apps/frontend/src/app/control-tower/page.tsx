@@ -1,3 +1,3 @@
-// ... existing code ...
-// (Elimino la línea: import AuditTable from './AuditTable')
-// ... existing code ...
+export default function ControlTowerPage() {
+  return <div>Control Tower</div>
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import { AuthChangeEvent, Session, User } from '@supabase/supabase-js'
 import {
   createContext,

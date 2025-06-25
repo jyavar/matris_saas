@@ -1,7 +1,7 @@
 const API_URL =
   typeof process !== 'undefined' && process.env.VITEST
     ? 'http://localhost/todos'
-    : `${import.meta.env.VITE_API_URL || 'http://localhost'}/todos`
+    : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost'}/todos`
 
 export interface Todo {
   id: number

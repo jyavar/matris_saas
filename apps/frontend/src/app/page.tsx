@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
-export const HomePage = () => {
+export default function HomePage() {
   return (
     <div>
       <h1>Welcome to StratoSaaS</h1>
       <p>This is the public home page.</p>
-      <Link to="/login">Go to Login</Link>
+      <Link href="/login">Go to Login</Link>
     </div>
   )
 }

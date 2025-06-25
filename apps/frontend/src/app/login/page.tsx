@@ -1,10 +1,13 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { supabase } from '../services/supabase.js'
+import { supabase } from '../../services/supabase.js'
 
-export const LoginPage = () => {
+export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -14,8 +17,8 @@ export const LoginPage = () => {
         password,
       })
       if (error) throw error
-      console.log('Signed in successfully!')
-      // Later, we'll redirect to the profile page
+      // Redirigir a profile si login exitoso
+      router.push('/profile')
     } catch (error) {
       console.error('Error signing in:', error)
     }

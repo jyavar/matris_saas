@@ -1,18 +1,20 @@
-import { useNavigate } from 'react-router-dom'
+'use client'
 
-import { useAuth } from '../contexts/AuthContext.js'
-import { supabase } from '../services/supabase.js'
+import { useRouter } from 'next/navigation'
 
-export const ProfilePage = () => {
+import { useAuth } from '../../contexts/AuthContext.js'
+import { supabase } from '../../services/supabase.js'
+
+export default function ProfilePage() {
   const { user } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut()
     if (error) {
       console.error('Error logging out:', error)
     } else {
-      navigate('/login')
+      router.push('/login')
     }
   }
 

@@ -71,6 +71,7 @@
     "*.{js,jsx,ts,tsx,json}": "eslint --fix"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.50.0"
+    "@supabase/supabase-js": "^2.50.0",
+    "supertest": "^7.1.1"
   }
 }
