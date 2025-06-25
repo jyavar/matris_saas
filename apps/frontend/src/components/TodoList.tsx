@@ -1,16 +1,15 @@
 import React from 'react'
 
-import { Button } from '@/components/ui/button.jsx'
+import Button from '../components/ui/button.js'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card.jsx'
-import { Input } from '@/components/ui/input.jsx'
-import { useTodos } from '@/hooks/useTodos.js'
-
-import { TodoItem } from './TodoItem.jsx'
+} from '../components/ui/card.js'
+import Input from '../components/ui/input.js'
+import { useTodos } from '../hooks/useTodos.js'
+import TodoItem from './TodoItem.js'
 
 export function TodoList() {
   const { todos, addTodo, toggleTodo, removeTodo } = useTodos()

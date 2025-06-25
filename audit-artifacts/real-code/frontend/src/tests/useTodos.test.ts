@@ -15,9 +15,14 @@ import {
 
 import { useTodos } from '../hooks/useTodos.js'
 
+declare global {
+  interface ImportMeta {
+    env: Record<string, string>
+  }
+}
+
 // Mock de variable de entorno para tests
 beforeAll(() => {
-  // @ts-expect-error: import.meta.env es inyectado por Vite, no existe en Node.js puro
   import.meta.env = { ...import.meta.env, VITE_API_URL: 'http://localhost' }
 })
 

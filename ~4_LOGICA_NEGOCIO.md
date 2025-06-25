@@ -1,4 +1,4 @@
-# ~13_LOGICA_NEGOCIO.md
+# ~4_LOGICA_NEGOCIO.md
 
 ## MEMORIA VIVA – LÓGICA DE NEGOCIO & CONTEXTO STRATO SAFE STACK™
 
@@ -211,7 +211,7 @@
 ├── .idea/
 ├── .tmp-scripts/
 ├── ~12_CHECKLIST_MAESTRO.md
-├── ~13_LOGICA_NEGOCIO.md
+├── ~4_LOGICA_NEGOCIO.md
 ├── ...otros archivos y configuraciones
 ```
 

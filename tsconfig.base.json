@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/typescript-config/*": ["packages/typescript-config/*"]
+      "@repo/typescript-config/*": ["packages/typescript-config/*"],
+      "@repo/db-types": ["packages/db-types"],
+      "@repo/db-types/*": ["packages/db-types/*"]
     },
     "esModuleInterop": true,
     "moduleResolution": "node16",

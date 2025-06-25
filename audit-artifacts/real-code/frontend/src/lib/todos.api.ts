@@ -1,7 +1,17 @@
+declare global {
+  interface ImportMeta {
+    env: Record<string, string>
+  }
+}
+
 const API_URL =
-  typeof process !== 'undefined' && process.env.VITEST
-    ? 'http://localhost/todos'
-    : `${import.meta.env.VITE_API_URL || 'http://localhost'}/todos`
+  typeof import.meta !== 'undefined' &&
+  import.meta.env &&
+  import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/todos`
+    : typeof process !== 'undefined' && process.env.VITE_API_URL
+      ? `${process.env.VITE_API_URL}/todos`
+      : 'http://localhost/todos'
 
 export interface Todo {
   id: number

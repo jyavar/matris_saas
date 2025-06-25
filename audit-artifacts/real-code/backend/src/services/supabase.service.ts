@@ -1,6 +1,6 @@
-import { Database } from '@repo/db-types'
 import { createClient } from '@supabase/supabase-js'
 
+import { Database } from '../../../../../packages/db-types/index.d.js'
 import { getConfig } from './config.service.js'
 
 const config = getConfig()

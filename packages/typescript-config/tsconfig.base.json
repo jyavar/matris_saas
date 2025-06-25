@@ -14,7 +14,10 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@repo/db-types": ["packages/db-types"]
+    }
   },
   "exclude": ["node_modules"]
 } 

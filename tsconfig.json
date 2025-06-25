@@ -12,6 +12,8 @@
   "exclude": [
     "node_modules",
     "../../node_modules/vite/**",
-    "../../node_modules/vite/client.d.ts"
+    "../../node_modules/vite/client.d.ts",
+    "dist",
+    "audit-artifacts"
   ]
 } 

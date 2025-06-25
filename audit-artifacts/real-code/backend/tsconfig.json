@@ -1,8 +1,9 @@
 {
-  "extends": "../../packages/typescript-config/tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "noEmit": false
+    "noEmit": false,
+    "baseUrl": "../.."
   },
   "include": ["src", "src/types", "tests"],
   "exclude": ["node_modules"]

@@ -1,92 +1,110 @@
 import { ApiError } from '../utils/ApiError.js'
-import { supabase } from './supabase.service'
+
+export type ProfileDTO = {
+  id: string
+  username?: string | null
+  full_name?: string | null
+  avatar_url?: string | null
+  tenant_id?: string | null
+  email?: string | null
+  updated_at?: string | null
+}
+
+function isProfileDTO(obj: unknown): obj is ProfileDTO {
+  return (
+    typeof obj === 'object' && obj !== null && 'id' in obj && 'username' in obj
+  )
+}
+
+const SUPABASE_URL = process.env.SUPABASE_URL || ''
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || ''
+const PROFILES_ENDPOINT = `${SUPABASE_URL}/rest/v1/profiles`
+
+async function fetchProfiles(
+  params: Record<string, string | number | boolean | undefined> = {},
+): Promise<ProfileDTO[]> {
+  const url = new URL(PROFILES_ENDPOINT)
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined) url.searchParams.append(key, String(value))
+  })
+  const res = await fetch(url.toString(), {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  })
+  if (!res.ok) throw new ApiError(res.status, await res.text())
+  const data = (await res.json()) as unknown[]
+  return data.filter(isProfileDTO)
+}
 
 export const profilesService = {
   async getAllProfiles(tenantId: string) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('tenant_id', tenantId)
-    if (error) {
-      throw new ApiError(400, error.message)
-    }
-    return data
+    return fetchProfiles({ tenant_id: tenantId })
   },
 
   async getProfileById(id: string, tenantId: string) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', id)
-      .eq('tenant_id', tenantId)
-      .single()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Profile not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const profiles = await fetchProfiles({ id, tenant_id: tenantId })
+    return profiles[0] || null
   },
 
-  async createProfile(profile: {
-    id: string
-    username?: string
-    full_name?: string
-    avatar_url?: string
-    tenant_id: string
-  }) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .insert(profile)
-      .select()
-      .single()
-    if (error) {
-      if (error.code === '23505') {
-        // Unique violation
-        throw new ApiError(409, 'Profile already exists')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+  async createProfile(profile: ProfileDTO) {
+    const res = await fetch(PROFILES_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify(profile),
+    })
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const profiles = data.filter(isProfileDTO)
+    return profiles[0] || null
   },
 
   async updateProfile(
     id: string,
     tenantId: string,
-    profile: { username?: string; full_name?: string; avatar_url?: string },
+    profile: Partial<ProfileDTO>,
   ) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .update(profile)
-      .eq('id', id)
-      .eq('tenant_id', tenantId)
-      .select()
-      .single()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Profile not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const res = await fetch(
+      `${PROFILES_ENDPOINT}?id=eq.${id}&tenant_id=eq.${tenantId}`,
+      {
+        method: 'PATCH',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify(profile),
+      },
+    )
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const profiles = data.filter(isProfileDTO)
+    return profiles[0] || null
   },
 
   async deleteProfile(id: string, tenantId: string) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .delete()
-      .eq('id', id)
-      .eq('tenant_id', tenantId)
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Profile not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const res = await fetch(
+      `${PROFILES_ENDPOINT}?id=eq.${id}&tenant_id=eq.${tenantId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: 'return=representation',
+        },
+      },
+    )
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const profiles = data.filter(isProfileDTO)
+    if (!profiles.length) throw new ApiError(404, 'Profile not found')
+    return profiles[0]
   },
 }

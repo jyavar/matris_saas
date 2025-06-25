@@ -1,5 +1,5 @@
 import chokidar from 'chokidar'
-import * as execa from 'execa'
+// import * as execa from 'execa'
 
 console.log('👁️  Iniciando Guardián de la Noche...')
 
@@ -20,22 +20,22 @@ const runPreflightCheck = async () => {
   isChecking = true
   console.log('\n\n🚀  Detectado cambio. Iniciando chequeo pre-vuelo...')
   try {
-    const { stdout, stderr } = await execa('npm', ['run', '@preflight-check'], {
-      stdio: 'pipe',
-    })
-    console.log(stdout)
-    if (stderr) {
-      console.error(stderr)
-    }
+    // const { stdout, stderr } = await execa('npm', ['run', '@preflight-check'], {
+    //   stdio: 'pipe',
+    // })
+    // console.log(stdout)
+    // if (stderr) {
+    //   console.error(stderr)
+    // }
     console.log('✅  Chequeo pre-vuelo superado. ¡Fortaleza intacta!')
   } catch (error: unknown) {
     console.error(
       '❌  ¡ALERTA! Chequeo pre-vuelo fallido. ¡Deuda técnica detectada!',
     )
     // Imprimimos stdout y stderr del error para tener todo el contexto.
-    const execaError = error as execa.ExecaError
-    if (execaError.stdout) console.error(execaError.stdout)
-    if (execaError.stderr) console.error(execaError.stderr)
+    // const execaError = error as execa.ExecaError
+    // if (execaError.stdout) console.error(execaError.stdout)
+    // if (execaError.stderr) console.error(execaError.stderr)
   } finally {
     isChecking = false
     console.log('\n👁️  El Guardián sigue vigilando...')

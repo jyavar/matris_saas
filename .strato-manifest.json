@@ -26,7 +26,15 @@
     "*.js",
     "*.cjs",
     "*.ts",
-    ".strato-manifest.json"
+    ".strato-manifest.json",
+    ".eslintrc.json",
+    ".prettierrc.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.json",
+    "tsconfig.base.json",
+    "packages/db-types/**",
+    "packages/typescript-config/**"
   ],
   "forbiddenPaths": [
     "node_modules/**",

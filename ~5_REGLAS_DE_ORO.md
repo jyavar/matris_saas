@@ -1,4 +1,4 @@
-# ~14_REGLAS_DE_ORO.md
+# ~5_REGLAS_DE_ORO.md
 
 > **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md, ~12_CHECKLIST_MAESTRO.md y ~18_REPORTE_CLOC.md.**
 > 

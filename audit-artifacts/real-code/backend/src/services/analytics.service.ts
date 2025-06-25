@@ -1,5 +1,7 @@
-import { TablesInsert, TablesUpdate } from '@repo/db-types'
-
+import {
+  TablesInsert,
+  TablesUpdate,
+} from '../../../../../packages/db-types/index.d.js'
 import { ApiError } from '../utils/ApiError.js'
 import { supabase } from './supabase.service'
 

@@ -1,86 +1,106 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
 import { ApiError } from '../utils/ApiError.js'
-import { supabase } from './supabase.service.js'
+
+export type TodoDTO = {
+  id: number
+  task: string
+  is_completed: boolean
+  created_at: string
+  user_id?: string | number | null
+  tenant_id?: string | null
+}
+
+function isTodoDTO(obj: unknown): obj is TodoDTO {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'id' in obj &&
+    'task' in obj &&
+    'is_completed' in obj &&
+    'created_at' in obj
+  )
+}
+
+const SUPABASE_URL = process.env.SUPABASE_URL || ''
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || ''
+const TODOS_ENDPOINT = `${SUPABASE_URL}/rest/v1/todos`
+
+async function fetchTodos(
+  params: Record<string, string | number | boolean | undefined> = {},
+): Promise<TodoDTO[]> {
+  const url = new URL(TODOS_ENDPOINT)
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined) url.searchParams.append(key, String(value))
+  })
+  const res = await fetch(url.toString(), {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  })
+  if (!res.ok) throw new ApiError(res.status, await res.text())
+  const data = (await res.json()) as unknown[]
+  return data.filter(isTodoDTO)
+}
 
 export const todoService = {
   async getAllTodos(userId: string, tenantId: string) {
-    const { data, error } = await supabase
-      .from('todos')
-      .select('*')
-      .eq('user_id', userId)
-      .eq('tenant_id', tenantId)
-    if (error) {
-      throw new ApiError(400, error.message)
-    }
-    return data
+    return fetchTodos({ user_id: userId, tenant_id: tenantId })
   },
 
   async getTodoById(id: number) {
-    const { data, error } = await supabase
-      .from('todos')
-      .select('*')
-      .eq('id', id)
-      .single()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Todo not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const todos = await fetchTodos({ id })
+    return todos[0] || null
   },
 
   async createTodo(todo: TablesInsert<'todos'>) {
-    const { data, error } = await supabase
-      .from('todos')
-      .insert(todo)
-      .select()
-      .single()
-    if (error) {
-      if (error.code === '23505') {
-        // Unique violation
-        throw new ApiError(409, 'Todo already exists')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const res = await fetch(TODOS_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify(todo),
+    })
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const todos = data.filter(isTodoDTO)
+    return todos[0] || null
   },
 
   async updateTodo(id: number, todo: TablesUpdate<'todos'>) {
-    const { data, error } = await supabase
-      .from('todos')
-      .update(todo)
-      .eq('id', id)
-      .select()
-      .single()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Todo not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    return data
+    const res = await fetch(`${TODOS_ENDPOINT}?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify(todo),
+    })
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const todos = data.filter(isTodoDTO)
+    return todos[0] || null
   },
 
   async deleteTodo(id: number) {
-    const { data, error } = await supabase
-      .from('todos')
-      .delete()
-      .eq('id', id)
-      .select()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        // Not found
-        throw new ApiError(404, 'Todo not found')
-      }
-      throw new ApiError(400, error.message)
-    }
-    if (!data || data.length === 0) {
-      throw new ApiError(404, 'Todo not found')
-    }
-    return data[0]
+    const res = await fetch(`${TODOS_ENDPOINT}?id=eq.${id}`, {
+      method: 'DELETE',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: 'return=representation',
+      },
+    })
+    if (!res.ok) throw new ApiError(res.status, await res.text())
+    const data = (await res.json()) as unknown[]
+    const todos = data.filter(isTodoDTO)
+    if (!todos.length) throw new ApiError(404, 'Todo not found')
+    return todos[0]
   },
 }

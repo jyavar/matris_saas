@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises'
 import * as path from 'path'
 
-import openaiClient from '../packages/ai/src/client'
+// Eliminar cualquier referencia a openaiClient
 
 async function main() {
   const promptPath = process.argv[2]
@@ -16,12 +16,12 @@ async function main() {
   console.log('🤖 Enviando prompt a la IA...')
 
   // NOTA PARA EL USUARIO: Para hacer una llamada real, tu OPENAI_API_KEY debe estar configurada en .env
-  const response = await openaiClient.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [{ role: 'user', content: prompt }],
-  })
+  // const response = await openaiClient.chat.completions.create({
+  //   model: 'gpt-4o',
+  //   messages: [{ role: 'user', content: prompt }],
+  // })
 
-  const generatedCode = response.choices[0]?.message?.content
+  const generatedCode = ''
 
   if (!generatedCode) {
     console.error('Error: La IA no ha generado ningún código.')

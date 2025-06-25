@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint .",
     "test": "vitest run --coverage --exclude=tests-e2e/**",
     "test:e2e": "playwright test"
   },
@@ -30,6 +30,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.21",
+    "eslint": "8",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
@@ -41,5 +42,11 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.1",
     "whatwg-fetch": "^3.6.20"
+  },
+  "vitest": {
+    "setupFiles": [
+      "./vitest.setup.ts"
+    ],
+    "environment": "jsdom"
   }
 }

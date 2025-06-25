@@ -1,12 +1,7 @@
 import { BrainCircuit, Cuboid, ShieldCheck, Zap } from 'lucide-react'
 import * as React from 'react'
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card.js'
 
 type Feature = {
   icon: React.FC<React.SVGProps<SVGSVGElement>>

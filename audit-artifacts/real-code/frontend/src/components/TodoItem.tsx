@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button.jsx'
-
+import { Button } from '../components/ui/button.js'
 import type { Todo } from '../lib/todos.api.js'
 
 interface TodoItemProps {

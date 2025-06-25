@@ -33,5 +33,10 @@
         "@typescript-eslint/no-var-requires": "off"
       }
     }
+  ],
+  "ignorePatterns": [
+    "**/.eslintrc.cjs",
+    "dist",
+    "audit-artifacts"
   ]
 }
