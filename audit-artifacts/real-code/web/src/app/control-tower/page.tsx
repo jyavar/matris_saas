@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import AuditTable from './AuditTable'
+import AuditTable from './AuditTable.js'
 
 // Definir el tipo Feature para tipado estricto
 export interface Feature {
