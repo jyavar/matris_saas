@@ -42,6 +42,7 @@
   - ~13_LOGICA_NEGOCIO.md
   - ~14_REGLAS_DE_ORO.md
   - ~16_MODULOS.md
+  - ~18_REPORTE_CLOC.md
   - Y cualquier otro `.md` relevante al módulo/feature.
 
 ---

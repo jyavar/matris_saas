@@ -136,6 +136,7 @@
 - **Playbook:** `~5_PLAYBOOK.md`
 - **Workarounds:** `~11_LOCAL_WORKAROUNDS.md`
 - **Roadmaps:** `~1_BACKEND_ROADMAP.md`, `~3_MATRIX_ROADMAP.md`, etc.
+- **Reporte técnico CLOC:** `~18_REPORTE_CLOC.md`
 
 ---
 

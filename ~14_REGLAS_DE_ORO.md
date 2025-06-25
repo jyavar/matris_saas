@@ -1,6 +1,6 @@
 # ~14_REGLAS_DE_ORO.md
 
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md, ~12_CHECKLIST_MAESTRO.md y ~18_REPORTE_CLOC.md.**
 > 
 > **Última sincronización: 2024-06-25** (actualizado tras validación de módulos auth y profiles)
 > 

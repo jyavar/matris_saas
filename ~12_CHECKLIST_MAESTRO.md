@@ -216,6 +216,7 @@ Actualiza este archivo tras cada avance relevante.
 ## Referencias cruzadas
 - Lógica de Negocio: ~13_LOGICA_NEGOCIO.md
 - Reglas de Oro: ~14_REGLAS_DE_ORO.md
+- Reporte técnico CLOC: ~18_REPORTE_CLOC.md
 
 ## Hitos recientes
 
