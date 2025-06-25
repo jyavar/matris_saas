@@ -1,411 +1,173 @@
+<!-- ORIGEN: apps/web/README.md + audit-artifacts/real-code/web/README.md -->
+# STRATO SAFE STACK™ – Monorepo SaaS Elite
+
+Esta carpeta contiene la app Next.js (SSR/SSG) para landings, dashboard avanzado y el futuro Control Tower multi-SaaS de STRATO.
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+
+This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+---
+
 <!-- ORIGEN: ~6_README.cursor.md -->
-# STRATO Context Rules for AI and Human Agents
+## STRATO Context Rules for AI and Human Agents
 
 > **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
-> 
-> **Última sincronización: 2024-06-25**
-> 
-> **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
-> 
-> **Stack consolidado:** Next.js + React puro.
 
 ⚠️ Este monorepo está protegido por STRATO Context Guard™
 
 Este sistema automatizado asegura que toda contribución siga las reglas de estructura definidas en `.strato-manifest.json`, la lógica de negocio (~13_LOGICA_NEGOCIO.md) y el Checklist Maestro (~12_CHECKLIST_MAESTRO.md).
 
-## Cómo Funcionan los Guardianes
+### Cómo Funcionan los Guardianes
 
-1.  **Guardián de Commits (Pre-commit Hook)**:
-    -   Se activa automáticamente con `git commit`.
-    -   Valida que **solo los archivos en staging** cumplan con las reglas del manifiesto.
-    -   Si detecta una violación, el commit es **bloqueado** y se muestran mensajes de error detallados.
-    -   Los errores también se registran en `logs/context-violations.log`.
+1.  **Guardián de Commits (Pre-commit Hook)**: Valida staging y bloquea si hay violaciones.
+2.  **Guardián de CI/CD (GitHub Actions)**: Valida todos los archivos modificados en PR.
+3.  **Guardián de Vigilancia (Real-time Watcher)**: Feedback instantáneo en desarrollo.
 
-2.  **Guardián de CI/CD (GitHub Actions)**:
-    -   Se ejecuta en cada Pull Request a `main`.
-    -   Valida todos los **archivos modificados en el PR**.
-    -   Si detecta una violación, el workflow de CI **fallará**, bloqueando el merge.
+### Qué Hacer si una Validación Falla
+Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo y reintenta.
 
-3.  **Guardián de Vigilancia (Real-time Watcher)**:
-    -   Un modo de desarrollo para feedback instantáneo.
-    -   Se ejecuta manualmente con `pnpm guardian:watch`.
-    -   Observa el sistema de archivos y **advierte en tiempo real** si un archivo nuevo se crea en una ruta inválida.
-
-## Qué Hacer si una Validación Falla
-1.  **Lee el error**: El mensaje te dirá qué archivo falló y por qué.
-2.  **Consulta el manifiesto y la lógica de negocio**: Abre `.strato-manifest.json`, ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md para ver las rutas, convenciones y reglas permitidas.
-3.  **Mueve o ajusta el archivo**: Ubica tu archivo en una ruta válida y documenta cualquier workaround o excepción en la lógica de negocio.
-4.  **Intenta de nuevo**: Haz el commit o push otra vez.
-
----
-
-## Ejemplo de Manifiesto (`.strato-manifest.json`)
-
+#### Ejemplo de Manifiesto (`.strato-manifest.json`)
 ```json
 {
   "root": ".",
-  "validPaths": [
-    "apps/frontend/**",
-    "apps/backend/**",
-    "apps/web/**",
-    "agent/**",
-    "packages/utils/**",
-    "audit-artifacts/**",
-    ".github/**",
-    ".husky/**",
-    ".turbo/**",
-    ".idea/**",
-    "prompts/**",
-    "scripts/**",
-    "*.md",
-    "*.json",
-    "*.js",
-    "*.cjs",
-    "*.ts",
-    ".strato-manifest.json"
-  ],
-  "forbiddenPaths": [
-    "node_modules/**",
-    "dist/**",
-    "build/**"
-  ],
-  "namingConventions": {
-    "testFiles": "*.test.ts",
-    "componentFiles": "*.tsx",
-    "routeFiles": "route.ts"
-  },
+  "validPaths": ["apps/frontend/**", "apps/backend/**", "apps/web/**", "agent/**", "packages/utils/**", "audit-artifacts/**", ".github/**", ".husky/**", ".turbo/**", ".idea/**", "prompts/**", "scripts/**", "*.md", "*.json", "*.js", "*.cjs", "*.ts", ".strato-manifest.json"],
+  "forbiddenPaths": ["node_modules/**", "dist/**", "build/**"],
+  "namingConventions": {"testFiles": "*.test.ts", "componentFiles": "*.tsx", "routeFiles": "route.ts"},
   "preferredEntryDir": "apps/frontend/app/"
 }
 ```
-- **`validPaths`**: Lista de patrones glob donde los archivos *pueden* existir (incluye documentación viva y scripts globales en raíz y carpetas técnicas).
-- **`forbiddenPaths`**: Lista de patrones glob donde los archivos *nunca* deben existir. Tiene prioridad sobre `validPaths`.
-- **`namingConventions`**: Reglas de nombrado para tipos específicos de archivos (actualmente informativo).
-- **`preferredEntryDir`**: Directorio preferido para nuevos componentes de frontend (informativo).
-
-Para agregar nuevos módulos, usa:
-```bash
-pnpm module:create
-```
-
-Nunca crees archivos directamente en rutas no permitidas ni con paths absolutos sin validar. Documenta cualquier excepción en ~13_LOGICA_NEGOCIO.md.
 
 ---
 
-### 🔄 Sincronización técnica y de proceso (Strato AI Monorepo)
+<!-- ORIGEN: ~19_README_CI_CD.md -->
+## CI/CD y Workflows – STRATO SAFE STACK™
 
-**Última actualización:** 2024-06-25 22:07 CLT  
-**Hito:** Tests unitarios robustos, lint 0 errores, context guard solo valida archivos existentes, commit exitoso.  
-**Workaround aplicado:** El Context Guard fue ajustado para validar solo archivos que existen físicamente, evitando bloqueos por archivos eliminados o fantasmas en el index.  
-**Tests:** Todos los tests unitarios pasan (mock de fetch robusto), lint y typecheck 100% OK, estructura alineada, sin deuda técnica.  
-**Tests E2E:** Excluidos de Vitest, listos para Playwright.  
-**Porcentaje de sanidad global:** **100%**
+### 1. Workflows Actuales en `.github/workflows/`
+- **ci.yml**: Lint, typecheck, test, context-watchdog.
+- **ci-check.yml**: Lint, test, build.
 
-- **Referencia cruzada:**  
-  - [~13_LOGICA_NEGOCIO.md](~13_LOGICA_NEGOCIO.md)  
-  - [~10_CHECKLIST_FULL_STRATO.md](~10_CHECKLIST_FULL_STRATO.md)  
-  - [~14_REGLAS_DE_ORO.md](~14_REGLAS_DE_ORO.md)
+### 2. Comandos clave en CI
+- `pnpm install`, `pnpm run lint`, `pnpm run test`, `pnpm run build`, `npx tsc --noEmit`, `pnpm tsx scripts/agents/context-watchdog.ts`
 
-**Advertencia:**  
-Esta sincronización debe mantenerse viva y reflejar cualquier cambio relevante en la lógica de negocio, estructura, tests o reglas de oro.  
-Si se realiza un cambio importante en los tests, context guard, estructura o reglas, debe actualizarse este bloque en los 14 archivos MD de la raíz.
+### 3. Estado del Deploy Automático
+- **Deploy real (Vercel, Railway, Supabase):** Pendiente de configurar.
 
-<!-- ORIGEN: ~1_BACKEND_ROADMAP.md -->
-# ROADMAP BACKEND STRATO – VERSIÓN ÉLITE 10/10
+### 4. Troubleshooting y recomendaciones
+- Lee el log, corre el comando localmente, revisa dependencias y consulta la documentación viva.
 
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
-> 
-> **Última sincronización: 2024-06-25**
-> 
-> **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
-> 
-> **Stack consolidado:** Next.js + React puro.
-
-### 🔄 Sincronización técnica y de proceso (Strato AI Monorepo)
-
-**Última actualización:** 2024-06-25 22:07 CLT  
-**Hito:** Tests unitarios robustos, lint 0 errores, context guard solo valida archivos existentes, commit exitoso.  
-**Workaround aplicado:** El Context Guard fue ajustado para validar solo archivos que existen físicamente, evitando bloqueos por archivos eliminados o fantasmas en el index.  
-**Tests:** Todos los tests unitarios pasan (mock de fetch robusto), lint y typecheck 100% OK, estructura alineada, sin deuda técnica.  
-**Tests E2E:** Excluidos de Vitest, listos para Playwright.  
-**Porcentaje de sanidad global:** **100%**
-
-- **Referencia cruzada:**  
-  - [~13_LOGICA_NEGOCIO.md](~13_LOGICA_NEGOCIO.md)  
-  - [~10_CHECKLIST_FULL_STRATO.md](~10_CHECKLIST_FULL_STRATO.md)  
-  - [~14_REGLAS_DE_ORO.md](~14_REGLAS_DE_ORO.md)
-
-**Advertencia:**  
-Esta sincronización debe mantenerse viva y reflejar cualquier cambio relevante en la lógica de negocio, estructura, tests o reglas de oro.  
-Si se realiza un cambio importante en los tests, context guard, estructura o reglas, debe actualizarse este bloque en los 14 archivos MD de la raíz.
-
-Dividido en 10 pasos, cada uno con propósito, entregables y protección embebida.
-
-—
-
-**🎯 OBJETIVO FINAL:**
-Un backend en TypeScript, con Supabase + Stripe + Resend + OpenAI + PostHog integrados, validado con Zod, probado con Vitest, tipado estrictamente, modular, y blindado contra errores de entorno, seguridad y flujo.
-
-⸻
-
-### PASO 1 – Infraestructura Base Blindada
-
-**Acción:**
-
-- [x] Crear carpeta `/backend/` con estructura clara: `/routes`, `/middleware`, `/services`, `/tests`.
-- [ ] Estructura pendiente: `/lib`, `/validators`, `/types`.
-- [x] Inicializar `tsconfig.json` estricto y `vitest.config.ts`.
-- [ ] Instalar dependencias críticas: `zod`, `vitest`, `supertest`, `@supabase/supabase-js`, `stripe`, `resend`, `openai`, `dotenv`, etc.
-
-**Propósito:**
-Fundación técnica robusta, reutilizable y protegida.
-
-⸻
-
-### PASO 2 – Sistema de Enrutamiento Modular
-
-**Acción:**
-
-- [ ] Crear un `router.ts` central que despache requests a rutas por módulo (`/auth`, `/billing`, `/launch`, etc.).
-- [x] Cada archivo en `/routes/` tendrá su endpoint y middleware asociado (iniciado con `health.routes.ts`).
-- [ ] Agregar `createRouter()` con inyección de dependencias para testeo desacoplado.
-
-**Propósito:**
-Permitir modularidad, extensibilidad y pruebas aisladas por endpoint.
-
-⸻
-
-### PASO 3 – Middleware de Validación y Seguridad
-
-**Acción:**
-
-- [ ] `middleware/auth.ts` para validación de JWT Supabase.
-- [ ] `middleware/rateLimit.ts` con defensa contra spam.
-- [x] `middleware/errorHandler.ts` para capturar fallos estructurados.
-- [ ] Conectar Zod a todos los inputs (`validators/*.ts`).
-
-**Propósito:**
-Proteger la capa de entrada: nada entra sin pasar por filtros fuertes.
-
-⸻
-
-### PASO 4 – Integraciones Externas Operativas
-
-**Acción:**
-
-- [ ] Configurar conexión a Supabase (auth y DB).
-- [ ] Integrar Stripe con claves dummy + modo de pruebas activado.
-- [ ] Integrar Resend para envíos controlados.
-- [ ] Integrar OpenAI con fallback local.
-- [ ] Conectar PostHog para tracking técnico.
-
-**Propósito:**
-Tener un backend conectado a servicios reales, pero testeables en local/staging.
-
-⸻
-
-### PASO 5 – Sistema de Billing Modular
-
-**Acción:**
-
-- [ ] Crear `billingService.ts` con:
-- [ ] Creación y sincronización de clientes.
-- [ ] Validación de suscripción activa.
-- [ ] Webhooks de Stripe (`/webhooks/stripe`).
-- [ ] Incluir lógica de `enforcement.ts` que restringe features por plan.
-
-**Propósito:**
-Que tu backend sepa en todo momento qué puede y qué no puede hacer cada usuario.
-
-⸻
-
-### PASO 6 – Lógica Modular por Módulo (ej. Campaigns)
-
-**Acción:**
-
-- [ ] Crear módulo `/routes/campaigns.ts`.
-- [ ] Conectar a base de datos Supabase.
-- [ ] Agregar endpoints: `GET /campaigns`, `POST /campaign`, `PUT`, `DELETE`.
-- [ ] Validar con Zod.
-- [ ] Agregar lógica AI opcional vía OpenAI.
-- [ ] Conectar a PostHog para tracking.
-
-**Propósito:**
-Demostrar que puedes extender el backend por módulos sin deuda técnica.
-
-⸻
-
-### PASO 7 – Suite de Tests Total (Unitarios + Integración)
-
-**Acción:**
-
-- [x] Crear tests unitarios por servicio, endpoint y validación (Vitest + mocks) - (Iniciado).
-- [x] Crear tests de integración con `supertest` - (Iniciado).
-- [ ] Usar fixtures de datos dummy (ej: usuarios, planes, campañas).
-- [x] Ejecutar en CI o `preflight-check`.
-
-**Propósito:**
-Toda la lógica es testeada, validable y rastreable en logs.
-
-⸻
-
-### PASO 8 – Sistema de Logs, Alerts y Auditoría
-
-**Acción:**
-
-- [x] Crear `logger.ts` estructurado con niveles (info, error, warn).
-- [x] Guardar logs en consola.
-- [ ] Conectar logs a PostHog.
-- [ ] Integrar sistema de bitácora (`auditLog.ts`) que registre acciones clave (login, pago, deploy).
-
-**Propósito:**
-Tener trazabilidad legal, técnica y estratégica sobre lo que ocurre en backend.
-
-⸻
-
-### PASO 9 – Validaciones Automáticas y CLI Interna
-
-**Acción:**
-
-- [ ] Crear `validate-backend.ts` que revise:
-- [ ] `.env` completo y sin claves dummy.
-- [ ] Tipos correctos.
-- [ ] Endpoints funcionales.
-- [ ] Tests ejecutables.
-- [ ] Agregar a CLI: `pnpm strato validate-backend`.
-
-**Propósito:**
-Asegurar que el backend no entra a producción sin cumplir todos los estándares.
-
-⸻
-
-### PASO 10 – Snapshot, Rollback y Deploy Ready
-
-**Acción:**
-
-- [ ] Crear script `generate-backend-snapshot.ts`.
-- [ ] Crear `rollback-backend.ts` para volver a último estado válido.
-- [ ] Validar deploy a Vercel o serverless (ej. edge functions o API Route).
-- [ ] Preparar `backend/.env.example` y CI de staging.
-
-**Propósito:**
-Garantizar continuidad operativa, trazabilidad y rollback en caso de fallas.
-
-—
-
-### ENTREGABLE FINAL (STRATO BACKEND MOTOR™)
-
-- [ ] `/backend/` modularizado, validado, protegido.
-- [ ] Servicios listos para producción (auth, billing, campaigns, AI, email).
-- [ ] Testeado al 100%.
-- [ ] Con defensa legal, técnica, financiera y operativa.
-- [ ] Exportable, clonable y escalable.
-
-<!-- ORIGEN: ~11_LOCAL_WORKAROUNDS.md -->
-# ~11_LOCAL_WORKAROUNDS.md
-
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
-> 
-> **Última sincronización: 2024-06-25**
-> 
-> **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
-> 
-> **Stack consolidado:** Next.js + React puro.
-
-## ⚠️ Workarounds y pendientes locales (solo desarrollo/test)
-
-Este archivo documenta soluciones temporales y puntos críticos que deben ser revisados y eliminados o migrados antes de pasar a producción real.
+### 5. Mejoras sugeridas
+- Unificar workflows, añadir badge de CI, automatizar deploy real, validar variables de entorno y secrets en CI.
 
 ---
 
-### 1. Workaround temporal en middleware de autenticación
+<!-- ORIGEN: ~8_SCORECARD.md -->
+## Scorecard de Sanidad de la Plataforma
 
-**Ubicación:** `apps/backend/src/middleware/auth.middleware.ts`
+**Puntuación Global de Sanidad Actual: 73%**
 
-**Descripción:**
-- Si el JWT recibido no contiene el claim `tenant_id` y el entorno es `test`, se inyecta un `tenant_id` dummy (`00000000-0000-0000-0000-000000000001`) para que los tests pasen en local.
-- **Este workaround debe eliminarse cuando Supabase esté configurado para incluir `tenant_id` en el JWT mediante custom claims.**
-
-**Referencia en código:**
-```ts
-// ⚠️ WORKAROUND TEMPORAL PARA TESTS LOCALES ⚠️
-// Si el token no trae tenant_id y estamos en entorno de test,
-// se inyecta un tenant_id dummy para que los tests pasen.
-// ELIMINAR cuando Supabase esté configurado para incluir tenant_id en el JWT
-```
+| Métrica / Dimensión | Estado Actual | Puntuación | Justificación y Próximos Pasos |
+| :--- | :--- | :---: | :--- |
+| **1. Calidad de Código y Cero Deuda Técnica** | ESLint y Prettier estrictos, política de "cero any", "cero ts-ignore", "cero eslint-disable". | **95/100** | Excelente. El tooling y la disciplina están en su sitio. |
+| **2. Cobertura y Calidad de Tests** | Infraestructura para testing implementada, pero falta cobertura real. | **15/100** | Crítico. Prioridad: crear tests unitarios y de frontend. |
+| **3. Automatización y Flujo de Trabajo (CI/CD)** | Husky, lint-staged y commitlint activos. Falta pipeline de CI en la nube. | **60/100** | Crear workflow básico de GitHub Actions. |
+| **4. Arquitectura y Estructura del Monorepo** | Migración a pnpm workspaces, estructura de carpetas y configs centralizadas. | **100/100** | Base sólida y lista para escalar. |
+| **5. Gestión de Base de Datos** | Migraciones con Supabase, schema versionado, scripts de ayuda. | **90/100** | Falta generar tipos TS desde el schema. |
+| **6. Seguridad** | Gestión de secretos correcta localmente, falta auditoría formal de dependencias. | **75/100** | Ejecutar pnpm audit y mejorar gestión de secretos en prod. |
 
 ---
 
-### 2. Configuración pendiente de custom claims en Supabase
+<!-- ORIGEN: ~14_REGLAS_DE_ORO.md -->
+## REGLAS DE ORO STRATO SAFE STACK™
 
-- Falta configurar la función `jwt_custom_claims` en Supabase para que el claim `tenant_id` se incluya automáticamente en el JWT de los usuarios.
-- Cuando se tenga acceso a la consola de Supabase, ejecutar:
+1. Lee estas reglas todos los días antes de trabajar.
+2. Nunca avances dejando deuda técnica. Todo workaround debe estar documentado y con plan de remoción.
+3. Prohibido el uso de `any`, `@ts-ignore`, `eslint-disable` salvo justificación temporal y documentada.
+4. Cada avance debe dejar el repo validado, auditable y sin errores/warnings.
+5. No existe feature "simple" o "temporal": todo pasa por validación, test y docs.
+6. Sincroniza siempre lógica de negocio, checklist maestro y reglas de oro.
+7. Prioriza claridad, mantenibilidad y trazabilidad sobre velocidad.
+8. Nunca ignores errores de CI, validaciones o guardianes.
+9. Todo colaborador debe leer y aceptar estas reglas antes de contribuir.
+10. Revisa y refuerza estas reglas cada sprint.
 
-```sql
-create or replace function jwt_custom_claims(user_id uuid)
-returns jsonb as $$
-  select jsonb_build_object(
-    'tenant_id', (select tenant_id from profiles where user_id = $1)
-  );
-$$ language sql security definer;
-```
-
-- Luego, configurar en la consola de Supabase Auth que use esta función para los custom claims.
-
----
-
-### 3. Revisión obligatoria antes de producción
-
-- Eliminar todos los workarounds temporales documentados aquí.
-- Confirmar que los JWT generados por Supabase incluyen `tenant_id` y que el backend ya no depende de hacks para los tests.
-- Validar que los tests siguen pasando tras la migración.
+> Estas reglas son la defensa final contra la deuda técnica y el caos. Si dudas, vuelve a leerlas y consulta la lógica de negocio y el checklist maestro.
 
 ---
 
-## [PENDIENTE] Migración para todos multiusuario
+<!-- ORIGEN: ~13_LOGICA_NEGOCIO.md -->
+## LÓGICA DE NEGOCIO Y VISIÓN STRATO
 
-- **Descripción:** La migración para agregar las columnas `user_id` y `tenant_id` a la tabla `todos` no se ha aplicado aún en el entorno local/test.
-- **Impacto:** Los tests de `/todos` multiusuario fallarán con error `column todos.user_id does not exist` hasta aplicar la migración y regenerar los tipos de Supabase.
-- **Acción requerida:**
-  1. Aplicar la migración SQL: `supabase/migrations/20250623202226_add_userid_tenantid_to_todos.sql`.
-  2. Regenerar los tipos en `@repo/db-types`.
-  3. Volver a correr los tests.
+- Centralizar el conocimiento crítico del proyecto.
+- Evitar pérdida de contexto entre sesiones, cambios de equipo o IA.
+- Facilitar onboarding, auditoría, escalabilidad y continuidad.
+- Servir como guía para founders no técnicos y para IA colaborativa.
 
-**Nota:** El código y los tests están listos para multiusuario; solo falta sincronizar la base de datos.
+### Estructura y convenciones
+- `/apps/backend/`, `/apps/frontend/`, `/apps/web/`, `/packages/`, `/scripts/`, etc.
+- Node.js, TypeScript, Next.js, Express, Supabase, Stripe, Resend, OpenAI, PostHog, Vitest, etc.
+- Naming conventions: tests `.test.ts`, componentes `.tsx`, rutas `route.ts`.
+- Estrategia de ramas y Git: PR, squash, convenciones claras.
 
----
+### Estado de módulos críticos
+| Módulo      | Estado      | Archivo principal         | Workaround | Fecha revisión |
+|-------------|-------------|--------------------------|------------|---------------|
+| Auth        | ✅ Validado | auth.service.ts          | ⚠️ tenant_id test | 2024-06-25    |
+| Profiles    | ✅ Validado | profiles.controller.ts   |            | 2024-06-25    |
+| Billing     | [ ]         | billing.service.ts       | [ ]        |               |
+| OpenAI      | [ ]         | openai.service.ts        | [ ]        |               |
+| Resend      | [ ]         | resend.service.ts        | [ ]        |               |
+| PostHog     | [ ]         | posthog.service.ts       | [ ]        |               |
+| Frontend    | [ ]         | /components/ui/          | [ ]        |               |
+| Tests       | [ ]         | tests/                   | [ ]        |               |
+| SEO         | [ ]         | next-seo.config.ts       | [ ]        |               |
 
-### Tests afectados por la migración pendiente de todos multiusuario
-
-- **Archivo:** `apps/backend/src/tests/backend.coverage.extended.test.ts`
-- **Tests afectados:**
-  - `Todos: should return empty list for user with no todos`
-  - (Cualquier test que dependa de filtrar o crear todos por user_id o tenant_id)
-
-#### Workaround temporal para que los tests pasen
-
-- **Acción:** Marcar los tests afectados con `.skip` o `.todo` en Vitest/Jest mientras la migración no esté aplicada.
-- **Ejemplo:**
-```ts
-it.skip('Todos: should return empty list for user with no todos', async () => { /* ... */ })
-```
-- **Nota:** El test debe ser reactivado (`it` en vez de `it.skip`) en cuanto la migración y los tipos estén sincronizados.
-
----
-
-### [PENDIENTE] Tests fallan por ausencia de columna `email` en `profiles`
-
-- **Descripción:** Los tests de backend que dependen de la columna `email` en la tabla `profiles` fallan porque dicha columna no existe en el esquema actual de la base de datos.
-- **Impacto:** Los tests de `profiles.controller.test.ts`, `auth.test.ts` y posiblemente otros que esperan `email` en el perfil fallan con error de esquema.
-- **Acción requerida:**
-  1. Decidir si se debe restaurar la columna `email` en `profiles` o adaptar los tests y el código al nuevo esquema.
-  2. Actualizar los tests para reflejar la estructura real de la base de datos.
-  3. Confirmar que todos los tests pasan tras la corrección.
-- **Workaround temporal:** Marcar los tests afectados con `.skip` o `.todo` hasta que se resuelva el esquema.
-- **Tests afectados:**
-  - `apps/backend/src/tests/profiles.controller.test.ts`
-  - `apps/backend/src/tests/auth.test.ts`
-  - (Cualquier otro test que espere `email` en profiles)
+### Infraestructura y carpetas técnicas
+- `.github/`: Workflows y CI/CD
+- `.husky/`: Hooks de pre-commit y pre-push
+- `.turbo/`: Cache y configuración de TurboRepo
+- `.tmp-scripts/`: Scripts temporales
+- `prompts/`: Prompts y recursos para IA
+- `apps/backend/`: Backend principal
+- `apps/frontend/`: Frontend principal
 
 ---
 
-**Este archivo debe ser revisado y vaciado antes de cualquier despliegue a producción.** 
+> Actualiza este README tras cada avance relevante. El objetivo es tener el monorepo 100% validado, documentado y listo para producción. 
