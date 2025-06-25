@@ -68,6 +68,18 @@
 9. **Decisiones y contexto siempre trazables:** Cada decisión clave debe quedar registrada en el protocolo y/o lógica de negocio, con fecha y responsable.
 10. **Cultura de excelencia y aprendizaje continuo:** Todo colaborador (humano o IA) debe proponer mejoras, detectar errores y contribuir a la evolución del protocolo y del repo.
 
+#### Mejoras elite adicionales
+11. **Plantillas vivas y auto-auditables:** Cada módulo debe partir de la plantilla oficial y ser auditable automáticamente (estructura, lint, tests, docs) con scripts o bots.
+12. **Workarounds con fecha de expiración y alerta:** Todo workaround debe tener fecha límite y alerta automática para su revisión/eliminación antes de producción.
+13. **Scorecard y health-check visibles y automatizados:** El scorecard de calidad y el health-check del monorepo deben ser generados y publicados automáticamente tras cada merge/importante.
+14. **Validación de rutas y paths centralizada:** Scripts que aseguren que no hay rutas, imports ni paths rotos en todo el monorepo antes de cada release.
+15. **Manifest técnico y de negocio sincronizado:** Mantener un `.strato-manifest.json` y/o archivo de manifiesto que refleje la estructura, rutas, módulos y convenciones, sincronizado con los `.md`.
+16. **Auditoría de dependencias y seguridad automatizada:** Integrar validaciones automáticas de dependencias, licencias y vulnerabilidades en cada pipeline de CI/CD.
+17. **Documentación de flujos críticos y ejemplos de uso:** Cada módulo debe incluir ejemplos de uso reales y flujos críticos documentados, facilitando onboarding y troubleshooting.
+18. **Control de versiones y changelog automatizado:** Todo cambio relevante debe quedar registrado en un changelog central, generado automáticamente y alineado con los commits.
+19. **Revisión cruzada IA-humano en cambios críticos:** Todo cambio en lógica de negocio, reglas de oro o estructura debe ser revisado por ambos: humano e IA, antes de mergear.
+20. **Modo "read-only" y snapshot para auditoría:** Poder generar snapshots del estado del repo (código y docs) para auditoría, rollback o revisión externa, sin afectar el flujo principal.
+
 ---
 
 ### 8. Historial de actualizaciones
