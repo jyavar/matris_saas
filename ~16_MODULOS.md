@@ -4,23 +4,20 @@
 
 ---
 
-## Tabla de módulos y avance
+## Estado de módulos
 
-| Módulo      | Descripción breve                | % Avance | Estado      | Tickets / Validaciones                | Última actualización |
-|-------------|----------------------------------|----------|-------------|---------------------------------------|----------------------|
-| auth        | Autenticación y sesiones         | 100%     | ✅ Validado | Lint, test, typecheck, docs, commit   | 2024-06-25           |
-| profiles    | Gestión de perfiles de usuario   | 100%     | ✅ Validado | Lint, test, typecheck, docs, commit   | 2024-06-25           |
-| analytics   | Métricas y tracking              |  ?%      | ⏳ Parcial  | Falta test, docs, types, utils        |                      |
-| todo        | Ejemplo/demo de tareas           |  ?%      | ⏳ Parcial  | Falta test, docs, types, utils        |                      |
-| health      | Endpoint de salud del sistema    |  ?%      | ⏳ Parcial  | Falta docs, types, utils              |                      |
-| dev         | Rutas utilitarias de desarrollo  |  ?%      | ⏳ Parcial  | Falta docs, types, utils              |                      |
+| Módulo    | Descripción                  | %   | Estado   | Última actualización |
+|-----------|------------------------------|-----|----------|----------------------|
+| auth      | Autenticación y sesiones     | 100 | ✅       | 2024-06-25           |
+| profiles  | Gestión de perfiles          | 100 | ✅       | 2024-06-25           |
+| analytics | Métricas y tracking          |  –  | ⏳       |                      |
+| todo      | Demo de tareas               |  –  | ⏳       |                      |
+| health    | Endpoint de salud            |  –  | ⏳       |                      |
+| dev       | Utilidades de desarrollo     |  –  | ⏳       |                      |
 
----
-
-## Leyenda de estados
-- ✅ Validado: Cumple plantilla, lint, typecheck, tests y docs. Sin deuda técnica.
-- ⏳ Parcial: Falta completar estructura, validaciones o documentación.
-- ❌ Pendiente: No iniciado o con errores críticos.
+**Leyenda:**  
+✅ Validado (checklist completo)  
+⏳ Parcial (faltan validaciones o docs)
 
 ---
 
