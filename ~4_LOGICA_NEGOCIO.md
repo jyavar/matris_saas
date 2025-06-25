@@ -248,9 +248,6 @@ A continuación se documenta el propósito de cada carpeta técnica y app princi
 - **prompts/**: Prompts, plantillas y recursos para IA, generación de código y automatización de tareas.
 - **apps/backend/**: Backend principal: API REST, lógica de negocio, autenticación, multi-tenancy, integraciones externas y tests.
 - **apps/frontend/**: Frontend principal (React/Vite): UI de usuario, paneles, componentes y lógica de cliente de los SaaS STRATO.
-- **apps/web/**: App Next.js (SSR/SSG): landings, dashboard avanzado y futuro Control Tower multi-SaaS.
-
-> Mantener los README de cada carpeta actualizados y sincronizados con esta sección y con la estructura de carpetas. Cualquier cambio relevante debe reflejarse aquí y en el Checklist Maestro para evitar confusión y facilitar el onboarding.
 
 ---
 
