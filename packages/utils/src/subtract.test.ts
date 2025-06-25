@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { subtract } from './subtract'
+import { subtract } from './subtract.js'
 
 describe('subtract', () => {
   it('should subtract two positive numbers correctly', () => {

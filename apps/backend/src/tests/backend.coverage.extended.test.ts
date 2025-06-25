@@ -62,7 +62,10 @@ beforeEach(async () => {
 
 describe('Backend Extended Coverage', () => {
   it('Analytics: should return 400 when no query is provided', async () => {
-    const res = await request(app).get('/analytics')
+    const token = await getRealToken()
+    const res = await request(app)
+      .get('/analytics')
+      .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(400)
   })
 

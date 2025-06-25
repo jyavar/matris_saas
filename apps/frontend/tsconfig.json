@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "lib": [
       "DOM",
       "DOM.Iterable",
       "ESNext"
     ],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": [

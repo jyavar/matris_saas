@@ -46,6 +46,7 @@ Actualiza este archivo tras cada avance relevante.
 - 🟡 Integración real con API del backend (fetcher tipado, Zod/OpenAPI) _(parcial)_
 - ❌ Cobertura de UI y lógica ≥ 90%
 - ❌ Soporte para theming y personalización visual por SaaS clonado
+- [x] `apps/web/` validado el 2025-06-25 — sin errores de lint, typecheck ni formato.
 
 ---
 
