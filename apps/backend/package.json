@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development dotenv -e ../../.env -- tsx ./src/start.ts",
     "build": "tsc",
-    "test": "dotenv -e .env.test -- vitest run",
+    "test": "dotenv -e ../../.env.test -- vitest run",
     "lint": "eslint ."
   },
   "dependencies": {

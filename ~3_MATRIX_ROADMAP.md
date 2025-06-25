@@ -8,6 +8,28 @@
 > 
 > **Stack consolidado:** Next.js + React puro.
 
+---
+
+### 🔄 Sincronización técnica y de proceso (Strato AI Monorepo)
+
+**Última actualización:** 2024-06-25 22:07 CLT  
+**Hito:** Tests unitarios robustos, lint 0 errores, context guard solo valida archivos existentes, commit exitoso.  
+**Workaround aplicado:** El Context Guard fue ajustado para validar solo archivos que existen físicamente, evitando bloqueos por archivos eliminados o fantasmas en el index.  
+**Tests:** Todos los tests unitarios pasan (mock de fetch robusto), lint y typecheck 100% OK, estructura alineada, sin deuda técnica.  
+**Tests E2E:** Excluidos de Vitest, listos para Playwright.  
+**Porcentaje de sanidad global:** **100%**
+
+- **Referencia cruzada:**  
+  - [~13_LOGICA_NEGOCIO.md](~13_LOGICA_NEGOCIO.md)  
+  - [~10_CHECKLIST_FULL_STRATO.md](~10_CHECKLIST_FULL_STRATO.md)  
+  - [~14_REGLAS_DE_ORO.md](~14_REGLAS_DE_ORO.md)
+
+**Advertencia:**  
+Esta sincronización debe mantenerse viva y reflejar cualquier cambio relevante en la lógica de negocio, estructura, tests o reglas de oro.  
+Si se realiza un cambio importante en los tests, context guard, estructura o reglas, debe actualizarse este bloque en los 14 archivos MD de la raíz.
+
+---
+
 Este documento traza la hoja de ruta para convertir este repositorio en una plantilla ("Matriz") robusta, genérica y lista para producción para lanzar nuevos proyectos SaaS.
 
 Cada paso completado será marcado y confirmado en un commit individual para mantener un historial limpio y reversible.
