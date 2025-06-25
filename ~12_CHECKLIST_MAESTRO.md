@@ -209,4 +209,8 @@ Actualiza este archivo tras cada avance relevante.
 
 ---
 
-> Esta sección debe revisarse y contrastarse siempre con la lógica de negocio (~13_LOGICA_NEGOCIO.md) para asegurar que la matriz evoluciona hacia la máxima clonabilidad, escalabilidad y control. 
+> Esta sección debe revisarse y contrastarse siempre con la lógica de negocio (~13_LOGICA_NEGOCIO.md) para asegurar que la matriz evoluciona hacia la máxima clonabilidad, escalabilidad y control.
+
+## Referencias cruzadas
+- Lógica de Negocio: ~13_LOGICA_NEGOCIO.md
+- Reglas de Oro: ~14_REGLAS_DE_ORO.md 

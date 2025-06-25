@@ -2,7 +2,7 @@
 
 ## MEMORIA VIVA – LÓGICA DE NEGOCIO & CONTEXTO STRATO SAFE STACK™
 
-> Este documento es la fuente de verdad viva para la lógica de negocio, arquitectura, convenciones, decisiones clave y estado real del monorepo. Debe mantenerse actualizado junto al Checklist Maestro (~12_CHECKLIST_MAESTRO.md) y ser leído por todo colaborador, IA o humano, antes de trabajar en el repo.
+> Este documento es la fuente de verdad viva para la lógica de negocio, arquitectura, convenciones, decisiones clave y estado real del monorepo. Debe mantenerse actualizado junto al Checklist Maestro (~12_CHECKLIST_MAESTRO.md), las Reglas de Oro (~14_REGLAS_DE_ORO.md) y ser leído por todo colaborador, IA o humano, antes de trabajar en el repo.
 
 ---
 
@@ -113,6 +113,7 @@
 
 ## 9. REFERENCIAS CRUZADAS
 - **Checklist Maestro:** `~12_CHECKLIST_MAESTRO.md`
+- **Reglas de Oro:** `~14_REGLAS_DE_ORO.md`
 - **Scorecard:** `~8_SCORECARD.md`
 - **Playbook:** `~5_PLAYBOOK.md`
 - **Workarounds:** `~11_LOCAL_WORKAROUNDS.md`
