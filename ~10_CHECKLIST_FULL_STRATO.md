@@ -1,5 +1,9 @@
 # Checklist Full STRATO SAFE STACK™ 100/100
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en el checklist debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 Este checklist te guía paso a paso para llevar el monorepo al 100% de cumplimiento según los playbooks, roadmaps y scorecards.
 
 ---

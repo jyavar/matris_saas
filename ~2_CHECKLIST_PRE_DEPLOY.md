@@ -1,5 +1,9 @@
 PRELAUNCH AUDIT STRATO – 100/100 CHECKLIST
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en el checklist debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 Este checklist garantiza que el monorepo está limpio, seguro, auditable y listo para despliegue profesional.
 Debe completarse antes de lanzar a producción cualquier producto SaaS STRATO.
 

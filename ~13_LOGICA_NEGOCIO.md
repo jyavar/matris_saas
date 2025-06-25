@@ -234,4 +234,17 @@ A continuación se documenta el propósito de cada carpeta técnica y app princi
 
 ---
 
-> **IMPORTANTE:** Este archivo debe ser leído y actualizado por cualquier colaborador o IA antes de trabajar en el repo. Es la memoria viva del proyecto y la clave para evitar pérdida de contexto, errores y deuda técnica. 
+> **IMPORTANTE:** Este archivo debe ser leído y actualizado por cualquier colaborador o IA antes de trabajar en el repo. Es la memoria viva del proyecto y la clave para evitar pérdida de contexto, errores y deuda técnica.
+
+## Hitos Clave
+
+### [2024-06-22] Context Guard y Documentación Viva Alineados
+
+- Se logró alinear la estructura del monorepo y la documentación viva con las reglas del Context Guard.
+- Se ajustó `.strato-manifest.json` para permitir documentación y scripts globales en la raíz y carpetas técnicas, usando patrones flexibles y seguros.
+- Se bloqueó correctamente `.tmp-scripts/` para mantenerla solo para scripts temporales, evitando deuda técnica y dispersión de documentación.
+- Se eliminaron todos los archivos bloqueados y se realizó un commit limpio, asegurando que la arquitectura y la trazabilidad estén protegidas por el guardián.
+- **Impacto:**
+  - Máxima trazabilidad y orden: la documentación viva y estratégica solo existe en rutas permitidas y permanentes.
+  - El equipo puede avanzar con confianza, sabiendo que la estructura y la excelencia están protegidas automáticamente.
+  - Este hito marca el inicio de una colaboración 100% alineada entre founder y asistente, con reglas claras y sin fricción para la evolución del monorepo. 

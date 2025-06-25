@@ -1,5 +1,9 @@
 # **PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en el playbook debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 - Guía de inicio limpio para cualquier clon SaaS
 - Blindaje estructural desde el minuto 1
 - Escudo contra deuda técnica, errores invisibles y caos arquitectónico

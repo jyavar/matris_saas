@@ -1,3 +1,7 @@
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en reglas o stack debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 > 🧩
 > 
 > 

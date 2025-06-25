@@ -1,5 +1,9 @@
 # ROADMAP BACKEND STRATO – VERSIÓN ÉLITE 10/10
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en el backend debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 Dividido en 10 pasos, cada uno con propósito, entregables y protección embebida.
 
 —

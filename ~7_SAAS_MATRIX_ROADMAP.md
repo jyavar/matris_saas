@@ -1,5 +1,9 @@
 # Roadmap de la Matriz SaaS
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en la matriz debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 ## Visión
 
 El objetivo de este proyecto no es construir un único producto, sino una **fábrica de productos**: una Matriz SaaS que nos permita clonar, configurar y lanzar nuevos productos SaaS de forma rápida, segura y estandarizada.

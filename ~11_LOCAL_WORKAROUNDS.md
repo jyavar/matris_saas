@@ -1,5 +1,9 @@
 # ~11_LOCAL_WORKAROUNDS.md
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier workaround o hack temporal debe documentarse y eliminarse en los tres antes de producción.**
+> 
+> **Última sincronización: 2024-06-22**
+
 ## ⚠️ Workarounds y pendientes locales (solo desarrollo/test)
 
 Este archivo documenta soluciones temporales y puntos críticos que deben ser revisados y eliminados o migrados antes de pasar a producción real.

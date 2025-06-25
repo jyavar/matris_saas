@@ -1,5 +1,9 @@
 # 🚀 StratoSaaS - Plan de Transformación a Matriz
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en la matriz debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 Este documento traza la hoja de ruta para convertir este repositorio en una plantilla ("Matriz") robusta, genérica y lista para producción para lanzar nuevos proyectos SaaS.
 
 Cada paso completado será marcado y confirmado en un commit individual para mantener un historial limpio y reversible.

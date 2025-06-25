@@ -1,8 +1,12 @@
 # STRATO Context Rules for AI and Human Agents
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio en reglas, rutas o estructura debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 ⚠️ Este monorepo está protegido por STRATO Context Guard™
 
-Este sistema automatizado asegura que toda contribución siga las reglas de estructura definidas en `.strato-manifest.json`.
+Este sistema automatizado asegura que toda contribución siga las reglas de estructura definidas en `.strato-manifest.json`, la lógica de negocio (~13_LOGICA_NEGOCIO.md) y el Checklist Maestro (~12_CHECKLIST_MAESTRO.md).
 
 ## Cómo Funcionan los Guardianes
 
@@ -24,8 +28,8 @@ Este sistema automatizado asegura que toda contribución siga las reglas de estr
 
 ## Qué Hacer si una Validación Falla
 1.  **Lee el error**: El mensaje te dirá qué archivo falló y por qué.
-2.  **Consulta el manifiesto**: Abre `.strato-manifest.json` para ver las `validPaths` y `forbiddenPaths` permitidas.
-3.  **Mueve el archivo**: Ubica tu archivo en una ruta válida.
+2.  **Consulta el manifiesto y la lógica de negocio**: Abre `.strato-manifest.json`, ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md para ver las rutas, convenciones y reglas permitidas.
+3.  **Mueve o ajusta el archivo**: Ubica tu archivo en una ruta válida y documenta cualquier workaround o excepción en la lógica de negocio.
 4.  **Intenta de nuevo**: Haz el commit o push otra vez.
 
 ---
@@ -34,23 +38,31 @@ Este sistema automatizado asegura que toda contribución siga las reglas de estr
 
 ```json
 {
-  "root": "./",
+  "root": ".",
   "validPaths": [
     "apps/frontend/**",
     "apps/backend/**",
-    "packages/core/**",
+    "apps/web/**",
+    "agent/**",
+    "packages/utils/**",
+    "audit-artifacts/**",
+    ".github/**",
+    ".husky/**",
+    ".turbo/**",
+    ".idea/**",
+    "prompts/**",
     "scripts/**",
-    "types/**",
-    ".husky/pre-commit",
-    ".strato-manifest.json",
-    "README.cursor.md",
-    "package.json",
-    "pnpm-lock.yaml"
+    "*.md",
+    "*.json",
+    "*.js",
+    "*.cjs",
+    "*.ts",
+    ".strato-manifest.json"
   ],
   "forbiddenPaths": [
     "node_modules/**",
-    "apps/**/build/**",
-    "**/__tests__/**/__snapshots__/**"
+    "dist/**",
+    "build/**"
   ],
   "namingConventions": {
     "testFiles": "*.test.ts",
@@ -60,7 +72,7 @@ Este sistema automatizado asegura que toda contribución siga las reglas de estr
   "preferredEntryDir": "apps/frontend/app/"
 }
 ```
-- **`validPaths`**: Lista de patrones glob donde los archivos *pueden* existir.
+- **`validPaths`**: Lista de patrones glob donde los archivos *pueden* existir (incluye documentación viva y scripts globales en raíz y carpetas técnicas).
 - **`forbiddenPaths`**: Lista de patrones glob donde los archivos *nunca* deben existir. Tiene prioridad sobre `validPaths`.
 - **`namingConventions`**: Reglas de nombrado para tipos específicos de archivos (actualmente informativo).
 - **`preferredEntryDir`**: Directorio preferido para nuevos componentes de frontend (informativo).
@@ -70,4 +82,4 @@ Para agregar nuevos módulos, usa:
 pnpm module:create
 ```
 
-Nunca crees archivos directamente en raíz ni con paths absolutos sin validar. 
+Nunca crees archivos directamente en rutas no permitidas ni con paths absolutos sin validar. Documenta cualquier excepción en ~13_LOGICA_NEGOCIO.md. 

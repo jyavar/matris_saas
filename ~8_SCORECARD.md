@@ -1,5 +1,9 @@
 # Scorecard de Sanidad de la Plataforma (STRATO SAFE STACK™)
 
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en métricas o diagnóstico debe reflejarse en los tres.**
+> 
+> **Última sincronización: 2024-06-22**
+
 **Puntuación Global de Sanidad Actual: 73%**
 
 | Métrica / Dimensión | Estado Actual | Puntuación | Justificación y Próximos Pasos |
