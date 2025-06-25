@@ -3,9 +3,58 @@
  */
 
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { describe, expect, test } from 'vitest'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest'
 
 import { useTodos } from '../hooks/useTodos.js'
+
+// Mock de variable de entorno para tests
+beforeAll(() => {
+  // @ts-expect-error: import.meta.env es inyectado por Vite, no existe en Node.js puro
+  import.meta.env = { ...import.meta.env, VITE_API_URL: 'http://localhost' }
+})
+
+beforeEach(() => {
+  globalThis.fetch = vi.fn(
+    (input: string | Request | URL, init?: RequestInit): Promise<Response> => {
+      if (init?.method === 'POST') {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              id: Date.now(),
+              task: 'New Test Todo',
+              is_completed: false,
+              created_at: new Date().toISOString(),
+            }),
+        } as unknown as Response)
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve([
+            {
+              id: 1,
+              task: 'Learn MSW',
+              is_completed: true,
+              created_at: new Date().toISOString(),
+            },
+          ]),
+      } as unknown as Response)
+    },
+  )
+})
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe('useTodos hook', () => {
   test('should initialize with a list of todos from the API', async () => {

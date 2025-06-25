@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react'
 
-import { supabase } from '../services/supabase'
+import { supabase } from '../services/supabase.js'
 
 type AuthContextType = {
   user: User | null

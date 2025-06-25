@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import * as process from 'process'
 
 import {
@@ -9,7 +10,9 @@ import {
 
 try {
   const manifest = getManifest()
-  const filesToValidate = getChangedFilesAgainstMain()
+  const filesToValidate = getChangedFilesAgainstMain().filter((file) =>
+    fs.existsSync(file),
+  )
   const invalidFiles = validateFiles(filesToValidate, manifest)
 
   if (invalidFiles.length > 0) {

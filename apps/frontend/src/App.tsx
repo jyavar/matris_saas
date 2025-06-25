@@ -2,11 +2,11 @@ import './App.css'
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-import { ProtectedRoute } from './components/auth/ProtectedRoute'
-import { useAuth } from './contexts/AuthContext'
-import { HomePage } from './pages/HomePage'
-import { LoginPage } from './pages/LoginPage'
-import { ProfilePage } from './pages/ProfilePage'
+import { ProtectedRoute } from './components/auth/ProtectedRoute.js'
+import { useAuth } from './contexts/AuthContext.js'
+import { HomePage } from './pages/HomePage.js'
+import { LoginPage } from './pages/LoginPage.js'
+import { ProfilePage } from './pages/ProfilePage.js'
 
 function App() {
   const { user, loading } = useAuth()

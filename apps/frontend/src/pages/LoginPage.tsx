@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { supabase } from '../services/supabase'
+import { supabase } from '../services/supabase.js'
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('')

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
-import { supabase } from '../services/supabase'
+import { useAuth } from '../contexts/AuthContext.js'
+import { supabase } from '../services/supabase.js'
 
 export const ProfilePage = () => {
   const { user } = useAuth()

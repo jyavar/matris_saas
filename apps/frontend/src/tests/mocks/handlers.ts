@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-const API_URL = `${import.meta.env.VITE_API_URL}/todos`
+const API_URL = 'http://localhost/todos'
 
 export const handlers = [
   http.get(API_URL, () => {

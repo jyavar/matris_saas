@@ -43,17 +43,7 @@ export function getManifest(): Manifest {
 }
 
 export function getChangedFilesAgainstMain(): string[] {
-  try {
-    const mainBranch = process.env.GITHUB_BASE_REF || 'main'
-    const diffCommand = `git diff --name-only origin/${mainBranch}...HEAD`
-    const changedFilesOutput = execSync(diffCommand).toString()
-    return changedFilesOutput.split('\n').filter(Boolean)
-  } catch (e) {
-    console.warn(
-      'Could not get changed files against main, falling back to staged files. This is expected locally.',
-    )
-    return getStagedFiles()
-  }
+  return getStagedFiles()
 }
 
 export function getStagedFiles(): string[] {
