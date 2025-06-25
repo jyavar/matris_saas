@@ -2,5 +2,8 @@
   "name": "@repo/typescript-config",
   "version": "1.0.0",
   "private": true,
-  "license": "MIT"
-} 
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.25.67"
+  }
+}

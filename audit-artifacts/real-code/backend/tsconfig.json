@@ -1,0 +1,9 @@
+{
+  "extends": "../../packages/typescript-config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmit": false
+  },
+  "include": ["src", "src/types", "tests"],
+  "exclude": ["node_modules"]
+} 
