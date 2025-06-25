@@ -65,7 +65,8 @@
 
 | Módulo      | Estado      | Archivo principal         | Workaround | Fecha revisión |
 |-------------|-------------|--------------------------|------------|---------------|
-| Auth        | [ ]         | auth.service.ts          | [ ]        |               |
+| Auth        | ✅ Validado | auth.service.ts          | ⚠️ tenant_id test | 2024-06-25    |
+| Profiles    | ✅ Validado | profiles.controller.ts   |            | 2024-06-25    |
 | Billing     | [ ]         | billing.service.ts       | [ ]        |               |
 | OpenAI      | [ ]         | openai.service.ts        | [ ]        |               |
 | Resend      | [ ]         | resend.service.ts        | [ ]        |               |

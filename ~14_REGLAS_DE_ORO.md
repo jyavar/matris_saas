@@ -2,7 +2,7 @@
 
 > **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
 > 
-> **Última sincronización: 2024-06-25**
+> **Última sincronización: 2024-06-25** (actualizado tras validación de módulos auth y profiles)
 > 
 > **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
 > 

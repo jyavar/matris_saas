@@ -30,6 +30,7 @@ Actualiza este archivo tras cada avance relevante.
 - ❌ Logs a PostHog y bitácora de acciones clave
 - ❌ CLI de validación y snapshot/rollback
 - ❌ Backend 100% modularizado, validado, protegido y listo para producción
+- ✅ Módulos `auth` y `profiles` validados y auditados según plantilla. Estructura, tipado, tests y docs completos (2024-06-25).
 
 ---
 
@@ -176,6 +177,7 @@ Actualiza este archivo tras cada avance relevante.
   - Arquitectura, estructura, tooling, y defensa base están al nivel más alto.
   - Multi-tenancy y protección de rutas ya implementados.
   - Workarounds y pendientes críticos están documentados y controlados.
+  - Módulos `auth` y `profiles` validados y sincronizados con tablero y documentación viva.
 
 - **Debilidades/Pendientes:**
   - Falta cobertura de tests, integración avanzada (Stripe, Resend, OpenAI, PostHog).
