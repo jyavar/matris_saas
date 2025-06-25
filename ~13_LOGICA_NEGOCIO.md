@@ -6,6 +6,23 @@
 
 ---
 
+## Índice
+- [x] 1. Propósito y Alcance
+- [x] 2. Estructura del Documento
+- [ ] 3. Convenciones y Arquitectura Global
+- [ ] 4. Estado y Lógica de Cada Módulo Crítico
+- [ ] 5. Workarounds y Decisiones Temporales
+- [ ] 6. Integraciones Externas y Dependencias Clave
+- [ ] 7. Flujos de Usuario y Ejemplos de Uso
+- [ ] 8. Checklist de Actualización Diaria/Sprint
+- [ ] 9. Referencias Cruzadas al Checklist Maestro y otros docs
+- [ ] 10. Estructura de Carpetas y Subcarpetas Principal
+- [ ] 11. Recomendaciones Elite para una Lógica de Negocio Sólida
+- [ ] 12. Infraestructura y Carpetas Técnicas
+- [ ] 13. Historial de Actualizaciones
+
+---
+
 ## 1. PROPÓSITO Y ALCANCE
 - Centralizar el conocimiento crítico del proyecto.
 - Evitar pérdida de contexto entre sesiones, cambios de equipo o IA.
@@ -26,19 +43,7 @@
 
 ---
 
-## 3. RESUMEN EJECUTIVO Y VISIÓN DE NEGOCIO
-
-**STRATO AI** es la matriz tecnológica de la empresa Strato Artificial Intelligence, fundada por José (founder, no dev). El objetivo de este monorepo es construir una plataforma base (“matriz”) para lanzar múltiples SaaS de productividad con inteligencia artificial, de forma rápida, escalable y segura.
-
-- **Visión:** Permitir a un solo founder (sin ser dev) lanzar, operar y escalar múltiples SaaS de IA, con la ayuda de IA (como este chat) y una arquitectura robusta, documentada y fácil de clonar.
-- **Producto:** Cada SaaS es un clon de la matriz, con personalización mínima, y puede ser lanzado en Product Hunt, Indie Hackers y otras plataformas.
-- **Control y monitoreo:** Se construirá un dashboard (“Control Tower”) para visualizar el estado de todos los SaaS lanzados: activos, features, usuarios, métricas clave, etc.
-- **Filosofía:** No se busca hacer simple por simple, sino hacer bien, robusto y escalable, pero sin sobrecargar de features innecesarios. La prioridad es la claridad, la mantenibilidad y la facilidad de onboarding para no técnicos.
-- **Checklist Maestro:** El archivo ~12_CHECKLIST_MAESTRO.md es la brújula del proyecto. Todo avance debe reflejarse ahí y en este archivo de lógica de negocio.
-
----
-
-## 4. CONVENCIONES Y ARQUITECTURA GLOBAL
+## 3. CONVENCIONES Y ARQUITECTURA GLOBAL
 - **Estructura de carpetas:**
   - `/apps/backend/`, `/apps/frontend/`, `/apps/web/`, `/packages/`, `/scripts/`, etc.
 - **Convenciones de nombres:**
@@ -49,57 +54,64 @@
   - Node.js, TypeScript, Next.js, Express, Supabase, Stripe, Resend, OpenAI, PostHog, Vitest, etc.
 - **CI/CD y automatización:**
   - [Describe aquí los pipelines, scripts y convenciones de deploy.]
+- **Naming conventions:**
+  - [Ejemplo: archivos de test terminan en `.test.ts`, componentes en `.tsx`, rutas en `route.ts`]
+- **Estrategia de ramas y Git:**
+  - [Describe aquí la convención de ramas, PR, squash, etc.]
 
 ---
 
-## 5. ESTADO Y LÓGICA DE CADA MÓDULO CRÍTICO
+## 4. ESTADO Y LÓGICA DE CADA MÓDULO CRÍTICO
 
-### 5.1. **Autenticación y Multi-Tenancy**
-- **Stack:** Supabase Auth, JWT, RLS.
-- **Estado:** [Describe si está implementado, parcial, pendiente.]
-- **Convenciones:** [Ej: Todos los endpoints protegidos usan `authMiddleware`.]
-- **Workarounds:** [Ej: Inyección de tenant_id en tests locales.]
-- **Archivos clave:** `/middleware/auth.middleware.ts`, `/services/auth.service.ts`, etc.
+| Módulo      | Estado      | Archivo principal         | Workaround | Fecha revisión |
+|-------------|-------------|--------------------------|------------|---------------|
+| Auth        | [ ]         | auth.service.ts          | [ ]        |               |
+| Billing     | [ ]         | billing.service.ts       | [ ]        |               |
+| OpenAI      | [ ]         | openai.service.ts        | [ ]        |               |
+| Resend      | [ ]         | resend.service.ts        | [ ]        |               |
+| PostHog     | [ ]         | posthog.service.ts       | [ ]        |               |
+| Frontend    | [ ]         | /components/ui/          | [ ]        |               |
+| Tests       | [ ]         | tests/                   | [ ]        |               |
+| SEO         | [ ]         | next-seo.config.ts       | [ ]        |               |
 
-### 5.2. **Billing y Stripe**
-- **Stack:** Stripe API, webhooks, enforcement por plan.
-- **Estado:** [Describe si está implementado, parcial, pendiente.]
-- **Convenciones:** [Ej: Todos los endpoints de pago usan `billingService`.]
-- **Workarounds:** [Ej: Uso de claves dummy en desarrollo.]
-- **Archivos clave:** `/services/billing.service.ts`, `/routes/billing.routes.ts`, etc.
-
-### 5.3. **Integraciones Externas**
-- **Resend:** [Estado, archivos, convenciones.]
-- **OpenAI:** [Estado, archivos, convenciones.]
-- **PostHog:** [Estado, archivos, convenciones.]
-- **Supabase:** [Estado, archivos, convenciones.]
-
-### 5.4. **Frontend y UI Compartida**
-- **Stack:** Next.js, shadcn/ui, TailwindCSS, Context Guard.
-- **Estado:** [Describe si está implementado, parcial, pendiente.]
-- **Convenciones:** [Ej: Componentes UI en `/components/ui/`.]
-- **Theming y personalización:** [Estado y convenciones.]
-
-### 5.5. **Tests y Cobertura**
-- **Stack:** Vitest, Testing Library, Playwright.
-- **Estado:** [Cobertura actual, áreas fuertes y débiles.]
-- **Convenciones:** [Dónde van los tests, cómo se nombran.]
-
-### 5.6. **SEO y Marketing**
-- **Stack:** Next.js Head, sitemap, metatags, OpenGraph.
-- **Estado:** [Describe si está implementado, parcial, pendiente.]
-- **Convenciones:** [Dónde se configuran los metatags, etc.]
+- Para cada módulo, documentar: propósito, estado, convenciones, archivos clave, dependencias, workarounds y condiciones de eliminación.
 
 ---
 
-## 6. WORKAROUNDS Y DECISIONES TEMPORALES
-- [Lista de workarounds activos, por qué existen, cuándo se deben eliminar.]
+## 5. WORKAROUNDS Y DECISIONES TEMPORALES
+
+| Motivo                | Fecha       | Archivo/s afectado/s         | Condición de eliminación |
+|-----------------------|-------------|------------------------------|-------------------------|
+|                       |             |                              |                         |
+
+- Consolida aquí todos los workarounds activos desde `~11_LOCAL_WORKAROUNDS.md`.
+
+---
+
+## 6. INTEGRACIONES EXTERNAS Y DEPENDENCIAS CLAVE
+- [Describe aquí el estado y convenciones de Resend, OpenAI, PostHog, Supabase, Stripe, etc.]
+- [Incluye archivos clave y dependencias.]
 
 ---
 
 ## 7. FLUJOS DE USUARIO Y EJEMPLOS DE USO
-- [Describe los flujos críticos: signup, login, pago, upgrade, etc.]
-- [Incluye ejemplos de requests/responses, rutas, payloads.]
+
+### Signup
+- **Endpoint:** POST /api/auth/signup
+- **Payload:** `{ email, password }`
+- **Respuesta esperada:** 201 Created, userId
+- **Errores comunes:** 409 Email ya registrado
+
+### Login
+- ...
+
+### Upgrade
+- ...
+
+### Cancelación
+- ...
+
+- Para cada flujo, documentar rutas, payloads, estado esperado y errores comunes.
 
 ---
 
@@ -108,6 +120,11 @@
 - [ ] ¿Se revisó el Checklist Maestro?
 - [ ] ¿Se documentaron nuevos workarounds o decisiones?
 - [ ] ¿Se actualizaron referencias cruzadas?
+
+### Historial de Actualizaciones
+| Fecha       | Responsable | Cambio realizado                |
+|-------------|-------------|---------------------------------|
+| 2025-06-24  | José        | Estructura inicial y convención |
 
 ---
 
@@ -237,31 +254,9 @@ A continuación se documenta el propósito de cada carpeta técnica y app princi
 
 > **IMPORTANTE:** Este archivo debe ser leído y actualizado por cualquier colaborador o IA antes de trabajar en el repo. Es la memoria viva del proyecto y la clave para evitar pérdida de contexto, errores y deuda técnica.
 
-## Hitos Clave
+## 13. HISTORIAL DE ACTUALIZACIONES
+| Fecha       | Responsable | Cambio realizado                |
+|-------------|-------------|---------------------------------|
+| 2025-06-24  | José        | Estructura inicial y convención |
 
-### [2024-06-22] Context Guard y Documentación Viva Alineados
-
-- Se logró alinear la estructura del monorepo y la documentación viva con las reglas del Context Guard.
-- Se ajustó `.strato-manifest.json` para permitir documentación y scripts globales en la raíz y carpetas técnicas, usando patrones flexibles y seguros.
-- Se bloqueó correctamente `.tmp-scripts/` para mantenerla solo para scripts temporales, evitando deuda técnica y dispersión de documentación.
-- Se eliminaron todos los archivos bloqueados y se realizó un commit limpio, asegurando que la arquitectura y la trazabilidad estén protegidas por el guardián.
-- **Impacto:**
-  - Máxima trazabilidad y orden: la documentación viva y estratégica solo existe en rutas permitidas y permanentes.
-  - El equipo puede avanzar con confianza, sabiendo que la estructura y la excelencia están protegidas automáticamente.
-  - Este hito marca el inicio de una colaboración 100% alineada entre founder y asistente, con reglas claras y sin fricción para la evolución del monorepo.
-
-### [2024-06-25] Monorepo simplificado: Next.js + React puro
-
-- Se eliminó completamente la app de Vite (`apps/frontend`) y todas sus configuraciones, archivos y tipos asociados.
-- Se eliminó el archivo `pnpm-lock.yaml` para evitar referencias a dependencias huérfanas.
-- El monorepo queda consolidado solo en Next.js + React, con dependencias y tipos centralizados en la raíz.
-- Se resolvieron todos los conflictos de tipos y duplicados de frameworks.
-- El Context Guard y la trazabilidad quedan 100% alineados.
-- Estado listo para construir, clonar y escalar sin deuda técnica ni fricción.
-
-### [2024-06-25] Monorepo conectado y subido a GitHub (main)
-
-- El monorepo fue conectado y subido exitosamente a GitHub en la rama principal `main`.
-- URL del repo: https://github.com/jyavar/matris_saas
-- Todo el historial, estructura y reglas de oro están ahora protegidos y trazados en la nube.
-- Estado listo para colaboración, despliegue y escalabilidad profesional.
+---
