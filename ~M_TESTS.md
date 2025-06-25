@@ -1,5 +1,35 @@
 # ~M_TESTS.md
 
+**Dominio funcional:** Tests & Audit (apps/backend, apps/frontend)
+**Incluye:** Estrategia de testing, cobertura, calidad de código, reporting, E2E
+
+---
+
+## Tabla de Origen y Dependencias
+
+| Módulo Origen      | Archivo Original      | Dependencias Técnicas (carpetas/código)         |
+|--------------------|----------------------|-------------------------------------------------|
+| Tests & Audit      | ~M_TESTS.md          | src/tests/, src/tests/backend.coverage.extended.test.ts, src/tests/auth.test.ts, vitest, playwright, @testing-library/react |
+
+---
+
+## % de avance global (según checklist)
+- Estructura modular: 🔲
+- Cobertura ≥80%: 🔲
+- Documentación viva: 🔲
+- Reporting de coverage: 🔲
+- Cumple cultura STRATO: 🔲
+
+**Avance estimado:** ~10% (según el checklist actual)
+
+---
+
+## Contenido completo (con trazabilidad)
+
+---
+
+# ~M_TESTS.md
+
 ## 1. Propósito del módulo
 Gestionar la estrategia de testing, cobertura y calidad de código en backend y frontend. Incluye unitarios, integración, E2E y reporting de coverage.
 
