@@ -1,45 +1,122 @@
-# Checklist Pre-Deploy 100/100
+PRELAUNCH AUDIT STRATO – 100/100 CHECKLIST
 
-Este checklist asegura que el monorepo está limpio, seguro y listo para deploy profesional.
+Este checklist garantiza que el monorepo está limpio, seguro, auditable y listo para despliegue profesional.
+Debe completarse antes de lanzar a producción cualquier producto SaaS STRATO.
 
-## 1. Builds limpias
-- [ ] `pnpm --filter web build` (Frontend)
-- [ ] `pnpm --filter backend build` (Backend)
+⸻
 
-## 2. Tests automáticos
-- [ ] `pnpm --filter web test:ui`
-- [ ] `pnpm --filter web test:e2e`
-- [ ] `pnpm --filter backend test`
-- [ ] Revisar cobertura (coverage) si está configurado
+1. BUILD LIMPIO EN LOCAL Y REMOTO
+	•	pnpm --filter web build (Frontend)
+	•	pnpm --filter backend build (Backend)
+	•	Build limpio en entorno CI/CD
+	•	No hay warnings, errores ni fallback no controlado
 
-## 3. Lint y formato
-- [ ] `pnpm --filter web lint`
-- [ ] `pnpm --filter backend lint` (si existe)
-- [ ] `pnpm format` o Prettier (si existe)
+⸻
 
-## 4. TypeScript estricto
-- [ ] `pnpm --filter web tsc --noEmit`
-- [ ] `pnpm --filter backend tsc --noEmit`
+2. TESTS AUTOMÁTICOS PASANDO
+	•	pnpm --filter web test:ui
+	•	pnpm --filter web test:e2e
+	•	pnpm --filter backend test
+	•	Tests de agentes, CLI y lógica de negocio
+	•	Coverage backend ≥ 80%
+	•	Coverage frontend ≥ 80%
 
-## 5. Dependencias
-- [ ] Sin dependencias duplicadas ni warnings de seguridad
-- [ ] `pnpm install` no muestra errores
+⸻
 
-## 6. Variables de entorno
-- [ ] `.env.example` actualizado
-- [ ] `.env` con todos los valores requeridos para backend y frontend
+3. LINT, FORMAT Y TSC SIN ERRORES
+	•	pnpm lint sin errores en todo el monorepo
+	•	pnpm format (Prettier) aplicado correctamente
+	•	pnpm tsc --noEmit pasa sin errores en backend y frontend
 
-## 7. Archivos y estructura
-- [ ] Sin archivos temporales, logs, ni basura en el repo
-- [ ] `.gitignore` bien configurado
+⸻
 
-## 8. Readme y documentación
-- [ ] `README.md` actualizado
-- [ ] Roadmaps y scorecards presentes
+4. DEPENDENCIAS Y ENV
+	•	pnpm install no genera errores ni warnings
+	•	.env.example actualizado
+	•	.env presente y funcional en local y deploy
+	•	Sin dependencias duplicadas ni inseguras
 
-## 9. CI/CD
-- [ ] Workflows de GitHub Actions o similar configurados (opcional, pero recomendado)
+⸻
 
----
+5. ARCHIVOS Y ESTRUCTURA LIMPIA
+	•	.gitignore correctamente configurado
+	•	Sin archivos temporales, logs o basurales (.DS_Store, *.log, etc.)
+	•	Directorios /audit-artifacts/, /scripts/, /docs/ presentes y estructurados
 
-> Marca cada punto antes de hacer deploy para asegurar calidad, seguridad y cero deuda técnica. 
+⸻
+
+6. DOCUMENTACIÓN ESTRATÉGICA PRESENTE
+	•	README.md actualizado (stack, deploy, uso)
+	•	Scorecard (~8_SCORECARD.md) actualizado
+	•	Roadmap de backend, frontend y matrix presentes
+	•	Playbook de ejecución (~5_PLAYBOOK.md) actualizado
+
+⸻
+
+7. DEPLOY FUNCIONAL EN STAGING
+	•	Frontend desplegado y funcionando en Vercel o similar
+	•	Backend desplegado y funcionando en Railway, Fly.io o Supabase Edge Functions
+	•	Certificados SSL activos
+	•	Dominio o subdominio funcional (https://tu-saas.vercel.app)
+	•	Verificación de salud: /api/health responde 200
+	•	Logs visibles y accesibles (Railway, Vercel, Supabase)
+
+⸻
+
+8. FLUJOS DEL USUARIO VERIFICADOS
+	•	Signup y login funcionan sin errores
+	•	Rutas privadas accesibles solo autenticado
+	•	Navegación post-login funcional
+	•	Creación y lectura de recursos funcionando (ej: campañas, tareas)
+	•	Estado de carga (loading) y feedback de error presentes
+	•	Rutas públicas correctamente renderizadas
+	•	Redirecciones bien implementadas
+
+⸻
+
+9. SEGURIDAD Y AUTENTICACIÓN
+	•	RLS activo y validado en Supabase
+	•	JWT verificado en todos los endpoints backend
+	•	Headers seguros: CORS, CSRF, helmet, etc.
+	•	Fallback 404, 500 y errores de sesión implementados
+	•	Sin console.log, any, ni imports inseguros
+	•	Tests de seguridad simulados o automatizados
+
+⸻
+
+10. CI/CD OPERATIVO
+	•	GitHub Actions o alternativa configurada para:
+	•	Build
+	•	Lint
+	•	Tests
+	•	Deploy a staging
+	•	Badge de CI visible en README (opcional)
+
+⸻
+
+11. LOGS, OBSERVABILIDAD Y BACKUP
+	•	Logs estructurados activos en backend (logger.ts)
+	•	Tracking en frontend (PostHog, GA, Sentry, etc.)
+	•	Dump automático o snapshot de base de datos generado
+	•	Snapshots de auditorías en audit-artifacts/reports/
+	•	Rollback manual disponible (backup en Railway o Supabase)
+
+⸻
+
+12. SISTEMA 100% AUDITABLE Y CLONABLE
+	•	Todos los features del checklist maestro implementados (matrix.audit.json)
+	•	Todos los tests ejecutados y logs de resultado visibles
+	•	Flujo de clonación de SaaS validado (create-saas-clone.ts o similar)
+	•	Módulos integrados, documentados y verificados
+	•	Validación manual final realizada
+
+⸻
+
+RESULTADO FINAL
+
+[ ] Producto aprobado para producción – STRATO READY 100/100
+[ ] Producto requiere ajustes antes de lanzar – Revisión crítica pendiente
+
+⸻
+
+Este archivo debe mantenerse en /ops/~99_PRELAUNCH_AUDIT.md y actualizarse con cada nuevo producto SaaS. Es el punto final antes de lanzar, versionar y escalar.

@@ -53,3 +53,7 @@ OPENAI_API_KEY=sk_...
 # Used for product analytics and feature flagging.
 POSTHOG_API_KEY=phc_...
 ```
+
+# apps/backend
+
+Esta carpeta contiene el backend principal del monorepo STRATO: API REST, lógica de negocio, autenticación, multi-tenancy, integraciones externas y tests.

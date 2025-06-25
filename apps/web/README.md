@@ -1,3 +1,7 @@
+# apps/web
+
+Esta carpeta contiene la app Next.js (SSR/SSG) para landings, dashboard avanzado y el futuro Control Tower multi-SaaS de STRATO.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started

@@ -52,3 +52,7 @@ export default tseslint.config({
   },
 })
 ```
+
+# apps/frontend
+
+Esta carpeta contiene el frontend principal (React/Vite) para la UI de usuario, paneles, componentes y lógica de cliente de los SaaS STRATO.
