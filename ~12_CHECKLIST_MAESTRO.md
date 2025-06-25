@@ -103,7 +103,8 @@ Actualiza este archivo tras cada avance relevante.
 ### 8. ~8_SCORECARD.md
 - 🟡 Calidad de código y cero deuda técnica (95/100) _(parcial, requiere revisión)_
 - ❌ Cobertura y calidad de tests (15/100, falta tests en frontend y lógica de negocio)
-- 🟡 Automatización y CI/CD en la nube (60/100, falta pipeline en GitHub Actions) _(parcial)_
+- 🟡 Automatización y CI/CD en la nube (60/100, workflows activos, deploy pendiente, ver ~19_README_CI_CD.md) _(parcial)_
+- ✅ Documentación de CI/CD y workflows implementada en ~19_README_CI_CD.md
 - ✅ Arquitectura y estructura del monorepo (100/100)
 - 🟡 Gestión de base de datos (90/100, falta generación de tipos TS) _(parcial)_
 - ❌ Seguridad (75/100, falta auditoría de dependencias y gestión de secretos en prod)

@@ -47,4 +47,9 @@
 
 ---
 
-> **Estas reglas de oro son la defensa final contra la deuda técnica, la desalineación y el caos. Si alguna vez dudas, vuelve a leerlas y consulta la lógica de negocio y el checklist maestro.** 
+> **Estas reglas de oro son la defensa final contra la deuda técnica, la desalineación y el caos. Si alguna vez dudas, vuelve a leerlas y consulta la lógica de negocio y el checklist maestro.**
+
+## NOTA CI/CD
+- La documentación y validación de CI/CD está implementada en ~19_README_CI_CD.md.
+- El deploy real sigue pendiente y debe documentarse tras su implementación.
+- Mantén siempre la documentación viva y sincronizada tras cada cambio en los workflows. 

@@ -262,3 +262,11 @@ A continuación se documenta el propósito de cada carpeta técnica y app princi
 | 2025-06-24  | José        | Estructura inicial y convención |
 
 ---
+
+## CI/CD y Workflows
+- El pipeline de CI/CD (lint, typecheck, test, build, context-watchdog) está validado y activo en GitHub Actions.
+- Toda la documentación y troubleshooting está en ~19_README_CI_CD.md.
+- El deploy real (Vercel, Railway, Supabase) está pendiente de configurar.
+- Referencia cruzada: ver ~12_CHECKLIST_MAESTRO.md para el estado y próximos pasos.
+
+---
