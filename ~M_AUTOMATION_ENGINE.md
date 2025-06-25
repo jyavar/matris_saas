@@ -1,3 +1,31 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "AUTOMATION_ENGINE",
+  "objective": "Automatizar onboarding, agentes IA, scripts y lógica avanzada (OpenAI, CLI, onboarding)",
+  "paths": [
+    "apps/backend/src/services/openai.service.ts",
+    "apps/backend/src/routes/openai.routes.ts",
+    "scripts/init-project.ts",
+    "scripts/validate-backend.ts",
+    "apps/backend/src/services/onboarding.service.ts",
+    "apps/backend/src/routes/onboarding.routes.ts"
+  ],
+  "deps": ["openai", "inquirer", "typescript", "zod", "resend"],
+  "status": "20%",
+  "pending": {
+    "services": ["Implementar endpoints IA", "Completar scripts CLI"],
+    "tests": ["Cobertura onboarding y scripts"],
+    "docs": ["Ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_AUTOMATION_ENGINE.md
 
 **Dominio funcional:** Task Engine & Automatización (apps/backend)

@@ -1,3 +1,30 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "WEB_PUBLIC",
+  "objective": "Desarrollar y blindar la web pública, landing, SEO, webhooks y admin panel",
+  "paths": [
+    "apps/web/src/app/",
+    "apps/web/src/components/landing/",
+    "apps/web/src/lib/seo.ts",
+    "apps/web/src/routes/webhooks.routes.ts",
+    "apps/web/src/app/control-tower/"
+  ],
+  "deps": ["next", "react", "tailwindcss", "shadcn/ui", "lucide-react", "next-seo", "stripe", "resend"],
+  "status": "40%",
+  "pending": {
+    "components": ["AdminPanel", "SEOConfig"],
+    "services": ["WebhooksService"],
+    "tests": ["LandingPage.test.tsx", "Webhooks.test.ts"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_WEB_PUBLIC.md
 
 **Dominio funcional:** Web Pública (apps/web)

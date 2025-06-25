@@ -1,3 +1,30 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "EMAIL_CAMPAIGNS",
+  "objective": "Gestionar emails transaccionales, campañas y notificaciones con integración Resend y AI opcional",
+  "paths": [
+    "apps/backend/src/services/resend.service.ts",
+    "apps/backend/src/routes/resend.routes.ts",
+    "apps/backend/src/services/campaigns.service.ts",
+    "apps/backend/src/routes/campaigns.routes.ts",
+    "apps/backend/src/controllers/campaigns.controller.ts"
+  ],
+  "deps": ["resend", "zod", "@supabase/supabase-js", "openai"],
+  "status": "20%",
+  "pending": {
+    "services": ["Implementar endpoints de campañas", "Lógica AI opcional"],
+    "tests": ["Cobertura de emails y campañas"],
+    "docs": ["Ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_EMAIL_CAMPAIGNS.md
 
 **Dominio funcional:** Email & Campaigns (apps/backend)

@@ -1,3 +1,29 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "DEVOPS_HEALTH",
+  "objective": "Proveer utilidades, endpoints de desarrollo, debugging y healthchecks para soporte técnico y monitoreo",
+  "paths": [
+    "apps/backend/src/routes/dev.routes.ts",
+    "apps/backend/src/controllers/health.controller.ts",
+    "apps/backend/src/routes/health.routes.ts",
+    "apps/backend/src/tests/backend.coverage.extended.test.ts"
+  ],
+  "deps": ["typescript", "pnpm"],
+  "status": "60%",
+  "pending": {
+    "services": ["Mocks de utilidades", "Mejorar documentación"],
+    "tests": ["Cobertura completa dev utils"],
+    "docs": ["Ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_DEV.md
 
 **Dominio funcional:** DevOps & Health (apps/backend)

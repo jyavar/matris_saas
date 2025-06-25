@@ -1,3 +1,31 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "MULTI_TENANCY_DB_TYPES",
+  "objective": "Aislar datos por tenant (RLS) y tipar estrictamente la base de datos (Supabase)",
+  "paths": [
+    "apps/backend/src/middleware/auth.middleware.ts",
+    "apps/backend/src/services/profiles.service.ts",
+    "supabase/migrations/",
+    "packages/db-types/index.d.ts",
+    "packages/db-types/src/index.ts",
+    "apps/backend/src/types/supabase.types.ts"
+  ],
+  "deps": ["@supabase/supabase-js", "typescript"],
+  "status": "35%",
+  "pending": {
+    "services": ["Completar lógica RLS", "Validar tipos en todos los servicios"],
+    "tests": ["Cobertura multi-tenant y tipos"],
+    "docs": ["Ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_MULTI_TENANCY.md
 
 **Dominio funcional:** Multi-Tenancy & DB Types (apps/backend, packages/db-types)

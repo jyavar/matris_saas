@@ -1,3 +1,30 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "ANALYTICS_REPORTING",
+  "objective": "Gestionar métricas, tracking, reporting y dashboards técnicos con integración PostHog",
+  "paths": [
+    "apps/backend/src/services/reporting.service.ts",
+    "apps/backend/src/routes/reporting.routes.ts",
+    "apps/backend/src/services/posthog.service.ts",
+    "apps/backend/src/routes/posthog.routes.ts",
+    "apps/web/src/app/control-tower/"
+  ],
+  "deps": ["zod", "posthog-node", "react", "next"],
+  "status": "25%",
+  "pending": {
+    "services": ["Endpoints de reporting", "Integración dashboards"],
+    "tests": ["Cobertura de reporting y tracking"],
+    "docs": ["Ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_ANALYTICS_REPORTING.md
 
 **Dominio funcional:** Analytics & Reporting (apps/backend)

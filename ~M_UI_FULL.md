@@ -1,3 +1,29 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "UI_FULL",
+  "objective": "Desarrollar y blindar todos los componentes UI (auth, analytics, shared, profile)",
+  "paths": [
+    "apps/frontend/src/components/ui",
+    "apps/frontend/src/services/auth.service.ts",
+    "apps/frontend/src/services/analytics.service.ts",
+    "apps/frontend/src/services/profiles.service.ts"
+  ],
+  "deps": ["shadcn/ui", "tailwindcss", "next-auth", "posthog-js", "react", "clsx"],
+  "status": "65%",
+  "pending": {
+    "components": ["ProfileCard", "UserBadge", "AnalyticsPanel"],
+    "services": ["ProfileService"],
+    "tests": ["AuthForm.test.tsx"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_UI_FULL.md
 
 **Dominio funcional:** Frontend Core (apps/frontend)

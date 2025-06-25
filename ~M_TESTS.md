@@ -1,3 +1,27 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "TESTS_AUDIT",
+  "objective": "Gestionar la estrategia de testing, cobertura y calidad de código en backend y frontend",
+  "paths": [
+    "src/tests/",
+    "src/tests/backend.coverage.extended.test.ts",
+    "src/tests/auth.test.ts"
+  ],
+  "deps": ["vitest", "supertest", "playwright", "@testing-library/react"],
+  "status": "10%",
+  "pending": {
+    "tests": ["Tests unitarios en todos los servicios", "Tests de integración", "Tests E2E"],
+    "docs": ["Documentar estrategia y ejemplos de uso"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_TESTS.md
 
 **Dominio funcional:** Tests & Audit (apps/backend, apps/frontend)

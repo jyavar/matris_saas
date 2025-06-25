@@ -1,3 +1,32 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "BACKEND_CORE",
+  "objective": "Gestionar y blindar la lógica core de backend: tasks, tenants, billing, clonación SaaS",
+  "paths": [
+    "apps/backend/src/services/task-core.service.ts",
+    "apps/backend/src/controllers/task-core.controller.ts",
+    "apps/backend/src/routes/task-core.routes.ts",
+    "apps/backend/src/middleware/auth.middleware.ts",
+    "apps/backend/src/services/billing.service.ts",
+    "scripts/create-saas-clone.ts",
+    "scripts/init-project.ts"
+  ],
+  "deps": ["zod", "@supabase/supabase-js", "stripe", "typescript", "inquirer", "pnpm"],
+  "status": "55%",
+  "pending": {
+    "services": ["Validación Zod en todos los endpoints", "Persistencia real en billing"],
+    "tests": ["Cobertura completa billing", "Tests multi-tenant"],
+    "docs": ["Ejemplos de uso", "Sincronizar checklist"]
+  },
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_BACKEND_CORE.md
 
 **Dominio funcional:** Backend Core (apps/backend)
