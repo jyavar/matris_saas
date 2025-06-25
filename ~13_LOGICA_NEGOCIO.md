@@ -248,4 +248,20 @@ A continuación se documenta el propósito de cada carpeta técnica y app princi
 - **Impacto:**
   - Máxima trazabilidad y orden: la documentación viva y estratégica solo existe en rutas permitidas y permanentes.
   - El equipo puede avanzar con confianza, sabiendo que la estructura y la excelencia están protegidas automáticamente.
-  - Este hito marca el inicio de una colaboración 100% alineada entre founder y asistente, con reglas claras y sin fricción para la evolución del monorepo. 
+  - Este hito marca el inicio de una colaboración 100% alineada entre founder y asistente, con reglas claras y sin fricción para la evolución del monorepo.
+
+### [2024-06-25] Monorepo simplificado: Next.js + React puro
+
+- Se eliminó completamente la app de Vite (`apps/frontend`) y todas sus configuraciones, archivos y tipos asociados.
+- Se eliminó el archivo `pnpm-lock.yaml` para evitar referencias a dependencias huérfanas.
+- El monorepo queda consolidado solo en Next.js + React, con dependencias y tipos centralizados en la raíz.
+- Se resolvieron todos los conflictos de tipos y duplicados de frameworks.
+- El Context Guard y la trazabilidad quedan 100% alineados.
+- Estado listo para construir, clonar y escalar sin deuda técnica ni fricción.
+
+### [2024-06-25] Monorepo conectado y subido a GitHub (main)
+
+- El monorepo fue conectado y subido exitosamente a GitHub en la rama principal `main`.
+- URL del repo: https://github.com/jyavar/matris_saas
+- Todo el historial, estructura y reglas de oro están ahora protegidos y trazados en la nube.
+- Estado listo para colaboración, despliegue y escalabilidad profesional.

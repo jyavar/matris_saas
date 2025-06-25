@@ -8,7 +8,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.7.0",
   "scripts": {
-    "lint": "turbo lint && pnpm-sync-up-eslint-formatter",
+    "lint": "turbo lint",
     "build": "turbo run build",
     "test": "turbo test",
     "test:watch": "turbo test:watch",

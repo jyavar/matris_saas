@@ -1,8 +1,12 @@
 # **PLAYBOOK STRATO – FUNDADOR SOLO 10/10™**
 
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md. Cualquier cambio relevante en el playbook debe reflejarse en los tres.**
+> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
 > 
-> **Última sincronización: 2024-06-22**
+> **Última sincronización: 2024-06-25**
+> 
+> **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
+> 
+> **Stack consolidado:** Next.js + React puro.
 
 - Guía de inicio limpio para cualquier clon SaaS
 - Blindaje estructural desde el minuto 1

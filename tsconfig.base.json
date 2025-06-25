@@ -3,6 +3,12 @@
     "baseUrl": ".",
     "paths": {
       "@repo/typescript-config/*": ["packages/typescript-config/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "moduleResolution": "node16",
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "module": "Node16"
   }
 }

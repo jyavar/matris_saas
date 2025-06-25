@@ -213,4 +213,8 @@ Actualiza este archivo tras cada avance relevante.
 
 ## Referencias cruzadas
 - Lógica de Negocio: ~13_LOGICA_NEGOCIO.md
-- Reglas de Oro: ~14_REGLAS_DE_ORO.md 
+- Reglas de Oro: ~14_REGLAS_DE_ORO.md
+
+## Hitos recientes
+
+- [2024-06-25] Monorepo conectado y subido a GitHub en main. Trazabilidad y estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas 
