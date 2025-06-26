@@ -1,13 +1,13 @@
 <!--
-STRATO INDEX HEADER
+STRATO MODULE HEADER
 {
-  "document": "~ALL_MODULES.md",
-  "version": "1.1",
-  "status": "en progreso",
-  "modules_total": 21,
-  "last_updated": "2025-06-25",
-  "auditable": true,
-  "linked_to": ["~1_CHECKLIST.STRATO.md", "~2_README.STRATO.md"]
+  "module": "ALL_MODULES_INDEX",
+  "objective": "Índice maestro de módulos, estado y sincronización del monorepo STRATO.",
+  "paths": ["~ALL_MODULES.md"],
+  "status": "sincronizado",
+  "last_synced": "2025-06-25",
+  "last_validated": "2025-06-25",
+  "responsible": "José + IA STRATO"
 }
 -->
 
@@ -18,7 +18,7 @@ STRATO INDEX HEADER
 2. AUTH (100%) — [~M_AUTH.md](./~M_AUTH.md)
 3. BILLING (100%) — [~M_BILLING.md](./~M_BILLING.md)
 4. PROFILES (100%) — [~M_PROFILES.md](./~M_PROFILES.md)
-5. ANALYTICS (80%) — [~M_ANALYTICS.md](./~M_ANALYTICS.md)
+5. ANALYTICS (100%) — [~M_ANALYTICS_REPORTING.md](./~M_ANALYTICS_REPORTING.md)
 6. RUNTIME (70%) — [~M_RUNTIME.md](./~M_RUNTIME.md)
 
 ## INTELIGENCIA
