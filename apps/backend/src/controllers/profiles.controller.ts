@@ -6,6 +6,7 @@ import {
   idParamSchema,
   updateProfileSchema,
 } from '../lib/schemas.js'
+import { logAction } from '../services/logger.service.js'
 import { profilesService } from '../services/profiles.service.js'
 import { ApiError } from '../utils/ApiError.js'
 
@@ -79,8 +80,14 @@ export const profilesController = {
         avatar_url: validatedProfile.avatar_url,
         tenant_id: tenantId,
       })
+      logAction('profile_create_success', newProfile.email, {
+        userId: newProfile.id,
+      })
       res.status(201).json(newProfile)
     } catch (error) {
+      logAction('profile_create_error', req.body.email || 'unknown', {
+        error: error.message,
+      })
       next(error)
     }
   },
@@ -119,8 +126,14 @@ export const profilesController = {
         tenantId,
         validatedProfile,
       )
+      logAction('profile_update_success', updatedProfile.email, {
+        userId: updatedProfile.id,
+      })
       res.json(updatedProfile)
     } catch (error) {
+      logAction('profile_update_error', req.body.email || 'unknown', {
+        error: error.message,
+      })
       next(error)
     }
   },

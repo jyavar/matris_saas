@@ -6,6 +6,7 @@ import {
   todoIdParamSchema,
   updateTaskSchema,
 } from '../lib/schemas.js'
+import { logAction } from '../services/logger.service.js'
 import { type TodoDTO, todoService } from '../services/todo.service.js'
 import type { Database, TablesInsert } from '../types/supabase.types.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -73,8 +74,10 @@ export const todoController = {
         user_id: req.user.id,
         tenant_id: req.user.tenant_id,
       } as TablesInsert<'todos'>)
+      logAction('todo_create_success', req.user.email, { todoId: newTodo.id })
       res.status(201).json(newTodo)
     } catch (error) {
+      logAction('todo_create_error', req.user.email, { error: error.message })
       next(error)
     }
   },
@@ -107,8 +110,12 @@ export const todoController = {
         Number(id),
         validatedTodo,
       )
+      logAction('todo_update_success', req.user.email, {
+        todoId: updatedTodo.id,
+      })
       res.json(updatedTodo)
     } catch (error) {
+      logAction('todo_update_error', req.user.email, { error: error.message })
       next(error)
     }
   },
@@ -135,8 +142,10 @@ export const todoController = {
         throw new ApiError(404, 'Todo not found')
       }
       await todoService.deleteTodo(Number(id))
+      logAction('todo_delete_success', req.user.email, { todoId: id })
       res.status(204).send()
     } catch (error) {
+      logAction('todo_delete_error', req.user.email, { error: error.message })
       next(error)
     }
   },
