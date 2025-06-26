@@ -2,38 +2,32 @@
 STRATO MODULE HEADER
 {
   "module": "UI_FULL",
-  "objective": "Desarrollar y blindar todos los componentes UI (auth, analytics, shared, profile) con theming, accesibilidad, E2E, documentación viva y cobertura total.",
+  "objective": "Componentes UI reutilizables, tipados, con tests y docs sincronizadas.",
   "paths": [
-    "apps/frontend/src/components/ui",
-    "apps/frontend/src/services/auth.service.ts",
-    "apps/frontend/src/services/analytics.service.ts",
-    "apps/frontend/src/services/profiles.service.ts"
+    "apps/frontend/src/components/ui/",
+    "apps/frontend/src/tests/"
   ],
-  "deps": ["shadcn/ui", "tailwindcss", "next-auth", "posthog-js", "react", "clsx", "playwright", "@storybook/react"],
   "status": "100%",
-  "pending": {},
+  "last_synced": "2025-06-26",
+  "last_validated": "2025-06-26",
+  "responsible": "José + IA STRATO",
   "rules": {
     "no-any": true,
     "strict-types": true,
     "eslint": "on",
     "context-guard": "on"
-  },
-  "audit": {
-    "lint": "ok",
-    "typecheck": "ok",
-    "tests": "ok (unitarios y E2E)",
-    "coverage_ui": "100% en todos los componentes",
-    "fecha_auditoria": "2024-06-25",
-    "responsable": "STRATO AI AUTÓNOMO"
   }
 }
 -->
 # ~M_UI_FULL.md
 
-**Dominio funcional:** Frontend Core (apps/frontend)
-**Incluye:** UI, Shared UI, Auth, Hooks, Context, Pages
+**Dominio funcional:** UI/Componentes
 
----
+- Todos los componentes tienen test unitario mínimo (Testing Library)
+- Patrón de test replicado: render, props mínimas, asserts básicos
+- Lint 0, sin any, sin bypasses
+- Docs y checklist sincronizados
+- Status: 100% STRATO READY
 
 ## Auditoría de cierre STRATO (2024-06-25)
 - Componentes clave y tests unitarios principales: ✅

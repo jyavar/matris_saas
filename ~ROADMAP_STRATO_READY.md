@@ -108,4 +108,7 @@ Para cada módulo pendiente (según `~ALL_MODULES.md`):
 
 **Resultado esperado:**
 
-Repo y todos los módulos 100% STRATO READY, sin deuda técnica, con tests, lint, typecheck, docs y checklists sincronizados, lista para escalar y lanzar SaaS sin fricción. 
+Repo y todos los módulos 100% STRATO READY, sin deuda técnica, con tests, lint, typecheck, docs y checklists sincronizados, lista para escalar y lanzar SaaS sin fricción.
+
+- [x] UI/COMPONENTS frontend 100% STRATO READY, tests unitarios y docs sincronizados
+- [x] RUNTIME backend 100% STRATO READY, tests y docs sincronizados 

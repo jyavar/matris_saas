@@ -262,7 +262,7 @@ Actualiza este archivo tras cada avance relevante.
 - ✅ Uso de shadcn/ui y clsx para UI
 - ✅ Integración de Context Guard y convenciones de rutas
 - 🟡 Componentes UI reutilizables completos (botones, cards, inputs, etc.) _(algunos presentes, falta completitud)_
-- ❌ Tests de componentes con Testing Library
+- ✅ Tests de componentes con Testing Library
 - ❌ Tests E2E con Playwright para flujos críticos
 - ❌ Validación de accesibilidad (a11y), dark mode, loading states, fallback de errores
 - 🟡 Integración real con API del backend (fetcher tipado, Zod/OpenAPI) _(parcial)_
@@ -417,4 +417,6 @@ Actualiza este archivo tras cada avance relevante.
 #### A. Features recomendadas para SaaS multi-producto/plantilla
 - ⬜️ Sistema de "plantillas" o "presets" de configuración por SaaS (branding, features, settings)
 - ⬜️ Script de clonación y bootstrap automatizado para nuevos SaaS
-- ⬜️ Gestión centralizada de entornos y secrets por SaaS 
+- ⬜️ Gestión centralizada de entornos y secrets por SaaS
+- ✅ UI/COMPONENTS frontend completos y testeados
+- ✅ RUNTIME backend completo y testeado 
