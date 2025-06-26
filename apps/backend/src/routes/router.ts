@@ -1,5 +1,6 @@
 import { Router } from 'express'
 
+import { strictRateLimit } from '../middleware/rateLimit.middleware.js'
 import analyticsRoutes from './analytics.routes.js'
 import authRoutes from './auth.routes.js'
 import campaignsRoutes from './campaigns.routes.js'
@@ -19,15 +20,15 @@ const router = Router()
 router.use('/health', healthRoutes)
 router.use('/dev', devRoutes)
 router.use('/todos', todoRoutes)
-router.use('/auth', authRoutes)
+router.use('/auth', strictRateLimit, authRoutes)
 router.use('/profiles', profilesRoutes)
 router.use('/analytics', analyticsRoutes)
-router.use('/reporting', reportingRoutes)
+router.use('/reporting', strictRateLimit, reportingRoutes)
 router.use('/posthog', posthogRoutes)
 router.use('/runtime', runtimeRoutes)
-router.use('/openai', openaiRoutes)
+router.use('/openai', strictRateLimit, openaiRoutes)
 router.use('/onboarding', onboardingRoutes)
-router.use('/resend', resendRoutes)
-router.use('/campaigns', campaignsRoutes)
+router.use('/resend', strictRateLimit, resendRoutes)
+router.use('/campaigns', strictRateLimit, campaignsRoutes)
 
 export default router
