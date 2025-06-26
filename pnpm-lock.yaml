@@ -243,6 +243,9 @@ importers:
       express-rate-limit:
         specifier: 7.0.0
         version: 7.0.0(express@5.1.0)
+      helmet:
+        specifier: 7.0.0
+        version: 7.0.0
       openai:
         specifier: ^5.6.0
         version: 5.7.0(ws@8.18.2)(zod@3.25.67)
@@ -3761,6 +3764,10 @@ packages:
 
   headers-polyfill@4.0.3:
     resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
+
+  helmet@7.0.0:
+    resolution: {integrity: sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ==}
+    engines: {node: '>=16.0.0'}
 
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
@@ -9631,6 +9638,8 @@ snapshots:
       function-bind: 1.1.2
 
   headers-polyfill@4.0.3: {}
+
+  helmet@7.0.0: {}
 
   help-me@5.0.0: {}
 

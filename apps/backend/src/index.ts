@@ -1,4 +1,5 @@
 import express, { type ErrorRequestHandler } from 'express'
+import helmet from 'helmet'
 
 import { authMiddleware } from './middleware/auth.middleware.js'
 import { createErrorHandler } from './middleware/errorHandler.middleware.js'
@@ -11,6 +12,7 @@ export const app = express()
 
 app.use(express.json())
 app.use(loggerMiddleware)
+app.use(helmet())
 
 // Route registration
 app.use(router)
