@@ -1,0 +1,69 @@
+import request from 'supertest'
+import { describe, expect, it } from 'vitest'
+
+import { app } from '../index.js'
+
+describe('Runtime Routes', () => {
+  const job = { id: 'test-job', schedule: '* * * * *' }
+
+  it('POST /runtime/jobs crea un job', async () => {
+    const res = await request(app).post('/runtime/jobs').send(job)
+    expect(res.status).toBe(201)
+    expect(res.body).toHaveProperty('id', job.id)
+    expect(res.body).toHaveProperty('schedule', job.schedule)
+    expect(res.body).toHaveProperty('running', true)
+  })
+
+  it('GET /runtime/jobs lista jobs', async () => {
+    const res = await request(app).get('/runtime/jobs')
+    expect(res.status).toBe(200)
+    expect(Array.isArray(res.body)).toBe(true)
+    expect(res.body.some((j) => j.id === job.id)).toBe(true)
+  })
+
+  it('POST /runtime/jobs/:id/pause pausa un job', async () => {
+    const res = await request(app).post(`/runtime/jobs/${job.id}/pause`)
+    expect(res.status).toBe(200)
+    expect(res.body).toEqual({ ok: true })
+  })
+
+  it('POST /runtime/jobs/:id/resume reanuda un job', async () => {
+    const res = await request(app).post(`/runtime/jobs/${job.id}/resume`)
+    expect(res.status).toBe(200)
+    expect(res.body).toEqual({ ok: true })
+  })
+
+  it('POST /runtime/agents/:name/run lanza un agente', async () => {
+    const res = await request(app)
+      .post('/runtime/agents/refactor/run')
+      .send({ dryRun: true })
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('ok', true)
+    expect(res.body).toHaveProperty('result')
+    expect(res.body.result).toHaveProperty('status')
+    expect(res.body.result).toHaveProperty('findings')
+  })
+
+  it('POST /runtime/agents/:name/run responde error si el agente no existe', async () => {
+    const res = await request(app).post('/runtime/agents/nope/run')
+    expect(res.status).toBe(400)
+    expect(res.body).toHaveProperty('ok', false)
+    expect(res.body).toHaveProperty('error')
+  })
+
+  it('DELETE /runtime/jobs/:id elimina un job', async () => {
+    const res = await request(app).delete(`/runtime/jobs/${job.id}`)
+    expect(res.status).toBe(200)
+    expect(res.body).toEqual({ ok: true })
+  })
+
+  it('POST /runtime/jobs responde error si falta id/schedule', async () => {
+    const res = await request(app).post('/runtime/jobs').send({})
+    expect(res.status).toBe(400)
+  })
+
+  it('POST /runtime/jobs/:id/pause responde 404 si no existe', async () => {
+    const res = await request(app).post('/runtime/jobs/nope/pause')
+    expect(res.status).toBe(404)
+  })
+})

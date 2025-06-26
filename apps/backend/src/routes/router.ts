@@ -2,9 +2,16 @@ import { Router } from 'express'
 
 import analyticsRoutes from './analytics.routes.js'
 import authRoutes from './auth.routes.js'
+import campaignsRoutes from './campaigns.routes.js'
 import devRoutes from './dev.routes.js'
 import healthRoutes from './health.routes.js'
+import onboardingRoutes from './onboarding.routes.js'
+import openaiRoutes from './openai.routes.js'
+import posthogRoutes from './posthog.routes.js'
 import profilesRoutes from './profiles.routes.js'
+import reportingRoutes from './reporting.routes.js'
+import resendRoutes from './resend.routes.js'
+import runtimeRoutes from './runtime.routes.js'
 import todoRoutes from './todo.routes.js'
 
 const router = Router()
@@ -15,5 +22,12 @@ router.use('/todos', todoRoutes)
 router.use('/auth', authRoutes)
 router.use('/profiles', profilesRoutes)
 router.use('/analytics', analyticsRoutes)
+router.use('/reporting', reportingRoutes)
+router.use('/posthog', posthogRoutes)
+router.use('/runtime', runtimeRoutes)
+router.use('/openai', openaiRoutes)
+router.use('/onboarding', onboardingRoutes)
+router.use('/resend', resendRoutes)
+router.use('/campaigns', campaignsRoutes)
 
 export default router

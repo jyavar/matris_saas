@@ -27,7 +27,7 @@ export const Outline: Story = {
 export const Themed: Story = {
   args: {
     children: 'Dark Button',
-    variant: 'primary',
+    variant: 'secondary',
   },
   parameters: {
     backgrounds: { default: 'dark' },

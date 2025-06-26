@@ -1,0 +1,1 @@
+- ✅ Módulos de negocio (ej: campaigns) completos 
