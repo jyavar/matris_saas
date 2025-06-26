@@ -250,7 +250,7 @@ Actualiza este archivo tras cada avance relevante.
 - ✅ Fixtures de datos dummy y seeding básico implementados _(fixtures y seeding básico presentes)_
 - ✅ Logger estructurado básico
 - ✅ Logs a PostHog y bitácora de acciones clave
-- ✅ CLI de validación y snapshot/rollback
+- ✅ CLI maestro de validación, snapshot y rollback implementado (taskmaster.prd.ts)
 - ✅ Backend 100% modularizado, validado, protegido y listo para producción
 - ✅ Módulos `auth` y `profiles` validados y auditados según plantilla. Estructura, tipado, tests y docs completos (2024-06-25).
 

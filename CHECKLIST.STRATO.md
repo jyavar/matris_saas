@@ -1,3 +1,4 @@
 - ✅ Módulos de negocio (ej: campaigns) completos 
 - ✅ UI/COMPONENTS frontend completos y testeados 
 - ✅ RUNTIME backend completo y testeado 
+- ✅ CLI maestro de validación, snapshot y rollback implementado (taskmaster.prd.ts) 
