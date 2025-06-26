@@ -51,3 +51,43 @@ export const numericIdParamSchema = z.object({
 export const analyticsQuerySchema = z.object({
   range: z.string().optional(),
 })
+
+export const createTaskSchema = z.object({
+  title: z.string().min(3, 'Title must be at least 3 characters long'),
+  description: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+  completed: z.boolean().optional(),
+  tenantId: z.string().uuid('Invalid tenant ID'),
+})
+
+export const updateTaskSchema = z.object({
+  title: z.string().min(3).optional(),
+  description: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+  completed: z.boolean().optional(),
+})
+
+export const createInvoiceSchema = z.object({
+  customerId: z.string().uuid('Invalid customer ID'),
+  amount: z.number().positive(),
+  currency: z.string().length(3),
+  description: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+})
+
+export const updateInvoiceSchema = z.object({
+  amount: z.number().positive().optional(),
+  currency: z.string().length(3).optional(),
+  description: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+  status: z.enum(['pending', 'paid', 'cancelled']).optional(),
+})
+
+export const todoIdParamSchema = z.object({
+  id: z
+    .string()
+    .refine(
+      (val) => /^\d+$/.test(val) || /^[0-9a-fA-F-]{36}$/.test(val),
+      'ID must be a number or a valid UUID',
+    ),
+})

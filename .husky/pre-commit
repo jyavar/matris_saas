@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+pnpm tsx scripts/sync-modules-index.ts
 pnpm lint-staged
 pnpm tsx scripts/agents/context-watchdog.ts

@@ -170,6 +170,39 @@ export type Database = {
         }
         Relationships: []
       }
+      invoices: {
+        Row: {
+          id: string
+          customer_id: string
+          amount: number
+          currency: string
+          description?: string | null
+          due_date?: string | null
+          status: 'pending' | 'paid' | 'cancelled'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          customer_id: string
+          amount: number
+          currency: string
+          description?: string | null
+          due_date?: string | null
+          status?: 'pending' | 'paid' | 'cancelled'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          customer_id?: string
+          amount?: number
+          currency?: string
+          description?: string | null
+          due_date?: string | null
+          status?: 'pending' | 'paid' | 'cancelled'
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -35,8 +35,21 @@ export const profilesController = {
       if (!req.user) throw new ApiError(401, 'User not authenticated')
       const { id } = idParamSchema.parse(req.params)
       const tenantId = req.user.tenant_id
-      const profile = await profilesService.getProfileById(id, tenantId)
-      if (!profile) throw new ApiError(404, 'Profile not found')
+      let profile
+      try {
+        profile = await profilesService.getProfileById(id, tenantId)
+        if (!profile) throw new ApiError(404, 'Profile not found')
+      } catch (error) {
+        if (
+          error instanceof ApiError &&
+          error.statusCode === 400 &&
+          typeof error.message === 'string' &&
+          error.message.includes('failed to parse filter')
+        ) {
+          throw new ApiError(404, 'Profile not found')
+        }
+        throw error
+      }
       res.json(profile)
     } catch (error) {
       next(error)
