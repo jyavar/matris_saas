@@ -1,12 +1,11 @@
-# ~5_REGLAS_DE_ORO.md
+# 5_REGLAS_DE_ORO~.md
 
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md, ~12_CHECKLIST_MAESTRO.md y ~18_REPORTE_CLOC.md.**
 > 
-> **Última sincronización: 2024-06-25** (actualizado tras validación de módulos auth y profiles)
+> **Última sincronización: 2024-06-26** (actualizado tras validación de módulos backend core y email campaigns)
 > 
-> **Hito reciente:** Monorepo conectado y subido a GitHub en main. Estado listo para colaboración y despliegue profesional. URL: https://github.com/jyavar/matris_saas
+> **Hito reciente:** Backend core 100% STRATO READY, email campaigns funcional, tests robustos, lint 0 errores. Estado listo para escalar SaaS multi-tenant.
 > 
-> **Stack consolidado:** Next.js + React puro.
+> **Stack consolidado:** Next.js + React puro + Backend Express + Supabase + Resend.
 
 ## REGLAS DE ORO STRATO SAFE STACK™
 

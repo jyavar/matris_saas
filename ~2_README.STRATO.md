@@ -46,10 +46,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/b
 
 ---
 
-<!-- ORIGEN: ~6_README.cursor.md -->
+
 ## STRATO Context Rules for AI and Human Agents
 
-> **Este archivo debe mantenerse sincronizado con ~13_LOGICA_NEGOCIO.md y ~12_CHECKLIST_MAESTRO.md.**
+
 
 ⚠️ Este monorepo está protegido por STRATO Context Guard™
 
@@ -77,7 +77,7 @@ Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo 
 
 ---
 
-<!-- ORIGEN: ~19_README_CI_CD.md -->
+
 ## CI/CD y Workflows – STRATO SAFE STACK™
 
 ### 1. Workflows Actuales en `.github/workflows/`
@@ -98,7 +98,6 @@ Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo 
 
 ---
 
-<!-- ORIGEN: ~8_SCORECARD.md -->
 ## Scorecard de Sanidad de la Plataforma
 
 **Puntuación Global de Sanidad Actual: 73%**
@@ -112,9 +111,6 @@ Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo 
 | **5. Gestión de Base de Datos** | Migraciones con Supabase, schema versionado, scripts de ayuda. | **90/100** | Falta generar tipos TS desde el schema. |
 | **6. Seguridad** | Gestión de secretos correcta localmente, falta auditoría formal de dependencias. | **75/100** | Ejecutar pnpm audit y mejorar gestión de secretos en prod. |
 
----
-
-<!-- ORIGEN: ~14_REGLAS_DE_ORO.md -->
 ## REGLAS DE ORO STRATO SAFE STACK™
 
 1. Lee estas reglas todos los días antes de trabajar.
@@ -132,7 +128,7 @@ Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo 
 
 ---
 
-<!-- ORIGEN: ~13_LOGICA_NEGOCIO.md -->
+
 ## LÓGICA DE NEGOCIO Y VISIÓN STRATO
 
 - Centralizar el conocimiento crítico del proyecto.
@@ -145,19 +141,6 @@ Lee el error, consulta el manifiesto y la lógica de negocio, ajusta el archivo 
 - Node.js, TypeScript, Next.js, Express, Supabase, Stripe, Resend, OpenAI, PostHog, Vitest, etc.
 - Naming conventions: tests `.test.ts`, componentes `.tsx`, rutas `route.ts`.
 - Estrategia de ramas y Git: PR, squash, convenciones claras.
-
-### Estado de módulos críticos
-| Módulo      | Estado      | Archivo principal         | Workaround | Fecha revisión |
-|-------------|-------------|--------------------------|------------|---------------|
-| Auth        | ✅ Validado | auth.service.ts          | ⚠️ tenant_id test | 2024-06-25    |
-| Profiles    | ✅ Validado | profiles.controller.ts   |            | 2024-06-25    |
-| Billing     | [ ]         | billing.service.ts       | [ ]        |               |
-| OpenAI      | [ ]         | openai.service.ts        | [ ]        |               |
-| Resend      | [ ]         | resend.service.ts        | [ ]        |               |
-| PostHog     | [ ]         | posthog.service.ts       | [ ]        |               |
-| Frontend    | [ ]         | /components/ui/          | [ ]        |               |
-| Tests       | [ ]         | tests/                   | [ ]        |               |
-| SEO         | [ ]         | next-seo.config.ts       | [ ]        |               |
 
 ### Infraestructura y carpetas técnicas
 - `.github/`: Workflows y CI/CD

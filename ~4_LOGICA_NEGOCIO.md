@@ -59,35 +59,8 @@
 - **Estrategia de ramas y Git:**
   - [Describe aquí la convención de ramas, PR, squash, etc.]
 
----
-
-## 4. ESTADO Y LÓGICA DE CADA MÓDULO CRÍTICO
-
-| Módulo      | Estado      | Archivo principal         | Workaround | Fecha revisión |
-|-------------|-------------|--------------------------|------------|---------------|
-| Auth        | ✅ Validado | auth.service.ts          | ⚠️ tenant_id test | 2024-06-25    |
-| Profiles    | ✅ Validado | profiles.controller.ts   |            | 2024-06-25    |
-| Billing     | [ ]         | billing.service.ts       | [ ]        |               |
-| OpenAI      | [ ]         | openai.service.ts        | [ ]        |               |
-| Resend      | [ ]         | resend.service.ts        | [ ]        |               |
-| PostHog     | [ ]         | posthog.service.ts       | [ ]        |               |
-| Frontend    | [ ]         | /components/ui/          | [ ]        |               |
-| Tests       | [ ]         | tests/                   | [ ]        |               |
-| SEO         | [ ]         | next-seo.config.ts       | [ ]        |               |
-
-- Para cada módulo, documentar: propósito, estado, convenciones, archivos clave, dependencias, workarounds y condiciones de eliminación.
-
----
 
 ## 5. WORKAROUNDS Y DECISIONES TEMPORALES
-
-| Motivo                | Fecha       | Archivo/s afectado/s         | Condición de eliminación |
-|-----------------------|-------------|------------------------------|-------------------------|
-|                       |             |                              |                         |
-
-- Consolida aquí todos los workarounds activos desde `~11_LOCAL_WORKAROUNDS.md`.
-
----
 
 ## 6. INTEGRACIONES EXTERNAS Y DEPENDENCIAS CLAVE
 - [Describe aquí el estado y convenciones de Resend, OpenAI, PostHog, Supabase, Stripe, etc.]
@@ -126,19 +99,6 @@
 | Fecha       | Responsable | Cambio realizado                |
 |-------------|-------------|---------------------------------|
 | 2025-06-24  | José        | Estructura inicial y convención |
-
----
-
-## 9. REFERENCIAS CRUZADAS
-- **Checklist Maestro:** `~12_CHECKLIST_MAESTRO.md`
-- **Reglas de Oro:** `~14_REGLAS_DE_ORO.md`
-- **Scorecard:** `~8_SCORECARD.md`
-- **Playbook:** `~5_PLAYBOOK.md`
-- **Workarounds:** `~11_LOCAL_WORKAROUNDS.md`
-- **Roadmaps:** `~1_BACKEND_ROADMAP.md`, `~3_MATRIX_ROADMAP.md`, etc.
-- **Reporte técnico CLOC:** `~18_REPORTE_CLOC.md`
-
----
 
 ## 10. ESTRUCTURA DE CARPETAS Y SUBCARPETAS PRINCIPAL
 
