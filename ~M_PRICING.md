@@ -1,3 +1,21 @@
+<!--
+STRATO MODULE HEADER
+{
+  "module": "PRICING",
+  "objective": "Gestionar la lógica de planes, precios y simulación de upgrades/downgrades para el SaaS.",
+  "paths": ["~M_PRICING.md"],
+  "status": "40%",
+  "last_synced": "2025-06-27",
+  "last_validated": "2025-06-27",
+  "responsible": "José + IA STRATO",
+  "rules": {
+    "no-any": true,
+    "strict-types": true,
+    "eslint": "on",
+    "context-guard": "on"
+  }
+}
+-->
 # ~M_PRICING.md
 
 ## 1. Propósito del módulo

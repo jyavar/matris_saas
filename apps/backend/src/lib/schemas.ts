@@ -91,3 +91,10 @@ export const todoIdParamSchema = z.object({
       'ID must be a number or a valid UUID',
     ),
 })
+
+export const tenantSignUpSchema = z.object({
+  name: z.string().min(3, 'El nombre es obligatorio'),
+  company: z.string().min(2, 'La empresa es obligatoria'),
+  email: z.string().email(),
+  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
+})

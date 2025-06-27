@@ -26,7 +26,7 @@ async function validate() {
   const typecheck = run('pnpm typecheck')
   const test = run('pnpm test')
   log('Generando reporte de checklist...')
-  run('pnpm ts-node scripts/audit-checklist.ts')
+  run('pnpm exec tsx scripts/audit-checklist.ts')
   log('Validación completa', { lint, typecheck, test })
   if (!lint.ok || !typecheck.ok || !test.ok) process.exit(1)
 }

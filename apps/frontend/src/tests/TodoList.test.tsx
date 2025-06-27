@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 
 // Mock de useTodos
-jest.mock('../hooks/useTodos.js', () => ({
+vi.mock('../hooks/useTodos.js', () => ({
   useTodos: () => ({
     todos: [],
-    addTodo: jest.fn(),
-    toggleTodo: jest.fn(),
-    removeTodo: jest.fn(),
+    addTodo: vi.fn(),
+    toggleTodo: vi.fn(),
+    removeTodo: vi.fn(),
   }),
 }))
 
