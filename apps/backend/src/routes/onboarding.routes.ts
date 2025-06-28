@@ -15,7 +15,10 @@ router.post('/register', async (req, res) => {
       .json({ error: 'Datos inválidos', details: parse.error.errors })
   }
   try {
-    const result = await OnboardingService.registerUser(parse.data)
+    const result = await OnboardingService.registerUser({
+      email: parse.data.email,
+      name: parse.data.name,
+    })
     res.json(result)
   } catch (e) {
     res

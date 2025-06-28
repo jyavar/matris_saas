@@ -25,6 +25,7 @@ export function logAction(
   userId: string,
   details: Record<string, unknown> = {},
 ) {
+  if (!userId) throw new Error('userId is required')
   logger.info({ action, userId, ...details }, `Action: ${action}`)
   // Bitácora estructurada + PostHog
   PostHogService.captureEvent(userId, action, details)

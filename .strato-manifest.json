@@ -34,7 +34,8 @@
     "tsconfig.json",
     "tsconfig.base.json",
     "packages/db-types/**",
-    "packages/typescript-config/**"
+    "packages/typescript-config/**",
+    ".env*"
   ],
   "forbiddenPaths": [
     "node_modules/**",

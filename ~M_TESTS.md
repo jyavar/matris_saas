@@ -102,4 +102,10 @@ Gestionar la estrategia de testing, cobertura y calidad de código en backend y 
 ## 10. Siguiente paso para estar 100% STRATO READY
 - Completar tests y reporting de coverage.
 - Documentar estrategia y ejemplos de uso.
-- Sincronizar estado en tablero de módulos y checklist maestro. 
+- Sincronizar estado en tablero de módulos y checklist maestro.
+
+- [x] billing.service.ts → billing.service.test.ts ✅ unit test real
+- [x] logger.service.ts → logger.service.test.ts ✅ unit test real
+- [x] resend.service.ts → resend.service.test.ts ✅ unit test real
+- [x] openai.service.ts → openai.service.test.ts ✅ unit test real, 100% mockeable
+- [x] runtime.service.ts → runtime.service.test.ts ✅ unit test real, 100% mockeable 

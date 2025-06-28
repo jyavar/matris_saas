@@ -7,9 +7,20 @@ export class OpenAIService {
     return new OpenAI({ apiKey })
   }
 
-  static async sendPrompt(prompt: string): Promise<string> {
-    const client = this.getClient()
-    const res = await client.chat.completions.create({
+  static async sendPrompt(
+    prompt: string,
+    client?: {
+      chat: {
+        completions: {
+          create: (
+            args: unknown,
+          ) => Promise<{ choices: { message: { content: string } }[] }>
+        }
+      }
+    },
+  ): Promise<string> {
+    const realClient = client || this.getClient()
+    const res = await realClient.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 100,

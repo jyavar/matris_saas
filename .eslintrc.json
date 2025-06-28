@@ -37,6 +37,7 @@
   "ignorePatterns": [
     "**/.eslintrc.cjs",
     "dist",
-    "audit-artifacts"
+    "audit-artifacts",
+    "apps/backend/vitest.config.ts"
   ]
 }

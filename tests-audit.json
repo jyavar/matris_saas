@@ -1,0 +1,47 @@
+[
+  {
+    "archivo.ts": "billing.service.ts",
+    "testFile.ts": "billing.service.test.ts",
+    "status": "pasa",
+    "assertsCount": 4,
+    "usesMocks": true,
+    "tipoTest": "unit",
+    "veredictoFinal": "✅ real"
+  },
+  {
+    "archivo.ts": "logger.service.ts",
+    "testFile.ts": "logger.service.test.ts",
+    "status": "pasa",
+    "assertsCount": 3,
+    "usesMocks": true,
+    "tipoTest": "unit",
+    "veredictoFinal": "✅ real"
+  },
+  {
+    "archivo.ts": "resend.service.ts",
+    "testFile.ts": "resend.service.test.ts",
+    "status": "pasa",
+    "assertsCount": 2,
+    "usesMocks": true,
+    "tipoTest": "unit",
+    "veredictoFinal": "✅ real"
+  },
+  {
+    "archivo.ts": "openai.service.ts",
+    "testFile.ts": "openai.service.test.ts",
+    "status": "pasa",
+    "assertsCount": 3,
+    "usesMocks": true,
+    "tipoTest": "unit",
+    "veredictoFinal": "✅ real, 100% mockeable"
+  },
+  {
+    "archivo.ts": "runtime.service.ts",
+    "testFile.ts": "runtime.service.test.ts",
+    "status": "pasa",
+    "assertsCount": 6,
+    "usesMocks": true,
+    "tipoTest": "unit",
+    "veredictoFinal": "✅ real, 100% mockeable"
+  }
+] 

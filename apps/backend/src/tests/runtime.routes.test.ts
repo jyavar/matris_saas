@@ -1,10 +1,35 @@
 import request from 'supertest'
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { app } from '../index.js'
+import { RuntimeService } from '../services/runtime.service.js'
 
 describe('Runtime Routes', () => {
-  const job = { id: 'test-job', schedule: '* * * * *' }
+  const job = {
+    id: 'test-job',
+    schedule: '* * * * *',
+    running: true,
+    task: () => {},
+  }
+
+  beforeEach(() => {
+    vi.spyOn(RuntimeService, 'createJob').mockImplementation(
+      (id, schedule) => ({ id, schedule, running: true, task: () => {} }),
+    )
+    vi.spyOn(RuntimeService, 'listJobs').mockImplementation(() => [job])
+    vi.spyOn(RuntimeService, 'pauseJob').mockImplementation(() => {})
+    vi.spyOn(RuntimeService, 'resumeJob').mockImplementation(() => {})
+    vi.spyOn(RuntimeService, 'deleteJob').mockImplementation(() => {})
+    vi.spyOn(RuntimeService, 'runAgent').mockImplementation(async (name) => {
+      if (name === 'refactor') {
+        return { ok: true, result: { status: 'success', findings: [] } }
+      }
+      return { ok: false, error: 'Agente no encontrado' }
+    })
+  })
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
 
   it('POST /runtime/jobs crea un job', async () => {
     const res = await request(app).post('/runtime/jobs').send(job)
@@ -63,6 +88,9 @@ describe('Runtime Routes', () => {
   })
 
   it('POST /runtime/jobs/:id/pause responde 404 si no existe', async () => {
+    vi.spyOn(RuntimeService, 'pauseJob').mockImplementation(() => {
+      throw new Error('Job not found')
+    })
     const res = await request(app).post('/runtime/jobs/nope/pause')
     expect(res.status).toBe(404)
   })

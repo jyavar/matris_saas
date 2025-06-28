@@ -48,6 +48,11 @@ export class RuntimeService {
   static async runAgent(
     name: string,
     opts: Record<string, unknown> = {},
+    importer: (
+      path: string,
+    ) => Promise<{ runAgent: (...args: unknown[]) => Promise<unknown> }> = (
+      p,
+    ) => import(p),
   ): Promise<{ ok: boolean; result?: unknown; error?: string }> {
     try {
       // Mapear nombre de agente a path real
@@ -59,8 +64,7 @@ export class RuntimeService {
       if (!agentPath) {
         return { ok: false, error: `Agente '${name}' no registrado.` }
       }
-      // Import dinámico ESM
-      const mod = await import(agentPath)
+      const mod = await importer(agentPath)
       if (typeof mod.runAgent !== 'function') {
         return { ok: false, error: `Agente '${name}' no tiene runAgent()` }
       }
