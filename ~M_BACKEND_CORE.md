@@ -1,3 +1,9 @@
+---
+Estado Técnico: Parcial
+Deuda Técnica: 45
+Avance: 55%
+---
+
 # ~M_BACKEND_CORE.md
 
 **Dominio funcional:** Backend Core (apps/backend)

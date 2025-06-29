@@ -1,3 +1,8 @@
+---
+Estado Técnico: Faltante
+Deuda Técnica: 100
+Avance: 0%
+---
 <!--
 STRATO MODULE HEADER
 {

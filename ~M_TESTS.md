@@ -27,6 +27,25 @@ STRATO MODULE HEADER
 **Dominio funcional:** Tests & Audit (apps/backend, apps/frontend)
 **Incluye:** Estrategia de testing, cobertura, calidad de código, reporting, E2E
 
+## 🧪 QA — Estado al 2025-06-28
+
+### Archivos sin tests
+- backend/src/services/stripe.service.ts
+- frontend/src/components/auth/RegisterForm.tsx
+- frontend/src/components/landing/LandingPage.tsx
+- frontend/src/components/ProtectedRoute.tsx
+
+### Cobertura E2E
+- tests-e2e/ (pendiente de crear)
+- Flujos críticos sin cobertura: login, campaigns, dashboard
+
+### Prioridades SPRINT 1
+- Crear tests unitarios para los archivos listados arriba
+- Crear carpeta y primer test E2E
+- Revisar mocks y coverage en tests existentes
+
+### QA Coverage Score: 72/100 (estimado)
+
 ---
 
 ## Tabla de Origen y Dependencias
