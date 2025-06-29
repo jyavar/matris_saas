@@ -1,12 +1,14 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
-import { Card } from '../../components/ui/card.js'
+import { Card } from '../../components/ui/card'
 import {
   EventReport,
   getEventReport,
   getUsageReport,
   UsageReport,
-} from '../../lib/reporting.api.js'
+} from '../../lib/reporting.api'
 
 const PERIODS = ['2024-07', '2024-06']
 const EVENTS = ['login', 'signup']

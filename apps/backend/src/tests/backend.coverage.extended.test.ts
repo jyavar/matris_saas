@@ -3,7 +3,7 @@ import request from 'supertest'
 import { v4 as uuidv4 } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index'
+import { app } from '../index.js'
 import { supabase } from '../lib/supabase.js'
 // Mocks/Helpers mínimos para ejemplo ejecutable
 // Reemplaza estos con tus implementaciones reales
@@ -208,5 +208,9 @@ describe('Backend Extended Coverage', () => {
       .get('/profiles/me')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
+  })
+
+  it('should have app defined', () => {
+    expect(app).toBeDefined()
   })
 })

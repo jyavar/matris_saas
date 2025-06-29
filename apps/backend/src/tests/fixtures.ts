@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
+import { beforeEach } from 'vitest'
 
-import { supabase } from './setup'
+import { supabase } from './setup.js'
 
 export async function generateUser(emailSeed: string) {
   const email = `test-${emailSeed}-${Date.now()}@example.com`
@@ -34,3 +35,14 @@ export function getExpiredToken() {
 export function getInvalidToken() {
   return 'invalid.token.here'
 }
+
+export const testUser = {
+  id: 'test-user-id',
+  email: 'test@example.com',
+  tenant_id: 'test-tenant-id',
+}
+
+beforeEach(async () => {
+  // Clean up test data
+  await supabase.from('profiles').delete().eq('id', testUser.id)
+})

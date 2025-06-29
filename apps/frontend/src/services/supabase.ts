@@ -1,8 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 const isTest = typeof process !== 'undefined' && process.env.NODE_ENV === 'test'
 
-let supabase: unknown
+let supabase: SupabaseClient
 
 if (isTest) {
   supabase = {
@@ -19,7 +19,7 @@ if (isTest) {
         },
       }),
     },
-  }
+  } as unknown as SupabaseClient
 } else {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY

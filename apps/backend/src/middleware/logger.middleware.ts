@@ -1,5 +1,5 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import pinoHttp from 'pino-http'
+import { pinoHttp } from 'pino-http'
 
 import logger from '../services/logger.service.js'
 

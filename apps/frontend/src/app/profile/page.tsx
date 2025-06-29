@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 
-import { useAuth } from '../../contexts/AuthContext.js'
-import { supabase } from '../../services/supabase.js'
+import { useAuth } from '../../contexts/AuthContext'
+import { supabase } from '../../services/supabase'
 
 export default function ProfilePage() {
   const { user } = useAuth()

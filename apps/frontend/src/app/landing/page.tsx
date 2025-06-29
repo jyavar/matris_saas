@@ -1,5 +1,5 @@
-import LandingPage from '../../components/landing/LandingPage.js'
-import RegisterForm from '../../components/landing/RegisterForm.js'
+import LandingPage from '../../components/landing/LandingPage'
+import RegisterForm from '../../components/landing/RegisterForm'
 
 export default function Landing() {
   return (

@@ -115,3 +115,17 @@
 **Estado del sistema:** Limpio en su núcleo, pero requiere poda estructural, refactor de rutas y depuración de archivos no usados.
 
 **Próximo paso:** Crear PRs para limpieza estructurada y validada en staging antes de producción. Validar con tests y CI/CD. 
+
+NODE_ENV=production
+PORT=3001
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_ANON_KEY=tu-anon-key-de-supabase
+SUPABASE_SERVICE_ROLE_KEY=tu-service-role-key-de-supabase
+JWT_SECRET=un-secreto-super-seguro-para-jwt
+JWT_EXPIRES_IN=24h
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+LOG_LEVEL=info
+NEXT_PUBLIC_API_URL=https://tu-backend.railway.app
+NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key-de-supabase 

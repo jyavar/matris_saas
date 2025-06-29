@@ -1,7 +1,7 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
 import { ApiError } from '../utils/ApiError.js'
-import { supabase } from './supabase.service'
+import { supabase } from './supabase.service.js'
 
 export const analyticsService = {
   async getAllAnalytics() {
