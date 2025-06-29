@@ -1,6 +1,5 @@
-// Workaround temporal: pino sólo soporta importación CJS en v9.x
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const pino = require('pino') // TODO: migrar a import ESM cuando pino lo soporte
+import { pino } from 'pino'
+
 import { getConfig } from './config.service.js'
 import { PostHogService } from './posthog.service.js'
 
