@@ -21,13 +21,195 @@ STRATO MODULE HEADER
 -->
 # ~M_UI_FULL.md
 
-**Dominio funcional:** UI/Componentes
+**Dominio funcional:** UI/Componentes (apps/frontend)
+**Incluye:** Components, Pages, Services, Tests
 
-- Todos los componentes tienen test unitario mínimo (Testing Library)
-- Patrón de test replicado: render, props mínimas, asserts básicos
-- Lint 0, sin any, sin bypasses
-- Docs y checklist sincronizados
-- Status: 100% STRATO READY
+---
+
+## 🎯 ESTADO ACTUAL DEL FRONTEND
+
+### 🟡 **MÓDULOS PARCIALMENTE IMPLEMENTADOS**
+
+#### **Páginas (Next.js 15)**
+- **Estado**: ✅ **OPERATIVO**
+- **Archivos**: `page.tsx`, `login/page.tsx`, `profile/page.tsx`, `control-tower/page.tsx`
+- **Funcionalidad**: Páginas básicas funcionando
+- **Tests**: Pendientes ❌
+- **Routing**: App Router funcional ✅
+
+#### **Auth (Autenticación Frontend)**
+- **Estado**: ✅ **OPERATIVO**
+- **Archivos**: `AuthContext.tsx`, `auth.api.ts`
+- **Funcionalidad**: Integración con Supabase Auth
+- **Tests**: Pendientes ❌
+- **Context**: Provider funcional ✅
+
+#### **Componentes UI**
+- **Estado**: 🟡 **BÁSICOS PRESENTES**
+- **Archivos**: `button.tsx`, `card.tsx`, `input.tsx`
+- **Funcionalidad**: Componentes básicos implementados
+- **Tests**: Pendientes ❌
+- **Styling**: TailwindCSS + shadcn/ui ✅
+
+#### **Servicios API**
+- **Estado**: 🟡 **PARCIAL**
+- **Archivos**: `todos.api.ts`, `analytics.api.ts`
+- **Funcionalidad**: Integración básica con backend
+- **Tests**: Pendientes ❌
+- **Tipado**: TypeScript básico ✅
+
+---
+
+## 📊 MÉTRICAS DE CALIDAD
+
+### **Tests y Cobertura**
+- **Total de tests**: 0 tests ❌
+- **Cobertura**: 0% ❌
+- **Tipos de tests**: Pendientes (Testing Library + Playwright) ❌
+- **Frameworks**: Configurados pero no implementados 🟡
+
+### **Linting y TypeScript**
+- **ESLint**: Configurado ✅
+- **TypeScript**: Configurado ✅
+- **Prettier**: Configurado ✅
+
+### **Funcionalidad**
+- **Páginas**: Operativas ✅
+- **Auth**: Integración básica ✅
+- **API**: Conexión básica 🟡
+- **UI**: Componentes básicos 🟡
+
+---
+
+## 🏗️ ARQUITECTURA DEL FRONTEND
+
+### **Estructura de Carpetas**
+```
+apps/frontend/src/
+├── app/             # Páginas (App Router)
+├── components/      # Componentes reutilizables
+├── contexts/        # Contextos React
+├── services/        # Servicios API
+├── lib/            # Utilidades
+├── hooks/          # Custom hooks
+└── tests/          # Tests (pendientes)
+```
+
+### **Patrones Implementados**
+- **App Router**: Next.js 15 ✅
+- **Context Pattern**: Auth context ✅
+- **Service Layer**: API services 🟡
+- **Component Composition**: Básico 🟡
+
+---
+
+## 🔧 CONFIGURACIÓN Y DEPENDENCIAS
+
+### **Variables de Entorno**
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### **Dependencias Principales**
+- **Next.js**: Framework React
+- **React**: Biblioteca UI
+- **TailwindCSS**: Styling
+- **shadcn/ui**: Componentes
+- **Supabase**: Auth y base de datos
+
+---
+
+## 🚀 COMANDOS DE DESARROLLO
+
+```bash
+# Desarrollo
+pnpm dev:frontend
+
+# Tests (pendientes)
+pnpm test --filter frontend
+
+# Linting
+pnpm lint --filter frontend
+
+# Build
+pnpm build --filter frontend
+```
+
+---
+
+## 📋 CHECKLIST DE CALIDAD
+
+### ✅ **Implementado**
+- [x] Estructura básica de páginas
+- [x] Integración con Supabase Auth
+- [x] Componentes UI básicos
+- [x] Configuración de Next.js 15
+- [x] TailwindCSS + shadcn/ui
+- [x] TypeScript configurado
+- [x] ESLint configurado
+
+### 🟡 **Parcialmente Implementado**
+- [ ] Tests unitarios con Testing Library
+- [ ] Tests E2E con Playwright
+- [ ] Componentes UI avanzados
+- [ ] Integración completa con API
+- [ ] Manejo de errores
+- [ ] Loading states
+- [ ] Dark mode
+
+### ❌ **Pendiente**
+- [ ] Tests completos
+- [ ] Cobertura de código
+- [ ] Accesibilidad (a11y)
+- [ ] Optimización de performance
+- [ ] Documentación de componentes
+- [ ] Storybook
+- [ ] Monitoreo y analytics
+
+---
+
+## 🔄 PRÓXIMOS PASOS
+
+### **Prioridad Alta**
+1. Implementar tests unitarios con Testing Library
+2. Implementar tests E2E con Playwright
+3. Completar integración con API del backend
+4. Mejorar componentes UI
+
+### **Prioridad Media**
+1. Implementar dark mode
+2. Agregar loading states
+3. Mejorar manejo de errores
+4. Implementar accesibilidad
+
+### **Prioridad Baja**
+1. Optimización de performance
+2. Documentación con Storybook
+3. Monitoreo y analytics
+4. PWA features
+
+---
+
+## 🎨 COMPONENTES UI IMPLEMENTADOS
+
+### **Componentes Básicos**
+- **Button**: Componente de botón básico
+- **Card**: Componente de tarjeta
+- **Input**: Componente de entrada
+
+### **Páginas**
+- **Home**: Página principal
+- **Login**: Página de autenticación
+- **Profile**: Página de perfil
+- **Control Tower**: Dashboard básico
+
+### **Contextos**
+- **AuthContext**: Manejo de autenticación
+
+---
+
+> **Estado**: Frontend básico operativo con páginas funcionando y auth integrado. Tests pendientes. Listo para desarrollo de funcionalidades avanzadas.
 
 ## Auditoría de cierre STRATO (2024-06-25)
 - Componentes clave y tests unitarios principales: ✅
