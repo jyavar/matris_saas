@@ -53,8 +53,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
     >
       <h2 className="text-2xl font-bold text-blue-800 mb-6">Crea tu cuenta</h2>
       <div className="mb-4">
-        <label className="block text-blue-700 mb-1">Nombre completo</label>
+        <label className="block text-blue-700 mb-1" htmlFor="name">
+          Nombre completo
+        </label>
         <input
+          id="name"
           name="name"
           type="text"
           required
@@ -64,8 +67,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-blue-700 mb-1">Empresa</label>
+        <label className="block text-blue-700 mb-1" htmlFor="company">
+          Empresa
+        </label>
         <input
+          id="company"
           name="company"
           type="text"
           required
@@ -75,8 +81,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-blue-700 mb-1">Email</label>
+        <label className="block text-blue-700 mb-1" htmlFor="email">
+          Email
+        </label>
         <input
+          id="email"
           name="email"
           type="email"
           required
@@ -86,8 +95,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         />
       </div>
       <div className="mb-6">
-        <label className="block text-blue-700 mb-1">Contraseña</label>
+        <label className="block text-blue-700 mb-1" htmlFor="password">
+          Contraseña
+        </label>
         <input
+          id="password"
           name="password"
           type="password"
           required

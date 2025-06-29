@@ -12,9 +12,12 @@ export type InvoiceDTO = {
   created_at: string
 }
 
-const SUPABASE_URL = process.env.SUPABASE_URL || ''
-const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || ''
-const INVOICES_ENDPOINT = `${SUPABASE_URL}/rest/v1/invoices`
+function getSupabaseVars() {
+  const SUPABASE_URL = process.env.SUPABASE_URL || ''
+  const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || ''
+  const INVOICES_ENDPOINT = `${SUPABASE_URL}/rest/v1/invoices`
+  return { SUPABASE_URL, SUPABASE_KEY, INVOICES_ENDPOINT }
+}
 
 function isInvoiceDTO(obj: unknown): obj is InvoiceDTO {
   return (
@@ -32,6 +35,7 @@ function isInvoiceDTO(obj: unknown): obj is InvoiceDTO {
 async function fetchInvoices(
   params: Record<string, string | number | boolean | undefined> = {},
 ): Promise<InvoiceDTO[]> {
+  const { INVOICES_ENDPOINT, SUPABASE_KEY } = getSupabaseVars()
   const url = new URL(INVOICES_ENDPOINT)
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined) url.searchParams.append(key, String(value))
@@ -58,6 +62,7 @@ export const billingService = {
   },
 
   async createInvoice(invoice: TablesInsert<'invoices'>) {
+    const { INVOICES_ENDPOINT, SUPABASE_KEY } = getSupabaseVars()
     const res = await fetch(INVOICES_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -75,6 +80,7 @@ export const billingService = {
   },
 
   async updateInvoice(id: string, invoice: TablesUpdate<'invoices'>) {
+    const { INVOICES_ENDPOINT, SUPABASE_KEY } = getSupabaseVars()
     const res = await fetch(`${INVOICES_ENDPOINT}?id=eq.${id}`, {
       method: 'PATCH',
       headers: {
@@ -92,6 +98,7 @@ export const billingService = {
   },
 
   async deleteInvoice(id: string) {
+    const { INVOICES_ENDPOINT, SUPABASE_KEY } = getSupabaseVars()
     const res = await fetch(`${INVOICES_ENDPOINT}?id=eq.${id}`, {
       method: 'DELETE',
       headers: {
