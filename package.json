@@ -22,7 +22,7 @@
     "typecheck": "turbo typecheck",
     "format": "prettier --write .",
     "clean": "turbo clean && rm -rf node_modules",
-    "prepare": "husky"
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi"
   },
   "keywords": [
     "saas",
