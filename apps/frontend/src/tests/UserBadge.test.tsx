@@ -1,4 +1,3 @@
-import React from "react"
 import { render, screen } from '@testing-library/react'
 
 import UserBadge from '../components/ui/UserBadge.js'
