@@ -9,6 +9,14 @@ process.env.STRIPE_SECRET_KEY = 'test-stripe-key'
 process.env.POSTHOG_API_KEY = 'test-posthog-key'
 process.env.RESEND_API_KEY = 'test-resend-key'
 
+// Mock Stripe ANTES de que se importe el módulo
+vi.mock('stripe', () => ({
+  default: vi.fn().mockImplementation((key: string, options: unknown) => ({
+    _key: key,
+    _opts: options,
+  })),
+}))
+
 // Mock Supabase para evitar conexiones reales en tests
 vi.mock('@supabase/supabase-js', () => ({
   createClient: vi.fn(() => ({
@@ -76,14 +84,6 @@ vi.mock('openai', () => ({
         }),
       },
     },
-  })),
-}))
-
-// Mock Stripe
-vi.mock('stripe', () => ({
-  default: vi.fn().mockImplementation((key: string, options: unknown) => ({
-    _key: key,
-    _opts: options,
   })),
 }))
 
