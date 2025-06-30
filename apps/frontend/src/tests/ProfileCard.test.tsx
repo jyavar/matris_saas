@@ -1,3 +1,4 @@
+import React from "react"
 import { render, screen } from '@testing-library/react'
 
 import ProfileCard from '../components/ui/ProfileCard.js'
