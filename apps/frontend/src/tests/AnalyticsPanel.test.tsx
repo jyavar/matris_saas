@@ -1,3 +1,4 @@
+import React from "react"
 import { render, screen } from '@testing-library/react'
 
 import AnalyticsPanel from '../components/ui/AnalyticsPanel.js'
