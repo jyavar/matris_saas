@@ -18,4 +18,6 @@
 
 ---
 
-_Actualizado automáticamente por CI/CD STRATO_ 
+_Actualizado automáticamente por CI/CD STRATO_
+
+**Última actualización:** commit para disparar workflow de CI. 
