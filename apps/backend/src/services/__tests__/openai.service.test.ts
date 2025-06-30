@@ -36,7 +36,7 @@ describe('OpenAIService', () => {
     delete process.env.OPENAI_API_KEY
     const { OpenAIService } = await import('../openai.service.js')
     await expect(OpenAIService.sendPrompt('Hola')).rejects.toThrow(
-      'OPENAI_API_KEY no definido',
+      'Servicio OpenAI no disponible: API key no configurada',
     )
   })
 

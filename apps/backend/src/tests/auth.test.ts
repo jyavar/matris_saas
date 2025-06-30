@@ -6,7 +6,7 @@ import { app } from '../index.js'
 describe('Auth Controller', () => {
   const tenantId = '00000000-0000-0000-0000-000000000001'
   const userCredentials = {
-    email: `test-${Date.now()}@example.com`,
+    email: 'test@example.com',
     password: 'password123',
     tenant_id: tenantId,
   }

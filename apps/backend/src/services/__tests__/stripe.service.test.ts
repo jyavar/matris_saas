@@ -15,7 +15,7 @@ describe('StripeService', () => {
     delete process.env.STRIPE_SECRET_KEY
 
     await expect(import('../stripe.service.js')).rejects.toThrow(
-      'STRIPE_SECRET_KEY is not defined',
+      'STRIPE_SECRET_KEY no está definida en el entorno',
     )
 
     // Restore environment
@@ -23,15 +23,14 @@ describe('StripeService', () => {
   })
 
   it('should initialize Stripe with correct configuration', async () => {
-    process.env.STRIPE_SECRET_KEY = 'test_stripe_key'
-
+    // El mock ya está configurado en vitest.setup.ts
     const mod = await import('../stripe.service.js')
     const mockStripe = mod.stripe as unknown as {
       _key: string
       _opts: { apiVersion: string }
     }
 
-    expect(mockStripe._key).toBe('test_stripe_key')
-    expect(mockStripe._opts.apiVersion).toBe('2024-06-20')
+    expect(mockStripe._key).toBe('test-stripe-key')
+    expect(mockStripe._opts.apiVersion).toBe('2025-05-28.basil')
   })
 })

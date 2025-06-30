@@ -5,6 +5,6 @@
     "noEmit": false,
     "baseUrl": "../.."
   },
-  "include": ["src", "src/types", "tests"],
+  "include": ["src", "src/types", "tests", "vitest.setup.ts"],
   "exclude": ["node_modules"]
 } 
