@@ -4,7 +4,6 @@ import { CampaignsService } from '../services/campaigns.service.js'
 
 const router = Router()
 
-// @ts-expect-error - Express 5 compatibility issue
 router.get('/', (req, res) => {
   res.json(CampaignsService.list())
 })
