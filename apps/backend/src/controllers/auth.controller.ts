@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const authController = {
   async signUp(req: Request, res: Response, next: NextFunction) {
@@ -21,10 +22,14 @@ export const authController = {
         res.status(400).json({ message: 'Error al crear usuario' })
       }
     } catch (error) {
-      logAction('auth_signup_error', 'unknown', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
+      if (error instanceof ApiError) {
+        res.status(error.statusCode).json({ message: error.message })
+      } else {
+        logAction('auth_signup_error', 'unknown', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        next(error)
+      }
     }
   },
 
@@ -48,10 +53,14 @@ export const authController = {
         res.status(401).json({ message: 'Credenciales inválidas' })
       }
     } catch (error) {
-      logAction('auth_signin_error', 'unknown', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
+      if (error instanceof ApiError) {
+        res.status(error.statusCode).json({ message: error.message })
+      } else {
+        logAction('auth_signin_error', 'unknown', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        next(error)
+      }
     }
   },
 }

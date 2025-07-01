@@ -1,9 +1,9 @@
 import { type NextFunction, type Request, type Response } from 'express'
 
-import { getConfig } from '../services/config.service.js'
+// import { getConfig } from '../services/config.service.js'
 import { ApiError } from '../utils/ApiError.js'
 
-const config = getConfig()
+// const config = getConfig()
 
 export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,7 +14,7 @@ export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
       res.status(err.statusCode).json({
         success: false,
         message: err.message,
-        ...(config.NODE_ENV === 'development' && { stack: err.stack }),
+        stack: err.stack,
       })
       return
     }
@@ -22,7 +22,7 @@ export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
     res.status(500).json({
       success: false,
       message: 'An unexpected internal server error occurred.',
-      ...(config.NODE_ENV === 'development' && { stack: err.stack }),
+      stack: err.stack,
     })
   }
 }

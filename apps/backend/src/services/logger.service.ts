@@ -1,13 +1,11 @@
 import { pino } from 'pino'
 
-import { getConfig } from './config.service.js'
-import { PostHogService } from './posthog.service.js'
-
-const config = getConfig()
+// Configuración simple para tests
+const isTest = process.env.NODE_ENV === 'test'
 
 const logger = pino({
-  level: config.LOG_LEVEL,
-  ...(config.NODE_ENV !== 'production' && {
+  level: isTest ? 'error' : (process.env.LOG_LEVEL || 'info'),
+  ...(isTest ? {} : {
     transport: {
       target: 'pino-pretty',
       options: {
@@ -24,10 +22,19 @@ export function logAction(
   userId: string,
   details: Record<string, unknown> = {},
 ) {
-  if (!userId) throw new Error('userId is required')
+  if (!userId || userId === '') {
+    throw new Error('userId is required')
+  }
   logger.info({ action, userId, ...details }, `Action: ${action}`)
-  // Bitácora estructurada + PostHog
-  PostHogService.captureEvent(userId, action, details)
+  // PostHog solo en producción
+  if (!isTest && process.env.POSTHOG_API_KEY) {
+    try {
+      const { PostHogService } = require('./posthog.service.js')
+      PostHogService.captureEvent(userId, action, details)
+    } catch (error) {
+      logger.warn('PostHog not available')
+    }
+  }
 }
 
 export default logger
