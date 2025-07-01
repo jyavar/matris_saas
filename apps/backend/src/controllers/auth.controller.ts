@@ -13,9 +13,10 @@ export const authController = {
         logAction('auth_signup_success', result.user.id, {
           email: result.user.email,
         })
-        res
-          .status(201)
-          .json({ message: 'Usuario creado exitosamente', user: result.user })
+        res.status(201).json({
+          id: result.user.id,
+          email: result.user.email,
+        })
       } else {
         res.status(400).json({ message: 'Error al crear usuario' })
       }
@@ -32,14 +33,16 @@ export const authController = {
       const { email, password } = req.body
       const result = await authService.signIn({ email, password })
 
-      if (result.user) {
+      if (result.user && result.session) {
         logAction('auth_signin_success', result.user.id, {
           email: result.user.email,
         })
         res.status(200).json({
-          message: 'Inicio de sesión exitoso',
-          user: result.user,
-          session: result.session,
+          access_token: result.session.access_token,
+          user: {
+            id: result.user.id,
+            email: result.user.email,
+          },
         })
       } else {
         res.status(401).json({ message: 'Credenciales inválidas' })
