@@ -1,4 +1,5 @@
 import { type NextFunction, type Request, type Response } from 'express'
+import { ZodError } from 'zod'
 
 // import { getConfig } from '../services/config.service.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -11,10 +12,27 @@ export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
     logger.error(err)
 
     if (err instanceof ApiError) {
+      if (err.statusCode === 404) {
+        return res.status(404).json({
+          success: false,
+          message: err.message,
+          stack: err.stack,
+        })
+      }
       res.status(err.statusCode).json({
         success: false,
         message: err.message,
         stack: err.stack,
+      })
+      return
+    }
+
+    // Handle Zod validation errors (más robusto)
+    if (err?.name === 'ZodError' || err?.constructor?.name === 'ZodError') {
+      res.status(400).json({
+        success: false,
+        error: 'errors' in err ? (err as any).errors : undefined,
+        message: 'Validation error',
       })
       return
     }

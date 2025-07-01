@@ -55,15 +55,21 @@ vi.mock('../lib/supabase.js', () => ({
   }
 }))
 
-// Mock logger para evitar logs en tests
-vi.mock('../services/logger.service.js', () => ({
-  logger: {
+// Mock logger para evitar logs en tests (solo para tests que no mockean específicamente)
+vi.mock('../services/logger.service.js', () => {
+  const mockLogger = {
     info: vi.fn(),
     warn: vi.fn(),
     error: vi.fn(),
-    logAction: vi.fn()
   }
-}))
+  
+  return {
+    default: mockLogger,
+    logAction: vi.fn((action: string, userId: string, details = {}) => {
+      mockLogger.info({ action, userId, ...details }, `Action: ${action}`)
+    })
+  }
+})
 
 // Mock PostHog
 vi.mock('posthog-node', () => ({

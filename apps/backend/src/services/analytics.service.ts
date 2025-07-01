@@ -340,12 +340,18 @@ export const analyticsService = {
   /**
    * Get user analytics
    */
-  async getUserAnalytics(userId: string): Promise<UserAnalytics> {
+  async getUserAnalytics(userId: string): Promise<UserAnalytics | null> {
     try {
+      // Handle invalid userId that can't be parsed as integer
+      const userIdNumber = parseInt(userId)
+      if (isNaN(userIdNumber)) {
+        return null
+      }
+
       const { data: userEvents, error } = await supabase
         .from('analytics')
         .select('*')
-        .eq('user_id', parseInt(userId))
+        .eq('user_id', userIdNumber)
         .order('created_at', { ascending: false })
 
       if (error) {
@@ -356,7 +362,7 @@ export const analyticsService = {
       }
 
       if (!userEvents || userEvents.length === 0) {
-        throw new ApiError(404, 'No analytics data found for user')
+        return null
       }
 
       const eventsBreakdown = userEvents.reduce(

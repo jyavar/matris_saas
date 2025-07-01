@@ -1,12 +1,21 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+// Mock pino antes de importar el servicio
+const mockPino = {
+  info: vi.fn(),
+  warn: vi.fn(),
+  error: vi.fn(),
+}
+
+vi.mock('pino', () => ({
+  pino: vi.fn(() => mockPino)
+}))
+
 import { logAction } from '../logger.service.js'
 
 describe('logAction', () => {
-  let consoleSpy: ReturnType<typeof vi.spyOn>
-  
   beforeEach(() => {
-    consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    vi.clearAllMocks()
   })
   
   afterEach(() => {
@@ -15,12 +24,18 @@ describe('logAction', () => {
 
   it('logea acción con detalles', () => {
     logAction('LOGIN', 'user-1', { foo: 'bar' })
-    expect(consoleSpy).toHaveBeenCalled()
+    expect(mockPino.info).toHaveBeenCalledWith(
+      { action: 'LOGIN', userId: 'user-1', foo: 'bar' },
+      'Action: LOGIN'
+    )
   })
 
   it('logea acción sin detalles', () => {
     logAction('LOGOUT', 'user-2')
-    expect(consoleSpy).toHaveBeenCalled()
+    expect(mockPino.info).toHaveBeenCalledWith(
+      { action: 'LOGOUT', userId: 'user-2' },
+      'Action: LOGOUT'
+    )
   })
 
   it('lanza error si falta userId', () => {

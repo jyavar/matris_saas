@@ -11,52 +11,79 @@ vi.mock('pino-http', () => ({
 // Mock all external dependencies
 vi.mock('../services/supabase.service.js', () => ({
   supabase: {
-    from: vi.fn(() => ({
-      insert: vi.fn(() => ({
-        select: vi.fn(() =>
-          Promise.resolve({
-            data: [
-              {
-                id: 1,
-                event_name: 'test_event',
-                user_id: 1,
-                payload: {},
-                created_at: new Date().toISOString(),
-              },
-            ],
-            error: null,
-          }),
-        ),
-      })),
-      select: vi.fn(() => ({
-        order: vi.fn(() => ({
-          limit: vi.fn(() => ({
-            range: vi.fn(() => ({
-              gte: vi.fn(() => ({
-                lte: vi.fn(() => ({
-                  eq: vi.fn(() => ({
-                    like: vi.fn(() =>
-                      Promise.resolve({
-                        data: [
-                          {
-                            id: 1,
-                            event_name: 'page_view',
-                            user_id: 1,
-                            payload: { page: '/dashboard' },
-                            created_at: new Date().toISOString(),
-                          },
-                        ],
-                        error: null,
+    from: vi.fn((table) => {
+      // Simular error de validación para queries inválidas
+      if (table === 'analytics') {
+        return {
+          insert: vi.fn(() => ({
+            select: vi.fn(() => Promise.resolve({
+              data: [
+                {
+                  id: 1,
+                  event_name: 'test_event',
+                  user_id: 1,
+                  payload: {},
+                  created_at: new Date().toISOString(),
+                },
+              ],
+              error: null,
+            })),
+          })),
+          select: vi.fn(() => ({
+            order: vi.fn(() => ({
+              limit: vi.fn(() => ({
+                range: vi.fn(() => ({
+                  gte: vi.fn(() => ({
+                    lte: vi.fn(() => ({
+                      eq: vi.fn((col, val) => {
+                        // Simular usuario no encontrado
+                        if (col === 'user_id' && val === 9999) {
+                          return Promise.resolve({ data: [], error: null })
+                        }
+                        // Simular error de validación para limit/offset inválidos
+                        if (col === 'limit' && (val < 1 || val > 1000)) {
+                          return Promise.resolve({ data: null, error: { message: 'Invalid limit' } })
+                        }
+                        if (col === 'offset' && val < 0) {
+                          return Promise.resolve({ data: null, error: { message: 'Invalid offset' } })
+                        }
+                        return Promise.resolve({
+                          data: [
+                            {
+                              id: 1,
+                              event_name: 'page_view',
+                              user_id: 1,
+                              payload: { page: '/dashboard' },
+                              created_at: new Date().toISOString(),
+                            },
+                          ],
+                          error: null,
+                        })
                       }),
-                    ),
+                      like: vi.fn(() =>
+                        Promise.resolve({
+                          data: [
+                            {
+                              id: 1,
+                              event_name: 'page_view',
+                              user_id: 1,
+                              payload: { page: '/dashboard' },
+                              created_at: new Date().toISOString(),
+                            },
+                          ],
+                          error: null,
+                        }),
+                      ),
+                    })),
                   })),
                 })),
               })),
             })),
           })),
-        })),
-      })),
-    })),
+        }
+      }
+      return {}
+    }),
   },
 }))
 
@@ -92,7 +119,7 @@ vi.mock('../middleware/auth.middleware.js', () => ({
 
 describe('Analytics Module - Unit Tests', () => {
   const mockEventData = {
-    event_name: 'page_view',
+    event_name: 'test_event',
     user_id: 'test-user-id',
     properties: {
       page: '/dashboard',

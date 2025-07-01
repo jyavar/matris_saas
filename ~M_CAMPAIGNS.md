@@ -80,6 +80,23 @@ Paths:
 ## 📁 ARCHIVOS CLAVE
 
 ### **Source Files**
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
 - `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
 - `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
 - `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente

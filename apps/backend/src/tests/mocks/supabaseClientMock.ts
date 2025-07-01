@@ -89,30 +89,24 @@ function createChainableMock(table: string, data: any[], error: any = null) {
       return chain
     }),
     delete: vi.fn().mockImplementation(() => {
+      // Reset data for delete operations
       _data = []
       _error = null
-      return {
-        neq: vi.fn().mockImplementation((field, value) => {
-          _data = _data.filter((row: any) => row[field] !== value)
-          return chain
-        }),
-        eq: vi.fn().mockImplementation((field, value) => {
-          if (value === 'fail' || value === 9999) {
-            _error = { message: 'Not found', code: 404 }
-            _data = null
-          } else {
-            _data = _data.filter((row: any) => row[field] === value)
-            _error = null
-          }
-          return chain
-        }),
-        then: vi.fn().mockImplementation((resolve) => {
-          resolve({ data: _data, error: _error })
-          return chain
-        }),
-        catch: vi.fn().mockReturnThis(),
-        finally: vi.fn().mockReturnThis(),
+      return chain
+    }),
+    neq: vi.fn().mockImplementation((field, value) => {
+      _data = _data.filter((row: any) => row[field] !== value)
+      return chain
+    }),
+    eq: vi.fn().mockImplementation((field, value) => {
+      if (value === 'fail' || value === 9999) {
+        _error = { message: 'Not found', code: 404 }
+        _data = null
+      } else {
+        _data = _data.filter((row: any) => row[field] === value)
+        _error = null
       }
+      return chain
     }),
     gt: vi.fn().mockImplementation((field, value) => {
       _data = _data.filter((row: any) => row[field] > value)
@@ -203,6 +197,8 @@ export const supabaseMock = {
         return createChainableMock('profiles', _profiles)
       case 'campaigns':
         return createChainableMock('campaigns', _campaigns)
+      case 'todos':
+        return createChainableMock('todos', [])
       default:
         return createChainableMock(table, [])
     }

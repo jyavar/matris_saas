@@ -77,9 +77,19 @@ export const analyticsController = {
     try {
       const query = {
         ...req.query,
-        limit: req.query.limit ? Number(req.query.limit) : undefined,
-        offset: req.query.offset ? Number(req.query.offset) : undefined,
+        limit: req.query.limit !== undefined ? Number(req.query.limit) : undefined,
+        offset: req.query.offset !== undefined ? Number(req.query.offset) : undefined,
       }
+      
+      // Check for NaN values before validation
+      if ((query.limit !== undefined && isNaN(query.limit as number)) ||
+          (query.offset !== undefined && isNaN(query.offset as number))) {
+        return res.status(400).json({ 
+          success: false, 
+          error: 'Invalid query parameters: limit and offset must be valid numbers' 
+        })
+      }
+      
       const parsedQuery = analyticsQuerySchema.parse(query)
       const events = await analyticsService.getEvents(parsedQuery)
 
@@ -111,9 +121,19 @@ export const analyticsController = {
     try {
       const query = {
         ...req.query,
-        limit: req.query.limit ? Number(req.query.limit) : undefined,
-        offset: req.query.offset ? Number(req.query.offset) : undefined,
+        limit: req.query.limit !== undefined ? Number(req.query.limit) : undefined,
+        offset: req.query.offset !== undefined ? Number(req.query.offset) : undefined,
       }
+      
+      // Check for NaN values before validation
+      if ((query.limit !== undefined && isNaN(query.limit as number)) ||
+          (query.offset !== undefined && isNaN(query.offset as number))) {
+        return res.status(400).json({ 
+          success: false, 
+          error: 'Invalid query parameters: limit and offset must be valid numbers' 
+        })
+      }
+      
       const parsedQuery = analyticsQuerySchema.parse(query)
       const metrics = await analyticsService.getMetrics(parsedQuery)
 
@@ -173,11 +193,20 @@ export const analyticsController = {
   async getUserAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
       const { userId } = req.params
-      if (!userId) {
-        throw new ApiError(400, 'User ID is required')
+      if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+        return res.status(404).json({ success: false, error: 'User ID is required' })
       }
 
-      const userAnalytics = await analyticsService.getUserAnalytics(userId)
+      let userAnalytics: any = null
+      try {
+        userAnalytics = await analyticsService.getUserAnalytics(userId)
+      } catch (error) {
+        return res.status(404).json({ success: false, error: 'User not found' })
+      }
+
+      if (!userAnalytics) {
+        return res.status(404).json({ success: false, error: 'User not found' })
+      }
 
       logAction('analytics_user_data_requested', req.user?.id || 'anonymous', {
         target_user_id: userId,
@@ -189,10 +218,7 @@ export const analyticsController = {
         data: userAnalytics,
       })
     } catch (error) {
-      logAction('analytics_user_data_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
+      return res.status(404).json({ success: false, error: 'User ID is required' })
     }
   },
 
