@@ -94,6 +94,84 @@ Paths:
 
 ### **Source Files**
 - `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/routes/analytics.routes.js` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/analytics.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/dist/tests/analytics.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/analytics.controller.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/controllers/analytics.controller.js` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/analytics.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/dist/tests/analytics.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/analytics.controller.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/controllers/analytics.controller.js` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/analytics.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/dist/tests/analytics.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/analytics.controller.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
 - `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
 - `apps/backend/src/services/analytics.service.ts` - Archivo fuente
 - `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
