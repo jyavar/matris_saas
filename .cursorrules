@@ -1,0 +1,235 @@
+# STRATO Core OS™ - Cursor Rules
+
+## 🏗️ ARQUITECTURA DEL PROYECTO
+
+STRATO es un monorepo SaaS con arquitectura modular:
+
+```
+matriz_cursor/
+├── apps/
+│   ├── backend/          # API Node.js/Express + Supabase
+│   ├── frontend/         # React + Vite + TypeScript
+│   └── web/             # Next.js Landing + Control Tower
+├── packages/             # Librerías compartidas
+├── supabase/            # Base de datos y migraciones
+└── scripts/             # Herramientas de desarrollo
+```
+
+## 🎯 PATRONES Y CONVENCIONES
+
+### Backend (Node.js/Express)
+- **Controllers**: Manejan requests/responses, validación, logging
+- **Services**: Lógica de negocio, integración con APIs externas
+- **Routes**: Definición de endpoints REST
+- **Middleware**: Auth, rate limiting, error handling, logging
+- **Types**: Tipos TypeScript para Supabase y Express
+
+### Frontend (React/Vite)
+- **Components**: Reutilizables en `/components/ui/`
+- **Pages**: Páginas principales en `/app/`
+- **Services**: APIs y servicios externos
+- **Contexts**: Estado global (AuthContext)
+- **Hooks**: Lógica reutilizable
+
+### Web (Next.js)
+- **App Router**: Estructura moderna de Next.js 15
+- **API Routes**: Endpoints para auditoría y control
+- **Components**: Landing page y Control Tower
+
+## 🔧 TECNOLOGÍAS PRINCIPALES
+
+### Backend
+- **Node.js + Express 5**: API REST
+- **TypeScript**: Tipado estático
+- **Supabase**: Base de datos PostgreSQL + Auth
+- **Stripe**: Pagos
+- **OpenAI**: IA
+- **PostHog**: Analytics
+- **Resend**: Email
+- **Pino**: Logging estructurado
+
+### Frontend
+- **React 18**: UI Framework
+- **Vite**: Build tool
+- **TypeScript**: Tipado estático
+- **Tailwind CSS**: Estilos
+- **Vitest**: Testing
+- **MSW**: Mock Service Worker
+
+### Web
+- **Next.js 15**: Framework React
+- **App Router**: Enrutamiento moderno
+- **TypeScript**: Tipado estático
+
+## 📝 CONVENCIONES DE CÓDIGO
+
+### Naming
+- **Files**: kebab-case (auth.controller.ts)
+- **Functions**: camelCase (getUserProfile)
+- **Classes**: PascalCase (AuthService)
+- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **Types**: PascalCase (UserProfile)
+
+### Imports
+- **Relative**: Para archivos del mismo módulo
+- **Absolute**: Para paquetes externos
+- **Workspace**: Para paquetes internos (@repo/db-types)
+
+### Error Handling
+- **Controllers**: Try/catch con next(error)
+- **Services**: Throw ApiError con códigos HTTP
+- **Frontend**: Error boundaries y estados de error
+
+### Logging
+- **Structured**: Pino con contexto estructurado
+- **Actions**: logAction() para eventos de negocio
+- **Levels**: info, warn, error según severidad
+
+## 🧪 TESTING
+
+### Backend Tests
+- **Unit**: Services y utilidades
+- **Integration**: Controllers y routes
+- **Mocks**: Supabase, Stripe, OpenAI, PostHog, Resend
+- **Coverage**: Vitest con cobertura
+
+### Frontend Tests
+- **Components**: React Testing Library
+- **Hooks**: Custom hooks testing
+- **API**: MSW para mocking
+- **E2E**: Playwright (opcional)
+
+## 🔐 SEGURIDAD
+
+### Authentication
+- **Supabase Auth**: JWT tokens
+- **Middleware**: authMiddleware para rutas protegidas
+- **Rate Limiting**: express-rate-limit
+- **CORS**: Configurado para producción
+
+### Environment Variables
+- **Backend**: SUPABASE_URL, JWT_SECRET, etc.
+- **Frontend**: VITE_SUPABASE_URL, etc.
+- **Never**: Committear secrets al repo
+
+## 🚀 DEPLOYMENT
+
+### CI/CD
+- **GitHub Actions**: Lint, test, build
+- **Railway**: Backend deployment
+- **Vercel**: Frontend/Web deployment
+- **Supabase**: Base de datos
+
+### Scripts
+- **pnpm dev**: Desarrollo local
+- **pnpm test**: Tests unitarios
+- **pnpm build**: Build de producción
+- **pnpm lint**: Linting
+
+## 🎨 UI/UX PATTERNS
+
+### Design System
+- **Tailwind CSS**: Utility-first
+- **Components**: Reutilizables en packages
+- **Dark Mode**: Soporte completo
+- **Responsive**: Mobile-first
+
+### State Management
+- **React Context**: Estado global
+- **Local State**: useState para componentes
+- **Server State**: Fetch con loading states
+
+## 📊 MONITORING
+
+### Logging
+- **Structured**: JSON logs con contexto
+- **Levels**: info, warn, error
+- **Actions**: Eventos de negocio trackeados
+
+### Analytics
+- **PostHog**: Event tracking
+- **Error Tracking**: Captura de errores
+- **Performance**: Métricas de rendimiento
+
+## 🔄 WORKFLOW DE DESARROLLO
+
+### Git Flow
+- **main**: Producción
+- **feature/***: Nuevas funcionalidades
+- **fix/***: Correcciones
+- **chore/***: Mantenimiento
+
+### Commits
+- **feat**: Nueva funcionalidad
+- **fix**: Corrección de bug
+- **docs**: Documentación
+- **style**: Formato
+- **refactor**: Refactorización
+- **test**: Tests
+- **chore**: Mantenimiento
+
+## 🛠️ HERRAMIENTAS DE DESARROLLO
+
+### Code Quality
+- **ESLint**: Linting de código
+- **Prettier**: Formato automático
+- **Husky**: Git hooks
+- **TypeScript**: Tipado estático
+
+### Development
+- **pnpm**: Package manager
+- **Turbo**: Monorepo build system
+- **Vitest**: Testing framework
+- **MSW**: API mocking
+
+## 🎯 REGLAS ESPECÍFICAS
+
+### Backend
+1. Siempre usar try/catch en controllers
+2. Validar inputs con Zod schemas
+3. Log actions con logAction()
+4. Usar ApiError para errores HTTP
+5. Mock servicios externos en tests
+
+### Frontend
+1. Usar TypeScript strict mode
+2. Componentes funcionales con hooks
+3. Error boundaries para manejo de errores
+4. Loading states para async operations
+5. Responsive design con Tailwind
+
+### Web
+1. App Router de Next.js 15
+2. Server components por defecto
+3. Client components solo cuando necesario
+4. API routes para backend functions
+5. Static generation cuando sea posible
+
+## 🚨 ANTI-PATRONES A EVITAR
+
+- ❌ Committear secrets
+- ❌ Any types en TypeScript
+- ❌ Console.log en producción
+- ❌ Mutar props en React
+- ❌ Callbacks anidados
+- ❌ Variables globales
+- ❌ Hardcoded URLs
+- ❌ Ignorar errores de linting
+
+## 🎯 OBJETIVOS DEL PROYECTO
+
+STRATO es un framework SaaS enterprise-grade que prioriza:
+- **Developer Experience**: DX excepcional
+- **Code Quality**: Código limpio y mantenible
+- **Security**: Seguridad por defecto
+- **Performance**: Rendimiento optimizado
+- **Scalability**: Arquitectura escalable
+- **Monitoring**: Observabilidad completa
+
+## 📚 RECURSOS
+
+- **Supabase Docs**: https://supabase.com/docs
+- **Next.js Docs**: https://nextjs.org/docs
+- **React Docs**: https://react.dev
+- **Tailwind CSS**: https://tailwindcss.com/docs
+- **Vitest**: https://vitest.dev 

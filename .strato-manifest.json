@@ -29,6 +29,7 @@
     ".strato-manifest.json",
     ".eslintrc.json",
     ".prettierrc.json",
+    ".cursorrules",
     "pnpm-lock.yaml",
     "pnpm-workspace.yaml",
     "tsconfig.json",

@@ -17,6 +17,7 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint -- --fix",
     "test": "turbo test",
+    "test:unit": "turbo test --filter=unit",
     "test:watch": "turbo test:watch",
     "test:coverage": "turbo test:coverage",
     "typecheck": "turbo typecheck",
@@ -86,7 +87,16 @@
     "zod": "^3.25.67"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json}": "eslint --fix"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "tsc --noEmit"
+    ]
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

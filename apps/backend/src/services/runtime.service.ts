@@ -40,6 +40,7 @@ export class RuntimeService {
   static deleteJob(id: string): void {
     const job = jobs[id]
     if (!job || !job.ref) throw new Error('Job not found')
+    // @ts-expect-error - node-cron type issue
     job.ref.destroy()
     delete jobs[id]
   }

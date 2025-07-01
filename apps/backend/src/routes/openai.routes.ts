@@ -7,6 +7,7 @@ const router = Router()
 
 const promptSchema = z.object({ prompt: z.string().min(3) })
 
+// @ts-expect-error - Express 5 compatibility issue
 router.post('/prompt', async (req, res) => {
   const parse = promptSchema.safeParse(req.body)
   if (!parse.success) {

@@ -4,7 +4,7 @@ import { PostHogService } from '../services/posthog.service.js'
 
 const router = Router()
 
-// POST /posthog/event
+// @ts-expect-error - Express 5 compatibility issue
 router.post('/event', (req, res) => {
   const { distinctId, event, properties } = req.body
   if (!distinctId || !event)

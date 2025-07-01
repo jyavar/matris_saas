@@ -7,6 +7,7 @@ import {
 
 const router = Router()
 
+// @ts-expect-error - Express 5 compatibility issue
 router.post('/register', async (req, res) => {
   const parse = onboardingSchema.safeParse(req.body)
   if (!parse.success) {

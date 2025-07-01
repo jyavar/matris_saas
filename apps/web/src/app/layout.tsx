@@ -1,12 +1,11 @@
 import './globals.css'
 
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { type ReactNode } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'STRATO Core OS™ - The Ultimate SaaS Framework',
   description:
     'The ultimate monorepo framework with built-in governance, AI-powered agents, and elite DX for building enterprise-grade SaaS platforms.',

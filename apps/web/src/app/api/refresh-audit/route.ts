@@ -1,6 +1,5 @@
 import { execSync } from 'child_process'
 import fs from 'fs'
-import { NextResponse } from 'next/server'
 import path from 'path'
 
 export async function POST() {
@@ -25,14 +24,20 @@ export async function POST() {
         path.join(publicDir, file),
       )
     }
-    return NextResponse.json({ ok: true })
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (error: unknown) {
-    return NextResponse.json(
-      {
+    return new Response(
+      JSON.stringify({
         ok: false,
         error: error instanceof Error ? error.message : String(error),
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
       },
-      { status: 500 },
     )
   }
 }

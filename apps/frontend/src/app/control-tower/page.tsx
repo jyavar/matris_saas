@@ -25,8 +25,10 @@ export default function ControlTowerPage() {
     setLoading(true)
     setError(null)
     try {
-      const usageData = await getUsageReport(p)
-      const eventData = await getEventReport(e, p)
+      const currentPeriod = (p || PERIODS[0]) as string
+      const currentEvent = (e || EVENTS[0]) as string
+      const usageData = await getUsageReport(currentPeriod)
+      const eventData = await getEventReport(currentEvent, currentPeriod)
       setUsage(usageData)
       setEventReport(eventData)
     } catch (e) {

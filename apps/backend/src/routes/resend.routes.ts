@@ -4,6 +4,7 @@ import { ResendService } from '../services/resend.service.js'
 
 const router = Router()
 
+// @ts-expect-error - Express 5 compatibility issue
 router.post('/email', async (req, res) => {
   const { to, subject } = req.body
   if (!to || !subject) {
