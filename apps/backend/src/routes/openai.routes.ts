@@ -1,28 +1,22 @@
-import { Router } from 'express'
-import { z } from 'zod'
+import { NextFunction, Request, Response, Router } from 'express'
 
-import { OpenAIService } from '../services/openai.service.js'
+import { openaiController } from '../controllers/openai.controller.js'
+import { authMiddleware } from '../middleware/auth.middleware.js'
 
 const router = Router()
 
-const promptSchema = z.object({ prompt: z.string().min(3) })
+function handleAsync(
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
+) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    fn(req, res, next).catch(next)
+  }
+}
 
-// @ts-expect-error - Express 5 compatibility issue
-router.post('/prompt', async (req, res) => {
-  const parse = promptSchema.safeParse(req.body)
-  if (!parse.success) {
-    return res
-      .status(400)
-      .json({ error: 'Prompt inválido', details: parse.error.errors })
-  }
-  try {
-    const answer = await OpenAIService.sendPrompt(parse.data.prompt)
-    res.json({ ok: true, answer })
-  } catch (e) {
-    res
-      .status(500)
-      .json({ ok: false, error: e instanceof Error ? e.message : String(e) })
-  }
-})
+router.post(
+  '/generate',
+  authMiddleware,
+  handleAsync(openaiController.generateText),
+)
 
 export default router

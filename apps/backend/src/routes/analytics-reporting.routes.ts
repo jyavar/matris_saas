@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express'
 
-import { onboardingController } from '../controllers/onboarding.controller.js'
+import { analyticsReportingController } from '../controllers/analytics-reporting.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 
 const router = Router()
@@ -13,16 +13,25 @@ function handleAsync(
   }
 }
 
-router.get('/', authMiddleware, handleAsync(onboardingController.getOnboarding))
-router.post(
-  '/start',
+router.get(
+  '/',
   authMiddleware,
-  handleAsync(onboardingController.startOnboarding),
+  handleAsync(analyticsReportingController.getReports),
+)
+router.get(
+  '/:id',
+  authMiddleware,
+  handleAsync(analyticsReportingController.getReportById),
 )
 router.post(
-  '/complete',
+  '/',
   authMiddleware,
-  handleAsync(onboardingController.completeOnboarding),
+  handleAsync(analyticsReportingController.createReport),
+)
+router.delete(
+  '/:id',
+  authMiddleware,
+  handleAsync(analyticsReportingController.deleteReport),
 )
 
 export default router

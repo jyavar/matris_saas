@@ -1,10 +1,13 @@
 import { Router } from 'express'
 
 import { strictRateLimit } from '../middleware/rateLimit.middleware.js'
+import analyticsReportingRoutes from './analytics-reporting.routes.js'
 import analyticsRoutes from './analytics.routes.js'
 import authRoutes from './auth.routes.js'
+import automationRoutes from './automation.routes.js'
 import campaignsRoutes from './campaigns.routes.js'
 import devRoutes from './dev.routes.js'
+import emailCampaignsRoutes from './email-campaigns.routes.js'
 import healthRoutes from './health.routes.js'
 import launchboardRoutes from './launchboard.routes.js'
 import onboardingRoutes from './onboarding.routes.js'
@@ -16,8 +19,6 @@ import reportingRoutes from './reporting.routes.js'
 import resendRoutes from './resend.routes.js'
 import runtimeRoutes from './runtime.routes.js'
 import todoRoutes from './todo.routes.js'
-import automationRoutes from './automation.routes.js'
-import emailCampaignsRoutes from './email-campaigns.routes.js'
 
 const router = Router()
 
@@ -31,12 +32,13 @@ router.use('/reporting', strictRateLimit, reportingRoutes)
 router.use('/posthog', posthogRoutes)
 router.use('/pricing', pricingRoutes)
 router.use('/runtime', runtimeRoutes)
-router.use('/openai', strictRateLimit, openaiRoutes)
+router.use('/openai', openaiRoutes)
 router.use('/onboarding', onboardingRoutes)
 router.use('/resend', strictRateLimit, resendRoutes)
 router.use('/campaigns', strictRateLimit, campaignsRoutes)
 router.use('/', launchboardRoutes)
 router.use('/automation', automationRoutes)
 router.use('/email-campaigns', emailCampaignsRoutes)
+router.use('/analytics-reporting', analyticsReportingRoutes)
 
 export default router

@@ -1,5 +1,18 @@
 import OpenAI from 'openai'
 
+import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
+
+export interface GenerateTextData {
+  prompt: string
+  user_id: string
+}
+
+export interface GenerateTextResult {
+  prompt: string
+  result: string
+}
+
 export class OpenAIService {
   private static getClient() {
     const apiKey = process.env.OPENAI_API_KEY
@@ -38,4 +51,20 @@ export class OpenAIService {
       throw error
     }
   }
+
+  async generateText(data: GenerateTextData): Promise<GenerateTextResult> {
+    if (!data.prompt) throw new ApiError(400, 'Prompt is required')
+    // Simulación de integración OpenAI
+    logger.info(
+      { user_id: data.user_id, prompt: data.prompt },
+      'OpenAI prompt recibido',
+    )
+    // Aquí iría la llamada real a OpenAI
+    return {
+      prompt: data.prompt,
+      result: `Respuesta simulada para: ${data.prompt}`,
+    }
+  }
 }
+
+export const openaiService = new OpenAIService()

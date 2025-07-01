@@ -1,7 +1,23 @@
 import { PostHog } from 'posthog-node'
 
+import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
+
 const POSTHOG_API_KEY = process.env.POSTHOG_API_KEY
-const posthogClient = POSTHOG_API_KEY ? new PostHog(POSTHOG_API_KEY) : undefined
+const posthogClient: PostHog | undefined = POSTHOG_API_KEY
+  ? new PostHog(POSTHOG_API_KEY)
+  : undefined
+
+export interface TrackEventData {
+  event: string
+  properties?: Record<string, unknown>
+  user_id: string
+}
+
+export interface IdentifyUserData {
+  user_id: string
+  traits?: Record<string, unknown>
+}
 
 export class PostHogService {
   static captureEvent(
@@ -35,7 +51,31 @@ export class PostHogService {
       }
     }
   }
+
+  async trackEvent(
+    data: TrackEventData,
+  ): Promise<{ event: string; status: string }> {
+    if (!data.event) throw new ApiError(400, 'Event is required')
+    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    logger.info(
+      { user_id: data.user_id, event: data.event, properties: data.properties },
+      'PostHog track',
+    )
+    // Simulación de integración
+    return { event: data.event, status: 'tracked' }
+  }
+
+  async identifyUser(
+    data: IdentifyUserData,
+  ): Promise<{ user_id: string; status: string }> {
+    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    logger.info(
+      { user_id: data.user_id, traits: data.traits },
+      'PostHog identify',
+    )
+    // Simulación de integración
+    return { user_id: data.user_id, status: 'identified' }
+  }
 }
 
-// Export para test unitario
-export const _test = { posthogClient }
+export const posthogService = new PostHogService()

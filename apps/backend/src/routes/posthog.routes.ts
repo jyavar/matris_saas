@@ -1,16 +1,15 @@
 import { Router } from 'express'
 
-import { PostHogService } from '../services/posthog.service.js'
+import { PostHogController } from '../controllers/posthog.controller.js'
+import { authMiddleware } from '../middleware/auth.middleware.js'
 
 const router = Router()
 
-// @ts-expect-error - Express 5 compatibility issue
-router.post('/event', (req, res) => {
-  const { distinctId, event, properties } = req.body
-  if (!distinctId || !event)
-    return res.status(400).json({ error: 'Missing distinctId or event' })
-  PostHogService.captureEvent(distinctId, event, properties)
-  res.json({ ok: true })
-})
+// Endpoints protegidos con autenticación
+router.post('/track', authMiddleware, PostHogController.trackEvent)
+router.post('/identify', authMiddleware, PostHogController.identifyUser)
+
+// Endpoint público para health check
+router.get('/health', PostHogController.getHealth)
 
 export default router

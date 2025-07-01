@@ -1,20 +1,60 @@
 import { z } from 'zod'
 
+import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
+
 export const onboardingSchema = z.object({
   email: z.string().email(),
   name: z.string().min(2),
 })
 
-export class OnboardingService {
-  static async registerUser(data: {
-    email: string
-    name: string
-  }): Promise<{ ok: boolean; message: string }> {
-    // Aquí se integraría la lógica real de persistencia y Resend
-    // Mock: simular registro y envío de email
-    return {
-      ok: true,
-      message: `Usuario ${data.name} registrado y email enviado a ${data.email}`,
+export interface Onboarding {
+  user_id: string
+  email: string
+  tenant_id: string
+  welcome_sent: boolean
+  setup_complete: boolean
+  created_at: string
+}
+
+export interface StartOnboardingData {
+  email: string
+}
+
+export interface CompleteOnboardingData {
+  user_id: string
+}
+
+class OnboardingService {
+  private onboardings: Onboarding[] = []
+
+  async getOnboarding(user_id: string): Promise<Onboarding | null> {
+    return this.onboardings.find((o) => o.user_id === user_id) || null
+  }
+
+  async startOnboarding(data: StartOnboardingData): Promise<Onboarding> {
+    if (!data.email) throw new ApiError(400, 'Email is required')
+    const onboarding: Onboarding = {
+      user_id: `user-${Date.now()}`,
+      email: data.email,
+      tenant_id: `tenant-${Date.now()}`,
+      welcome_sent: true,
+      setup_complete: false,
+      created_at: new Date().toISOString(),
     }
+    this.onboardings.push(onboarding)
+    logger.info({ userId: onboarding.user_id }, 'Onboarding started')
+    return onboarding
+  }
+
+  async completeOnboarding(data: CompleteOnboardingData): Promise<Onboarding> {
+    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    const onboarding = this.onboardings.find((o) => o.user_id === data.user_id)
+    if (!onboarding) throw new ApiError(404, 'Onboarding not found')
+    onboarding.setup_complete = true
+    logger.info({ userId: onboarding.user_id }, 'Onboarding completed')
+    return onboarding
   }
 }
+
+export const onboardingService = new OnboardingService()
