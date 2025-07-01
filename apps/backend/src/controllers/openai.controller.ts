@@ -1,21 +1,18 @@
-import { NextFunction, Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
+import logger from '../services/logger.service.js'
 import { openaiService } from '../services/openai.service.js'
 import { ApiError } from '../utils/ApiError.js'
 import { enforceExactShape } from '../utils/enforceExactShape.js'
 
 const generateTextSchema = z.object({
-  prompt: z.string().min(1, 'Prompt is required'),
-  user_id: z.string().min(1, 'user_id is required'),
+  user_id: z.string().min(1),
+  prompt: z.string().min(1),
 })
 
-export class OpenAIController {
-  async generateText(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+export const OpenAIController = {
+  async generateText(req: Request, res: Response, next: NextFunction) {
     try {
       const user = req.user
       if (!user?.id) throw new ApiError(401, 'Unauthorized')
@@ -27,20 +24,29 @@ export class OpenAIController {
         prompt: prompt as string,
         user_id: user_id as string,
       })
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const parsed = generateTextSchema.safeParse(input)
+
       if (!parsed.success) {
-        res
-          .status(400)
-          .json({ success: false, error: parsed.error.errors[0].message })
-        return
+        return res.status(400).json({
+          success: false,
+          error: 'Validation error',
+          details: parsed.error.errors,
+        })
       }
-      const result = await openaiService.generateText(parsed.data)
-      res.status(200).json({ success: true, data: result })
+
+      const result = await openaiService.generateText({
+        user_id: parsed.data.user_id,
+        prompt: parsed.data.prompt,
+      })
+
+      logger.info({ userId: parsed.data.user_id }, 'Text generated with OpenAI')
+
+      return res.status(200).json({
+        success: true,
+        data: result,
+      })
     } catch (error) {
       next(error)
     }
-  }
+  },
 }
-
-export const openaiController = new OpenAIController()

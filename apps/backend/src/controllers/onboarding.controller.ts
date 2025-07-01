@@ -1,18 +1,20 @@
-import { NextFunction, Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
+import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
 import { ApiError } from '../utils/ApiError.js'
 
+// Schemas de validación
 const startOnboardingSchema = z.object({
-  email: z.string().email('Email is required'),
+  email: z.string().email(),
 })
 
 const completeOnboardingSchema = z.object({
-  user_id: z.string().min(1, 'user_id is required'),
+  user_id: z.string().min(1),
 })
 
-export class OnboardingController {
+export const OnboardingController = {
   async getOnboarding(
     req: Request,
     res: Response,
@@ -27,17 +29,25 @@ export class OnboardingController {
     } catch (error) {
       next(error)
     }
-  }
+  },
 
-  async startOnboarding(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async startOnboarding(req: Request, res: Response, next: NextFunction) {
     try {
       const validated = startOnboardingSchema.parse(req.body)
-      const onboarding = await onboardingService.startOnboarding(validated)
-      res.status(201).json({ success: true, data: onboarding })
+
+      const onboarding = await onboardingService.startOnboarding({
+        email: validated.email,
+      })
+
+      logger.info(
+        { userId: req.user?.id, email: validated.email },
+        'Onboarding started',
+      )
+
+      return res.status(201).json({
+        success: true,
+        data: onboarding,
+      })
     } catch (error) {
       if (error instanceof z.ZodError) {
         next(new ApiError(400, 'Invalid input data'))
@@ -45,17 +55,22 @@ export class OnboardingController {
         next(error)
       }
     }
-  }
+  },
 
-  async completeOnboarding(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async completeOnboarding(req: Request, res: Response, next: NextFunction) {
     try {
       const validated = completeOnboardingSchema.parse(req.body)
-      const onboarding = await onboardingService.completeOnboarding(validated)
-      res.status(200).json({ success: true, data: onboarding })
+
+      const onboarding = await onboardingService.completeOnboarding({
+        user_id: validated.user_id,
+      })
+
+      logger.info({ userId: validated.user_id }, 'Onboarding completed')
+
+      return res.status(200).json({
+        success: true,
+        data: onboarding,
+      })
     } catch (error) {
       if (error instanceof z.ZodError) {
         next(new ApiError(400, 'Invalid input data'))
@@ -63,7 +78,7 @@ export class OnboardingController {
         next(error)
       }
     }
-  }
+  },
 }
 
-export const onboardingController = new OnboardingController()
+export const onboardingController = OnboardingController

@@ -1,34 +1,44 @@
-import express, { type ErrorRequestHandler } from 'express'
+import express from 'express'
 import helmet from 'helmet'
 
-// import { authMiddleware } from './middleware/auth.middleware.js'
-// import { createErrorHandler } from './middleware/errorHandler.middleware.js'
-import { loggerMiddleware } from './middleware/logger.middleware.js'
-import healthRoutes from './routes/health.routes.js'
 import router from './routes/router.js'
-// import logger from './services/logger.service.js'
+import logger from './services/logger.service.js'
 
-// export { logger }
-export const app = express()
+const app = express()
 
-app.use(express.json())
-app.use(loggerMiddleware)
-// app.use((req, res, next) => {
-//   console.log(`[${req.method}] ${req.url}`)
-//   next()
-// })
+// Configuración de seguridad
 app.use(helmet())
 
-// Route registration
-app.use('/health', healthRoutes)
-app.use(router)
+// Parse JSON bodies
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true }))
 
-// app.get('/protected', authMiddleware, (_req, res) => {
-//   res.status(200).json({ ok: true, message: 'Protected route accessed' })
-// })
+// Health check
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() })
+})
 
-// Error handling middleware
-import { createErrorHandler } from './middleware/errorHandler.middleware.js'
-import logger from './services/logger.service.js'
-const errorHandler: ErrorRequestHandler = createErrorHandler(logger)
-app.use(errorHandler)
+// Routes
+app.use('/api', router)
+
+// Error handling
+const createErrorHandler = (logger: {
+  error: (data: unknown, message: string) => void
+}) => {
+  return (err: Error, req: express.Request, res: express.Response) => {
+    logger.error({ error: err.message, stack: err.stack }, 'Unhandled error')
+
+    if (res.headersSent) {
+      return
+    }
+
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+    })
+  }
+}
+
+app.use(createErrorHandler(logger))
+
+export { app }

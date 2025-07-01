@@ -105,6 +105,156 @@ Paths:
 
 ### **Doc Files**
 ## **Source Files**
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/email-campaigns.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/email-campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/email-campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/email-campaigns.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/email-campaigns.test.ts` - Archivo de test
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/email-campaigns.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
 - `apps/backend/src/services/email-campaigns.service.ts` - Archivo fuente
 - `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
 - `apps/backend/src/routes/email-campaigns.routes.ts` - Archivo fuente
