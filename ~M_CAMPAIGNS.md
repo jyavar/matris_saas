@@ -11,6 +11,12 @@ Paths:
   - apps/backend/src/routes/campaigns.routes.ts
 ---
 
+## Archivos clave
+- apps/backend/src/controllers/campaigns.controller.ts
+- apps/backend/src/services/campaigns.service.ts
+- apps/backend/src/routes/campaigns.routes.ts
+- apps/backend/src/tests/campaigns.routes.test.ts
+
 # ~M_CAMPAIGNS.md
 
 **Dominio funcional:** Campañas y automatización

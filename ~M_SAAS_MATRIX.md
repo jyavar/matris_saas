@@ -10,6 +10,13 @@ Paths:
   - apps/web/public/matrix.coverage.json
 ---
 
+## Archivos clave
+- apps/web/public/matrix.audit.json
+- apps/web/public/matrix.coverage.json
+- apps/web/public/matrix.report.json
+- apps/web/public/matrix.verified.json
+- apps/web/public/matrix.logic.json
+
 # ~M_SAAS_MATRIX.md
 
 **Dominio funcional:** Matriz de features SaaS y auditoría

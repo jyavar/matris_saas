@@ -21,6 +21,23 @@ STRATO MODULE HEADER
 -->
 # ~M_UI_FULL.md
 
+## Archivos clave
+- apps/frontend/src/components/ui/
+- apps/frontend/src/components/landing/
+- apps/frontend/src/components/auth/
+- apps/frontend/src/app/
+- apps/frontend/src/contexts/
+- apps/frontend/src/services/
+- apps/frontend/src/lib/
+- apps/frontend/src/hooks/
+- apps/frontend/src/tests/
+- apps/frontend/vitest.setup.ts
+- apps/frontend/tsconfig.json
+- apps/frontend/package.json
+- apps/frontend/frontend-test-report.json
+- apps/frontend/tests-e2e/
+- apps/frontend/public/
+
 **Dominio funcional:** UI/Componentes (apps/frontend)
 **Incluye:** Components, Pages, Services, Tests
 

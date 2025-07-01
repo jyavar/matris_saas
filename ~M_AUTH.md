@@ -13,6 +13,21 @@ Paths:
   - apps/frontend/src/services/auth.api.ts
 ---
 
+## Archivos clave
+- apps/backend/src/controllers/auth.controller.ts
+- apps/backend/src/services/auth.service.ts
+- apps/backend/src/middleware/auth.middleware.ts
+- apps/frontend/src/contexts/AuthContext.tsx
+- apps/frontend/src/services/auth.api.ts
+- apps/frontend/src/app/login/page.tsx
+- apps/frontend/src/app/profile/page.tsx
+- apps/frontend/src/app/api/auth/signup-tenant/route.ts
+- apps/frontend/src/components/auth/ProtectedRoute.tsx
+- apps/frontend/src/components/auth/ProtectedRoute.test.tsx
+- apps/frontend/src/tests/AuthForm.test.tsx
+- apps/frontend/src/tests/ProfileCard.test.tsx
+- apps/frontend/src/tests/UserBadge.test.tsx
+
 # ~M_AUTH.md
 
 **Dominio funcional:** Autenticación y autorización

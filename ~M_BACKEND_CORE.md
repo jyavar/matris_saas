@@ -8,6 +8,24 @@ Tests: 75 tests pasando, 100% cobertura
 
 # ~M_BACKEND_CORE.md
 
+## Archivos clave
+- apps/backend/src/controllers/
+- apps/backend/src/services/
+- apps/backend/src/routes/
+- apps/backend/src/middleware/
+- apps/backend/src/lib/
+- apps/backend/src/types/
+- apps/backend/src/utils/ApiError.ts
+- apps/backend/src/tests/
+- apps/backend/src/test-hooks.ts
+- apps/backend/src/index.ts
+- apps/backend/vitest.setup.ts
+- apps/backend/tsconfig.json
+- apps/backend/package.json
+- apps/backend/backend-test-report.json
+- supabase/migrations/
+- packages/db-types/
+
 **Dominio funcional:** Backend Core (apps/backend)
 **Incluye:** Routes, Controllers, Services, Middlewares, Libs, Utils
 

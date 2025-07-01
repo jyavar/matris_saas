@@ -9,6 +9,15 @@ Paths:
   - scripts/agents/
 ---
 
+## Archivos clave
+- scripts/agents/
+- scripts/agents/context-watchdog.ts
+- scripts/agents/context-watchdog.watch.ts
+- scripts/agents/refactor/autofix.ts
+- scripts/agents/security/audit.ts
+- scripts/agents/ui/audit.ts
+- scripts/agents/strato.logic.ts
+
 # ~M_COPILOT.md
 
 **Dominio funcional:** Agente Copilot (IA, automatización)

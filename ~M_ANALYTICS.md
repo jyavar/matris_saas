@@ -12,6 +12,16 @@ Paths:
   - apps/frontend/src/services/analytics.api.ts
 ---
 
+## Archivos clave
+- apps/backend/src/controllers/analytics.controller.ts
+- apps/backend/src/services/analytics.service.ts
+- apps/backend/src/routes/analytics.routes.ts
+- apps/backend/src/tests/analytics.controller.test.ts
+- apps/frontend/src/services/analytics.api.ts
+- apps/frontend/src/components/ui/AnalyticsPanel.tsx
+- apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx
+- apps/frontend/src/tests/AnalyticsPanel.test.tsx
+
 # ~M_ANALYTICS.md
 
 **Dominio funcional:** Analytics y reporting

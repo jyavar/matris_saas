@@ -12,6 +12,15 @@ Paths:
   - apps/backend/src/services/stripe.service.ts
 ---
 
+## Archivos clave
+- apps/backend/src/controllers/billing.controller.ts
+- apps/backend/src/services/billing.service.ts
+- apps/backend/src/routes/billing.routes.ts
+- apps/backend/src/services/stripe.service.ts
+- apps/backend/src/services/__tests__/billing.service.test.ts
+- apps/backend/src/services/__tests__/stripe.service.test.ts
+- apps/backend/src/tests/billing.controller.test.ts
+
 # ~M_BILLING.md
 
 **Dominio funcional:** Billing (Stripe, pagos SaaS)

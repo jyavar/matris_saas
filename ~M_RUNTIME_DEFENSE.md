@@ -10,6 +10,13 @@ Paths:
   - scripts/audit-checklist.ts
 ---
 
+## Archivos clave
+- scripts/angel-vigilante.ts
+- scripts/audit-checklist.ts
+- scripts/check-blindaje-real.ts
+- scripts/report-strato-defense.ts
+- scripts/night-watchman.ts
+
 # ~M_RUNTIME_DEFENSE.md
 
 **Dominio funcional:** Blindaje y defensa en tiempo real
