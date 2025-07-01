@@ -96,6 +96,116 @@ El módulo **INFRASTRUCTURE** maneja toda la configuración de build, deployment
 - `packages/eslint-config/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
 - `packages/eslint-config/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
 - `packages/eslint-config/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `packages/db-types/node_modules/@repo/eslint-config/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `playwright.config.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+- `apps/frontend/tsconfig.json` - Archivo de configuración
+- `packages/utils/tsconfig.json` - Archivo de configuración
+- `packages/typescript-config/tsconfig.base.json` - Archivo de configuración
+- `packages/typescript-config/package.json` - Archivo de configuración
+- `packages/db-types/tsconfig.json` - Archivo de configuración
+- `packages/eslint-config/package.json` - Archivo de configuración
+- `packages/typescript-config/node_modules/zod/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/zod/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/typescript-config/tsconfig.base.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/typescript-config/package.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/eslint-config/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `tsconfig.json` - Archivo de configuración
+- `tsconfig.base.json` - Archivo de configuración
+
+### **Doc Files**
+- `packages/typescript-config/node_modules/zod/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/zod/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación## **Source Files**
+- `apps/frontend/node_modules/next/config.js` - Archivo fuente
+- `apps/frontend/node_modules/next/config.d.ts` - Archivo fuente
+- `packages/eslint-config/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/shared.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/index.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/imports.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/exports.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `packages/db-types/node_modules/@repo/eslint-config/index.js` - Archivo fuente
+- `playwright.config.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+- `apps/frontend/tsconfig.json` - Archivo de configuración
+- `packages/utils/tsconfig.json` - Archivo de configuración
+- `packages/typescript-config/tsconfig.base.json` - Archivo de configuración
+- `packages/typescript-config/package.json` - Archivo de configuración
+- `packages/eslint-config/package.json` - Archivo de configuración
+- `packages/db-types/tsconfig.json` - Archivo de configuración
+- `packages/typescript-config/node_modules/zod/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/zod/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/typescript-config/tsconfig.base.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/typescript-config/package.json` - Archivo de configuración
+- `packages/db-types/node_modules/@repo/eslint-config/package.json` - Archivo de configuración
+- `tsconfig.json` - Archivo de configuración
+- `tsconfig.base.json` - Archivo de configuración
+
+### **Doc Files**
+- `packages/typescript-config/node_modules/zod/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/zod/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación## **Source Files**
+- `apps/frontend/node_modules/next/config.js` - Archivo fuente
+- `apps/frontend/node_modules/next/config.d.ts` - Archivo fuente
+- `packages/eslint-config/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/shared.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/index.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/imports.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-simple-import-sort/exports.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `packages/eslint-config/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
 - `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
 - `packages/eslint-config/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
 - `packages/db-types/node_modules/@repo/eslint-config/index.js` - Archivo fuente
