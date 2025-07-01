@@ -9,7 +9,7 @@ pnpm build
 
 # 2. Tests unitarios
 echo "🧪 Ejecutando tests unitarios..."
-pnpm test:unit
+pnpm test
 
 # 3. Type checking completo
 echo "🔧 Verificando tipos TypeScript..."
