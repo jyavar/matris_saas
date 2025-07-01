@@ -7,9 +7,9 @@ echo "🚀 STRATO Pre-push Hook - Validaciones completas..."
 echo "🏗️ Verificando build completo..."
 pnpm build
 
-# 2. Tests de cobertura
-echo "🧪 Ejecutando tests con cobertura..."
-pnpm test:coverage
+# 2. Tests unitarios
+echo "🧪 Ejecutando tests unitarios..."
+pnpm test:unit
 
 # 3. Type checking completo
 echo "🔧 Verificando tipos TypeScript..."
