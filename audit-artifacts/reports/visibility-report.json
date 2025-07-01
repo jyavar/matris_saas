@@ -1,0 +1,823 @@
+{
+  "generated_at": "2025-07-01T01:39:13.110Z",
+  "summary": {
+    "total_files": 478,
+    "declared_files": 365,
+    "orphaned_files": 60,
+    "coverage_percentage": 76,
+    "modules_with_header": 18,
+    "modules_without_header": 0,
+    "routes_without_docs": 154,
+    "tests_without_association": 0
+  },
+  "orphaned_files": [
+    {
+      "path": "apps/frontend/vercel.json",
+      "relativePath": "apps/frontend/vercel.json",
+      "type": "config",
+      "size": 243,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/tsconfig.json",
+      "relativePath": "apps/frontend/tsconfig.json",
+      "type": "config",
+      "size": 969,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/package.json",
+      "relativePath": "apps/frontend/package.json",
+      "type": "config",
+      "size": 1938,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/next-env.d.ts",
+      "relativePath": "apps/frontend/next-env.d.ts",
+      "type": "source",
+      "size": 211,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/vite-env.d.ts",
+      "relativePath": "apps/frontend/src/vite-env.d.ts",
+      "type": "source",
+      "size": 38,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/hooks/useTodos.ts",
+      "relativePath": "apps/frontend/src/hooks/useTodos.ts",
+      "type": "source",
+      "size": 1466,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/lib/utils.ts",
+      "relativePath": "apps/frontend/src/lib/utils.ts",
+      "type": "source",
+      "size": 166,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/lib/todos.api.ts",
+      "relativePath": "apps/frontend/src/lib/todos.api.ts",
+      "type": "source",
+      "size": 1511,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/app/page.tsx",
+      "relativePath": "apps/frontend/src/app/page.tsx",
+      "type": "source",
+      "size": 230,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/app/layout.tsx",
+      "relativePath": "apps/frontend/src/app/layout.tsx",
+      "type": "source",
+      "size": 308,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/app/landing/page.tsx",
+      "relativePath": "apps/frontend/src/app/landing/page.tsx",
+      "type": "source",
+      "size": 295,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/app/control-tower/page.tsx",
+      "relativePath": "apps/frontend/src/app/control-tower/page.tsx",
+      "type": "source",
+      "size": 3175,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "apps/frontend/src/app/control-tower/layout.tsx",
+      "relativePath": "apps/frontend/src/app/control-tower/layout.tsx",
+      "type": "source",
+      "size": 132,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/utils/tsconfig.json",
+      "relativePath": "packages/utils/tsconfig.json",
+      "type": "config",
+      "size": 252,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/utils/package.json",
+      "relativePath": "packages/utils/package.json",
+      "type": "config",
+      "size": 272,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/typescript-config/tsconfig.base.json",
+      "relativePath": "packages/typescript-config/tsconfig.base.json",
+      "type": "config",
+      "size": 596,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/typescript-config/package.json",
+      "relativePath": "packages/typescript-config/package.json",
+      "type": "config",
+      "size": 147,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/eslint-config/package.json",
+      "relativePath": "packages/eslint-config/package.json",
+      "type": "config",
+      "size": 392,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/eslint-config/index.js",
+      "relativePath": "packages/eslint-config/index.js",
+      "type": "source",
+      "size": 1553,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/db-types/tsconfig.json",
+      "relativePath": "packages/db-types/tsconfig.json",
+      "type": "config",
+      "size": 250,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/db-types/package.json",
+      "relativePath": "packages/db-types/package.json",
+      "type": "config",
+      "size": 401,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/db-types/index.d.ts",
+      "relativePath": "packages/db-types/index.d.ts",
+      "type": "source",
+      "size": 7184,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/utils/src/subtract.ts",
+      "relativePath": "packages/utils/src/subtract.ts",
+      "type": "source",
+      "size": 64,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/utils/src/add.ts",
+      "relativePath": "packages/utils/src/add.ts",
+      "type": "source",
+      "size": 200,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "packages/db-types/src/index.ts",
+      "relativePath": "packages/db-types/src/index.ts",
+      "type": "source",
+      "size": 7054,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "scripts/visibility-report.ts",
+      "relativePath": "scripts/visibility-report.ts",
+      "type": "source",
+      "size": 14056,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_WEB_PUBLIC.md",
+      "relativePath": "~M_WEB_PUBLIC.md",
+      "type": "doc",
+      "size": 24767,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_TESTS.md",
+      "relativePath": "~M_TESTS.md",
+      "type": "doc",
+      "size": 15833,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_PRICING.md",
+      "relativePath": "~M_PRICING.md",
+      "type": "doc",
+      "size": 696,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_MULTI_TENANCY.md",
+      "relativePath": "~M_MULTI_TENANCY.md",
+      "type": "doc",
+      "size": 882,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_LAUNCHBOARD.md",
+      "relativePath": "~M_LAUNCHBOARD.md",
+      "type": "doc",
+      "size": 732,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_EMAIL_CAMPAIGNS.md",
+      "relativePath": "~M_EMAIL_CAMPAIGNS.md",
+      "type": "doc",
+      "size": 883,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_DEV.md",
+      "relativePath": "~M_DEV.md",
+      "type": "doc",
+      "size": 3702,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_AUTOMATION_ENGINE.md",
+      "relativePath": "~M_AUTOMATION_ENGINE.md",
+      "type": "doc",
+      "size": 719,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_ANALYTICS_REPORTING.md",
+      "relativePath": "~M_ANALYTICS_REPORTING.md",
+      "type": "doc",
+      "size": 1031,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~ALL_MODULES.md",
+      "relativePath": "~ALL_MODULES.md",
+      "type": "doc",
+      "size": 2356,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~3_PLAYBOOK.STRATO.md",
+      "relativePath": "~3_PLAYBOOK.STRATO.md",
+      "type": "doc",
+      "size": 9589,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~2_README.STRATO.md",
+      "relativePath": "~2_README.STRATO.md",
+      "type": "doc",
+      "size": 4748,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~1_CHECKLIST.STRATO.md",
+      "relativePath": "~1_CHECKLIST.STRATO.md",
+      "type": "doc",
+      "size": 13078,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "vercel.json",
+      "relativePath": "vercel.json",
+      "type": "config",
+      "size": 113,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "turbo.json",
+      "relativePath": "turbo.json",
+      "type": "config",
+      "size": 415,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "tsconfig.base.json",
+      "relativePath": "tsconfig.base.json",
+      "type": "config",
+      "size": 596,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "playwright.config.ts",
+      "relativePath": "playwright.config.ts",
+      "type": "source",
+      "size": 2173,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "modules.json",
+      "relativePath": "modules.json",
+      "type": "config",
+      "size": 443,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "cloc-report.json",
+      "relativePath": "cloc-report.json",
+      "type": "config",
+      "size": 75,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "VISIBILIDAD_STRATO_EXTENDIDA.md",
+      "relativePath": "VISIBILIDAD_STRATO_EXTENDIDA.md",
+      "type": "doc",
+      "size": 13124,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "VISIBILIDAD_STRATO.md",
+      "relativePath": "VISIBILIDAD_STRATO.md",
+      "type": "doc",
+      "size": 2206,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "DEPLOY_STATUS.md",
+      "relativePath": "DEPLOY_STATUS.md",
+      "type": "doc",
+      "size": 743,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "DEPLOY_SETUP_SUPABASE.md",
+      "relativePath": "DEPLOY_SETUP_SUPABASE.md",
+      "type": "doc",
+      "size": 1485,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "DEPLOY_GUIDE.md",
+      "relativePath": "DEPLOY_GUIDE.md",
+      "type": "doc",
+      "size": 5102,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "CLEANUP_PLAN.md",
+      "relativePath": "CLEANUP_PLAN.md",
+      "type": "doc",
+      "size": 4096,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_WEB_PUBLIC.md",
+      "relativePath": "~M_WEB_PUBLIC.md",
+      "type": "doc",
+      "size": 24767,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_TESTS.md",
+      "relativePath": "~M_TESTS.md",
+      "type": "doc",
+      "size": 15833,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_PRICING.md",
+      "relativePath": "~M_PRICING.md",
+      "type": "doc",
+      "size": 696,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_MULTI_TENANCY.md",
+      "relativePath": "~M_MULTI_TENANCY.md",
+      "type": "doc",
+      "size": 882,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_LAUNCHBOARD.md",
+      "relativePath": "~M_LAUNCHBOARD.md",
+      "type": "doc",
+      "size": 732,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_EMAIL_CAMPAIGNS.md",
+      "relativePath": "~M_EMAIL_CAMPAIGNS.md",
+      "type": "doc",
+      "size": 883,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_DEV.md",
+      "relativePath": "~M_DEV.md",
+      "type": "doc",
+      "size": 3702,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_AUTOMATION_ENGINE.md",
+      "relativePath": "~M_AUTOMATION_ENGINE.md",
+      "type": "doc",
+      "size": 719,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    },
+    {
+      "path": "~M_ANALYTICS_REPORTING.md",
+      "relativePath": "~M_ANALYTICS_REPORTING.md",
+      "type": "doc",
+      "size": 1031,
+      "isDeclared": false,
+      "isInHeader": false,
+      "isInArchivosClave": false
+    }
+  ],
+  "modules_without_header": [],
+  "routes_without_docs": [
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/jobs",
+    "/jobs",
+    "/jobs/:id/pause",
+    "/jobs/:id/resume",
+    "/jobs/:id",
+    "/agents/:name/run",
+    "/email",
+    "/usage",
+    "/event",
+    "/me",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/event",
+    "/prompt",
+    "/register",
+    "/",
+    "/error-test",
+    "/unexpected-error-test",
+    "/protected",
+    "/",
+    "/",
+    "/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices/:id",
+    "/signup",
+    "/signin",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/me",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/jobs",
+    "/jobs",
+    "/jobs/:id/pause",
+    "/jobs/:id/resume",
+    "/jobs/:id",
+    "/agents/:name/run",
+    "/email",
+    "/usage",
+    "/event",
+    "/me",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/event",
+    "/prompt",
+    "/register",
+    "/",
+    "/error-test",
+    "/unexpected-error-test",
+    "/protected",
+    "/",
+    "/",
+    "/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices/:id",
+    "/signup",
+    "/signin",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/jobs",
+    "/jobs",
+    "/jobs/:id/pause",
+    "/jobs/:id/resume",
+    "/jobs/:id",
+    "/agents/:name/run",
+    "/email",
+    "/usage",
+    "/event",
+    "/me",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/event",
+    "/prompt",
+    "/register",
+    "/",
+    "/error-test",
+    "/unexpected-error-test",
+    "/protected",
+    "/",
+    "/",
+    "/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices",
+    "/invoices/:id",
+    "/invoices/:id",
+    "/signup",
+    "/signin",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/me",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id",
+    "/",
+    "/error-test",
+    "/unexpected-error-test",
+    "/protected",
+    "/signup",
+    "/signin",
+    "/",
+    "/:id",
+    "/",
+    "/:id",
+    "/:id"
+  ],
+  "tests_without_association": [],
+  "module_coverage": {
+    "WEB_PUBLIC": {
+      "files": 128,
+      "declared": 128,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "UI_FULL": {
+      "files": 28,
+      "declared": 28,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "TESTS": {
+      "files": 67,
+      "declared": 67,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "SAAS_MATRIX": {
+      "files": 1,
+      "declared": 1,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "RUNTIME_DEFENSE": {
+      "files": 20,
+      "declared": 20,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "PRICING": {
+      "files": 0,
+      "declared": 0,
+      "orphaned": 0,
+      "coverage": 0
+    },
+    "MULTI_TENANCY": {
+      "files": 0,
+      "declared": 0,
+      "orphaned": 0,
+      "coverage": 0
+    },
+    "LAUNCHBOARD": {
+      "files": 0,
+      "declared": 0,
+      "orphaned": 0,
+      "coverage": 0
+    },
+    "EMAIL_CAMPAIGNS": {
+      "files": 0,
+      "declared": 0,
+      "orphaned": 0,
+      "coverage": 0
+    },
+    "DEV": {
+      "files": 28,
+      "declared": 28,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "COPILOT": {
+      "files": 34,
+      "declared": 34,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "CAMPAIGNS": {
+      "files": 9,
+      "declared": 9,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "BILLING": {
+      "files": 18,
+      "declared": 18,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "BACKEND_CORE": {
+      "files": 252,
+      "declared": 252,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "AUTOMATION_ENGINE": {
+      "files": 0,
+      "declared": 0,
+      "orphaned": 0,
+      "coverage": 0
+    },
+    "AUTH": {
+      "files": 37,
+      "declared": 37,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "ANALYTICS_REPORTING": {
+      "files": 1,
+      "declared": 1,
+      "orphaned": 0,
+      "coverage": 100
+    },
+    "ANALYTICS": {
+      "files": 18,
+      "declared": 18,
+      "orphaned": 0,
+      "coverage": 100
+    }
+  }
+}
