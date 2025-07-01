@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-// @ts-expect-error - Module resolution issue
 import AuditTable from './AuditTable'
 
 // Definir el tipo Feature para tipado estricto

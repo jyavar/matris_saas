@@ -1,9 +1,6 @@
 import './globals.css'
 
-import { Inter } from 'next/font/google'
 import { type ReactNode } from 'react'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'STRATO Core OS™ - The Ultimate SaaS Framework',
@@ -18,9 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} flex flex-col min-h-[100dvh] bg-gray-950 text-white`}
-      >
+      <body className="flex flex-col min-h-[100dvh] bg-gray-950 text-white font-sans">
         <main className="flex-1">{children}</main>
       </body>
     </html>
