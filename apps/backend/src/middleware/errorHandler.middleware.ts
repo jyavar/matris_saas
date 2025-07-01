@@ -1,5 +1,4 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import { ZodError } from 'zod'
 
 // import { getConfig } from '../services/config.service.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -31,7 +30,7 @@ export const createErrorHandler = (logger: { error: (err: Error) => void }) => {
     if (err?.name === 'ZodError' || err?.constructor?.name === 'ZodError') {
       res.status(400).json({
         success: false,
-        error: 'errors' in err ? (err as any).errors : undefined,
+        error: 'errors' in err ? (err as { errors: unknown }).errors : undefined,
         message: 'Validation error',
       })
       return

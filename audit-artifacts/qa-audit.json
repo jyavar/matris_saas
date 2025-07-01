@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-07-01T21:56:22.033Z",
+  "status": "FAIL",
+  "checks": {
+    "linting": {
+      "status": "FAIL",
+      "message": "Linting errors found",
+      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\nbackend:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\nbackend#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
+    },
+    "tests": {
+      "status": "FAIL",
+      "message": "Some tests are failing",
+      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nbackend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nbackend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
+    },
+    "coverage": {
+      "status": "FAIL",
+      "message": "Could not determine test coverage",
+      "details": "Command failed: pnpm test:coverage\nturbo 2.5.4\n\n  x Missing tasks in project\n  `->   x Could not find task `test:coverage` in project\n\n"
+    },
+    "security": {
+      "status": "PASS",
+      "message": "No obvious security vulnerabilities detected"
+    },
+    "performance": {
+      "status": "FAIL",
+      "message": "Build failed",
+      "details": "Command failed: pnpm build\nturbo 2.5.4\n\nbackend:build: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run build exited (2)\nbackend#build: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run build exited (2)\n ERROR  run failed: command  exited (2)\n"
+    }
+  },
+  "summary": "QA Audit: 1 passed, 4 failed, 0 warnings",
+  "recommendations": [
+    "Fix linting errors before proceeding",
+    "Fix failing tests before proceeding",
+    "Fix build issues to improve performance"
+  ]
+}

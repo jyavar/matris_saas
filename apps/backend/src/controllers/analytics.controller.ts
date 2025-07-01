@@ -7,6 +7,7 @@ import {
   analyticsService,
   eventSchema,
   metricSchema,
+  UserAnalytics,
 } from '../services/analytics.service.js'
 import { logAction } from '../services/logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -190,17 +191,17 @@ export const analyticsController = {
   /**
    * Get user analytics
    */
-  async getUserAnalytics(req: Request, res: Response, next: NextFunction) {
+  async getUserAnalytics(req: Request, res: Response) {
     try {
       const { userId } = req.params
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
         return res.status(404).json({ success: false, error: 'User ID is required' })
       }
 
-      let userAnalytics: any = null
+      let userAnalytics: UserAnalytics | null = null
       try {
         userAnalytics = await analyticsService.getUserAnalytics(userId)
-      } catch (error) {
+      } catch {
         return res.status(404).json({ success: false, error: 'User not found' })
       }
 
@@ -217,7 +218,7 @@ export const analyticsController = {
         success: true,
         data: userAnalytics,
       })
-    } catch (error) {
+    } catch {
       return res.status(404).json({ success: false, error: 'User ID is required' })
     }
   },

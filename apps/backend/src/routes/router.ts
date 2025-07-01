@@ -6,6 +6,7 @@ import authRoutes from './auth.routes.js'
 import campaignsRoutes from './campaigns.routes.js'
 import devRoutes from './dev.routes.js'
 import healthRoutes from './health.routes.js'
+import launchboardRoutes from './launchboard.routes.js'
 import onboardingRoutes from './onboarding.routes.js'
 import openaiRoutes from './openai.routes.js'
 import posthogRoutes from './posthog.routes.js'
@@ -32,5 +33,6 @@ router.use('/openai', strictRateLimit, openaiRoutes)
 router.use('/onboarding', onboardingRoutes)
 router.use('/resend', strictRateLimit, resendRoutes)
 router.use('/campaigns', strictRateLimit, campaignsRoutes)
+router.use('/', launchboardRoutes)
 
 export default router

@@ -76,6 +76,23 @@ export const pricingController = {
         data: subscription,
       })
     } catch (error) {
+      // Handle specific ApiError cases
+      if (error instanceof Error && 'statusCode' in error) {
+        const apiError = error as any
+        if (apiError.statusCode === 404) {
+          return res.status(404).json({
+            success: false,
+            message: apiError.message || 'Plan not found',
+          })
+        }
+        if (apiError.statusCode === 400) {
+          return res.status(400).json({
+            success: false,
+            message: apiError.message || 'Bad request',
+          })
+        }
+      }
+
       logAction(
         'pricing_subscription_create_error',
         req.user?.id || 'anonymous',

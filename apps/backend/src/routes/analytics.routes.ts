@@ -23,7 +23,7 @@ router.get('/analytics/users', (_req, res) => {
 });
 
 // Middleware para capturar /users/ (userId vacío)
-router.get('/users/', (req, res, next) => {
+router.get('/users/', (_req, res) => {
   return res.status(404).json({ message: 'User ID not provided' });
 });
 router.get('/users/:userId', analyticsController.getUserAnalytics)
