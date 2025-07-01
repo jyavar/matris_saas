@@ -9,6 +9,7 @@ import healthRoutes from './health.routes.js'
 import onboardingRoutes from './onboarding.routes.js'
 import openaiRoutes from './openai.routes.js'
 import posthogRoutes from './posthog.routes.js'
+import pricingRoutes from './pricing.routes.js'
 import profilesRoutes from './profiles.routes.js'
 import reportingRoutes from './reporting.routes.js'
 import resendRoutes from './resend.routes.js'
@@ -25,6 +26,7 @@ router.use('/profiles', profilesRoutes)
 router.use('/analytics', analyticsRoutes)
 router.use('/reporting', strictRateLimit, reportingRoutes)
 router.use('/posthog', posthogRoutes)
+router.use('/pricing', pricingRoutes)
 router.use('/runtime', runtimeRoutes)
 router.use('/openai', strictRateLimit, openaiRoutes)
 router.use('/onboarding', onboardingRoutes)
