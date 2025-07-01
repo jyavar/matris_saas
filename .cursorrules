@@ -92,12 +92,35 @@ matriz_cursor/
 - **Integration**: Controllers y routes
 - **Mocks**: Supabase, Stripe, OpenAI, PostHog, Resend
 - **Coverage**: Vitest con cobertura
+- **Framework**: Vitest (`apps/backend/vitest.config.ts`)
+- **Rutas de tests**: `apps/backend/src/tests/`
+- **Ejemplo de mock:**
+  ```ts
+  vi.mock('@supabase/supabase-js', () => ({
+    createClient: vi.fn(() => ({
+      auth: { signInWithPassword: vi.fn() },
+      from: vi.fn()
+    }))
+  }))
+  ```
 
 ### Frontend Tests
 - **Components**: React Testing Library
 - **Hooks**: Custom hooks testing
 - **API**: MSW para mocking
 - **E2E**: Playwright (opcional)
+- **Framework**: Vitest (`apps/frontend/vitest.config.ts`)
+- **Rutas de tests**: `apps/frontend/src/tests/`, `apps/frontend/tests-e2e/`
+- **Ejemplo de mock con MSW:**
+  ```ts
+  import { rest } from 'msw'
+  export const handlers = [
+    rest.get('/api/user', (req, res, ctx) => res(ctx.json({ id: 1 })))
+  ]
+  ```
+
+### Web Tests
+- **Playwright**: Para pruebas E2E (`apps/frontend/tests-e2e/`)
 
 ## 🔐 SEGURIDAD
 
@@ -106,104 +129,46 @@ matriz_cursor/
 - **Middleware**: authMiddleware para rutas protegidas
 - **Rate Limiting**: express-rate-limit
 - **CORS**: Configurado para producción
+- **Validación de tokens**: Siempre validar JWT en endpoints protegidos. Ejemplo:
+  ```ts
+  if (!req.user) return res.status(401).json({ error: 'No autorizado' })
+  ```
 
 ### Environment Variables
 - **Backend**: SUPABASE_URL, JWT_SECRET, etc.
 - **Frontend**: VITE_SUPABASE_URL, etc.
 - **Never**: Committear secrets al repo
 
-## 🚀 DEPLOYMENT
-
-### CI/CD
-- **GitHub Actions**: Lint, test, build
-- **Railway**: Backend deployment
-- **Vercel**: Frontend/Web deployment
-- **Supabase**: Base de datos
-
-### Scripts
-- **pnpm dev**: Desarrollo local
-- **pnpm test**: Tests unitarios
-- **pnpm build**: Build de producción
-- **pnpm lint**: Linting
-
-## 🎨 UI/UX PATTERNS
-
-### Design System
-- **Tailwind CSS**: Utility-first
-- **Components**: Reutilizables en packages
-- **Dark Mode**: Soporte completo
-- **Responsive**: Mobile-first
-
-### State Management
-- **React Context**: Estado global
-- **Local State**: useState para componentes
-- **Server State**: Fetch con loading states
-
 ## 📊 MONITORING
 
 ### Logging
-- **Structured**: JSON logs con contexto
+- **Structured**: Pino con contexto estructurado
 - **Levels**: info, warn, error
 - **Actions**: Eventos de negocio trackeados
+- **logAction()**: Usar para registrar eventos clave de negocio. Ejemplo:
+  ```ts
+  logAction('user_signup', userId, { email })
+  ```
 
-### Analytics
-- **PostHog**: Event tracking
-- **Error Tracking**: Captura de errores
-- **Performance**: Métricas de rendimiento
+## 🤖 AGENTES STRATO
 
-## 🔄 WORKFLOW DE DESARROLLO
+### Agentes disponibles
+- **@refactor**: Refactorización automática de código. Ubicación: `/scripts/agents/refactor/autofix.ts`
+- **@qa**: Auditoría de calidad y tests. Ubicación: `/scripts/agents/qa/`
+- **@data**: Procesamiento y migración de datos. Ubicación: `/scripts/agents/data/`
+- **@merge-strategist**: Estrategias de merge y resolución de conflictos. Ubicación: `/scripts/agents/merge-strategist/`
+- **@context-watchdog**: Monitoreo de contexto y rutas. Ubicación: `/scripts/agents/context-watchdog.ts`
 
-### Git Flow
-- **main**: Producción
-- **feature/***: Nuevas funcionalidades
-- **fix/***: Correcciones
-- **chore/***: Mantenimiento
+### Rol y lógica principal
+- Cada agente implementa una función principal `runAgent()` y sigue la convención de orquestación desde `RuntimeService.runAgent()`.
+- Los agentes pueden ser invocados desde scripts o CI para tareas automáticas de refactor, QA, migración, etc.
 
-### Commits
-- **feat**: Nueva funcionalidad
-- **fix**: Corrección de bug
-- **docs**: Documentación
-- **style**: Formato
-- **refactor**: Refactorización
-- **test**: Tests
-- **chore**: Mantenimiento
-
-## 🛠️ HERRAMIENTAS DE DESARROLLO
-
-### Code Quality
-- **ESLint**: Linting de código
-- **Prettier**: Formato automático
-- **Husky**: Git hooks
-- **TypeScript**: Tipado estático
-
-### Development
-- **pnpm**: Package manager
-- **Turbo**: Monorepo build system
-- **Vitest**: Testing framework
-- **MSW**: API mocking
-
-## 🎯 REGLAS ESPECÍFICAS
-
-### Backend
-1. Siempre usar try/catch en controllers
-2. Validar inputs con Zod schemas
-3. Log actions con logAction()
-4. Usar ApiError para errores HTTP
-5. Mock servicios externos en tests
-
-### Frontend
-1. Usar TypeScript strict mode
-2. Componentes funcionales con hooks
-3. Error boundaries para manejo de errores
-4. Loading states para async operations
-5. Responsive design con Tailwind
-
-### Web
-1. App Router de Next.js 15
-2. Server components por defecto
-3. Client components solo cuando necesario
-4. API routes para backend functions
-5. Static generation cuando sea posible
+## 🌐 CONEXIONES EXTERNAS
+- **Supabase**: Base de datos y autenticación principal.
+- **Stripe**: Procesamiento de pagos y suscripciones.
+- **OpenAI**: Funcionalidades de IA y generación de texto.
+- **Resend**: Envío de emails transaccionales.
+- **PostHog**: Analytics y tracking de eventos.
 
 ## 🚨 ANTI-PATRONES A EVITAR
 
@@ -215,6 +180,9 @@ matriz_cursor/
 - ❌ Variables globales
 - ❌ Hardcoded URLs
 - ❌ Ignorar errores de linting
+- ❌ Omitir validación de tokens en endpoints protegidos
+- ❌ No usar mocks en tests de integración
+- ❌ No cubrir código crítico con tests
 
 ## 🎯 OBJETIVOS DEL PROYECTO
 
@@ -232,4 +200,159 @@ STRATO es un framework SaaS enterprise-grade que prioriza:
 - **Next.js Docs**: https://nextjs.org/docs
 - **React Docs**: https://react.dev
 - **Tailwind CSS**: https://tailwindcss.com/docs
-- **Vitest**: https://vitest.dev 
+- **Vitest**: https://vitest.dev
+
+## ✅ CHECKLISTS DE VALIDACIÓN
+
+### Pull Request Checklist
+- [ ] El código tiene tests unitarios y de integración
+- [ ] Se validan tokens en endpoints protegidos
+- [ ] Se loguean acciones clave con logAction()
+- [ ] No hay secrets ni datos sensibles en el código
+- [ ] El PR incluye descripción clara y justificación de cambios
+- [ ] El código sigue las convenciones de naming y estructura
+- [ ] Se actualizaron los mocks si cambió la integración externa
+- [ ] El build y los tests pasan en CI
+
+### Release Checklist
+- [ ] Todos los tests pasan con cobertura mínima
+- [ ] No hay dependencias inseguras o deprecated
+- [ ] Se revisaron los logs de errores recientes
+- [ ] Se actualizaron las migraciones y seeds si aplica
+- [ ] Se revisaron los permisos y accesos de servicios externos
+
+---
+
+## 📈 COBERTURA MÍNIMA DE TESTS
+- **Backend**: 90% líneas, 90% branches
+- **Frontend**: 90% líneas, 90% branches
+- **Bloquear PRs** si la cobertura baja de ese umbral
+- **Comando**: `pnpm test:coverage` y revisar reporte
+
+---
+
+## 🚫 EJEMPLOS DE ANTI-PATRONES Y FIXES
+
+### ❌ Incorrecto
+```ts
+// No validar token
+app.get('/api/secure', handler)
+
+// Usar any
+const data: any = {}
+
+// Console.log en producción
+console.log('debug')
+
+// Mutar props
+props.value = 123
+
+// Hardcoded URL
+fetch('https://api.stripe.com/v1/charges')
+```
+
+### ✅ Correcto
+```ts
+// Validar token
+app.get('/api/secure', authMiddleware, handler)
+
+// Tipado estricto
+const data: UserProfile = {}
+
+// Logging estructurado
+logger.info({ userId }, 'User logged in')
+
+// Props inmutables
+<MyComponent value={value} />
+
+// Usar variables de entorno
+fetch(`${process.env.STRIPE_API_URL}/charges`)
+```
+
+---
+
+## 🔑 POLÍTICA DE SECRETS Y VARIABLES
+
+| Variable                | Ubicación         | Propósito                        |
+|-------------------------|-------------------|----------------------------------|
+| SUPABASE_URL            | Backend, Frontend | URL de Supabase                  |
+| SUPABASE_KEY            | Backend           | API Key de Supabase              |
+| JWT_SECRET              | Backend           | Firmar y validar JWT             |
+| STRIPE_SECRET_KEY       | Backend           | API Key de Stripe                |
+| OPENAI_API_KEY          | Backend           | API Key de OpenAI                |
+| RESEND_API_KEY          | Backend           | API Key de Resend                |
+| POSTHOG_API_KEY         | Backend           | API Key de PostHog               |
+| VITE_SUPABASE_URL       | Frontend          | URL de Supabase (public)         |
+
+- **Nunca** committear archivos `.env` ni valores reales
+- Usar `.env.example` como plantilla
+- Secrets en CI: usar GitHub Actions Secrets o Railway/Vercel envs
+
+---
+
+## 🌳 POLÍTICA DE BRANCHING Y RELEASES
+- Solo mergear a `main` vía Pull Request
+- CI debe estar en verde y cobertura OK
+- Revisión obligatoria de 2 devs para PRs a main
+- Branches:
+  - `main`: Producción
+  - `develop`: Integración (opcional)
+  - `feature/*`: Nuevas features
+  - `fix/*`: Hotfixes
+  - `chore/*`: Mantenimiento
+- Releases: usar tags semver (`v1.2.3`)
+
+---
+
+## 📦 INTEGRIDAD DE DEPENDENCIAS
+- No instalar paquetes sin justificación en el PR
+- Usar solo versiones estables (`^x.y.z`)
+- Revisar dependabot y alertas de seguridad
+- Eliminar dependencias no usadas
+- Revisar cambios en `pnpm-lock.yaml` en cada PR
+
+---
+
+## 🛡️ REVISIÓN DE ACCESOS Y PERMISOS
+- Revisar roles y permisos en Supabase periódicamente
+- Rotar claves de API cada 90 días
+- Revisar accesos a Stripe, OpenAI, Resend y PostHog
+- Limitar permisos de servicio a lo mínimo necesario
+- Documentar cambios de permisos en el PR
+
+---
+
+## 🕵️ AUDITORÍA Y OBSERVABILIDAD
+- Auditar logs críticos semanalmente
+- Revisar errores y alertas en PostHog y logs de Pino
+- Consultar métricas de performance y uso
+- Ejemplo de consulta de logs:
+  ```sh
+  pnpm logs | grep error
+  ```
+- Documentar incidentes y acciones correctivas
+
+---
+
+## 🤖 AUTOMATIZACIÓN Y SCRIPTS CLAVE
+- `pnpm lint` — Linting de todo el monorepo
+- `pnpm test` — Ejecutar todos los tests
+- `pnpm build` — Build de producción
+- `pnpm format` — Formato automático
+- `pnpm check-react-imports` — Verifica imports de React
+- `pnpm tsx scripts/agents/refactor/autofix.ts` — Refactor automático
+- `pnpm tsx scripts/agents/qa/` — Auditoría de calidad
+- `pnpm tsx scripts/agents/context-watchdog.ts` — Monitoreo de contexto
+
+---
+
+## 🚀 ONBOARDING EXPRESS PARA NUEVOS DEVS
+1. Clona el repo y corre `pnpm install`
+2. Copia `.env.example` a `.env` y configura tus variables
+3. Corre `pnpm dev` para levantar backend y frontend
+4. Corre `pnpm test` para validar que todo pase
+5. Lee `.cursorrules` y sigue los patrones
+6. Haz tu feature en una branch `feature/tu-feature`
+7. Abre un PR con checklist y justificación
+8. Pide revisión a 2 devs y espera CI verde
+9. ¡Bienvenido a STRATO! 🚀 
