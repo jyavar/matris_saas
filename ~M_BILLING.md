@@ -104,6 +104,93 @@ Paths:
 - `apps/backend/src/services/billing.service.ts` - Archivo fuente
 - `apps/backend/src/routes/billing.routes.ts` - Archivo fuente
 - `apps/backend/src/controllers/billing.controller.ts` - Archivo fuente
+- `apps/backend/dist/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/controllers/billing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/billing.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/services/__tests__/stripe.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/billing.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/billing.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/billing.service.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/node_modules/stripe/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/stripe/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/node_modules/stripe/README.md` - Archivo de documentación
+- `apps/backend/node_modules/stripe/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/stripe/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/src/services/stripe.service.ts` - Archivo fuente
+- `apps/backend/src/services/billing.service.ts` - Archivo fuente
+- `apps/backend/src/routes/billing.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/billing.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/controllers/billing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/billing.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/services/__tests__/stripe.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/billing.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/billing.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/billing.service.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/node_modules/stripe/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/stripe/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/node_modules/stripe/README.md` - Archivo de documentación
+- `apps/backend/node_modules/stripe/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/stripe/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/src/services/stripe.service.ts` - Archivo fuente
+- `apps/backend/src/services/billing.service.ts` - Archivo fuente
+- `apps/backend/src/routes/billing.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/billing.controller.ts` - Archivo fuente
+- `apps/backend/dist/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/controllers/billing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/billing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/billing.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/services/__tests__/stripe.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/billing.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/billing.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/billing.service.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/node_modules/stripe/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/stripe/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/node_modules/stripe/README.md` - Archivo de documentación
+- `apps/backend/node_modules/stripe/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/stripe/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/src/services/stripe.service.ts` - Archivo fuente
+- `apps/backend/src/services/billing.service.ts` - Archivo fuente
+- `apps/backend/src/routes/billing.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/billing.controller.ts` - Archivo fuente
 - `apps/backend/dist/services/stripe.service.js` - Archivo fuente
 - `apps/backend/dist/services/billing.service.js` - Archivo fuente
 - `apps/backend/dist/routes/billing.routes.js` - Archivo fuente
