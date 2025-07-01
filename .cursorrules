@@ -913,3 +913,74 @@ fetch(`${process.env.STRIPE_API_URL}/charges`)
 7. Abre un PR con checklist y justificación
 8. Pide revisión a 2 devs y espera CI verde
 9. ¡Bienvenido a STRATO! 🚀 
+
+## 📏 REGLAS DE FORMATO, LINT Y CALIDAD (STRATO)
+
+> **Estas reglas son de cumplimiento obligatorio para todo el código, tests y documentación en STRATO.**
+
+```json
+{
+  "rules": [
+    {
+      "description": "Formato de código y estilo (Prettier y ESLint STRATO)",
+      "enforced": true,
+      "details": [
+        "Indentación: 2 espacios.",
+        "Comillas: simples ('), sin excepciones.",
+        "Punto y coma: nunca.",
+        "Arrow functions: usar siempre que sea posible.",
+        "Preferir `const` y `let`, nunca `var`.",
+        "Imports: ordenados, sin duplicados, usar alias (@) si está configurado.",
+        "Evitar `console.log` en producción: usar logger del sistema STRATO.",
+        "No usar `any`, excepto en firmas de mocks con justificación.",
+        "No dejar código comentado muerto.",
+        "No generar funciones anónimas dentro de useEffect sin cleanup."
+      ]
+    },
+    {
+      "description": "Husky y pre-commit (simular validaciones en tiempo real)",
+      "enforced": true,
+      "details": [
+        "Validar ESLint antes de finalizar código.",
+        "Formatear con Prettier en tiempo real (como si el hook ya hubiera actuado).",
+        "No generar código que requiera `--no-verify` para commitear.",
+        "No dejar archivos con cambios innecesarios en `staged` (como logs, .env, test.mocks.ts)."
+      ]
+    },
+    {
+      "description": "Manejo estricto de tipos en TypeScript",
+      "enforced": true,
+      "details": [
+        "Todos los props, inputs, outputs y funciones deben estar tipados.",
+        "Nunca usar `any` global, `unknown` preferible si no se puede determinar.",
+        "En tests, los mocks deben usar `MockInstance<ReturnType, Args>` explícito.",
+        "Evitar uso de `as unknown as X` salvo en casos documentados.",
+        "Evitar `// @ts-ignore`, usarlo solo si hay justificación clara en comentario."
+      ]
+    },
+    {
+      "description": "Pruebas (tests unitarios, integración, mocks)",
+      "enforced": true,
+      "details": [
+        "Usar Vitest y los helpers del sistema STRATO.",
+        "No generar asserts triviales o sin valor (como `expect(true).toBe(true)`).",
+        "Mocks deben tener retorno válido y tipo correcto (`MockInstance`).",
+        "No dejar tests con `skip`, `todo` o `only` al finalizar.",
+        "Tests deben cubrir flujos positivos y negativos."
+      ]
+    },
+    {
+      "description": "Naming y estructura STRATO",
+      "enforced": true,
+      "details": [
+        "Los servicios terminan en `.service.ts`, controladores en `.controller.ts`, rutas en `.routes.ts`.",
+        "Los tests terminan en `.test.ts` o `.test.tsx` según corresponda.",
+        "Las factories terminan en `.factory.ts` y se colocan en `__tests__/`.",
+        "Ningún archivo debe exceder 300 líneas sin justificación."
+      ]
+    }
+  ]
+}
+```
+
+> **Nota:** Cualquier PR que no cumpla estas reglas será bloqueado por CI/pre-commit y deberá ser corregido antes de mergear. 
