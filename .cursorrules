@@ -85,6 +85,563 @@ matriz_cursor/
 - **Actions**: logAction() para eventos de negocio
 - **Levels**: info, warn, error según severidad
 
+## 🧪 TESTING STANDARDS - ESTRATEGIA GLOBAL
+
+### 🎯 OBJETIVOS PRINCIPALES
+Los tests en STRATO deben:
+1. **Ser realistas** - Reflejar la lógica de negocio esperada
+2. **Pasar desde el primer intento** - Sin debugging innecesario
+3. **Ser unitarios puros** - Sin dependencias externas (Supabase, Stripe, OpenAI, etc.)
+4. **Usar mocks apropiados** - `vi.mock()` o `msw` para evitar IO real
+5. **Ser ultra-rápidos** - Idealmente <5 segundos por suite
+6. **Manejar errores explícitamente** - ZodError debe devolver 400, no 500
+7. **Validar inputs numéricos** - `limit`, `offset`, `user_id`, etc.
+8. **Cubrir flujos positivos y negativos** - Sin repetir lógica
+9. **Tener estructura clara** - `describe/it` bien organizado
+10. **Cumplir reglas de calidad** - `.cursorrules` y `eslint`
+
+### 📊 MÉTRICAS DE CALIDAD
+- **Performance**: <5 segundos por suite de tests
+- **Cobertura**: ≥90% líneas y branches
+- **Fiabilidad**: 100% de tests pasando consistentemente
+- **Mantenibilidad**: Tests legibles y bien estructurados
+
+### 🏗️ ARQUITECTURA DE TESTS
+
+#### Backend Tests (Vitest + Supertest)
+```ts
+// Estructura recomendada
+describe('POST /api/campaigns', () => {
+  // Factories para datos consistentes
+  const createTestCampaign = (overrides = {}) => ({
+    title: 'Test Campaign',
+    description: 'Test Description',
+    budget: 1000,
+    ...overrides
+  })
+
+  // Mocks globales
+  const mockCampaignService = {
+    create: vi.fn(),
+    update: vi.fn(),
+    delete: vi.fn()
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    // Configurar mocks específicos
+  })
+
+  it('should create campaign with valid data', async () => {
+    // Arrange
+    const validData = createTestCampaign()
+    const mockResponse = { id: 1, ...validData, created_at: new Date() }
+    mockCampaignService.create.mockResolvedValue(mockResponse)
+
+    // Act
+    const startTime = Date.now()
+    const response = await request(app)
+      .post('/api/campaigns')
+      .send(validData)
+    const duration = Date.now() - startTime
+
+    // Assert
+    expect(duration).toBeLessThan(5000) // Performance check
+    expect(response.status).toBe(201)
+    expect(response.body).toMatchObject({
+      success: true,
+      data: expect.objectContaining({
+        id: expect.any(Number),
+        title: validData.title,
+        budget: validData.budget
+      })
+    })
+    expect(mockCampaignService.create).toHaveBeenCalledTimes(1)
+    expect(mockCampaignService.create).toHaveBeenCalledWith(validData)
+  })
+
+  it('should return 400 for missing title', async () => {
+    // Arrange
+    const invalidData = createTestCampaign({ title: undefined })
+
+    // Act
+    const response = await request(app)
+      .post('/api/campaigns')
+      .send(invalidData)
+
+    // Assert
+    expect(response.status).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.error).toBeDefined()
+  })
+
+  it('should handle malformed JSON gracefully', async () => {
+    // Act
+    const response = await request(app)
+      .post('/api/campaigns')
+      .set('Content-Type', 'application/json')
+      .send('{"invalid": json}')
+
+    // Assert
+    expect(response.status).toBe(400)
+  })
+})
+```
+
+#### Frontend Tests (Vitest + React Testing Library)
+```tsx
+// Estructura recomendada para componentes
+describe('CampaignForm Component', () => {
+  const renderCampaignForm = (props = {}) => {
+    return render(
+      <CampaignForm 
+        onSubmit={vi.fn()}
+        initialData={{}}
+        {...props}
+      />
+    )
+  }
+
+  it('should render form fields correctly', () => {
+    // Arrange & Act
+    const { getByLabelText, getByRole } = renderCampaignForm()
+
+    // Assert
+    expect(getByLabelText(/title/i)).toBeInTheDocument()
+    expect(getByLabelText(/budget/i)).toBeInTheDocument()
+    expect(getByRole('button', { name: /submit/i })).toBeInTheDocument()
+  })
+
+  it('should call onSubmit with form data', async () => {
+    // Arrange
+    const mockOnSubmit = vi.fn()
+    const { getByLabelText, getByRole } = renderCampaignForm({ onSubmit: mockOnSubmit })
+
+    // Act
+    await userEvent.type(getByLabelText(/title/i), 'Test Campaign')
+    await userEvent.type(getByLabelText(/budget/i), '1000')
+    await userEvent.click(getByRole('button', { name: /submit/i }))
+
+    // Assert
+    expect(mockOnSubmit).toHaveBeenCalledWith({
+      title: 'Test Campaign',
+      budget: 1000
+    })
+  })
+})
+```
+
+### 🔧 MOCKING STRATEGY
+
+#### Backend Mocks (Vitest)
+```ts
+// Mock de servicios externos
+vi.mock('../services/supabase.service.js', () => ({
+  supabase: {
+    from: vi.fn(() => ({
+      insert: vi.fn(() => ({
+        select: vi.fn(() => Promise.resolve({ 
+          data: [{ id: 1, name: 'test' }], 
+          error: null 
+        }))
+      })),
+      select: vi.fn(() => ({
+        order: vi.fn(() => ({
+          limit: vi.fn(() => ({
+            range: vi.fn(() => Promise.resolve({ data: [], error: null }))
+          }))
+        }))
+      }))
+    }))
+  }
+}))
+
+// Mock de middleware
+vi.mock('../middleware/auth.middleware.js', () => ({
+  authMiddleware: vi.fn((req, res, next) => {
+    req.user = { id: 1, email: 'test@example.com' }
+    next()
+  })
+}))
+
+// Mock de servicios de terceros
+vi.mock('stripe', () => ({
+  default: vi.fn(() => ({
+    paymentIntents: {
+      create: vi.fn(() => Promise.resolve({ id: 'pi_test' }))
+    }
+  }))
+}))
+```
+
+#### Frontend Mocks (MSW)
+```ts
+// handlers.ts
+import { rest } from 'msw'
+
+export const handlers = [
+  rest.post('/api/campaigns', (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        data: {
+          id: 1,
+          title: 'Test Campaign',
+          created_at: new Date().toISOString()
+        }
+      })
+    )
+  }),
+
+  rest.get('/api/campaigns', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        data: [
+          { id: 1, title: 'Campaign 1' },
+          { id: 2, title: 'Campaign 2' }
+        ]
+      })
+    )
+  })
+]
+```
+
+### 📋 CHECKLIST DE VALIDACIÓN DE TESTS
+
+#### Antes de crear tests:
+- [ ] ¿El test refleja un caso de uso real?
+- [ ] ¿Están mockeados todos los servicios externos?
+- [ ] ¿Se validan tanto casos positivos como negativos?
+- [ ] ¿Se manejan errores de validación (ZodError → 400)?
+- [ ] ¿Se validan inputs numéricos correctamente?
+- [ ] ¿El test es independiente y no afecta otros tests?
+
+#### Durante la implementación:
+- [ ] ¿Se usan factories para datos consistentes?
+- [ ] ¿Se mide el tiempo de ejecución (<5s)?
+- [ ] ¿Se validan las llamadas a mocks?
+- [ ] ¿Se verifica la estructura completa de respuesta?
+- [ ] ¿Se incluyen edge cases importantes?
+
+#### Después de implementar:
+- [ ] ¿Todos los tests pasan consistentemente?
+- [ ] ¿La cobertura es ≥90%?
+- [ ] ¿Los tests son legibles y mantenibles?
+- [ ] ¿Se documentan casos especiales?
+- [ ] ¿Se integran con CI/CD?
+
+### 🚫 ANTI-PATRONES DE TESTING
+
+#### ❌ NO HACER
+```ts
+// ❌ Tests que dependen de servicios externos
+it('should create user in database', async () => {
+  const user = await createUserInRealDatabase() // MALO
+})
+
+// ❌ Tests lentos (>5 segundos)
+it('should process large dataset', async () => {
+  await processLargeDataset() // MALO - muy lento
+})
+
+// ❌ Tests que no validan estructura
+it('should return success', async () => {
+  const response = await request(app).post('/api/users')
+  expect(response.status).toBe(200) // MALO - muy básico
+})
+
+// ❌ Tests que no manejan errores
+it('should handle invalid data', async () => {
+  const response = await request(app).post('/api/users').send({})
+  // No valida el error específico - MALO
+})
+
+// ❌ Mocks incompletos
+vi.mock('supabase', () => ({
+  // Mock incompleto que causa errores - MALO
+}))
+```
+
+#### ✅ HACER
+```ts
+// ✅ Tests con mocks apropiados
+it('should create user successfully', async () => {
+  const mockUser = { id: 1, email: 'test@example.com' }
+  mockUserService.create.mockResolvedValue(mockUser)
+  
+  const response = await request(app).post('/api/users').send(validUserData)
+  
+  expect(response.status).toBe(201)
+  expect(response.body.data).toMatchObject(mockUser)
+  expect(mockUserService.create).toHaveBeenCalledWith(validUserData)
+})
+
+// ✅ Tests rápidos con validación completa
+it('should validate user data', async () => {
+  const startTime = Date.now()
+  
+  const response = await request(app).post('/api/users').send(invalidData)
+  
+  const duration = Date.now() - startTime
+  expect(duration).toBeLessThan(1000) // <1s
+  expect(response.status).toBe(400)
+  expect(response.body.error).toContain('email is required')
+})
+
+// ✅ Tests que validan edge cases
+it('should handle empty arrays gracefully', async () => {
+  mockUserService.list.mockResolvedValue([])
+  
+  const response = await request(app).get('/api/users')
+  
+  expect(response.status).toBe(200)
+  expect(response.body.data).toEqual([])
+  expect(response.body.count).toBe(0)
+})
+```
+
+### 🎨 TEMPLATES DE TESTS
+
+#### Template para Endpoints REST
+```ts
+describe('Resource Endpoints', () => {
+  // Factories
+  const createTestResource = (overrides = {}) => ({
+    name: 'Test Resource',
+    description: 'Test Description',
+    ...overrides
+  })
+
+  // Mocks
+  const mockResourceService = {
+    create: vi.fn(),
+    findById: vi.fn(),
+    update: vi.fn(),
+    delete: vi.fn(),
+    list: vi.fn()
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  describe('POST /api/resources', () => {
+    it('should create resource with valid data', async () => {
+      const validData = createTestResource()
+      const mockResponse = { id: 1, ...validData, created_at: new Date() }
+      mockResourceService.create.mockResolvedValue(mockResponse)
+
+      const response = await request(app).post('/api/resources').send(validData)
+
+      expect(response.status).toBe(201)
+      expect(response.body.success).toBe(true)
+      expect(response.body.data).toMatchObject(mockResponse)
+      expect(mockResourceService.create).toHaveBeenCalledWith(validData)
+    })
+
+    it('should return 400 for invalid data', async () => {
+      const invalidData = createTestResource({ name: undefined })
+
+      const response = await request(app).post('/api/resources').send(invalidData)
+
+      expect(response.status).toBe(400)
+      expect(response.body.success).toBe(false)
+      expect(response.body.error).toBeDefined()
+    })
+  })
+
+  describe('GET /api/resources/:id', () => {
+    it('should return resource by id', async () => {
+      const mockResource = createTestResource({ id: 1 })
+      mockResourceService.findById.mockResolvedValue(mockResource)
+
+      const response = await request(app).get('/api/resources/1')
+
+      expect(response.status).toBe(200)
+      expect(response.body.data).toMatchObject(mockResource)
+    })
+
+    it('should return 404 for non-existent resource', async () => {
+      mockResourceService.findById.mockResolvedValue(null)
+
+      const response = await request(app).get('/api/resources/999')
+
+      expect(response.status).toBe(404)
+    })
+  })
+})
+```
+
+#### Template para Componentes React
+```tsx
+describe('ComponentName', () => {
+  const defaultProps = {
+    onSubmit: vi.fn(),
+    data: {},
+    loading: false
+  }
+
+  const renderComponent = (props = {}) => {
+    return render(<ComponentName {...defaultProps} {...props} />)
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('should render correctly with default props', () => {
+    const { getByRole, getByText } = renderComponent()
+
+    expect(getByRole('form')).toBeInTheDocument()
+    expect(getByText('Submit')).toBeInTheDocument()
+  })
+
+  it('should call onSubmit when form is submitted', async () => {
+    const mockOnSubmit = vi.fn()
+    const { getByRole } = renderComponent({ onSubmit: mockOnSubmit })
+
+    await userEvent.click(getByRole('button', { name: /submit/i }))
+
+    expect(mockOnSubmit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should show loading state', () => {
+    const { getByText } = renderComponent({ loading: true })
+
+    expect(getByText('Loading...')).toBeInTheDocument()
+  })
+})
+```
+
+### 🔧 CONFIGURACIÓN DE VITEST
+
+#### Backend (apps/backend/vitest.config.ts)
+```ts
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  test: {
+    environment: 'node',
+    globals: true,
+    setupFiles: './vitest.setup.ts',
+    // Optimizaciones para tests unitarios rápidos
+    testTimeout: 5000, // 5 segundos máximo por test
+    hookTimeout: 2000, // 2 segundos máximo por hook
+    teardownTimeout: 1000, // 1 segundo máximo para cleanup
+    // Configuración de threads para paralelización
+    threads: {
+      enabled: true,
+      maxThreads: 4,
+      minThreads: 2,
+    },
+    // Configuración de coverage optimizada
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'html', 'json', 'json-summary'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/coverage/**',
+        '**/*.d.ts',
+        '**/vitest.setup.ts',
+        '**/vitest.config.ts',
+      ],
+    },
+    // Configuración de mocks globales
+    mockReset: true,
+    restoreMocks: true,
+    clearMocks: true,
+  },
+})
+```
+
+#### Frontend (apps/frontend/vitest.config.ts)
+```ts
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './vitest.setup.ts',
+    testTimeout: 5000,
+    threads: {
+      enabled: true,
+      maxThreads: 4,
+    },
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'html', 'json'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/coverage/**',
+        '**/*.d.ts',
+      ],
+    },
+  },
+})
+```
+
+### 📊 COMANDOS DE TESTING
+
+```bash
+# Ejecutar todos los tests
+pnpm test
+
+# Ejecutar tests con coverage
+pnpm test:coverage
+
+# Ejecutar tests específicos
+pnpm test apps/backend/src/tests/auth.test.ts
+
+# Ejecutar tests en modo watch
+pnpm test:watch
+
+# Validar cobertura mínima
+pnpm test:coverage:check
+
+# Ejecutar tests de integración
+pnpm test:integration
+
+# Ejecutar tests E2E
+pnpm test:e2e
+```
+
+### 🎯 INTEGRACIÓN CON CI/CD
+
+#### GitHub Actions Workflow
+```yaml
+name: Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: pnpm install
+      - run: pnpm test:coverage
+      - run: pnpm test:coverage:check
+```
+
+### 📈 MÉTRICAS DE ÉXITO
+
+- **Performance**: 100% de tests <5 segundos
+- **Cobertura**: ≥90% líneas y branches
+- **Fiabilidad**: 100% de tests pasando
+- **Mantenibilidad**: Tests legibles y bien estructurados
+- **Integración**: CI/CD siempre verde
+
+---
+
 ## 🧪 TESTING
 
 ### Backend Tests
@@ -343,194 +900,6 @@ fetch(`${process.env.STRIPE_API_URL}/charges`)
 - `pnpm tsx scripts/agents/refactor/autofix.ts` — Refactor automático
 - `pnpm tsx scripts/agents/qa/` — Auditoría de calidad
 - `pnpm tsx scripts/agents/context-watchdog.ts` — Monitoreo de contexto
-
----
-
-## 🚀 ONBOARDING EXPRESS PARA NUEVOS DEVS
-1. Clona el repo y corre `pnpm install`
-2. Copia `.env.example` a `.env` y configura tus variables
-3. Corre `pnpm dev` para levantar backend y frontend
-4. Corre `pnpm test` para validar que todo pase
-5. Lee `.cursorrules` y sigue los patrones
-6. Haz tu feature en una branch `feature/tu-feature`
-7. Abre un PR con checklist y justificación
-8. Pide revisión a 2 devs y espera CI verde
-9. ¡Bienvenido a STRATO! 🚀
-
----
-
-## 🛡️ BLINDAJE DE TRAZABILIDAD - PREVENCIÓN DE PÉRDIDA DE ARCHIVOS
-
-### 🎯 OBJETIVO
-Garantizar que NUNCA se pierdan archivos, módulos, rutas, tests o paths en el monorepo STRATO. Toda la trazabilidad debe estar documentada y validada automáticamente.
-
-### 📋 HEADER JSON OBLIGATORIO PARA MÓDULOS
-
-Cada módulo debe tener un header JSON con metadata completa:
-
-```json
-{
-  "module": "AUTH",
-  "description": "Gestión de autenticación y autorización",
-  "paths": [
-    "apps/backend/src/controllers/auth.controller.ts",
-    "apps/backend/src/services/auth.service.ts",
-    "apps/backend/src/routes/auth.routes.ts"
-  ],
-  "tests": [
-    "apps/backend/src/tests/auth.test.ts",
-    "apps/frontend/src/components/auth/ProtectedRoute.test.tsx"
-  ],
-  "routes": [
-    "/api/auth/signup",
-    "/api/auth/login"
-  ],
-  "docs": [
-    "~M_AUTH.md"
-  ],
-  "last_synced": "2025-01-27",
-  "responsible": "José + IA STRATO",
-  "coverage": 100,
-  "status": "active",
-  "criticality": "high"
-}
-```
-
-### 📁 SECCIÓN "ARCHIVOS CLAVE" OBLIGATORIA
-
-Cada módulo debe tener una sección "Archivos clave" con:
-- **Source files**: Todos los archivos .ts, .tsx, .js, .jsx
-- **Test files**: Todos los archivos .test.ts, .test.tsx, .spec.ts
-- **Config files**: Todos los archivos .json, .config.ts, .config.js
-- **Doc files**: Todos los archivos .md relacionados
-- **Scripts**: Scripts y utilidades del módulo
-
-### 🔍 VALIDACIÓN AUTOMÁTICA EN PRE-COMMIT/PRE-PUSH
-
-**Script de validación obligatorio** que detecte:
-- ✅ Archivos sin declarar en headers (huérfanos)
-- ✅ Rutas sin documentar en módulos
-- ✅ Tests sin asociar a módulos
-- ✅ Paths sin cobertura de trazabilidad
-- ❌ **BLOQUEAR COMMIT/PUSH** si hay inconsistencias
-
-### 🔄 SINCRONIZACIÓN BIDIRECCIONAL
-
-**Reglas automáticas**:
-- **Crear archivo** → Actualizar header y sección "Archivos clave" del módulo correspondiente
-- **Modificar archivo** → Verificar que esté en header y sección "Archivos clave"
-- **Eliminar archivo** → Eliminar de header y sección "Archivos clave"
-- **Mover archivo** → Actualizar paths en todos los módulos afectados
-
-### 📊 METADATA EXTENDIDA POR ARCHIVO
-
-Cada entrada de archivo debe tener:
-
-```json
-{
-  "path": "apps/backend/src/controllers/auth.controller.ts",
-  "type": "source",
-  "module": "AUTH",
-  "last_synced": "2025-01-27",
-  "responsible": "José",
-  "criticality": "high",
-  "dependencies": ["auth.service.ts", "auth.middleware.ts"],
-  "tests": ["auth.test.ts"],
-  "routes": ["/api/auth/*"],
-  "coverage": 95
-}
-```
-
-### 📈 REPORTES AUTOMÁTICOS
-
-**Generar en cada auditoría**:
-- 📊 Archivos cubiertos vs. huérfanos
-- 🔍 Módulos desincronizados
-- 🧪 Tests no asociados
-- 🛣️ Rutas no documentadas
-- 📈 Progreso de cobertura de visibilidad
-
-### 🚨 INTEGRACIÓN CON CI/CD
-
-**El pipeline DEBE FALLAR si**:
-- ❌ Hay archivos no cubiertos por headers
-- ❌ Hay rutas sin documentar
-- ❌ Hay tests sin asociar
-- ❌ Hay paths huérfanos
-- ❌ Hay módulos sin header JSON válido
-
-### 🎨 PLANTILLA PARA NUEVOS MÓDULOS
-
-**Comando automático** para generar:
-- Header JSON completo
-- Sección "Archivos clave" inicial
-- Tests asociados
-- Documentación base
-- Validaciones de integridad
-
-### 🔧 COMANDOS DE VALIDACIÓN
-
-```bash
-# Validar trazabilidad completa
-pnpm validate-traceability
-
-# Sincronizar módulos
-pnpm sync-modules
-
-# Generar reporte de visibilidad
-pnpm visibility-report
-
-# Crear nuevo módulo con plantilla
-pnpm create-module --name MODULE_NAME
-```
-
-### 📋 CHECKLIST DE BLINDAJE
-
-**Antes de cada commit**:
-- [ ] Todos los archivos están declarados en headers de módulos
-- [ ] Todas las rutas están documentadas
-- [ ] Todos los tests están asociados
-- [ ] No hay archivos huérfanos
-- [ ] Headers JSON son válidos
-- [ ] Secciones "Archivos clave" están actualizadas
-- [ ] Metadata extendida está completa
-
-**En cada PR**:
-- [ ] Validación de trazabilidad pasa
-- [ ] Reporte de visibilidad está actualizado
-- [ ] No hay archivos sin declarar
-- [ ] Módulos están sincronizados
-
-### 🚫 ANTI-PATRONES DE TRAZABILIDAD
-
-- ❌ **NUNCA** crear archivos sin declararlos en headers
-- ❌ **NUNCA** mover archivos sin actualizar paths
-- ❌ **NUNCA** eliminar archivos sin limpiar referencias
-- ❌ **NUNCA** hacer commit con archivos huérfanos
-- ❌ **NUNCA** omitir validación de trazabilidad
-- ❌ **NUNCA** tener módulos sin header JSON
-- ❌ **NUNCA** tener rutas sin documentar
-- ❌ **NUNCA** tener tests sin asociar
-
-### ✅ PATRONES DE TRAZABILIDAD
-
-- ✅ **SIEMPRE** declarar archivos en headers de módulos
-- ✅ **SIEMPRE** actualizar paths al mover archivos
-- ✅ **SIEMPRE** limpiar referencias al eliminar archivos
-- ✅ **SIEMPRE** validar trazabilidad antes de commit
-- ✅ **SIEMPRE** mantener headers JSON actualizados
-- ✅ **SIEMPRE** documentar rutas en módulos
-- ✅ **SIEMPRE** asociar tests a módulos
-- ✅ **SIEMPRE** generar reportes de visibilidad
-
-### 🎯 MÉTRICAS DE ÉXITO
-
-- **Cobertura de trazabilidad**: 100%
-- **Archivos huérfanos**: 0
-- **Rutas sin documentar**: 0
-- **Tests sin asociar**: 0
-- **Módulos sin header**: 0
-- **Validaciones fallidas**: 0
 
 ---
 
