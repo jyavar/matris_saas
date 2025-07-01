@@ -17,6 +17,7 @@ import resendRoutes from './resend.routes.js'
 import runtimeRoutes from './runtime.routes.js'
 import todoRoutes from './todo.routes.js'
 import automationRoutes from './automation.routes.js'
+import emailCampaignsRoutes from './email-campaigns.routes.js'
 
 const router = Router()
 
@@ -36,5 +37,6 @@ router.use('/resend', strictRateLimit, resendRoutes)
 router.use('/campaigns', strictRateLimit, campaignsRoutes)
 router.use('/', launchboardRoutes)
 router.use('/automation', automationRoutes)
+router.use('/email-campaigns', emailCampaignsRoutes)
 
 export default router
