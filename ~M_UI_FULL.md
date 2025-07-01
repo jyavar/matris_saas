@@ -22,21 +22,32 @@ STRATO MODULE HEADER
 # ~M_UI_FULL.md
 
 ## Archivos clave
-- apps/frontend/src/components/ui/
-- apps/frontend/src/components/landing/
-- apps/frontend/src/components/auth/
-- apps/frontend/src/app/
-- apps/frontend/src/contexts/
-- apps/frontend/src/services/
-- apps/frontend/src/lib/
-- apps/frontend/src/hooks/
-- apps/frontend/src/tests/
-- apps/frontend/vitest.setup.ts
-- apps/frontend/tsconfig.json
-- apps/frontend/package.json
-- apps/frontend/frontend-test-report.json
-- apps/frontend/tests-e2e/
-- apps/frontend/public/
+- apps/frontend/src/components/ui/AnalyticsPanel.tsx
+- apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx
+- apps/frontend/src/components/ui/AuthForm.tsx
+- apps/frontend/src/components/ui/AuthForm.stories.tsx
+- apps/frontend/src/components/ui/Button.tsx
+- apps/frontend/src/components/ui/Button.stories.tsx
+- apps/frontend/src/components/ui/Card.tsx
+- apps/frontend/src/components/ui/Card.stories.tsx
+- apps/frontend/src/components/ui/Input.tsx
+- apps/frontend/src/components/ui/Input.stories.tsx
+- apps/frontend/src/components/ui/Modal.tsx
+- apps/frontend/src/components/ui/Modal.stories.tsx
+- apps/frontend/src/components/ui/Navigation.tsx
+- apps/frontend/src/components/ui/Navigation.stories.tsx
+- apps/frontend/src/components/ui/ProfileCard.tsx
+- apps/frontend/src/components/ui/ProfileCard.stories.tsx
+- apps/frontend/src/components/ui/Sidebar.tsx
+- apps/frontend/src/components/ui/Sidebar.stories.tsx
+- apps/frontend/src/components/ui/Table.tsx
+- apps/frontend/src/components/ui/Table.stories.tsx
+- apps/frontend/src/components/ui/TodoItem.tsx
+- apps/frontend/src/components/ui/TodoList.tsx
+- apps/frontend/src/storybook/main.ts
+- apps/frontend/src/storybook/preview.ts
+- apps/web/src/components/ui/button.tsx
+- apps/web/src/components/ui/card.tsx
 
 **Dominio funcional:** UI/Componentes (apps/frontend)
 **Incluye:** Components, Pages, Services, Tests

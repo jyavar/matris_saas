@@ -2,17 +2,19 @@
 STRATO MODULE HEADER
 {
   "module": "ANALYTICS_REPORTING",
-  "objective": "Gestionar métricas, tracking, reporting y dashboards técnicos con integración PostHog.",
+  "objective": "Proveer analytics, métricas, reporting y dashboards con PostHog y Supabase",
   "paths": [
-    "apps/backend/src/services/reporting.service.ts",
-    "apps/backend/src/routes/reporting.routes.ts",
-    "apps/backend/src/services/posthog.service.ts",
-    "apps/backend/src/routes/posthog.routes.ts",
-    "apps/web/src/app/control-tower/"
+    "apps/backend/src/services/analytics.service.ts",
+    "apps/backend/src/controllers/analytics.controller.ts",
+    "apps/backend/src/routes/analytics.routes.ts"
   ],
-  "deps": ["zod", "posthog-node", "react", "next"],
+  "deps": ["posthog", "supabase"],
   "status": "100%",
-  "pending": {},
+  "pending": {
+    "services": [],
+    "tests": [],
+    "docs": []
+  },
   "rules": {
     "no-any": true,
     "strict-types": true,
@@ -24,6 +26,19 @@ STRATO MODULE HEADER
   "responsible": "José + IA STRATO"
 }
 -->
+
+## Archivos clave
+- apps/backend/src/services/analytics.service.ts
+- apps/backend/src/controllers/analytics.controller.ts
+- apps/backend/src/routes/analytics.routes.ts
+- apps/backend/src/tests/analytics.test.ts
+- apps/frontend/src/services/analytics.api.ts
+- apps/frontend/src/lib/reporting.api.ts
+- apps/frontend/src/lib/__tests__/reporting.api.ts
+- apps/frontend/src/components/ui/AnalyticsPanel.tsx
+- apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx
+- apps/frontend/src/tests/AnalyticsPanel.test.tsx
+
 # ~M_ANALYTICS_REPORTING.md
 
 **Dominio funcional:** Analytics & Reporting (apps/backend)

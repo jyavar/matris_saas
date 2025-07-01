@@ -6,13 +6,20 @@ Avance: 0%
 <!--
 STRATO MODULE HEADER
 {
-  "module": "PRICING",
-  "objective": "Gestionar la lógica de planes, precios y simulación de upgrades/downgrades para el SaaS.",
-  "paths": ["~M_PRICING.md"],
-  "status": "40%",
-  "last_synced": "2025-06-27",
-  "last_validated": "2025-06-27",
-  "responsible": "José + IA STRATO",
+  "module": "PRICING_BILLING",
+  "objective": "Gestionar planes de precios, suscripciones, facturación y pagos con Stripe",
+  "paths": [
+    "apps/backend/src/services/billing.service.ts",
+    "apps/backend/src/controllers/billing.controller.ts",
+    "apps/backend/src/routes/billing.routes.ts"
+  ],
+  "deps": ["stripe", "supabase"],
+  "status": "100%",
+  "pending": {
+    "services": [],
+    "tests": [],
+    "docs": []
+  },
   "rules": {
     "no-any": true,
     "strict-types": true,
@@ -21,6 +28,21 @@ STRATO MODULE HEADER
   }
 }
 -->
+
+## Archivos clave
+- apps/backend/src/services/billing.service.ts
+- apps/backend/src/services/stripe.service.ts
+- apps/backend/src/controllers/billing.controller.ts
+- apps/backend/src/routes/billing.routes.ts
+- apps/backend/src/tests/billing.test.ts
+- apps/backend/src/services/__tests__/billing.service.test.ts
+- apps/backend/src/services/__tests__/stripe.service.test.ts
+- src/services/billing.service.ts
+- src/services/stripe.service.ts
+- src/controllers/billing.controller.ts
+- src/routes/billing.routes.ts
+- src/tests/billing.controller.test.ts
+
 # ~M_PRICING.md
 
 ## 1. Propósito del módulo

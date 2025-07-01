@@ -123,4 +123,49 @@ Gestionar la estrategia de testing, cobertura y calidad de código en backend y 
 - [x] logger.service.ts → logger.service.test.ts ✅ unit test real
 - [x] resend.service.ts → resend.service.test.ts ✅ unit test real
 - [x] openai.service.ts → openai.service.test.ts ✅ unit test real, 100% mockeable
-- [x] runtime.service.ts → runtime.service.test.ts ✅ unit test real, 100% mockeable 
+- [x] runtime.service.ts → runtime.service.test.ts ✅ unit test real, 100% mockeable
+
+## Archivos clave
+- apps/backend/vitest.config.ts
+- apps/backend/src/test-hooks.ts
+- apps/backend/src/tests/auth.test.ts
+- apps/backend/src/tests/backend.coverage.extended.test.ts
+- apps/backend/src/tests/campaigns.routes.test.ts
+- apps/backend/src/tests/health.test.ts
+- apps/backend/src/tests/analytics.test.ts
+- apps/backend/src/tests/billing.test.ts
+- apps/backend/src/tests/email.test.ts
+- apps/backend/src/tests/notifications.test.ts
+- apps/backend/src/tests/openai.test.ts
+- apps/backend/src/tests/payments.test.ts
+- apps/backend/src/tests/profile.test.ts
+- apps/backend/src/tests/tenant.test.ts
+- apps/backend/src/tests/fixtures.ts
+- apps/backend/src/services/__tests__/billing.service.test.ts
+- apps/backend/src/services/__tests__/logger.service.test.ts
+- apps/backend/src/services/__tests__/openai.service.test.ts
+- apps/backend/src/services/__tests__/stripe.service.test.ts
+- apps/backend/src/services/__tests__/supabase.service.test.ts
+- apps/backend/src/services/__tests__/email.service.test.ts
+- apps/frontend/vitest.config.ts
+- apps/frontend/src/tests/setup.ts
+- apps/frontend/src/tests/mocks/handlers.ts
+- apps/frontend/src/tests/mocks/server.ts
+- apps/frontend/src/tests/AnalyticsPanel.test.tsx
+- apps/frontend/src/tests/AuthForm.test.tsx
+- apps/frontend/src/tests/ProfileCard.test.tsx
+- apps/frontend/src/tests/RegisterForm.test.tsx
+- apps/frontend/src/tests/TodoItem.test.tsx
+- apps/frontend/src/tests/TodoList.test.tsx
+- apps/frontend/src/tests/useTodos.test.ts
+- apps/frontend/src/components/__tests__/ProtectedRoute.test.tsx
+- apps/frontend/src/components/landing/__tests__/LandingPage.test.tsx
+- apps/frontend/src/components/landing/__tests__/RegisterForm.test.tsx
+- apps/frontend/src/components/landing/__tests__/LoginForm.test.tsx
+- apps/frontend/src/services/__tests__/profile.service.test.ts
+- apps/frontend/src/lib/__tests__/reporting.api.ts
+- apps/frontend/tests-e2e/example.spec.ts
+- apps/frontend/tests-e2e/ui.spec.ts
+- apps/web/src/app/__tests__/home.test.tsx
+- playwright.config.ts
+- vitest.config.ts 

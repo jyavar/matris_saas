@@ -24,6 +24,21 @@ STRATO MODULE HEADER
   }
 }
 -->
+
+## Archivos clave
+- apps/backend/src/routes/dev.routes.ts
+- apps/backend/src/controllers/health.controller.ts
+- apps/backend/src/routes/health.routes.ts
+- apps/backend/src/tests/health.test.ts
+- apps/backend/src/tests/backend.coverage.extended.test.ts
+- apps/backend/src/tests/fixtures.ts
+- apps/backend/src/middleware/logger.middleware.ts
+- apps/backend/src/middleware/errorHandler.middleware.ts
+- apps/backend/src/middleware/rateLimit.middleware.ts
+- apps/backend/src/services/logger.service.ts
+- apps/backend/src/services/config.service.ts
+- apps/backend/src/services/__tests__/logger.service.test.ts
+
 # ~M_DEV.md
 
 **Dominio funcional:** DevOps & Health (apps/backend)

@@ -17,6 +17,11 @@ Paths:
 - scripts/agents/security/audit.ts
 - scripts/agents/ui/audit.ts
 - scripts/agents/strato.logic.ts
+- apps/backend/src/services/openai.service.ts
+- apps/backend/src/controllers/openai.controller.ts
+- apps/backend/src/routes/openai.routes.ts
+- apps/backend/src/tests/openai.test.ts
+- apps/backend/src/services/__tests__/openai.service.test.ts
 
 # ~M_COPILOT.md
 

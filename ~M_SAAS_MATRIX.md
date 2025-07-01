@@ -16,6 +16,10 @@ Paths:
 - apps/web/public/matrix.report.json
 - apps/web/public/matrix.verified.json
 - apps/web/public/matrix.logic.json
+- ~SAAS_MATRIX.md
+- ~STRATO_GOLD_PLAN.md
+- ~ROADMAP_STRATO_READY.md
+- ~M_SAAS_LAUNCH_PDR.md
 
 # ~M_SAAS_MATRIX.md
 

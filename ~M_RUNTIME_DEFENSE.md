@@ -16,6 +16,12 @@ Paths:
 - scripts/check-blindaje-real.ts
 - scripts/report-strato-defense.ts
 - scripts/night-watchman.ts
+- apps/backend/src/middleware/auth.middleware.ts
+- apps/backend/src/middleware/errorHandler.middleware.ts
+- apps/backend/src/middleware/logger.middleware.ts
+- apps/backend/src/middleware/rateLimit.middleware.ts
+- apps/backend/src/utils/ApiError.ts
+- apps/backend/src/lib/schemas.ts
 
 # ~M_RUNTIME_DEFENSE.md
 

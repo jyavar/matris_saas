@@ -2,16 +2,19 @@
 STRATO MODULE HEADER
 {
   "module": "EMAIL_CAMPAIGNS",
-  "objective": "Gestionar emails transaccionales, campañas y notificaciones con integración Resend y AI opcional",
+  "objective": "Gestionar envío de emails transaccionales, campañas y templates con Resend",
   "paths": [
-    "apps/backend/src/services/resend.service.ts",
-    "apps/backend/src/routes/resend.routes.ts",
-    "apps/backend/src/services/campaigns.service.ts",
-    "apps/backend/src/routes/campaigns.routes.ts"
+    "apps/backend/src/services/email.service.ts",
+    "apps/backend/src/controllers/email.controller.ts",
+    "apps/backend/src/routes/email.routes.ts"
   ],
-  "deps": ["resend", "zod", "@supabase/supabase-js", "openai"],
+  "deps": ["resend", "supabase"],
   "status": "100%",
-  "pending": {},
+  "pending": {
+    "services": [],
+    "tests": [],
+    "docs": []
+  },
   "rules": {
     "no-any": true,
     "strict-types": true,
@@ -20,6 +23,16 @@ STRATO MODULE HEADER
   }
 }
 -->
+
+## Archivos clave
+- apps/backend/src/services/email.service.ts
+- apps/backend/src/controllers/email.controller.ts
+- apps/backend/src/routes/email.routes.ts
+- apps/backend/src/tests/email.test.ts
+- apps/backend/src/services/__tests__/email.service.test.ts
+- apps/backend/src/routes/campaigns.routes.ts
+- apps/backend/src/tests/campaigns.routes.test.ts
+
 # ~M_EMAIL_CAMPAIGNS.md
 
 **Dominio funcional:** Email & Campaigns (apps/backend)

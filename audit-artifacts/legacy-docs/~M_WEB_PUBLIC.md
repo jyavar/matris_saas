@@ -61,6 +61,37 @@ STRATO MODULE HEADER
 
 ---
 
+## Archivos clave
+- apps/web/src/app/layout.tsx
+- apps/web/src/app/page.tsx
+- apps/web/src/app/control-tower/layout.tsx
+- apps/web/src/app/control-tower/page.tsx
+- apps/web/src/app/api/refresh-audit/route.ts
+- apps/web/src/app/__tests__/home.test.tsx
+- apps/web/src/components/landing/Cta.tsx
+- apps/web/src/components/landing/Features.tsx
+- apps/web/src/components/landing/Footer.tsx
+- apps/web/src/components/landing/Hero.tsx
+- apps/web/src/components/landing/SocialProof.tsx
+- apps/web/src/components/ui/button.tsx
+- apps/web/src/components/ui/card.tsx
+- apps/web/src/components/control-tower/AuditTable.tsx
+- apps/web/src/lib/utils.ts
+- apps/web/next.config.ts
+- apps/web/postcss.config.mjs
+- apps/web/public/favicon.ico
+- apps/web/public/file.svg
+- apps/web/public/globe.svg
+- apps/web/public/matrix.audit.json
+- apps/web/public/matrix.coverage.json
+- apps/web/public/matrix.logic.json
+- apps/web/public/next.svg
+- apps/web/public/vercel.svg
+- apps/web/styles/globals.css
+- apps/web/styles/Home.module.css
+
+---
+
 <!-- ORIGEN: ~M_WEB.md -->
 # ~M_WEB.md
 

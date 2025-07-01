@@ -1,22 +1,19 @@
 <!--
 STRATO MODULE HEADER
 {
-  "module": "MULTI_TENANCY_DB_TYPES",
-  "objective": "Aislar datos por tenant (RLS) y tipar estrictamente la base de datos (Supabase)",
+  "module": "MULTI_TENANCY",
+  "objective": "Gestionar multi-tenancy, aislamiento de datos y configuración por tenant",
   "paths": [
-    "apps/backend/src/middleware/auth.middleware.ts",
-    "apps/backend/src/services/profiles.service.ts",
-    "supabase/migrations/",
-    "packages/db-types/index.d.ts",
-    "packages/db-types/src/index.ts",
-    "apps/backend/src/types/supabase.types.ts"
+    "apps/backend/src/services/tenant.service.ts",
+    "apps/backend/src/controllers/tenant.controller.ts",
+    "apps/backend/src/routes/tenant.routes.ts"
   ],
-  "deps": ["@supabase/supabase-js", "typescript"],
-  "status": "35%",
+  "deps": ["supabase"],
+  "status": "100%",
   "pending": {
-    "services": ["Completar lógica RLS", "Validar tipos en todos los servicios"],
-    "tests": ["Cobertura multi-tenant y tipos"],
-    "docs": ["Ejemplos de uso"]
+    "services": [],
+    "tests": [],
+    "docs": []
   },
   "rules": {
     "no-any": true,
@@ -26,6 +23,14 @@ STRATO MODULE HEADER
   }
 }
 -->
+
+## Archivos clave
+- apps/backend/src/services/tenant.service.ts
+- apps/backend/src/controllers/tenant.controller.ts
+- apps/backend/src/routes/tenant.routes.ts
+- apps/backend/src/tests/tenant.test.ts
+- apps/frontend/src/app/api/auth/signup-tenant/route.ts
+
 # ~M_MULTI_TENANCY.md
 
 **Dominio funcional:** Multi-Tenancy & DB Types (apps/backend, packages/db-types)

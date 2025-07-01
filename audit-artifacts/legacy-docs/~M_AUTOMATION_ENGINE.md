@@ -26,6 +26,15 @@ STRATO MODULE HEADER
   }
 }
 -->
+
+## Archivos clave
+- apps/backend/src/services/openai.service.ts
+- apps/backend/src/routes/openai.routes.ts
+- scripts/init-project.ts
+- scripts/validate-backend.ts
+- apps/backend/src/services/onboarding.service.ts
+- apps/backend/src/routes/onboarding.routes.ts
+
 # ~M_AUTOMATION_ENGINE.md
 
 **Dominio funcional:** Task Engine & Automatización (apps/backend)
