@@ -7,15 +7,19 @@ echo "🚀 STRATO Pre-commit Hook - Validando calidad del código..."
 echo "📦 Sincronizando módulos..."
 pnpm tsx scripts/sync-modules-index.ts
 
-# 2. Linting y formato automático
+# 2. Validación de trazabilidad (BLINDAJE)
+echo "🛡️ Validando blindaje de trazabilidad..."
+pnpm validate-traceability
+
+# 3. Linting y formato automático
 echo "🔍 Ejecutando lint-staged..."
 pnpm lint-staged
 
-# 3. Validaciones personalizadas
+# 4. Validaciones personalizadas
 echo "🔧 Ejecutando validaciones personalizadas..."
 pnpm tsx scripts/pre-commit-validation.ts
 
-# 4. Context watchdog
+# 5. Context watchdog
 echo "👁️ Ejecutando context watchdog..."
 pnpm tsx scripts/agents/context-watchdog.ts
 

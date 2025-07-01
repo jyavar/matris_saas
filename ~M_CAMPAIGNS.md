@@ -1,3 +1,30 @@
+<!-- STRATO MODULE HEADER
+{
+  "module": "CAMPAIGNS",
+  "description": "Módulo CAMPAIGNS de STRATO",
+  "paths": [
+    "apps/backend/src/services/campaigns.service.ts",
+    "apps/backend/src/routes/campaigns.routes.ts",
+    "apps/backend/dist/services/campaigns.service.js",
+    "apps/backend/dist/routes/campaigns.routes.js",
+    "apps/backend/dist/src/services/campaigns.service.js",
+    "apps/backend/dist/src/routes/campaigns.routes.js"
+  ],
+  "tests": [
+    "apps/backend/src/tests/campaigns.routes.test.ts",
+    "apps/backend/dist/tests/campaigns.routes.test.js",
+    "apps/backend/dist/src/tests/campaigns.routes.test.js"
+  ],
+  "routes": [],
+  "docs": [],
+  "last_synced": "2025-07-01",
+  "responsible": "José + IA STRATO",
+  "coverage": 50,
+  "status": "active",
+  "criticality": "medium"
+}
+-->
+
 ---
 Estado Técnico: Parcial
 Deuda Técnica: Alta
@@ -44,3 +71,192 @@ Paths:
 1. Completar lógica de campañas
 2. Agregar tests y cobertura
 3. Documentar endpoints 
+
+
+
+
+
+
+## 📁 ARCHIVOS CLAVE
+
+### **Source Files**
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/routes/campaigns.routes.ts` - Archivo fuente
+- `apps/backend/src/services/campaigns.service.ts` - Archivo fuente
+- `apps/backend/dist/services/campaigns.service.js` - Archivo fuente
+- `apps/backend/dist/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/campaigns.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/campaigns.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/campaigns.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/campaigns.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/campaigns.routes.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `apps/backend/src/services/campaigns.service.ts`
+- `apps/backend/src/routes/campaigns.routes.ts`
+- `apps/backend/dist/services/campaigns.service.js`
+- `apps/backend/dist/routes/campaigns.routes.js`
+- `apps/backend/dist/src/routes/campaigns.routes.js`
+- `apps/backend/dist/src/services/campaigns.service.js`
+
+### Test Files
+- `apps/backend/src/tests/campaigns.routes.test.ts`
+- `apps/backend/dist/tests/campaigns.routes.test.js`
+- `apps/backend/dist/src/tests/campaigns.routes.test.js`
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+

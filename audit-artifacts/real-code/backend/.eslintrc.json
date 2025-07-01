@@ -1,9 +1,0 @@
-{
-  "ignorePatterns": ["**/.eslintrc.cjs", "dist"],
-  "parserOptions": {
-    "project": true
-  },
-  "env": {
-    "node": true
-  }
-} 

@@ -1,3 +1,21 @@
+<!-- STRATO MODULE HEADER
+{
+  "module": "SAAS_MATRIX",
+  "description": "Módulo SAAS_MATRIX de STRATO",
+  "paths": [
+    "scripts/create-saas-clone.ts"
+  ],
+  "tests": [],
+  "routes": [],
+  "docs": [],
+  "last_synced": "2025-07-01",
+  "responsible": "José + IA STRATO",
+  "coverage": 0,
+  "status": "active",
+  "criticality": "medium"
+}
+-->
+
 ---
 Estado Técnico: Pendiente
 Deuda Técnica: Máxima
@@ -46,3 +64,129 @@ Paths:
 1. Definir estructura de reportes
 2. Implementar dashboards y tests
 3. Documentar módulo 
+
+
+
+
+
+
+## 📁 ARCHIVOS CLAVE
+
+### **Source Files**
+- `scripts/create-saas-clone.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `scripts/create-saas-clone.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+
+### Source Files
+- `scripts/create-saas-clone.ts`
+
+### Test Files
+
+
+### Config Files
+
+
+### Doc Files
+
+
+### Scripts
+

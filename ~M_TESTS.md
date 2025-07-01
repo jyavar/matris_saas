@@ -1,0 +1,974 @@
+<!-- STRATO MODULE HEADER
+{
+  "module": "TESTS",
+  "description": "Módulo de testing y cobertura para STRATO.",
+  "paths": [
+    "apps/web/vitest.setup.ts",
+    "apps/web/vitest.config.ts",
+    "apps/frontend/vitest.setup.ts",
+    "apps/frontend/vitest.config.ts",
+    "apps/frontend/test-1/types.ts",
+    "apps/frontend/test-1/index.ts",
+    "apps/web/node_modules/vitest/workers.d.ts",
+    "apps/web/node_modules/vitest/utils.d.ts",
+    "apps/web/node_modules/vitest/snapshot.d.ts",
+    "apps/web/node_modules/vitest/runners.d.ts",
+    "apps/web/node_modules/vitest/reporters.d.ts",
+    "apps/web/node_modules/vitest/optional-types.d.ts",
+    "apps/web/node_modules/vitest/node.d.ts",
+    "apps/web/node_modules/vitest/mocker.d.ts",
+    "apps/web/node_modules/vitest/jsdom.d.ts",
+    "apps/web/node_modules/vitest/importMeta.d.ts",
+    "apps/web/node_modules/vitest/import-meta.d.ts",
+    "apps/web/node_modules/vitest/globals.d.ts",
+    "apps/web/node_modules/vitest/execute.d.ts",
+    "apps/web/node_modules/vitest/environments.d.ts",
+    "apps/web/node_modules/vitest/coverage.d.ts",
+    "apps/web/node_modules/vitest/config.d.ts",
+    "apps/web/node_modules/vitest/browser.d.ts",
+    "apps/web/node_modules/react-dom/test-utils.js",
+    "apps/frontend/src/tests/setup.ts",
+    "apps/frontend/node_modules/react-dom/test-utils.js",
+    "apps/web/node_modules/@testing-library/react/pure.js",
+    "apps/web/node_modules/@testing-library/react/pure.d.ts",
+    "apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js",
+    "apps/web/node_modules/@testing-library/jest-dom/vitest.js",
+    "apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts",
+    "apps/web/node_modules/@testing-library/jest-dom/matchers.js",
+    "apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts",
+    "apps/web/node_modules/@testing-library/jest-dom/jest-globals.js",
+    "apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts",
+    "apps/web/node_modules/@types/node/test.d.ts",
+    "apps/web/node_modules/@playwright/test/reporter.js",
+    "apps/web/node_modules/@playwright/test/reporter.d.ts",
+    "apps/web/node_modules/@playwright/test/index.js",
+    "apps/web/node_modules/@playwright/test/index.d.ts",
+    "apps/web/node_modules/@playwright/test/cli.js",
+    "apps/frontend/src/tests/mocks/server.ts",
+    "apps/frontend/src/tests/mocks/handlers.ts",
+    "apps/frontend/node_modules/@testing-library/react/pure.js",
+    "apps/frontend/node_modules/@testing-library/react/pure.d.ts",
+    "apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js",
+    "apps/frontend/node_modules/@testing-library/jest-dom/vitest.js",
+    "apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts",
+    "apps/frontend/node_modules/@testing-library/jest-dom/matchers.js",
+    "apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts",
+    "apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js",
+    "apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts",
+    "apps/frontend/node_modules/@playwright/test/reporter.js",
+    "apps/frontend/node_modules/@playwright/test/reporter.d.ts",
+    "apps/frontend/node_modules/@playwright/test/index.js",
+    "apps/frontend/node_modules/@playwright/test/index.d.ts",
+    "apps/frontend/node_modules/@playwright/test/cli.js",
+    "packages/utils/tests/test-utils.ts",
+    "vitest.config.ts"
+  ],
+  "tests": [
+    "apps/frontend/tests-e2e/example.spec.ts",
+    "apps/frontend/test-1/__tests__/test-1.test.ts",
+    "apps/frontend/src/tests/UserBadge.test.tsx",
+    "apps/frontend/src/tests/TodoList.test.tsx",
+    "apps/frontend/src/tests/ProfileCard.test.tsx",
+    "apps/web/src/app/__tests__/home.test.tsx",
+    "packages/utils/src/subtract.test.ts",
+    "packages/utils/src/add.test.ts"
+  ],
+  "routes": [],
+  "docs": [
+    "apps/frontend/test-1/README.md",
+    "apps/web/node_modules/vitest/README.md",
+    "apps/web/node_modules/vitest/LICENSE.md",
+    "apps/frontend/node_modules/start-server-and-test/README.md",
+    "apps/web/node_modules/@testing-library/react/README.md",
+    "apps/web/node_modules/@testing-library/react/CHANGELOG.md",
+    "apps/web/node_modules/@testing-library/jest-dom/README.md",
+    "apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md",
+    "apps/web/node_modules/@testing-library/user-event/README.md",
+    "apps/web/node_modules/@playwright/test/README.md",
+    "apps/frontend/node_modules/@testing-library/react/README.md",
+    "apps/frontend/node_modules/@testing-library/react/CHANGELOG.md",
+    "apps/frontend/node_modules/@testing-library/jest-dom/README.md",
+    "apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md",
+    "apps/frontend/node_modules/@playwright/test/README.md",
+    "apps/frontend/node_modules/@storybook/testing-react/README.md"
+  ],
+  "last_synced": "2025-07-01",
+  "responsible": "José + IA STRATO",
+  "coverage": 14,
+  "status": "active",
+  "criticality": "high"
+}
+-->
+
+# TESTS
+
+
+
+
+
+
+
+## 📁 ARCHIVOS CLAVE
+
+### **Source Files**
+- `apps/web/vitest.setup.ts` - Archivo fuente
+- `apps/web/vitest.config.ts` - Archivo fuente
+- `apps/frontend/vitest.setup.ts` - Archivo fuente
+- `apps/frontend/vitest.config.ts` - Archivo fuente
+- `apps/frontend/test-1/types.ts` - Archivo fuente
+- `apps/frontend/test-1/index.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/optional-types.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/mocker.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/web/node_modules/react-dom/test-utils.js` - Archivo fuente
+- `apps/frontend/src/tests/setup.ts` - Archivo fuente
+- `apps/frontend/node_modules/react-dom/test-utils.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/pure.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/pure.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/reporter.js` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/reporter.d.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/index.js` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/cli.js` - Archivo fuente
+- `apps/frontend/src/tests/mocks/server.ts` - Archivo fuente
+- `apps/frontend/src/tests/mocks/handlers.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/pure.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/reporter.js` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/index.js` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/index.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/cli.js` - Archivo fuente
+- `packages/utils/tests/test-utils.ts` - Archivo fuente
+- `vitest.config.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/tests-e2e/example.spec.ts` - Archivo de test
+- `apps/frontend/test-1/__tests__/test-1.test.ts` - Archivo de test
+- `apps/frontend/src/tests/UserBadge.test.tsx` - Archivo de test
+- `apps/frontend/src/tests/TodoList.test.tsx` - Archivo de test
+- `apps/frontend/src/tests/ProfileCard.test.tsx` - Archivo de test
+- `apps/web/src/app/__tests__/home.test.tsx` - Archivo de test
+- `packages/utils/src/subtract.test.ts` - Archivo de test
+- `packages/utils/src/add.test.ts` - Archivo de test
+
+### **Config Files**
+- `apps/frontend/frontend-test-report.json` - Archivo de configuración
+- `apps/web/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/start-server-and-test/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/user-event/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/jest-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/@vitest/coverage-v8/package.json` - Archivo de configuración
+- `apps/web/node_modules/@playwright/test/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@testing-library/react/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@playwright/test/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@storybook/testing-react/package.json` - Archivo de configuración
+- `tests-audit.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/frontend/test-1/README.md` - Archivo de documentación
+- `apps/web/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/web/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/frontend/node_modules/start-server-and-test/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/user-event/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/jest-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/@playwright/test/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/react/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md` - Archivo de documentación
+- `apps/frontend/node_modules/@playwright/test/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@storybook/testing-react/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/vitest.setup.ts` - Archivo fuente
+- `apps/web/vitest.config.ts` - Archivo fuente
+- `apps/frontend/vitest.setup.ts` - Archivo fuente
+- `apps/frontend/vitest.config.ts` - Archivo fuente
+- `apps/frontend/test-1/types.ts` - Archivo fuente
+- `apps/frontend/test-1/index.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/optional-types.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/mocker.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/web/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/web/node_modules/react-dom/test-utils.js` - Archivo fuente
+- `apps/frontend/src/tests/setup.ts` - Archivo fuente
+- `apps/frontend/node_modules/react-dom/test-utils.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/pure.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/pure.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js` - Archivo fuente
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/frontend/src/tests/mocks/server.ts` - Archivo fuente
+- `apps/frontend/src/tests/mocks/handlers.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/reporter.js` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/reporter.d.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/index.js` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@playwright/test/cli.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/pure.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js` - Archivo fuente
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/reporter.js` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/index.js` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/index.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@playwright/test/cli.js` - Archivo fuente
+- `packages/utils/tests/test-utils.ts` - Archivo fuente
+- `vitest.config.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/tests-e2e/example.spec.ts` - Archivo de test
+- `apps/frontend/test-1/__tests__/test-1.test.ts` - Archivo de test
+- `apps/frontend/src/tests/UserBadge.test.tsx` - Archivo de test
+- `apps/frontend/src/tests/TodoList.test.tsx` - Archivo de test
+- `apps/frontend/src/tests/ProfileCard.test.tsx` - Archivo de test
+- `apps/web/src/app/__tests__/home.test.tsx` - Archivo de test
+- `packages/utils/src/subtract.test.ts` - Archivo de test
+- `packages/utils/src/add.test.ts` - Archivo de test
+
+### **Config Files**
+- `apps/frontend/frontend-test-report.json` - Archivo de configuración
+- `apps/web/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/start-server-and-test/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/user-event/package.json` - Archivo de configuración
+- `apps/web/node_modules/@testing-library/jest-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/@vitest/coverage-v8/package.json` - Archivo de configuración
+- `apps/web/node_modules/@playwright/test/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@testing-library/react/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@playwright/test/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@storybook/testing-react/package.json` - Archivo de configuración
+- `tests-audit.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/frontend/test-1/README.md` - Archivo de documentación
+- `apps/web/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/web/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/frontend/node_modules/start-server-and-test/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/user-event/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/jest-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/@playwright/test/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/react/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md` - Archivo de documentación
+- `apps/frontend/node_modules/@playwright/test/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@storybook/testing-react/README.md` - Archivo de documentación## Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/vitest.setup.ts`
+- `apps/web/vitest.config.ts`
+- `apps/frontend/vitest.setup.ts`
+- `apps/frontend/vitest.config.ts`
+- `apps/frontend/test-1/types.ts`
+- `apps/frontend/test-1/index.ts`
+- `apps/web/node_modules/vitest/workers.d.ts`
+- `apps/web/node_modules/vitest/utils.d.ts`
+- `apps/web/node_modules/vitest/snapshot.d.ts`
+- `apps/web/node_modules/vitest/runners.d.ts`
+- `apps/web/node_modules/vitest/reporters.d.ts`
+- `apps/web/node_modules/vitest/optional-types.d.ts`
+- `apps/web/node_modules/vitest/node.d.ts`
+- `apps/web/node_modules/vitest/mocker.d.ts`
+- `apps/web/node_modules/vitest/jsdom.d.ts`
+- `apps/web/node_modules/vitest/importMeta.d.ts`
+- `apps/web/node_modules/vitest/import-meta.d.ts`
+- `apps/web/node_modules/vitest/globals.d.ts`
+- `apps/web/node_modules/vitest/execute.d.ts`
+- `apps/web/node_modules/vitest/environments.d.ts`
+- `apps/web/node_modules/vitest/coverage.d.ts`
+- `apps/web/node_modules/vitest/config.d.ts`
+- `apps/web/node_modules/vitest/browser.d.ts`
+- `apps/web/node_modules/react-dom/test-utils.js`
+- `apps/frontend/src/tests/setup.ts`
+- `apps/frontend/node_modules/react-dom/test-utils.js`
+- `apps/web/node_modules/@testing-library/react/pure.js`
+- `apps/web/node_modules/@testing-library/react/pure.d.ts`
+- `apps/web/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/web/node_modules/@types/node/test.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/web/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/web/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/web/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/web/node_modules/@playwright/test/reporter.js`
+- `apps/web/node_modules/@playwright/test/reporter.d.ts`
+- `apps/web/node_modules/@playwright/test/index.js`
+- `apps/web/node_modules/@playwright/test/index.d.ts`
+- `apps/web/node_modules/@playwright/test/cli.js`
+- `apps/frontend/src/tests/mocks/server.ts`
+- `apps/frontend/src/tests/mocks/handlers.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/vitest.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/matchers.d.ts`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.js`
+- `apps/frontend/node_modules/@testing-library/jest-dom/jest-globals.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/pure.js`
+- `apps/frontend/node_modules/@testing-library/react/pure.d.ts`
+- `apps/frontend/node_modules/@testing-library/react/dont-cleanup-after-each.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.js`
+- `apps/frontend/node_modules/@playwright/test/reporter.d.ts`
+- `apps/frontend/node_modules/@playwright/test/index.js`
+- `apps/frontend/node_modules/@playwright/test/index.d.ts`
+- `apps/frontend/node_modules/@playwright/test/cli.js`
+- `packages/utils/tests/test-utils.ts`
+- `vitest.config.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/example.spec.ts`
+- `apps/frontend/test-1/__tests__/test-1.test.ts`
+- `apps/frontend/src/tests/UserBadge.test.tsx`
+- `apps/frontend/src/tests/TodoList.test.tsx`
+- `apps/frontend/src/tests/ProfileCard.test.tsx`
+- `apps/web/src/app/__tests__/home.test.tsx`
+- `packages/utils/src/subtract.test.ts`
+- `packages/utils/src/add.test.ts`
+
+### Config Files
+- `apps/frontend/frontend-test-report.json`
+- `apps/web/node_modules/vitest/package.json`
+- `apps/frontend/node_modules/start-server-and-test/package.json`
+- `apps/web/node_modules/@vitest/coverage-v8/package.json`
+- `apps/web/node_modules/@testing-library/user-event/package.json`
+- `apps/web/node_modules/@testing-library/react/package.json`
+- `apps/web/node_modules/@testing-library/jest-dom/package.json`
+- `apps/web/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@testing-library/jest-dom/package.json`
+- `apps/frontend/node_modules/@testing-library/react/package.json`
+- `apps/frontend/node_modules/@playwright/test/package.json`
+- `apps/frontend/node_modules/@storybook/testing-react/package.json`
+- `tests-audit.json`
+
+### Doc Files
+- `apps/frontend/test-1/README.md`
+- `apps/web/node_modules/vitest/README.md`
+- `apps/web/node_modules/vitest/LICENSE.md`
+- `apps/frontend/node_modules/start-server-and-test/README.md`
+- `apps/web/node_modules/@testing-library/user-event/README.md`
+- `apps/web/node_modules/@testing-library/react/README.md`
+- `apps/web/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/web/node_modules/@testing-library/jest-dom/README.md`
+- `apps/web/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/web/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/README.md`
+- `apps/frontend/node_modules/@testing-library/jest-dom/CHANGELOG.md`
+- `apps/frontend/node_modules/@testing-library/react/README.md`
+- `apps/frontend/node_modules/@testing-library/react/CHANGELOG.md`
+- `apps/frontend/node_modules/@playwright/test/README.md`
+- `apps/frontend/node_modules/@storybook/testing-react/README.md`
+
+### Scripts
+
+### Source Files
+
+### Test Files
+
+### Config Files
+
+### Doc Files
+
+### Scripts
+
+---
+
+## Descripción
+
+Incluye todos los tests unitarios, integración y E2E del monorepo STRATO.
+
+## Checklist de trazabilidad
+- [ ] Header JSON válido
+- [ ] Archivos clave listados
+- [ ] Tests asociados
+- [ ] Rutas documentadas
+- [ ] Sin archivos huérfanos 

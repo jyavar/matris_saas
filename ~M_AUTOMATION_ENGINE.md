@@ -1,7 +1,7 @@
 <!-- STRATO MODULE HEADER
 {
-  "module": "LAUNCHBOARD",
-  "description": "Módulo de gestión y orquestación de lanzamientos y dashboards.",
+  "module": "AUTOMATION_ENGINE",
+  "description": "Módulo de automatización y orquestación de procesos.",
   "paths": [],
   "tests": [],
   "routes": [],
@@ -14,7 +14,7 @@
 }
 -->
 
-# LAUNCHBOARD
+# AUTOMATION_ENGINE
 
 ## 📁 ARCHIVOS CLAVE
 
@@ -32,7 +32,7 @@
 
 ## Descripción
 
-Módulo para la gestión de dashboards, paneles y lanzamientos de features en STRATO.
+Automatización de procesos, workflows y tareas programadas en STRATO.
 
 ## Checklist de trazabilidad
 - [ ] Header JSON válido

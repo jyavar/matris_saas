@@ -1,7 +1,7 @@
 <!-- STRATO MODULE HEADER
 {
-  "module": "LAUNCHBOARD",
-  "description": "Módulo de gestión y orquestación de lanzamientos y dashboards.",
+  "module": "PRICING",
+  "description": "Módulo de gestión de precios y planes de suscripción.",
   "paths": [],
   "tests": [],
   "routes": [],
@@ -14,7 +14,7 @@
 }
 -->
 
-# LAUNCHBOARD
+# PRICING
 
 ## 📁 ARCHIVOS CLAVE
 
@@ -32,7 +32,7 @@
 
 ## Descripción
 
-Módulo para la gestión de dashboards, paneles y lanzamientos de features en STRATO.
+Gestión de precios, planes y lógica de facturación para STRATO.
 
 ## Checklist de trazabilidad
 - [ ] Header JSON válido

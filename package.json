@@ -24,7 +24,8 @@
     "format": "prettier --write .",
     "clean": "turbo clean && rm -rf node_modules",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
-    "check-react-imports": "tsx scripts/check-react-imports.ts"
+    "check-react-imports": "tsx scripts/check-react-imports.ts",
+    "validate-traceability": "tsx scripts/validate-traceability.ts"
   },
   "keywords": [
     "saas",

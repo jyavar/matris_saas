@@ -1,22 +1,51 @@
-<!--
-STRATO MODULE HEADER
+<!-- STRATO MODULE HEADER
 {
   "module": "UI_FULL",
-  "objective": "Componentes UI reutilizables, tipados, con tests y docs sincronizadas.",
+  "description": "Módulo UI_FULL de STRATO",
   "paths": [
-    "apps/frontend/src/components/ui/",
-    "apps/frontend/src/tests/"
+    "apps/web/node_modules/vitest/suite.d.ts",
+    "apps/frontend/src/components/TodoList.tsx",
+    "apps/frontend/src/components/TodoItem.tsx",
+    "apps/web/src/components/ui/card.tsx",
+    "apps/web/src/components/ui/button.tsx",
+    "apps/web/src/components/landing/SocialProof.tsx",
+    "apps/web/src/components/landing/Hero.tsx",
+    "apps/web/src/components/landing/Footer.tsx",
+    "apps/web/src/components/landing/Features.tsx",
+    "apps/web/src/components/landing/Cta.tsx",
+    "apps/web/node_modules/@vitest/ui/shim.d.ts",
+    "apps/web/node_modules/@vitest/ui/reporter.d.ts",
+    "apps/frontend/src/components/ui/input.tsx",
+    "apps/frontend/src/components/ui/input.stories.tsx",
+    "apps/frontend/src/components/ui/card.tsx",
+    "apps/frontend/src/components/ui/card.stories.tsx",
+    "apps/frontend/src/components/ui/button.tsx",
+    "apps/frontend/src/components/ui/button.stories.tsx",
+    "apps/frontend/src/components/ui/UserBadge.tsx",
+    "apps/frontend/src/components/ui/UserBadge.stories.tsx",
+    "apps/frontend/src/components/ui/ProfileCard.tsx",
+    "apps/frontend/src/components/ui/ProfileCard.stories.tsx",
+    "apps/frontend/src/components/landing/RegisterForm.tsx",
+    "apps/frontend/src/components/landing/LandingPage.tsx",
+    "scripts/agents/ui/audit.ts"
   ],
-  "status": "100%",
-  "last_synced": "2025-06-26",
-  "last_validated": "2025-06-26",
+  "tests": [
+    "apps/frontend/tests-e2e/ui.spec.ts",
+    "apps/frontend/src/components/landing/RegisterForm.test.tsx",
+    "apps/frontend/src/components/landing/LandingPage.test.tsx"
+  ],
+  "routes": [],
+  "docs": [
+    "apps/web/node_modules/@vitest/ui/README.md",
+    "apps/web/node_modules/@radix-ui/react-slot/README.md",
+    "apps/web/node_modules/@headlessui/react/README.md",
+    "apps/frontend/node_modules/@radix-ui/react-slot/README.md"
+  ],
+  "last_synced": "2025-07-01",
   "responsible": "José + IA STRATO",
-  "rules": {
-    "no-any": true,
-    "strict-types": true,
-    "eslint": "on",
-    "context-guard": "on"
-  }
+  "coverage": 12,
+  "status": "active",
+  "criticality": "medium"
 }
 -->
 # ~M_UI_FULL.md
@@ -570,3 +599,417 @@ Gestiona la creación, edición y consulta de perfiles de usuario. Permite actua
 
 ## 10. Siguiente paso para estar 100% STRATO READY
 - Mantener cobertura y checklist tras cada cambio. 
+
+
+
+
+
+
+## 📁 ARCHIVOS CLAVE
+
+### **Source Files**
+- `apps/web/node_modules/vitest/suite.d.ts` - Archivo fuente
+- `apps/frontend/src/components/TodoList.tsx` - Archivo fuente
+- `apps/frontend/src/components/TodoItem.tsx` - Archivo fuente
+- `apps/web/src/components/ui/card.tsx` - Archivo fuente
+- `apps/web/src/components/ui/button.tsx` - Archivo fuente
+- `apps/web/src/components/landing/SocialProof.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Hero.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Footer.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Features.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Cta.tsx` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/shim.d.ts` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/input.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/input.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/RegisterForm.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/LandingPage.tsx` - Archivo fuente
+- `scripts/agents/ui/audit.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/tests-e2e/ui.spec.ts` - Archivo de test
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx` - Archivo de test
+- `apps/frontend/src/components/landing/LandingPage.test.tsx` - Archivo de test
+
+### **Config Files**
+- `apps/web/node_modules/@vitest/ui/package.json` - Archivo de configuración
+- `apps/web/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+- `apps/web/node_modules/@headlessui/react/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/node_modules/@vitest/ui/README.md` - Archivo de documentación
+- `apps/web/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación
+- `apps/web/node_modules/@headlessui/react/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/node_modules/vitest/suite.d.ts` - Archivo fuente
+- `apps/frontend/src/components/TodoList.tsx` - Archivo fuente
+- `apps/frontend/src/components/TodoItem.tsx` - Archivo fuente
+- `apps/web/src/components/ui/card.tsx` - Archivo fuente
+- `apps/web/src/components/ui/button.tsx` - Archivo fuente
+- `apps/web/src/components/landing/SocialProof.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Hero.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Footer.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Features.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Cta.tsx` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/shim.d.ts` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/input.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/input.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/RegisterForm.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/LandingPage.tsx` - Archivo fuente
+- `scripts/agents/ui/audit.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/tests-e2e/ui.spec.ts` - Archivo de test
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx` - Archivo de test
+- `apps/frontend/src/components/landing/LandingPage.test.tsx` - Archivo de test
+
+### **Config Files**
+- `apps/web/node_modules/@vitest/ui/package.json` - Archivo de configuración
+- `apps/web/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+- `apps/web/node_modules/@headlessui/react/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/node_modules/@vitest/ui/README.md` - Archivo de documentación
+- `apps/web/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación
+- `apps/web/node_modules/@headlessui/react/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación## Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
+### Source Files
+- `apps/web/node_modules/vitest/suite.d.ts`
+- `apps/frontend/src/components/TodoList.tsx`
+- `apps/frontend/src/components/TodoItem.tsx`
+- `apps/web/src/components/ui/card.tsx`
+- `apps/web/src/components/ui/button.tsx`
+- `apps/web/src/components/landing/SocialProof.tsx`
+- `apps/web/src/components/landing/Hero.tsx`
+- `apps/web/src/components/landing/Footer.tsx`
+- `apps/web/src/components/landing/Features.tsx`
+- `apps/web/src/components/landing/Cta.tsx`
+- `apps/web/node_modules/@vitest/ui/shim.d.ts`
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts`
+- `apps/frontend/src/components/ui/input.tsx`
+- `apps/frontend/src/components/ui/input.stories.tsx`
+- `apps/frontend/src/components/ui/card.tsx`
+- `apps/frontend/src/components/ui/card.stories.tsx`
+- `apps/frontend/src/components/ui/button.tsx`
+- `apps/frontend/src/components/ui/button.stories.tsx`
+- `apps/frontend/src/components/ui/UserBadge.tsx`
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.tsx`
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx`
+- `apps/frontend/src/components/landing/RegisterForm.tsx`
+- `apps/frontend/src/components/landing/LandingPage.tsx`
+- `scripts/agents/ui/audit.ts`
+
+### Test Files
+- `apps/frontend/tests-e2e/ui.spec.ts`
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx`
+- `apps/frontend/src/components/landing/LandingPage.test.tsx`
+
+### Config Files
+- `apps/web/node_modules/@vitest/ui/package.json`
+- `apps/web/node_modules/@radix-ui/react-slot/package.json`
+- `apps/web/node_modules/@headlessui/react/package.json`
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json`
+
+### Doc Files
+- `apps/web/node_modules/@vitest/ui/README.md`
+- `apps/web/node_modules/@radix-ui/react-slot/README.md`
+- `apps/web/node_modules/@headlessui/react/README.md`
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md`
+
+### Scripts
+
