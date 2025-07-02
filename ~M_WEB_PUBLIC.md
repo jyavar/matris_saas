@@ -88,6 +88,555 @@
 - `apps/web/node_modules/react-dom/client.js` - Archivo fuente
 - `apps/web/node_modules/react/react.shared-subset.js` - Archivo fuente
 - `apps/web/node_modules/react/index.js` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/types.js` - Archivo fuente
+- `apps/web/node_modules/next/types.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/server.js` - Archivo fuente
+- `apps/web/node_modules/next/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/script.js` - Archivo fuente
+- `apps/web/node_modules/next/script.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/router.js` - Archivo fuente
+- `apps/web/node_modules/next/router.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/og.js` - Archivo fuente
+- `apps/web/node_modules/next/og.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/navigation.js` - Archivo fuente
+- `apps/web/node_modules/next/navigation.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/link.js` - Archivo fuente
+- `apps/web/node_modules/next/link.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/jest.js` - Archivo fuente
+- `apps/web/node_modules/next/jest.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/image.js` - Archivo fuente
+- `apps/web/node_modules/next/image.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/headers.js` - Archivo fuente
+- `apps/web/node_modules/next/headers.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/head.js` - Archivo fuente
+- `apps/web/node_modules/next/head.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/form.js` - Archivo fuente
+- `apps/web/node_modules/next/form.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/error.js` - Archivo fuente
+- `apps/web/node_modules/next/error.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.js` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/document.js` - Archivo fuente
+- `apps/web/node_modules/next/document.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/constants.js` - Archivo fuente
+- `apps/web/node_modules/next/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/config.js` - Archivo fuente
+- `apps/web/node_modules/next/config.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/client.js` - Archivo fuente
+- `apps/web/node_modules/next/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/cache.js` - Archivo fuente
+- `apps/web/node_modules/next/cache.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/babel.js` - Archivo fuente
+- `apps/web/node_modules/next/babel.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/app.js` - Archivo fuente
+- `apps/web/node_modules/next/app.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/amp.js` - Archivo fuente
+- `apps/web/node_modules/next/amp.d.ts` - Archivo fuente
+- `apps/web/node_modules/clsx/clsx.d.ts` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamicIconImports.d.ts` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamic.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/src/app/control-tower/page.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/layout.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/AuditTable.tsx` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/global.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.js` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.esm.js` - Archivo fuente
+- `apps/web/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/web/src/app/api/refresh-audit/route.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+- `apps/web/tsconfig.json` - Archivo de configuración
+- `apps/web/package.json` - Archivo de configuración
+- `apps/web/public/matrix.verified.json` - Archivo de configuración
+- `apps/web/public/matrix.report.json` - Archivo de configuración
+- `apps/web/public/matrix.logic.json` - Archivo de configuración
+- `apps/web/public/matrix.coverage.json` - Archivo de configuración
+- `apps/web/public/matrix.audit.json` - Archivo de configuración
+- `apps/web/node_modules/tailwindcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/recharts/package.json` - Archivo de configuración
+- `apps/web/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/web/node_modules/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/tailwind-merge/package.json` - Archivo de configuración
+- `apps/web/node_modules/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/next/package.json` - Archivo de configuración
+- `apps/web/node_modules/jsdom/package.json` - Archivo de configuración
+- `apps/web/node_modules/clsx/package.json` - Archivo de configuración
+- `apps/web/node_modules/autoprefixer/package.json` - Archivo de configuración
+- `apps/web/node_modules/lucide-react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@tailwindcss/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/@heroicons/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/node/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwindcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/README.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/DEVELOPING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CONTRIBUTING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/web/node_modules/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/LICENSE.md` - Archivo de documentación
+- `apps/web/node_modules/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/next/license.md` - Archivo de documentación
+- `apps/web/node_modules/next/README.md` - Archivo de documentación
+- `apps/web/node_modules/jsdom/README.md` - Archivo de documentación
+- `apps/web/node_modules/clsx/readme.md` - Archivo de documentación
+- `apps/web/node_modules/autoprefixer/README.md` - Archivo de documentación
+- `apps/web/node_modules/lucide-react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@tailwindcss/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/@heroicons/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/node/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/tailwind.config.ts` - Archivo fuente
+- `apps/web/next.config.ts` - Archivo fuente
+- `apps/web/next-env.d.ts` - Archivo fuente
+- `apps/web/src/lib/utils.ts` - Archivo fuente
+- `apps/web/src/app/page.tsx` - Archivo fuente
+- `apps/web/src/app/layout.tsx` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.node.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.browser.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/profiling.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/index.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/client.js` - Archivo fuente
+- `apps/web/node_modules/react/react.shared-subset.js` - Archivo fuente
+- `apps/web/node_modules/react/index.js` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamicIconImports.d.ts` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamic.d.ts` - Archivo fuente
+- `apps/web/node_modules/clsx/clsx.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/types.js` - Archivo fuente
+- `apps/web/node_modules/next/types.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/server.js` - Archivo fuente
+- `apps/web/node_modules/next/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/script.js` - Archivo fuente
+- `apps/web/node_modules/next/script.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/router.js` - Archivo fuente
+- `apps/web/node_modules/next/router.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/og.js` - Archivo fuente
+- `apps/web/node_modules/next/og.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/navigation.js` - Archivo fuente
+- `apps/web/node_modules/next/navigation.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/link.js` - Archivo fuente
+- `apps/web/node_modules/next/link.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/jest.js` - Archivo fuente
+- `apps/web/node_modules/next/jest.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/image.js` - Archivo fuente
+- `apps/web/node_modules/next/image.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/headers.js` - Archivo fuente
+- `apps/web/node_modules/next/headers.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/head.js` - Archivo fuente
+- `apps/web/node_modules/next/head.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/form.js` - Archivo fuente
+- `apps/web/node_modules/next/form.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/error.js` - Archivo fuente
+- `apps/web/node_modules/next/error.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.js` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/document.js` - Archivo fuente
+- `apps/web/node_modules/next/document.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/constants.js` - Archivo fuente
+- `apps/web/node_modules/next/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/config.js` - Archivo fuente
+- `apps/web/node_modules/next/config.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/client.js` - Archivo fuente
+- `apps/web/node_modules/next/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/cache.js` - Archivo fuente
+- `apps/web/node_modules/next/cache.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/babel.js` - Archivo fuente
+- `apps/web/node_modules/next/babel.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/app.js` - Archivo fuente
+- `apps/web/node_modules/next/app.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/amp.js` - Archivo fuente
+- `apps/web/node_modules/next/amp.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/src/app/control-tower/page.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/layout.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/AuditTable.tsx` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/global.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.js` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.esm.js` - Archivo fuente
+- `apps/web/src/app/api/refresh-audit/route.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+- `apps/web/tsconfig.json` - Archivo de configuración
+- `apps/web/package.json` - Archivo de configuración
+- `apps/web/public/matrix.verified.json` - Archivo de configuración
+- `apps/web/public/matrix.report.json` - Archivo de configuración
+- `apps/web/public/matrix.logic.json` - Archivo de configuración
+- `apps/web/public/matrix.coverage.json` - Archivo de configuración
+- `apps/web/public/matrix.audit.json` - Archivo de configuración
+- `apps/web/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/web/node_modules/tailwind-merge/package.json` - Archivo de configuración
+- `apps/web/node_modules/recharts/package.json` - Archivo de configuración
+- `apps/web/node_modules/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/tailwindcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/lucide-react/package.json` - Archivo de configuración
+- `apps/web/node_modules/clsx/package.json` - Archivo de configuración
+- `apps/web/node_modules/jsdom/package.json` - Archivo de configuración
+- `apps/web/node_modules/autoprefixer/package.json` - Archivo de configuración
+- `apps/web/node_modules/next/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/web/node_modules/@tailwindcss/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/@heroicons/react/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/README.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/LICENSE.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/README.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/DEVELOPING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CONTRIBUTING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwindcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/lucide-react/README.md` - Archivo de documentación
+- `apps/web/node_modules/clsx/readme.md` - Archivo de documentación
+- `apps/web/node_modules/jsdom/README.md` - Archivo de documentación
+- `apps/web/node_modules/autoprefixer/README.md` - Archivo de documentación
+- `apps/web/node_modules/next/license.md` - Archivo de documentación
+- `apps/web/node_modules/next/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/web/node_modules/@tailwindcss/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/@heroicons/react/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/tailwind.config.ts` - Archivo fuente
+- `apps/web/next.config.ts` - Archivo fuente
+- `apps/web/next-env.d.ts` - Archivo fuente
+- `apps/web/src/lib/utils.ts` - Archivo fuente
+- `apps/web/src/app/page.tsx` - Archivo fuente
+- `apps/web/src/app/layout.tsx` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.node.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.browser.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/profiling.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/index.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/client.js` - Archivo fuente
+- `apps/web/node_modules/react/react.shared-subset.js` - Archivo fuente
+- `apps/web/node_modules/react/index.js` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamicIconImports.d.ts` - Archivo fuente
+- `apps/web/node_modules/lucide-react/dynamic.d.ts` - Archivo fuente
+- `apps/web/node_modules/clsx/clsx.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/web/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/types.js` - Archivo fuente
+- `apps/web/node_modules/next/types.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/server.js` - Archivo fuente
+- `apps/web/node_modules/next/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/script.js` - Archivo fuente
+- `apps/web/node_modules/next/script.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/router.js` - Archivo fuente
+- `apps/web/node_modules/next/router.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/og.js` - Archivo fuente
+- `apps/web/node_modules/next/og.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/navigation.js` - Archivo fuente
+- `apps/web/node_modules/next/navigation.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/link.js` - Archivo fuente
+- `apps/web/node_modules/next/link.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/jest.js` - Archivo fuente
+- `apps/web/node_modules/next/jest.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/image.js` - Archivo fuente
+- `apps/web/node_modules/next/image.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/headers.js` - Archivo fuente
+- `apps/web/node_modules/next/headers.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/head.js` - Archivo fuente
+- `apps/web/node_modules/next/head.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/form.js` - Archivo fuente
+- `apps/web/node_modules/next/form.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/error.js` - Archivo fuente
+- `apps/web/node_modules/next/error.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.js` - Archivo fuente
+- `apps/web/node_modules/next/dynamic.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/document.js` - Archivo fuente
+- `apps/web/node_modules/next/document.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/constants.js` - Archivo fuente
+- `apps/web/node_modules/next/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/config.js` - Archivo fuente
+- `apps/web/node_modules/next/config.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/client.js` - Archivo fuente
+- `apps/web/node_modules/next/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/cache.js` - Archivo fuente
+- `apps/web/node_modules/next/cache.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/babel.js` - Archivo fuente
+- `apps/web/node_modules/next/babel.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/app.js` - Archivo fuente
+- `apps/web/node_modules/next/app.d.ts` - Archivo fuente
+- `apps/web/node_modules/next/amp.js` - Archivo fuente
+- `apps/web/node_modules/next/amp.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.js` - Archivo fuente
+- `apps/frontend/node_modules/next/web-vitals.d.ts` - Archivo fuente
+- `apps/web/src/app/control-tower/page.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/layout.tsx` - Archivo fuente
+- `apps/web/src/app/control-tower/AuditTable.tsx` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/server.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/client.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react-dom/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/index.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/global.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/experimental.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/canary.d.ts` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.js` - Archivo fuente
+- `apps/web/node_modules/@heroicons/react/index.esm.js` - Archivo fuente
+- `apps/web/src/app/api/refresh-audit/route.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+- `apps/web/tsconfig.json` - Archivo de configuración
+- `apps/web/package.json` - Archivo de configuración
+- `apps/web/public/matrix.verified.json` - Archivo de configuración
+- `apps/web/public/matrix.report.json` - Archivo de configuración
+- `apps/web/public/matrix.logic.json` - Archivo de configuración
+- `apps/web/public/matrix.coverage.json` - Archivo de configuración
+- `apps/web/public/matrix.audit.json` - Archivo de configuración
+- `apps/web/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/web/node_modules/tailwind-merge/package.json` - Archivo de configuración
+- `apps/web/node_modules/recharts/package.json` - Archivo de configuración
+- `apps/web/node_modules/tailwindcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/lucide-react/package.json` - Archivo de configuración
+- `apps/web/node_modules/jsdom/package.json` - Archivo de configuración
+- `apps/web/node_modules/autoprefixer/package.json` - Archivo de configuración
+- `apps/web/node_modules/clsx/package.json` - Archivo de configuración
+- `apps/web/node_modules/next/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react-dom/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/web/node_modules/@types/react/package.json` - Archivo de configuración
+- `apps/web/node_modules/@tailwindcss/postcss/package.json` - Archivo de configuración
+- `apps/web/node_modules/@heroicons/react/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/README.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/web/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/README.md` - Archivo de documentación
+- `apps/web/node_modules/tailwind-merge/LICENSE.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/README.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/DEVELOPING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CONTRIBUTING.md` - Archivo de documentación
+- `apps/web/node_modules/recharts/CHANGELOG.md` - Archivo de documentación
+- `apps/web/node_modules/tailwindcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/lucide-react/README.md` - Archivo de documentación
+- `apps/web/node_modules/jsdom/README.md` - Archivo de documentación
+- `apps/web/node_modules/autoprefixer/README.md` - Archivo de documentación
+- `apps/web/node_modules/clsx/readme.md` - Archivo de documentación
+- `apps/web/node_modules/next/license.md` - Archivo de documentación
+- `apps/web/node_modules/next/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react-dom/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/web/node_modules/@types/react/README.md` - Archivo de documentación
+- `apps/web/node_modules/@tailwindcss/postcss/README.md` - Archivo de documentación
+- `apps/web/node_modules/@heroicons/react/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/tailwind.config.ts` - Archivo fuente
+- `apps/web/next.config.ts` - Archivo fuente
+- `apps/web/next-env.d.ts` - Archivo fuente
+- `apps/web/src/lib/utils.ts` - Archivo fuente
+- `apps/web/src/app/page.tsx` - Archivo fuente
+- `apps/web/src/app/layout.tsx` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.node.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/server.browser.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/profiling.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/index.js` - Archivo fuente
+- `apps/web/node_modules/react-dom/client.js` - Archivo fuente
+- `apps/web/node_modules/react/react.shared-subset.js` - Archivo fuente
+- `apps/web/node_modules/react/index.js` - Archivo fuente
 - `apps/web/node_modules/lucide-react/dynamicIconImports.d.ts` - Archivo fuente
 - `apps/web/node_modules/lucide-react/dynamic.d.ts` - Archivo fuente
 - `apps/web/node_modules/next/web-vitals.js` - Archivo fuente

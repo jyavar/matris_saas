@@ -552,6 +552,1086 @@ pnpm build --filter backend
 - `apps/frontend/src/services/profile.service.ts` - Archivo fuente
 - `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
 - `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/routes/users.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/router.js` - Archivo fuente
+- `apps/backend/dist/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/routes/users.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/router.js` - Archivo fuente
+- `apps/backend/dist/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/routes/users.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/router.js` - Archivo fuente
+- `apps/backend/dist/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
 - `apps/backend/src/tests/setup.ts` - Archivo fuente
 - `apps/backend/src/tests/mock-test.ts` - Archivo fuente
 - `apps/backend/src/tests/fixtures.ts` - Archivo fuente
