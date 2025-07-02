@@ -107,6 +107,202 @@ Paths:
 - `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
 - `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
 - `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/runtime.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/dist/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/routes/runtime.routes.js` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
 - `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
 - `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
 

@@ -85,6 +85,360 @@
 - `scripts/agents/strato.logic.ts` - Archivo fuente
 - `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
 - `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/data/index.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+- `scripts/agents/data/index.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación
+- `scripts/agents/data/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
+- `scripts/agents/security/audit.ts` - Archivo fuente
+- `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
+- `scripts/agents/refactor/autofix.ts` - Archivo fuente
+- `scripts/agents/data/processor.ts` - Archivo fuente
+- `scripts/agents/qa/run-qa.ts` - Archivo fuente
+- `scripts/agents/qa/index.ts` - Archivo fuente
+- `scripts/agents/qa/audit.ts` - Archivo fuente
+
+### **Test Files**
+- `scripts/agents/qa/run-qa.test.ts` - Archivo de test
+- `scripts/agents/qa/index.test.ts` - Archivo de test
+- `scripts/agents/qa/audit.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+- `scripts/agents/qa/README.md` - Archivo de documentación## **Source Files**
+- `scripts/visibility-report.ts` - Archivo fuente
+- `scripts/validate-traceability.ts` - Archivo fuente
+- `scripts/validate-test-templates.ts` - Archivo fuente
+- `scripts/validate-repo.ts` - Archivo fuente
+- `scripts/validate-module.ts` - Archivo fuente
+- `scripts/validate-env.ts` - Archivo fuente
+- `scripts/taskmaster.prd.ts` - Archivo fuente
+- `scripts/sync-modules-index.ts` - Archivo fuente
+- `scripts/report-strato-defense.ts` - Archivo fuente
+- `scripts/report-status.ts` - Archivo fuente
+- `scripts/pre-commit-validation.ts` - Archivo fuente
+- `scripts/night-watchman.ts` - Archivo fuente
+- `scripts/init-project.ts` - Archivo fuente
+- `scripts/generate-code.ts` - Archivo fuente
+- `scripts/defense-reminder.ts` - Archivo fuente
+- `scripts/defense-pack-implementation.ts` - Archivo fuente
+- `scripts/db-seed.ts` - Archivo fuente
+- `scripts/create-module.ts` - Archivo fuente
+- `scripts/check-react-imports.ts` - Archivo fuente
+- `scripts/check-env.ts` - Archivo fuente
+- `scripts/check-blindaje-real.ts` - Archivo fuente
+- `scripts/auto-documentation.ts` - Archivo fuente
+- `scripts/audit-visibility.ts` - Archivo fuente
+- `scripts/audit-module.ts` - Archivo fuente
+- `scripts/audit-checklist.ts` - Archivo fuente
+- `scripts/angel-vigilante.ts` - Archivo fuente
+- `scripts/audit/audit-system.ts` - Archivo fuente
+- `scripts/agents/strato.logic.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.watch.ts` - Archivo fuente
+- `scripts/agents/context-watchdog.ts` - Archivo fuente
 - `scripts/agents/merge-strategist/conflict-resolver.ts` - Archivo fuente
 - `scripts/agents/security/audit.ts` - Archivo fuente
 - `scripts/agents/data/processor.ts` - Archivo fuente

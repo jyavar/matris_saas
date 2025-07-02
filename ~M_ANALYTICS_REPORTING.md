@@ -181,6 +181,76 @@
 
 
 ### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/lib/reporting.api.ts` - Archivo fuente
+
+### **Test Files**
+
+
+### **Config Files**
+
+
+### **Doc Files**
 ## Source Files
 - `apps/frontend/src/lib/reporting.api.ts`
 
