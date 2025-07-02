@@ -9,7 +9,4 @@ const router = Router()
 router.post('/track', authMiddleware, PostHogController.trackEvent)
 router.post('/identify', authMiddleware, PostHogController.identifyUser)
 
-// Endpoint público para health check
-router.get('/health', PostHogController.getHealth)
-
 export default router

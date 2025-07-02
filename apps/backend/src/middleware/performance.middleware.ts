@@ -1,6 +1,6 @@
-import type { NextFunction, Request, Response } from 'express'
 import compression from 'compression'
 import cors from 'cors'
+import type { NextFunction, Request, Response } from 'express'
 import NodeCache from 'node-cache'
 
 // Cache configuration
@@ -26,9 +26,10 @@ const compressionOptions = {
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.ALLOWED_ORIGINS?.split(',') || ['https://yourdomain.com']
-    : ['http://localhost:3000', 'http://localhost:3001'],
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? process.env.ALLOWED_ORIGINS?.split(',') || ['https://yourdomain.com']
+      : ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -49,7 +50,7 @@ export const corsMiddleware = cors(corsOptions)
  * Cache middleware for GET requests
  */
 export const cacheMiddleware = (duration: number = 300) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // Only cache GET requests
     if (req.method !== 'GET') {
       return next()
@@ -64,12 +65,13 @@ export const cacheMiddleware = (duration: number = 300) => {
     const cachedResponse = cache.get(key)
 
     if (cachedResponse) {
-      return res.json(cachedResponse)
+      res.json(cachedResponse)
+      return
     }
 
     // Override res.json to cache the response
     const originalJson = res.json
-    res.json = function(data) {
+    res.json = function (data) {
       cache.set(key, data, duration)
       return originalJson.call(this, data)
     }
@@ -81,12 +83,19 @@ export const cacheMiddleware = (duration: number = 300) => {
 /**
  * Performance monitoring middleware
  */
-export const performanceMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const performanceMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   const start = Date.now()
-  
+
   // Add performance headers before response is sent
-  res.setHeader('X-Request-ID', req.headers['x-request-id'] || `req_${Date.now()}`)
-  
+  res.setHeader(
+    'X-Request-ID',
+    req.headers['x-request-id'] || `req_${Date.now()}`,
+  )
+
   // Add response time header after response is sent
   res.on('finish', () => {
     const duration = Date.now() - start
@@ -102,11 +111,18 @@ export const performanceMiddleware = (req: Request, res: Response, next: NextFun
 /**
  * Memory usage monitoring
  */
-export const memoryMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const memoryMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   const memUsage = process.memoryUsage()
-  
+
   // Log memory usage for high-traffic endpoints
-  if (req.path.includes('/api/analytics') || req.path.includes('/api/reporting')) {
+  if (
+    req.path.includes('/api/analytics') ||
+    req.path.includes('/api/reporting')
+  ) {
     console.log('Memory usage:', {
       rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
       heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
@@ -122,7 +138,8 @@ export const memoryMiddleware = (req: Request, res: Response, next: NextFunction
  */
 export const cacheUtils = {
   get: (key: string) => cache.get(key),
-  set: (key: string, value: unknown, ttl?: number) => cache.set(key, value, ttl),
+  set: (key: string, value: unknown, ttl?: number) =>
+    cache.set(key, value, ttl),
   del: (key: string) => cache.del(key),
   flush: () => {
     const keys = cache.keys()
@@ -138,7 +155,7 @@ export const cacheUtils = {
  */
 export const clearCachePattern = (pattern: string) => {
   const keys = cache.keys()
-  const matchingKeys = keys.filter(key => key.includes(pattern))
-  matchingKeys.forEach(key => cache.del(key))
+  const matchingKeys = keys.filter((key) => key.includes(pattern))
+  matchingKeys.forEach((key) => cache.del(key))
   return matchingKeys.length
-} 
+}

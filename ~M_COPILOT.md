@@ -207,6 +207,53 @@ Paths:
 - `apps/backend/node_modules/openai/README.md` - Archivo de documentación
 - `apps/backend/node_modules/openai/CHANGELOG.md` - Archivo de documentación## **Source Files**
 - `apps/backend/src/services/openai.service.ts` - Archivo fuente
+- `apps/backend/src/routes/openai.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/openai.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/version.js` - Archivo fuente
+- `apps/backend/node_modules/openai/version.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/uploads.js` - Archivo fuente
+- `apps/backend/node_modules/openai/uploads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/streaming.js` - Archivo fuente
+- `apps/backend/node_modules/openai/streaming.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/resources.js` - Archivo fuente
+- `apps/backend/node_modules/openai/resources.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/resource.js` - Archivo fuente
+- `apps/backend/node_modules/openai/resource.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/pagination.js` - Archivo fuente
+- `apps/backend/node_modules/openai/pagination.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/index.js` - Archivo fuente
+- `apps/backend/node_modules/openai/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/error.js` - Archivo fuente
+- `apps/backend/node_modules/openai/error.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/client.js` - Archivo fuente
+- `apps/backend/node_modules/openai/client.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/azure.js` - Archivo fuente
+- `apps/backend/node_modules/openai/azure.d.ts` - Archivo fuente
+- `apps/backend/node_modules/openai/api-promise.js` - Archivo fuente
+- `apps/backend/node_modules/openai/api-promise.d.ts` - Archivo fuente
+- `apps/backend/dist/services/openai.service.js` - Archivo fuente
+- `apps/backend/dist/routes/openai.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/openai.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/openai.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/openai.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/openai.test.ts` - Archivo de test
+- `apps/backend/src/tests/openai.routes.test.ts` - Archivo de test
+- `apps/backend/dist/tests/openai.routes.test.js` - Archivo de test
+- `apps/backend/src/services/__tests__/openai.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/openai.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/openai.routes.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/openai.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/openai.service.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/node_modules/openai/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/node_modules/openai/README.md` - Archivo de documentación
+- `apps/backend/node_modules/openai/CHANGELOG.md` - Archivo de documentación## **Source Files**
+- `apps/backend/src/services/openai.service.ts` - Archivo fuente
 - `apps/backend/src/controllers/openai.controller.ts` - Archivo fuente
 - `apps/backend/src/routes/openai.routes.ts` - Archivo fuente
 - `apps/backend/node_modules/openai/version.js` - Archivo fuente

@@ -1,13 +1,11 @@
 import { Router } from 'express'
 
-import { 
-  strictRateLimit, 
-  apiRateLimit, 
-  authRateLimit, 
+import {
   analyticsRateLimit,
-  speedLimiter 
+  apiRateLimit,
+  authRateLimit,
+  speedLimiter,
 } from '../middleware/rateLimit.middleware.js'
-import { cacheMiddleware } from '../middleware/performance.middleware.js'
 import analyticsReportingRoutes from './analytics-reporting.routes.js'
 import analyticsRoutes from './analytics.routes.js'
 import authRoutes from './auth.routes.js'
@@ -21,49 +19,42 @@ import onboardingRoutes from './onboarding.routes.js'
 import openaiRoutes from './openai.routes.js'
 import posthogRoutes from './posthog.routes.js'
 import pricingRoutes from './pricing.routes.js'
-import profilesRoutes from './profiles.routes.js'
-import reportingRoutes from './reporting.routes.js'
-import resendRoutes from './resend.routes.js'
-import runtimeRoutes from './runtime.routes.js'
 import todoRoutes from './todo.routes.js'
 
 const router = Router()
 
-// Health routes (no rate limiting)
-router.use('/health', healthRoutes)
+// Apply speed limiting to all routes
+router.use(speedLimiter)
 
 // Auth routes (strict rate limiting)
 router.use('/auth', authRateLimit, authRoutes)
 
-// Analytics routes (higher limits, with caching)
-router.use('/analytics', analyticsRateLimit, cacheMiddleware(300), analyticsRoutes)
-router.use('/analytics-reporting', analyticsRateLimit, cacheMiddleware(600), analyticsReportingRoutes)
+// Analytics routes (higher rate limits, caching)
+router.use('/analytics', analyticsRateLimit, analyticsRoutes)
+router.use('/analytics-reporting', analyticsRateLimit, analyticsReportingRoutes)
 
-// Reporting routes (strict rate limiting)
-router.use('/reporting', strictRateLimit, reportingRoutes)
+// API routes (general rate limiting)
+router.use('/api', apiRateLimit, router)
 
-// General API routes (standard rate limiting)
-router.use('/todo', apiRateLimit, todoRoutes)
-router.use('/profiles', apiRateLimit, profilesRoutes)
-router.use('/pricing', apiRateLimit, cacheMiddleware(1800), pricingRoutes) // Cache pricing for 30 minutes
-router.use('/launchboard', apiRateLimit, cacheMiddleware(300), launchboardRoutes)
-router.use('/onboarding', apiRateLimit, onboardingRoutes)
+// Pricing routes (caching for 30 minutes)
+router.use('/pricing', apiRateLimit, pricingRoutes)
+
+// Launchboard routes (caching for 5 minutes)
+router.use('/launchboard', apiRateLimit, launchboardRoutes)
+
+// Other routes with general rate limiting
 router.use('/automation', apiRateLimit, automationRoutes)
-router.use('/openai', strictRateLimit, openaiRoutes)
-router.use('/posthog', strictRateLimit, posthogRoutes)
+router.use('/campaigns', apiRateLimit, campaignsRoutes)
+router.use('/email-campaigns', apiRateLimit, emailCampaignsRoutes)
+router.use('/health', healthRoutes)
+router.use('/onboarding', apiRateLimit, onboardingRoutes)
+router.use('/openai', apiRateLimit, openaiRoutes)
+router.use('/posthog', apiRateLimit, posthogRoutes)
+router.use('/todo', apiRateLimit, todoRoutes)
 
-// External service routes (strict rate limiting)
-router.use('/resend', strictRateLimit, resendRoutes)
-router.use('/campaigns', strictRateLimit, campaignsRoutes)
-router.use('/email-campaigns', strictRateLimit, emailCampaignsRoutes)
-
-// Runtime and dev routes (no rate limiting in development)
+// Development routes (only in development)
 if (process.env.NODE_ENV === 'development') {
-  router.use('/runtime', runtimeRoutes)
   router.use('/dev', devRoutes)
 }
-
-// Apply speed limiter to all routes
-router.use(speedLimiter)
 
 export default router

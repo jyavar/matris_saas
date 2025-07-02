@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from 'express'
+import { Request, RequestHandler, Response, Router } from 'express'
 
 import { onboardingController } from '../controllers/onboarding.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
@@ -6,23 +6,21 @@ import { authMiddleware } from '../middleware/auth.middleware.js'
 const router = Router()
 
 function handleAsync(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
-) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next)
+  fn: (req: Request, res: Response, next: unknown) => Promise<unknown>,
+): RequestHandler {
+  return (req: Request, res: Response, next: unknown) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fn(req, res, next).catch(next as any)
   }
 }
 
-router.get('/', authMiddleware, handleAsync(onboardingController.getOnboarding))
-router.post(
-  '/start',
-  authMiddleware,
-  handleAsync(onboardingController.startOnboarding),
-)
-router.post(
-  '/complete',
-  authMiddleware,
-  handleAsync(onboardingController.completeOnboarding),
-)
+// Protected routes (require authentication)
+router.use(authMiddleware)
+
+router.get('/', handleAsync(onboardingController.getOnboarding))
+
+router.post('/start', handleAsync(onboardingController.startOnboarding))
+
+router.post('/complete', handleAsync(onboardingController.completeOnboarding))
 
 export default router

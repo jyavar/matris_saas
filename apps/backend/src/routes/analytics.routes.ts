@@ -1,43 +1,55 @@
-import { Router } from 'express'
+import { Request, RequestHandler, Response, Router } from 'express'
 
 import { analyticsController } from '../controllers/analytics.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 
 const router = Router()
 
+function handleAsync(
+  fn: (req: Request, res: Response, next: unknown) => Promise<unknown>,
+): RequestHandler {
+  return (req: Request, res: Response, next: unknown) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fn(req, res, next).catch(next as any)
+  }
+}
+
 // Public routes (no authentication required for tracking)
-router.post('/track/event', analyticsController.trackEvent)
-router.post('/track/metric', analyticsController.trackMetric)
+router.post('/track/event', handleAsync(analyticsController.trackEvent))
+router.post('/track/metric', handleAsync(analyticsController.trackMetric))
 
 // Protected routes (require authentication)
 router.use(authMiddleware)
 
 // New analytics endpoints
-router.get('/events', analyticsController.getEvents)
-router.get('/metrics', analyticsController.getMetrics)
-router.get('/summary', analyticsController.getAnalyticsSummary)
+router.get('/events', handleAsync(analyticsController.getEvents))
+router.get('/metrics', handleAsync(analyticsController.getMetrics))
+router.get('/summary', handleAsync(analyticsController.getAnalyticsSummary))
 
 // Ruta fija para el edge case: /analytics/users (sin userId)
-router.get('/analytics/users', (_req, res) => {
-  res.status(404).json({ message: 'User ID not provided' });
-});
+const usersNotFoundHandler: RequestHandler = (_req, res) => {
+  res.status(404).json({ message: 'User ID not provided' })
+}
+router.get('/analytics/users', usersNotFoundHandler)
 
 // Middleware para capturar /users/ (userId vacío)
-router.get('/users/', (_req, res) => {
-  return res.status(404).json({ message: 'User ID not provided' });
-});
-router.get('/users/:userId', analyticsController.getUserAnalytics)
+const usersEmptyHandler: RequestHandler = (_req, res) => {
+  res.status(404).json({ message: 'User ID not provided' })
+}
+router.get('/users/', usersEmptyHandler)
+router.get('/users/:userId', handleAsync(analyticsController.getUserAnalytics))
 
 // Legacy endpoints
-router.get('/', analyticsController.getAllAnalytics)
-router.get('/:id', analyticsController.getAnalyticsById)
-router.post('/', analyticsController.createAnalytics)
-router.patch('/:id', analyticsController.updateAnalytics)
-router.delete('/:id', analyticsController.deleteAnalytics)
+router.get('/', handleAsync(analyticsController.getAllAnalytics))
+router.get('/:id', handleAsync(analyticsController.getAnalyticsById))
+router.post('/', handleAsync(analyticsController.createAnalytics))
+router.patch('/:id', handleAsync(analyticsController.updateAnalytics))
+router.delete('/:id', handleAsync(analyticsController.deleteAnalytics))
 
 // Place this at the end to catch /users with no param
-router.all('/users', (req: any, res: any) => {
-  return res.status(404).json({ success: false, error: 'User ID is required' })
-})
+const usersRequiredHandler: RequestHandler = (req, res) => {
+  res.status(404).json({ success: false, error: 'User ID is required' })
+}
+router.all('/users', usersRequiredHandler)
 
 export default router

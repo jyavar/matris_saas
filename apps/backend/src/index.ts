@@ -1,14 +1,14 @@
 import express from 'express'
 import helmet from 'helmet'
 
+import {
+  compressionMiddleware,
+  corsMiddleware,
+  memoryMiddleware,
+  performanceMiddleware,
+} from './middleware/performance.middleware.js'
 import router from './routes/router.js'
 import logger from './services/logger.service.js'
-import { 
-  compressionMiddleware, 
-  corsMiddleware, 
-  performanceMiddleware, 
-  memoryMiddleware 
-} from './middleware/performance.middleware.js'
 
 const app = express()
 
@@ -27,20 +27,20 @@ app.use(express.urlencoded({ extended: true }))
 
 // Health check with performance headers
 app.get('/health', (_req, res) => {
-  res.status(200).json({ 
-    status: 'OK', 
+  res.status(200).json({
+    status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     memory: process.memoryUsage(),
-    version: process.env.npm_package_version || '1.0.0'
+    version: process.env.npm_package_version || '1.0.0',
   })
 })
 
-// Performance metrics endpoint
+// Metrics endpoint
 app.get('/metrics', (_req, res) => {
   const memUsage = process.memoryUsage()
   const cpuUsage = process.cpuUsage()
-  
+
   res.status(200).json({
     memory: {
       rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
@@ -53,32 +53,29 @@ app.get('/metrics', (_req, res) => {
       system: `${Math.round(cpuUsage.system / 1000)}ms`,
     },
     uptime: process.uptime(),
-    version: process.version,
+    version: process.env.npm_package_version || '1.0.0',
     platform: process.platform,
   })
 })
 
-// Routes
+// API routes
 app.use('/api', router)
 
-// Error handling
-const createErrorHandler = (logger: {
-  error: (data: unknown, message: string) => void
-}) => {
-  return (err: Error, req: express.Request, res: express.Response) => {
-    logger.error({ error: err.message, stack: err.stack }, 'Unhandled error')
+// Error handling middleware
+app.use((err: Error, _req: express.Request, res: express.Response) => {
+  logger.error(err, 'Unhandled error')
+  res.status(500).json({
+    success: false,
+    error: 'Internal server error',
+  })
+})
 
-    if (res.headersSent) {
-      return
-    }
+// 404 handler
+app.use('*', (_req, res) => {
+  res.status(404).json({
+    success: false,
+    error: 'Route not found',
+  })
+})
 
-    res.status(500).json({
-      success: false,
-      error: 'Internal server error',
-    })
-  }
-}
-
-app.use(createErrorHandler(logger))
-
-export { app }
+export { app, logger }

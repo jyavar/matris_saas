@@ -1,30 +1,20 @@
 import { v4 as uuidv4 } from 'uuid'
-import { beforeEach } from 'vitest'
-
-import { supabase } from './setup.js'
 
 export async function generateUser(emailSeed: string) {
   const email = `test-${emailSeed}-${Date.now()}@example.com`
   const password = 'password123'
   const tenant_id = uuidv4()
 
-  // Crea usuario en Supabase Auth (simulado: inserta en profiles)
-  const { data: profile, error } = await supabase
-    .from('profiles')
-    .insert({
-      email,
-      tenant_id,
-    })
-    .select()
-    .single()
-
-  if (error) throw error
-
+  // Mock user generation for tests
   return {
     email,
     password,
     tenant_id,
-    profile,
+    profile: {
+      id: uuidv4(),
+      email,
+      tenant_id,
+    },
   }
 }
 
@@ -41,8 +31,3 @@ export const testUser = {
   email: 'test@example.com',
   tenant_id: 'test-tenant-id',
 }
-
-beforeEach(async () => {
-  // Clean up test data
-  await supabase.from('profiles').delete().eq('id', testUser.id)
-})

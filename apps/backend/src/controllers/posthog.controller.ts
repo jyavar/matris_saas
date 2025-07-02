@@ -25,7 +25,11 @@ export const PostHogController = {
     try {
       const validated = trackEventSchema.parse(req.body)
 
-      const result = await posthogService.trackEvent(validated)
+      const result = await posthogService.trackEvent({
+        event: validated.event,
+        properties: validated.properties,
+        user_id: validated.user_id,
+      })
 
       logger.info(
         { userId: validated.user_id, event: validated.event },
@@ -49,30 +53,16 @@ export const PostHogController = {
     try {
       const validated = identifyUserSchema.parse(req.body)
 
-      const result = await posthogService.identifyUser(validated)
+      const result = await posthogService.identifyUser({
+        user_id: validated.user_id,
+        traits: validated.traits,
+      })
 
       logger.info({ userId: validated.user_id }, 'User identified in PostHog')
 
       res.status(200).json({
         success: true,
         data: result,
-      })
-    } catch (error) {
-      next(error)
-    }
-  },
-
-  async getHealth(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
-    try {
-      const health = await posthogService.getHealth()
-
-      res.status(200).json({
-        success: true,
-        data: health,
       })
     } catch (error) {
       next(error)

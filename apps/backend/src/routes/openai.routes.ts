@@ -1,4 +1,10 @@
-import { NextFunction, Request, Response, Router } from 'express'
+import {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+  Router,
+} from 'express'
 
 import { openaiController } from '../controllers/openai.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
@@ -6,10 +12,11 @@ import { authMiddleware } from '../middleware/auth.middleware.js'
 const router = Router()
 
 function handleAsync(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
-) {
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
+): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fn(req, res, next).catch(next as any)
   }
 }
 
