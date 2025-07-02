@@ -11,7 +11,7 @@ const generateTextSchema = z.object({
   prompt: z.string().min(1),
 })
 
-export const OpenAIController = {
+export const openaiController = {
   async generateText(req: Request, res: Response, next: NextFunction) {
     try {
       const user = req.user
