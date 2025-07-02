@@ -191,7 +191,7 @@ const loggerMock = {
 vi.mock('./src/services/logger.service.js', async (importOriginal) => {
   const actual = await importOriginal()
   return {
-    ...actual,
+    ...(actual as object),
     default: loggerMock,
     logger: loggerMock,
   }
@@ -429,7 +429,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
     getUserAnalytics: vi.fn(async (userId) => {
       if (userId === 'non-existent-user' || userId === '') {
         const ApiError = class ApiError extends Error {
-          constructor(statusCode, message) {
+          statusCode: number
+          constructor(statusCode: number, message: string) {
             super(message)
             this.statusCode = statusCode
             this.name = 'ApiError'
@@ -466,7 +467,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
     parse: vi.fn((data) => {
       if (!data.event_name) {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['event_name'] }]
@@ -476,7 +478,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
       }
       if (typeof data.event_name !== 'string') {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['event_name'] }]
@@ -491,7 +494,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
     parse: vi.fn((data) => {
       if (!data.metric_name) {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['metric_name'] }]
@@ -501,7 +505,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
       }
       if (typeof data.value !== 'number') {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['value'] }]
@@ -516,7 +521,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
     parse: vi.fn((query) => {
       if (query.limit && (isNaN(query.limit) || query.limit > 1000)) {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['limit'] }]
@@ -526,7 +532,8 @@ vi.mock('./src/services/analytics.service.js', () => ({
       }
       if (query.offset && isNaN(query.offset)) {
         const ZodError = class ZodError extends Error {
-          constructor(message) {
+          errors: Array<{ message: string; path: string[] }>
+          constructor(message: string) {
             super(message)
             this.name = 'ZodError'
             this.errors = [{ message, path: ['offset'] }]
