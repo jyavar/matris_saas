@@ -7,7 +7,8 @@ STRATO es un monorepo SaaS con arquitectura modular:
 ```
 matriz_cursor/
 ├── apps/
-│   ├── backend/          # API Node.js/Express + Supabase
+│   ├── backend/          # API Node.js/Express + Supabase (puerto 3001)
+│   ├── backend-nest/     # API NestJS + Supabase (puerto 3002) - Migración en progreso
 │   ├── frontend/         # React + Vite + TypeScript
 │   └── web/             # Next.js Landing + Control Tower
 ├── packages/             # Librerías compartidas
