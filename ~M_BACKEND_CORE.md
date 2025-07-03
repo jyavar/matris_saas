@@ -564,6 +564,9090 @@ pnpm build --filter backend
 - `apps/frontend/src/services/users.api.ts` - Archivo fuente
 - `apps/frontend/src/services/supabase.ts` - Archivo fuente
 - `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.service.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.module.ts` - Archivo fuente
+- `apps/backend-nest/src/logger/logger.interceptor.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.service.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend-nest/dist/utils/ApiError.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.js` - Archivo fuente
+- `apps/backend-nest/dist/logger/logger.interceptor.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend-nest/src/common/filters/http-exception.filter.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.js` - Archivo fuente
+- `apps/backend-nest/dist/common/filters/http-exception.filter.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/throttler/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/throttler/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
+- `apps/backend-nest/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
+- `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend-nest/dist/lib/supabase.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/health/health.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-loader/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/preprocessor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/legacy.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/jest-preset.js` - Archivo fuente
+- `apps/backend-nest/node_modules/ts-jest/cli.js` - Archivo fuente
+- `apps/backend-nest/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/browser-source-map-support.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/no-conflict.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectNoConflict.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/ReflectLite.js` - Archivo fuente
+- `apps/backend-nest/node_modules/reflect-metadata/Reflect.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/globals/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/tsconfig-paths/register.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/prettier.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-config-prettier/flat.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/standalone.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.js` - Archivo fuente
+- `apps/backend-nest/node_modules/prettier/doc.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/recommended.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js` - Archivo fuente
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.d.ts` - Archivo fuente
+- `apps/backend/src/utils/enforceExactShape.ts` - Archivo fuente
+- `apps/backend/src/utils/ApiError.ts` - Archivo fuente
+- `apps/backend/src/types/supabase.types.ts` - Archivo fuente
+- `apps/backend/src/tests/setup.ts` - Archivo fuente
+- `apps/backend/src/tests/mock-test.ts` - Archivo fuente
+- `apps/backend/src/tests/fixtures.ts` - Archivo fuente
+- `apps/backend/src/routes/todo.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/router.ts` - Archivo fuente
+- `apps/backend/src/routes/resend.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/profiles.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/pricing.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/posthog.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/onboarding.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/health.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/dev.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/automation.routes.ts` - Archivo fuente
+- `apps/backend/src/middleware/rateLimit.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/performance.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/logger.middleware.ts` - Archivo fuente
+- `apps/backend/src/middleware/errorHandler.middleware.ts` - Archivo fuente
+- `apps/backend/src/lib/supabase.ts` - Archivo fuente
+- `apps/backend/src/lib/schemas.ts` - Archivo fuente
+- `apps/backend/src/services/todo.service.ts` - Archivo fuente
+- `apps/backend/src/services/supabase.service.ts` - Archivo fuente
+- `apps/backend/src/services/resend.service.ts` - Archivo fuente
+- `apps/backend/src/services/reporting.service.ts` - Archivo fuente
+- `apps/backend/src/services/profiles.service.ts` - Archivo fuente
+- `apps/backend/src/services/pricing.service.ts` - Archivo fuente
+- `apps/backend/src/services/posthog.service.ts` - Archivo fuente
+- `apps/backend/src/services/performance.service.ts` - Archivo fuente
+- `apps/backend/src/services/onboarding.service.ts` - Archivo fuente
+- `apps/backend/src/services/logger.service.ts` - Archivo fuente
+- `apps/backend/src/services/logAction.ts` - Archivo fuente
+- `apps/backend/src/services/config.service.ts` - Archivo fuente
+- `apps/backend/src/services/automation.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.profiles.ts` - Archivo fuente
+- `apps/backend/src/controllers/todo.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/profiles.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/pricing.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/posthog.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/onboarding.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/health.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/automation.controller.ts` - Archivo fuente
+- `apps/backend/dist/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/services/users.service.js` - Archivo fuente
+- `apps/backend/dist/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/users.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/controllers/index.profiles.js` - Archivo fuente
+- `apps/backend/dist/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/test-hooks.js` - Archivo fuente
+- `apps/backend/dist/src/start.js` - Archivo fuente
+- `apps/backend/dist/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/index-debug.js` - Archivo fuente
+- `apps/backend/node_modules/supertest/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.js` - Archivo fuente
+- `apps/backend/node_modules/zod/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/workers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/utils.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/snapshot.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/runners.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/reporters.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/node.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/jsdom.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/importMeta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/import-meta.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/execute.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/environments.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/coverage.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/vitest/browser.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/logger.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/import.test-d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/example-custom-format.js` - Archivo fuente
+- `apps/backend/node_modules/pino-http/deprecations.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/coverage-map.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/bin.js` - Archivo fuente
+- `apps/backend/node_modules/pino-pretty/benchmark.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.js` - Archivo fuente
+- `apps/backend/node_modules/pino/pino.d.ts` - Archivo fuente
+- `apps/backend/node_modules/pino/file.js` - Archivo fuente
+- `apps/backend/node_modules/pino/browser.js` - Archivo fuente
+- `apps/backend/node_modules/pino/bin.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.js` - Archivo fuente
+- `apps/backend/node_modules/node-cache/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/express/index.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv-cli/cli.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.js` - Archivo fuente
+- `apps/backend/node_modules/dotenv/config.d.ts` - Archivo fuente
+- `apps/backend/node_modules/compression/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/spack.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/postinstall.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/binding.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@swc/core/Visitor.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/jest/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/user.d.ts` - Archivo fuente
+- `apps/backend/src/types/express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-instance-loader.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-injector.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/test.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/platform-express/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@eslint/eslintrc/universal.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/jwt/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/config/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/common/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-factory.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/nest-application-context.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/metadata-scanner.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/index.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/constants.d.ts` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/core/application-config.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/supabaseClientMock.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/logAction.mock.ts` - Archivo fuente
+- `apps/backend/dist/src/types/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/src/utils/enforceExactShape.js` - Archivo fuente
+- `apps/backend/dist/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/rateLimit.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/performance.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mock-test.js` - Archivo fuente
+- `apps/backend/dist/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/src/lib/schemas.js` - Archivo fuente
+- `apps/backend/dist/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/resend.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/pricing.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/posthog.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/performance.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/onboarding.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/logAction.js` - Archivo fuente
+- `apps/backend/dist/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/automation.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/src/routes/resend.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/pricing.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/posthog.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/onboarding.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/automation.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.profiles.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/pricing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/posthog.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/onboarding.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/automation.controller.js` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/types.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/supertest/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node-cron/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/express/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/pg/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/cors/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/zlib.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/worker_threads.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/wasi.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/vm.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/v8.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/util.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/url.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tty.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/trace_events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/tls.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/timers.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/test.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/string_decoder.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/stream.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sqlite.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/sea.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/repl.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/readline.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/querystring.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/punycode.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/perf_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/path.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/os.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/net.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/module.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/inspector.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/https.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http2.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/http.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.typedarray.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/globals.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/fs.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/domain.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dom-events.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dns.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/diagnostics_channel.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/dgram.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/crypto.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/constants.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/console.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/cluster.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/child_process.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/buffer.buffer.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/async_hooks.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/node/assert.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@types/compression/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@repo/db-types/index.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/rules.d.ts` - Archivo fuente
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/index.d.ts` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/start.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/index.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/supabaseClientMock.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/logAction.mock.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/utils/ApiError.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/logger.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/middleware/errorHandler.middleware.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/setup.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/tests/fixtures.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/todo.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/supabase.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/profiles.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/logger.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/services/config.service.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/todo.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/router.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/profiles.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/health.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/routes/dev.routes.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/todo.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/profiles.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/controllers/health.controller.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/supabase.js` - Archivo fuente
+- `apps/backend/dist/apps/backend/src/lib/schemas.js` - Archivo fuente
+- `scripts/validate-backend.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/app.controller.spec.ts` - Archivo de test
+- `apps/backend/src/tests/resend.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/reporting.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/pricing.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/tests/posthog.health.test.ts` - Archivo de test
+- `apps/backend/src/tests/performance.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.test.ts` - Archivo de test
+- `apps/backend/src/tests/onboarding.routes.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.test.ts` - Archivo de test
+- `apps/backend/src/tests/health.jest.test.ts` - Archivo de test
+- `apps/backend/src/tests/deployment.test.ts` - Archivo de test
+- `apps/backend/src/tests/debug.test.ts` - Archivo de test
+- `apps/backend/src/tests/ci-cd.test.ts` - Archivo de test
+- `apps/backend/src/tests/backend.coverage.extended.test.ts` - Archivo de test
+- `apps/backend/src/tests/automation.test.ts` - Archivo de test
+- `apps/backend/dist/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/frontend/src/services/__tests__/profile.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/resend.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/posthog.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/logger.service.test.ts` - Archivo de test
+- `apps/backend/dist/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/resend.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/reporting.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/pricing.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/posthog.health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/performance.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/onboarding.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/health.jest.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/deployment.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/debug.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/ci-cd.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/backend.coverage.extended.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/automation.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/resend.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/posthog.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/logger.service.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/todo.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/profiles.controller.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/health.test.js` - Archivo de test
+- `apps/backend/dist/apps/backend/src/tests/backend.coverage.extended.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/package.json` - Archivo de configuración
+- `apps/backend-nest/nest-cli.json` - Archivo de configuración
+- `apps/backend/tsconfig.json` - Archivo de configuración
+- `apps/backend/railway.json` - Archivo de configuración
+- `apps/backend/package.json` - Archivo de configuración
+- `apps/backend/backend-test-report.json` - Archivo de configuración
+- `apps/backend-nest/test/jest-e2e.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/typescript-eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schemastore-schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/tsconfig.schema.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-loader/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/tsconfig.base.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/ts-jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/source-map-support/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/reflect-metadata/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/tsconfig.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/rxjs/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/globals/globals.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/tsconfig-paths/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-config-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-validator/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/class-transformer/package.json` - Archivo de configuración
+- `apps/backend/node_modules/typescript/package.json` - Archivo de configuración
+- `apps/backend/node_modules/tsx/package.json` - Archivo de configuración
+- `apps/backend/node_modules/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/zod/package.json` - Archivo de configuración
+- `apps/backend/node_modules/vitest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/redis/package.json` - Archivo de configuración
+- `apps/backend/node_modules/posthog-node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/resend/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-http/package.json` - Archivo de configuración
+- `apps/backend/node_modules/path-to-regexp/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino-pretty/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/pino/package.json` - Archivo de configuración
+- `apps/backend/node_modules/helmet/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-validator/package.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/node-cache/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-slow-down/package.json` - Archivo de configuración
+- `apps/backend/node_modules/eslint/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv-cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/dotenv/package.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/express-rate-limit/package.json` - Archivo de configuración
+- `apps/backend/node_modules/compression/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/jest/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/js/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@swc/cli/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@eslint/eslintrc/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/schematics/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/renovate.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/jest.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/config/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/cli/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/supertest/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@vitest/coverage-istanbul/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node-cron/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/express/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/pg/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/cors/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/node/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/compression/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@supabase/supabase-js/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/tsconfig.json` - Archivo de configuración
+- `apps/backend/node_modules/@repo/db-types/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@solana/wallet-standard-features/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@typescript-eslint/parser/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend-nest/README.md` - Archivo de documentación
+- `apps/backend/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/typescript-eslint/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/SECURITY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/REFERENCES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-loader/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/TROUBLESHOOTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/ts-jest/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/source-map-support/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/reflect-metadata/AUTHORS.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CODE_OF_CONDUCT.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/rxjs/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/globals/readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/tsconfig-paths/CHANGELOG.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-config-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/THIRD-PARTY-NOTICES.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint-plugin-prettier/LICENSE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.profiles.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-validator/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/class-transformer/README.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/typescript/README.md` - Archivo de documentación
+- `apps/backend/node_modules/tsx/README.md` - Archivo de documentación
+- `apps/backend/node_modules/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/zod/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/vitest/LICENSE.md` - Archivo de documentación
+- `apps/backend/node_modules/redis/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/posthog-node/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/resend/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-http/README.md` - Archivo de documentación
+- `apps/backend/node_modules/path-to-regexp/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pino-pretty/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/README.md` - Archivo de documentación
+- `apps/backend/node_modules/pino/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/README.md` - Archivo de documentación
+- `apps/backend/node_modules/helmet/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-validator/README.md` - Archivo de documentación
+- `apps/backend/node_modules/node-cache/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-slow-down/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/eslint/README.md` - Archivo de documentación
+- `apps/backend/node_modules/express/Readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express/History.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv-cli/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/HISTORY.md` - Archivo de documentación
+- `apps/backend/node_modules/cors/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/SECURITY.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/README-es.md` - Archivo de documentación
+- `apps/backend/node_modules/dotenv/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/readme.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/license.md` - Archivo de documentación
+- `apps/backend/node_modules/express-rate-limit/changelog.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/compression/HISTORY.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/core/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/jest/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/js/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@swc/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/testing/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/platform-express/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@eslint/eslintrc/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/schematics/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/jwt/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/config/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/common/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/Readme.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/core/PACKAGE.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/README.md` - Archivo de documentación
+- `apps/backend-nest/node_modules/@nestjs/cli/CONTRIBUTING.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/supertest/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node-cron/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/express/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/pg/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/cors/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/node/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/compression/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@supabase/supabase-js/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/eslint-plugin/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@solana/wallet-standard-features/README.md` - Archivo de documentación
+- `apps/backend/node_modules/@typescript-eslint/parser/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend/vitest.setup.ts` - Archivo fuente
+- `apps/backend/vitest.config.ts` - Archivo fuente
+- `apps/backend-nest/test/app.e2e-spec.ts` - Archivo fuente
+- `apps/backend-nest/src/main.ts` - Archivo fuente
+- `apps/backend-nest/src/app.service.ts` - Archivo fuente
+- `apps/backend-nest/src/app.module.ts` - Archivo fuente
+- `apps/backend-nest/src/app.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/main.js` - Archivo fuente
+- `apps/backend-nest/dist/main.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.service.js` - Archivo fuente
+- `apps/backend-nest/dist/app.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.module.js` - Archivo fuente
+- `apps/backend-nest/dist/app.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/app.controller.d.ts` - Archivo fuente
+- `apps/backend/src/test-hooks.ts` - Archivo fuente
+- `apps/backend/src/start.ts` - Archivo fuente
+- `apps/backend/src/index.ts` - Archivo fuente
+- `apps/backend/src/index-debug.ts` - Archivo fuente
+- `apps/backend/dist/vitest.setup.js` - Archivo fuente
+- `apps/backend/dist/supabase.types.js` - Archivo fuente
+- `apps/backend/dist/start.js` - Archivo fuente
+- `apps/backend/dist/server.js` - Archivo fuente
+- `apps/backend/dist/index.js` - Archivo fuente
+- `apps/frontend/src/services/users.api.ts` - Archivo fuente
+- `apps/frontend/src/services/supabase.ts` - Archivo fuente
+- `apps/frontend/src/services/profile.service.ts` - Archivo fuente
 - `apps/backend-nest/src/health/health.module.ts` - Archivo fuente
 - `apps/backend-nest/src/health/health.controller.ts` - Archivo fuente
 - `apps/backend-nest/dist/health/health.module.js` - Archivo fuente
