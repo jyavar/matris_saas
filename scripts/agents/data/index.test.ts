@@ -363,4 +363,33 @@ describe('@data Agent', () => {
       expect(result.warnings).toBeDefined()
     })
   })
+
+  describe('runAgent (compliance log)', () => {
+    it('debe generar log estructurado con los campos requeridos', async () => {
+      const mockWrite = vi.fn()
+      // Mock DataManager para que no ejecute lógica real
+      const mockRun = vi.fn().mockResolvedValue({
+        status: 'SUCCESS',
+        summary: 'OK',
+        operations: {},
+        errors: [],
+        warnings: [],
+        timestamp: new Date().toISOString(),
+      })
+      // Sobrescribir DataManager temporalmente
+      const { default: runAgent, DataManager } = await import('./index')
+      DataManager.prototype.run = mockRun
+      await runAgent({ writeFileSync: mockWrite })
+      expect(mockWrite).toHaveBeenCalled()
+      const [, data] = mockWrite.mock.calls[0]
+      const log = JSON.parse(data)
+      expect(log).toHaveProperty('timestamp')
+      expect(log).toHaveProperty('agentName', '@data')
+      expect(log).toHaveProperty('status')
+      expect(log).toHaveProperty('errors')
+      expect(Array.isArray(log.errors)).toBe(true)
+      expect(log).toHaveProperty('actionsPerformed')
+      expect(Array.isArray(log.actionsPerformed)).toBe(true)
+    })
+  })
 })

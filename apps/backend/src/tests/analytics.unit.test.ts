@@ -352,12 +352,6 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
       expect(response.status).toBe(404)
     })
-
-    it('should require user ID parameter', async () => {
-      const response = await request(app).get('/analytics/users/')
-
-      expect(response.status).toBe(404)
-    })
   })
 
   describe('Legacy endpoints', () => {

@@ -1,3 +1,83 @@
-Need to install the following packages:
-cloc@2.4.0-cloc
-Ok to proceed? (y) 
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "2.06",
+  "elapsed_seconds"    : 0.829791069030762,
+  "n_files"            : 494,
+  "n_lines"            : 142640,
+  "files_per_second"   : 595.330581922287,
+  "lines_per_second"   : 171898.692723472},
+"Markdown" :{
+  "nFiles": 60,
+  "blank": 5822,
+  "comment": 960,
+  "code": 63512},
+"TypeScript" :{
+  "nFiles": 298,
+  "blank": 3005,
+  "comment": 1699,
+  "code": 19764},
+"HTML" :{
+  "nFiles": 1,
+  "blank": 19,
+  "comment": 0,
+  "code": 19579},
+"YAML" :{
+  "nFiles": 5,
+  "blank": 3313,
+  "comment": 0,
+  "code": 13169},
+"JSON" :{
+  "nFiles": 91,
+  "blank": 8,
+  "comment": 0,
+  "code": 10225},
+"JavaScript" :{
+  "nFiles": 10,
+  "blank": 15,
+  "comment": 21,
+  "code": 625},
+"CSS" :{
+  "nFiles": 5,
+  "blank": 37,
+  "comment": 1,
+  "code": 220},
+"TOML" :{
+  "nFiles": 1,
+  "blank": 38,
+  "comment": 160,
+  "code": 119},
+"Text" :{
+  "nFiles": 2,
+  "blank": 12,
+  "comment": 0,
+  "code": 80},
+"Bourne Shell" :{
+  "nFiles": 5,
+  "blank": 21,
+  "comment": 10,
+  "code": 50},
+"Dockerfile" :{
+  "nFiles": 2,
+  "blank": 17,
+  "comment": 9,
+  "code": 47},
+"SQL" :{
+  "nFiles": 6,
+  "blank": 9,
+  "comment": 19,
+  "code": 42},
+"SVG" :{
+  "nFiles": 7,
+  "blank": 0,
+  "comment": 0,
+  "code": 7},
+"XML" :{
+  "nFiles": 1,
+  "blank": 0,
+  "comment": 0,
+  "code": 6},
+"SUM": {
+  "blank": 12316,
+  "comment": 2879,
+  "code": 127445,
+  "nFiles": 494} }

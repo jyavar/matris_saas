@@ -18,14 +18,6 @@ interface PerformanceMetrics {
   averageResponseTime: number
 }
 
-interface CacheStats {
-  hits: number
-  misses: number
-  keys: number
-  ksize: number
-  vsize: number
-}
-
 class PerformanceService {
   private startTime: number
   private requestCount: number
@@ -49,7 +41,7 @@ class PerformanceService {
   recordRequest(responseTime: number): void {
     this.requestCount++
     this.responseTimes.push(responseTime)
-    
+
     // Keep only last 1000 response times for average calculation
     if (this.responseTimes.length > 1000) {
       this.responseTimes.shift()
@@ -78,9 +70,11 @@ class PerformanceService {
     const cpuUsage = process.cpuUsage(this.lastCpuUsage)
     this.lastCpuUsage = process.cpuUsage()
 
-    const averageResponseTime = this.responseTimes.length > 0
-      ? this.responseTimes.reduce((a, b) => a + b, 0) / this.responseTimes.length
-      : 0
+    const averageResponseTime =
+      this.responseTimes.length > 0
+        ? this.responseTimes.reduce((a, b) => a + b, 0) /
+          this.responseTimes.length
+        : 0
 
     return {
       memory: {
@@ -123,14 +117,17 @@ class PerformanceService {
 
     // Response time checks
     if (metrics.averageResponseTime > 1000) {
-      warnings.push(`Slow average response time: ${metrics.averageResponseTime}ms`)
+      warnings.push(
+        `Slow average response time: ${metrics.averageResponseTime}ms`,
+      )
     }
     if (metrics.averageResponseTime > 5000) {
       critical.push(`Critical response time: ${metrics.averageResponseTime}ms`)
     }
 
     // Error rate checks
-    const errorRate = this.requestCount > 0 ? (this.errorCount / this.requestCount) * 100 : 0
+    const errorRate =
+      this.requestCount > 0 ? (this.errorCount / this.requestCount) * 100 : 0
     if (errorRate > 5) {
       warnings.push(`High error rate: ${errorRate.toFixed(2)}%`)
     }
@@ -139,7 +136,8 @@ class PerformanceService {
     }
 
     // Uptime checks
-    if (metrics.uptime < 300) { // Less than 5 minutes
+    if (metrics.uptime < 300) {
+      // Less than 5 minutes
       warnings.push('Recent restart detected')
     }
 
@@ -190,4 +188,4 @@ class PerformanceService {
   }
 }
 
-export const performanceService = new PerformanceService() 
+export const performanceService = new PerformanceService()

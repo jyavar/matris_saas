@@ -1,6 +1,7 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 import { z } from 'zod'
 
+import { Json } from '../types/supabase.types.js'
 import { ApiError } from '../utils/ApiError.js'
 import { logAction } from './logger.service.js'
 import { supabase } from './supabase.service.js'
@@ -9,7 +10,7 @@ import { supabase } from './supabase.service.js'
 export const eventSchema = z.object({
   event_name: z.string(),
   user_id: z.string().optional(),
-  properties: z.record(z.any()).optional(),
+  properties: z.record(z.unknown()).optional(),
   timestamp: z.date().optional(),
 })
 
@@ -63,7 +64,7 @@ export const analyticsService = {
         user_id: validatedData.user_id
           ? parseInt(validatedData.user_id)
           : undefined,
-        payload: validatedData.properties || {},
+        payload: toJson(validatedData.properties || {}),
         created_at: timestamp.toISOString(),
       }
 
@@ -104,11 +105,11 @@ export const analyticsService = {
         user_id: validatedData.user_id
           ? parseInt(validatedData.user_id)
           : undefined,
-        payload: {
+        payload: toJson({
           value: validatedData.value,
           tags: validatedData.tags || {},
           metric_name: validatedData.metric_name,
-        },
+        }),
         created_at: timestamp.toISOString(),
       }
 
@@ -462,4 +463,8 @@ export const analyticsService = {
     }
     return data
   },
+}
+
+function toJson(obj: unknown): Json {
+  return obj as Json
 }

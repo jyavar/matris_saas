@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase.js'
-import logger from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 // Tipos estrictos para Automation Engine
 export interface WorkflowStep {
@@ -113,19 +113,28 @@ export class AutomationService {
   /**
    * Crea un nuevo workflow
    */
-  async createWorkflow(workflowData: CreateWorkflowData, userId: string): Promise<Workflow> {
+  async createWorkflow(
+    workflowData: CreateWorkflowData,
+    userId: string,
+  ): Promise<Workflow> {
     try {
       // Validar datos requeridos
-      if (!workflowData.name || !workflowData.steps || workflowData.steps.length === 0) {
+      if (
+        !workflowData.name ||
+        !workflowData.steps ||
+        workflowData.steps.length === 0
+      ) {
         throw new ApiError(400, 'Name and steps are required')
       }
 
       // Generar IDs para los steps
-      const stepsWithIds: WorkflowStep[] = workflowData.steps.map((step, index) => ({
-        ...step,
-        id: `step-${Date.now()}-${index}`,
-        order: index,
-      }))
+      const stepsWithIds: WorkflowStep[] = workflowData.steps.map(
+        (step, index) => ({
+          ...step,
+          id: `step-${Date.now()}-${index}`,
+          order: index,
+        }),
+      )
 
       const workflow: Omit<Workflow, 'id' | 'created_at' | 'updated_at'> = {
         name: workflowData.name,
@@ -147,7 +156,10 @@ export class AutomationService {
         throw new ApiError(500, 'Failed to create workflow')
       }
 
-      logger.info({ workflowId: data.id, userId }, 'Workflow created successfully')
+      logger.info(
+        { workflowId: data.id, userId },
+        'Workflow created successfully',
+      )
       return data
     } catch (error) {
       logger.error({ error, workflowData }, 'Error in createWorkflow')
@@ -158,7 +170,10 @@ export class AutomationService {
   /**
    * Actualiza un workflow existente
    */
-  async updateWorkflow(id: string, updateData: UpdateWorkflowData): Promise<Workflow | null> {
+  async updateWorkflow(
+    id: string,
+    updateData: UpdateWorkflowData,
+  ): Promise<Workflow | null> {
     try {
       // Verificar que el workflow existe
       const existingWorkflow = await this.getWorkflowById(id)
@@ -172,17 +187,22 @@ export class AutomationService {
       }
 
       if (updateData.name !== undefined) updatePayload.name = updateData.name
-      if (updateData.description !== undefined) updatePayload.description = updateData.description
-      if (updateData.status !== undefined) updatePayload.status = updateData.status
-      if (updateData.schedule !== undefined) updatePayload.schedule = updateData.schedule
+      if (updateData.description !== undefined)
+        updatePayload.description = updateData.description
+      if (updateData.status !== undefined)
+        updatePayload.status = updateData.status
+      if (updateData.schedule !== undefined)
+        updatePayload.schedule = updateData.schedule
 
       // Procesar steps si se proporcionan
       if (updateData.steps) {
-        const stepsWithIds: WorkflowStep[] = updateData.steps.map((step, index) => ({
-          ...step,
-          id: `step-${Date.now()}-${index}`,
-          order: index,
-        }))
+        const stepsWithIds: WorkflowStep[] = updateData.steps.map(
+          (step, index) => ({
+            ...step,
+            id: `step-${Date.now()}-${index}`,
+            order: index,
+          }),
+        )
         updatePayload.steps = stepsWithIds
       }
 
@@ -211,10 +231,7 @@ export class AutomationService {
    */
   async deleteWorkflow(id: string): Promise<boolean> {
     try {
-      const { error } = await supabase
-        .from('workflows')
-        .delete()
-        .eq('id', id)
+      const { error } = await supabase.from('workflows').delete().eq('id', id)
 
       if (error) {
         logger.error({ error, id }, 'Error deleting workflow')
@@ -280,7 +297,10 @@ export class AutomationService {
   /**
    * Ejecuta un workflow
    */
-  async executeWorkflow(workflowId: string, executionData: ExecuteWorkflowData): Promise<Job | null> {
+  async executeWorkflow(
+    workflowId: string,
+    executionData: ExecuteWorkflowData,
+  ): Promise<Job | null> {
     try {
       // Verificar que el workflow existe y está activo
       const workflow = await this.getWorkflowById(workflowId)
@@ -317,7 +337,10 @@ export class AutomationService {
         logger.error({ error, jobId: data.id }, 'Error processing job')
       })
 
-      logger.info({ jobId: data.id, workflowId }, 'Job created and started processing')
+      logger.info(
+        { jobId: data.id, workflowId },
+        'Job created and started processing',
+      )
       return data
     } catch (error) {
       logger.error({ error, workflowId }, 'Error in executeWorkflow')
@@ -404,10 +427,7 @@ export class AutomationService {
   private async processJob(jobId: string): Promise<void> {
     try {
       // Actualizar status a running
-      await supabase
-        .from('jobs')
-        .update({ status: 'running' })
-        .eq('id', jobId)
+      await supabase.from('jobs').update({ status: 'running' }).eq('id', jobId)
 
       // Simular procesamiento de workflow
       // En una implementación real, aquí se ejecutarían los steps del workflow
@@ -441,4 +461,4 @@ export class AutomationService {
   }
 }
 
-export const automationService = new AutomationService() 
+export const automationService = new AutomationService()

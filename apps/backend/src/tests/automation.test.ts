@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { app } from '../index.js'
 import { automationService } from '../services/automation.service.js'
@@ -12,8 +12,18 @@ function createTestWorkflow(overrides = {}) {
     description: 'Test Description',
     status: 'active' as const,
     steps: [
-      { id: 'step-1', action: 'email' as const, config: { template: 'welcome' }, order: 0 },
-      { id: 'step-2', action: 'analytics' as const, config: { event: 'user_activated' }, order: 1 },
+      {
+        id: 'step-1',
+        action: 'email' as const,
+        config: { template: 'welcome' },
+        order: 0,
+      },
+      {
+        id: 'step-2',
+        action: 'analytics' as const,
+        config: { event: 'user_activated' },
+        order: 1,
+      },
     ],
     schedule: { type: 'immediate' as const, cron: null },
     created_at: new Date().toISOString(),
@@ -39,43 +49,50 @@ function createTestJob(overrides = {}) {
   }
 }
 
-// Tipos estrictos para test
-interface TestWorkflow {
-  id: string
-  name: string
-  status: 'active' | 'inactive' | 'draft'
-  steps: Array<{ id: string; action: string; config: object }>
-  schedule: { type: string; cron: string | null }
-}
-
-interface TestJob {
-  id: string
-  workflowId: string
-  status: 'pending' | 'running' | 'completed' | 'failed'
-  startedAt: string
-  completedAt: string | null
-  result: object | null
-}
-
 describe('Automation Engine Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({
-      authMiddleware: (_req: any, _res: any, next: any) => {
-        if (_req) _req.user = { id: 'test-user', email: 'test@example.com' }
+      authMiddleware: (_req: unknown, _res: unknown, next: () => void) => {
+        const req = _req as { user?: { id: string; email: string } }
+        if (req) req.user = { id: 'test-user', email: 'test@example.com' }
         return next()
-      }
+      },
     }))
-    vi.spyOn(automationService, 'getWorkflows').mockResolvedValue([createTestWorkflow()])
-    vi.spyOn(automationService, 'getWorkflowById').mockImplementation(async (id: string) => id === 'workflow-1' ? createTestWorkflow() : null)
-    vi.spyOn(automationService, 'createWorkflow').mockResolvedValue(createTestWorkflow())
-    vi.spyOn(automationService, 'updateWorkflow').mockImplementation(async (id: string) => id === 'workflow-1' ? createTestWorkflow({ name: 'Updated Workflow' }) : null)
-    vi.spyOn(automationService, 'deleteWorkflow').mockImplementation(async (id: string) => id === 'workflow-1')
+    vi.spyOn(automationService, 'getWorkflows').mockResolvedValue([
+      createTestWorkflow(),
+    ])
+    vi.spyOn(automationService, 'getWorkflowById').mockImplementation(
+      async (id: string) => (id === 'workflow-1' ? createTestWorkflow() : null),
+    )
+    vi.spyOn(automationService, 'createWorkflow').mockResolvedValue(
+      createTestWorkflow(),
+    )
+    vi.spyOn(automationService, 'updateWorkflow').mockImplementation(
+      async (id: string) =>
+        id === 'workflow-1'
+          ? createTestWorkflow({ name: 'Updated Workflow' })
+          : null,
+    )
+    vi.spyOn(automationService, 'deleteWorkflow').mockImplementation(
+      async (id: string) => id === 'workflow-1',
+    )
     vi.spyOn(automationService, 'getJobs').mockResolvedValue([createTestJob()])
-    vi.spyOn(automationService, 'getJobById').mockImplementation(async (id: string) => id === 'job-1' ? createTestJob() : null)
-    vi.spyOn(automationService, 'executeWorkflow').mockImplementation(async (id: string) => id === 'workflow-1' ? createTestJob({ status: 'running' }) : null)
-    vi.spyOn(automationService, 'pauseJob').mockImplementation(async (id: string) => id === 'job-1' ? createTestJob({ status: 'pending' }) : null)
-    vi.spyOn(automationService, 'resumeJob').mockImplementation(async (id: string) => id === 'job-1' ? createTestJob({ status: 'running' }) : null)
+    vi.spyOn(automationService, 'getJobById').mockImplementation(
+      async (id: string) => (id === 'job-1' ? createTestJob() : null),
+    )
+    vi.spyOn(automationService, 'executeWorkflow').mockImplementation(
+      async (id: string) =>
+        id === 'workflow-1' ? createTestJob({ status: 'running' }) : null,
+    )
+    vi.spyOn(automationService, 'pauseJob').mockImplementation(
+      async (id: string) =>
+        id === 'job-1' ? createTestJob({ status: 'pending' }) : null,
+    )
+    vi.spyOn(automationService, 'resumeJob').mockImplementation(
+      async (id: string) =>
+        id === 'job-1' ? createTestJob({ status: 'running' }) : null,
+    )
   })
 
   describe('GET /automation/workflows', () => {
@@ -106,14 +123,18 @@ describe('Automation Engine Endpoints', () => {
     it('should create a workflow with valid data', async () => {
       const res = await request(app)
         .post('/automation/workflows')
-        .send({ 
-          name: 'Test Workflow', 
+        .send({
+          name: 'Test Workflow',
           description: 'Test Description',
           steps: [
             { action: 'email', config: { template: 'welcome' }, order: 0 },
-            { action: 'analytics', config: { event: 'user_activated' }, order: 1 }
+            {
+              action: 'analytics',
+              config: { event: 'user_activated' },
+              order: 1,
+            },
           ],
-          schedule: { type: 'immediate', cron: null }
+          schedule: { type: 'immediate', cron: null },
         })
       expect(res.status).toBe(201)
       expect(res.body.success).toBe(true)
@@ -232,4 +253,4 @@ describe('Automation Engine Endpoints', () => {
       expect(res.body.success).toBe(false)
     })
   })
-}) 
+})

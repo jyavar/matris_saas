@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import { launchboardService } from '../services/launchboard.service.js'
 
 export const launchboardController = {
@@ -23,14 +24,20 @@ export const launchboardController = {
       res.status(400).json({ success: false, message: 'Invalid data' })
       return
     }
-    const dashboard = await launchboardService.createDashboard({ name, widgets })
+    const dashboard = await launchboardService.createDashboard({
+      name,
+      widgets,
+    })
     res.status(201).json({ success: true, data: dashboard })
   },
 
   async updateDashboard(req: Request, res: Response): Promise<void> {
     const { id } = req.params
     const { name, widgets } = req.body
-    const dashboard = await launchboardService.updateDashboard(id, { name, widgets })
+    const dashboard = await launchboardService.updateDashboard(id, {
+      name,
+      widgets,
+    })
     if (!dashboard) {
       res.status(404).json({ success: false, message: 'Dashboard not found' })
       return
@@ -47,4 +54,4 @@ export const launchboardController = {
     }
     res.status(200).json({ success: true })
   },
-} 
+}

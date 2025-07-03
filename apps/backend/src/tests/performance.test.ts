@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
 import request from 'supertest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { app } from '../index.js'
-import { performanceService } from '../services/performance.service.js'
 import { cacheUtils } from '../middleware/performance.middleware.js'
+import { performanceService } from '../services/performance.service.js'
 
 describe('Performance Optimizations', () => {
   beforeEach(() => {
@@ -51,7 +52,9 @@ describe('Performance Optimizations', () => {
         .set('Origin', 'http://localhost:3000')
         .expect(200)
 
-      expect(response.headers['access-control-allow-origin']).toBe('http://localhost:3000')
+      expect(response.headers['access-control-allow-origin']).toBe(
+        'http://localhost:3000',
+      )
     })
 
     it('should handle preflight requests', async () => {
@@ -63,21 +66,19 @@ describe('Performance Optimizations', () => {
         .expect(200)
 
       expect(response.headers['access-control-allow-methods']).toContain('GET')
-      expect(response.headers['access-control-allow-headers']).toContain('Content-Type')
+      expect(response.headers['access-control-allow-headers']).toContain(
+        'Content-Type',
+      )
     })
   })
 
   describe('Cache Middleware', () => {
     it('should cache GET requests', async () => {
       // First request
-      const response1 = await request(app)
-        .get('/health')
-        .expect(200)
+      const response1 = await request(app).get('/health').expect(200)
 
       // Second request should be cached
-      const response2 = await request(app)
-        .get('/health')
-        .expect(200)
+      const response2 = await request(app).get('/health').expect(200)
 
       // Health endpoint returns dynamic data (timestamp, uptime, memory), so we can't expect exact equality
       // Instead, check that both responses have the same structure
@@ -90,13 +91,9 @@ describe('Performance Optimizations', () => {
 
     it('should not cache POST requests', async () => {
       // Health endpoint doesn't support POST, so we'll test with a different approach
-      const response1 = await request(app)
-        .get('/health')
-        .expect(200)
+      const response1 = await request(app).get('/health').expect(200)
 
-      const response2 = await request(app)
-        .get('/health')
-        .expect(200)
+      const response2 = await request(app).get('/health').expect(200)
 
       // Both should return the same data since it's a health check
       expect(response1.body.status).toBe(response2.body.status)
@@ -104,9 +101,7 @@ describe('Performance Optimizations', () => {
 
     it('should respect no-cache header', async () => {
       // First request
-      await request(app)
-        .get('/health')
-        .expect(200)
+      await request(app).get('/health').expect(200)
 
       // Second request with no-cache
       const response2 = await request(app)
@@ -121,9 +116,7 @@ describe('Performance Optimizations', () => {
   describe('Rate Limiting', () => {
     it('should apply different rate limits to different endpoints', async () => {
       // Test health endpoint (no rate limiting)
-      const healthResponse = await request(app)
-        .get('/health')
-        .expect(200)
+      const healthResponse = await request(app).get('/health').expect(200)
 
       expect(healthResponse.status).toBe(200)
     })
@@ -131,15 +124,11 @@ describe('Performance Optimizations', () => {
     it('should apply speed limiting after threshold', async () => {
       // Make multiple requests to trigger speed limiting
       for (let i = 0; i < 10; i++) {
-        await request(app)
-          .get('/health')
-          .expect(200)
+        await request(app).get('/health').expect(200)
       }
 
       // The next request should work normally
-      const response = await request(app)
-        .get('/health')
-        .expect(200)
+      const response = await request(app).get('/health').expect(200)
 
       expect(response.status).toBe(200)
     })
@@ -147,9 +136,7 @@ describe('Performance Optimizations', () => {
 
   describe('Performance Monitoring', () => {
     it('should add performance headers to responses', async () => {
-      const response = await request(app)
-        .get('/health')
-        .expect(200)
+      const response = await request(app).get('/health').expect(200)
 
       expect(response.headers['x-request-id']).toBeDefined()
     })
@@ -157,9 +144,7 @@ describe('Performance Optimizations', () => {
     it('should track request metrics', async () => {
       const startMetrics = performanceService.getMetrics()
 
-      await request(app)
-        .get('/health')
-        .expect(200)
+      await request(app).get('/health').expect(200)
 
       const endMetrics = performanceService.getMetrics()
 
@@ -171,9 +156,7 @@ describe('Performance Optimizations', () => {
       const startMetrics = performanceService.getMetrics()
 
       // Test with a route that doesn't exist (should return 500 due to error handling)
-      await request(app)
-        .get('/api/nonexistent')
-        .expect(500)
+      await request(app).get('/api/nonexistent').expect(500)
 
       const endMetrics = performanceService.getMetrics()
 
@@ -221,9 +204,7 @@ describe('Performance Optimizations', () => {
     it('should log memory usage for high-traffic endpoints', async () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
 
-      await request(app)
-        .get('/health')
-        .expect(200)
+      await request(app).get('/health').expect(200)
 
       // Memory monitoring only logs for specific endpoints
       // Health endpoint doesn't trigger memory logging
@@ -233,7 +214,7 @@ describe('Performance Optimizations', () => {
           rss: expect.any(String),
           heapUsed: expect.any(String),
           heapTotal: expect.any(String),
-        })
+        }),
       )
 
       consoleSpy.mockRestore()
@@ -271,9 +252,7 @@ describe('Performance Optimizations', () => {
 
   describe('Performance Endpoints', () => {
     it('should provide health check with performance data', async () => {
-      const response = await request(app)
-        .get('/health')
-        .expect(200)
+      const response = await request(app).get('/health').expect(200)
 
       expect(response.body).toMatchObject({
         status: 'OK',
@@ -285,9 +264,7 @@ describe('Performance Optimizations', () => {
     })
 
     it('should provide detailed metrics endpoint', async () => {
-      const response = await request(app)
-        .get('/metrics')
-        .expect(200)
+      const response = await request(app).get('/metrics').expect(200)
 
       expect(response.body).toMatchObject({
         memory: {
@@ -306,4 +283,4 @@ describe('Performance Optimizations', () => {
       })
     })
   })
-}) 
+})

@@ -15,8 +15,7 @@ function handleAsync(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
 ): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fn(req, res, next).catch(next as any)
+    fn(req, res, next).catch(next as unknown as NextFunction)
   }
 }
 

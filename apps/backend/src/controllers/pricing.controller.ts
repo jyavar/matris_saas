@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 
 import { logAction } from '../services/logger.service.js'
 import { pricingSchema, pricingService } from '../services/pricing.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const pricingController = {
   /**
@@ -78,7 +79,7 @@ export const pricingController = {
     } catch (error) {
       // Handle specific ApiError cases
       if (error instanceof Error && 'statusCode' in error) {
-        const apiError = error as any
+        const apiError = error as ApiError
         if (apiError.statusCode === 404) {
           return res.status(404).json({
             success: false,

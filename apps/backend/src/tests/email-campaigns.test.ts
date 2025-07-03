@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { app } from '../index.js'
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
@@ -24,17 +24,36 @@ describe('Email Campaigns Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({
-      authMiddleware: (_req: any, _res: any, next: any) => {
-        if (_req) _req.user = { id: 'test-user', email: 'test@example.com' }
+      authMiddleware: (_req: unknown, _res: unknown, next: () => void) => {
+        const req = _req as { user?: { id: string; email: string } }
+        if (req) req.user = { id: 'test-user', email: 'test@example.com' }
         return next()
-      }
+      },
     }))
-    vi.spyOn(emailCampaignsService, 'getCampaigns').mockResolvedValue([createTestCampaign()])
-    vi.spyOn(emailCampaignsService, 'getCampaignById').mockImplementation(async (id: string) => id === 'campaign-1' ? createTestCampaign() : null)
-    vi.spyOn(emailCampaignsService, 'createCampaign').mockResolvedValue(createTestCampaign())
-    vi.spyOn(emailCampaignsService, 'updateCampaign').mockImplementation(async (id: string) => id === 'campaign-1' ? createTestCampaign({ name: 'Updated Campaign' }) : null)
-    vi.spyOn(emailCampaignsService, 'deleteCampaign').mockImplementation(async (id: string) => id === 'campaign-1')
-    vi.spyOn(emailCampaignsService, 'sendCampaign').mockImplementation(async (id: string) => id === 'campaign-1' ? { success: true } : { success: false, error: 'Not found' })
+    vi.spyOn(emailCampaignsService, 'getCampaigns').mockResolvedValue([
+      createTestCampaign(),
+    ])
+    vi.spyOn(emailCampaignsService, 'getCampaignById').mockImplementation(
+      async (id: string) => (id === 'campaign-1' ? createTestCampaign() : null),
+    )
+    vi.spyOn(emailCampaignsService, 'createCampaign').mockResolvedValue(
+      createTestCampaign(),
+    )
+    vi.spyOn(emailCampaignsService, 'updateCampaign').mockImplementation(
+      async (id: string) =>
+        id === 'campaign-1'
+          ? createTestCampaign({ name: 'Updated Campaign' })
+          : null,
+    )
+    vi.spyOn(emailCampaignsService, 'deleteCampaign').mockImplementation(
+      async (id: string) => id === 'campaign-1',
+    )
+    vi.spyOn(emailCampaignsService, 'sendCampaign').mockImplementation(
+      async (id: string) =>
+        id === 'campaign-1'
+          ? { success: true }
+          : { success: false, error: 'Not found' },
+    )
   })
 
   describe('GET /email-campaigns', () => {
@@ -68,7 +87,7 @@ describe('Email Campaigns Endpoints', () => {
           name: 'Welcome Campaign',
           subject: 'Welcome!',
           content: 'Hello, welcome to STRATO!',
-          recipients: ['test@example.com']
+          recipients: ['test@example.com'],
         })
       expect(res.status).toBe(201)
       expect(res.body.success).toBe(true)
@@ -126,4 +145,4 @@ describe('Email Campaigns Endpoints', () => {
       expect(res.body.success).toBe(false)
     })
   })
-}) 
+})

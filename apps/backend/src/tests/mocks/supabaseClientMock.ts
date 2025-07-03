@@ -7,19 +7,49 @@ function errorResult(message: string, code: string | number) {
 
 // Datos simulados
 const analyticsData = [
-  { id: 1, event_name: 'test_event', user_id: 1, payload: {}, created_at: new Date().toISOString() },
-  { id: 2, event_name: 'page_view', user_id: 1, payload: {}, created_at: new Date().toISOString() },
+  {
+    id: 1,
+    event_name: 'test_event',
+    user_id: 1,
+    payload: {},
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: 2,
+    event_name: 'page_view',
+    user_id: 1,
+    payload: {},
+    created_at: new Date().toISOString(),
+  },
 ]
 const pricingPlans = [
   { id: 'free', name: 'Free', price: 0, features: ['basic'] },
   { id: 'pro', name: 'Pro', price: 20, features: ['basic', 'advanced'] },
-  { id: 'enterprise', name: 'Enterprise', price: 100, features: ['basic', 'advanced', 'premium'] },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    price: 100,
+    features: ['basic', 'advanced', 'premium'],
+  },
 ]
 const profilesData = [
-  { id: 1, user_id: 'test-user-id', email: 'test@example.com', full_name: 'Test User', created_at: new Date().toISOString() },
+  {
+    id: 1,
+    user_id: 'test-user-id',
+    email: 'test@example.com',
+    full_name: 'Test User',
+    created_at: new Date().toISOString(),
+  },
 ]
 const campaignsData = [
-  { id: 1, title: 'Test Campaign', description: 'Test Description', budget: 1000, user_id: 'test-user-id', created_at: new Date().toISOString() },
+  {
+    id: 1,
+    title: 'Test Campaign',
+    description: 'Test Description',
+    budget: 1000,
+    user_id: 'test-user-id',
+    created_at: new Date().toISOString(),
+  },
 ]
 
 // Estado interno para simular inserts/updates
@@ -35,28 +65,35 @@ function resetMockData() {
   _campaigns = [...campaignsData]
 }
 
-function createChainableMock(table: string, data: any[], error: any = null) {
+function createChainableMock(
+  table: string,
+  data: Record<string, unknown>[],
+  error: unknown = null,
+) {
   let _data = [...data]
   let _error = error
   let _limit = 10
   let _offset = 0
   let _orderBy = 'created_at'
   let _orderDirection = 'desc'
-  
+
   const chain = {
-    select: vi.fn().mockImplementation((fields = '*') => {
+    select: vi.fn().mockImplementation(() => {
       return chain
     }),
     insert: vi.fn().mockImplementation((rows) => {
       if (rows && rows[0]) {
-        const newRow = { 
-          id: Date.now(), 
+        const newRow = {
+          id: Date.now(),
           created_at: new Date().toISOString(),
-          ...rows[0] 
+          ...rows[0],
         }
-        
+
         // Simular errores específicos
-        if (rows[0].event_name === 'fail' || rows[0].title === 'fail') {
+        if (
+          (rows[0] as Record<string, unknown>).event_name === 'fail' ||
+          (rows[0] as Record<string, unknown>).title === 'fail'
+        ) {
           _error = { message: 'Invalid data', code: 400 }
           _data = null
         } else {
@@ -78,12 +115,19 @@ function createChainableMock(table: string, data: any[], error: any = null) {
       return chain
     }),
     update: vi.fn().mockImplementation((updates) => {
-      if (updates.title === 'fail' || updates.event_name === 'fail') {
+      if (
+        (updates as Record<string, unknown>).title === 'fail' ||
+        (updates as Record<string, unknown>).event_name === 'fail'
+      ) {
         _error = { message: 'Update failed', code: 400 }
         _data = null
       } else {
         // Simular actualización
-        _data = _data.map(row => ({ ...row, ...updates, updated_at: new Date().toISOString() }))
+        _data = _data.map((row) => ({
+          ...row,
+          ...updates,
+          updated_at: new Date().toISOString(),
+        }))
         _error = null
       }
       return chain
@@ -95,7 +139,9 @@ function createChainableMock(table: string, data: any[], error: any = null) {
       return chain
     }),
     neq: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field] !== value)
+      _data = _data.filter(
+        (row: Record<string, unknown>) => row[field] !== value,
+      )
       return chain
     }),
     eq: vi.fn().mockImplementation((field, value) => {
@@ -103,37 +149,63 @@ function createChainableMock(table: string, data: any[], error: any = null) {
         _error = { message: 'Not found', code: 404 }
         _data = null
       } else {
-        _data = _data.filter((row: any) => row[field] === value)
+        _data = _data.filter(
+          (row: Record<string, unknown>) => row[field] === value,
+        )
         _error = null
       }
       return chain
     }),
     gt: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field] > value)
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'number' && (row[field] as number) > value,
+      )
       return chain
     }),
     gte: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field] >= value)
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'number' && (row[field] as number) >= value,
+      )
       return chain
     }),
     lt: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field] < value)
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'number' && (row[field] as number) < value,
+      )
       return chain
     }),
     lte: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field] <= value)
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'number' && (row[field] as number) <= value,
+      )
       return chain
     }),
     like: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field]?.includes(value.replace('%', '')))
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'string' &&
+          (row[field] as string).includes(value.replace('%', '')),
+      )
       return chain
     }),
     ilike: vi.fn().mockImplementation((field, value) => {
-      _data = _data.filter((row: any) => row[field]?.toLowerCase().includes(value.replace('%', '').toLowerCase()))
+      _data = _data.filter(
+        (row: Record<string, unknown>) =>
+          typeof row[field] === 'string' &&
+          (row[field] as string)
+            .toLowerCase()
+            .includes(value.replace('%', '').toLowerCase()),
+      )
       return chain
     }),
     in: vi.fn().mockImplementation((field, values) => {
-      _data = _data.filter((row: any) => values.includes(row[field]))
+      _data = _data.filter((row: Record<string, unknown>) =>
+        values.includes(row[field]),
+      )
       return chain
     }),
     order: vi.fn().mockImplementation((field, direction = 'asc') => {
@@ -161,7 +233,7 @@ function createChainableMock(table: string, data: any[], error: any = null) {
     then: vi.fn().mockImplementation((resolve) => {
       // Aplicar ordenamiento y paginación
       let result = [..._data]
-      
+
       if (_orderBy) {
         result.sort((a, b) => {
           const aVal = a[_orderBy]
@@ -172,11 +244,11 @@ function createChainableMock(table: string, data: any[], error: any = null) {
           return aVal > bVal ? 1 : -1
         })
       }
-      
+
       if (_limit) {
         result = result.slice(_offset, _offset + _limit)
       }
-      
+
       resolve({ data: result, error: _error })
       return chain
     }),
@@ -208,35 +280,35 @@ export const supabaseMock = {
       if (!token || token === 'invalid') {
         return Promise.resolve(errorResult('Invalid token', 401))
       }
-      return Promise.resolve({ 
-        data: { user: { id: 'test-user-id', email: 'test@example.com' } }, 
-        error: null 
+      return Promise.resolve({
+        data: { user: { id: 'test-user-id', email: 'test@example.com' } },
+        error: null,
       })
     }),
-    signInWithPassword: vi.fn().mockImplementation(({ email, password }) => {
-      if (email === 'fail@example.com' || password === 'wrong') {
+    signInWithPassword: vi.fn().mockImplementation(({ email }) => {
+      if (email === 'fail@example.com') {
         return Promise.resolve(errorResult('Invalid credentials', 401))
       }
       return Promise.resolve({
-        data: { 
+        data: {
           user: { id: 'test-user-id', email },
-          session: { access_token: 'valid-token' }
+          session: { access_token: 'valid-token' },
         },
-        error: null
+        error: null,
       })
     }),
-    signUp: vi.fn().mockImplementation(({ email, password }) => {
+    signUp: vi.fn().mockImplementation(({ email }) => {
       if (email === 'fail@example.com') {
         return Promise.resolve(errorResult('Email already exists', 400))
       }
       return Promise.resolve({
-        data: { 
+        data: {
           user: { id: 'new-user-id', email },
-          session: { access_token: 'valid-token' }
+          session: { access_token: 'valid-token' },
         },
-        error: null
+        error: null,
       })
     }),
   },
   __reset: resetMockData,
-} 
+}

@@ -2,10 +2,10 @@
 
 /**
  * 🛡️ PACK DE DEFENSA PREVENTIVA STRATO™ - VALIDACIÓN AUTOMÁTICA POR COMMIT
- * 
+ *
  * Este script se ejecuta automáticamente en cada commit para garantizar
  * que el código cumple con todos los estándares de calidad STRATO.
- * 
+ *
  * @strato-module: DEFENSE
  * @strato-file: pre-commit-validation.ts
  * @strato-version: 1.0.0
@@ -16,7 +16,7 @@
  */
 
 import { execSync } from 'child_process'
-import { existsSync, readFileSync, readdirSync, statSync } from 'fs'
+import { existsSync, readdirSync, readFileSync, statSync } from 'fs'
 import { join } from 'path'
 
 class PreCommitValidation {
@@ -25,7 +25,9 @@ class PreCommitValidation {
   private warnings: string[] = []
 
   constructor() {
-    console.log('🛡️ PACK DE DEFENSA PREVENTIVA STRATO™ - VALIDACIÓN AUTOMÁTICA')
+    console.log(
+      '🛡️ PACK DE DEFENSA PREVENTIVA STRATO™ - VALIDACIÓN AUTOMÁTICA',
+    )
   }
 
   /**
@@ -33,7 +35,7 @@ class PreCommitValidation {
    */
   private validateCode(): void {
     console.log('🔍 1. Validando código...')
-    
+
     try {
       execSync('pnpm lint', { stdio: 'pipe' })
       console.log('✅ Linting pasado')
@@ -43,7 +45,7 @@ class PreCommitValidation {
     }
 
     try {
-      execSync('pnpm type:check', { stdio: 'pipe' })
+      execSync('pnpm typecheck', { stdio: 'pipe' })
       console.log('✅ Type checking pasado')
     } catch {
       this.errors.push('❌ Type checking falló')
@@ -56,14 +58,14 @@ class PreCommitValidation {
    */
   private validateTests(): void {
     console.log('🧪 2. Ejecutando tests...')
-    
+
     try {
       const startTime = Date.now()
       execSync('pnpm test', { stdio: 'pipe' })
       const duration = Date.now() - startTime
-      
+
       console.log(`✅ Tests pasaron (${duration}ms)`)
-      
+
       if (duration > 30000) {
         this.warnings.push('⚠️ Tests tardaron más de 30 segundos')
       }
@@ -78,7 +80,7 @@ class PreCommitValidation {
    */
   private validateTraceability(): void {
     console.log('🧭 3. Validando trazabilidad...')
-    
+
     try {
       // Verificar que modules.json existe y es válido
       const modulesPath = join(this.rootDir, 'modules.json')
@@ -88,14 +90,17 @@ class PreCommitValidation {
       }
 
       const modules = JSON.parse(readFileSync(modulesPath, 'utf8'))
-      
+
       // Verificar que todos los módulos tienen archivos
       for (const [, moduleData] of Object.entries(modules)) {
-        if (!(moduleData as { files?: string[] }).files || (moduleData as { files?: string[] }).files?.length === 0) {
+        if (
+          !(moduleData as { files?: string[] }).files ||
+          (moduleData as { files?: string[] }).files?.length === 0
+        ) {
           this.warnings.push('⚠️ Módulo sin archivos')
         }
       }
-      
+
       console.log('✅ Trazabilidad válida')
     } catch {
       this.errors.push('❌ Error validando trazabilidad')
@@ -108,26 +113,28 @@ class PreCommitValidation {
    */
   private detectOrphanFiles(): void {
     console.log('📁 4. Detectando archivos huérfanos...')
-    
+
     try {
       // Verificar archivos en src/ que no están en modules.json
       const modulesPath = join(this.rootDir, 'modules.json')
       const modules = JSON.parse(readFileSync(modulesPath, 'utf8'))
-      
+
       const allFiles: string[] = []
       Object.values(modules).forEach((moduleData: { files?: string[] }) => {
         if (moduleData.files) {
           allFiles.push(...moduleData.files)
         }
       })
-      
+
       // Buscar archivos .ts/.tsx en src/ que no están registrados
       const srcFiles = this.findSourceFiles(join(this.rootDir, 'apps'))
-      
-      const orphanFiles = srcFiles.filter(file => !allFiles.includes(file))
-      
+
+      const orphanFiles = srcFiles.filter((file) => !allFiles.includes(file))
+
       if (orphanFiles.length > 0) {
-        this.errors.push(`❌ Archivos huérfanos encontrados: ${orphanFiles.join(', ')}`)
+        this.errors.push(
+          `❌ Archivos huérfanos encontrados: ${orphanFiles.join(', ')}`,
+        )
         console.error('❌ Archivos huérfanos:', orphanFiles)
       } else {
         console.log('✅ No se encontraron archivos huérfanos')
@@ -143,16 +150,16 @@ class PreCommitValidation {
    */
   private validateHeaders(): void {
     console.log('📄 5. Validando headers...')
-    
+
     try {
       const modulesPath = join(this.rootDir, 'modules.json')
       const modules = JSON.parse(readFileSync(modulesPath, 'utf8'))
-      
+
       let filesWithoutHeaders = 0
-      
+
       for (const [, moduleData] of Object.entries(modules)) {
         const moduleFiles = (moduleData as { files?: string[] }).files || []
-        
+
         for (const file of moduleFiles) {
           const filePath = join(this.rootDir, file)
           if (existsSync(filePath)) {
@@ -164,7 +171,7 @@ class PreCommitValidation {
           }
         }
       }
-      
+
       if (filesWithoutHeaders === 0) {
         console.log('✅ Todos los archivos tienen headers')
       } else {
@@ -181,13 +188,13 @@ class PreCommitValidation {
    */
   private validateTestPerformance(): void {
     console.log('⚡ 6. Validando performance...')
-    
+
     try {
       // Ejecutar tests con medición de tiempo
       const startTime = Date.now()
-      execSync('pnpm test --reporter=verbose', { stdio: 'pipe' })
+      execSync('pnpm test', { stdio: 'pipe' })
       const duration = Date.now() - startTime
-      
+
       if (duration > 30000) {
         this.warnings.push(`⚠️ Tests tardaron ${duration}ms (>30s)`)
         console.log(`⚠️ Tests tardaron ${duration}ms`)
@@ -205,16 +212,16 @@ class PreCommitValidation {
    */
   private detectFalsePositives(): void {
     console.log('🎯 7. Detectando falsos positivos...')
-    
+
     try {
       // Buscar patrones de tests falsos positivos
       const testFiles = this.findTestFiles(join(this.rootDir, 'apps'))
-      
+
       let falsePositives = 0
-      
+
       for (const testFile of testFiles) {
         const content = readFileSync(testFile, 'utf8')
-        
+
         // Patrones de falsos positivos
         const patterns = [
           /expect\(true\)\.toBe\(true\)/,
@@ -223,7 +230,7 @@ class PreCommitValidation {
           /expect\(\[\]\)\.toEqual\(\[\]\)/,
           /expect\(\{\}\)\.toEqual\(\{\}\)/,
         ]
-        
+
         for (const pattern of patterns) {
           if (pattern.test(content)) {
             falsePositives++
@@ -231,7 +238,7 @@ class PreCommitValidation {
           }
         }
       }
-      
+
       if (falsePositives === 0) {
         console.log('✅ No se detectaron falsos positivos')
       } else {
@@ -248,14 +255,14 @@ class PreCommitValidation {
    */
   private findSourceFiles(dir: string): string[] {
     const files: string[] = []
-    
+
     try {
       const items = readdirSync(dir)
-      
+
       for (const item of items) {
         const fullPath = join(dir, item)
         const stat = statSync(fullPath)
-        
+
         if (stat.isDirectory()) {
           files.push(...this.findSourceFiles(fullPath))
         } else if (item.endsWith('.ts') || item.endsWith('.tsx')) {
@@ -265,20 +272,20 @@ class PreCommitValidation {
     } catch {
       // Ignorar errores de lectura
     }
-    
+
     return files
   }
 
   private findTestFiles(dir: string): string[] {
     const files: string[] = []
-    
+
     try {
       const items = readdirSync(dir)
-      
+
       for (const item of items) {
         const fullPath = join(dir, item)
         const stat = statSync(fullPath)
-        
+
         if (stat.isDirectory()) {
           files.push(...this.findTestFiles(fullPath))
         } else if (item.includes('.test.') || item.includes('.spec.')) {
@@ -288,7 +295,7 @@ class PreCommitValidation {
     } catch {
       // Ignorar errores de lectura
     }
-    
+
     return files
   }
 
@@ -304,26 +311,29 @@ class PreCommitValidation {
       this.validateHeaders()
       this.validateTestPerformance()
       this.detectFalsePositives()
-      
+
       // Mostrar resumen
       console.log('\n📊 RESUMEN DE VALIDACIÓN:')
-      
+
       if (this.errors.length > 0) {
         console.log('\n❌ ERRORES:')
-        this.errors.forEach(error => console.log(error))
-        console.log('\n🚫 COMMIT BLOQUEADO - Corrige los errores antes de continuar')
+        this.errors.forEach((error) => console.log(error))
+        console.log(
+          '\n🚫 COMMIT BLOQUEADO - Corrige los errores antes de continuar',
+        )
         process.exit(1)
       }
-      
+
       if (this.warnings.length > 0) {
         console.log('\n⚠️ ADVERTENCIAS:')
-        this.warnings.forEach(warning => console.log(warning))
+        this.warnings.forEach((warning) => console.log(warning))
         console.log('\n⚠️ Considera corregir las advertencias')
       }
-      
-      console.log('\n✅ PACK DE DEFENSA PREVENTIVA STRATO™ - VALIDACIÓN EXITOSA')
+
+      console.log(
+        '\n✅ PACK DE DEFENSA PREVENTIVA STRATO™ - VALIDACIÓN EXITOSA',
+      )
       console.log('🚀 Commit permitido')
-      
     } catch {
       console.error('❌ Error durante la validación')
       process.exit(1)

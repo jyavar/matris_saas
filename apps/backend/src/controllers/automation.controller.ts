@@ -1,19 +1,26 @@
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
+import type {
+  CreateWorkflowData,
+  UpdateWorkflowData,
+} from '../services/automation.service.js'
 import { automationService } from '../services/automation.service.js'
 import { ApiError } from '../utils/ApiError.js'
-import logger from '../services/logger.service.js'
 
 // Schemas de validación
 const createWorkflowSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   description: z.string().optional(),
-  steps: z.array(z.object({
-    action: z.enum(['email', 'analytics', 'webhook', 'delay', 'condition']),
-    config: z.record(z.unknown()),
-    order: z.number().optional(),
-  })).min(1, 'At least one step is required'),
+  steps: z
+    .array(
+      z.object({
+        action: z.enum(['email', 'analytics', 'webhook', 'delay', 'condition']),
+        config: z.record(z.unknown()),
+        order: z.number().optional(),
+      }),
+    )
+    .min(1, 'At least one step is required'),
   schedule: z.object({
     type: z.enum(['immediate', 'scheduled', 'recurring']),
     cron: z.string().optional(),
@@ -25,17 +32,23 @@ const createWorkflowSchema = z.object({
 const updateWorkflowSchema = z.object({
   name: z.string().min(1, 'Name is required').optional(),
   description: z.string().optional(),
-  steps: z.array(z.object({
-    action: z.enum(['email', 'analytics', 'webhook', 'delay', 'condition']),
-    config: z.record(z.unknown()),
-    order: z.number().optional(),
-  })).optional(),
-  schedule: z.object({
-    type: z.enum(['immediate', 'scheduled', 'recurring']),
-    cron: z.string().optional(),
-    startDate: z.string().optional(),
-    endDate: z.string().optional(),
-  }).optional(),
+  steps: z
+    .array(
+      z.object({
+        action: z.enum(['email', 'analytics', 'webhook', 'delay', 'condition']),
+        config: z.record(z.unknown()),
+        order: z.number().optional(),
+      }),
+    )
+    .optional(),
+  schedule: z
+    .object({
+      type: z.enum(['immediate', 'scheduled', 'recurring']),
+      cron: z.string().optional(),
+      startDate: z.string().optional(),
+      endDate: z.string().optional(),
+    })
+    .optional(),
   status: z.enum(['active', 'inactive', 'draft']).optional(),
 })
 
@@ -48,10 +61,14 @@ export class AutomationController {
   /**
    * GET /automation/workflows - Obtener todos los workflows
    */
-  async getWorkflows(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getWorkflows(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const workflows = await automationService.getWorkflows()
-      
+
       res.status(200).json({
         success: true,
         data: workflows,
@@ -65,7 +82,11 @@ export class AutomationController {
   /**
    * GET /automation/workflows/:id - Obtener workflow por ID
    */
-  async getWorkflowById(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getWorkflowById(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -91,7 +112,11 @@ export class AutomationController {
   /**
    * POST /automation/workflows - Crear nuevo workflow
    */
-  async createWorkflow(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async createWorkflow(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       // Validar datos de entrada
       const validatedData = createWorkflowSchema.parse(req.body)
@@ -102,7 +127,10 @@ export class AutomationController {
         throw new ApiError(401, 'User not authenticated')
       }
 
-      const workflow = await automationService.createWorkflow(validatedData as any, userId)
+      const workflow = await automationService.createWorkflow(
+        validatedData as CreateWorkflowData,
+        userId,
+      )
 
       res.status(201).json({
         success: true,
@@ -121,7 +149,11 @@ export class AutomationController {
   /**
    * PUT /automation/workflows/:id - Actualizar workflow
    */
-  async updateWorkflow(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async updateWorkflow(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -132,7 +164,10 @@ export class AutomationController {
       // Validar datos de entrada
       const validatedData = updateWorkflowSchema.parse(req.body)
 
-      const workflow = await automationService.updateWorkflow(id, validatedData as any)
+      const workflow = await automationService.updateWorkflow(
+        id,
+        validatedData as UpdateWorkflowData,
+      )
 
       if (!workflow) {
         throw new ApiError(404, 'Workflow not found')
@@ -155,7 +190,11 @@ export class AutomationController {
   /**
    * DELETE /automation/workflows/:id - Eliminar workflow
    */
-  async deleteWorkflow(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async deleteWorkflow(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -181,10 +220,14 @@ export class AutomationController {
   /**
    * GET /automation/jobs - Obtener todos los jobs
    */
-  async getJobs(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getJobs(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const jobs = await automationService.getJobs()
-      
+
       res.status(200).json({
         success: true,
         data: jobs,
@@ -198,7 +241,11 @@ export class AutomationController {
   /**
    * GET /automation/jobs/:id - Obtener job por ID
    */
-  async getJobById(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getJobById(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -224,7 +271,11 @@ export class AutomationController {
   /**
    * POST /automation/workflows/:id/execute - Ejecutar workflow
    */
-  async executeWorkflow(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async executeWorkflow(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -258,7 +309,11 @@ export class AutomationController {
   /**
    * POST /automation/jobs/:id/pause - Pausar job
    */
-  async pauseJob(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async pauseJob(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -289,7 +344,11 @@ export class AutomationController {
   /**
    * POST /automation/jobs/:id/resume - Reanudar job
    */
-  async resumeJob(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async resumeJob(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     try {
       const { id } = req.params
 
@@ -314,4 +373,4 @@ export class AutomationController {
   }
 }
 
-export const automationController = new AutomationController() 
+export const automationController = new AutomationController()

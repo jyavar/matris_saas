@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-07-01T21:56:22.033Z",
+  "timestamp": "2025-07-02T04:35:32.120Z",
   "status": "FAIL",
   "checks": {
     "linting": {
       "status": "FAIL",
       "message": "Linting errors found",
-      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\nbackend:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\nbackend#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\nfrontend:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\nfrontend#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "tests": {
       "status": "FAIL",

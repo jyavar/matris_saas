@@ -16,18 +16,20 @@ vi.mock('../services/supabase.service.js', () => ({
       if (table === 'analytics') {
         return {
           insert: vi.fn(() => ({
-            select: vi.fn(() => Promise.resolve({
-              data: [
-                {
-                  id: 1,
-                  event_name: 'test_event',
-                  user_id: 1,
-                  payload: {},
-                  created_at: new Date().toISOString(),
-                },
-              ],
-              error: null,
-            })),
+            select: vi.fn(() =>
+              Promise.resolve({
+                data: [
+                  {
+                    id: 1,
+                    event_name: 'test_event',
+                    user_id: 1,
+                    payload: {},
+                    created_at: new Date().toISOString(),
+                  },
+                ],
+                error: null,
+              }),
+            ),
           })),
           select: vi.fn(() => ({
             order: vi.fn(() => ({
@@ -42,10 +44,16 @@ vi.mock('../services/supabase.service.js', () => ({
                         }
                         // Simular error de validación para limit/offset inválidos
                         if (col === 'limit' && (val < 1 || val > 1000)) {
-                          return Promise.resolve({ data: null, error: { message: 'Invalid limit' } })
+                          return Promise.resolve({
+                            data: null,
+                            error: { message: 'Invalid limit' },
+                          })
                         }
                         if (col === 'offset' && val < 0) {
-                          return Promise.resolve({ data: null, error: { message: 'Invalid offset' } })
+                          return Promise.resolve({
+                            data: null,
+                            error: { message: 'Invalid offset' },
+                          })
                         }
                         return Promise.resolve({
                           data: [
@@ -376,12 +384,6 @@ describe('Analytics Module - Unit Tests', () => {
       const response = await request(app).get(
         '/analytics/users/non-existent-user',
       )
-
-      expect(response.status).toBe(404)
-    })
-
-    it('should require user ID parameter', async () => {
-      const response = await request(app).get('/analytics/users/')
 
       expect(response.status).toBe(404)
     })

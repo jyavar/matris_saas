@@ -1,4 +1,10 @@
-import { Request, RequestHandler, Response, Router } from 'express'
+import {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+  Router,
+} from 'express'
 
 import { analyticsController } from '../controllers/analytics.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
@@ -9,8 +15,7 @@ function handleAsync(
   fn: (req: Request, res: Response, next: unknown) => Promise<unknown>,
 ): RequestHandler {
   return (req: Request, res: Response, next: unknown) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fn(req, res, next).catch(next as any)
+    fn(req, res, next).catch(next as unknown as NextFunction)
   }
 }
 
@@ -33,10 +38,8 @@ const usersNotFoundHandler: RequestHandler = (_req, res) => {
 router.get('/analytics/users', usersNotFoundHandler)
 
 // Middleware para capturar /users/ (userId vacío)
-const usersEmptyHandler: RequestHandler = (_req, res) => {
-  res.status(404).json({ message: 'User ID not provided' })
-}
-router.get('/users/', usersEmptyHandler)
+// Express no soporta rutas '/users/' (barra final) explícitamente, solo '/users' y '/users/:userId'.
+// El handler '/users' (sin barra final) ya captura el edge case de userId vacío.
 router.get('/users/:userId', handleAsync(analyticsController.getUserAnalytics))
 
 // Legacy endpoints

@@ -10,17 +10,18 @@ import {
   UserAnalytics,
 } from '../services/analytics.service.js'
 import { logAction } from '../services/logger.service.js'
+import type { Json } from '../types/supabase.types.js'
 import { ApiError } from '../utils/ApiError.js'
 
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
-  payload: z.record(z.any()).optional(),
+  payload: z.custom<Json>().optional(),
   user_id: z.number().optional(),
 })
 
 const updateAnalyticsSchema = z.object({
   event_name: z.string().optional(),
-  payload: z.record(z.any()).optional(),
+  payload: z.custom<Json>().optional(),
   user_id: z.number().optional(),
 })
 
@@ -78,19 +79,24 @@ export const analyticsController = {
     try {
       const query = {
         ...req.query,
-        limit: req.query.limit !== undefined ? Number(req.query.limit) : undefined,
-        offset: req.query.offset !== undefined ? Number(req.query.offset) : undefined,
+        limit:
+          req.query.limit !== undefined ? Number(req.query.limit) : undefined,
+        offset:
+          req.query.offset !== undefined ? Number(req.query.offset) : undefined,
       }
-      
+
       // Check for NaN values before validation
-      if ((query.limit !== undefined && isNaN(query.limit as number)) ||
-          (query.offset !== undefined && isNaN(query.offset as number))) {
-        return res.status(400).json({ 
-          success: false, 
-          error: 'Invalid query parameters: limit and offset must be valid numbers' 
+      if (
+        (query.limit !== undefined && isNaN(query.limit as number)) ||
+        (query.offset !== undefined && isNaN(query.offset as number))
+      ) {
+        return res.status(400).json({
+          success: false,
+          error:
+            'Invalid query parameters: limit and offset must be valid numbers',
         })
       }
-      
+
       const parsedQuery = analyticsQuerySchema.parse(query)
       const events = await analyticsService.getEvents(parsedQuery)
 
@@ -122,19 +128,24 @@ export const analyticsController = {
     try {
       const query = {
         ...req.query,
-        limit: req.query.limit !== undefined ? Number(req.query.limit) : undefined,
-        offset: req.query.offset !== undefined ? Number(req.query.offset) : undefined,
+        limit:
+          req.query.limit !== undefined ? Number(req.query.limit) : undefined,
+        offset:
+          req.query.offset !== undefined ? Number(req.query.offset) : undefined,
       }
-      
+
       // Check for NaN values before validation
-      if ((query.limit !== undefined && isNaN(query.limit as number)) ||
-          (query.offset !== undefined && isNaN(query.offset as number))) {
-        return res.status(400).json({ 
-          success: false, 
-          error: 'Invalid query parameters: limit and offset must be valid numbers' 
+      if (
+        (query.limit !== undefined && isNaN(query.limit as number)) ||
+        (query.offset !== undefined && isNaN(query.offset as number))
+      ) {
+        return res.status(400).json({
+          success: false,
+          error:
+            'Invalid query parameters: limit and offset must be valid numbers',
         })
       }
-      
+
       const parsedQuery = analyticsQuerySchema.parse(query)
       const metrics = await analyticsService.getMetrics(parsedQuery)
 
@@ -195,7 +206,9 @@ export const analyticsController = {
     try {
       const { userId } = req.params
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
-        return res.status(404).json({ success: false, error: 'User ID is required' })
+        return res
+          .status(404)
+          .json({ success: false, error: 'User ID is required' })
       }
 
       let userAnalytics: UserAnalytics | null = null
@@ -219,7 +232,9 @@ export const analyticsController = {
         data: userAnalytics,
       })
     } catch {
-      return res.status(404).json({ success: false, error: 'User ID is required' })
+      return res
+        .status(404)
+        .json({ success: false, error: 'User ID is required' })
     }
   },
 

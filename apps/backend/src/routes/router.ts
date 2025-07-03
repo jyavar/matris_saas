@@ -34,7 +34,7 @@ router.use('/analytics', analyticsRateLimit, analyticsRoutes)
 router.use('/analytics-reporting', analyticsRateLimit, analyticsReportingRoutes)
 
 // API routes (general rate limiting)
-router.use('/api', apiRateLimit, router)
+// router.use('/api', apiRateLimit, router)
 
 // Pricing routes (caching for 30 minutes)
 router.use('/pricing', apiRateLimit, pricingRoutes)

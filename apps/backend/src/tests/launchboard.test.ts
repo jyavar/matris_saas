@@ -1,10 +1,12 @@
 import request from 'supertest'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { app } from '../index.js'
 
 // Factory para datos de dashboard
-function createTestDashboard(overrides: Partial<TestDashboard> = {}): TestDashboard {
+function createTestDashboard(
+  overrides: Partial<TestDashboard> = {},
+): TestDashboard {
   return {
     id: 'dashboard-1',
     name: 'Main Dashboard',
@@ -55,7 +57,9 @@ describe('Launchboard Endpoints', () => {
     it('should return a dashboard by id', async () => {
       const dashboard = createTestDashboard()
       mockLaunchboardService.getDashboardById.mockResolvedValue(dashboard)
-      const res = await request(app).get(`/launchboard/dashboards/${dashboard.id}`)
+      const res = await request(app).get(
+        `/launchboard/dashboards/${dashboard.id}`,
+      )
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.id).toBe(dashboard.id)
@@ -115,16 +119,20 @@ describe('Launchboard Endpoints', () => {
   describe('DELETE /launchboard/dashboards/:id', () => {
     it('should delete a dashboard', async () => {
       mockLaunchboardService.deleteDashboard.mockResolvedValue(true)
-      const res = await request(app).delete('/launchboard/dashboards/dashboard-1')
+      const res = await request(app).delete(
+        '/launchboard/dashboards/dashboard-1',
+      )
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
 
     it('should return 404 for non-existent dashboard', async () => {
       mockLaunchboardService.deleteDashboard.mockResolvedValue(false)
-      const res = await request(app).delete('/launchboard/dashboards/nonexistent')
+      const res = await request(app).delete(
+        '/launchboard/dashboards/nonexistent',
+      )
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
-}) 
+})

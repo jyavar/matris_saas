@@ -4,17 +4,19 @@ import { pino } from 'pino'
 const isTest = process.env.NODE_ENV === 'test'
 
 const logger = pino({
-  level: isTest ? 'error' : (process.env.LOG_LEVEL || 'info'),
-  ...(isTest ? {} : {
-    transport: {
-      target: 'pino-pretty',
-      options: {
-        colorize: true,
-        translateTime: 'SYS:standard',
-        ignore: 'pid,hostname',
-      },
-    },
-  }),
+  level: isTest ? 'error' : process.env.LOG_LEVEL || 'info',
+  ...(isTest
+    ? {}
+    : {
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            colorize: true,
+            translateTime: 'SYS:standard',
+            ignore: 'pid,hostname',
+          },
+        },
+      }),
 })
 
 export function logAction(
@@ -29,9 +31,10 @@ export function logAction(
   // PostHog solo en producción
   if (!isTest && process.env.POSTHOG_API_KEY) {
     try {
-      const { PostHogService } = require('./posthog.service.js')
-      PostHogService.captureEvent(userId, action, details)
-    } catch (error) {
+      import('./posthog.service.js').then(({ PostHogService }) => {
+        PostHogService.captureEvent(userId, action, details)
+      })
+    } catch {
       logger.warn('PostHog not available')
     }
   }

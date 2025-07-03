@@ -1,4 +1,3 @@
-import type { NextFunction, Request, Response } from 'express'
 import rateLimit from 'express-rate-limit'
 import slowDown from 'express-slow-down'
 
@@ -11,7 +10,7 @@ export const strictRateLimit = rateLimit({
   message: {
     error: 'Too many requests, please try again later.',
   },
-  handler: (req: Request, res: Response, _next: NextFunction, options) => {
+  handler: (req, res, _next, options) => {
     res.status(options.statusCode).json(options.message)
   },
 })

@@ -1,0 +1,46 @@
+
+> backend@1.0.0 test /Users/jose/Proyectos/matriz_cursor/apps/backend
+> NODE_ENV=test SUPABASE_URL=http://127.0.0.1:54321 SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU vitest run
+
+
+ RUN  v1.6.1 /Users/jose/Proyectos/matriz_cursor/apps/backend
+
+ ✓ src/tests/deployment.test.ts  (18 tests) 212ms
+ ❯ src/tests/pricing.test.ts  (0 test)
+ ❯ src/tests/automation.test.ts  (0 test)
+ ❯ src/tests/analytics.unit.test.ts  (0 test)
+ ❯ src/tests/performance.test.ts  (0 test)
+ ❯ src/tests/analytics.test.ts  (0 test)
+ ❯ src/tests/backend.coverage.extended.test.ts  (0 test)
+ ✓ src/services/__tests__/billing.service.test.ts  (7 tests) 8ms
+ ❯ src/tests/posthog.test.ts  (0 test)
+ ✓ src/tests/ci-cd.test.ts  (11 tests) 106ms
+ ❯ src/tests/analytics-reporting.test.ts  (0 test)
+ ❯ src/tests/email-campaigns.test.ts  (0 test)
+ ❯ src/tests/launchboard.test.ts  (0 test)
+ ❯ src/tests/runtime.routes.test.ts  (0 test)
+ ✓ src/services/__tests__/logger.service.test.ts  (5 tests) 3ms
+ ✓ src/services/__tests__/runtime.service.test.ts  (6 tests) 32ms
+ ❯ src/tests/debug-analytics.test.ts  (0 test)
+ ❯ src/tests/onboarding.test.ts  (0 test)
+ ❯ src/tests/auth.test.ts  (0 test)
+ ❯ src/tests/openai.test.ts  (0 test)
+ ✓ src/services/__tests__/openai.service.test.ts  (3 tests) 8ms
+ ✓ src/services/__tests__/stripe.service.test.ts  (3 tests) 2ms
+ ✓ src/services/__tests__/posthog.service.test.ts  (2 tests) 2ms
+ ❯ src/tests/reporting.routes.test.ts  (0 test)
+ ✓ src/tests/posthog.service.test.ts  (3 tests) 4ms
+ ❯ src/tests/campaigns.routes.test.ts  (0 test)
+ ❯ src/tests/openai.routes.test.ts  (0 test)
+ ❯ src/tests/posthog.health.test.ts  (0 test)
+ ✓ src/services/__tests__/resend.service.test.ts  (2 tests) 4ms
+ ❯ src/tests/onboarding.routes.test.ts  (0 test)
+ ❯ src/tests/resend.routes.test.ts  (0 test)
+ ❯ src/tests/health.test.ts  (0 test)
+ ❯ src/tests/debug.test.ts  (0 test)
+
+ Test Files  23 failed | 10 passed (33)
+      Tests  60 passed (60)
+   Start at  22:25:50
+   Duration  1.96s (transform 537ms, setup 508ms, collect 195ms, tests 381ms, environment 3ms, prepare 2.57s)
+

@@ -78,4 +78,24 @@ app.use('*', (_req, res) => {
   })
 })
 
+// Instrumentación para capturar errores de path-to-regexp
+process.on('uncaughtException', (err) => {
+  if (err && err.message && err.message.includes('path-to-regexp')) {
+    // eslint-disable-next-line no-console
+    console.error('PATH-TO-REGEXP ERROR DETECTED:', err.stack)
+  }
+  throw err
+})
+process.on('unhandledRejection', (reason) => {
+  if (
+    reason &&
+    reason instanceof Error &&
+    reason.message.includes('path-to-regexp')
+  ) {
+    // eslint-disable-next-line no-console
+    console.error('PATH-TO-REGEXP ERROR DETECTED (Promise):', reason.stack)
+  }
+  throw reason
+})
+
 export { app, logger }

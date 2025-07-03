@@ -6,6 +6,8 @@
  * Provides a unified interface for data processing operations
  */
 
+import fs from 'fs'
+
 import { DataProcessingResult, DataProcessor } from './processor'
 
 export interface DataOptions {
@@ -42,6 +44,40 @@ export interface OperationResult {
   message: string
   details?: unknown
   duration?: number
+}
+
+export interface DataAgentDeps {
+  writeFileSync: (file: string, data: string) => void
+}
+
+export default async function runAgent(
+  deps: DataAgentDeps = { writeFileSync: fs.writeFileSync },
+): Promise<void> {
+  const log = {
+    timestamp: new Date().toISOString(),
+    agentName: '@data',
+    status: 'ok' as 'ok' | 'fail',
+    errors: [] as string[],
+    actionsPerformed: [] as string[],
+  }
+  try {
+    const manager = new DataManager()
+    const result = await manager.run()
+    log.actionsPerformed.push('DataManager.run ejecutado')
+    log.status = result.status === 'FAILED' ? 'fail' : 'ok'
+    if (result.errors && result.errors.length > 0) {
+      log.errors.push(...result.errors)
+    }
+  } catch (e) {
+    log.status = 'fail'
+    log.errors.push(e instanceof Error ? e.message : String(e))
+    log.actionsPerformed.push('Error en DataManager.run')
+  }
+  deps.writeFileSync(
+    'audit-artifacts/reports/data-report.json',
+    JSON.stringify(log, null, 2),
+  )
+  console.log('[@data] ejecutado')
 }
 
 export class DataManager {
