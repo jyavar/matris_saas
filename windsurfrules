@@ -1,0 +1,1012 @@
+# STRATO Core OS™ - Cursor Rules
+
+## 🏗️ ARQUITECTURA DEL PROYECTO
+
+STRATO es un monorepo SaaS con arquitectura modular:
+
+```
+matriz_cursor/
+├── apps/
+│   ├── backend/          # API NestJS + Supabase (puerto 3001) - Versión principal
+│   ├── frontend/         # React + Vite + TypeScript
+│   └── web/             # Next.js Landing + Control Tower
+├── packages/             # Librerías compartidas
+├── supabase/            # Base de datos y migraciones
+└── scripts/             # Herramientas de desarrollo
+```
+
+## 🎯 PATRONES Y CONVENCIONES
+
+### Backend (NestJS)
+- **Controllers**: Manejan requests/responses con decoradores, validación con class-validator
+- **Services**: Lógica de negocio con inyección de dependencias
+- **Modules**: Organización modular de la aplicación
+- **Guards**: Manejo de autenticación y autorización
+- **Interceptors**: Transformación de respuestas, manejo de caché
+- **Pipes**: Validación y transformación de datos
+- **Repositories**: Acceso a datos con TypeORM/Prisma
+
+### Frontend (React/Vite)
+- **Components**: Reutilizables en `/components/ui/`
+- **Pages**: Páginas principales en `/app/`
+- **Services**: APIs y servicios externos
+- **Contexts**: Estado global (AuthContext)
+- **Hooks**: Lógica reutilizable
+
+### Web (Next.js)
+- **App Router**: Estructura moderna de Next.js 15
+- **API Routes**: Endpoints para auditoría y control
+- **Components**: Landing page y Control Tower
+
+## 🔧 TECNOLOGÍAS PRINCIPALES
+
+### Backend
+- **NestJS**: Framework de Node.js para aplicaciones del lado del servidor
+- **TypeScript**: Tipado estático
+- **TypeORM/Prisma**: ORM para acceso a datos
+- **Supabase**: Base de datos PostgreSQL + Auth
+- **Stripe**: Integración de pagos
+- **OpenAI**: Servicios de IA
+- **PostHog**: Análisis de datos
+- **Resend**: Envío de correos electrónicos
+- **NestJS Pino**: Logging estructurado
+
+### Frontend
+- **React 18**: UI Framework
+- **Vite**: Build tool
+- **TypeScript**: Tipado estático
+- **Tailwind CSS**: Estilos
+- **Vitest**: Testing
+- **MSW**: Mock Service Worker
+
+### Web
+- **Next.js 15**: Framework React
+- **App Router**: Enrutamiento moderno
+- **TypeScript**: Tipado estático
+
+## 📝 CONVENCIONES DE CÓDIGO
+
+### Naming
+- **Files**: kebab-case (auth.controller.ts)
+- **Functions**: camelCase (getUserProfile)
+- **Classes**: PascalCase (AuthService)
+- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **Types**: PascalCase (UserProfile)
+
+### Imports
+- **Relative**: Para archivos del mismo módulo
+- **Absolute**: Para paquetes externos
+- **Workspace**: Para paquetes internos (@repo/db-types)
+
+### Error Handling
+- **Controllers**: Try/catch con next(error)
+- **Services**: Throw ApiError con códigos HTTP
+- **Frontend**: Error boundaries y estados de error
+
+### Logging
+- **Structured**: Pino con contexto estructurado
+- **Actions**: logAction() para eventos de negocio
+- **Levels**: info, warn, error según severidad
+
+## 🧪 TESTING STANDARDS - ESTRATEGIA GLOBAL
+
+### 🎯 OBJETIVOS PRINCIPALES
+Los tests en STRATO deben:
+1. **Ser realistas** - Reflejar la lógica de negocio esperada
+2. **Pasar desde el primer intento** - Sin debugging innecesario
+3. **Ser unitarios puros** - Sin dependencias externas (Supabase, Stripe, OpenAI, etc.)
+4. **Usar mocks apropiados** - `vi.mock()` o `msw` para evitar IO real
+5. **Ser ultra-rápidos** - Idealmente <5 segundos por suite
+6. **Manejar errores explícitamente** - ZodError debe devolver 400, no 500
+7. **Validar inputs numéricos** - `limit`, `offset`, `user_id`, etc.
+8. **Cubrir flujos positivos y negativos** - Sin repetir lógica
+9. **Tener estructura clara** - `describe/it` bien organizado
+10. **Cumplir reglas de calidad** - `.cursorrules` y `eslint`
+
+### 📊 MÉTRICAS DE CALIDAD
+- **Performance**: <5 segundos por suite de tests
+- **Cobertura**: ≥90% líneas y branches
+- **Fiabilidad**: 100% de tests pasando consistentemente
+- **Mantenibilidad**: Tests legibles y bien estructurados
+
+### 🏗️ ARQUITECTURA DE TESTS
+
+#### Backend Tests (Jest + @nestjs/testing)
+```ts
+// Estructura recomendada para NestJS
+describe('CampaignsController', () => {
+  let controller: CampaignsController;
+  let service: jest.Mocked<CampaignsService>;
+
+  // Factories para datos consistentes
+  const createTestCampaignDto = (overrides = {}) => ({
+    title: 'Test Campaign',
+    description: 'Test Description',
+    budget: 1000,
+    ...overrides
+  });
+
+  const mockCampaign = (overrides = {}) => ({
+    id: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    ...createTestCampaignDto(),
+    ...overrides
+  });
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [CampaignsController],
+      providers: [
+        {
+          provide: CampaignsService,
+          useValue: {
+            create: jest.fn(),
+            update: jest.fn(),
+            delete: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    controller = module.get<CampaignsController>(CampaignsController);
+    service = module.get(CampaignsService) as jest.Mocked<CampaignsService>;
+  });
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    // Configurar mocks específicos
+  })
+
+  it('should create campaign with valid data', async () => {
+    // Arrange
+    const createDto = createTestCampaignDto();
+    const expectedResult = mockCampaign(createDto);
+    service.create.mockResolvedValue(expectedResult);
+
+    // Act
+    const startTime = Date.now();
+    const result = await controller.create(createDto);
+    const duration = Date.now() - startTime;
+
+    // Assert
+    expect(duration).toBeLessThan(500); // Performance check
+    expect(service.create).toHaveBeenCalledWith(createDto);
+    expect(result).toEqual(expectedResult);
+    expect(response.status).toBe(201)
+    expect(response.body).toMatchObject({
+      success: true,
+      data: expect.objectContaining({
+        id: expect.any(Number),
+        title: validData.title,
+        budget: validData.budget
+      })
+    })
+    expect(mockCampaignService.create).toHaveBeenCalledTimes(1)
+    expect(mockCampaignService.create).toHaveBeenCalledWith(validData)
+  })
+
+  it('should return 400 for missing title', async () => {
+    // Arrange
+    const invalidData = createTestCampaign({ title: undefined })
+
+    // Act
+    const response = await request(app)
+      .post('/api/campaigns')
+      .send(invalidData)
+
+    // Assert
+    expect(response.status).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.error).toBeDefined()
+  })
+
+  it('should handle malformed JSON gracefully', async () => {
+    // Act
+    const response = await request(app)
+      .post('/api/campaigns')
+      .set('Content-Type', 'application/json')
+      .send('{"invalid": json}')
+
+    // Assert
+    expect(response.status).toBe(400)
+  })
+})
+```
+
+#### Frontend Tests (Vitest + React Testing Library)
+```tsx
+// Estructura recomendada para componentes
+describe('CampaignForm Component', () => {
+  const renderCampaignForm = (props = {}) => {
+    return render(
+      <CampaignForm 
+        onSubmit={vi.fn()}
+        initialData={{}}
+        {...props}
+      />
+    )
+  }
+
+  it('should render form fields correctly', () => {
+    // Arrange & Act
+    const { getByLabelText, getByRole } = renderCampaignForm()
+
+    // Assert
+    expect(getByLabelText(/title/i)).toBeInTheDocument()
+    expect(getByLabelText(/budget/i)).toBeInTheDocument()
+    expect(getByRole('button', { name: /submit/i })).toBeInTheDocument()
+  })
+
+  it('should call onSubmit with form data', async () => {
+    // Arrange
+    const mockOnSubmit = vi.fn()
+    const { getByLabelText, getByRole } = renderCampaignForm({ onSubmit: mockOnSubmit })
+
+    // Act
+    await userEvent.type(getByLabelText(/title/i), 'Test Campaign')
+    await userEvent.type(getByLabelText(/budget/i), '1000')
+    await userEvent.click(getByRole('button', { name: /submit/i }))
+
+    // Assert
+    expect(mockOnSubmit).toHaveBeenCalledWith({
+      title: 'Test Campaign',
+      budget: 1000
+    })
+  })
+})
+```
+
+### 🔧 MOCKING STRATEGY
+
+#### Backend Mocks (Vitest)
+```ts
+// Mock de servicios externos
+vi.mock('../services/supabase.service.js', () => ({
+  supabase: {
+    from: vi.fn(() => ({
+      insert: vi.fn(() => ({
+        select: vi.fn(() => Promise.resolve({ 
+          data: [{ id: 1, name: 'test' }], 
+          error: null 
+        }))
+      })),
+      select: vi.fn(() => ({
+        order: vi.fn(() => ({
+          limit: vi.fn(() => ({
+            range: vi.fn(() => Promise.resolve({ data: [], error: null }))
+          }))
+        }))
+      }))
+    }))
+  }
+}))
+
+// Mock de middleware
+vi.mock('../middleware/auth.middleware.js', () => ({
+  authMiddleware: vi.fn((req, res, next) => {
+    req.user = { id: 1, email: 'test@example.com' }
+    next()
+  })
+}))
+
+// Mock de servicios de terceros
+vi.mock('stripe', () => ({
+  default: vi.fn(() => ({
+    paymentIntents: {
+      create: vi.fn(() => Promise.resolve({ id: 'pi_test' }))
+    }
+  }))
+}))
+```
+
+#### Frontend Mocks (MSW)
+```ts
+// handlers.ts
+import { rest } from 'msw'
+
+export const handlers = [
+  rest.post('/api/campaigns', (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        data: {
+          id: 1,
+          title: 'Test Campaign',
+          created_at: new Date().toISOString()
+        }
+      })
+    )
+  }),
+
+  rest.get('/api/campaigns', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        data: [
+          { id: 1, title: 'Campaign 1' },
+          { id: 2, title: 'Campaign 2' }
+        ]
+      })
+    )
+  })
+]
+```
+
+### 📋 CHECKLIST DE VALIDACIÓN DE TESTS
+
+#### Antes de crear tests:
+- [ ] ¿El test refleja un caso de uso real?
+- [ ] ¿Están mockeados todos los servicios externos?
+- [ ] ¿Se validan tanto casos positivos como negativos?
+- [ ] ¿Se manejan errores de validación (ZodError → 400)?
+- [ ] ¿Se validan inputs numéricos correctamente?
+- [ ] ¿El test es independiente y no afecta otros tests?
+
+#### Durante la implementación:
+- [ ] ¿Se usan factories para datos consistentes?
+- [ ] ¿Se mide el tiempo de ejecución (<5s)?
+- [ ] ¿Se validan las llamadas a mocks?
+- [ ] ¿Se verifica la estructura completa de respuesta?
+- [ ] ¿Se incluyen edge cases importantes?
+
+#### Después de implementar:
+- [ ] ¿Todos los tests pasan consistentemente?
+- [ ] ¿La cobertura es ≥90%?
+- [ ] ¿Los tests son legibles y mantenibles?
+- [ ] ¿Se documentan casos especiales?
+- [ ] ¿Se integran con CI/CD?
+
+### 🚫 ANTI-PATRONES DE TESTING
+
+#### ❌ NO HACER
+```ts
+// ❌ Tests que dependen de servicios externos
+it('should create user in database', async () => {
+  const user = await createUserInRealDatabase() // MALO
+})
+
+// ❌ Tests lentos (>5 segundos)
+it('should process large dataset', async () => {
+  await processLargeDataset() // MALO - muy lento
+})
+
+// ❌ Tests que no validan estructura
+it('should return success', async () => {
+  const response = await request(app).post('/api/users')
+  expect(response.status).toBe(200) // MALO - muy básico
+})
+
+// ❌ Tests que no manejan errores
+it('should handle invalid data', async () => {
+  const response = await request(app).post('/api/users').send({})
+  // No valida el error específico - MALO
+})
+
+// ❌ Mocks incompletos
+vi.mock('supabase', () => ({
+  // Mock incompleto que causa errores - MALO
+}))
+```
+
+#### ✅ HACER
+```ts
+// ✅ Tests con mocks apropiados
+it('should create user successfully', async () => {
+  const mockUser = { id: 1, email: 'test@example.com' }
+  mockUserService.create.mockResolvedValue(mockUser)
+  
+  const response = await request(app).post('/api/users').send(validUserData)
+  
+  expect(response.status).toBe(201)
+  expect(response.body.data).toMatchObject(mockUser)
+  expect(mockUserService.create).toHaveBeenCalledWith(validUserData)
+})
+
+// ✅ Tests rápidos con validación completa
+it('should validate user data', async () => {
+  const startTime = Date.now()
+  
+  const response = await request(app).post('/api/users').send(invalidData)
+  
+  const duration = Date.now() - startTime
+  expect(duration).toBeLessThan(1000) // <1s
+  expect(response.status).toBe(400)
+  expect(response.body.error).toContain('email is required')
+})
+
+// ✅ Tests que validan edge cases
+it('should handle empty arrays gracefully', async () => {
+  mockUserService.list.mockResolvedValue([])
+  
+  const response = await request(app).get('/api/users')
+  
+  expect(response.status).toBe(200)
+  expect(response.body.data).toEqual([])
+  expect(response.body.count).toBe(0)
+})
+```
+
+### 🎨 TEMPLATES DE TESTS
+
+#### Template para Endpoints REST
+```ts
+describe('Resource Endpoints', () => {
+  // Factories
+  const createTestResource = (overrides = {}) => ({
+    name: 'Test Resource',
+    description: 'Test Description',
+    ...overrides
+  })
+
+  // Mocks
+  const mockResourceService = {
+    create: vi.fn(),
+    findById: vi.fn(),
+    update: vi.fn(),
+    delete: vi.fn(),
+    list: vi.fn()
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  describe('POST /api/resources', () => {
+    it('should create resource with valid data', async () => {
+      const validData = createTestResource()
+      const mockResponse = { id: 1, ...validData, created_at: new Date() }
+      mockResourceService.create.mockResolvedValue(mockResponse)
+
+      const response = await request(app).post('/api/resources').send(validData)
+
+      expect(response.status).toBe(201)
+      expect(response.body.success).toBe(true)
+      expect(response.body.data).toMatchObject(mockResponse)
+      expect(mockResourceService.create).toHaveBeenCalledWith(validData)
+    })
+
+    it('should return 400 for invalid data', async () => {
+      const invalidData = createTestResource({ name: undefined })
+
+      const response = await request(app).post('/api/resources').send(invalidData)
+
+      expect(response.status).toBe(400)
+      expect(response.body.success).toBe(false)
+      expect(response.body.error).toBeDefined()
+    })
+  })
+
+  describe('GET /api/resources/:id', () => {
+    it('should return resource by id', async () => {
+      const mockResource = createTestResource({ id: 1 })
+      mockResourceService.findById.mockResolvedValue(mockResource)
+
+      const response = await request(app).get('/api/resources/1')
+
+      expect(response.status).toBe(200)
+      expect(response.body.data).toMatchObject(mockResource)
+    })
+
+    it('should return 404 for non-existent resource', async () => {
+      mockResourceService.findById.mockResolvedValue(null)
+
+      const response = await request(app).get('/api/resources/999')
+
+      expect(response.status).toBe(404)
+    })
+  })
+})
+```
+
+#### Template para Componentes React
+```tsx
+describe('ComponentName', () => {
+  const defaultProps = {
+    onSubmit: vi.fn(),
+    data: {},
+    loading: false
+  }
+
+  const renderComponent = (props = {}) => {
+    return render(<ComponentName {...defaultProps} {...props} />)
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('should render correctly with default props', () => {
+    const { getByRole, getByText } = renderComponent()
+
+    expect(getByRole('form')).toBeInTheDocument()
+    expect(getByText('Submit')).toBeInTheDocument()
+  })
+
+  it('should call onSubmit when form is submitted', async () => {
+    const mockOnSubmit = vi.fn()
+    const { getByRole } = renderComponent({ onSubmit: mockOnSubmit })
+
+    await userEvent.click(getByRole('button', { name: /submit/i }))
+
+    expect(mockOnSubmit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should show loading state', () => {
+    const { getByText } = renderComponent({ loading: true })
+
+    expect(getByText('Loading...')).toBeInTheDocument()
+  })
+})
+```
+
+### 🔧 CONFIGURACIÓN DE VITEST
+
+#### Backend (apps/backend/vitest.config.ts)
+```ts
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  test: {
+    environment: 'node',
+    globals: true,
+    setupFiles: './vitest.setup.ts',
+    // Optimizaciones para tests unitarios rápidos
+    testTimeout: 5000, // 5 segundos máximo por test
+    hookTimeout: 2000, // 2 segundos máximo por hook
+    teardownTimeout: 1000, // 1 segundo máximo para cleanup
+    // Configuración de threads para paralelización
+    threads: {
+      enabled: true,
+      maxThreads: 4,
+      minThreads: 2,
+    },
+    // Configuración de coverage optimizada
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'html', 'json', 'json-summary'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/coverage/**',
+        '**/*.d.ts',
+        '**/vitest.setup.ts',
+        '**/vitest.config.ts',
+      ],
+    },
+    // Configuración de mocks globales
+    mockReset: true,
+    restoreMocks: true,
+    clearMocks: true,
+  },
+})
+```
+
+#### Frontend (apps/frontend/vitest.config.ts)
+```ts
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './vitest.setup.ts',
+    testTimeout: 5000,
+    threads: {
+      enabled: true,
+      maxThreads: 4,
+    },
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'html', 'json'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/coverage/**',
+        '**/*.d.ts',
+      ],
+    },
+  },
+})
+```
+
+### 📊 COMANDOS DE TESTING
+
+```bash
+# Ejecutar todos los tests
+pnpm test
+
+# Ejecutar tests con coverage
+pnpm test:coverage
+
+# Ejecutar tests específicos
+pnpm test apps/backend/src/tests/auth.test.ts
+
+# Ejecutar tests en modo watch
+pnpm test:watch
+
+# Validar cobertura mínima
+pnpm test:coverage:check
+
+# Ejecutar tests de integración
+pnpm test:integration
+
+# Ejecutar tests E2E
+pnpm test:e2e
+```
+
+### 🎯 INTEGRACIÓN CON CI/CD
+
+#### GitHub Actions Workflow
+```yaml
+name: Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: pnpm install
+      - run: pnpm test:coverage
+      - run: pnpm test:coverage:check
+```
+
+### 📈 MÉTRICAS DE ÉXITO
+
+- **Performance**: 100% de tests <5 segundos
+- **Cobertura**: ≥90% líneas y branches
+- **Fiabilidad**: 100% de tests pasando
+- **Mantenibilidad**: Tests legibles y bien estructurados
+- **Integración**: CI/CD siempre verde
+
+---
+
+## 🧪 TESTING
+
+### Backend Tests
+- **Unit**: Services y utilidades
+- **Integration**: Controllers y routes
+- **Mocks**: Supabase, Stripe, OpenAI, PostHog, Resend
+- **Coverage**: Vitest con cobertura
+- **Framework**: Vitest (`apps/backend/vitest.config.ts`)
+- **Rutas de tests**: `apps/backend/src/tests/`
+- **Ejemplo de mock:**
+  ```ts
+  vi.mock('@supabase/supabase-js', () => ({
+    createClient: vi.fn(() => ({
+      auth: { signInWithPassword: vi.fn() },
+      from: vi.fn()
+    }))
+  }))
+  ```
+
+### Frontend Tests
+- **Components**: React Testing Library
+- **Hooks**: Custom hooks testing
+- **API**: MSW para mocking
+- **E2E**: Playwright (opcional)
+- **Framework**: Vitest (`apps/frontend/vitest.config.ts`)
+- **Rutas de tests**: `apps/frontend/src/tests/`, `apps/frontend/tests-e2e/`
+- **Ejemplo de mock con MSW:**
+  ```ts
+  import { rest } from 'msw'
+  export const handlers = [
+    rest.get('/api/user', (req, res, ctx) => res(ctx.json({ id: 1 })))
+  ]
+  ```
+
+### Web Tests
+- **Playwright**: Para pruebas E2E (`apps/frontend/tests-e2e/`)
+
+## 🔐 SEGURIDAD
+
+### Authentication
+- **Supabase Auth**: JWT tokens
+- **Middleware**: authMiddleware para rutas protegidas
+- **Rate Limiting**: express-rate-limit
+- **CORS**: Configurado para producción
+- **Validación de tokens**: Siempre validar JWT en endpoints protegidos. Ejemplo:
+  ```ts
+  if (!req.user) return res.status(401).json({ error: 'No autorizado' })
+  ```
+
+### Environment Variables
+- **Backend**: SUPABASE_URL, JWT_SECRET, etc.
+- **Frontend**: VITE_SUPABASE_URL, etc.
+- **Never**: Committear secrets al repo
+
+## 📊 MONITORING
+
+### Logging
+- **Structured**: Pino con contexto estructurado
+- **Levels**: info, warn, error
+- **Actions**: Eventos de negocio trackeados
+- **logAction()**: Usar para registrar eventos clave de negocio. Ejemplo:
+  ```ts
+  logAction('user_signup', userId, { email })
+  ```
+
+## 🤖 AGENTES STRATO
+
+### Agentes disponibles
+- **@refactor**: Refactorización automática de código. Ubicación: `/scripts/agents/refactor/autofix.ts`
+- **@qa**: Auditoría de calidad y tests. Ubicación: `/scripts/agents/qa/`
+- **@data**: Procesamiento y migración de datos. Ubicación: `/scripts/agents/data/`
+- **@merge-strategist**: Estrategias de merge y resolución de conflictos. Ubicación: `/scripts/agents/merge-strategist/`
+- **@context-watchdog**: Monitoreo de contexto y rutas. Ubicación: `/scripts/agents/context-watchdog.ts`
+
+### Rol y lógica principal
+- Cada agente implementa una función principal `runAgent()` y sigue la convención de orquestación desde `RuntimeService.runAgent()`.
+- Los agentes pueden ser invocados desde scripts o CI para tareas automáticas de refactor, QA, migración, etc.
+
+## 🌐 CONEXIONES EXTERNAS
+- **Supabase**: Base de datos y autenticación principal.
+- **Stripe**: Procesamiento de pagos y suscripciones.
+- **OpenAI**: Funcionalidades de IA y generación de texto.
+- **Resend**: Envío de emails transaccionales.
+- **PostHog**: Analytics y tracking de eventos.
+
+## 🚨 ANTI-PATRONES A EVITAR
+
+- ❌ Committear secrets
+- ❌ Any types en TypeScript
+- ❌ Console.log en producción
+- ❌ Mutar props en React
+- ❌ Callbacks anidados
+- ❌ Variables globales
+- ❌ Hardcoded URLs
+- ❌ Ignorar errores de linting
+- ❌ Omitir validación de tokens en endpoints protegidos
+- ❌ No usar mocks en tests de integración
+- ❌ No cubrir código crítico con tests
+
+## 🎯 OBJETIVOS DEL PROYECTO
+
+STRATO es un framework SaaS enterprise-grade que prioriza:
+- **Developer Experience**: DX excepcional
+- **Code Quality**: Código limpio y mantenible
+- **Security**: Seguridad por defecto
+- **Performance**: Rendimiento optimizado
+- **Scalability**: Arquitectura escalable
+- **Monitoring**: Observabilidad completa
+
+## 📚 RECURSOS
+
+- **Supabase Docs**: https://supabase.com/docs
+- **Next.js Docs**: https://nextjs.org/docs
+- **React Docs**: https://react.dev
+- **Tailwind CSS**: https://tailwindcss.com/docs
+- **Vitest**: https://vitest.dev
+
+## ✅ CHECKLISTS DE VALIDACIÓN
+
+### Pull Request Checklist
+- [ ] El código tiene tests unitarios y de integración
+- [ ] Se validan tokens en endpoints protegidos
+- [ ] Se loguean acciones clave con logAction()
+- [ ] No hay secrets ni datos sensibles en el código
+- [ ] El PR incluye descripción clara y justificación de cambios
+- [ ] El código sigue las convenciones de naming y estructura
+- [ ] Se actualizaron los mocks si cambió la integración externa
+- [ ] El build y los tests pasan en CI
+
+### Release Checklist
+- [ ] Todos los tests pasan con cobertura mínima
+- [ ] No hay dependencias inseguras o deprecated
+- [ ] Se revisaron los logs de errores recientes
+- [ ] Se actualizaron las migraciones y seeds si aplica
+- [ ] Se revisaron los permisos y accesos de servicios externos
+
+---
+
+## 📈 COBERTURA MÍNIMA DE TESTS
+- **Backend**: 90% líneas, 90% branches
+- **Frontend**: 90% líneas, 90% branches
+- **Bloquear PRs** si la cobertura baja de ese umbral
+- **Comando**: `pnpm test:coverage` y revisar reporte
+
+---
+
+## 🚫 EJEMPLOS DE ANTI-PATRONES Y FIXES
+
+### ❌ Incorrecto
+```ts
+// No validar token
+app.get('/api/secure', handler)
+
+// Usar any
+const data: any = {}
+
+// Console.log en producción
+console.log('debug')
+
+// Mutar props
+props.value = 123
+
+// Hardcoded URL
+fetch('https://api.stripe.com/v1/charges')
+```
+
+### ✅ Correcto
+```ts
+// Validar token
+app.get('/api/secure', authMiddleware, handler)
+
+// Tipado estricto
+const data: UserProfile = {}
+
+// Logging estructurado
+logger.info({ userId }, 'User logged in')
+
+// Props inmutables
+<MyComponent value={value} />
+
+// Usar variables de entorno
+fetch(`${process.env.STRIPE_API_URL}/charges`)
+```
+
+---
+
+## 🔑 POLÍTICA DE SECRETS Y VARIABLES
+
+| Variable                | Ubicación         | Propósito                        |
+|-------------------------|-------------------|----------------------------------|
+| SUPABASE_URL            | Backend, Frontend | URL de Supabase                  |
+| SUPABASE_KEY            | Backend           | API Key de Supabase              |
+| JWT_SECRET              | Backend           | Firmar y validar JWT             |
+| STRIPE_SECRET_KEY       | Backend           | API Key de Stripe                |
+| OPENAI_API_KEY          | Backend           | API Key de OpenAI                |
+| RESEND_API_KEY          | Backend           | API Key de Resend                |
+| POSTHOG_API_KEY         | Backend           | API Key de PostHog               |
+| VITE_SUPABASE_URL       | Frontend          | URL de Supabase (public)         |
+
+- **Nunca** committear archivos `.env` ni valores reales
+- Usar `.env.example` como plantilla
+- Secrets en CI: usar GitHub Actions Secrets o Railway/Vercel envs
+
+---
+
+## 🌳 POLÍTICA DE BRANCHING Y RELEASES
+- Solo mergear a `main` vía Pull Request
+- CI debe estar en verde y cobertura OK
+- Revisión obligatoria de 2 devs para PRs a main
+- Branches:
+  - `main`: Producción
+  - `develop`: Integración (opcional)
+  - `feature/*`: Nuevas features
+  - `fix/*`: Hotfixes
+  - `chore/*`: Mantenimiento
+- Releases: usar tags semver (`v1.2.3`)
+
+---
+
+## 📦 INTEGRIDAD DE DEPENDENCIAS
+- No instalar paquetes sin justificación en el PR
+- Usar solo versiones estables (`^x.y.z`)
+- Revisar dependabot y alertas de seguridad
+- Eliminar dependencias no usadas
+- Revisar cambios en `pnpm-lock.yaml` en cada PR
+
+---
+
+## 🛡️ REVISIÓN DE ACCESOS Y PERMISOS
+- Revisar roles y permisos en Supabase periódicamente
+- Rotar claves de API cada 90 días
+- Revisar accesos a Stripe, OpenAI, Resend y PostHog
+- Limitar permisos de servicio a lo mínimo necesario
+- Documentar cambios de permisos en el PR
+
+---
+
+## 🕵️ AUDITORÍA Y OBSERVABILIDAD
+- Auditar logs críticos semanalmente
+- Revisar errores y alertas en PostHog y logs de Pino
+- Consultar métricas de performance y uso
+- Ejemplo de consulta de logs:
+  ```sh
+  pnpm logs | grep error
+  ```
+- Documentar incidentes y acciones correctivas
+
+---
+
+## 🤖 AUTOMATIZACIÓN Y SCRIPTS CLAVE
+- `pnpm lint` — Linting de todo el monorepo
+- `pnpm test` — Ejecutar todos los tests
+- `pnpm build` — Build de producción
+- `pnpm format` — Formato automático
+- `pnpm check-react-imports` — Verifica imports de React
+- `pnpm tsx scripts/agents/refactor/autofix.ts` — Refactor automático
+- `pnpm tsx scripts/agents/qa/` — Auditoría de calidad
+- `pnpm tsx scripts/agents/context-watchdog.ts` — Monitoreo de contexto
+
+---
+
+## 🚀 ONBOARDING EXPRESS PARA NUEVOS DEVS
+1. Clona el repo y corre `pnpm install`
+2. Copia `.env.example` a `.env` y configura tus variables
+3. Corre `pnpm dev` para levantar backend y frontend
+4. Corre `pnpm test` para validar que todo pase
+5. Lee `.cursorrules` y sigue los patrones
+6. Haz tu feature en una branch `feature/tu-feature`
+7. Abre un PR con checklist y justificación
+8. Pide revisión a 2 devs y espera CI verde
+9. ¡Bienvenido a STRATO! 🚀 
+
+## 📏 REGLAS DE FORMATO, LINT Y CALIDAD (STRATO)
+
+> **Estas reglas son de cumplimiento obligatorio para todo el código, tests y documentación en STRATO.**
+
+```json
+{
+  "rules": [
+    {
+      "description": "Formato de código y estilo (Prettier y ESLint STRATO)",
+      "enforced": true,
+      "details": [
+        "Indentación: 2 espacios.",
+        "Comillas: simples ('), sin excepciones.",
+        "Punto y coma: nunca.",
+        "Arrow functions: usar siempre que sea posible.",
+        "Preferir `const` y `let`, nunca `var`.",
+        "Imports: ordenados, sin duplicados, usar alias (@) si está configurado.",
+        "Evitar `console.log` en producción: usar logger del sistema STRATO.",
+        "No usar `any`, excepto en firmas de mocks con justificación.",
+        "No dejar código comentado muerto.",
+        "No generar funciones anónimas dentro de useEffect sin cleanup."
+      ]
+    },
+    {
+      "description": "Husky y pre-commit (simular validaciones en tiempo real)",
+      "enforced": true,
+      "details": [
+        "Validar ESLint antes de finalizar código.",
+        "Formatear con Prettier en tiempo real (como si el hook ya hubiera actuado).",
+        "No generar código que requiera `--no-verify` para commitear.",
+        "No dejar archivos con cambios innecesarios en `staged` (como logs, .env, test.mocks.ts)."
+      ]
+    },
+    {
+      "description": "Manejo estricto de tipos en TypeScript",
+      "enforced": true,
+      "details": [
+        "Todos los props, inputs, outputs y funciones deben estar tipados.",
+        "Nunca usar `any` global, `unknown` preferible si no se puede determinar.",
+        "En tests, los mocks deben usar `MockInstance<ReturnType, Args>` explícito.",
+        "Evitar uso de `as unknown as X` salvo en casos documentados.",
+        "Evitar `// @ts-ignore`, usarlo solo si hay justificación clara en comentario."
+      ]
+    },
+    {
+      "description": "Pruebas (tests unitarios, integración, mocks)",
+      "enforced": true,
+      "details": [
+        "Usar Vitest y los helpers del sistema STRATO.",
+        "No generar asserts triviales o sin valor (como `expect(true).toBe(true)`).",
+        "Mocks deben tener retorno válido y tipo correcto (`MockInstance`).",
+        "No dejar tests con `skip`, `todo` o `only` al finalizar.",
+        "Tests deben cubrir flujos positivos y negativos."
+      ]
+    },
+    {
+      "description": "Naming y estructura STRATO",
+      "enforced": true,
+      "details": [
+        "Los servicios terminan en `.service.ts`, controladores en `.controller.ts`, rutas en `.routes.ts`.",
+        "Los tests terminan en `.test.ts` o `.test.tsx` según corresponda.",
+        "Las factories terminan en `.factory.ts` y se colocan en `__tests__/`.",
+        "Ningún archivo debe exceder 300 líneas sin justificación."
+      ]
+    }
+  ]
+}
+```
+
+> **Nota:** Cualquier PR que no cumpla estas reglas será bloqueado por CI/pre-commit y deberá ser corregido antes de mergear. 
