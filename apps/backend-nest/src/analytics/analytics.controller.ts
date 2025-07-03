@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 
 import { AnalyticsService } from './analytics.service';
 
@@ -26,6 +27,7 @@ export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
 
   @Post('track/event')
+  @Throttle({ default: { limit: 500, ttl: 900_000 } })
   async trackEvent(@Body() eventData: EventData) {
     const event = await this.analyticsService.trackEvent(eventData);
     return {
@@ -35,6 +37,7 @@ export class AnalyticsController {
   }
 
   @Post('track/metric')
+  @Throttle({ default: { limit: 500, ttl: 900_000 } })
   async trackMetric(@Body() metricData: MetricData) {
     const metric = await this.analyticsService.trackMetric(metricData);
     return {
@@ -44,6 +47,7 @@ export class AnalyticsController {
   }
 
   @Get('events')
+  @Throttle({ default: { limit: 500, ttl: 900_000 } })
   async getEvents(@Query() query: QueryParams) {
     const events = await this.analyticsService.getEvents(query);
     return {
@@ -54,6 +58,7 @@ export class AnalyticsController {
   }
 
   @Get('metrics')
+  @Throttle({ default: { limit: 500, ttl: 900_000 } })
   async getMetrics(@Query() query: QueryParams) {
     const metrics = await this.analyticsService.getMetrics(query);
     return {
@@ -64,6 +69,7 @@ export class AnalyticsController {
   }
 
   @Get('summary')
+  @Throttle({ default: { limit: 500, ttl: 900_000 } })
   async getAnalyticsSummary(
     @Query('start_date') startDate?: string,
     @Query('end_date') endDate?: string,
