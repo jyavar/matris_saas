@@ -8,6 +8,7 @@ import { BillingModule } from './billing/billing.module';
 import { CampaignsModule } from './campaigns/campaigns.module';
 import { EmailCampaignsModule } from './email-campaigns/email-campaigns.module';
 import { HealthModule } from './health/health.module';
+import { AnalyticsReportingModule } from './analytics-reporting/analytics-reporting.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { HealthModule } from './health/health.module';
     BillingModule,
     CampaignsModule,
     EmailCampaignsModule,
+    AnalyticsReportingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
