@@ -9,7 +9,9 @@ import { supabase } from './supabase.service.js'
 // Schemas
 export const eventSchema = z.object({
   event_name: z.string(),
-  user_id: z.number().optional(),
+  user_id: z
+    .union([z.number(), z.string().transform((val) => parseInt(val, 10))])
+    .optional(),
   properties: z.record(z.unknown()).optional(),
   timestamp: z.date().optional(),
 })
@@ -17,7 +19,9 @@ export const eventSchema = z.object({
 export const metricSchema = z.object({
   metric_name: z.string(),
   value: z.number(),
-  user_id: z.number().optional(),
+  user_id: z
+    .union([z.number(), z.string().transform((val) => parseInt(val, 10))])
+    .optional(),
   tags: z.record(z.string()).optional(),
   timestamp: z.date().optional(),
 })
@@ -61,9 +65,7 @@ export const analyticsService = {
 
       const event = {
         event_name: validatedData.event_name,
-        user_id: validatedData.user_id
-          ? parseInt(validatedData.user_id)
-          : undefined,
+        user_id: validatedData.user_id,
         payload: toJson(validatedData.properties || {}),
         created_at: timestamp.toISOString(),
       }
@@ -77,17 +79,25 @@ export const analyticsService = {
         throw new ApiError(400, `Failed to track event: ${error.message}`)
       }
 
-      logAction('analytics_event_tracked', String(eventData.user_id ?? 'anonymous'), {
-        event_name: validatedData.event_name,
-        properties: validatedData.properties,
-      })
+      logAction(
+        'analytics_event_tracked',
+        String(eventData.user_id ?? 'anonymous'),
+        {
+          event_name: validatedData.event_name,
+          properties: validatedData.properties,
+        },
+      )
 
       return data[0]
     } catch (error) {
-      logAction('analytics_event_error', String(eventData.user_id ?? 'anonymous'), {
-        event_name: eventData.event_name,
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
+      logAction(
+        'analytics_event_error',
+        String(eventData.user_id ?? 'anonymous'),
+        {
+          event_name: eventData.event_name,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        },
+      )
       throw error
     }
   },
@@ -102,9 +112,7 @@ export const analyticsService = {
 
       const metric = {
         event_name: `metric_${validatedData.metric_name}`,
-        user_id: validatedData.user_id
-          ? parseInt(validatedData.user_id)
-          : undefined,
+        user_id: validatedData.user_id,
         payload: toJson({
           value: validatedData.value,
           tags: validatedData.tags || {},
@@ -122,18 +130,26 @@ export const analyticsService = {
         throw new ApiError(400, `Failed to track metric: ${error.message}`)
       }
 
-      logAction('analytics_metric_tracked', String(metricData.user_id ?? 'anonymous'), {
-        metric_name: validatedData.metric_name,
-        value: validatedData.value,
-        tags: validatedData.tags,
-      })
+      logAction(
+        'analytics_metric_tracked',
+        String(metricData.user_id ?? 'anonymous'),
+        {
+          metric_name: validatedData.metric_name,
+          value: validatedData.value,
+          tags: validatedData.tags,
+        },
+      )
 
       return data[0]
     } catch (error) {
-      logAction('analytics_metric_error', String(metricData.user_id ?? 'anonymous'), {
-        metric_name: metricData.metric_name,
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
+      logAction(
+        'analytics_metric_error',
+        String(metricData.user_id ?? 'anonymous'),
+        {
+          metric_name: metricData.metric_name,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        },
+      )
       throw error
     }
   },
@@ -167,10 +183,7 @@ export const analyticsService = {
       }
 
       if (validatedQuery.user_id) {
-        queryBuilder = queryBuilder.eq(
-          'user_id',
-          validatedQuery.user_id,
-        )
+        queryBuilder = queryBuilder.eq('user_id', validatedQuery.user_id)
       }
 
       const { data, error } = await queryBuilder
@@ -219,10 +232,7 @@ export const analyticsService = {
       }
 
       if (validatedQuery.user_id) {
-        queryBuilder = queryBuilder.eq(
-          'user_id',
-          validatedQuery.user_id,
-        )
+        queryBuilder = queryBuilder.eq('user_id', validatedQuery.user_id)
       }
 
       const { data, error } = await queryBuilder

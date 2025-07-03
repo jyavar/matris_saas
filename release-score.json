@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-07-03T06:11:17.813Z",
+  "score": 38.2,
+  "checks": {
+    "visibility": {
+      "score": 100,
+      "missing": []
+    },
+    "modules": {
+      "score": 0,
+      "details": [
+        {
+          "module": "auth",
+          "status": "partial",
+          "hasTests": false,
+          "hasDocumentation": false
+        },
+        {
+          "module": "billing",
+          "status": "partial",
+          "hasTests": true,
+          "hasDocumentation": false
+        },
+        {
+          "module": "analytics",
+          "status": "partial",
+          "hasTests": false,
+          "hasDocumentation": false
+        },
+        {
+          "module": "campaigns",
+          "status": "partial",
+          "hasTests": true,
+          "hasDocumentation": false
+        },
+        {
+          "module": "runtime",
+          "status": "missing",
+          "hasTests": false,
+          "hasDocumentation": false
+        }
+      ]
+    },
+    "tests": {
+      "score": 21,
+      "coverage": 0,
+      "hasUnitTests": true,
+      "hasE2ETests": false
+    },
+    "ciCd": {
+      "score": 70,
+      "hasWorkflows": true,
+      "hasDeployment": true,
+      "hasLinting": false
+    },
+    "documentation": {
+      "score": 20,
+      "hasModuleDocs": false,
+      "hasApiDocs": false,
+      "hasReadme": true
+    },
+    "defenses": {
+      "score": 30,
+      "hasValidation": false,
+      "hasLogging": true,
+      "hasMonitoring": false
+    }
+  },
+  "summary": "\n📊 RESUMEN DEL ANÁLISIS DE RELEASE\n\nVISIBILIDAD (100%):\n✅ Todas las rutas requeridas están presentes\n\nMÓDULOS (0%):\n- auth: partial (sin tests, sin documentación)\n- billing: partial (con tests, sin documentación)\n- analytics: partial (sin tests, sin documentación)\n- campaigns: partial (con tests, sin documentación)\n- runtime: missing (sin tests, sin documentación)\n\nPRUEBAS (21%):\n- Cobertura: 0%\n- Unitarias: ✅\n- E2E: ❌\n\nCI/CD (70%):\n- Workflows: ✅\n- Despliegue: ✅\n- Linting: ❌\n\nDOCUMENTACIÓN (20%):\n- Módulos: ❌\n- API: ❌\n- README: ✅\n\nDEFENSAS (30%):\n- Validación: ❌\n- Logging: ✅\n- Monitoreo: ❌\n\n💡 RECOMENDACIONES:\n- Agregar pruebas unitarias para el módulo auth\n- Documentar el módulo auth\n- Documentar el módulo billing\n- Agregar pruebas unitarias para el módulo analytics\n- Documentar el módulo analytics\n- Documentar el módulo campaigns\n- Agregar pruebas unitarias para el módulo runtime\n- Documentar el módulo runtime\n- Aumentar la cobertura de pruebas al menos al 80% (actual: 0%)\n- Implementar pruebas E2E\n- Documentar la API\n- Implementar monitoreo de la aplicación\n"
+}

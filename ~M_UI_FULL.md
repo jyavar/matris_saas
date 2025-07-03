@@ -612,6 +612,62 @@ Gestiona la creación, edición y consulta de perfiles de usuario. Permite actua
 - `apps/frontend/src/components/TodoList.tsx` - Archivo fuente
 - `apps/frontend/src/components/TodoItem.tsx` - Archivo fuente
 - `apps/backend-nest/node_modules/source-map-support/register-hook-require.js` - Archivo fuente
+- `apps/web/src/components/ui/card.tsx` - Archivo fuente
+- `apps/web/src/components/ui/button.tsx` - Archivo fuente
+- `apps/web/src/components/landing/SocialProof.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Hero.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Footer.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Features.tsx` - Archivo fuente
+- `apps/web/src/components/landing/Cta.tsx` - Archivo fuente
+- `apps/backend/node_modules/vitest/suite.d.ts` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/shim.d.ts` - Archivo fuente
+- `apps/web/node_modules/@vitest/ui/reporter.d.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/input.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/input.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/card.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/button.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/UserBadge.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/ProfileCard.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/PerformanceMonitor.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/RegisterForm.tsx` - Archivo fuente
+- `apps/frontend/src/components/landing/LandingPage.tsx` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.builder.js` - Archivo fuente
+- `apps/backend-nest/node_modules/@nestjs/testing/testing-module.builder.d.ts` - Archivo fuente
+- `scripts/agents/ui/audit.ts` - Archivo fuente
+- `scripts/agents/ui/audit-ui.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/tests-e2e/ui.spec.ts` - Archivo de test
+- `apps/frontend/src/components/landing/RegisterForm.test.tsx` - Archivo de test
+- `apps/frontend/src/components/landing/LandingPage.test.tsx` - Archivo de test
+- `apps/frontend/src/components/ui/__tests__/PerformanceMonitor.test.tsx` - Archivo de test
+- `scripts/agents/ui/__tests__/audit-ui.test.ts` - Archivo de test
+
+### **Config Files**
+- `apps/backend-nest/tsconfig.build.json` - Archivo de configuración
+- `apps/web/node_modules/@vitest/ui/package.json` - Archivo de configuración
+- `apps/web/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+- `apps/web/node_modules/@headlessui/react/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/@radix-ui/react-slot/package.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/testing/tsconfig.build.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/platform-express/tsconfig.build.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/jwt/tsconfig.build.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/common/tsconfig.build.json` - Archivo de configuración
+- `apps/backend-nest/node_modules/@nestjs/core/tsconfig.build.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/node_modules/@vitest/ui/README.md` - Archivo de documentación
+- `apps/web/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación
+- `apps/web/node_modules/@headlessui/react/README.md` - Archivo de documentación
+- `apps/frontend/node_modules/@radix-ui/react-slot/README.md` - Archivo de documentación## **Source Files**
+- `apps/web/node_modules/vitest/suite.d.ts` - Archivo fuente
+- `apps/frontend/src/components/TodoList.tsx` - Archivo fuente
+- `apps/frontend/src/components/TodoItem.tsx` - Archivo fuente
+- `apps/backend-nest/node_modules/source-map-support/register-hook-require.js` - Archivo fuente
 - `apps/backend/node_modules/vitest/suite.d.ts` - Archivo fuente
 - `apps/web/src/components/ui/card.tsx` - Archivo fuente
 - `apps/web/src/components/ui/button.tsx` - Archivo fuente
