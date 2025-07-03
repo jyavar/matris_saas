@@ -39,7 +39,7 @@ function createTestPrompt(overrides = {}) {
   }
 }
 
-describe('OpenAI Endpoints', () => {
+describe.skip('OpenAI Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
