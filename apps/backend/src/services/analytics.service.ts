@@ -9,7 +9,7 @@ import { supabase } from './supabase.service.js'
 // Schemas
 export const eventSchema = z.object({
   event_name: z.string(),
-  user_id: z.string().optional(),
+  user_id: z.number().optional(),
   properties: z.record(z.unknown()).optional(),
   timestamp: z.date().optional(),
 })
@@ -17,7 +17,7 @@ export const eventSchema = z.object({
 export const metricSchema = z.object({
   metric_name: z.string(),
   value: z.number(),
-  user_id: z.string().optional(),
+  user_id: z.number().optional(),
   tags: z.record(z.string()).optional(),
   timestamp: z.date().optional(),
 })
@@ -26,7 +26,7 @@ export const analyticsQuerySchema = z.object({
   start_date: z.string().optional(),
   end_date: z.string().optional(),
   event_name: z.string().optional(),
-  user_id: z.string().optional(),
+  user_id: z.number().optional(),
   limit: z.number().min(1).max(1000).default(100),
   offset: z.number().min(0).default(0),
 })
@@ -77,14 +77,14 @@ export const analyticsService = {
         throw new ApiError(400, `Failed to track event: ${error.message}`)
       }
 
-      logAction('analytics_event_tracked', eventData.user_id || 'anonymous', {
+      logAction('analytics_event_tracked', String(eventData.user_id ?? 'anonymous'), {
         event_name: validatedData.event_name,
         properties: validatedData.properties,
       })
 
       return data[0]
     } catch (error) {
-      logAction('analytics_event_error', eventData.user_id || 'anonymous', {
+      logAction('analytics_event_error', String(eventData.user_id ?? 'anonymous'), {
         event_name: eventData.event_name,
         error: error instanceof Error ? error.message : 'Unknown error',
       })
@@ -122,7 +122,7 @@ export const analyticsService = {
         throw new ApiError(400, `Failed to track metric: ${error.message}`)
       }
 
-      logAction('analytics_metric_tracked', metricData.user_id || 'anonymous', {
+      logAction('analytics_metric_tracked', String(metricData.user_id ?? 'anonymous'), {
         metric_name: validatedData.metric_name,
         value: validatedData.value,
         tags: validatedData.tags,
@@ -130,7 +130,7 @@ export const analyticsService = {
 
       return data[0]
     } catch (error) {
-      logAction('analytics_metric_error', metricData.user_id || 'anonymous', {
+      logAction('analytics_metric_error', String(metricData.user_id ?? 'anonymous'), {
         metric_name: metricData.metric_name,
         error: error instanceof Error ? error.message : 'Unknown error',
       })
@@ -169,7 +169,7 @@ export const analyticsService = {
       if (validatedQuery.user_id) {
         queryBuilder = queryBuilder.eq(
           'user_id',
-          parseInt(validatedQuery.user_id),
+          validatedQuery.user_id,
         )
       }
 
@@ -221,7 +221,7 @@ export const analyticsService = {
       if (validatedQuery.user_id) {
         queryBuilder = queryBuilder.eq(
           'user_id',
-          parseInt(validatedQuery.user_id),
+          validatedQuery.user_id,
         )
       }
 

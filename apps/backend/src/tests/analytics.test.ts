@@ -128,7 +128,7 @@ vi.mock('../middleware/auth.middleware.js', () => ({
 describe('Analytics Module - Unit Tests', () => {
   const mockEventData = {
     event_name: 'test_event',
-    user_id: 'test-user-id',
+    user_id: 1,
     properties: {
       page: '/dashboard',
       referrer: 'google.com',
@@ -138,7 +138,7 @@ describe('Analytics Module - Unit Tests', () => {
   const mockMetricData = {
     metric_name: 'session_duration',
     value: 300,
-    user_id: 'test-user-id',
+    user_id: 1,
     tags: {
       browser: 'chrome',
       os: 'macos',
@@ -156,7 +156,7 @@ describe('Analytics Module - Unit Tests', () => {
   describe('POST /analytics/track/event', () => {
     it('should track an event successfully', async () => {
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(mockEventData)
 
       expect(response.status).toBe(201)
@@ -174,7 +174,7 @@ describe('Analytics Module - Unit Tests', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(anonymousEventData)
 
       expect(response.status).toBe(201)
@@ -183,13 +183,16 @@ describe('Analytics Module - Unit Tests', () => {
 
     it('should return 400 for missing event_name', async () => {
       const invalidEventData = {
-        user_id: 'test-user-id',
+        user_id: 1,
         properties: { test: 'data' },
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(invalidEventData)
+
+      console.log('Response status:', response.status)
+      console.log('Response body:', response.body)
 
       expect(response.status).toBe(400)
       expect(response.body.success).toBe(false)
@@ -199,11 +202,11 @@ describe('Analytics Module - Unit Tests', () => {
     it('should return 400 for invalid event data', async () => {
       const invalidEventData = {
         event_name: 123, // Should be string
-        user_id: 'test-user-id',
+        user_id: 1,
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(invalidEventData)
 
       expect(response.status).toBe(400)
@@ -214,7 +217,7 @@ describe('Analytics Module - Unit Tests', () => {
   describe('POST /analytics/track/metric', () => {
     it('should track a metric successfully', async () => {
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(mockMetricData)
 
       expect(response.status).toBe(201)
@@ -231,7 +234,7 @@ describe('Analytics Module - Unit Tests', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(anonymousMetricData)
 
       expect(response.status).toBe(201)
@@ -241,12 +244,12 @@ describe('Analytics Module - Unit Tests', () => {
     it('should return 400 for missing metric_name', async () => {
       const invalidMetricData = {
         value: 300,
-        user_id: 'test-user-id',
+        user_id: 1,
         tags: { test: 'data' },
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
       expect(response.status).toBe(400)
@@ -257,11 +260,11 @@ describe('Analytics Module - Unit Tests', () => {
       const invalidMetricData = {
         metric_name: 'session_duration',
         value: 'not-a-number', // Should be number
-        user_id: 'test-user-id',
+        user_id: 1,
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
       expect(response.status).toBe(400)
@@ -370,11 +373,11 @@ describe('Analytics Module - Unit Tests', () => {
 
   describe('GET /analytics/users/:userId', () => {
     it('should get user analytics', async () => {
-      const response = await request(app).get('/api/analytics/users/test-user-id')
+      const response = await request(app).get('/api/analytics/users/1')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
-      expect(response.body.data).toHaveProperty('user_id', 'test-user-id')
+      expect(response.body.data).toHaveProperty('user_id', '1')
       expect(response.body.data).toHaveProperty('total_events')
       expect(response.body.data).toHaveProperty('last_seen')
       expect(response.body.data).toHaveProperty('events_breakdown')

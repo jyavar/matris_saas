@@ -98,7 +98,24 @@ app.use('/api/reporting', reportingRoutes)
 app.use('/api/billing', billingRoutes)
 
 // Error handling middleware
-app.use((err: Error, _req: express.Request, res: express.Response) => {
+app.use((err: Error, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+  // Si la respuesta ya fue enviada, pasar al siguiente middleware
+  if (res.headersSent) {
+    return next(err)
+  }
+  
+  // Handle Zod validation errors
+  if (err?.name === 'ZodError' || err?.constructor?.name === 'ZodError') {
+    res.status(400).json({
+      success: false,
+      error: 'errors' in err ? (err as { errors: unknown }).errors : undefined,
+      message: 'Validation error',
+    })
+    return
+  }
+  
+  // Si es un error de validación (ZodError), ya debería haber sido manejado por el controlador
+  // Solo manejar errores verdaderamente no manejados
   logger.error(err, 'Unhandled error')
   res.status(500).json({
     success: false,
