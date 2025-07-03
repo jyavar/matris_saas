@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 import { AnalyticsModule } from './analytics/analytics.module';
 import { AppController } from './app.controller';
@@ -21,8 +23,22 @@ import { LoggerModule } from './logger/logger.module';
     EmailCampaignsModule,
     AnalyticsReportingModule,
     LoggerModule,
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 900_000, // 15 minutos en ms
+          limit: 1000, // 1000 requests por IP
+        },
+      ],
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
