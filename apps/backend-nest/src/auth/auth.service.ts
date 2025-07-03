@@ -1,42 +1,61 @@
 import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { SignUpDto, SignInDto, AuthResponseDto, SignInResponseDto } from './dto/auth.dto';
+import { supabase } from '../lib/supabase';
 
 @Injectable()
 export class AuthService {
   async signUp(credentials: SignUpDto): Promise<AuthResponseDto> {
     try {
-      // Mock implementation for now - will integrate with Supabase later
-      const mockUser = {
-        id: 1,
+      const { data, error } = await supabase.auth.signUp({
         email: credentials.email,
-      };
+        password: credentials.password,
+      });
 
-      return mockUser;
+      if (error) {
+        throw new BadRequestException(error.message);
+      }
+
+      if (!data.user) {
+        throw new BadRequestException('Error al crear usuario');
+      }
+
+      return {
+        id: data.user.id,
+        email: data.user.email || '',
+      };
     } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
       throw new BadRequestException('Error al crear usuario');
     }
   }
 
   async signIn(credentials: SignInDto): Promise<SignInResponseDto> {
     try {
-      // Mock implementation for now - will integrate with Supabase later
-      if (credentials.email === 'test@example.com' && credentials.password === 'password123') {
-        const mockUser = {
-          id: 1,
-          email: credentials.email,
-        };
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password,
+      });
 
-        const mockSession = {
-          access_token: 'mock-jwt-token-' + Date.now(),
-        };
-
-        return {
-          access_token: mockSession.access_token,
-          user: mockUser,
-        };
-      } else {
-        throw new UnauthorizedException('Invalid login credentials');
+      if (error) {
+        if (error.message === 'Invalid login credentials') {
+          throw new UnauthorizedException('Invalid login credentials');
+        }
+        throw new BadRequestException(error.message);
       }
+
+      if (!data.session || !data.user) {
+        throw new UnauthorizedException('Could not sign in');
+      }
+
+      return {
+        access_token: data.session.access_token,
+        user: {
+          id: data.user.id,
+          email: data.user.email || '',
+        },
+      };
     } catch (error) {
       if (error instanceof UnauthorizedException) {
         throw error;

@@ -19,14 +19,14 @@ export class SignInDto {
 }
 
 export class AuthResponseDto {
-  id: number;
+  id: string;
   email: string;
 }
 
 export class SignInResponseDto {
   access_token: string;
   user: {
-    id: number;
+    id: string;
     email: string;
   };
 } 
