@@ -9,6 +9,7 @@ import { CampaignsModule } from './campaigns/campaigns.module';
 import { EmailCampaignsModule } from './email-campaigns/email-campaigns.module';
 import { HealthModule } from './health/health.module';
 import { AnalyticsReportingModule } from './analytics-reporting/analytics-reporting.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AnalyticsReportingModule } from './analytics-reporting/analytics-report
     CampaignsModule,
     EmailCampaignsModule,
     AnalyticsReportingModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
