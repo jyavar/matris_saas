@@ -13,7 +13,7 @@ describe('Auth Controller', () => {
 
   it('should sign up a new user', async () => {
     const response = await request(app)
-      .post('/auth/signup')
+      .post('/api/auth/signup')
       .send(userCredentials)
 
     expect(response.status).toBe(201)
@@ -23,10 +23,10 @@ describe('Auth Controller', () => {
 
   it('should sign in the user and return an access token', async () => {
     // First, ensure the user is created
-    await request(app).post('/auth/signup').send(userCredentials)
+    await request(app).post('/api/auth/signup').send(userCredentials)
 
     const response = await request(app)
-      .post('/auth/signin')
+      .post('/api/auth/signin')
       .send(userCredentials)
 
     expect(response.status).toBe(200)
@@ -37,28 +37,28 @@ describe('Auth Controller', () => {
 
   it('should fail to sign in with wrong password', async () => {
     const response = await request(app)
-      .post('/auth/signin')
+      .post('/api/auth/signin')
       .send({ email: userCredentials.email, password: 'wrongpassword' })
 
     expect(response.status).toBe(401)
   })
 
   it('should fail to access protected route without a token', async () => {
-    const response = await request(app).get('/profiles/me')
+    const response = await request(app).get('/api/profiles/me')
     expect(response.status).toBe(401)
     expect(response.body.message).toBe('No authentication token provided.')
   })
 
   it('should access protected route with a valid token', async () => {
     // Sign in to get the token
-    await request(app).post('/auth/signup').send(userCredentials)
+    await request(app).post('/api/auth/signup').send(userCredentials)
     const signInResponse = await request(app)
-      .post('/auth/signin')
+      .post('/api/auth/signin')
       .send(userCredentials)
 
     const token = signInResponse.body.access_token
     const response = await request(app)
-      .get('/profiles/me')
+      .get('/api/profiles/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toBe(200)

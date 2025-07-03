@@ -271,7 +271,7 @@ describe('Analytics Module - Unit Tests', () => {
 
   describe('GET /analytics/events', () => {
     it('should get events with filtering', async () => {
-      const response = await request(app).get('/analytics/events').query({
+      const response = await request(app).get('/api/analytics/events').query({
         event_name: 'page_view',
         limit: '10', // String should be converted to number
         offset: '0', // String should be converted to number
@@ -283,7 +283,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should get events with date filtering', async () => {
-      const response = await request(app).get('/analytics/events').query({
+      const response = await request(app).get('/api/analytics/events').query({
         start_date: '2025-01-01',
         end_date: '2025-12-31',
         limit: '10',
@@ -295,7 +295,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should return 400 for invalid limit', async () => {
-      const response = await request(app).get('/analytics/events').query({
+      const response = await request(app).get('/api/analytics/events').query({
         limit: 'invalid-number',
       })
 
@@ -304,7 +304,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should return 400 for invalid offset', async () => {
-      const response = await request(app).get('/analytics/events').query({
+      const response = await request(app).get('/api/analytics/events').query({
         offset: 'invalid-number',
       })
 
@@ -313,7 +313,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should return 400 for limit out of range', async () => {
-      const response = await request(app).get('/analytics/events').query({
+      const response = await request(app).get('/api/analytics/events').query({
         limit: '2000', // Should be max 1000
       })
 
@@ -324,7 +324,7 @@ describe('Analytics Module - Unit Tests', () => {
 
   describe('GET /analytics/metrics', () => {
     it('should get metrics with filtering', async () => {
-      const response = await request(app).get('/analytics/metrics').query({
+      const response = await request(app).get('/api/analytics/metrics').query({
         limit: '10',
         offset: '0',
       })
@@ -335,7 +335,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should return 400 for invalid query parameters', async () => {
-      const response = await request(app).get('/analytics/metrics').query({
+      const response = await request(app).get('/api/analytics/metrics').query({
         limit: 'not-a-number',
       })
 
@@ -346,7 +346,7 @@ describe('Analytics Module - Unit Tests', () => {
 
   describe('GET /analytics/summary', () => {
     it('should get analytics summary', async () => {
-      const response = await request(app).get('/analytics/summary')
+      const response = await request(app).get('/api/analytics/summary')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -357,7 +357,7 @@ describe('Analytics Module - Unit Tests', () => {
     })
 
     it('should get analytics summary with date range', async () => {
-      const response = await request(app).get('/analytics/summary').query({
+      const response = await request(app).get('/api/analytics/summary').query({
         start_date: '2025-01-01',
         end_date: '2025-12-31',
       })
@@ -370,7 +370,7 @@ describe('Analytics Module - Unit Tests', () => {
 
   describe('GET /analytics/users/:userId', () => {
     it('should get user analytics', async () => {
-      const response = await request(app).get('/analytics/users/test-user-id')
+      const response = await request(app).get('/api/analytics/users/test-user-id')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -382,7 +382,7 @@ describe('Analytics Module - Unit Tests', () => {
 
     it('should return 404 for non-existent user data', async () => {
       const response = await request(app).get(
-        '/analytics/users/non-existent-user',
+        '/api/analytics/users/non-existent-user',
       )
 
       expect(response.status).toBe(404)
@@ -392,7 +392,7 @@ describe('Analytics Module - Unit Tests', () => {
   describe('Legacy endpoints', () => {
     it('should get all analytics with query', async () => {
       const response = await request(app)
-        .get('/analytics')
+        .get('/api/analytics')
         .query({ limit: '10' })
 
       expect(response.status).toBe(200)
@@ -406,7 +406,7 @@ describe('Analytics Module - Unit Tests', () => {
         user_id: 1,
       }
 
-      const response = await request(app).post('/analytics').send(analyticsData)
+      const response = await request(app).post('/api/analytics').send(analyticsData)
 
       expect(response.status).toBe(201)
       expect(response.body).toHaveProperty('event_name', 'test_event')
@@ -418,7 +418,7 @@ describe('Analytics Module - Unit Tests', () => {
         payload: { test: 'data' },
       }
 
-      const response = await request(app).post('/analytics').send(invalidData)
+      const response = await request(app).post('/api/analytics').send(invalidData)
 
       expect(response.status).toBe(400)
     })

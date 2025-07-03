@@ -31,15 +31,7 @@ router.get('/events', handleAsync(analyticsController.getEvents))
 router.get('/metrics', handleAsync(analyticsController.getMetrics))
 router.get('/summary', handleAsync(analyticsController.getAnalyticsSummary))
 
-// Ruta fija para el edge case: /analytics/users (sin userId)
-const usersNotFoundHandler: RequestHandler = (_req, res) => {
-  res.status(404).json({ message: 'User ID not provided' })
-}
-router.get('/analytics/users', usersNotFoundHandler)
-
-// Middleware para capturar /users/ (userId vacío)
-// Express no soporta rutas '/users/' (barra final) explícitamente, solo '/users' y '/users/:userId'.
-// El handler '/users' (sin barra final) ya captura el edge case de userId vacío.
+// User analytics - must be before generic /:id routes
 router.get('/users/:userId', handleAsync(analyticsController.getUserAnalytics))
 
 // Legacy endpoints
@@ -48,11 +40,5 @@ router.get('/:id', handleAsync(analyticsController.getAnalyticsById))
 router.post('/', handleAsync(analyticsController.createAnalytics))
 router.patch('/:id', handleAsync(analyticsController.updateAnalytics))
 router.delete('/:id', handleAsync(analyticsController.deleteAnalytics))
-
-// Place this at the end to catch /users with no param
-const usersRequiredHandler: RequestHandler = (req, res) => {
-  res.status(404).json({ success: false, error: 'User ID is required' })
-}
-router.all('/users', usersRequiredHandler)
 
 export default router

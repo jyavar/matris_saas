@@ -49,7 +49,7 @@ describe('Onboarding Endpoints', () => {
 
   describe('GET /onboarding', () => {
     it('should return onboarding info for user', async () => {
-      const res = await request(app).get('/onboarding')
+      const res = await request(app).get('/api/onboarding')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.user_id).toBe('test-user-id')
@@ -59,7 +59,7 @@ describe('Onboarding Endpoints', () => {
   describe('POST /onboarding/start', () => {
     it('should start onboarding for user', async () => {
       const res = await request(app)
-        .post('/onboarding/start')
+        .post('/api/onboarding/start')
         .send({ email: 'test@example.com' })
       expect(res.status).toBe(201)
       expect(res.body.success).toBe(true)
@@ -67,7 +67,7 @@ describe('Onboarding Endpoints', () => {
     })
     it('should return 400 for missing email', async () => {
       const res = await request(app)
-        .post('/onboarding/start')
+        .post('/api/onboarding/start')
         .send({ email: '' })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
@@ -77,7 +77,7 @@ describe('Onboarding Endpoints', () => {
   describe('POST /onboarding/complete', () => {
     it('should complete onboarding for user', async () => {
       const res = await request(app)
-        .post('/onboarding/complete')
+        .post('/api/onboarding/complete')
         .send({ user_id: 'test-user-id' })
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
@@ -85,7 +85,7 @@ describe('Onboarding Endpoints', () => {
     })
     it('should return 400 for missing user_id', async () => {
       const res = await request(app)
-        .post('/onboarding/complete')
+        .post('/api/onboarding/complete')
         .send({ user_id: '' })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)

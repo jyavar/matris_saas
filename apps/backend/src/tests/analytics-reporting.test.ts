@@ -51,7 +51,7 @@ describe('Analytics Reporting Endpoints', () => {
 
   describe('GET /analytics-reporting', () => {
     it('should return all reports', async () => {
-      const res = await request(app).get('/analytics-reporting')
+      const res = await request(app).get('/api/analytics-reporting')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(Array.isArray(res.body.data)).toBe(true)
@@ -60,13 +60,13 @@ describe('Analytics Reporting Endpoints', () => {
 
   describe('GET /analytics-reporting/:id', () => {
     it('should return a report by id', async () => {
-      const res = await request(app).get('/analytics-reporting/report-1')
+      const res = await request(app).get('/api/analytics-reporting/report-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.id).toBe('report-1')
     })
     it('should return 404 for non-existent report', async () => {
-      const res = await request(app).get('/analytics-reporting/nonexistent')
+      const res = await request(app).get('/api/analytics-reporting/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
@@ -75,7 +75,7 @@ describe('Analytics Reporting Endpoints', () => {
   describe('POST /analytics-reporting', () => {
     it('should create a report with valid data', async () => {
       const res = await request(app)
-        .post('/analytics-reporting')
+        .post('/api/analytics-reporting')
         .send({
           name: 'User Engagement',
           type: 'engagement',
@@ -87,7 +87,7 @@ describe('Analytics Reporting Endpoints', () => {
     })
     it('should return 400 for invalid data', async () => {
       const res = await request(app)
-        .post('/analytics-reporting')
+        .post('/api/analytics-reporting')
         .send({ name: '', type: '', data: {} })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
@@ -96,12 +96,12 @@ describe('Analytics Reporting Endpoints', () => {
 
   describe('DELETE /analytics-reporting/:id', () => {
     it('should delete a report', async () => {
-      const res = await request(app).delete('/analytics-reporting/report-1')
+      const res = await request(app).delete('/api/analytics-reporting/report-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
     it('should return 404 for non-existent report', async () => {
-      const res = await request(app).delete('/analytics-reporting/nonexistent')
+      const res = await request(app).delete('/api/analytics-reporting/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })

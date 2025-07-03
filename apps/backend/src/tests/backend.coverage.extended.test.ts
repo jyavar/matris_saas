@@ -205,7 +205,7 @@ describe('Backend Extended Coverage', () => {
   it("Profiles: should return 200 for getting the current user's profile", async () => {
     const token = await getRealToken()
     const res = await request(app)
-      .get('/profiles/me')
+      .get('/api/profiles/me')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
   })

@@ -40,7 +40,7 @@ describe('Runtime Routes', () => {
   })
 
   it('GET /runtime/jobs lista jobs', async () => {
-    const res = await request(app).get('/runtime/jobs')
+    const res = await request(app).get('/api/runtime/jobs')
     expect(res.status).toBe(200)
     expect(Array.isArray(res.body)).toBe(true)
     expect(res.body.some((j) => j.id === job.id)).toBe(true)

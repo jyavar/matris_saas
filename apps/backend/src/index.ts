@@ -7,7 +7,25 @@ import {
   memoryMiddleware,
   performanceMiddleware,
 } from './middleware/performance.middleware.js'
-import router from './routes/router.js'
+import analyticsRoutes from './routes/analytics.routes.js'
+import analyticsReportingRoutes from './routes/analytics-reporting.routes.js'
+import authRoutes from './routes/auth.routes.js'
+import automationRoutes from './routes/automation.routes.js'
+import billingRoutes from './routes/billing.routes.js'
+import campaignsRoutes from './routes/campaigns.routes.js'
+import devRoutes from './routes/dev.routes.js'
+import emailCampaignsRoutes from './routes/email-campaigns.routes.js'
+import healthRoutes from './routes/health.routes.js'
+import launchboardRoutes from './routes/launchboard.routes.js'
+import onboardingRoutes from './routes/onboarding.routes.js'
+import openaiRoutes from './routes/openai.routes.js'
+import posthogRoutes from './routes/posthog.routes.js'
+import pricingRoutes from './routes/pricing.routes.js'
+import profilesRoutes from './routes/profiles.routes.js'
+import reportingRoutes from './routes/reporting.routes.js'
+import resendRoutes from './routes/resend.routes.js'
+import runtimeRoutes from './routes/runtime.routes.js'
+import todoRoutes from './routes/todo.routes.js'
 import logger from './services/logger.service.js'
 
 const app = express()
@@ -58,8 +76,26 @@ app.get('/metrics', (_req, res) => {
   })
 })
 
-// API routes
-app.use('/api', router)
+// Montar routers
+app.use('/api/analytics', analyticsRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/campaigns', campaignsRoutes)
+app.use('/api/health', healthRoutes)
+app.use('/api/onboarding', onboardingRoutes)
+app.use('/api/openai', openaiRoutes)
+app.use('/api/posthog', posthogRoutes)
+app.use('/api/pricing', pricingRoutes)
+app.use('/api/profiles', profilesRoutes)
+app.use('/api/todo', todoRoutes)
+app.use('/api/automation', automationRoutes)
+app.use('/api/analytics-reporting', analyticsReportingRoutes)
+app.use('/api/runtime', runtimeRoutes)
+app.use('/api/resend', resendRoutes)
+app.use('/api/email-campaigns', emailCampaignsRoutes)
+app.use('/api/launchboard', launchboardRoutes)
+app.use('/api/dev', devRoutes)
+app.use('/api/reporting', reportingRoutes)
+app.use('/api/billing', billingRoutes)
 
 // Error handling middleware
 app.use((err: Error, _req: express.Request, res: express.Response) => {
@@ -71,7 +107,7 @@ app.use((err: Error, _req: express.Request, res: express.Response) => {
 })
 
 // 404 handler
-app.use('*', (_req, res) => {
+app.use('{*path}', (_req, res) => {
   res.status(404).json({
     success: false,
     error: 'Route not found',

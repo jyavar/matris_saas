@@ -6,7 +6,7 @@ import { app } from '../index.js'
 describe('Onboarding Routes', () => {
   it('POST /onboarding/register responde con ok', async () => {
     const res = await request(app)
-      .post('/onboarding/register')
+      .post('/api/onboarding/register')
       .send({ email: 'test@example.com', name: 'Test User' })
     expect(res.status).toBe(200)
     expect(res.body).toHaveProperty('ok', true)

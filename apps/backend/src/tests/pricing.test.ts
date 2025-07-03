@@ -19,9 +19,9 @@ describe('Pricing Module', () => {
     authToken = signInResponse.body.access_token
   })
 
-  describe('GET /pricing/plans', () => {
+  describe('GET /api/pricing/plans', () => {
     it('should return all available plans', async () => {
-      const response = await request(app).get('/pricing/plans')
+      const response = await request(app).get('/api/pricing/plans')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -35,9 +35,9 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('GET /pricing/plans/:planId', () => {
+  describe('GET /api/pricing/plans/:planId', () => {
     it('should return a specific plan', async () => {
-      const response = await request(app).get('/pricing/plans/pro')
+      const response = await request(app).get('/api/pricing/plans/pro')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -47,7 +47,7 @@ describe('Pricing Module', () => {
     })
 
     it('should return 404 for non-existent plan', async () => {
-      const response = await request(app).get('/pricing/plans/nonexistent')
+      const response = await request(app).get('/api/pricing/plans/nonexistent')
 
       expect(response.status).toBe(404)
       expect(response.body.success).toBe(false)
@@ -55,10 +55,10 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('POST /pricing/subscriptions', () => {
+  describe('POST /api/pricing/subscriptions', () => {
     it('should create a free subscription', async () => {
       const response = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'free',
@@ -74,7 +74,7 @@ describe('Pricing Module', () => {
 
     it('should create a paid subscription with customer ID', async () => {
       const response = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'pro',
@@ -91,7 +91,7 @@ describe('Pricing Module', () => {
 
     it('should require customer ID for paid plans', async () => {
       const response = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'pro',
@@ -104,7 +104,7 @@ describe('Pricing Module', () => {
 
     it('should return 404 for non-existent plan', async () => {
       const response = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'nonexistent',
@@ -116,11 +116,11 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('GET /pricing/subscriptions/:subscriptId', () => {
+  describe('GET /api/pricing/subscriptions/:subscriptId', () => {
     it('should get subscription details', async () => {
       // First create a subscription
       const createResponse = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'pro',
@@ -131,7 +131,7 @@ describe('Pricing Module', () => {
       const subscriptionId = createResponse.body.data.id
 
       const response = await request(app)
-        .get(`/pricing/subscriptions/${subscriptionId}`)
+        .get(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
 
       expect(response.status).toBe(200)
@@ -142,7 +142,7 @@ describe('Pricing Module', () => {
 
     it('should get free subscription details', async () => {
       const response = await request(app)
-        .get('/pricing/subscriptions/free_subscription')
+        .get('/api/pricing/subscriptions/free_subscription')
         .set('Authorization', `Bearer ${authToken}`)
 
       expect(response.status).toBe(200)
@@ -152,11 +152,11 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('PUT /pricing/subscriptions/:subscriptId', () => {
+  describe('PUT /api/pricing/subscriptions/:subscriptId', () => {
     it('should update subscription', async () => {
       // First create a subscription
       const createResponse = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'pro',
@@ -167,7 +167,7 @@ describe('Pricing Module', () => {
       const subscriptionId = createResponse.body.data.id
 
       const response = await request(app)
-        .put(`/pricing/subscriptions/${subscriptionId}`)
+        .put(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'enterprise',
@@ -181,11 +181,11 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('DELETE /pricing/subscriptions/:subscriptId', () => {
+  describe('DELETE /api/pricing/subscriptions/:subscriptId', () => {
     it('should cancel subscription', async () => {
       // First create a subscription
       const createResponse = await request(app)
-        .post('/pricing/subscriptions')
+        .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           planId: 'pro',
@@ -196,7 +196,7 @@ describe('Pricing Module', () => {
       const subscriptionId = createResponse.body.data.id
 
       const response = await request(app)
-        .delete(`/pricing/subscriptions/${subscriptionId}`)
+        .delete(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
 
       expect(response.status).toBe(200)
@@ -207,7 +207,7 @@ describe('Pricing Module', () => {
 
     it('should cancel free subscription', async () => {
       const response = await request(app)
-        .delete('/pricing/subscriptions/free_subscription')
+        .delete('/api/pricing/subscriptions/free_subscription')
         .set('Authorization', `Bearer ${authToken}`)
 
       expect(response.status).toBe(200)
@@ -218,10 +218,10 @@ describe('Pricing Module', () => {
     })
   })
 
-  describe('POST /pricing/plans/:planId/usage', () => {
+  describe('POST /api/pricing/plans/:planId/usage', () => {
     it('should check usage within limits', async () => {
       const response = await request(app)
-        .post('/pricing/plans/free/usage')
+        .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           users: 2,
@@ -240,7 +240,7 @@ describe('Pricing Module', () => {
 
     it('should detect exceeded limits', async () => {
       const response = await request(app)
-        .post('/pricing/plans/free/usage')
+        .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           users: 5,
@@ -258,7 +258,7 @@ describe('Pricing Module', () => {
 
     it('should handle unlimited plan', async () => {
       const response = await request(app)
-        .post('/pricing/plans/enterprise/usage')
+        .post('/api/pricing/plans/enterprise/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           users: 1000,
@@ -277,7 +277,7 @@ describe('Pricing Module', () => {
 
     it('should require usage data', async () => {
       const response = await request(app)
-        .post('/pricing/plans/free/usage')
+        .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({})
 
@@ -290,7 +290,7 @@ describe('Pricing Module', () => {
 
     it('should return 404 for non-existent plan', async () => {
       const response = await request(app)
-        .post('/pricing/plans/nonexistent/usage')
+        .post('/api/pricing/plans/nonexistent/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
           users: 1,
@@ -305,7 +305,7 @@ describe('Pricing Module', () => {
 
   describe('Authentication', () => {
     it('should require authentication for protected routes', async () => {
-      const response = await request(app).post('/pricing/subscriptions').send({
+      const response = await request(app).post('/api/pricing/subscriptions').send({
         planId: 'free',
         quantity: 1,
       })

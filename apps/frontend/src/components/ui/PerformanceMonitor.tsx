@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import {
   BundleAnalyzer,
   BundleMetrics,
-  PerformanceMonitor as PerfMonitor,
   PerformanceMetrics,
+  PerformanceMonitor as PerfMonitor,
 } from '../../utils/performance'
 
 interface PerformanceMonitorProps {

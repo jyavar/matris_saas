@@ -46,7 +46,7 @@ describe('OpenAI Endpoints', () => {
 
   it('should generate text with valid prompt', async () => {
     const data = createTestPrompt()
-    const res = await request(app).post('/openai/generate').send(data)
+    const res = await request(app).post('/api/openai/generate').send(data)
     expect(res.status).toBe(200)
     expect(res.body.success).toBe(true)
     expect(res.body.data).toMatchObject({
@@ -57,7 +57,7 @@ describe('OpenAI Endpoints', () => {
 
   it('should return 400 for missing prompt', async () => {
     const res = await request(app)
-      .post('/openai/generate')
+      .post('/api/openai/generate')
       .send({ prompt: '', user_id: 'test-user-id' })
     expect(res.status).toBe(400)
     expect(res.body.success).toBe(false)
@@ -66,7 +66,7 @@ describe('OpenAI Endpoints', () => {
   it('should return 401 if user is not authenticated', async () => {
     // Simular error de autenticación enviando datos sin usuario válido
     const res = await request(app)
-      .post('/openai/generate')
+      .post('/api/openai/generate')
       .send({ prompt: 'test', user_id: '' })
     expect(res.status).toBe(400) // Cambia a 400 porque la validación Zod falla primero
     expect(res.body.success).toBe(false)
@@ -80,7 +80,7 @@ describe('OpenAI Endpoints', () => {
     )
 
     const data = createTestPrompt()
-    const res = await request(app).post('/openai/generate').send(data)
+    const res = await request(app).post('/api/openai/generate').send(data)
     expect(res.status).toBe(500)
     expect(res.body.success).toBe(false)
   })

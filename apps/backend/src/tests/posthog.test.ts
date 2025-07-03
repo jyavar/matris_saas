@@ -153,7 +153,7 @@ describe('PostHog Endpoints', () => {
 
   describe('GET /posthog/health', () => {
     it('should return health status', async () => {
-      const res = await request(app).get('/posthog/health')
+      const res = await request(app).get('/api/posthog/health')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data).toMatchObject({
@@ -167,7 +167,7 @@ describe('PostHog Endpoints', () => {
       const originalEnv = process.env.POSTHOG_API_KEY
       delete process.env.POSTHOG_API_KEY
 
-      const res = await request(app).get('/posthog/health')
+      const res = await request(app).get('/api/posthog/health')
 
       expect(res.status).toBe(200)
       expect(res.body.data.status).toBe('not_configured')
