@@ -36,4 +36,4 @@ export class HealthService {
       posthog: true,
     };
   }
-} 
+}

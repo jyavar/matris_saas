@@ -29,4 +29,4 @@ export class SignInResponseDto {
     id: string;
     email: string;
   };
-} 
+}

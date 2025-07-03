@@ -1,6 +1,16 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
-import { SignUpDto, SignInDto, AuthResponseDto, SignInResponseDto } from './dto/auth.dto';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+
 import { supabase } from '../lib/supabase';
+import {
+  AuthResponseDto,
+  SignInDto,
+  SignInResponseDto,
+  SignUpDto,
+} from './dto/auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -63,4 +73,4 @@ export class AuthService {
       throw new UnauthorizedException('Could not sign in');
     }
   }
-} 
+}

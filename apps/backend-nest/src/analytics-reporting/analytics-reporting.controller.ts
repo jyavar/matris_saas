@@ -1,14 +1,16 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Delete,
-  Param,
   Body,
+  Controller,
+  Delete,
+  Get,
   HttpCode,
   HttpStatus,
   NotFoundException,
+  Param,
+  Post,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
+
 import { AnalyticsReportingService } from './analytics-reporting.service';
 import { CreateReportDto } from './dto/create-report.dto';
 
@@ -17,12 +19,14 @@ export class AnalyticsReportingController {
   constructor(private readonly service: AnalyticsReportingService) {}
 
   @Get('reports')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getReports() {
     const reports = await this.service.getReports();
     return { success: true, data: reports, count: reports.length };
   }
 
   @Get('reports/:id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getReportById(@Param('id') id: string) {
     const report = await this.service.getReportById(id);
     if (!report) {
@@ -32,6 +36,7 @@ export class AnalyticsReportingController {
   }
 
   @Post('reports')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   @HttpCode(HttpStatus.CREATED)
   async createReport(@Body() createReportDto: CreateReportDto) {
     const report = await this.service.createReport(createReportDto);
@@ -39,6 +44,7 @@ export class AnalyticsReportingController {
   }
 
   @Delete('reports/:id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async deleteReport(@Param('id') id: string) {
     const deleted = await this.service.deleteReport(id);
     if (!deleted) {
@@ -46,4 +52,4 @@ export class AnalyticsReportingController {
     }
     return { success: true, message: 'Report deleted' };
   }
-} 
+}

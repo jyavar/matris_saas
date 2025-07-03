@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 
 export interface AnalyticsReport {
   id: string;
@@ -30,7 +34,7 @@ export class AnalyticsReportingService {
     if (!data.name || !data.type || !data.data) {
       throw new BadRequestException('Invalid report data');
     }
-    
+
     // Simulación de integración con PostHog
     // Aquí se podría hacer fetch a PostHog API
     const report: AnalyticsReport = {
@@ -40,7 +44,7 @@ export class AnalyticsReportingService {
       data: data.data,
       created_at: new Date().toISOString(),
     };
-    
+
     this.reports.push(report);
     console.log(`Analytics report created: ${report.id}`);
     return report;
@@ -49,9 +53,9 @@ export class AnalyticsReportingService {
   async deleteReport(id: string): Promise<boolean> {
     const idx = this.reports.findIndex((r) => r.id === id);
     if (idx === -1) return false;
-    
+
     this.reports.splice(idx, 1);
     console.log(`Analytics report deleted: ${id}`);
     return true;
   }
-} 
+}

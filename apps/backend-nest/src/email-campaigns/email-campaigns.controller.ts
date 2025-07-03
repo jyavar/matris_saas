@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 
 import { CreateEmailCampaignDto } from './dto/create-email-campaign.dto';
 import { UpdateEmailCampaignDto } from './dto/update-email-campaign.dto';
@@ -19,12 +20,14 @@ export class EmailCampaignsController {
   constructor(private readonly service: EmailCampaignsService) {}
 
   @Get()
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async list() {
     const campaigns = await this.service.getCampaigns();
     return { success: true, data: campaigns, count: campaigns.length };
   }
 
   @Get(':id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getById(@Param('id') id: string) {
     const campaign = await this.service.getCampaignById(id);
     if (!campaign) {
@@ -34,6 +37,7 @@ export class EmailCampaignsController {
   }
 
   @Post()
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() dto: CreateEmailCampaignDto) {
     const campaign = await this.service.createCampaign(dto);
@@ -41,6 +45,7 @@ export class EmailCampaignsController {
   }
 
   @Patch(':id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async update(@Param('id') id: string, @Body() dto: UpdateEmailCampaignDto) {
     const campaign = await this.service.updateCampaign(id, dto);
     if (!campaign) {
@@ -50,6 +55,7 @@ export class EmailCampaignsController {
   }
 
   @Delete(':id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async delete(@Param('id') id: string) {
     const deleted = await this.service.deleteCampaign(id);
     if (!deleted) {
@@ -59,6 +65,7 @@ export class EmailCampaignsController {
   }
 
   @Post(':id/send')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async send(@Param('id') id: string) {
     const result = await this.service.sendCampaign(id);
     if (!result.success) {

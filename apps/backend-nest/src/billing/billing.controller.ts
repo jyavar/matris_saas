@@ -11,6 +11,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 
 import { JwtAuthGuard, JwtRequest } from '../auth/guards/jwt-auth.guard';
 import { BillingService } from './billing.service';
@@ -22,6 +23,7 @@ export class BillingController {
   constructor(private readonly billingService: BillingService) {}
 
   @Get('invoices')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getAllInvoices(@Request() req: JwtRequest) {
     const customerId = req.user?.id;
     const invoices = await this.billingService.getAllInvoices(customerId);
@@ -29,6 +31,7 @@ export class BillingController {
   }
 
   @Get('invoices/:id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getInvoiceById(@Param('id') id: string, @Request() req: JwtRequest) {
     const customerId = req.user?.id;
     const invoice = await this.billingService.getInvoiceById(id);
@@ -41,6 +44,7 @@ export class BillingController {
   }
 
   @Post('invoices')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   @HttpCode(HttpStatus.CREATED)
   async createInvoice(
     @Body() createInvoiceDto: CreateInvoiceDto,
@@ -54,6 +58,7 @@ export class BillingController {
   }
 
   @Patch('invoices/:id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async updateInvoice(
     @Param('id') id: string,
     @Body() updateInvoiceDto: UpdateInvoiceDto,
@@ -66,6 +71,7 @@ export class BillingController {
   }
 
   @Delete('invoices/:id')
+  @Throttle({ default: { limit: 100, ttl: 900_000 } })
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteInvoice(@Param('id') id: string) {
     await this.billingService.deleteInvoice(id);
