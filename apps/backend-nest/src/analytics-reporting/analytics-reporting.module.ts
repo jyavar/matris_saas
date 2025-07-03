@@ -7,4 +7,4 @@ import { AnalyticsReportingService } from './analytics-reporting.service';
   providers: [AnalyticsReportingService],
   exports: [AnalyticsReportingService],
 })
-export class AnalyticsReportingModule {} 
+export class AnalyticsReportingModule {}

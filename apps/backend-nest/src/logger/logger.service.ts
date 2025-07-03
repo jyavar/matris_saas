@@ -8,7 +8,10 @@ export interface LogActionDetails {
 @Injectable()
 export class LoggerService implements NestLoggerService {
   private readonly logger = pino({
-    level: process.env.NODE_ENV === 'test' ? 'error' : process.env.LOG_LEVEL || 'info',
+    level:
+      process.env.NODE_ENV === 'test'
+        ? 'error'
+        : process.env.LOG_LEVEL || 'info',
     ...(process.env.NODE_ENV === 'test'
       ? {}
       : {
@@ -43,7 +46,11 @@ export class LoggerService implements NestLoggerService {
     this.logger.info({ context }, message);
   }
 
-  logAction(action: string, userId: string, details: LogActionDetails = {}): void {
+  logAction(
+    action: string,
+    userId: string,
+    details: LogActionDetails = {},
+  ): void {
     if (!userId || userId === '') {
       throw new Error('userId is required');
     }
@@ -51,7 +58,10 @@ export class LoggerService implements NestLoggerService {
     // Simulación de integración con PostHog
     if (process.env.NODE_ENV !== 'test' && process.env.POSTHOG_API_KEY) {
       // Aquí se podría integrar PostHog real
-      this.logger.info({ action, userId, ...details }, '[Simulación] Evento enviado a PostHog');
+      this.logger.info(
+        { action, userId, ...details },
+        '[Simulación] Evento enviado a PostHog',
+      );
     }
   }
-} 
+}

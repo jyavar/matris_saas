@@ -33,12 +33,16 @@ export class HttpGlobalExceptionFilter implements ExceptionFilter {
     if (
       typeof exception === 'object' &&
       exception !== null &&
-      ('name' in exception && exception['name'] === 'ZodError')
+      'name' in exception &&
+      exception['name'] === 'ZodError'
     ) {
       this.logger.error(exception);
       response.status(400).json({
         success: false,
-        error: 'errors' in exception ? (exception as { errors: unknown }).errors : undefined,
+        error:
+          'errors' in exception
+            ? (exception as { errors: unknown }).errors
+            : undefined,
         message: 'Validation error',
       });
       return;
@@ -49,11 +53,13 @@ export class HttpGlobalExceptionFilter implements ExceptionFilter {
       const status = exception.getStatus();
       const res = exception.getResponse();
       this.logger.error(exception);
-      response.status(status).json(
-        typeof res === 'string'
-          ? { success: false, message: res }
-          : { success: false, ...res }
-      );
+      response
+        .status(status)
+        .json(
+          typeof res === 'string'
+            ? { success: false, message: res }
+            : { success: false, ...res },
+        );
       return;
     }
 
@@ -65,4 +71,4 @@ export class HttpGlobalExceptionFilter implements ExceptionFilter {
       stack: exception instanceof Error ? exception.stack : undefined,
     });
   }
-} 
+}

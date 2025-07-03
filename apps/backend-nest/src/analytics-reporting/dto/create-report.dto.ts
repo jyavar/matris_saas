@@ -11,4 +11,4 @@ export class CreateReportDto {
 
   @IsObject()
   data: Record<string, unknown>;
-} 
+}
