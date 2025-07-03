@@ -3,6 +3,8 @@ import cors from 'cors'
 import type { NextFunction, Request, Response } from 'express'
 import NodeCache from 'node-cache'
 
+import { performanceService } from '../services/performance.service.js'
+
 // Cache configuration
 const cache = new NodeCache({
   stdTTL: 300, // 5 minutes default
@@ -90,6 +92,9 @@ export const performanceMiddleware = (
 ): void => {
   const start = Date.now()
 
+  // Track the start of the request
+  performanceService.recordRequest(0) // Will be updated with actual duration
+
   // Add performance headers before response is sent
   res.setHeader(
     'X-Request-ID',
@@ -99,6 +104,14 @@ export const performanceMiddleware = (
   // Add response time header after response is sent
   res.on('finish', () => {
     const duration = Date.now() - start
+    // Record the actual response time
+    performanceService.recordRequest(duration)
+
+    // Track errors (status >= 400)
+    if (res.statusCode >= 400) {
+      performanceService.recordError()
+    }
+
     // Use res.getHeader to check if headers were already sent
     if (!res.headersSent) {
       res.setHeader('X-Response-Time', `${duration}ms`)
