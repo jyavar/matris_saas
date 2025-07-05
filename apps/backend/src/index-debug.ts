@@ -1,4 +1,4 @@
-import { createServer } from 'http'
+import { createServer, ServerResponse } from 'http'
 import { parse } from 'url'
 
 import { authController } from './controllers/auth.controller.js'
@@ -9,7 +9,7 @@ import { createRouter } from './utils/router.js'
 const version = process.env.npm_package_version || '1.0.0'
 const router = createRouter()
 
-function sendJson(res, status, data) {
+function sendJson(res: ServerResponse, status: number, data: unknown) {
   res.writeHead(status, { 'Content-Type': 'application/json' })
   res.end(JSON.stringify(data))
 }

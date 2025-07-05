@@ -51,7 +51,7 @@ export const corsMiddleware = (
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin)
   } else {
-    res.setHeader('Access-Control-Allow-Origin', allowedOrigins[0])
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigins[0] || '*')
   }
 
   res.setHeader('Access-Control-Allow-Credentials', 'true')

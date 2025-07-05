@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-import type { ControllerHandler,RouteDefinition } from '../types/express/index.js'
+import type { ControllerHandler, RequestBody, RouteDefinition } from '../types/express/index.js'
 
 type MiddlewareHandler = (
   req: IncomingMessage,
@@ -127,7 +127,7 @@ export class Router {
       const patternPart = patternParts[i]
       const pathPart = pathParts[i]
 
-      if (patternPart.startsWith(':')) {
+      if (patternPart?.startsWith(':')) {
         // Parameter placeholder
         continue
       }
@@ -152,9 +152,9 @@ export class Router {
       const patternPart = patternParts[i]
       const pathPart = pathParts[i]
 
-      if (patternPart.startsWith(':')) {
+      if (patternPart?.startsWith(':')) {
         const paramName = patternPart.slice(1)
-        params[paramName] = pathPart
+        params[paramName] = pathPart || ''
       }
     }
 

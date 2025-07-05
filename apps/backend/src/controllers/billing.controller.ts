@@ -94,6 +94,10 @@ export const createInvoice: ControllerHandler = async (req: IncomingMessage, res
       due_date: validatedData.due_date,
     })
 
+    if (!invoice) {
+      return sendError(res, 'Failed to create invoice', 500)
+    }
+
     logAction('billing_invoice_created', user.id, { 
       invoice_id: invoice.id,
       amount: validatedData.amount 

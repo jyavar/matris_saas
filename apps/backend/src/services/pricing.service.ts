@@ -222,7 +222,7 @@ export const pricingService = {
       return {
         id: subscriptionId,
         status: 'active',
-        plan: planId ? await this.getPlanById(planId) : undefined,
+        plan: planId ? (await this.getPlanById(planId)) || undefined : undefined,
       }
     } catch (error) {
       logAction('pricing_subscription_update_error', 'unknown', {
@@ -285,6 +285,9 @@ export const pricingService = {
       if (subscriptionId.startsWith('mock_')) {
         // Extract plan from mock ID
         const planId = subscriptionId.split('_')[1]
+        if (!planId) {
+          throw new ApiError(400, 'Invalid subscription ID format')
+        }
         const plan = await this.getPlanById(planId)
         return {
           id: subscriptionId,

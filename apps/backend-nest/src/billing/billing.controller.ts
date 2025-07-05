@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -26,6 +27,9 @@ export class BillingController {
   @Throttle({ default: { limit: 100, ttl: 900_000 } })
   async getAllInvoices(@Request() req: JwtRequest) {
     const customerId = req.user?.id;
+    if (!customerId) {
+      throw new BadRequestException('User ID is required');
+    }
     const invoices = await this.billingService.getAllInvoices(customerId);
     return { invoices };
   }
@@ -50,9 +54,13 @@ export class BillingController {
     @Body() createInvoiceDto: CreateInvoiceDto,
     @Request() req: JwtRequest,
   ) {
+    const customerId = req.user?.id;
+    if (!customerId) {
+      throw new BadRequestException('User ID is required');
+    }
     const newInvoice = await this.billingService.createInvoice({
       ...createInvoiceDto,
-      customer_id: req.user?.id,
+      customer_id: customerId,
     });
     return newInvoice;
   }

@@ -95,7 +95,7 @@ function createChainableMock(
           (rows[0] as Record<string, unknown>).title === 'fail'
         ) {
           _error = { message: 'Invalid data', code: 400 }
-          _data = null
+          _data = []
         } else {
           switch (table) {
             case 'analytics':
@@ -120,7 +120,7 @@ function createChainableMock(
         (updates as Record<string, unknown>).event_name === 'fail'
       ) {
         _error = { message: 'Update failed', code: 400 }
-        _data = null
+        _data = []
       } else {
         // Simular actualización
         _data = _data.map((row) => ({
@@ -147,7 +147,7 @@ function createChainableMock(
     eq: vi.fn().mockImplementation((field, value) => {
       if (value === 'fail' || value === 9999) {
         _error = { message: 'Not found', code: 404 }
-        _data = null
+        _data = []
       } else {
         _data = _data.filter(
           (row: Record<string, unknown>) => row[field] === value,

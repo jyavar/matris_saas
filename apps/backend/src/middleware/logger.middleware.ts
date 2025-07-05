@@ -47,7 +47,7 @@ export const loggerMiddleware: MiddlewareHandler = async (
     })
 
     // Call original end method
-    return originalEnd.call(this, chunk, encoding, cb)
+    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
   }
 
   next()
@@ -90,7 +90,7 @@ export const performanceMiddleware: MiddlewareHandler = async (
     }
 
     // Call original end method
-    return originalEnd.call(this, chunk, encoding, cb)
+    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
   }
 
   next()
@@ -155,7 +155,7 @@ export const errorLoggingMiddleware: MiddlewareHandler = async (
       })
     }
 
-    return originalEnd.call(this, chunk, encoding, cb)
+    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
   }
 
   next()

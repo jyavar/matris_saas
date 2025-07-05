@@ -46,7 +46,7 @@ export const sendError = (
   const response: ErrorResponse = {
     success: false,
     error,
-    ...(details && { details }),
+    ...(details && typeof details === 'object' ? { details } : {}),
     timestamp: new Date().toISOString(),
   }
 

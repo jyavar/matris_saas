@@ -119,7 +119,7 @@ export const escapeHtml = (str: string): string => {
     "'": '&#x27;',
     '/': '&#x2F;',
   }
-  return str.replace(/[&<>"'/]/g, (match) => htmlEscapes[match])
+  return str.replace(/[&<>"'/]/g, (match) => htmlEscapes[match] || match)
 }
 
 /**
@@ -168,7 +168,7 @@ export const deepMerge = <T extends Record<string, unknown>>(target: T, ...sourc
  * Check if value is an object
  */
 const isObject = (item: unknown): item is Record<string, unknown> => {
-  return item && typeof item === 'object' && !Array.isArray(item)
+  return Boolean(item && typeof item === 'object' && !Array.isArray(item))
 }
 
 /**

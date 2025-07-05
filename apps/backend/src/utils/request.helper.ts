@@ -64,7 +64,7 @@ export const parseParams = (path: string, pattern: string): Record<string, strin
     const patternSegment = patternSegments[i]
     const pathSegment = pathSegments[i]
     
-    if (patternSegment.startsWith(':')) {
+    if (patternSegment?.startsWith(':')) {
       const paramName = patternSegment.slice(1)
       params[paramName] = pathSegment || ''
     }

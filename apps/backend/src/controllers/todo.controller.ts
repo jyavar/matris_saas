@@ -42,7 +42,7 @@ export const todoController = {
         return
       }
 
-      const todos = await todoService.getAllTodos(user.id, user.tenant_id)
+      const todos = await todoService.getAllTodos(user.id, user.tenant_id || '')
 
       logAction('todos_requested', user.id, {
         count: todos.length,

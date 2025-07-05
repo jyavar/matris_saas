@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { billingController } from '../controllers/billing.controller'
+import { getInvoices, getInvoiceById, createInvoice, updateInvoice, deleteInvoice } from '../controllers/billing.controller'
 
 // Mock dependencies
 vi.mock('../services/billing.service', () => ({

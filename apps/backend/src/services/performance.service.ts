@@ -161,7 +161,7 @@ class PerformanceService {
   getSummary(): {
     status: 'healthy' | 'warning' | 'critical'
     metrics: PerformanceMetrics
-    health: ReturnType<typeof this.checkPerformanceHealth>
+    health: ReturnType<PerformanceService['checkPerformanceHealth']>
   } {
     const metrics = this.getMetrics()
     const health = this.checkPerformanceHealth()

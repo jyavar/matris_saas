@@ -387,7 +387,7 @@ export const analyticsService = {
       const userAnalytics: UserAnalytics = {
         user_id: userId,
         total_events: userEvents.length,
-        last_seen: new Date(userEvents[0].created_at),
+        last_seen: userEvents.length > 0 ? new Date(userEvents[0].created_at) : new Date(),
         events_breakdown: Object.entries(eventsBreakdown)
           .map(([event_name, count]) => ({ event_name, count }))
           .sort((a, b) => b.count - a.count),
