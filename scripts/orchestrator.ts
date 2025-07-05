@@ -25,7 +25,7 @@ const agents: AgentInfo[] = [
   },
   {
     name: '@data',
-    importPath: './agents/data/backup',
+    importPath: './agents/data/index',
     reportPath: 'audit-artifacts/reports/data-report.json',
   },
   {

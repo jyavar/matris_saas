@@ -1,209 +1,68 @@
 #!/usr/bin/env tsx
 
 /**
- * @data Agent - Main Entry Point
- *
- * Provides a unified interface for data processing operations
+ * @data Agent - Entry Point
  */
 
-import fs from 'fs'
+import { DataAgent, type DataOptions } from './autofix'
+import { commands } from './commands'
 
-import { DataProcessingResult, DataProcessor } from './processor'
-
-export interface DataOptions {
+export interface DataManagerOptions {
+  mode?: 'run' | 'validate' | 'test' | 'migrate' | 'seed' | 'backup' | 'analytics'
+  verbose?: boolean
+  dryRun?: boolean
   migrate?: boolean
   seed?: boolean
   validate?: boolean
   backup?: boolean
   analytics?: boolean
-  verbose?: boolean
   saveReport?: boolean
   exitOnFailure?: boolean
 }
 
-export interface DataResult {
-  status: 'SUCCESS' | 'FAILED' | 'PARTIAL'
-  summary: string
-  operations: {
-    migration: OperationResult
-    seeding: OperationResult
-    validation: OperationResult
-    backup: OperationResult
-    analytics: OperationResult
-  }
-  errors: string[]
-  warnings: string[]
-  timestamp: string
-}
-
-// Re-export the processor types for compatibility
-export type { DataProcessingResult } from './processor'
-
-export interface OperationResult {
-  status: 'SUCCESS' | 'FAILED' | 'SKIPPED'
-  message: string
-  details?: unknown
-  duration?: number
-}
-
-export interface DataAgentDeps {
-  writeFileSync: (file: string, data: string) => void
-}
-
-export default async function runAgent(
-  deps: DataAgentDeps = { writeFileSync: fs.writeFileSync },
-): Promise<void> {
-  const log = {
-    timestamp: new Date().toISOString(),
-    agentName: '@data',
-    status: 'ok' as 'ok' | 'fail',
-    errors: [] as string[],
-    actionsPerformed: [] as string[],
-  }
-  try {
-    const manager = new DataManager()
-    const result = await manager.run()
-    log.actionsPerformed.push('DataManager.run ejecutado')
-    log.status = result.status === 'FAILED' ? 'fail' : 'ok'
-    if (result.errors && result.errors.length > 0) {
-      log.errors.push(...result.errors)
-    }
-  } catch (e) {
-    log.status = 'fail'
-    log.errors.push(e instanceof Error ? e.message : String(e))
-    log.actionsPerformed.push('Error en DataManager.run')
-  }
-  deps.writeFileSync(
-    'audit-artifacts/reports/data-report.json',
-    JSON.stringify(log, null, 2),
-  )
-  console.log('[@data] ejecutado')
-}
-
 export class DataManager {
-  private options: DataOptions
-  private processor: DataProcessor
+  private options: DataManagerOptions
 
-  constructor(options: DataOptions = {}) {
+  constructor(options: DataManagerOptions = {}) {
     this.options = {
+      mode: 'run',
+      verbose: false,
+      dryRun: false,
       migrate: true,
       validate: true,
       analytics: true,
-      verbose: false,
       saveReport: true,
       exitOnFailure: true,
-      ...options,
-    }
-    this.processor = new DataProcessor()
-  }
-
-  async run(): Promise<DataProcessingResult> {
-    console.log('🔄 @data Agent Manager - Starting data processing...')
-
-    try {
-      const result = await this.processor.processData(this.options)
-
-      if (this.options.verbose) {
-        this.displayResults(result)
-      }
-
-      if (this.options.exitOnFailure && result.status === 'FAILED') {
-        console.error('❌ Data processing failed, exiting...')
-        process.exit(1)
-      }
-
-      return result
-    } catch (error) {
-      console.error('❌ @data Agent Manager failed:', error)
-      throw error
+      ...options
     }
   }
 
-  private displayResults(results: DataProcessingResult): void {
-    console.log('\n📊 Data Processing Results:')
-    console.log('='.repeat(50))
-    console.log(
-      `Status: ${this.getStatusEmoji(results.status)} ${results.status}`,
-    )
-    console.log(`Summary: ${results.summary}`)
-
-    console.log('\n📋 Operations:')
-    Object.entries(results.operations).forEach(([operation, result]) => {
-      const emoji = this.getOperationEmoji(result.status)
-      console.log(`${emoji} ${operation}: ${result.status} - ${result.message}`)
-      if (result.duration) {
-        console.log(`   Duration: ${result.duration}ms`)
-      }
-    })
-
-    if (results.errors.length > 0) {
-      console.log('\n❌ Errors:')
-      results.errors.forEach((error: string, index: number) => {
-        console.log(`${index + 1}. ${error}`)
-      })
-    }
-
-    if (results.warnings.length > 0) {
-      console.log('\n⚠️ Warnings:')
-      results.warnings.forEach((warning: string, index: number) => {
-        console.log(`${index + 1}. ${warning}`)
-      })
-    }
-  }
-
-  private getStatusEmoji(status: string): string {
-    switch (status) {
-      case 'SUCCESS':
-        return '✅'
-      case 'FAILED':
-        return '❌'
-      case 'PARTIAL':
-        return '⚠️'
+  async execute(): Promise<void> {
+    switch (this.options.mode) {
+      case 'run':
+        const agent = new DataAgent(this.options)
+        await agent.run()
+        break
+      case 'validate':
+        await commands.validate()
+        break
+      case 'test':
+        await commands.test()
+        break
+      case 'migrate':
+        await commands.migrate()
+        break
+      case 'seed':
+        await commands.seed()
+        break
+      case 'backup':
+        await commands.backup()
+        break
+      case 'analytics':
+        await commands.analytics()
+        break
       default:
-        return '❓'
-    }
-  }
-
-  private getOperationEmoji(status: string): string {
-    switch (status) {
-      case 'SUCCESS':
-        return '✅'
-      case 'FAILED':
-        return '❌'
-      case 'SKIPPED':
-        return '⏭️'
-      default:
-        return '❓'
-    }
-  }
-
-  private parseOptions(context: DataOptions): Partial<DataOptions> {
-    const options: Partial<DataOptions> = {}
-    if (context.migrate) options.migrate = true
-    if (context.seed) options.seed = true
-    if (context.validate) options.validate = true
-    if (context.backup) options.backup = true
-    if (context.analytics) options.analytics = true
-    if (Object.keys(options).length === 0) {
-      options.migrate = true
-      options.validate = true
-      options.analytics = true
-    }
-    return options
-  }
-
-  private mapStatus(
-    status: 'SUCCESS' | 'FAILED' | 'PARTIAL',
-  ): 'SUCCESS' | 'FAILED' | 'PARTIAL' {
-    switch (status) {
-      case 'SUCCESS':
-        return 'SUCCESS'
-      case 'FAILED':
-        return 'FAILED'
-      case 'PARTIAL':
-        return 'PARTIAL'
-      default:
-        return 'FAILED'
+        throw new Error(`Unknown mode: ${this.options.mode}`)
     }
   }
 }
@@ -211,13 +70,22 @@ export class DataManager {
 // CLI interface
 async function main() {
   const args = process.argv.slice(2)
-  const options: DataOptions = {}
+  const options: DataManagerOptions = {}
 
-  // Parse command line arguments
+  // Parse arguments
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
-
     switch (arg) {
+      case '--mode':
+        options.mode = args[++i] as 'run' | 'validate' | 'test' | 'migrate' | 'seed' | 'backup' | 'analytics'
+        break
+      case '--verbose':
+      case '-v':
+        options.verbose = true
+        break
+      case '--dry-run':
+        options.dryRun = true
+        break
       case '--migrate':
         options.migrate = true
         break
@@ -233,38 +101,23 @@ async function main() {
       case '--analytics':
         options.analytics = true
         break
-      case '--verbose':
-      case '-v':
-        options.verbose = true
-        break
-      case '--no-save':
-        options.saveReport = false
-        break
-      case '--no-exit':
-        options.exitOnFailure = false
-        break
       case '--help':
       case '-h':
         console.log(`
-@data Agent Manager
+@data Agent
 
 Usage: tsx scripts/agents/data/index.ts [options]
 
 Options:
-  --migrate            Run database migrations
-  --seed               Run database seeding
-  --validate           Run data validation
-  --backup             Run backup operations
-  --analytics          Run analytics processing
-  --verbose, -v        Enable verbose output
-  --no-save            Don't save processing report
-  --no-exit            Don't exit on failure
-  --help, -h           Show this help message
-
-Examples:
-  tsx scripts/agents/data/index.ts
-  tsx scripts/agents/data/index.ts --migrate --seed --verbose
-  tsx scripts/agents/data/index.ts --validate --no-exit
+  --mode <mode>     Execution mode: run, validate, test, migrate, seed, backup, analytics (default: run)
+  --verbose, -v     Enable verbose output
+  --dry-run         Execute without making changes
+  --migrate         Run database migrations
+  --seed            Run database seeding
+  --validate        Run data validation
+  --backup          Run data backup
+  --analytics       Run analytics processing
+  --help, -h        Show this help message
         `)
         process.exit(0)
         break
@@ -272,15 +125,17 @@ Examples:
   }
 
   const manager = new DataManager(options)
-  const result = await manager.run()
-
-  console.log('✅ Data processing completed')
-  return result
+  await manager.execute()
 }
 
-// Check if this is the main module
+// For orchestrator
+export async function runAgent(): Promise<void> {
+  const manager = new DataManager({ mode: 'run' })
+  await manager.execute()
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(console.error)
 }
 
-export { DataProcessor }
+export { DataAgent, commands }
