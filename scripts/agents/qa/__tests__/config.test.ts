@@ -2,8 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { 
   QAAgentConfigManager, 
   DEFAULT_QA_CONFIG, 
-  type QAAgentConfig,
-  type CheckConfig 
+  type QAAgentConfig
 } from '../config'
 
 describe('QAAgentConfigManager', () => {
