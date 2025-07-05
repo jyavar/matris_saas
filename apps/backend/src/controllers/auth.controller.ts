@@ -1,66 +1,115 @@
-import { NextFunction, Request, Response } from 'express'
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
 
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+
+const loginSchema = z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+})
+
+const registerSchema = z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  name: z.string().min(1, 'Name is required'),
+})
+
+const refreshTokenSchema = z.object({
+  refreshToken: z.string().min(1, 'Refresh token is required'),
+})
 
 export const authController = {
-  async signUp(req: Request, res: Response, next: NextFunction) {
+  /**
+   * User login
+   */
+  async login(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const { email, password } = req.body
-      const result = await authService.signUp({ email, password })
+      const validatedData = loginSchema.parse(body)
+      const result = await authService.signIn(validatedData)
 
-      if (result.user) {
-        logAction('auth_signup_success', result.user.id, {
-          email: result.user.email,
-        })
-        res.status(201).json({
-          id: result.user.id,
-          email: result.user.email,
-        })
-      } else {
-        res.status(400).json({ message: 'Error al crear usuario' })
-      }
+      logAction('user_login', 'anonymous', {
+        email: validatedData.email,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: result,
+      }))
     } catch (error) {
-      if (error instanceof ApiError) {
-        res.status(error.statusCode).json({ message: error.message })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid login data',
+          details: error.errors,
+        }))
       } else {
-        logAction('auth_signup_error', 'unknown', {
+        logAction('user_login_error', 'anonymous', {
           error: error instanceof Error ? error.message : 'Unknown error',
         })
-        next(error)
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid credentials',
+        }))
       }
     }
   },
 
-  async signIn(req: Request, res: Response, next: NextFunction) {
+  /**
+   * User registration
+   */
+  async register(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const { email, password } = req.body
-      const result = await authService.signIn({ email, password })
+      const validatedData = registerSchema.parse(body)
+      const result = await authService.signUp(validatedData)
 
-      if (result.user && result.session) {
-        logAction('auth_signin_success', result.user.id, {
-          email: result.user.email,
-        })
-        res.status(200).json({
-          access_token: result.session.access_token,
-          user: {
-            id: result.user.id,
-            email: result.user.email,
-          },
-        })
-      } else {
-        res.status(401).json({ message: 'Credenciales inválidas' })
-      }
+      logAction('user_registered', 'anonymous', {
+        email: validatedData.email,
+        name: validatedData.name,
+      })
+
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: result,
+      }))
     } catch (error) {
-      if (error instanceof ApiError) {
-        res.status(error.statusCode).json({ message: error.message })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid registration data',
+          details: error.errors,
+        }))
       } else {
-        logAction('auth_signin_error', 'unknown', {
+        logAction('user_registration_error', 'anonymous', {
           error: error instanceof Error ? error.message : 'Unknown error',
         })
-        next(error)
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Registration failed',
+        }))
       }
     }
   },
+
+
 }

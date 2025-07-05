@@ -1,77 +1,27 @@
-import { Router } from 'express'
+import { runtimeController } from '../controllers/runtime.controller.js'
+import { authMiddleware } from '../middleware/auth.middleware.js'
+import { handleAsync } from '../middleware/errorHandler.middleware.js'
 
-import { RuntimeService } from '../services/runtime.service.js'
-
-const router = Router()
-
-// GET /runtime/jobs
-router.get('/jobs', (req, res) => {
-  res.json(RuntimeService.listJobs())
-})
-
-// POST /runtime/jobs
-router.post('/jobs', (req, res) => {
-  const { id, schedule } = req.body
-  if (!id || !schedule) {
-    res.status(400).json({ error: 'Missing id or schedule' })
-    return
-  }
-  try {
-    const job = RuntimeService.createJob(id, schedule, () => {
-      // Placeholder: aquí se ejecutaría la lógica real del job
-      // Se puede loggear o notificar
-    })
-    res.status(201).json(job)
-  } catch (e) {
-    res.status(400).json({ error: (e as Error).message })
-  }
-})
-
-// POST /runtime/jobs/:id/pause
-router.post('/jobs/:id/pause', (req, res) => {
-  try {
-    RuntimeService.pauseJob(req.params.id)
-    res.json({ ok: true })
-  } catch (e) {
-    res.status(404).json({ error: (e as Error).message })
-  }
-})
-
-// POST /runtime/jobs/:id/resume
-router.post('/jobs/:id/resume', (req, res) => {
-  try {
-    RuntimeService.resumeJob(req.params.id)
-    res.json({ ok: true })
-  } catch (e) {
-    res.status(404).json({ error: (e as Error).message })
-  }
-})
-
-// DELETE /runtime/jobs/:id
-router.delete('/jobs/:id', (req, res) => {
-  try {
-    RuntimeService.deleteJob(req.params.id)
-    res.json({ ok: true })
-  } catch (e) {
-    res.status(404).json({ error: (e as Error).message })
-  }
-})
-
-// POST /runtime/agents/:name/run
-router.post('/agents/:name/run', async (req, res) => {
-  const { name } = req.params
-  try {
-    const result = await RuntimeService.runAgent(name, req.body)
-    if (result.ok) {
-      res.json({ ok: true, result: result.result })
-    } else {
-      res.status(400).json({ ok: false, error: result.error })
-    }
-  } catch (e) {
-    res
-      .status(500)
-      .json({ ok: false, error: e instanceof Error ? e.message : String(e) })
-  }
-})
-
-export default router
+export const runtimeRoutes = [
+  { method: 'GET', path: '/status', handler: handleAsync(runtimeController.getStatus) },
+  { method: 'GET', path: '/health', handler: handleAsync(runtimeController.getHealth) },
+  { method: 'GET', path: '/metrics', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getMetrics) },
+  { method: 'GET', path: '/logs', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getLogs) },
+  { method: 'POST', path: '/restart', middlewares: [authMiddleware], handler: handleAsync(runtimeController.restart) },
+  { method: 'POST', path: '/shutdown', middlewares: [authMiddleware], handler: handleAsync(runtimeController.shutdown) },
+  { method: 'GET', path: '/config', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getConfig) },
+  { method: 'PUT', path: '/config', middlewares: [authMiddleware], handler: handleAsync(runtimeController.updateConfig) },
+  { method: 'GET', path: '/agents', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getAgents) },
+  { method: 'POST', path: '/agents/:name/start', middlewares: [authMiddleware], handler: handleAsync(runtimeController.startAgent) },
+  { method: 'POST', path: '/agents/:name/stop', middlewares: [authMiddleware], handler: handleAsync(runtimeController.stopAgent) },
+  { method: 'GET', path: '/agents/:name/status', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getAgentStatus) },
+  { method: 'GET', path: '/agents/:name/logs', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getAgentLogs) },
+  { method: 'POST', path: '/agents/:name/run', middlewares: [authMiddleware], handler: handleAsync(runtimeController.runAgent) },
+  { method: 'GET', path: '/tasks', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getTasks) },
+  { method: 'POST', path: '/tasks', middlewares: [authMiddleware], handler: handleAsync(runtimeController.createTask) },
+  { method: 'GET', path: '/tasks/:id', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getTaskById) },
+  { method: 'PUT', path: '/tasks/:id', middlewares: [authMiddleware], handler: handleAsync(runtimeController.updateTask) },
+  { method: 'DELETE', path: '/tasks/:id', middlewares: [authMiddleware], handler: handleAsync(runtimeController.deleteTask) },
+  { method: 'POST', path: '/tasks/:id/execute', middlewares: [authMiddleware], handler: handleAsync(runtimeController.executeTask) },
+  { method: 'GET', path: '/tasks/:id/result', middlewares: [authMiddleware], handler: handleAsync(runtimeController.getTaskResult) },
+]

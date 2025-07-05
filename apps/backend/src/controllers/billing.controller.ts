@@ -1,100 +1,185 @@
-import { NextFunction, Request, Response } from 'express'
-import { ZodError } from 'zod'
-
-import {
-  createInvoiceSchema,
-  todoIdParamSchema,
-  updateInvoiceSchema,
-} from '../lib/schemas.js'
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
 import { billingService } from '../services/billing.service.js'
-import { ApiError } from '../utils/ApiError.js'
+import { sendSuccess, sendError, sendCreated, sendNotFound, sendUnauthorized } from '../utils/response.helper.js'
+import { parseBody, parseQuery, parseParams } from '../utils/request.helper.js'
+import { logAction } from '../services/logger.service.js'
+import type { AuthenticatedUser, RequestBody, ControllerHandler } from '../types/express/index.js'
 
-export const billingController = {
-  async getAllInvoices(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const customerId = req.user.id
-      const invoices = await billingService.getAllInvoices(customerId)
-      res.json({ invoices })
-    } catch (error) {
-      next(error)
-    }
-  },
+// Schemas
+const createInvoiceSchema = z.object({
+  amount: z.number().positive(),
+  currency: z.string().default('USD'),
+  description: z.string().optional(),
+  customer_id: z.string().optional(),
+  due_date: z.string().optional(),
+})
 
-  async getInvoiceById(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      const customerId = req.user.id
-      const invoice = await billingService.getInvoiceById(id)
-      if (!invoice || invoice.customer_id !== customerId) {
-        throw new ApiError(404, 'Invoice not found')
-      }
-      res.json(invoice)
-    } catch (error) {
-      next(error)
-    }
-  },
+const updateInvoiceSchema = z.object({
+  amount: z.number().positive().optional(),
+  currency: z.string().optional(),
+  description: z.string().optional(),
+  status: z.enum(['paid', 'cancelled', 'pending']).optional(),
+  due_date: z.string().optional(),
+})
 
-  async createInvoice(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      let validatedInvoice
-      try {
-        validatedInvoice = createInvoiceSchema.parse(req.body)
-      } catch (zodError) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid invoice data',
-          )
-        }
-        throw zodError
-      }
-      const newInvoice = await billingService.createInvoice({
-        ...validatedInvoice,
-        customer_id: req.user.id,
-      })
-      res.status(201).json(newInvoice)
-    } catch (error) {
-      next(error)
+// Controller methods
+export const getInvoices: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
+  try {
+    const user = (req as { user?: AuthenticatedUser }).user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
     }
-  },
 
-  async updateInvoice(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      let validatedInvoice
-      try {
-        validatedInvoice = updateInvoiceSchema.parse(req.body)
-      } catch (zodError) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid invoice data',
-          )
-        }
-        throw zodError
-      }
-      const updatedInvoice = await billingService.updateInvoice(
-        id,
-        validatedInvoice,
-      )
-      res.json(updatedInvoice)
-    } catch (error) {
-      next(error)
-    }
-  },
+    const query = parseQuery(req.url || '')
+    const { page, limit, offset } = getPaginationParams(query)
+    
+    const invoices = await billingService.getAllInvoices(user.id)
+    
+    logAction('billing_invoices_retrieved', user.id, { count: invoices.length })
+    
+    return sendSuccess(res, {
+      data: invoices,
+      pagination: { page, limit, total: invoices.length }
+    })
+  } catch (error) {
+    return sendError(res, 'Failed to retrieve invoices', 500)
+  }
+}
 
-  async deleteInvoice(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      await billingService.deleteInvoice(id)
-      res.status(204).send()
-    } catch (error) {
-      next(error)
+export const getInvoiceById: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
+  try {
+    const user = (req as { user?: AuthenticatedUser }).user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
     }
-  },
+
+    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const invoiceId = params.id
+
+    if (!invoiceId) {
+      return sendError(res, 'Invoice ID is required', 400)
+    }
+
+    const invoice = await billingService.getInvoiceById(invoiceId)
+    
+    if (!invoice) {
+      return sendNotFound(res, 'Invoice not found')
+    }
+
+    logAction('billing_invoice_retrieved', user.id, { invoice_id: invoiceId })
+    
+    return sendSuccess(res, invoice)
+  } catch (error) {
+    return sendError(res, 'Failed to retrieve invoice', 500)
+  }
+}
+
+export const createInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
+  try {
+    const user = (req as { user?: AuthenticatedUser }).user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const body = await parseBody(req) as RequestBody
+    const validatedData = createInvoiceSchema.parse(body)
+
+    const invoice = await billingService.createInvoice({
+      customer_id: user.id,
+      amount: validatedData.amount,
+      currency: validatedData.currency,
+      description: validatedData.description,
+      due_date: validatedData.due_date,
+    })
+
+    logAction('billing_invoice_created', user.id, { 
+      invoice_id: invoice.id,
+      amount: validatedData.amount 
+    })
+    
+    return sendCreated(res, invoice)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return sendError(res, 'Invalid invoice data', 400, error.errors)
+    }
+    return sendError(res, 'Failed to create invoice', 500)
+  }
+}
+
+export const updateInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
+  try {
+    const user = (req as { user?: AuthenticatedUser }).user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const invoiceId = params.id
+    const body = await parseBody(req) as RequestBody
+
+    if (!invoiceId) {
+      return sendError(res, 'Invoice ID is required', 400)
+    }
+
+    const validatedData = updateInvoiceSchema.parse(body)
+
+    const invoice = await billingService.updateInvoice(invoiceId, validatedData)
+    
+    if (!invoice) {
+      return sendNotFound(res, 'Invoice not found')
+    }
+
+    logAction('billing_invoice_updated', user.id, { 
+      invoice_id: invoiceId,
+      changes: Object.keys(validatedData) 
+    })
+    
+    return sendSuccess(res, invoice)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return sendError(res, 'Invalid invoice data', 400, error.errors)
+    }
+    return sendError(res, 'Failed to update invoice', 500)
+  }
+}
+
+export const deleteInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
+  try {
+    const user = (req as { user?: AuthenticatedUser }).user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const invoiceId = params.id
+
+    if (!invoiceId) {
+      return sendError(res, 'Invoice ID is required', 400)
+    }
+
+    const deleted = await billingService.deleteInvoice(invoiceId)
+    
+    if (!deleted) {
+      return sendNotFound(res, 'Invoice not found')
+    }
+
+    logAction('billing_invoice_deleted', user.id, { invoice_id: invoiceId })
+    
+    return sendSuccess(res, { message: 'Invoice deleted successfully' })
+  } catch (error) {
+    return sendError(res, 'Failed to delete invoice', 500)
+  }
+}
+
+// Helper function
+const getPaginationParams = (query: Record<string, string>) => {
+  const page = parseInt(query.page || '1', 10)
+  const limit = parseInt(query.limit || '10', 10)
+  
+  return {
+    page: Math.max(1, page),
+    limit: Math.min(100, Math.max(1, limit)),
+    offset: (page - 1) * limit,
+  }
 }

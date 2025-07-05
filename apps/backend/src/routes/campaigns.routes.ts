@@ -1,26 +1,87 @@
-import { Router } from 'express'
+import { authMiddleware } from '../middleware/auth.middleware.js'
+import { validateBody } from '../middleware/validation.middleware.js'
+import { z } from 'zod'
+import {
+  getCampaigns,
+  getCampaignById,
+  createCampaign,
+  updateCampaign,
+  deleteCampaign,
+  pauseCampaign,
+  resumeCampaign,
+  getCampaignAnalytics,
+} from '../controllers/campaigns.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-import { CampaignsService } from '../services/campaigns.service.js'
-
-const router = Router()
-
-router.get('/', (req, res) => {
-  res.json(CampaignsService.list())
+// Validation schemas
+const createCampaignSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  description: z.string().optional(),
+  budget: z.number().positive('Budget must be positive'),
+  start_date: z.string().optional(),
+  end_date: z.string().optional(),
+  target_audience: z.record(z.unknown()).optional(),
+  status: z.enum(['draft', 'active', 'paused', 'completed']).default('draft'),
 })
 
-// @ts-expect-error - Express 5 compatibility issue
-router.post('/', (req, res) => {
-  const { name } = req.body
-  if (!name) return res.status(400).json({ error: 'Falta nombre' })
-  const campaign = CampaignsService.create(name)
-  res.status(201).json(campaign)
+const updateCampaignSchema = z.object({
+  title: z.string().min(1, 'Title is required').optional(),
+  description: z.string().optional(),
+  budget: z.number().positive('Budget must be positive').optional(),
+  start_date: z.string().optional(),
+  end_date: z.string().optional(),
+  target_audience: z.record(z.unknown()).optional(),
+  status: z.enum(['draft', 'active', 'paused', 'completed']).optional(),
 })
 
-// @ts-expect-error - Express 5 compatibility issue
-router.delete('/:id', (req, res) => {
-  const ok = CampaignsService.delete(req.params.id)
-  if (!ok) return res.status(404).json({ error: 'No encontrada' })
-  res.json({ ok: true })
-})
-
-export default router
+// Route definitions
+export const campaignsRoutes: RouteDefinition[] = [
+  {
+    method: 'GET',
+    path: '/api/campaigns',
+    handler: getCampaigns,
+    middlewares: [authMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/api/campaigns/:id',
+    handler: getCampaignById,
+    middlewares: [authMiddleware],
+  },
+  {
+    method: 'POST',
+    path: '/api/campaigns',
+    handler: createCampaign,
+    middlewares: [authMiddleware, validateBody(createCampaignSchema)],
+  },
+  {
+    method: 'PUT',
+    path: '/api/campaigns/:id',
+    handler: updateCampaign,
+    middlewares: [authMiddleware, validateBody(updateCampaignSchema)],
+  },
+  {
+    method: 'DELETE',
+    path: '/api/campaigns/:id',
+    handler: deleteCampaign,
+    middlewares: [authMiddleware],
+  },
+  {
+    method: 'PATCH',
+    path: '/api/campaigns/:id/pause',
+    handler: pauseCampaign,
+    middlewares: [authMiddleware],
+  },
+  {
+    method: 'PATCH',
+    path: '/api/campaigns/:id/resume',
+    handler: resumeCampaign,
+    middlewares: [authMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/api/campaigns/:id/analytics',
+    handler: getCampaignAnalytics,
+    middlewares: [authMiddleware],
+  },
+]

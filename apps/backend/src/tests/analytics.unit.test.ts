@@ -121,7 +121,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
   describe('POST /analytics/track/event', () => {
     it('should track an event successfully', async () => {
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(mockEventData)
 
       expect(response.status).toBe(201)
@@ -139,7 +139,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(anonymousEventData)
 
       expect(response.status).toBe(201)
@@ -153,7 +153,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(invalidEventData)
 
       expect(response.status).toBe(400)
@@ -168,7 +168,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/event')
+        .post('/api/analytics/track/event')
         .send(invalidEventData)
 
       expect(response.status).toBe(400)
@@ -179,7 +179,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
   describe('POST /analytics/track/metric', () => {
     it('should track a metric successfully', async () => {
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(mockMetricData)
 
       expect(response.status).toBe(201)
@@ -196,7 +196,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(anonymousMetricData)
 
       expect(response.status).toBe(201)
@@ -211,7 +211,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
       expect(response.status).toBe(400)
@@ -226,7 +226,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
       }
 
       const response = await request(app)
-        .post('/analytics/track/metric')
+        .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
       expect(response.status).toBe(400)

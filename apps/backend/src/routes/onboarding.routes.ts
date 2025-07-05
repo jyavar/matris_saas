@@ -1,26 +1,9 @@
-import { Request, RequestHandler, Response, Router } from 'express'
-
 import { onboardingController } from '../controllers/onboarding.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { handleAsync } from '../middleware/errorHandler.middleware.js'
 
-const router = Router()
-
-function handleAsync(
-  fn: (req: Request, res: Response, next: unknown) => Promise<unknown>,
-): RequestHandler {
-  return (req: Request, res: Response, next: unknown) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fn(req, res, next).catch(next as any)
-  }
-}
-
-// Protected routes (require authentication)
-router.use(authMiddleware)
-
-router.get('/', handleAsync(onboardingController.getOnboarding))
-
-router.post('/start', handleAsync(onboardingController.startOnboarding))
-
-router.post('/complete', handleAsync(onboardingController.completeOnboarding))
-
-export default router
+export const onboardingRoutes = [
+  { method: 'GET', path: '/', middlewares: [authMiddleware], handler: handleAsync(onboardingController.getOnboarding) },
+  { method: 'POST', path: '/start', middlewares: [authMiddleware], handler: handleAsync(onboardingController.startOnboarding) },
+  { method: 'POST', path: '/complete', middlewares: [authMiddleware], handler: handleAsync(onboardingController.completeOnboarding) },
+]

@@ -13,25 +13,9 @@ function handleAsync(
   }
 }
 
-router.get(
-  '/',
-  authMiddleware,
-  handleAsync(analyticsReportingController.getReports),
-)
-router.get(
-  '/:id',
-  authMiddleware,
-  handleAsync(analyticsReportingController.getReportById),
-)
-router.post(
-  '/',
-  authMiddleware,
-  handleAsync(analyticsReportingController.createReport),
-)
-router.delete(
-  '/:id',
-  authMiddleware,
-  handleAsync(analyticsReportingController.deleteReport),
-)
+router.get('/', authMiddleware, handleAsync(analyticsReportingController.getReports))
+router.post('/', authMiddleware, handleAsync(analyticsReportingController.createReport))
+router.get('/:id', authMiddleware, handleAsync(analyticsReportingController.getReportById))
+router.delete('/:id', authMiddleware, handleAsync(analyticsReportingController.deleteReport))
 
 export default router

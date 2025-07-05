@@ -1,10 +1,6 @@
-import { Router } from 'express'
-
 import { authController } from '../controllers/auth.controller.js'
 
-const router = Router()
-
-router.post('/signup', authController.signUp)
-router.post('/signin', authController.signIn)
-
-export default router
+export const authRoutes = [
+  { method: 'POST', path: '/signup', handler: authController.signUp },
+  { method: 'POST', path: '/signin', handler: authController.signIn },
+]

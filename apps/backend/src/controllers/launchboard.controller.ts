@@ -1,7 +1,3 @@
-import { Request, Response } from 'express'
-
-import { launchboardService } from '../services/launchboard.service.js'
-
 export const launchboardController = {
   async getDashboards(req: Request, res: Response): Promise<void> {
     const dashboards = await launchboardService.getDashboards()

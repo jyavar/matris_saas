@@ -14,53 +14,16 @@ function handleAsync(
   }
 }
 
-// Rutas protegidas por auth
-router.get(
-  '/workflows',
-  authMiddleware,
-  handleAsync(automationController.getWorkflows),
-)
-router.get(
-  '/workflows/:id',
-  authMiddleware,
-  handleAsync(automationController.getWorkflowById),
-)
-router.post(
-  '/workflows',
-  authMiddleware,
-  handleAsync(automationController.createWorkflow),
-)
-router.put(
-  '/workflows/:id',
-  authMiddleware,
-  handleAsync(automationController.updateWorkflow),
-)
-router.delete(
-  '/workflows/:id',
-  authMiddleware,
-  handleAsync(automationController.deleteWorkflow),
-)
-
+// Rutas específicas primero
+router.get('/workflows', authMiddleware, handleAsync(automationController.getWorkflows))
+router.get('/workflows/:id', authMiddleware, handleAsync(automationController.getWorkflowById))
+router.post('/workflows', authMiddleware, handleAsync(automationController.createWorkflow))
+router.put('/workflows/:id', authMiddleware, handleAsync(automationController.updateWorkflow))
+router.delete('/workflows/:id', authMiddleware, handleAsync(automationController.deleteWorkflow))
 router.get('/jobs', authMiddleware, handleAsync(automationController.getJobs))
-router.get(
-  '/jobs/:id',
-  authMiddleware,
-  handleAsync(automationController.getJobById),
-)
-router.post(
-  '/workflows/:id/execute',
-  authMiddleware,
-  handleAsync(automationController.executeWorkflow),
-)
-router.post(
-  '/jobs/:id/pause',
-  authMiddleware,
-  handleAsync(automationController.pauseJob),
-)
-router.post(
-  '/jobs/:id/resume',
-  authMiddleware,
-  handleAsync(automationController.resumeJob),
-)
+router.get('/jobs/:id', authMiddleware, handleAsync(automationController.getJobById))
+router.post('/workflows/:id/execute', authMiddleware, handleAsync(automationController.executeWorkflow))
+router.post('/jobs/:id/pause', authMiddleware, handleAsync(automationController.pauseJob))
+router.post('/jobs/:id/resume', authMiddleware, handleAsync(automationController.resumeJob))
 
 export default router

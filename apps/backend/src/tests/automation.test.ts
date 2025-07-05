@@ -95,34 +95,34 @@ describe('Automation Engine Endpoints', () => {
     )
   })
 
-  describe('GET /automation/workflows', () => {
+  describe('GET /api/automation/workflows', () => {
     it('should return all workflows', async () => {
-      const res = await request(app).get('/automation/workflows')
+      const res = await request(app).get('/api/api/automation/workflows')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(Array.isArray(res.body.data)).toBe(true)
     })
   })
 
-  describe('GET /automation/workflows/:id', () => {
+  describe('GET /api/automation/workflows/:id', () => {
     it('should return a workflow by id', async () => {
-      const res = await request(app).get('/automation/workflows/workflow-1')
+      const res = await request(app).get('/api/automation/workflows/workflow-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.id).toBe('workflow-1')
     })
 
     it('should return 404 for non-existent workflow', async () => {
-      const res = await request(app).get('/automation/workflows/nonexistent')
+      const res = await request(app).get('/api/automation/workflows/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /automation/workflows', () => {
+  describe('POST /api/automation/workflows', () => {
     it('should create a workflow with valid data', async () => {
       const res = await request(app)
-        .post('/automation/workflows')
+        .post('/api/automation/workflows')
         .send({
           name: 'Test Workflow',
           description: 'Test Description',
@@ -143,17 +143,17 @@ describe('Automation Engine Endpoints', () => {
 
     it('should return 400 for invalid data', async () => {
       const res = await request(app)
-        .post('/automation/workflows')
+        .post('/api/automation/workflows')
         .send({ name: '', steps: [] })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('PUT /automation/workflows/:id', () => {
+  describe('PUT /api/automation/workflows/:id', () => {
     it('should update a workflow', async () => {
       const res = await request(app)
-        .put('/automation/workflows/workflow-1')
+        .put('/api/automation/workflows/workflow-1')
         .send({ name: 'Updated Workflow' })
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
@@ -162,55 +162,55 @@ describe('Automation Engine Endpoints', () => {
 
     it('should return 404 for non-existent workflow', async () => {
       const res = await request(app)
-        .put('/automation/workflows/nonexistent')
+        .put('/api/automation/workflows/nonexistent')
         .send({ name: 'Does not exist' })
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('DELETE /automation/workflows/:id', () => {
+  describe('DELETE /api/automation/workflows/:id', () => {
     it('should delete a workflow', async () => {
-      const res = await request(app).delete('/automation/workflows/workflow-1')
+      const res = await request(app).delete('/api/automation/workflows/workflow-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
 
     it('should return 404 for non-existent workflow', async () => {
-      const res = await request(app).delete('/automation/workflows/nonexistent')
+      const res = await request(app).delete('/api/automation/workflows/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('GET /automation/jobs', () => {
+  describe('GET /api/automation/jobs', () => {
     it('should return all jobs', async () => {
-      const res = await request(app).get('/automation/jobs')
+      const res = await request(app).get('/api/automation/jobs')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(Array.isArray(res.body.data)).toBe(true)
     })
   })
 
-  describe('GET /automation/jobs/:id', () => {
+  describe('GET /api/automation/jobs/:id', () => {
     it('should return a job by id', async () => {
-      const res = await request(app).get('/automation/jobs/job-1')
+      const res = await request(app).get('/api/automation/jobs/job-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.id).toBe('job-1')
     })
 
     it('should return 404 for non-existent job', async () => {
-      const res = await request(app).get('/automation/jobs/nonexistent')
+      const res = await request(app).get('/api/automation/jobs/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /automation/workflows/:id/execute', () => {
+  describe('POST /api/automation/workflows/:id/execute', () => {
     it('should execute a workflow', async () => {
       const res = await request(app)
-        .post('/automation/workflows/workflow-1/execute')
+        .post('/api/automation/workflows/workflow-1/execute')
         .send({ data: { userId: 'user-1' } })
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
@@ -219,36 +219,36 @@ describe('Automation Engine Endpoints', () => {
 
     it('should return 404 for non-existent workflow', async () => {
       const res = await request(app)
-        .post('/automation/workflows/nonexistent/execute')
+        .post('/api/automation/workflows/nonexistent/execute')
         .send({ data: {} })
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /automation/jobs/:id/pause', () => {
+  describe('POST /api/automation/jobs/:id/pause', () => {
     it('should pause a job', async () => {
-      const res = await request(app).post('/automation/jobs/job-1/pause')
+      const res = await request(app).post('/api/automation/jobs/job-1/pause')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
 
     it('should return 404 for non-existent job', async () => {
-      const res = await request(app).post('/automation/jobs/nonexistent/pause')
+      const res = await request(app).post('/api/automation/jobs/nonexistent/pause')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /automation/jobs/:id/resume', () => {
+  describe('POST /api/automation/jobs/:id/resume', () => {
     it('should resume a job', async () => {
-      const res = await request(app).post('/automation/jobs/job-1/resume')
+      const res = await request(app).post('/api/automation/jobs/job-1/resume')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
 
     it('should return 404 for non-existent job', async () => {
-      const res = await request(app).post('/automation/jobs/nonexistent/resume')
+      const res = await request(app).post('/api/automation/jobs/nonexistent/resume')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })

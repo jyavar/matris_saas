@@ -3,6 +3,36 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { app } from '../index.js'
 
+// Mock the onboarding service
+vi.mock('../services/onboarding.service.js', () => ({
+  onboardingService: {
+    getOnboarding: vi.fn().mockResolvedValue({
+      user_id: 'test-user-id',
+      email: 'test@example.com',
+      tenant_id: 'test-tenant-id',
+      welcome_sent: true,
+      setup_complete: false,
+      created_at: new Date().toISOString(),
+    }),
+    startOnboarding: vi.fn().mockResolvedValue({
+      user_id: 'test-user-id',
+      email: 'test@example.com',
+      tenant_id: 'test-tenant-id',
+      welcome_sent: true,
+      setup_complete: false,
+      created_at: new Date().toISOString(),
+    }),
+    completeOnboarding: vi.fn().mockResolvedValue({
+      user_id: 'test-user-id',
+      email: 'test@example.com',
+      tenant_id: 'test-tenant-id',
+      welcome_sent: true,
+      setup_complete: true,
+      created_at: new Date().toISOString(),
+    }),
+  },
+}))
+
 // Mock the auth middleware to add a user to the request
 vi.mock('../middleware/auth.middleware.js', () => ({
   authMiddleware: (req, res, next) => {
@@ -31,8 +61,9 @@ describe('Onboarding Routes', () => {
         .set('Authorization', 'Bearer test-token')
         .send({ email: 'test@example.com' })
 
-      expect(res.status).toBe(200)
+      expect(res.status).toBe(201)
       expect(res.body).toHaveProperty('success', true)
+      expect(res.body).toHaveProperty('data')
     })
 
     it('should return 400 with invalid email', async () => {

@@ -1,14 +1,12 @@
-import { Router } from 'express'
-
 import { todoController } from '../controllers/todo.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { handleAsync } from '../middleware/errorHandler.middleware.js'
 
-const router = Router()
-
-router.get('/', authMiddleware, todoController.getAllTodos)
-router.get('/:id', authMiddleware, todoController.getTodoById)
-router.post('/', authMiddleware, todoController.createTodo)
-router.patch('/:id', authMiddleware, todoController.updateTodo)
-router.delete('/:id', authMiddleware, todoController.deleteTodo)
-
-export default router
+// Definición de rutas para Node.js puro
+export const todoRoutes = [
+  { method: 'GET', path: '/', middlewares: [authMiddleware], handler: handleAsync(todoController.getAllTodos) },
+  { method: 'POST', path: '/', middlewares: [authMiddleware], handler: handleAsync(todoController.createTodo) },
+  { method: 'GET', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.getTodoById) },
+  { method: 'PATCH', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.updateTodo) },
+  { method: 'DELETE', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.deleteTodo) },
+]

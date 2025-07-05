@@ -1,5 +1,3 @@
-import { NextFunction, Request, Response } from 'express'
-
 import { logAction } from '../services/logger.service.js'
 import { pricingSchema, pricingService } from '../services/pricing.service.js'
 import { ApiError } from '../utils/ApiError.js'
@@ -8,7 +6,7 @@ export const pricingController = {
   /**
    * Get all available plans
    */
-  async getPlans(req: Request, res: Response, next: NextFunction) {
+  async getPlans(req, res, next) {
     try {
       const plans = await pricingService.getPlans()
 
@@ -29,7 +27,7 @@ export const pricingController = {
   /**
    * Get a specific plan by ID
    */
-  async getPlanById(req: Request, res: Response, next: NextFunction) {
+  async getPlanById(req, res, next) {
     try {
       const { planId } = req.params
       const plan = await pricingService.getPlanById(planId)
@@ -61,7 +59,7 @@ export const pricingController = {
   /**
    * Create a subscription
    */
-  async createSubscription(req: Request, res: Response, next: NextFunction) {
+  async createSubscription(req, res, next) {
     try {
       const validatedData = pricingSchema.parse(req.body)
       const subscription =
@@ -108,7 +106,7 @@ export const pricingController = {
   /**
    * Get subscription details
    */
-  async getSubscription(req: Request, res: Response, next: NextFunction) {
+  async getSubscription(req, res, next) {
     try {
       const { subscriptionId } = req.params
       const subscription = await pricingService.getSubscription(subscriptionId)
@@ -133,7 +131,7 @@ export const pricingController = {
   /**
    * Update a subscription
    */
-  async updateSubscription(req: Request, res: Response, next: NextFunction) {
+  async updateSubscription(req, res, next) {
     try {
       const { subscriptionId } = req.params
       const validatedData = pricingSchema.partial().parse(req.body)
@@ -168,7 +166,7 @@ export const pricingController = {
   /**
    * Cancel a subscription
    */
-  async cancelSubscription(req: Request, res: Response, next: NextFunction) {
+  async cancelSubscription(req, res, next) {
     try {
       const { subscriptionId } = req.params
       const subscription =
@@ -198,7 +196,7 @@ export const pricingController = {
   /**
    * Check usage against plan limits
    */
-  async checkUsage(req: Request, res: Response, next: NextFunction) {
+  async checkUsage(req, res, next) {
     try {
       const { planId } = req.params
       const { users, storage, apiCalls } = req.body

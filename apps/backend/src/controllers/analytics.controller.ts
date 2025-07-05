@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express'
-import { z, ZodError } from 'zod'
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
 
 import { numericIdParamSchema } from '../lib/schemas.js'
 import {
@@ -12,6 +12,7 @@ import {
 import { logAction } from '../services/logger.service.js'
 import type { Json } from '../types/supabase.types.js'
 import { ApiError } from '../utils/ApiError.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
@@ -29,286 +30,517 @@ export const analyticsController = {
   /**
    * Track an event
    */
-  async trackEvent(req: Request, res: Response, next: NextFunction) {
+  async trackEvent(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const eventData = eventSchema.parse(req.body)
+      const eventData = eventSchema.parse(body)
       const event = await analyticsService.trackEvent(eventData)
 
-      res.status(201).json({
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: event,
-      })
+      }))
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ success: false, error: error.errors })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid event data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_track_event_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
       }
-      logAction('analytics_track_event_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
     }
   },
 
   /**
    * Track a metric
    */
-  async trackMetric(req: Request, res: Response, next: NextFunction) {
+  async trackMetric(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const metricData = metricSchema.parse(req.body)
+      const metricData = metricSchema.parse(body)
       const metric = await analyticsService.trackMetric(metricData)
 
-      res.status(201).json({
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: metric,
-      })
+      }))
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ success: false, error: error.errors })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid metric data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_track_metric_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
       }
-      logAction('analytics_track_metric_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
     }
   },
 
   /**
    * Get events with filtering
    */
-  async getEvents(req: Request, res: Response, next: NextFunction) {
+  async getEvents(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const query = {
-        ...req.query,
-        limit:
-          req.query.limit !== undefined ? Number(req.query.limit) : undefined,
-        offset:
-          req.query.offset !== undefined ? Number(req.query.offset) : undefined,
+      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const queryObj = Object.fromEntries(query.entries())
+      
+      // Convert query parameters to match service schema
+      const serviceQuery = {
+        start_date: queryObj.startDate,
+        end_date: queryObj.endDate,
+        event_name: queryObj.event_name,
+        user_id: queryObj.user_id ? Number(queryObj.user_id) : undefined,
+        limit: queryObj.limit ? Number(queryObj.limit) : 100,
+        offset: queryObj.offset ? Number(queryObj.offset) : 0,
       }
 
-      // Check for NaN values before validation
-      if (
-        (query.limit !== undefined && isNaN(query.limit as number)) ||
-        (query.offset !== undefined && isNaN(query.offset as number))
-      ) {
-        return res.status(400).json({
-          success: false,
-          error:
-            'Invalid query parameters: limit and offset must be valid numbers',
-        })
-      }
+      const events = await analyticsService.getEvents(serviceQuery)
 
-      const parsedQuery = analyticsQuerySchema.parse(query)
-      const events = await analyticsService.getEvents(parsedQuery)
-
-      logAction('analytics_events_requested', req.user?.id || 'anonymous', {
-        query: parsedQuery,
+      logAction('analytics_events_requested', user?.id || 'anonymous', {
+        query: serviceQuery,
         count: events.length,
       })
 
-      res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: events,
         count: events.length,
-      })
+      }))
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ success: false, error: error.errors })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid query parameters',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_get_events_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
       }
-      logAction('analytics_get_events_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
     }
   },
 
   /**
    * Get metrics with filtering
    */
-  async getMetrics(req: Request, res: Response, next: NextFunction) {
+  async getMetrics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const query = {
-        ...req.query,
-        limit:
-          req.query.limit !== undefined ? Number(req.query.limit) : undefined,
-        offset:
-          req.query.offset !== undefined ? Number(req.query.offset) : undefined,
+      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const queryObj = Object.fromEntries(query.entries())
+      
+      // Convert query parameters to match service schema
+      const serviceQuery = {
+        start_date: queryObj.startDate,
+        end_date: queryObj.endDate,
+        event_name: queryObj.event_name,
+        user_id: queryObj.user_id ? Number(queryObj.user_id) : undefined,
+        limit: queryObj.limit ? Number(queryObj.limit) : 100,
+        offset: queryObj.offset ? Number(queryObj.offset) : 0,
       }
 
-      // Check for NaN values before validation
-      if (
-        (query.limit !== undefined && isNaN(query.limit as number)) ||
-        (query.offset !== undefined && isNaN(query.offset as number))
-      ) {
-        return res.status(400).json({
-          success: false,
-          error:
-            'Invalid query parameters: limit and offset must be valid numbers',
-        })
-      }
+      const metrics = await analyticsService.getMetrics(serviceQuery)
 
-      const parsedQuery = analyticsQuerySchema.parse(query)
-      const metrics = await analyticsService.getMetrics(parsedQuery)
-
-      logAction('analytics_metrics_requested', req.user?.id || 'anonymous', {
-        query: parsedQuery,
+      logAction('analytics_metrics_requested', user?.id || 'anonymous', {
+        query: serviceQuery,
         count: metrics.length,
       })
 
-      res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: metrics,
         count: metrics.length,
-      })
+      }))
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ success: false, error: error.errors })
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid query parameters',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_get_metrics_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
       }
-      logAction('analytics_get_metrics_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
-    }
-  },
-
-  /**
-   * Get analytics summary
-   */
-  async getAnalyticsSummary(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { start_date, end_date } = req.query
-      const summary = await analyticsService.getAnalyticsSummary(
-        start_date as string,
-        end_date as string,
-      )
-
-      logAction('analytics_summary_requested', req.user?.id || 'anonymous', {
-        start_date,
-        end_date,
-        total_events: summary.total_events,
-      })
-
-      res.status(200).json({
-        success: true,
-        data: summary,
-      })
-    } catch (error) {
-      logAction('analytics_summary_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      next(error)
     }
   },
 
   /**
    * Get user analytics
    */
-  async getUserAnalytics(req: Request, res: Response) {
+  async getUserAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const { userId } = req.params
+      const userId = params?.userId || user?.id
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
-        return res
-          .status(404)
-          .json({ success: false, error: 'User ID is required' })
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User ID is required',
+        }))
+        return
       }
 
       let userAnalytics: UserAnalytics | null = null
       try {
         userAnalytics = await analyticsService.getUserAnalytics(userId)
       } catch {
-        return res.status(404).json({ success: false, error: 'User not found' })
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not found',
+        }))
+        return
       }
 
       if (!userAnalytics) {
-        return res.status(404).json({ success: false, error: 'User not found' })
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not found',
+        }))
+        return
       }
 
-      logAction('analytics_user_data_requested', req.user?.id || 'anonymous', {
+      logAction('analytics_user_data_requested', user?.id || 'anonymous', {
         target_user_id: userId,
         total_events: userAnalytics.total_events,
       })
 
-      res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: userAnalytics,
+      }))
+    } catch (error) {
+      res.writeHead(404, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: false,
+        error: 'User ID is required',
+      }))
+    }
+  },
+
+  /**
+   * Get analytics summary
+   */
+  async getAnalyticsSummary(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const startDate = query.get('startDate')
+      const endDate = query.get('endDate')
+
+      const summary = await analyticsService.getAnalyticsSummary(startDate || undefined, endDate || undefined)
+
+      logAction('analytics_summary_requested', user?.id || 'anonymous', {
+        startDate,
+        endDate,
       })
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, error: 'User ID is required' })
-    }
-  },
 
-  // Legacy methods for backward compatibility
-  async getAllAnalytics(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      if (!req.query || Object.keys(req.query).length === 0) {
-        throw new ApiError(400, 'Query is required')
-      }
-      const query = {
-        ...req.query,
-        limit: req.query.limit ? Number(req.query.limit) : undefined,
-        offset: req.query.offset ? Number(req.query.offset) : undefined,
-      }
-      analyticsQuerySchema.parse(query)
-      const analyticss = await analyticsService.getAllAnalytics()
-      res.json(analyticss)
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: summary,
+      }))
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ success: false, error: error.errors })
-      }
-      next(error)
-    }
-  },
-
-  async getAnalyticsById(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = numericIdParamSchema.parse(req.params)
-      const analytics = await analyticsService.getAnalyticsById(Number(id))
-      res.json(analytics)
-    } catch (error) {
-      next(error)
-    }
-  },
-
-  async createAnalytics(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const validatedAnalytics = createAnalyticsSchema.parse(req.body)
-      const newAnalytics = await analyticsService.createAnalytics({
-        ...validatedAnalytics,
-        event_name: validatedAnalytics.event_name,
+      logAction('analytics_summary_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
-      res.status(201).json(newAnalytics)
-    } catch (error) {
-      next(error)
+      throw error
     }
   },
 
-  async updateAnalytics(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get all analytics
+   */
+  async getAllAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = numericIdParamSchema.parse(req.params)
-      const validatedAnalytics = updateAnalyticsSchema.parse(req.body)
-      const updatedAnalytics = await analyticsService.updateAnalytics(
-        Number(id),
-        validatedAnalytics,
-      )
-      res.json(updatedAnalytics)
+      const analytics = await analyticsService.getAllAnalytics()
+
+      logAction('analytics_all_requested', user?.id || 'anonymous', {
+        count: analytics.length,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: analytics,
+        count: analytics.length,
+      }))
     } catch (error) {
-      next(error)
+      logAction('analytics_all_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 
-  async deleteAnalytics(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get analytics by ID
+   */
+  async getAnalyticsById(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = numericIdParamSchema.parse(req.params)
-      await analyticsService.deleteAnalytics(Number(id))
-      res.status(204).send()
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Analytics ID is required',
+        }))
+        return
+      }
+
+      const validatedId = numericIdParamSchema.parse({ id })
+      const analytics = await analyticsService.getAnalyticsById(Number(validatedId.id))
+
+      if (!analytics) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Analytics not found',
+        }))
+        return
+      }
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: analytics,
+      }))
     } catch (error) {
-      next(error)
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid analytics ID',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_by_id_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
+    }
+  },
+
+  /**
+   * Create analytics
+   */
+  async createAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const validatedData = createAnalyticsSchema.parse(body)
+      if (!validatedData.event_name) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Event name is required',
+        }))
+        return
+      }
+      const analytics = await analyticsService.createAnalytics({
+        event_name: validatedData.event_name,
+        payload: validatedData.payload,
+        user_id: validatedData.user_id,
+      })
+
+      logAction('analytics_created', user?.id || 'anonymous', {
+        event_name: validatedData.event_name,
+        user_id: validatedData.user_id,
+      })
+
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: analytics,
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid analytics data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_create_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
+    }
+  },
+
+  /**
+   * Update analytics
+   */
+  async updateAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Analytics ID is required',
+        }))
+        return
+      }
+
+      const validatedId = numericIdParamSchema.parse({ id })
+      const validatedData = updateAnalyticsSchema.parse(body)
+      const analytics = await analyticsService.updateAnalytics(Number(validatedId.id), validatedData)
+
+      logAction('analytics_updated', user?.id || 'anonymous', {
+        analytics_id: validatedId.id,
+        event_name: validatedData.event_name,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: analytics,
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid analytics data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_update_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
+    }
+  },
+
+  /**
+   * Delete analytics
+   */
+  async deleteAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Analytics ID is required',
+        }))
+        return
+      }
+
+      const validatedId = numericIdParamSchema.parse({ id })
+      await analyticsService.deleteAnalytics(Number(validatedId.id))
+
+      logAction('analytics_deleted', user?.id || 'anonymous', {
+        analytics_id: validatedId.id,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        message: 'Analytics deleted successfully',
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid analytics ID',
+          details: error.errors,
+        }))
+      } else {
+        logAction('analytics_delete_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
     }
   },
 }

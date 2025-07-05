@@ -18,12 +18,12 @@ matriz_cursor/
 
 ## 🎯 PATRONES Y CONVENCIONES
 
-### Backend (Node.js/Express)
-- **Controllers**: Manejan requests/responses, validación, logging
+### Backend (Node.js puro)
+- **Controllers**: Manejan requests/responses HTTP nativos, validación, logging
 - **Services**: Lógica de negocio, integración con APIs externas
-- **Routes**: Definición de endpoints REST
-- **Middleware**: Auth, rate limiting, error handling, logging
-- **Types**: Tipos TypeScript para Supabase y Express
+- **Router**: Router modular personalizado para rutas dinámicas
+- **Middleware**: Auth, error handling, logging
+- **Types**: Tipos TypeScript para Supabase y HTTP nativo
 
 ### Frontend (React/Vite)
 - **Components**: Reutilizables en `/components/ui/`
@@ -40,9 +40,9 @@ matriz_cursor/
 ## 🔧 TECNOLOGÍAS PRINCIPALES
 
 ### Backend
-- **Node.js + Express 5**: API REST
+- **Node.js puro**: API REST con HTTP nativo
 - **TypeScript**: Tipado estático
-- **Supabase**: Base de datos PostgreSQL + Auth
+- **Supabase**: Base de datos PostgreSQL + Auth (modular)
 - **Stripe**: Pagos
 - **OpenAI**: IA
 - **PostHog**: Analytics
@@ -647,7 +647,7 @@ jobs:
 
 ### Backend Tests
 - **Unit**: Services y utilidades
-- **Integration**: Controllers y routes
+- **Integration**: Controllers y router HTTP nativo
 - **Mocks**: Supabase, Stripe, OpenAI, PostHog, Resend
 - **Coverage**: Vitest con cobertura
 - **Framework**: Vitest (`apps/backend/vitest.config.ts`)
@@ -685,7 +685,7 @@ jobs:
 ### Authentication
 - **Supabase Auth**: JWT tokens
 - **Middleware**: authMiddleware para rutas protegidas
-- **Rate Limiting**: express-rate-limit
+- **Rate Limiting**: Implementación nativa de limitación de peticiones para Node.js puro (sin Express)
 - **CORS**: Configurado para producción
 - **Validación de tokens**: Siempre validar JWT en endpoints protegidos. Ejemplo:
   ```ts
@@ -741,6 +741,7 @@ jobs:
 - ❌ Omitir validación de tokens en endpoints protegidos
 - ❌ No usar mocks en tests de integración
 - ❌ No cubrir código crítico con tests
+- ❌ Depender de servicios externos para startup
 
 ## 🎯 OBJETIVOS DEL PROYECTO
 
@@ -771,6 +772,7 @@ STRATO es un framework SaaS enterprise-grade que prioriza:
 - [ ] El código sigue las convenciones de naming y estructura
 - [ ] Se actualizaron los mocks si cambió la integración externa
 - [ ] El build y los tests pasan en CI
+- [ ] Los servicios se inicializan de forma modular
 
 ### Release Checklist
 - [ ] Todos los tests pasan con cobertura mínima
@@ -984,4 +986,27 @@ fetch(`${process.env.STRIPE_API_URL}/charges`)
 }
 ```
 
-> **Nota:** Cualquier PR que no cumpla estas reglas será bloqueado por CI/pre-commit y deberá ser corregido antes de mergear. 
+> **Nota:** Cualquier PR que no cumpla estas reglas será bloqueado por CI/pre-commit y deberá ser corregido antes de mergear.
+
+---
+
+Actúa como un agente AI de desarrollo que trabaja dentro de un entorno compartido con otros editores (VS Code, Cursor, Windsor), cada uno operando en proyectos distintos y ubicados en carpetas independientes dentro del mismo equipo local.
+
+BAJO NINGUNA CIRCUNSTANCIA debes ejecutar acciones que afecten al entorno global del sistema operativo ni a otros proyectos en paralelo.
+
+OBLIGATORIO:
+
+1. Trabaja exclusivamente dentro de la carpeta del proyecto abierto. No salgas fuera de este directorio bajo ninguna razón.
+2. No instales paquetes globales. Evita cualquier uso de `npm install -g`, `pnpm add -g`, `yarn global add`, etc.
+3. Si necesitas herramientas como `eslint`, `vitest`, `tsc`, `tsx`, `prettier`, instálalas únicamente como dependencias locales con `--save-dev`.
+4. Usa siempre los scripts definidos en el `package.json` del proyecto actual (`pnpm run lint`, `pnpm run test`, etc.). No uses comandos globales por consola.
+5. No cambies configuraciones globales del sistema (`~/.bashrc`, `~/.zshrc`, `~/.npmrc`, `~/.gitconfig`).
+6. No edites ni accedas archivos fuera del proyecto actual (aunque estén en carpetas hermanas).
+7. Si necesitas instalar Node.js, verifica si hay un archivo `.nvmrc`. Si existe, úsalo. Si no, solicita confirmación antes de modificar versión.
+8. No modifiques variables de entorno globales ni comunes. Usa `.env` local, nunca `.env.global`, `.bash_profile`, ni `export` directo.
+9. Si detectas conflictos de puertos, servicios duplicados o bases de datos compartidas, **detente** y lanza advertencia. No sobreescribas configuraciones.
+10. Toda configuración, instalación o cambio debe permanecer autocontenida en el directorio del proyecto activo.
+
+Finalidad: proteger la integridad del entorno compartido, evitar conflictos entre editores y mantener una operación paralela segura de múltiples repos en la misma máquina.
+
+Si no entiendes una instrucción o tienes dudas, solicita aclaración en lugar de asumir.

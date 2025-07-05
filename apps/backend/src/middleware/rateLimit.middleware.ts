@@ -1,58 +1,113 @@
-import rateLimit from 'express-rate-limit'
-import slowDown from 'express-slow-down'
+import { IncomingMessage, ServerResponse } from 'http'
 
-// Strict rate limiting for sensitive endpoints
-export const strictRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // máximo 100 requests por IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    error: 'Too many requests, please try again later.',
-  },
-  handler: (req, res, _next, options) => {
-    res.status(options.statusCode).json(options.message)
-  },
+import { logAction } from '../services/logger.service.js'
+
+interface RateLimitConfig {
+  windowMs: number
+  maxRequests: number
+  message?: string
+}
+
+interface RateLimitStore {
+  [key: string]: {
+    count: number
+    resetTime: number
+  }
+}
+
+const store: RateLimitStore = {}
+
+const getClientKey = (req: IncomingMessage): string => {
+  const ip = req.headers['x-forwarded-for'] || 
+             req.headers['x-real-ip'] || 
+             req.socket.remoteAddress || 
+             'unknown'
+  return Array.isArray(ip) ? ip[0] : ip
+}
+
+const cleanupExpiredEntries = (): void => {
+  const now = Date.now()
+  Object.keys(store).forEach(key => {
+    if (store[key].resetTime < now) {
+      delete store[key]
+    }
+  })
+}
+
+// Clean up expired entries every minute
+setInterval(cleanupExpiredEntries, 60000)
+
+export const createRateLimit = (config: RateLimitConfig) => {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
+    const clientKey = getClientKey(req)
+    const now = Date.now()
+
+    // Clean up expired entries
+    if (store[clientKey] && store[clientKey].resetTime < now) {
+      delete store[clientKey]
+    }
+
+    // Initialize or get current rate limit data
+    if (!store[clientKey]) {
+      store[clientKey] = {
+        count: 0,
+        resetTime: now + config.windowMs,
+      }
+    }
+
+    // Check if limit exceeded
+    if (store[clientKey].count >= config.maxRequests) {
+      logAction('rate_limit_exceeded', 'system', {
+        ip: clientKey,
+        method: req.method,
+        url: req.url,
+        limit: config.maxRequests,
+        windowMs: config.windowMs,
+      })
+
+      res.writeHead(429, {
+        'Content-Type': 'application/json',
+        'X-RateLimit-Limit': config.maxRequests.toString(),
+        'X-RateLimit-Remaining': '0',
+        'X-RateLimit-Reset': new Date(store[clientKey].resetTime).toISOString(),
+        'Retry-After': Math.ceil(config.windowMs / 1000).toString(),
+      })
+
+      res.end(JSON.stringify({
+        success: false,
+        error: config.message || 'Too many requests',
+        retryAfter: Math.ceil(config.windowMs / 1000),
+      }))
+      return
+    }
+
+    // Increment counter
+    store[clientKey].count++
+
+    // Add rate limit headers
+    res.setHeader('X-RateLimit-Limit', config.maxRequests.toString())
+    res.setHeader('X-RateLimit-Remaining', (config.maxRequests - store[clientKey].count).toString())
+    res.setHeader('X-RateLimit-Reset', new Date(store[clientKey].resetTime).toISOString())
+
+    next()
+  }
+}
+
+// Predefined rate limit configurations
+export const standardRateLimit = createRateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 100,
+  message: 'Too many requests from this IP',
 })
 
-// Slower rate limiting for API endpoints
-export const apiRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 1000, // 1000 requests por IP para endpoints generales
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    error: 'API rate limit exceeded, please try again later.',
-  },
+export const strictRateLimit = createRateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 5,
+  message: 'Too many requests from this IP',
 })
 
-// Speed limiter for gradual slowdown
-export const speedLimiter = slowDown({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  delayAfter: 50, // Allow 50 requests per 15 minutes without delay
-  delayMs: 500, // Add 500ms delay per request after delayAfter
-  maxDelayMs: 20000, // Maximum delay of 20 seconds
-})
-
-// Auth-specific rate limiting
-export const authRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 5, // 5 login attempts per 15 minutes
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    error: 'Too many authentication attempts, please try again later.',
-  },
-  skipSuccessfulRequests: true, // Don't count successful logins
-})
-
-// Analytics rate limiting (higher limits for data endpoints)
-export const analyticsRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 500, // 500 requests per 15 minutes for analytics
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    error: 'Analytics rate limit exceeded, please try again later.',
-  },
+export const authRateLimit = createRateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 10,
+  message: 'Too many authentication attempts',
 })

@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
@@ -130,6 +129,13 @@ export class EmailCampaignsController {
       next(error)
     }
   }
+
+  // Métodos alias para compatibilidad con el router
+  getAll = this.getCampaigns
+  create = this.createCampaign
+  getById = this.getCampaignById
+  update = this.updateCampaign
+  delete = this.deleteCampaign
 }
 
 export const emailCampaignsController = new EmailCampaignsController()

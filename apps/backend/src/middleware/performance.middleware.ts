@@ -1,9 +1,8 @@
-import compression from 'compression'
-import cors from 'cors'
-import type { NextFunction, Request, Response } from 'express'
+import { IncomingMessage, ServerResponse } from 'http'
+import { createGzip, createDeflate } from 'zlib'
 import NodeCache from 'node-cache'
 
-import { performanceService } from '../services/performance.service.js'
+import { logAction } from '../services/logger.service.js'
 
 // Cache configuration
 const cache = new NodeCache({
@@ -12,70 +11,77 @@ const cache = new NodeCache({
   useClones: false, // Better performance
 })
 
-// Compression configuration
-const compressionOptions = {
-  level: 6, // Balanced compression
-  threshold: 1024, // Only compress responses > 1KB
-  filter: (req: Request, res: Response) => {
-    // Don't compress if client doesn't support it
-    if (req.headers['x-no-compression']) {
-      return false
-    }
-    // Use compression for all other requests
-    return compression.filter(req, res)
-  },
-}
-
-// CORS configuration
-const corsOptions = {
-  origin:
-    process.env.NODE_ENV === 'production'
-      ? process.env.ALLOWED_ORIGINS?.split(',') || ['https://yourdomain.com']
-      : ['http://localhost:3000', 'http://localhost:3001'],
-  credentials: true,
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-}
-
 /**
- * Compression middleware
+ * Compression middleware for Node.js native
  */
-export const compressionMiddleware = compression(compressionOptions)
+export const compressionMiddleware = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: () => void,
+): void => {
+  // Don't compress if client doesn't support it
+  if (req.headers['x-no-compression']) {
+    next()
+    return
+  }
 
-/**
- * CORS middleware
- */
-export const corsMiddleware = cors(corsOptions)
+  const acceptEncoding = req.headers['accept-encoding'] || ''
+  
+  if (acceptEncoding.includes('gzip')) {
+    res.setHeader('Content-Encoding', 'gzip')
+    const gzip = createGzip()
+    res.write = gzip.write.bind(gzip)
+    res.end = gzip.end.bind(gzip)
+    gzip.pipe(res)
+  } else if (acceptEncoding.includes('deflate')) {
+    res.setHeader('Content-Encoding', 'deflate')
+    const deflate = createDeflate()
+    res.write = deflate.write.bind(deflate)
+    res.end = deflate.end.bind(deflate)
+    deflate.pipe(res)
+  }
+
+  next()
+}
 
 /**
  * Cache middleware for GET requests
  */
 export const cacheMiddleware = (duration: number = 300) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
     // Only cache GET requests
     if (req.method !== 'GET') {
-      return next()
+      next()
+      return
     }
 
     // Skip cache if explicitly requested
     if (req.headers['cache-control'] === 'no-cache') {
-      return next()
-    }
-
-    const key = `cache:${req.originalUrl}:${req.user?.id || 'anonymous'}`
-    const cachedResponse = cache.get(key)
-
-    if (cachedResponse) {
-      res.json(cachedResponse)
+      next()
       return
     }
 
-    // Override res.json to cache the response
-    const originalJson = res.json
-    res.json = function (data) {
-      cache.set(key, data, duration)
-      return originalJson.call(this, data)
+    const key = `cache:${req.url}:${(req as any).user?.id || 'anonymous'}`
+    const cachedResponse = cache.get(key)
+
+    if (cachedResponse) {
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify(cachedResponse))
+      return
+    }
+
+    // Override res.end to cache the response
+    const originalEnd = res.end
+    res.end = function(chunk?: any, encoding?: any, cb?: any) {
+      try {
+        if (chunk && res.statusCode === 200) {
+          const data = JSON.parse(chunk.toString())
+          cache.set(key, data, duration)
+        }
+      } catch (error) {
+        // Ignore parsing errors
+      }
+      return originalEnd.call(this, chunk, encoding, cb)
     }
 
     next()
@@ -86,37 +92,54 @@ export const cacheMiddleware = (duration: number = 300) => {
  * Performance monitoring middleware
  */
 export const performanceMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: () => void,
 ): void => {
   const start = Date.now()
 
-  // Track the start of the request
-  performanceService.recordRequest(0) // Will be updated with actual duration
-
-  // Add performance headers before response is sent
+  // Add performance headers
   res.setHeader(
     'X-Request-ID',
     req.headers['x-request-id'] || `req_${Date.now()}`,
   )
 
-  // Add response time header after response is sent
-  res.on('finish', () => {
+  // Track the start of the request
+  logAction('request_start', 'system', {
+    url: req.url,
+    method: req.method,
+    timestamp: new Date().toISOString(),
+  })
+
+  // Add response time tracking
+  const originalEnd = res.end
+  res.end = function(chunk?: any, encoding?: any, cb?: any) {
     const duration = Date.now() - start
-    // Record the actual response time
-    performanceService.recordRequest(duration)
+
+    // Log performance metrics
+    logAction('request_end', 'system', {
+      url: req.url,
+      method: req.method,
+      statusCode: res.statusCode,
+      duration,
+      timestamp: new Date().toISOString(),
+    })
 
     // Track errors (status >= 400)
     if (res.statusCode >= 400) {
-      performanceService.recordError()
+      logAction('request_error', 'system', {
+        url: req.url,
+        method: req.method,
+        statusCode: res.statusCode,
+        duration,
+      })
     }
 
-    // Use res.getHeader to check if headers were already sent
-    if (!res.headersSent) {
-      res.setHeader('X-Response-Time', `${duration}ms`)
-    }
-  })
+    // Add response time header
+    res.setHeader('X-Response-Time', `${duration}ms`)
+
+    return originalEnd.call(this, chunk, encoding, cb)
+  }
 
   next()
 }
@@ -125,21 +148,22 @@ export const performanceMiddleware = (
  * Memory usage monitoring
  */
 export const memoryMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: () => void,
 ): void => {
   const memUsage = process.memoryUsage()
 
   // Log memory usage for high-traffic endpoints
   if (
-    req.path.includes('/api/analytics') ||
-    req.path.includes('/api/reporting')
+    req.url?.includes('/api/analytics') ||
+    req.url?.includes('/api/reporting')
   ) {
-    console.log('Memory usage:', {
-      rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
-      heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
-      heapTotal: `${Math.round(memUsage.heapTotal / 1024 / 1024)}MB`,
+    logAction('memory_usage', 'system', {
+      url: req.url,
+      rss: Math.round(memUsage.rss / 1024 / 1024),
+      heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
+      heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
     })
   }
 

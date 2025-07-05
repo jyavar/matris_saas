@@ -1,152 +1,257 @@
-import { NextFunction, Request, Response } from 'express'
-import { ZodError } from 'zod'
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
 
-import {
-  createProfileSchema,
-  idParamSchema,
-  updateProfileSchema,
-} from '../lib/schemas.js'
-import { logAction } from '../services/logger.service.js'
 import { profilesService } from '../services/profiles.service.js'
-import { ApiError } from '../utils/ApiError.js'
+import { logAction } from '../services/logger.service.js'
+
+const updateProfileSchema = z.object({
+  username: z.string().min(1, 'Username is required').optional(),
+  full_name: z.string().min(1, 'Full name is required').optional(),
+  avatar_url: z.string().url('Avatar must be a valid URL').optional(),
+})
 
 export const profilesController = {
-  async getMe(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get current user profile
+   */
+  async getMe(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: any,
+    user?: any,
+  ): Promise<void> {
     try {
-      // The user object is attached by the authMiddleware
-      res.json(req.user)
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const profile = await profilesService.getProfileById(user.id, user.tenant_id || 'default')
+
+      if (!profile) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Profile not found',
+        }))
+        return
+      }
+
+      logAction('profile_requested', user.id, {})
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: profile,
+      }))
     } catch (error) {
-      next(error)
+      logAction('profile_request_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 
-  async getAllProfiles(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get all profiles (admin only)
+   */
+  async getAllProfiles(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: any,
+    user?: any,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const tenantId = req.user.tenant_id
-      const profiles = await profilesService.getAllProfiles(tenantId)
-      res.json(profiles)
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      // TODO: Add admin check
+      const profiles = await profilesService.getAllProfiles(user.tenant_id || 'default')
+
+      logAction('profiles_requested', user.id, {
+        count: profiles.length,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: profiles,
+        count: profiles.length,
+      }))
     } catch (error) {
-      next(error)
+      logAction('profiles_request_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 
-  async getProfileById(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get profile by ID
+   */
+  async getProfileById(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: any,
+    user?: any,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = idParamSchema.parse(req.params)
-      const tenantId = req.user.tenant_id
-      let profile
-      try {
-        profile = await profilesService.getProfileById(id, tenantId)
-        if (!profile) throw new ApiError(404, 'Profile not found')
-      } catch (error) {
-        if (
-          error instanceof ApiError &&
-          error.statusCode === 400 &&
-          typeof error.message === 'string' &&
-          error.message.includes('failed to parse filter')
-        ) {
-          throw new ApiError(404, 'Profile not found')
-        }
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Profile ID is required',
+        }))
+        return
+      }
+
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const profile = await profilesService.getProfileById(id, user.tenant_id || 'default')
+
+      if (!profile) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Profile not found',
+        }))
+        return
+      }
+
+      logAction('profile_by_id_requested', user.id, {
+        targetProfileId: id,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: profile,
+      }))
+    } catch (error) {
+      logAction('profile_by_id_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
+    }
+  },
+
+  /**
+   * Update current user profile
+   */
+  async updateProfile(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: any,
+    user?: any,
+  ): Promise<void> {
+    try {
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const validatedData = updateProfileSchema.parse(body)
+      const profile = await profilesService.updateProfile(user.id, user.tenant_id || 'default', validatedData)
+
+      logAction('profile_updated', user.id, {
+        updates: validatedData,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: profile,
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid profile data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('profile_update_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
         throw error
       }
-      res.json(profile)
-    } catch (error) {
-      next(error)
     }
   },
 
-  async createProfile(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Delete profile (admin only)
+   */
+  async deleteProfile(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: any,
+    user?: any,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const tenantId = req.user.tenant_id
-      let validatedProfile
-      try {
-        validatedProfile = createProfileSchema.parse(req.body)
-      } catch (zodError: unknown) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid profile data',
-          )
-        }
-        throw zodError
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Profile ID is required',
+        }))
+        return
       }
-      const newProfile = await profilesService.createProfile({
-        id: req.user.id,
-        username: validatedProfile.username,
-        full_name: validatedProfile.full_name,
-        avatar_url: validatedProfile.avatar_url,
-        tenant_id: tenantId,
-      })
-      logAction('profile_create_success', newProfile.email, {
-        userId: newProfile.id,
-      })
-      res.status(201).json(newProfile)
-    } catch (error) {
-      logAction('profile_create_error', req.body.email || 'unknown', {
-        error: error.message,
-      })
-      next(error)
-    }
-  },
 
-  async updateProfile(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = idParamSchema.parse(req.params)
-      const tenantId = req.user.tenant_id
-      let validatedProfile
-      try {
-        validatedProfile = updateProfileSchema.parse(req.body)
-      } catch (zodError: unknown) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid profile data',
-          )
-        }
-        throw zodError
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
       }
-      let profile
-      try {
-        profile = await profilesService.getProfileById(id, tenantId)
-        if (!profile) throw new ApiError(404, 'Profile not found')
-      } catch (error: unknown) {
-        if (error instanceof ApiError && error.statusCode === 404) {
-          // Si el perfil no existe, lanzar 404
-          throw error
-        }
-        throw error
-      }
-      if (profile.id !== req.user.id) throw new ApiError(403, 'Forbidden')
-      const updatedProfile = await profilesService.updateProfile(
-        id,
-        tenantId,
-        validatedProfile,
-      )
-      logAction('profile_update_success', updatedProfile.email, {
-        userId: updatedProfile.id,
-      })
-      res.json(updatedProfile)
-    } catch (error) {
-      logAction('profile_update_error', req.body.email || 'unknown', {
-        error: error.message,
-      })
-      next(error)
-    }
-  },
 
-  async deleteProfile(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = idParamSchema.parse(req.params)
-      const tenantId = req.user.tenant_id
-      await profilesService.deleteProfile(id, tenantId)
-      res.status(204).send()
+      // TODO: Add admin check
+      await profilesService.deleteProfile(id, user.tenant_id || 'default')
+
+      logAction('profile_deleted', user.id, {
+        targetProfileId: id,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        message: 'Profile deleted successfully',
+      }))
     } catch (error) {
-      next(error)
+      logAction('profile_delete_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 }

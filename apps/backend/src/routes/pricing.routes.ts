@@ -1,46 +1,13 @@
-import {
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-  Router,
-} from 'express'
-
 import { pricingController } from '../controllers/pricing.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { handleAsync } from '../middleware/errorHandler.middleware.js'
 
-const router = Router()
-
-function handleAsync(
-  fn: (req: Request, res: Response, next: unknown) => Promise<unknown>,
-): RequestHandler {
-  return (req: Request, res: Response, next: unknown) => {
-    fn(req, res, next).catch(next as unknown as NextFunction)
-  }
-}
-
-// Public routes (no authentication required)
-router.get('/plans', handleAsync(pricingController.getPlans))
-router.get('/plans/:planId', handleAsync(pricingController.getPlanById))
-
-// Protected routes (require authentication)
-router.use(authMiddleware)
-
-router.post('/subscriptions', handleAsync(pricingController.createSubscription))
-router.get(
-  '/subscriptions/:subscriptionId',
-  handleAsync(pricingController.getSubscription),
-)
-router.patch(
-  '/subscriptions/:subscriptionId',
-  handleAsync(pricingController.updateSubscription),
-)
-router.delete(
-  '/subscriptions/:subscriptionId',
-  handleAsync(pricingController.cancelSubscription),
-)
-
-// Usage tracking
-router.post('/plans/:planId/usage', handleAsync(pricingController.checkUsage))
-
-export default router
+export const pricingRoutes = [
+  { method: 'GET', path: '/plans', handler: handleAsync(pricingController.getPlans) },
+  { method: 'GET', path: '/plans/:planId', handler: handleAsync(pricingController.getPlanById) },
+  { method: 'POST', path: '/subscriptions', handler: handleAsync(pricingController.createSubscription) },
+  { method: 'POST', path: '/plans/:planId/usage', handler: handleAsync(pricingController.checkUsage) },
+  { method: 'GET', path: '/subscriptions/:subscriptionId', middlewares: [authMiddleware], handler: handleAsync(pricingController.getSubscription) },
+  { method: 'PATCH', path: '/subscriptions/:subscriptionId', middlewares: [authMiddleware], handler: handleAsync(pricingController.updateSubscription) },
+  { method: 'DELETE', path: '/subscriptions/:subscriptionId', middlewares: [authMiddleware], handler: handleAsync(pricingController.cancelSubscription) },
+]

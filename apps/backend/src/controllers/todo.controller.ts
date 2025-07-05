@@ -1,152 +1,302 @@
-import { NextFunction, Request, Response } from 'express'
-import { ZodError } from 'zod'
+import { ServerResponse } from 'http'
+import { z } from 'zod'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
-import {
-  createTaskSchema,
-  todoIdParamSchema,
-  updateTaskSchema,
-} from '../lib/schemas.js'
+import { todoService } from '../services/todo.service.js'
 import { logAction } from '../services/logger.service.js'
-import { type TodoDTO, todoService } from '../services/todo.service.js'
-import type { Database, TablesInsert } from '../types/supabase.types.js'
-import { ApiError } from '../utils/ApiError.js'
+
+const createTodoSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  description: z.string().optional(),
+  completed: z.boolean().default(false),
+  priority: z.enum(['low', 'medium', 'high']).default('medium'),
+  dueDate: z.string().optional(),
+})
+
+const updateTodoSchema = z.object({
+  title: z.string().min(1, 'Title is required').optional(),
+  description: z.string().optional(),
+  completed: z.boolean().optional(),
+  priority: z.enum(['low', 'medium', 'high']).optional(),
+  dueDate: z.string().optional(),
+})
 
 export const todoController = {
-  async getAllTodos(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get all todos for current user
+   */
+  async getAllTodos(
+    res: ServerResponse,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const userId = req.user.id
-      const tenantId = req.user.tenant_id
-      let todos: TodoDTO[] = []
-      try {
-        todos = await todoService.getAllTodos(userId, tenantId)
-      } catch (error) {
-        if (
-          error instanceof ApiError &&
-          (error.statusCode === 404 || error.statusCode === 400)
-        ) {
-          todos = []
-        } else {
-          throw error
-        }
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
       }
-      res.status(200).json({ todos })
-    } catch (error) {
-      next(error)
-    }
-  },
 
-  async getTodoById(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      const userId = req.user.id
-      const tenantId = req.user.tenant_id
-      const todo = (await todoService.getTodoById(Number(id))) as
-        | Database['public']['Tables']['todos']['Row']
-        | null
-      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
-        throw new ApiError(404, 'Todo not found')
-      }
-      res.json(todo)
-    } catch (error) {
-      next(error)
-    }
-  },
+      const todos = await todoService.getAllTodos(user.id, user.tenant_id)
 
-  async createTodo(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      let validatedTodo
-      try {
-        validatedTodo = createTaskSchema.parse(req.body)
-      } catch (zodError) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid task data',
-          )
-        }
-        throw zodError
-      }
-      const newTodo = await todoService.createTodo({
-        ...validatedTodo,
-        user_id: req.user.id,
-        tenant_id: req.user.tenant_id,
-      } as TablesInsert<'todos'>)
-      logAction('todo_create_success', req.user.email, { todoId: newTodo.id })
-      res.status(201).json(newTodo)
-    } catch (error) {
-      logAction('todo_create_error', req.user.email, { error: error.message })
-      next(error)
-    }
-  },
-
-  async updateTodo(req: Request, res: Response, next: NextFunction) {
-    try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      const userId = req.user.id
-      const tenantId = req.user.tenant_id
-      const todo = (await todoService.getTodoById(Number(id))) as
-        | Database['public']['Tables']['todos']['Row']
-        | null
-      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
-        throw new ApiError(404, 'Todo not found')
-      }
-      let validatedTodo
-      try {
-        validatedTodo = updateTaskSchema.parse(req.body)
-      } catch (zodError) {
-        if (zodError instanceof ZodError) {
-          throw new ApiError(
-            400,
-            zodError.errors?.[0]?.message || 'Invalid task data',
-          )
-        }
-        throw zodError
-      }
-      const updatedTodo = await todoService.updateTodo(
-        Number(id),
-        validatedTodo,
-      )
-      logAction('todo_update_success', req.user.email, {
-        todoId: updatedTodo.id,
+      logAction('todos_requested', user.id, {
+        count: todos.length,
       })
-      res.json(updatedTodo)
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: todos,
+        count: todos.length,
+      }))
     } catch (error) {
-      logAction('todo_update_error', req.user.email, { error: error.message })
-      next(error)
+      logAction('todos_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 
-  async deleteTodo(req: Request, res: Response, next: NextFunction) {
+  /**
+   * Get todo by ID
+   */
+  async getTodoById(
+    res: ServerResponse,
+    params: Record<string, string>,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      if (!req.user) throw new ApiError(401, 'User not authenticated')
-      const { id } = todoIdParamSchema.parse(req.params)
-      const userId = req.user.id
-      const tenantId = req.user.tenant_id
-      let todo: Database['public']['Tables']['todos']['Row'] | null = null
-      try {
-        todo = (await todoService.getTodoById(Number(id))) as
-          | Database['public']['Tables']['todos']['Row']
-          | null
-      } catch (error) {
-        if (error instanceof ApiError && error.statusCode === 400) {
-          throw new ApiError(404, 'Todo not found')
-        } else {
-          throw error
-        }
+      const { id } = params
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo ID is required',
+        }))
+        return
       }
-      if (!todo || todo.user_id !== userId || todo.tenant_id !== tenantId) {
-        throw new ApiError(404, 'Todo not found')
+
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
       }
-      await todoService.deleteTodo(Number(id))
-      logAction('todo_delete_success', req.user.email, { todoId: id })
-      res.status(204).send()
+
+      const todo = await todoService.getTodoById(Number(id))
+
+      if (!todo) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo not found',
+        }))
+        return
+      }
+
+      logAction('todo_requested', user.id, {
+        todoId: id,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: todo,
+      }))
     } catch (error) {
-      logAction('todo_delete_error', req.user.email, { error: error.message })
-      next(error)
+      logAction('todo_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
+    }
+  },
+
+  /**
+   * Create todo
+   */
+  async createTodo(
+    res: ServerResponse,
+    body: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const validatedData = createTodoSchema.parse(body)
+      const todoPayload = {
+        task: validatedData.title,
+        is_completed: validatedData.completed,
+        priority: validatedData.priority,
+        description: validatedData.description,
+        due_date: validatedData.dueDate,
+      }
+      const todo = await todoService.createTodo(todoPayload)
+
+      logAction('todo_created', user.id, {
+        todoTitle: validatedData.title,
+        priority: validatedData.priority,
+      })
+
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: todo,
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid todo data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('todo_create_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
+    }
+  },
+
+  /**
+   * Update todo
+   */
+  async updateTodo(
+    res: ServerResponse,
+    params: Record<string, string>,
+    body: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const { id } = params
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo ID is required',
+        }))
+        return
+      }
+
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const validatedData = updateTodoSchema.parse(body)
+      const updatePayload: Record<string, unknown> = {}
+      if (validatedData.title !== undefined) updatePayload.task = validatedData.title
+      if (validatedData.completed !== undefined) updatePayload.is_completed = validatedData.completed
+      if (validatedData.priority !== undefined) updatePayload.priority = validatedData.priority
+      if (validatedData.description !== undefined) updatePayload.description = validatedData.description
+      if (validatedData.dueDate !== undefined) updatePayload.due_date = validatedData.dueDate
+      const todo = await todoService.updateTodo(Number(id), updatePayload)
+
+      if (!todo) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo not found',
+        }))
+        return
+      }
+
+      logAction('todo_updated', user.id, {
+        todoId: id,
+        updates: validatedData,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: todo,
+      }))
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid todo data',
+          details: error.errors,
+        }))
+      } else {
+        logAction('todo_update_error', user?.id || 'anonymous', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+        })
+        throw error
+      }
+    }
+  },
+
+  /**
+   * Delete todo
+   */
+  async deleteTodo(
+    res: ServerResponse,
+    params: Record<string, string>,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const { id } = params
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo ID is required',
+        }))
+        return
+      }
+
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'User not authenticated',
+        }))
+        return
+      }
+
+      const deleted = await todoService.deleteTodo(Number(id))
+
+      if (!deleted) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Todo not found',
+        }))
+        return
+      }
+
+      logAction('todo_deleted', user.id, {
+        todoId: id,
+      })
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        message: 'Todo deleted successfully',
+      }))
+    } catch (error) {
+      logAction('todo_delete_error', user?.id || 'anonymous', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      })
+      throw error
     }
   },
 }
