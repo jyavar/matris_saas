@@ -6,8 +6,8 @@ import type {
   UpdateWorkflowData,
 } from '../services/automation.service.js'
 import { automationService } from '../services/automation.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { ApiError } from '../utils/ApiError.js'
 
 // Schemas de validación
 const createWorkflowSchema = z.object({

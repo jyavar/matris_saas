@@ -3,8 +3,8 @@ import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { ApiError } from '../utils/ApiError.js'
 
 // Schemas de validación
 const startOnboardingSchema = z.object({

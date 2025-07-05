@@ -3,9 +3,9 @@ import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { openaiService } from '../services/openai.service.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import { ApiError } from '../utils/ApiError.js'
 import { enforceExactShape } from '../utils/enforceExactShape.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const generateTextSchema = z.object({
   user_id: z.string().min(1),

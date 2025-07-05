@@ -1,5 +1,6 @@
 import { IncomingMessage } from 'http'
 import { URL } from 'url'
+
 import type { AuthenticatedUser } from '../types/express/index.js'
 
 /**

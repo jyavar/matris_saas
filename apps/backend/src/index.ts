@@ -1,7 +1,6 @@
 import { createServer } from 'http'
 import { parse } from 'url'
-import logger from './services/logger.service.js'
-import { createRouter } from './utils/router.js'
+
 import { analyticsReportingController } from './controllers/analytics-reporting.controller.js'
 import { automationController } from './controllers/automation.controller.js'
 import { emailCampaignsController } from './controllers/email-campaigns.controller.js'
@@ -9,6 +8,8 @@ import { launchboardController } from './controllers/launchboard.controller.js'
 import { onboardingController } from './controllers/onboarding.controller.js'
 import { openaiController } from './controllers/openai.controller.js'
 import { PostHogController } from './controllers/posthog.controller.js'
+import logger from './services/logger.service.js'
+import { createRouter } from './utils/router.js'
 
 const version = process.env.npm_package_version || '1.0.0'
 const router = createRouter()
@@ -95,4 +96,4 @@ const server = createServer(async (req, res) => {
   }
 })
 
-export { server, logger }
+export { logger,server }

@@ -1,16 +1,17 @@
-import { authMiddleware } from '../middleware/auth.middleware.js'
-import { validateBody } from '../middleware/validation.middleware.js'
 import { z } from 'zod'
+
 import {
-  getCampaigns,
-  getCampaignById,
   createCampaign,
-  updateCampaign,
   deleteCampaign,
+  getCampaignAnalytics,
+  getCampaignById,
+  getCampaigns,
   pauseCampaign,
   resumeCampaign,
-  getCampaignAnalytics,
+  updateCampaign,
 } from '../controllers/campaigns.controller.js'
+import { authMiddleware } from '../middleware/auth.middleware.js'
+import { validateBody } from '../middleware/validation.middleware.js'
 import type { RouteDefinition } from '../types/express/index.js'
 
 // Validation schemas

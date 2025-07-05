@@ -2,8 +2,8 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import { analyticsReportingService } from '../services/analytics-reporting.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { ApiError } from '../utils/ApiError.js'
 
 const createReportSchema = z.object({
   name: z.string().min(1, 'Name is required'),

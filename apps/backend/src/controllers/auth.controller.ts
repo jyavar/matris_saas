@@ -3,8 +3,8 @@ import { z } from 'zod'
 
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { ApiError } from '../utils/ApiError.js'
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email format'),

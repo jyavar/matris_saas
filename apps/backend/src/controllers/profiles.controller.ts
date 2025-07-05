@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
-import { profilesService } from '../services/profiles.service.js'
 import { logAction } from '../services/logger.service.js'
+import { profilesService } from '../services/profiles.service.js'
 
 const updateProfileSchema = z.object({
   username: z.string().min(1, 'Username is required').optional(),

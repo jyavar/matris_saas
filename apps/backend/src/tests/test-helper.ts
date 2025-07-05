@@ -1,6 +1,7 @@
+import type { Server } from 'http'
 import { createServer } from 'http'
 import { IncomingMessage, ServerResponse } from 'http'
-import type { Server } from 'http'
+
 import { server } from '../index.js'
 
 /**

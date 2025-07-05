@@ -10,9 +10,9 @@ import {
   UserAnalytics,
 } from '../services/analytics.service.js'
 import { logAction } from '../services/logger.service.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import type { Json } from '../types/supabase.types.js'
 import { ApiError } from '../utils/ApiError.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const createAnalyticsSchema = z.object({
   event_name: z.string(),

@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeAll, afterAll } from 'vitest'
+import { afterAll,beforeAll, describe, expect, it } from 'vitest'
+
 import { createTestServer } from './test-helper.js'
 
 // Type for health response

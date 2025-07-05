@@ -23,6 +23,22 @@
 - `apps/backend/src/routes/launchboard.routes.ts` - Archivo fuente
 - `apps/backend/src/controllers/launchboard.controller.ts` - Archivo fuente
 - `apps/backend/dist/src/services/launchboard.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/launchboard.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/launchboard.controller.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/launchboard.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/launchboard.test.js` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/backend/src/services/launchboard.service.ts` - Archivo fuente
+- `apps/backend/src/routes/launchboard.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/launchboard.controller.ts` - Archivo fuente
+- `apps/backend/dist/src/services/launchboard.service.js` - Archivo fuente
 - `apps/backend/dist/src/controllers/launchboard.controller.js` - Archivo fuente
 - `apps/backend/dist/src/routes/launchboard.routes.js` - Archivo fuente
 

@@ -1,4 +1,4 @@
-import { server, logger } from './index.js'
+import { logger,server } from './index.js'
 import { getConfig } from './services/config.service.js'
 
 const config = getConfig()

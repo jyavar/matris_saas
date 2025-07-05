@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { createGzip, createDeflate } from 'zlib'
 import NodeCache from 'node-cache'
+import { createDeflate,createGzip } from 'zlib'
 
 import { logAction } from '../services/logger.service.js'
 
