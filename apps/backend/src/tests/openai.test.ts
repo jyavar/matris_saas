@@ -1,14 +1,15 @@
-import type { NextFunction, Request, Response } from 'express'
+import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index'
+import type { AuthenticatedUser } from '../types/express'
 
 // Mocks globales
 vi.mock('../middleware/auth.middleware', () => ({
-  authMiddleware: (_req: Request, _res: Response, next: NextFunction) => {
-    if (_req)
-      _req.user = {
+  authMiddleware: (_req: IncomingMessage, _res: ServerResponse, next: () => void) => {
+    if (_req) {
+      (_req as unknown as { user: AuthenticatedUser }).user = {
         id: 'test-user-id',
         email: 'test@example.com',
         tenant_id: 'test-tenant',
@@ -16,7 +17,8 @@ vi.mock('../middleware/auth.middleware', () => ({
         user_metadata: {},
         aud: 'authenticated',
         created_at: new Date().toISOString(),
-      } as Express.User
+      } as AuthenticatedUser
+    }
     return next()
   },
 }))
@@ -46,7 +48,7 @@ describe.skip('OpenAI Endpoints', () => {
 
   it('should generate text with valid prompt', async () => {
     const data = createTestPrompt()
-    const res = await request(app).post('/api/openai/generate').send(data)
+    const res = await request(server).post('/api/openai/generate').send(data)
     expect(res.status).toBe(200)
     expect(res.body.success).toBe(true)
     expect(res.body.data).toMatchObject({
@@ -56,7 +58,7 @@ describe.skip('OpenAI Endpoints', () => {
   })
 
   it('should return 400 for missing prompt', async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post('/api/openai/generate')
       .send({ prompt: '', user_id: 'test-user-id' })
     expect(res.status).toBe(400)
@@ -65,7 +67,7 @@ describe.skip('OpenAI Endpoints', () => {
 
   it('should return 401 if user is not authenticated', async () => {
     // Simular error de autenticación enviando datos sin usuario válido
-    const res = await request(app)
+    const res = await request(server)
       .post('/api/openai/generate')
       .send({ prompt: 'test', user_id: '' })
     expect(res.status).toBe(400) // Cambia a 400 porque la validación Zod falla primero
@@ -80,7 +82,7 @@ describe.skip('OpenAI Endpoints', () => {
     )
 
     const data = createTestPrompt()
-    const res = await request(app).post('/api/openai/generate').send(data)
+    const res = await request(server).post('/api/openai/generate').send(data)
     expect(res.status).toBe(500)
     expect(res.body.success).toBe(false)
   })

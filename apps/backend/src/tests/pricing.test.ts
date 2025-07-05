@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index'
 
 describe.skip('Pricing Module', () => {
   let authToken: string
@@ -12,8 +12,8 @@ describe.skip('Pricing Module', () => {
 
   beforeEach(async () => {
     // Create user and get auth token
-    await request(app).post('/auth/signup').send(testUser)
-    const signInResponse = await request(app)
+    await request(server).post('/auth/signup').send(testUser)
+    const signInResponse = await request(server)
       .post('/auth/signin')
       .send(testUser)
     authToken = signInResponse.body.access_token
@@ -21,7 +21,7 @@ describe.skip('Pricing Module', () => {
 
   describe('GET /api/pricing/plans', () => {
     it('should return all available plans', async () => {
-      const response = await request(app).get('/api/pricing/plans')
+      const response = await request(server).get('/api/pricing/plans')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -37,7 +37,7 @@ describe.skip('Pricing Module', () => {
 
   describe('GET /api/pricing/plans/:planId', () => {
     it('should return a specific plan', async () => {
-      const response = await request(app).get('/api/pricing/plans/pro')
+      const response = await request(server).get('/api/pricing/plans/pro')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -47,7 +47,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should return 404 for non-existent plan', async () => {
-      const response = await request(app).get('/api/pricing/plans/nonexistent')
+      const response = await request(server).get('/api/pricing/plans/nonexistent')
 
       expect(response.status).toBe(404)
       expect(response.body.success).toBe(false)
@@ -57,7 +57,7 @@ describe.skip('Pricing Module', () => {
 
   describe('POST /api/pricing/subscriptions', () => {
     it('should create a free subscription', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -73,7 +73,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should create a paid subscription with customer ID', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -90,7 +90,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should require customer ID for paid plans', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -103,7 +103,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should return 404 for non-existent plan', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -119,7 +119,7 @@ describe.skip('Pricing Module', () => {
   describe('GET /api/pricing/subscriptions/:subscriptId', () => {
     it('should get subscription details', async () => {
       // First create a subscription
-      const createResponse = await request(app)
+      const createResponse = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -130,7 +130,7 @@ describe.skip('Pricing Module', () => {
 
       const subscriptionId = createResponse.body.data.id
 
-      const response = await request(app)
+      const response = await request(server)
         .get(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
 
@@ -141,7 +141,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should get free subscription details', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .get('/api/pricing/subscriptions/free_subscription')
         .set('Authorization', `Bearer ${authToken}`)
 
@@ -155,7 +155,7 @@ describe.skip('Pricing Module', () => {
   describe('PUT /api/pricing/subscriptions/:subscriptId', () => {
     it('should update subscription', async () => {
       // First create a subscription
-      const createResponse = await request(app)
+      const createResponse = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -166,7 +166,7 @@ describe.skip('Pricing Module', () => {
 
       const subscriptionId = createResponse.body.data.id
 
-      const response = await request(app)
+      const response = await request(server)
         .put(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -184,7 +184,7 @@ describe.skip('Pricing Module', () => {
   describe('DELETE /api/pricing/subscriptions/:subscriptId', () => {
     it('should cancel subscription', async () => {
       // First create a subscription
-      const createResponse = await request(app)
+      const createResponse = await request(server)
         .post('/api/pricing/subscriptions')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -195,7 +195,7 @@ describe.skip('Pricing Module', () => {
 
       const subscriptionId = createResponse.body.data.id
 
-      const response = await request(app)
+      const response = await request(server)
         .delete(`/api/pricing/subscriptions/${subscriptionId}`)
         .set('Authorization', `Bearer ${authToken}`)
 
@@ -206,7 +206,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should cancel free subscription', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .delete('/api/pricing/subscriptions/free_subscription')
         .set('Authorization', `Bearer ${authToken}`)
 
@@ -220,7 +220,7 @@ describe.skip('Pricing Module', () => {
 
   describe('POST /api/pricing/plans/:planId/usage', () => {
     it('should check usage within limits', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -239,7 +239,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should detect exceeded limits', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -257,7 +257,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should handle unlimited plan', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/plans/enterprise/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -276,7 +276,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should require usage data', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/plans/free/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({})
@@ -289,7 +289,7 @@ describe.skip('Pricing Module', () => {
     })
 
     it('should return 404 for non-existent plan', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/plans/nonexistent/usage')
         .set('Authorization', `Bearer ${authToken}`)
         .send({
@@ -305,7 +305,7 @@ describe.skip('Pricing Module', () => {
 
   describe('Authentication', () => {
     it('should require authentication for protected routes', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/pricing/subscriptions')
         .send({
           planId: 'free',

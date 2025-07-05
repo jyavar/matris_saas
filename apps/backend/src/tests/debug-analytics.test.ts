@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express'
+import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -30,7 +30,7 @@ vi.mock('../services/supabase.service.js', () => ({
   },
 }))
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 
 describe('Debug Analytics', () => {
   it('should return 400 for missing event_name', async () => {
@@ -41,7 +41,7 @@ describe('Debug Analytics', () => {
 
     console.error('Sending request with data:', invalidEventData)
 
-    const response = await request(app)
+    const response = await request(server)
       .post('/analytics/track/event')
       .send(invalidEventData)
 
@@ -85,20 +85,19 @@ describe('Debug Analytics', () => {
         created_at: new Date().toISOString(),
         email: 'test@example.com',
       },
-      get: ((name: string) =>
-        name === 'set-cookie' ? [] : '') as Request['get'],
-    } as unknown as Request
+      headers: {},
+      url: '/test',
+      method: 'POST',
+    } as unknown as IncomingMessage
 
     const mockRes = {
-      status: vi.fn().mockReturnThis(),
-      json: vi.fn().mockReturnThis(),
-    } as unknown as Response
+      writeHead: vi.fn(),
+      end: vi.fn(),
+    } as unknown as ServerResponse
 
-    const mockNext = vi.fn()
+    await analyticsController.trackEvent(mockReq, mockRes)
 
-    await analyticsController.trackEvent(mockReq, mockRes, mockNext)
-
-    // Debería llamar a res.status(400) o a next(error)
-    expect((mockRes.status as jest.Mock).mock.calls).toContainEqual([400])
+    // Debería llamar a res.writeHead(400) o a res.end con error
+    expect(mockRes.writeHead).toHaveBeenCalledWith(400, expect.any(Object))
   })
 })

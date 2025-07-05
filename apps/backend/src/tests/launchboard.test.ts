@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 
 // Factory para datos de dashboard
 function createTestDashboard(
@@ -46,7 +46,7 @@ describe.skip('Launchboard Endpoints', () => {
         createTestDashboard(),
       ])
       // Aquí iría el mock real del servicio
-      const res = await request(app).get('/launchboard/dashboards')
+      const res = await request(server).get('/launchboard/dashboards')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(Array.isArray(res.body.data)).toBe(true)
@@ -57,7 +57,7 @@ describe.skip('Launchboard Endpoints', () => {
     it('should return a dashboard by id', async () => {
       const dashboard = createTestDashboard()
       mockLaunchboardService.getDashboardById.mockResolvedValue(dashboard)
-      const res = await request(app).get(
+      const res = await request(server).get(
         `/launchboard/dashboards/${dashboard.id}`,
       )
       expect(res.status).toBe(200)
@@ -67,7 +67,7 @@ describe.skip('Launchboard Endpoints', () => {
 
     it('should return 404 for non-existent dashboard', async () => {
       mockLaunchboardService.getDashboardById.mockResolvedValue(null)
-      const res = await request(app).get('/launchboard/dashboards/nonexistent')
+      const res = await request(server).get('/launchboard/dashboards/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
@@ -77,7 +77,7 @@ describe.skip('Launchboard Endpoints', () => {
     it('should create a dashboard with valid data', async () => {
       const dashboard = createTestDashboard()
       mockLaunchboardService.createDashboard.mockResolvedValue(dashboard)
-      const res = await request(app)
+      const res = await request(server)
         .post('/launchboard/dashboards')
         .send({ name: dashboard.name, widgets: dashboard.widgets })
       expect(res.status).toBe(201)
@@ -86,7 +86,7 @@ describe.skip('Launchboard Endpoints', () => {
     })
 
     it('should return 400 for invalid data', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/launchboard/dashboards')
         .send({ name: '', widgets: [] })
       expect(res.status).toBe(400)
@@ -98,7 +98,7 @@ describe.skip('Launchboard Endpoints', () => {
     it('should update a dashboard', async () => {
       const dashboard = createTestDashboard({ name: 'Updated Dashboard' })
       mockLaunchboardService.updateDashboard.mockResolvedValue(dashboard)
-      const res = await request(app)
+      const res = await request(server)
         .put(`/launchboard/dashboards/${dashboard.id}`)
         .send({ name: dashboard.name })
       expect(res.status).toBe(200)
@@ -108,7 +108,7 @@ describe.skip('Launchboard Endpoints', () => {
 
     it('should return 404 for non-existent dashboard', async () => {
       mockLaunchboardService.updateDashboard.mockResolvedValue(null)
-      const res = await request(app)
+      const res = await request(server)
         .put('/launchboard/dashboards/nonexistent')
         .send({ name: 'Does not exist' })
       expect(res.status).toBe(404)
@@ -119,7 +119,7 @@ describe.skip('Launchboard Endpoints', () => {
   describe('DELETE /launchboard/dashboards/:id', () => {
     it('should delete a dashboard', async () => {
       mockLaunchboardService.deleteDashboard.mockResolvedValue(true)
-      const res = await request(app).delete(
+      const res = await request(server).delete(
         '/launchboard/dashboards/dashboard-1',
       )
       expect(res.status).toBe(200)
@@ -128,7 +128,7 @@ describe.skip('Launchboard Endpoints', () => {
 
     it('should return 404 for non-existent dashboard', async () => {
       mockLaunchboardService.deleteDashboard.mockResolvedValue(false)
-      const res = await request(app).delete(
+      const res = await request(server).delete(
         '/launchboard/dashboards/nonexistent',
       )
       expect(res.status).toBe(404)

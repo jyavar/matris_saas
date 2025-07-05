@@ -1,9 +1,10 @@
-import type { NextFunction, Request, Response } from 'express'
+import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index'
 import { onboardingService } from '../services/onboarding.service'
+import type { AuthenticatedUser } from '../types/express'
 
 // Factory para datos de onboarding
 function createTestOnboarding(overrides = {}) {
@@ -22,9 +23,10 @@ describe.skip('Onboarding Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({
-      authMiddleware: (_req: Request, _res: Response, next: NextFunction) => {
-        if (_req)
-          _req.user = {
+      authMiddleware: (_req: IncomingMessage, _res: ServerResponse, next: () => void) => {
+        // Mock authentication by setting user in request
+        if (_req) {
+          (_req as unknown as { user: AuthenticatedUser }).user = {
             id: 'test-user-id',
             email: 'test@example.com',
             tenant_id: 'test-tenant',
@@ -32,7 +34,8 @@ describe.skip('Onboarding Endpoints', () => {
             user_metadata: {},
             aud: 'authenticated',
             created_at: new Date().toISOString(),
-          } as Express.User
+          } as AuthenticatedUser
+        }
         return next()
       },
     }))
@@ -49,7 +52,7 @@ describe.skip('Onboarding Endpoints', () => {
 
   describe('GET /onboarding', () => {
     it('should return onboarding info for user', async () => {
-      const res = await request(app).get('/api/onboarding')
+      const res = await request(server).get('/api/onboarding')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.user_id).toBe('test-user-id')
@@ -58,7 +61,7 @@ describe.skip('Onboarding Endpoints', () => {
 
   describe('POST /onboarding/start', () => {
     it('should start onboarding for user', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/start')
         .send({ email: 'test@example.com' })
       expect(res.status).toBe(201)
@@ -66,7 +69,7 @@ describe.skip('Onboarding Endpoints', () => {
       expect(res.body.data.setup_complete).toBe(false)
     })
     it('should return 400 for missing email', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/start')
         .send({ email: '' })
       expect(res.status).toBe(400)
@@ -76,7 +79,7 @@ describe.skip('Onboarding Endpoints', () => {
 
   describe('POST /onboarding/complete', () => {
     it('should complete onboarding for user', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/complete')
         .send({ user_id: 'test-user-id' })
       expect(res.status).toBe(200)
@@ -84,7 +87,7 @@ describe.skip('Onboarding Endpoints', () => {
       expect(res.body.data.setup_complete).toBe(true)
     })
     it('should return 400 for missing user_id', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/complete')
         .send({ user_id: '' })
       expect(res.status).toBe(400)
@@ -92,3 +95,5 @@ describe.skip('Onboarding Endpoints', () => {
     })
   })
 })
+
+

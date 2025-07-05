@@ -3,7 +3,7 @@ import request from 'supertest'
 import { v4 as uuidv4 } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index'
 import { supabase } from '../lib/supabase.js'
 // Mocks/Helpers mínimos para ejemplo ejecutable
 // Reemplaza estos con tus implementaciones reales
@@ -51,8 +51,8 @@ async function resetDatabase() {
 async function getRealToken() {
   const email = `test-${Date.now()}@example.com`
   const password = 'password123'
-  await request(app).post('/auth/signup').send({ email, password })
-  const res = await request(app).post('/auth/signin').send({ email, password })
+  await request(server).post('/auth/signup').send({ email, password })
+  const res = await request(server).post('/auth/signin').send({ email, password })
   return res.body.access_token
 }
 
@@ -63,7 +63,7 @@ beforeEach(async () => {
 describe.skip('Backend Extended Coverage', () => {
   it('Analytics: should return 400 when no query is provided', async () => {
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .get('/analytics')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(400)
@@ -71,7 +71,7 @@ describe.skip('Backend Extended Coverage', () => {
 
   it('Analytics: should return empty dataset for new user', async () => {
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .get('/analytics?range=30d')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
@@ -80,7 +80,7 @@ describe.skip('Backend Extended Coverage', () => {
 
   it('Profiles: should fail to create profile with invalid fields', async () => {
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .post('/profiles')
       .set('Authorization', `Bearer ${token}`)
       .send({ username: '', age: -5 })
@@ -90,7 +90,7 @@ describe.skip('Backend Extended Coverage', () => {
   it('Profiles: should return 404 for non-existing profile', async () => {
     const token = await getRealToken()
     const nonExistentId = '00000000-0000-0000-0000-000000000999'
-    const res = await request(app)
+    const res = await request(server)
       .get(`/profiles/${nonExistentId}`)
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(404)
@@ -100,21 +100,21 @@ describe.skip('Backend Extended Coverage', () => {
     // Crear usuario y perfil ajeno con username válido
     const otherEmail = `other-${Date.now()}@example.com`
     const otherPassword = 'password123'
-    await request(app)
+    await request(server)
       .post('/auth/signup')
       .send({ email: otherEmail, password: otherPassword, username: 'UserB' })
-    const otherSignIn = await request(app)
+    const otherSignIn = await request(server)
       .post('/auth/signin')
       .send({ email: otherEmail, password: otherPassword })
     const otherToken = otherSignIn.body.access_token
     // Obtener el id del perfil ajeno
-    const otherProfileRes = await request(app)
+    const otherProfileRes = await request(server)
       .get('/profiles/me')
       .set('Authorization', `Bearer ${otherToken}`)
     const otherProfileId = otherProfileRes.body.id
     // Ahora, con un usuario distinto, intentar actualizar ese perfil
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .put(`/profiles/${otherProfileId}`)
       .set('Authorization', `Bearer ${token}`)
       .send({ username: 'Hacked' })
@@ -123,7 +123,7 @@ describe.skip('Backend Extended Coverage', () => {
 
   it('Todos: should not create a todo with empty body', async () => {
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .post('/todos')
       .set('Authorization', `Bearer ${token}`)
       .send({ task: '' })
@@ -133,7 +133,7 @@ describe.skip('Backend Extended Coverage', () => {
   it('Todos: should return 404 when deleting non-existent todo', async () => {
     const token = await getRealToken()
     const nonExistentId = 999999
-    const res = await request(app)
+    const res = await request(server)
       .delete(`/todos/${nonExistentId}`)
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(404)
@@ -146,7 +146,7 @@ describe.skip('Backend Extended Coverage', () => {
     const userId =
       decoded && typeof decoded.sub === 'string' ? decoded.sub : undefined
     await supabase.from('todos').delete().eq('user_id', userId)
-    const res = await request(app)
+    const res = await request(server)
       .get('/todos')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
@@ -184,14 +184,14 @@ describe.skip('Backend Extended Coverage', () => {
 
   it('Auth: should reject expired token', async () => {
     const expiredToken = generateExpiredToken()
-    const res = await request(app)
+    const res = await request(server)
       .get('/protected')
       .set('Authorization', `Bearer ${expiredToken}`)
     expect(res.status).toBe(401)
   })
 
   it('Health: should return 200 for healthcheck', async () => {
-    const res = await request(app).get('/health')
+    const res = await request(server).get('/health')
     expect(res.status).toBe(200)
     expect(res.body.ok ?? true).toBe(true)
   })
@@ -204,13 +204,13 @@ describe.skip('Backend Extended Coverage', () => {
 
   it("Profiles: should return 200 for getting the current user's profile", async () => {
     const token = await getRealToken()
-    const res = await request(app)
+    const res = await request(server)
       .get('/api/profiles/me')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
   })
 
-  it('should have app defined', () => {
-    expect(app).toBeDefined()
+  it('should have server defined', () => {
+    expect(server).toBeDefined()
   })
 })

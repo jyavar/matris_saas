@@ -4,6 +4,11 @@ import { createDeflate,createGzip } from 'zlib'
 
 import { logAction } from '../services/logger.service.js'
 
+// Extended request interface for performance middleware
+interface ExtendedRequest extends IncomingMessage {
+  user?: { id: string }
+}
+
 // Cache configuration
 const cache = new NodeCache({
   stdTTL: 300, // 5 minutes default
@@ -61,7 +66,7 @@ export const cacheMiddleware = (duration: number = 300) => {
       return
     }
 
-    const key = `cache:${req.url}:${(req as any).user?.id || 'anonymous'}`
+    const key = `cache:${req.url}:${(req as ExtendedRequest).user?.id || 'anonymous'}`
     const cachedResponse = cache.get(key)
 
     if (cachedResponse) {
@@ -72,7 +77,7 @@ export const cacheMiddleware = (duration: number = 300) => {
 
     // Override res.end to cache the response
     const originalEnd = res.end
-    res.end = function(chunk?: any, encoding?: any, cb?: any) {
+    res.end = function(chunk?: string | Buffer, encoding?: BufferEncoding | Function, cb?: Function) {
       try {
         if (chunk && res.statusCode === 200) {
           const data = JSON.parse(chunk.toString())

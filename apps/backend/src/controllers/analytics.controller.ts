@@ -3,7 +3,6 @@ import { z } from 'zod'
 
 import { numericIdParamSchema } from '../lib/schemas.js'
 import {
-  analyticsQuerySchema,
   analyticsService,
   eventSchema,
   metricSchema,
@@ -12,7 +11,6 @@ import {
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import type { Json } from '../types/supabase.types.js'
-import { ApiError } from '../utils/ApiError.js'
 
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
@@ -301,6 +299,19 @@ export const analyticsController = {
       })
       throw error
     }
+  },
+
+  /**
+   * Get analytics summary (alias for getAnalyticsSummary)
+   */
+  async getSummary(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    return this.getAnalyticsSummary(req, res, params, body, user)
   },
 
   /**

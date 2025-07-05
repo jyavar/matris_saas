@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 import { OpenAIService } from '../services/openai.service.js'
 
 // Mock the auth middleware to add a user to the request
@@ -24,7 +24,7 @@ describe('OpenAI Routes', () => {
   })
 
   it('POST /openai/generate returns generated text', async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post('/api/openai/generate')
       .set('Authorization', 'Bearer test-token')
       .send({ prompt: 'Hola, ¿qué es STRATO?' })
@@ -35,7 +35,7 @@ describe('OpenAI Routes', () => {
   })
 
   it('POST /openai/generate returns error for empty prompt', async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post('/api/openai/generate')
       .set('Authorization', 'Bearer test-token')
       .send({ prompt: '' })

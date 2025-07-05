@@ -3,12 +3,15 @@
   "compilerOptions": {
     "outDir": "dist",
     "noEmit": false,
-    "baseUrl": "../..",
-    "strict": false,
-    "noUncheckedIndexedAccess": false,
+    "baseUrl": "./src",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
-    "noImplicitAny": false,
-    "strictNullChecks": false
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@backend/*": ["./*"],
+    },
   },
   "include": ["src", "src/types", "tests", "vitest.setup.ts"],
   "exclude": ["node_modules"]

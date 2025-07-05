@@ -1,15 +1,13 @@
-import type { Server } from 'http'
-import { createServer } from 'http'
-import { IncomingMessage, ServerResponse } from 'http'
-
+import type { IncomingMessage, ServerResponse } from 'http'
+import request from 'supertest'
 import { server } from '../index.js'
 
 /**
  * Test helper for Node.js pure HTTP server
  */
 export class TestServer {
-  private server: Server
   private port: number
+  private server: typeof server
 
   constructor(port = 0) {
     this.port = port
@@ -55,75 +53,26 @@ export class TestServer {
   /**
    * Make a request to the server
    */
-  async request(
-    method: string,
-    path: string,
-    options: {
-      headers?: Record<string, string>
-      body?: unknown
-      query?: Record<string, string>
-    } = {}
-  ): Promise<{
-    status: number
-    body: unknown
-    headers: Record<string, string>
-  }> {
-    const url = new URL(path, this.getUrl())
-    
-    // Add query parameters
-    if (options.query) {
-      Object.entries(options.query).forEach(([key, value]) => {
-        url.searchParams.append(key, value)
-      })
+  async request(method: string, path: string, options: {
+    headers?: Record<string, string>
+    body?: unknown
+  } = {}) {
+    const { headers = {}, body } = options
+
+    const req = request(this.server)[method.toLowerCase()](path)
+      .set(headers)
+
+    if (body) {
+      req.send(body)
     }
 
-    return new Promise((resolve, reject) => {
-      const req = this.server.request(
-        {
-          method,
-          path: url.pathname + url.search,
-          headers: {
-            'Content-Type': 'application/json',
-            ...options.headers,
-          },
-        },
-        (res: IncomingMessage) => {
-          let body = ''
-          res.on('data', (chunk) => {
-            body += chunk.toString()
-          })
-          res.on('end', () => {
-            try {
-              const parsedBody = body ? JSON.parse(body) : {}
-              resolve({
-                status: res.statusCode || 500,
-                body: parsedBody,
-                headers: res.headers as Record<string, string>,
-              })
-            } catch (error) {
-              resolve({
-                status: res.statusCode || 500,
-                body: body,
-                headers: res.headers as Record<string, string>,
-              })
-            }
-          })
-        }
-      )
-
-      req.on('error', reject)
-
-      if (options.body) {
-        req.write(JSON.stringify(options.body))
-      }
-      req.end()
-    })
+    return req
   }
 
   /**
    * GET request
    */
-  async get(path: string, options?: { headers?: Record<string, string>; query?: Record<string, string> }) {
+  async get(path: string, options?: { headers?: Record<string, string> }) {
     return this.request('GET', path, options)
   }
 
@@ -146,6 +95,13 @@ export class TestServer {
    */
   async delete(path: string, options?: { headers?: Record<string, string> }) {
     return this.request('DELETE', path, options)
+  }
+
+  /**
+   * PATCH request
+   */
+  async patch(path: string, body?: unknown, options?: { headers?: Record<string, string> }) {
+    return this.request('PATCH', path, { ...options, body })
   }
 }
 

@@ -18,6 +18,30 @@ const identifyUserSchema = z.object({
 })
 
 export const PostHogController = {
+  async getHealth(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
+    try {
+      const isConfigured = !!process.env.POSTHOG_API_KEY
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        success: true,
+        data: {
+          status: isConfigured ? 'configured' : 'not_configured',
+          api_key_present: isConfigured,
+        },
+      }))
+    } catch (error) {
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+    }
+  },
+
   async trackEvent(
     req: IncomingMessage,
     res: ServerResponse,

@@ -1,5 +1,5 @@
-import { getHealthStatus } from '../controllers/health.controller.js'
+import { healthController } from '../controllers/health.controller.js'
 
 export const healthRoutes = [
-  { method: 'GET', path: '/', handler: getHealthStatus },
+  { method: 'GET', path: '/', handler: healthController.getHealth },
 ]

@@ -2,8 +2,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { defineConfig } from 'vitest/config'
+import { resolve } from 'path'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@backend': resolve(__dirname, 'src'),
+      '@backend/*': resolve(__dirname, 'src/*'),
+    },
+  },
   test: {
     environment: 'node',
     globals: true,

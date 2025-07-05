@@ -1,11 +1,11 @@
 import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 
 describe('Debug Test', () => {
   it('should test basic app setup', async () => {
-    const response = await request(app).get('/health')
+    const response = await request(server).get('/health')
     
     // Siempre mostrar la respuesta para debug
     console.log('Response status:', response.status)

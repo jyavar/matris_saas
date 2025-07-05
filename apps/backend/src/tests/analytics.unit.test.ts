@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index'
 
 // Mock pino-http
 vi.mock('pino-http', () => ({
@@ -120,7 +120,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('POST /analytics/track/event', () => {
     it('should track an event successfully', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/event')
         .send(mockEventData)
 
@@ -138,7 +138,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         },
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/event')
         .send(anonymousEventData)
 
@@ -152,7 +152,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         properties: { test: 'data' },
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/event')
         .send(invalidEventData)
 
@@ -167,7 +167,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         user_id: 'test-user-id',
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/event')
         .send(invalidEventData)
 
@@ -178,7 +178,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('POST /analytics/track/metric', () => {
     it('should track a metric successfully', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/metric')
         .send(mockMetricData)
 
@@ -195,7 +195,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         },
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/metric')
         .send(anonymousMetricData)
 
@@ -210,7 +210,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         tags: { test: 'data' },
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
@@ -225,7 +225,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         user_id: 'test-user-id',
       }
 
-      const response = await request(app)
+      const response = await request(server)
         .post('/api/analytics/track/metric')
         .send(invalidMetricData)
 
@@ -236,7 +236,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('GET /analytics/events', () => {
     it('should get events with filtering', async () => {
-      const response = await request(app).get('/api/analytics/events').query({
+      const response = await request(server).get('/api/analytics/events').query({
         event_name: 'page_view',
         limit: '10', // String should be converted to number
         offset: '0', // String should be converted to number
@@ -248,7 +248,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should get events with date filtering', async () => {
-      const response = await request(app).get('/api/analytics/events').query({
+      const response = await request(server).get('/api/analytics/events').query({
         start_date: '2025-01-01',
         end_date: '2025-12-31',
         limit: '10',
@@ -260,7 +260,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should return 400 for invalid limit', async () => {
-      const response = await request(app).get('/api/analytics/events').query({
+      const response = await request(server).get('/api/analytics/events').query({
         limit: 'invalid-number',
       })
 
@@ -269,7 +269,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should return 400 for invalid offset', async () => {
-      const response = await request(app).get('/api/analytics/events').query({
+      const response = await request(server).get('/api/analytics/events').query({
         offset: 'invalid-number',
       })
 
@@ -278,7 +278,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should return 400 for limit out of range', async () => {
-      const response = await request(app).get('/api/analytics/events').query({
+      const response = await request(server).get('/api/analytics/events').query({
         limit: '2000', // Should be max 1000
       })
 
@@ -289,7 +289,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('GET /analytics/metrics', () => {
     it('should get metrics with filtering', async () => {
-      const response = await request(app).get('/api/analytics/metrics').query({
+      const response = await request(server).get('/api/analytics/metrics').query({
         limit: '10',
         offset: '0',
       })
@@ -300,7 +300,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should return 400 for invalid query parameters', async () => {
-      const response = await request(app).get('/api/analytics/metrics').query({
+      const response = await request(server).get('/api/analytics/metrics').query({
         limit: 'not-a-number',
       })
 
@@ -311,7 +311,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('GET /analytics/summary', () => {
     it('should get analytics summary', async () => {
-      const response = await request(app).get('/api/analytics/summary')
+      const response = await request(server).get('/api/analytics/summary')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -322,7 +322,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should get analytics summary with date range', async () => {
-      const response = await request(app).get('/api/analytics/summary').query({
+      const response = await request(server).get('/api/analytics/summary').query({
         start_date: '2025-01-01',
         end_date: '2025-12-31',
       })
@@ -335,7 +335,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('GET /analytics/users/:userId', () => {
     it('should get user analytics', async () => {
-      const response = await request(app).get('/api/analytics/users/test-user-id')
+      const response = await request(server).get('/api/analytics/users/test-user-id')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
@@ -346,7 +346,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
     })
 
     it('should return 404 for non-existent user data', async () => {
-      const response = await request(app).get(
+      const response = await request(server).get(
         '/api/analytics/users/non-existent-user',
       )
 
@@ -356,7 +356,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
 
   describe('Legacy endpoints', () => {
     it('should get all analytics with query', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .get('/api/analytics')
         .query({ limit: '10' })
 
@@ -371,7 +371,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         user_id: 1,
       }
 
-      const response = await request(app).post('/api/analytics').send(analyticsData)
+      const response = await request(server).post('/api/analytics').send(analyticsData)
 
       expect(response.status).toBe(201)
       expect(response.body).toHaveProperty('event_name', 'test_event')
@@ -383,7 +383,7 @@ describe('Analytics Module - Unit Tests (Optimized)', () => {
         payload: { test: 'data' },
       }
 
-      const response = await request(app).post('/api/analytics').send(invalidData)
+      const response = await request(server).post('/api/analytics').send(invalidData)
 
       expect(response.status).toBe(400)
     })

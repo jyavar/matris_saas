@@ -30,10 +30,17 @@ export type ControllerHandler = (
   user?: AuthenticatedUser,
 ) => Promise<void>
 
+// Middleware handler type
+export type MiddlewareHandler = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: () => void
+) => void | Promise<void>
+
 // Route definition type
 export interface RouteDefinition {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
   path: string
   handler: ControllerHandler
-  middlewares?: Array<(req: IncomingMessage, res: ServerResponse, next: () => void) => void>
+  middlewares?: MiddlewareHandler[]
 }

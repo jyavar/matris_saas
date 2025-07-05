@@ -1,10 +1,19 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { z, ZodSchema } from 'zod'
 
-import { logAction } from '../services/logger.service.js'
-import type { RequestBody } from '../types/express/index.js'
-import { parseBody, parseParams,parseQuery } from '../utils/request.helper.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import { logAction } from '../services/logger.service'
+import type { RequestBody } from '../types/express/index'
+import { parseBody, parseParams,parseQuery } from '../utils/request.helper'
+import { sendValidationError } from '../utils/response.helper'
+
+// Extended request interface for validation
+interface ExtendedRequest extends IncomingMessage {
+  body?: unknown
+  query?: Record<string, string>
+  params?: Record<string, string>
+  validatedBody?: unknown
+  validatedHeaders?: unknown
+}
 
 interface ValidationConfig {
   body?: ZodSchema
@@ -32,7 +41,7 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
       const validatedData = schema.parse(body)
       
       // Add validated data to request
-      ;(req as { validatedBody?: unknown }).validatedBody = validatedData
+      ;(req as ExtendedRequest).validatedBody = validatedData
       
       next()
     } catch (error) {
@@ -47,25 +56,35 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
 /**
  * Query validation middleware
  */
-export const validateQuery = (schema: ZodSchema): MiddlewareHandler => {
-  return async (
-    req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ): Promise<void> => {
+export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     try {
-      const query = parseQuery(req.url || '')
-      const validatedData = schema.parse(query)
+      const url = req.url || ''
+      const queryString = url.split('?')[1] || ''
+      const queryParams = new URLSearchParams(queryString)
+      const queryObj: Record<string, string> = {}
       
-      // Add validated data to request
-      ;(req as { validatedQuery?: unknown }).validatedQuery = validatedData
-      
+      queryParams.forEach((value, key) => {
+        queryObj[key] = value
+      })
+
+      schema.parse(queryObj)
       next()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return sendValidationError(res, error.errors, 'Invalid query parameters')
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid query parameters',
+          details: error.errors
+        }))
+      } else {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Validation error'
+        }))
       }
-      return sendValidationError(res, [], 'Failed to parse query parameters')
     }
   }
 }
@@ -73,25 +92,43 @@ export const validateQuery = (schema: ZodSchema): MiddlewareHandler => {
 /**
  * Params validation middleware
  */
-export const validateParams = (schema: ZodSchema, pathPattern: string): MiddlewareHandler => {
-  return async (
-    req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ): Promise<void> => {
+export const validateParams = (schema: z.ZodSchema): MiddlewareHandler => {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     try {
-      const params = parseParams(req.url || '', pathPattern)
-      const validatedData = schema.parse(params)
+      const url = req.url || ''
+      const pathParams: Record<string, string> = {}
       
-      // Add validated data to request
-      ;(req as { validatedParams?: unknown }).validatedParams = validatedData
+      // Extract path parameters from URL
+      const pathSegments = url.split('/')
+      const routeSegments = req.url?.split('/') || []
       
+      // Simple parameter extraction - this could be enhanced
+      for (let i = 0; i < routeSegments.length; i++) {
+        if (routeSegments[i]?.startsWith(':')) {
+          const paramName = routeSegments[i]?.substring(1)
+          if (paramName && pathSegments[i]) {
+            pathParams[paramName] = pathSegments[i] || ''
+          }
+        }
+      }
+
+      schema.parse(pathParams)
       next()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return sendValidationError(res, error.errors, 'Invalid path parameters')
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid path parameters',
+          details: error.errors
+        }))
+      } else {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Validation error'
+        }))
       }
-      return sendValidationError(res, [], 'Failed to parse path parameters')
     }
   }
 }
@@ -110,7 +147,7 @@ export const validateHeaders = (schema: ZodSchema): MiddlewareHandler => {
       const validatedData = schema.parse(headers)
       
       // Add validated data to request
-      ;(req as { validatedHeaders?: unknown }).validatedHeaders = validatedData
+      ;(req as ExtendedRequest).validatedHeaders = validatedData
       
       next()
     } catch (error) {
@@ -201,7 +238,7 @@ export const createValidationMiddleware = (config: ValidationConfig) => {
         const validatedBody = config.body.parse(body)
         
         // Attach validated body to request
-        ;(req as any).body = validatedBody
+        ;(req as ExtendedRequest).body = validatedBody
       }
 
       // Validate query parameters if schema provided
@@ -210,18 +247,18 @@ export const createValidationMiddleware = (config: ValidationConfig) => {
         const validatedQuery = config.query.parse(query)
         
         // Attach validated query to request
-        ;(req as any).query = validatedQuery
+        ;(req as ExtendedRequest).query = validatedQuery
       }
 
       // Validate URL parameters if schema provided
       if (config.params) {
         // URL parameters would be extracted by the router
         // For now, we'll assume they're attached to req.params
-        const params = (req as any).params || {}
+        const params = (req as ExtendedRequest).params || {}
         const validatedParams = config.params.parse(params)
         
         // Attach validated params to request
-        ;(req as any).params = validatedParams
+        ;(req as ExtendedRequest).params = validatedParams
       }
 
       next()

@@ -1,48 +1,41 @@
-import express from 'express'
-import helmet from 'helmet'
+import { createServer } from 'http'
+import { parse } from 'url'
 
-import {
-  compressionMiddleware,
-  corsMiddleware,
-  memoryMiddleware,
-  performanceMiddleware,
-} from './middleware/performance.middleware.js'
-import authRoutes from './routes/auth.routes.js'
-import healthRoutes from './routes/health.routes.js'
+import { authController } from './controllers/auth.controller.js'
+import { healthController } from './controllers/health.controller.js'
 import logger from './services/logger.service.js'
+import { createRouter } from './utils/router.js'
 
-const app = express()
+const version = process.env.npm_package_version || '1.0.0'
+const router = createRouter()
 
-// Configuración de seguridad
-app.use(helmet())
+function sendJson(res, status, data) {
+  res.writeHead(status, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify(data))
+}
 
-// Performance middlewares
-app.use(compressionMiddleware)
-app.use(corsMiddleware)
-app.use(performanceMiddleware)
-app.use(memoryMiddleware)
-
-// Parse JSON bodies
-app.use(express.json({ limit: '10mb' }))
-app.use(express.urlencoded({ extended: true }))
+// Setup routes
+router.get('/api/health', healthController.getHealth)
+router.post('/api/auth/signup', authController.signUp)
+router.post('/api/auth/signin', authController.signIn)
 
 // Health check with performance headers
-app.get('/health', (_req, res) => {
-  res.status(200).json({
+router.get('/health', async (req, res) => {
+  sendJson(res, 200, {
     status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     memory: process.memoryUsage(),
-    version: process.env.npm_package_version || '1.0.0',
+    version,
   })
 })
 
 // Metrics endpoint
-app.get('/metrics', (_req, res) => {
+router.get('/metrics', async (req, res) => {
   const memUsage = process.memoryUsage()
   const cpuUsage = process.cpuUsage()
 
-  res.status(200).json({
+  sendJson(res, 200, {
     memory: {
       rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
       heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
@@ -54,30 +47,52 @@ app.get('/metrics', (_req, res) => {
       system: `${Math.round(cpuUsage.system / 1000)}ms`,
     },
     uptime: process.uptime(),
-    version: process.env.npm_package_version || '1.0.0',
+    version,
     platform: process.platform,
   })
 })
 
-// Montar routers básicos
-app.use('/api/health', healthRoutes)
-app.use('/api/auth', authRoutes)
+const server = createServer(async (req, res) => {
+  const { pathname } = parse(req.url || '', true)
+  
+  // Built-in health and metrics endpoints
+  if (req.method === 'GET' && pathname === '/api/health') {
+    return sendJson(res, 200, {
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      memory: process.memoryUsage(),
+      version
+    })
+  }
+  
+  if (req.method === 'GET' && pathname === '/api/metrics') {
+    const memUsage = process.memoryUsage()
+    const cpuUsage = process.cpuUsage()
+    return sendJson(res, 200, {
+      memory: {
+        rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
+        heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
+        heapTotal: `${Math.round(memUsage.heapTotal / 1024 / 1024)}MB`,
+        external: `${Math.round(memUsage.external / 1024 / 1024)}MB`,
+      },
+      cpu: {
+        user: `${Math.round(cpuUsage.user / 1000)}ms`,
+        system: `${Math.round(cpuUsage.system / 1000)}ms`,
+      },
+      uptime: process.uptime(),
+      version,
+      platform: process.platform,
+    })
+  }
 
-// Error handling middleware
-app.use((err: Error, _req: express.Request, res: express.Response) => {
-  logger.error(err, 'Unhandled error')
-  res.status(500).json({
-    success: false,
-    error: 'Internal server error',
-  })
+  // Handle all other routes through the router
+  try {
+    await router.handleRequest(req, res)
+  } catch (error) {
+    logger.error('Error handling request:', error)
+    sendJson(res, 500, { success: false, error: 'Internal server error' })
+  }
 })
 
-// 404 handler
-app.use('{*path}', (_req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Route not found',
-  })
-})
-
-export { app, logger }
+export { logger, server }

@@ -1,57 +1,117 @@
-import { createServer } from 'http'
+import { createServer, ServerResponse } from 'http'
 import { parse } from 'url'
 
-import { analyticsReportingController } from './controllers/analytics-reporting.controller.js'
-import { automationController } from './controllers/automation.controller.js'
-import { emailCampaignsController } from './controllers/email-campaigns.controller.js'
-import { launchboardController } from './controllers/launchboard.controller.js'
-import { onboardingController } from './controllers/onboarding.controller.js'
-import { openaiController } from './controllers/openai.controller.js'
-import { PostHogController } from './controllers/posthog.controller.js'
-import logger from './services/logger.service.js'
-import { createRouter } from './utils/router.js'
+// Import all route modules
+import { analyticsReportingRoutes } from './routes/analytics-reporting.routes'
+import { analyticsRoutes } from './routes/analytics.routes'
+import { authRoutes } from './routes/auth.routes'
+import { automationRoutes } from './routes/automation.routes'
+import { billingRoutes } from './routes/billing.routes'
+import { campaignsRoutes } from './routes/campaigns.routes'
+import { devRoutes } from './routes/dev.routes'
+import { emailCampaignsRoutes } from './routes/email-campaigns.routes'
+import { healthRoutes } from './routes/health.routes'
+import { launchboardRoutes } from './routes/launchboard.routes'
+import { onboardingRoutes } from './routes/onboarding.routes'
+import { openaiRoutes } from './routes/openai.routes'
+import { paymentsRoutes } from './routes/payments.routes'
+import { posthogRoutes } from './routes/posthog.routes'
+import { pricingRoutes } from './routes/pricing.routes'
+import { profilesRoutes } from './routes/profiles.routes'
+import { reportingRoutes } from './routes/reporting.routes'
+import { resendRoutes } from './routes/resend.routes'
+import { runtimeRoutes } from './routes/runtime.routes'
+import { todoRoutes } from './routes/todo.routes'
+import logger from './services/logger.service'
+import { createRouter } from './utils/router'
 
 const version = process.env.npm_package_version || '1.0.0'
 const router = createRouter()
 
-function sendJson(res, status, data) {
+function sendJson(res: ServerResponse, status: number, data: unknown): void {
   res.writeHead(status, { 'Content-Type': 'application/json' })
   res.end(JSON.stringify(data))
 }
 
-// Setup routes
-router.get('/api/analytics-reporting', analyticsReportingController.getReports)
-router.post('/api/analytics-reporting', analyticsReportingController.createReport)
-router.get('/api/analytics-reporting/:id', analyticsReportingController.getReportById)
-router.delete('/api/analytics-reporting/:id', analyticsReportingController.deleteReport)
+// Helper function to register routes safely
+function registerRoutes(routes: any[], basePath: string = '') {
+  routes.forEach(route => {
+    const method = route.method.toLowerCase() as keyof typeof router
+    if (typeof router[method] === 'function') {
+      const fullPath = basePath ? `${basePath}${route.path}` : route.path
+      ;(router[method] as Function)(fullPath, route.handler, route.middlewares || [])
+    }
+  })
+}
 
-router.get('/api/automation', automationController.getAutomations)
-router.post('/api/automation', automationController.createAutomation)
-router.get('/api/automation/:id', automationController.getAutomationById)
-router.put('/api/automation/:id', automationController.updateAutomation)
-router.delete('/api/automation/:id', automationController.deleteAutomation)
+// Register all route modules with their base paths
+registerRoutes(analyticsReportingRoutes, '/api/analytics-reporting')
+registerRoutes(analyticsRoutes, '/api/analytics')
+registerRoutes(authRoutes, '/auth')
+registerRoutes(automationRoutes, '/api/automation')
+registerRoutes(billingRoutes, '/api/billing')
+registerRoutes(campaignsRoutes) // campaigns routes already have full paths
+registerRoutes(devRoutes, '/api/dev')
+registerRoutes(emailCampaignsRoutes, '/api/email-campaigns')
+registerRoutes(healthRoutes, '/api/health')
+registerRoutes(launchboardRoutes, '/api/launchboard')
+registerRoutes(onboardingRoutes, '/api/onboarding')
+registerRoutes(openaiRoutes, '/api/openai')
+registerRoutes(paymentsRoutes, '/api/payments')
+registerRoutes(posthogRoutes, '/api/posthog')
+registerRoutes(pricingRoutes, '/api/pricing')
+registerRoutes(profilesRoutes, '/api/profiles')
+registerRoutes(reportingRoutes, '/api/reporting')
+registerRoutes(resendRoutes, '/api/resend')
+registerRoutes(runtimeRoutes, '/api/runtime')
+registerRoutes(todoRoutes, '/api/todos')
 
-router.get('/api/email-campaigns', emailCampaignsController.getCampaigns)
-router.post('/api/email-campaigns', emailCampaignsController.createCampaign)
-router.get('/api/email-campaigns/:id', emailCampaignsController.getCampaignById)
-router.put('/api/email-campaigns/:id', emailCampaignsController.updateCampaign)
-router.delete('/api/email-campaigns/:id', emailCampaignsController.deleteCampaign)
+// Health endpoint
+router.get('/health', async (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
+  }))
+})
 
-router.get('/api/launchboard', launchboardController.getLaunchboard)
-router.post('/api/launchboard', launchboardController.createLaunchboardItem)
-router.get('/api/launchboard/:id', launchboardController.getLaunchboardItemById)
-router.put('/api/launchboard/:id', launchboardController.updateLaunchboardItem)
-router.delete('/api/launchboard/:id', launchboardController.deleteLaunchboardItem)
+router.get('/api/health', async (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify({
+    success: true,
+    data: {
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      environment: process.env.NODE_ENV || 'development'
+    }
+  }))
+})
 
-router.get('/api/onboarding', onboardingController.getOnboardingStatus)
-router.post('/api/onboarding', onboardingController.updateOnboardingStatus)
-router.get('/api/onboarding/:id', onboardingController.getOnboardingStepById)
-router.put('/api/onboarding/:id', onboardingController.updateOnboardingStep)
-
-router.post('/api/openai/generate', openaiController.generateText)
-
-router.post('/api/posthog/track', PostHogController.trackEvent)
-router.post('/api/posthog/identify', PostHogController.identifyUser)
+// Metrics endpoint
+router.get('/metrics', async (req, res) => {
+  const memUsage = process.memoryUsage()
+  const cpuUsage = process.cpuUsage()
+  
+  res.writeHead(200, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify({
+    memory: {
+      rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
+      heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
+      heapTotal: `${Math.round(memUsage.heapTotal / 1024 / 1024)}MB`,
+      external: `${Math.round(memUsage.external / 1024 / 1024)}MB`,
+    },
+    cpu: {
+      user: `${Math.round(cpuUsage.user / 1000)}ms`,
+      system: `${Math.round(cpuUsage.system / 1000)}ms`,
+    },
+    uptime: process.uptime(),
+    version,
+    platform: process.platform,
+  }))
+})
 
 const server = createServer(async (req, res) => {
   const { pathname } = parse(req.url || '', true)

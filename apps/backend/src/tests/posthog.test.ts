@@ -1,14 +1,15 @@
-import type { NextFunction, Request, Response } from 'express'
+import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
+import type { AuthenticatedUser } from '../types/express'
 
 // Mocks globales
 vi.mock('../middleware/auth.middleware', () => ({
-  authMiddleware: (_req: Request, _res: Response, next: NextFunction) => {
-    if (_req)
-      _req.user = {
+  authMiddleware: (_req: IncomingMessage, _res: ServerResponse, next: () => void) => {
+    if (_req) {
+      (_req as unknown as { user: AuthenticatedUser }).user = {
         id: 'test-user-id',
         email: 'test@example.com',
         tenant_id: 'test-tenant',
@@ -16,7 +17,8 @@ vi.mock('../middleware/auth.middleware', () => ({
         user_metadata: {},
         aud: 'authenticated',
         created_at: new Date().toISOString(),
-      } as Express.User
+      } as AuthenticatedUser
+    }
     return next()
   },
 }))
@@ -57,7 +59,7 @@ describe.skip('PostHog Endpoints', () => {
   describe('POST /posthog/track', () => {
     it('should track event with valid data', async () => {
       const data = createTestEvent()
-      const res = await request(app).post('/posthog/track').send(data)
+      const res = await request(server).post('/posthog/track').send(data)
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data).toMatchObject({
@@ -67,7 +69,7 @@ describe.skip('PostHog Endpoints', () => {
     })
 
     it('should return 400 for missing event', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/posthog/track')
         .send({ ...createTestEvent(), event: '' })
       expect(res.status).toBe(400)
@@ -76,7 +78,7 @@ describe.skip('PostHog Endpoints', () => {
     })
 
     it('should return 400 for missing user_id', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/posthog/track')
         .send({ ...createTestEvent(), user_id: '' })
       expect(res.status).toBe(400)
@@ -90,7 +92,7 @@ describe.skip('PostHog Endpoints', () => {
         new Error('PostHog error'),
       )
       const data = createTestEvent()
-      const res = await request(app).post('/posthog/track').send(data)
+      const res = await request(server).post('/posthog/track').send(data)
       expect(res.status).toBe(500)
       expect(res.body.success).toBe(false)
     })
@@ -99,7 +101,7 @@ describe.skip('PostHog Endpoints', () => {
       const data = createTestEvent({
         properties: { nested: { value: 'test' }, array: [1, 2, 3] },
       })
-      const res = await request(app).post('/posthog/track').send(data)
+      const res = await request(server).post('/posthog/track').send(data)
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
@@ -108,7 +110,7 @@ describe.skip('PostHog Endpoints', () => {
   describe('POST /posthog/identify', () => {
     it('should identify user with valid data', async () => {
       const data = createTestTraits()
-      const res = await request(app).post('/posthog/identify').send(data)
+      const res = await request(server).post('/posthog/identify').send(data)
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data).toMatchObject({
@@ -118,7 +120,7 @@ describe.skip('PostHog Endpoints', () => {
     })
 
     it('should return 400 for missing user_id', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/posthog/identify')
         .send({ ...createTestTraits(), user_id: '' })
       expect(res.status).toBe(400)
@@ -132,7 +134,7 @@ describe.skip('PostHog Endpoints', () => {
         new Error('PostHog error'),
       )
       const data = createTestTraits()
-      const res = await request(app).post('/posthog/identify').send(data)
+      const res = await request(server).post('/posthog/identify').send(data)
       expect(res.status).toBe(500)
       expect(res.body.success).toBe(false)
     })
@@ -145,7 +147,7 @@ describe.skip('PostHog Endpoints', () => {
           metadata: { lastLogin: new Date().toISOString() },
         },
       })
-      const res = await request(app).post('/posthog/identify').send(data)
+      const res = await request(server).post('/posthog/identify').send(data)
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
@@ -153,7 +155,7 @@ describe.skip('PostHog Endpoints', () => {
 
   describe('GET /posthog/health', () => {
     it('should return health status', async () => {
-      const res = await request(app).get('/api/posthog/health')
+      const res = await request(server).get('/api/posthog/health')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data).toMatchObject({
@@ -167,7 +169,7 @@ describe.skip('PostHog Endpoints', () => {
       const originalEnv = process.env.POSTHOG_API_KEY
       delete process.env.POSTHOG_API_KEY
 
-      const res = await request(app).get('/api/posthog/health')
+      const res = await request(server).get('/api/posthog/health')
 
       expect(res.status).toBe(200)
       expect(res.body.data.status).toBe('not_configured')

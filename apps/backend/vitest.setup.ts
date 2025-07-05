@@ -54,6 +54,44 @@ vi.mock('@repo/db-types', () => ({
   TablesUpdate: { email: 'updated@example.com' },
 }))
 
+// Mock para auth.middleware.js
+vi.mock('./src/middleware/auth.middleware', () => ({
+  authMiddleware: vi.fn((req, res, next) => {
+    const authHeader = req.headers.authorization
+    const token = authHeader?.replace('Bearer ', '')
+    if (!token || token === 'invalid' || token === 'undefined') {
+      res.writeHead(401, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ message: 'No authentication token provided.', error: 'Unauthorized' }))
+      return
+    }
+    req.user = { id: 'test-user-id', email: 'test@example.com', role: 'user' }
+    next()
+  }),
+  optionalAuthMiddleware: vi.fn((req, res, next) => {
+    const authHeader = req.headers.authorization
+    if (authHeader) {
+      req.user = { id: 'test-user-id', email: 'test@example.com', role: 'user' }
+    }
+    next()
+  }),
+  requireRole: vi.fn((role) => vi.fn((req, res, next) => {
+    if (!req.user) {
+      res.writeHead(401, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Authentication required' }))
+      return
+    }
+    next()
+  })),
+  requireAdmin: vi.fn((req, res, next) => {
+    if (!req.user || req.user.role !== 'admin') {
+      res.writeHead(403, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Admin access required' }))
+      return
+    }
+    next()
+  }),
+}))
+
 // Mock para supabase.service.js
 const supabaseMock = {
   from: vi.fn((table) => {

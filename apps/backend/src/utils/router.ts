@@ -99,7 +99,7 @@ export class Router {
     const params = this.extractParams(route.path, path)
 
     // Parse request body for POST/PUT/PATCH requests
-    let body: any = undefined
+    let body: unknown = undefined
     if (['POST', 'PUT', 'PATCH'].includes(method)) {
       try {
         body = await this.parseRequestBody(req)
@@ -212,6 +212,40 @@ export class Router {
    */
   clear(): void {
     this.routes = []
+  }
+
+  /**
+   * Parse request body
+   */
+  private async parseRequestBody(req: IncomingMessage): Promise<unknown> {
+    return new Promise((resolve, reject) => {
+      let body = ''
+      
+      req.on('data', (chunk) => {
+        body += chunk.toString()
+      })
+      
+      req.on('end', () => {
+        try {
+          if (body) {
+            const contentType = req.headers['content-type'] || ''
+            if (contentType.includes('application/json')) {
+              resolve(JSON.parse(body))
+            } else {
+              resolve(body)
+            }
+          } else {
+            resolve({})
+          }
+        } catch (error) {
+          reject(error)
+        }
+      })
+      
+      req.on('error', (error) => {
+        reject(error)
+      })
+    })
   }
 }
 

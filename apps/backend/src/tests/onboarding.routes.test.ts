@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 
 // Mock the onboarding service
 vi.mock('../services/onboarding.service.js', () => ({
@@ -44,7 +44,7 @@ vi.mock('../middleware/auth.middleware.js', () => ({
 describe('Onboarding Routes', () => {
   describe('GET /onboarding', () => {
     it('should return 200 and onboarding status', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .get('/api/onboarding')
         .set('Authorization', 'Bearer test-token')
 
@@ -56,7 +56,7 @@ describe('Onboarding Routes', () => {
 
   describe('POST /onboarding/start', () => {
     it('should start onboarding with valid email', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/start')
         .set('Authorization', 'Bearer test-token')
         .send({ email: 'test@example.com' })
@@ -67,7 +67,7 @@ describe('Onboarding Routes', () => {
     })
 
     it('should return 400 with invalid email', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/start')
         .set('Authorization', 'Bearer test-token')
         .send({ email: 'invalid-email' })
@@ -79,7 +79,7 @@ describe('Onboarding Routes', () => {
 
   describe('POST /onboarding/complete', () => {
     it('should complete onboarding with valid user_id', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/complete')
         .set('Authorization', 'Bearer test-token')
         .send({ user_id: 'test-user-id' })
@@ -89,7 +89,7 @@ describe('Onboarding Routes', () => {
     })
 
     it('should return 400 with missing user_id', async () => {
-      const res = await request(app)
+      const res = await request(server)
         .post('/api/onboarding/complete')
         .set('Authorization', 'Bearer test-token')
         .send({})

@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { app } from '../index.js'
+import { server } from '../index.js'
 import { RuntimeService } from '../services/runtime.service.js'
 
 describe.skip('Runtime Routes', () => {
@@ -32,7 +32,7 @@ describe.skip('Runtime Routes', () => {
   })
 
   it('POST /runtime/jobs crea un job', async () => {
-    const res = await request(app).post('/runtime/jobs').send(job)
+    const res = await request(server).post('/runtime/jobs').send(job)
     expect(res.status).toBe(201)
     expect(res.body).toHaveProperty('id', job.id)
     expect(res.body).toHaveProperty('schedule', job.schedule)
@@ -40,26 +40,26 @@ describe.skip('Runtime Routes', () => {
   })
 
   it('GET /runtime/jobs lista jobs', async () => {
-    const res = await request(app).get('/api/runtime/jobs')
+    const res = await request(server).get('/api/runtime/jobs')
     expect(res.status).toBe(200)
     expect(Array.isArray(res.body)).toBe(true)
     expect(res.body.some((j) => j.id === job.id)).toBe(true)
   })
 
   it('POST /runtime/jobs/:id/pause pausa un job', async () => {
-    const res = await request(app).post(`/runtime/jobs/${job.id}/pause`)
+    const res = await request(server).post(`/runtime/jobs/${job.id}/pause`)
     expect(res.status).toBe(200)
     expect(res.body).toEqual({ ok: true })
   })
 
   it('POST /runtime/jobs/:id/resume reanuda un job', async () => {
-    const res = await request(app).post(`/runtime/jobs/${job.id}/resume`)
+    const res = await request(server).post(`/runtime/jobs/${job.id}/resume`)
     expect(res.status).toBe(200)
     expect(res.body).toEqual({ ok: true })
   })
 
   it('POST /runtime/agents/:name/run lanza un agente', async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post('/runtime/agents/refactor/run')
       .send({ dryRun: true })
     expect(res.status).toBe(200)
@@ -70,20 +70,20 @@ describe.skip('Runtime Routes', () => {
   })
 
   it('POST /runtime/agents/:name/run responde error si el agente no existe', async () => {
-    const res = await request(app).post('/runtime/agents/nope/run')
+    const res = await request(server).post('/runtime/agents/nope/run')
     expect(res.status).toBe(400)
     expect(res.body).toHaveProperty('ok', false)
     expect(res.body).toHaveProperty('error')
   })
 
   it('DELETE /runtime/jobs/:id elimina un job', async () => {
-    const res = await request(app).delete(`/runtime/jobs/${job.id}`)
+    const res = await request(server).delete(`/runtime/jobs/${job.id}`)
     expect(res.status).toBe(200)
     expect(res.body).toEqual({ ok: true })
   })
 
   it('POST /runtime/jobs responde error si falta id/schedule', async () => {
-    const res = await request(app).post('/runtime/jobs').send({})
+    const res = await request(server).post('/runtime/jobs').send({})
     expect(res.status).toBe(400)
   })
 
@@ -91,7 +91,7 @@ describe.skip('Runtime Routes', () => {
     vi.spyOn(RuntimeService, 'pauseJob').mockImplementation(() => {
       throw new Error('Job not found')
     })
-    const res = await request(app).post('/runtime/jobs/nope/pause')
+    const res = await request(server).post('/runtime/jobs/nope/pause')
     expect(res.status).toBe(404)
   })
 })
