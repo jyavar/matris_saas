@@ -1,0 +1,10 @@
+Genera una propuesta profesional para el siguiente proyecto:
+
+[TÍTULO]: {{title}}
+[DESCRIPCIÓN]: {{description}}
+[PRESUPUESTO]: {{budget}}
+
+Requisitos:
+- Propuesta persuasiva y profesional
+- Precio competitivo (80% del presupuesto)
+- Incluir experiencia y metodología 

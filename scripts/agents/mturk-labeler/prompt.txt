@@ -1,0 +1,8 @@
+Etiqueta la siguiente imagen de acuerdo a las instrucciones.
+
+[URL DE IMAGEN]: {{imageUrl}}
+
+Requisitos:
+- Etiqueta precisa y relevante
+- Formato: texto simple
+- Entregar en archivo .txt 

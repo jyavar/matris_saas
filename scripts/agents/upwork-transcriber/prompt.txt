@@ -1,0 +1,8 @@
+Transcribe el siguiente audio de forma precisa y profesional.
+
+[URL DE AUDIO]: {{audioUrl}}
+
+Requisitos:
+- Transcripción completa y sin errores
+- Formato limpio y legible
+- Entregar en archivo .txt 

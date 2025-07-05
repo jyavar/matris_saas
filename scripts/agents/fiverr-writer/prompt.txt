@@ -1,0 +1,9 @@
+Redacta un artículo profesional sobre el siguiente tema:
+
+[TEMA]: {{title}}
+[DESCRIPCIÓN]: {{description}}
+
+Requisitos:
+- Extensión mínima: 800 palabras
+- Estilo: Claro, profesional y persuasivo
+- Incluir introducción, desarrollo y conclusión 

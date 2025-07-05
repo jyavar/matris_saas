@@ -4,6 +4,12 @@ import { minimatch } from 'minimatch'
 import * as path from 'path'
 import { z } from 'zod'
 
+import { runAgent as runFiverrWriter } from './fiverr-writer/executor'
+import { runAgent as runFreelancerLeadgen } from './freelancer-leadgen/executor'
+import { runAgent as runMturkLabeler } from './mturk-labeler/executor'
+import { runAgent as runN8nMicroservice } from './n8n-microservice/executor'
+import { runAgent as runUpworkTranscriber } from './upwork-transcriber/executor'
+
 // Schema for .strato-manifest.json
 const manifestSchema = z.object({
   root: z.string(),
@@ -73,4 +79,27 @@ export function writeLog(logMessage: string): void {
   }
   const logFile = path.resolve(logDir, 'context-violations.log')
   fs.appendFileSync(logFile, logMessage + '\n')
+}
+
+export async function runAgent(agentName: string): Promise<void> {
+  switch (agentName) {
+    case '@fiverr-writer':
+      await runFiverrWriter()
+      break
+    case '@upwork-transcriber':
+      await runUpworkTranscriber()
+      break
+    case '@mturk-labeler':
+      await runMturkLabeler()
+      break
+    case '@n8n-microservice':
+      await runN8nMicroservice()
+      break
+    case '@freelancer-leadgen':
+      await runFreelancerLeadgen()
+      break
+    // ... existing agents ...
+    default:
+      throw new Error(`Unknown agent: ${agentName}`)
+  }
 }

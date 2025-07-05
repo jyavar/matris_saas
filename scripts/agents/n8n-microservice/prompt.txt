@@ -1,0 +1,9 @@
+Ejecuta el siguiente microservicio con los parámetros proporcionados.
+
+[SERVICIO]: {{service}}
+[INPUT]: {{input}}
+
+Requisitos:
+- Ejecutar el flujo correspondiente
+- Procesar los datos de entrada
+- Entregar resultado en formato JSON 
