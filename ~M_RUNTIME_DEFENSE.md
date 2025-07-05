@@ -99,6 +99,160 @@ Paths:
 - `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
 - `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
 - `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/utils/runtime-validation.helper.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/utils/runtime-validation.helper.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/runtime.controller.js` - Archivo fuente
+- `scripts/agents/runtime/watchdog.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.test.ts` - Archivo de test
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+- `scripts/agents/runtime/__tests__/watchdog.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/utils/runtime-validation.helper.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/runtime-validation.helper.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/runtime.controller.js` - Archivo fuente
+- `scripts/agents/runtime/watchdog.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.test.ts` - Archivo de test
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+- `scripts/agents/runtime/__tests__/watchdog.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/utils/runtime-validation.helper.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/utils/runtime-validation.helper.js` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/runtime.controller.js` - Archivo fuente
+- `scripts/agents/runtime/watchdog.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.test.ts` - Archivo de test
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+- `scripts/agents/runtime/__tests__/watchdog.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/utils/runtime-validation.helper.ts` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/utils/runtime-validation.helper.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/runtime.controller.js` - Archivo fuente
+- `scripts/agents/runtime/watchdog.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+- `scripts/agents/runtime/__tests__/watchdog.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/backend/src/services/runtime.service.ts` - Archivo fuente
+- `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/web/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-runtime.d.ts` - Archivo fuente
+- `apps/frontend/node_modules/@types/react/jsx-dev-runtime.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/runtime.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/runtime.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/runtime.controller.js` - Archivo fuente
+- `scripts/agents/runtime/watchdog.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/backend/src/tests/runtime.routes.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/runtime.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/runtime.routes.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/runtime.service.test.js` - Archivo de test
+- `scripts/agents/runtime/__tests__/watchdog.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/web/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/web/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-runtime.js` - Archivo fuente
+- `apps/frontend/node_modules/react/jsx-dev-runtime.js` - Archivo fuente
 - `apps/backend/src/services/runtime.service.ts` - Archivo fuente
 - `apps/backend/src/controllers/runtime.controller.ts` - Archivo fuente
 - `apps/backend/src/routes/runtime.routes.ts` - Archivo fuente

@@ -100,6 +100,281 @@ Paths:
 - `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
 - `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
 - `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics-reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/dto/create-report.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics-reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics-reporting.controller.js` - Archivo fuente
+- `scripts/agents/analytics/report.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/src/tests/debug-analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.unit.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics-reporting.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/debug-analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.unit.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics-reporting.test.js` - Archivo de test
+- `scripts/agents/analytics/__tests__/report.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics-reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/dto/create-report.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics-reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics-reporting.controller.js` - Archivo fuente
+- `scripts/agents/analytics/report.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/src/tests/debug-analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.unit.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics-reporting.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/debug-analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.unit.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics-reporting.test.js` - Archivo de test
+- `scripts/agents/analytics/__tests__/report.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.d.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics-reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/dto/create-report.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics-reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics-reporting.controller.js` - Archivo fuente
+- `scripts/agents/analytics/report.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/src/tests/debug-analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.unit.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics-reporting.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/debug-analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.unit.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics-reporting.test.js` - Archivo de test
+- `scripts/agents/analytics/__tests__/report.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics-reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/dto/create-report.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics-reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics-reporting.controller.js` - Archivo fuente
+- `scripts/agents/analytics/report.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/src/tests/debug-analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.unit.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics-reporting.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/debug-analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.unit.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics-reporting.test.js` - Archivo de test
+- `scripts/agents/analytics/__tests__/report.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics/analytics.controller.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/analytics-reporting.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/analytics.service.ts` - Archivo fuente
+- `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics.routes.ts` - Archivo fuente
+- `apps/backend/src/routes/analytics-reporting.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente
+- `apps/backend/src/controllers/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AnalyticsPanel.stories.tsx` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/dto/create-report.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/analytics-reporting/dto/create-report.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/analytics.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/analytics-reporting.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics.routes.js` - Archivo fuente
+- `apps/backend/dist/src/routes/analytics-reporting.routes.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics.controller.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/analytics-reporting.controller.js` - Archivo fuente
+- `scripts/agents/analytics/report.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AnalyticsPanel.test.tsx` - Archivo de test
+- `apps/backend/src/tests/debug-analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.unit.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics.test.ts` - Archivo de test
+- `apps/backend/src/tests/analytics-reporting.test.ts` - Archivo de test
+- `apps/backend/dist/src/tests/debug-analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.unit.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics.test.js` - Archivo de test
+- `apps/backend/dist/src/tests/analytics-reporting.test.js` - Archivo de test
+- `scripts/agents/analytics/__tests__/report.test.ts` - Archivo de test
+
+### **Config Files**
+
+
+### **Doc Files**
+## **Source Files**
+- `apps/frontend/src/services/analytics.api.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics-reporting/analytics-reporting.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.service.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.module.ts` - Archivo fuente
+- `apps/backend-nest/src/analytics/analytics.controller.ts` - Archivo fuente
 - `apps/backend/src/services/analytics.service.ts` - Archivo fuente
 - `apps/backend/src/services/analytics-reporting.service.ts` - Archivo fuente
 - `apps/backend/src/controllers/analytics.controller.ts` - Archivo fuente

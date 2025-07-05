@@ -1,16 +1,16 @@
 {
-  "timestamp": "2025-07-02T04:35:32.120Z",
+  "timestamp": "2025-07-05T05:40:36.712Z",
   "status": "FAIL",
   "checks": {
     "linting": {
       "status": "FAIL",
       "message": "Linting errors found",
-      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\nfrontend:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\nfrontend#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\n@strato/backend-nest:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n@strato/backend-nest#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "tests": {
       "status": "FAIL",
       "message": "Some tests are failing",
-      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nbackend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nbackend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "details": "Command failed: pnpm test\nturbo 2.5.4\n\n@strato/backend-nest:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n@strato/backend-nest#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "coverage": {
       "status": "FAIL",

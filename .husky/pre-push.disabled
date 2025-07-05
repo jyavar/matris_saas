@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🚀 STRATO Pre-push Hook - Validaciones completas..."
+
+# 1. Build completo
+echo "🏗️ Verificando build completo..."
+pnpm build
+
+# 2. Tests unitarios
+echo "🧪 Ejecutando tests unitarios..."
+pnpm test
+
+# 3. Type checking completo
+echo "🔧 Verificando tipos TypeScript..."
+pnpm typecheck
+
+# 4. Lint completo
+echo "🔍 Ejecutando lint completo..."
+pnpm lint
+
+echo "✅ Pre-push hook completado exitosamente!" 

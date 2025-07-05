@@ -4,14 +4,15 @@
 // usage: pnpm tsx scripts/agents/env/validate-env.ts
 // tags: env, validation, strato
 
+import { config } from 'dotenv'
 import fs from 'fs'
 
-const requiredVars = [
-  'SUPABASE_URL',
-  'SUPABASE_KEY',
-  'JWT_SECRET',
-  'STRIPE_SECRET_KEY',
-]
+// Load environment variables from .env file
+config()
+
+const requiredVars = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'JWT_SECRET']
+
+const optionalVars = ['STRIPE_SECRET_KEY', 'OPENAI_API_KEY', 'POSTHOG_API_KEY']
 
 export interface EnvAgentDeps {
   writeFileSync: (file: string, data: string) => void
@@ -28,14 +29,27 @@ export default async function runAgent(
     actionsPerformed: [] as string[],
   }
   const missing = requiredVars.filter((v) => !process.env[v])
+  const missingOptional = optionalVars.filter((v) => !process.env[v])
+
   if (missing.length === 0) {
-    log.actionsPerformed.push('Todas las variables de entorno están presentes.')
+    log.actionsPerformed.push(
+      '✅ Todas las variables requeridas están presentes.',
+    )
   } else {
     log.status = 'fail'
-    log.errors.push(`Faltan: ${missing.join(', ')}`)
+    log.errors.push(`❌ Variables requeridas faltantes: ${missing.join(', ')}`)
     log.actionsPerformed.push('Validación de variables de entorno fallida.')
   }
-  log.actionsPerformed.push(`Variables auditadas: ${requiredVars.length}`)
+
+  if (missingOptional.length > 0) {
+    log.actionsPerformed.push(
+      `⚠️ Variables opcionales faltantes: ${missingOptional.join(', ')}`,
+    )
+  }
+
+  log.actionsPerformed.push(
+    `📊 Variables auditadas: ${requiredVars.length} requeridas, ${optionalVars.length} opcionales`,
+  )
   deps.writeFileSync(
     'audit-artifacts/reports/env-report.json',
     JSON.stringify(log, null, 2),

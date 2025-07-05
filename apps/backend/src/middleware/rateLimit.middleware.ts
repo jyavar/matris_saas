@@ -17,18 +17,16 @@ interface RateLimitStore {
 
 const store: RateLimitStore = {}
 
-const getClientKey = (req: IncomingMessage): string => {
-  const ip = req.headers['x-forwarded-for'] || 
-             req.headers['x-real-ip'] || 
-             req.socket.remoteAddress || 
-             'unknown'
-  return Array.isArray(ip) ? ip[0] : ip
+const getClientIp = (req: IncomingMessage): string => {
+  const forwarded = req.headers['x-forwarded-for']
+  const ip = Array.isArray(forwarded) ? forwarded[0] : forwarded
+  return Array.isArray(ip) ? ip[0] : ip || 'unknown'
 }
 
 const cleanupExpiredEntries = (): void => {
   const now = Date.now()
   Object.keys(store).forEach(key => {
-    if (store[key].resetTime < now) {
+    if (store[key] && store[key].resetTime < now) {
       delete store[key]
     }
   })
@@ -39,7 +37,7 @@ setInterval(cleanupExpiredEntries, 60000)
 
 export const createRateLimit = (config: RateLimitConfig) => {
   return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
-    const clientKey = getClientKey(req)
+    const clientKey = getClientIp(req)
     const now = Date.now()
 
     // Clean up expired entries

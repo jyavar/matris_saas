@@ -46,9 +46,19 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
       next()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return sendValidationError(res, error.errors, 'Invalid request body')
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid request body',
+          details: error.errors
+        }))
+      } else {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Internal server error'
+        }))
       }
-      return sendValidationError(res, [], 'Failed to parse request body')
     }
   }
 }
@@ -57,7 +67,7 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
  * Query validation middleware
  */
 export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
-  return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+  return async (req: IncomingMessage, res: ServerResponse, next: () => void): Promise<void> => {
     try {
       const url = req.url || ''
       const queryString = url.split('?')[1] || ''
@@ -82,7 +92,7 @@ export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
         res.writeHead(500, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
-          error: 'Validation error'
+          error: 'Internal server error'
         }))
       }
     }
