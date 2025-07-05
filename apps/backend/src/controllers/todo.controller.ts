@@ -1,4 +1,4 @@
-import { ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
@@ -26,7 +26,10 @@ export const todoController = {
    * Get all todos for current user
    */
   async getAllTodos(
+    req: IncomingMessage,
     res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
     user?: AuthenticatedUser,
   ): Promise<void> {
     try {
@@ -63,12 +66,14 @@ export const todoController = {
    * Get todo by ID
    */
   async getTodoById(
+    req: IncomingMessage,
     res: ServerResponse,
-    params: Record<string, string>,
+    params?: Record<string, string>,
+    body?: RequestBody,
     user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = params
+      const { id } = params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -119,8 +124,10 @@ export const todoController = {
    * Create todo
    */
   async createTodo(
+    req: IncomingMessage,
     res: ServerResponse,
-    body: RequestBody,
+    params?: Record<string, string>,
+    body?: RequestBody,
     user?: AuthenticatedUser,
   ): Promise<void> {
     try {
@@ -174,13 +181,14 @@ export const todoController = {
    * Update todo
    */
   async updateTodo(
+    req: IncomingMessage,
     res: ServerResponse,
-    params: Record<string, string>,
-    body: RequestBody,
+    params?: Record<string, string>,
+    body?: RequestBody,
     user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = params
+      const { id } = params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -248,12 +256,14 @@ export const todoController = {
    * Delete todo
    */
   async deleteTodo(
+    req: IncomingMessage,
     res: ServerResponse,
-    params: Record<string, string>,
+    params?: Record<string, string>,
+    body?: RequestBody,
     user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = params
+      const { id } = params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({

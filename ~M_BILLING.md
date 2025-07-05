@@ -122,6 +122,49 @@ Paths:
 - `apps/backend-nest/dist/billing/dto/index.d.ts` - Archivo fuente
 - `apps/backend-nest/dist/billing/dto/create-invoice.dto.js` - Archivo fuente
 - `apps/backend-nest/dist/billing/dto/create-invoice.dto.d.ts` - Archivo fuente
+- `apps/backend/dist/src/services/stripe.service.js` - Archivo fuente
+- `apps/backend/dist/src/services/billing.service.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/billing.controller.js` - Archivo fuente
+- `apps/backend/dist/src/routes/billing.routes.js` - Archivo fuente
+
+### **Test Files**
+- `apps/backend-nest/src/billing/billing.service.spec.ts` - Archivo de test
+- `apps/backend-nest/src/billing/billing.controller.spec.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/stripe.service.test.ts` - Archivo de test
+- `apps/backend/src/services/__tests__/billing.service.test.ts` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/stripe.service.test.js` - Archivo de test
+- `apps/backend/dist/src/services/__tests__/billing.service.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/backend/node_modules/stripe/package.json` - Archivo de configuración
+- `apps/backend/node_modules/@types/stripe/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/backend/node_modules/stripe/README.md` - Archivo de documentación
+- `apps/backend/node_modules/stripe/CHANGELOG.md` - Archivo de documentación
+- `apps/backend/node_modules/@types/stripe/README.md` - Archivo de documentación## **Source Files**
+- `apps/backend-nest/src/billing/billing.service.ts` - Archivo fuente
+- `apps/backend-nest/src/billing/billing.module.ts` - Archivo fuente
+- `apps/backend-nest/src/billing/billing.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.service.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.module.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/billing.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/stripe.service.ts` - Archivo fuente
+- `apps/backend/src/services/billing.service.ts` - Archivo fuente
+- `apps/backend/src/routes/billing.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/billing.controller.ts` - Archivo fuente
+- `apps/backend-nest/src/billing/dto/update-invoice.dto.ts` - Archivo fuente
+- `apps/backend-nest/src/billing/dto/index.ts` - Archivo fuente
+- `apps/backend-nest/src/billing/dto/create-invoice.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/update-invoice.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/update-invoice.dto.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/index.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/index.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/create-invoice.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/billing/dto/create-invoice.dto.d.ts` - Archivo fuente
 - `apps/backend/dist/src/routes/billing.routes.js` - Archivo fuente
 - `apps/backend/dist/src/services/stripe.service.js` - Archivo fuente
 - `apps/backend/dist/src/services/billing.service.js` - Archivo fuente

@@ -1,7 +1,9 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { posthogService } from '../services/posthog.service.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 // Schemas de validación
 const trackEventSchema = z.object({
@@ -17,12 +19,14 @@ const identifyUserSchema = z.object({
 
 export const PostHogController = {
   async trackEvent(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const validated = trackEventSchema.parse(req.body)
+      const validated = trackEventSchema.parse(body)
 
       const result = await posthogService.trackEvent({
         event: validated.event,
@@ -35,22 +39,31 @@ export const PostHogController = {
         'Event tracked in PostHog',
       )
 
-      res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: result,
-      })
+      }))
     } catch (error) {
-      next(error)
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+      } else {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      }
     }
   },
 
   async identifyUser(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const validated = identifyUserSchema.parse(req.body)
+      const validated = identifyUserSchema.parse(body)
 
       const result = await posthogService.identifyUser({
         user_id: validated.user_id,
@@ -59,12 +72,19 @@ export const PostHogController = {
 
       logger.info({ userId: validated.user_id }, 'User identified in PostHog')
 
-      res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: result,
-      })
+      }))
     } catch (error) {
-      next(error)
+      if (error instanceof z.ZodError) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+      } else {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      }
     }
   },
 }

@@ -97,11 +97,27 @@ export class Router {
     // Extract path parameters
     const params = this.extractParams(route.path, path)
 
+    // Parse request body for POST/PUT/PATCH requests
+    let body: any = undefined
+    if (['POST', 'PUT', 'PATCH'].includes(method)) {
+      try {
+        body = await this.parseRequestBody(req)
+      } catch (error) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success: false,
+          error: 'Invalid request body',
+          timestamp: new Date().toISOString(),
+        }))
+        return
+      }
+    }
+
     // Execute middlewares
     await this.executeMiddlewares(route.middlewares, req, res)
 
     // Execute handler
-    await route.handler(req, res, params)
+    await route.handler(req, res, params, body)
   }
 
   /**

@@ -1,7 +1,9 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const createCampaignSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -20,122 +22,181 @@ const updateCampaignSchema = z.object({
   status: z.enum(['draft', 'sent', 'scheduled']).optional(),
 })
 
-export class EmailCampaignsController {
+export const emailCampaignsController = {
   async getCampaigns(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
       const campaigns = await emailCampaignsService.getCampaigns()
-      res
-        .status(200)
-        .json({ success: true, data: campaigns, count: campaigns.length })
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, data: campaigns, count: campaigns.length }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
-  }
+  },
 
   async getCampaignById(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = req.params
-      if (!id) throw new ApiError(400, 'Campaign ID is required')
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign ID is required' }))
+        return
+      }
       const campaign = await emailCampaignsService.getCampaignById(id)
-      if (!campaign) throw new ApiError(404, 'Campaign not found')
-      res.status(200).json({ success: true, data: campaign })
+      if (!campaign) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
+        return
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, data: campaign }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
-  }
+  },
 
   async createCampaign(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
       const validated = createCampaignSchema.parse(
-        req.body,
+        body,
       ) as import('../services/email-campaigns.service').CreateCampaignData
       const campaign = await emailCampaignsService.createCampaign(validated)
-      res
-        .status(201)
-        .json({ success: true, data: campaign, message: 'Campaign created' })
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, data: campaign, message: 'Campaign created' }))
     } catch (error) {
       if (error instanceof z.ZodError) {
-        next(new ApiError(400, 'Invalid input data'))
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
       } else {
-        next(error)
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
       }
     }
-  }
+  },
 
   async updateCampaign(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = req.params
-      if (!id) throw new ApiError(400, 'Campaign ID is required')
-      const validated = updateCampaignSchema.parse(req.body)
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign ID is required' }))
+        return
+      }
+      const validated = updateCampaignSchema.parse(body)
       const campaign = await emailCampaignsService.updateCampaign(id, validated)
-      if (!campaign) throw new ApiError(404, 'Campaign not found')
-      res
-        .status(200)
-        .json({ success: true, data: campaign, message: 'Campaign updated' })
+      if (!campaign) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
+        return
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, data: campaign, message: 'Campaign updated' }))
     } catch (error) {
       if (error instanceof z.ZodError) {
-        next(new ApiError(400, 'Invalid input data'))
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
       } else {
-        next(error)
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
       }
     }
-  }
+  },
 
   async deleteCampaign(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = req.params
-      if (!id) throw new ApiError(400, 'Campaign ID is required')
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign ID is required' }))
+        return
+      }
       const deleted = await emailCampaignsService.deleteCampaign(id)
-      if (!deleted) throw new ApiError(404, 'Campaign not found')
-      res.status(200).json({ success: true, message: 'Campaign deleted' })
+      if (!deleted) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
+        return
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, message: 'Campaign deleted' }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
-  }
+  },
 
   async sendCampaign(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const { id } = req.params
-      if (!id) throw new ApiError(400, 'Campaign ID is required')
+      const { id } = params || {}
+      if (!id) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Campaign ID is required' }))
+        return
+      }
       const result = await emailCampaignsService.sendCampaign(id)
-      if (!result.success)
-        throw new ApiError(404, result.error || 'Send failed')
-      res.status(200).json({ success: true, message: 'Campaign sent' })
+      if (!result.success) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: result.error || 'Send failed' }))
+        return
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, message: 'Campaign sent' }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
-  }
+  },
 
   // Métodos alias para compatibilidad con el router
-  getAll = this.getCampaigns
-  create = this.createCampaign
-  getById = this.getCampaignById
-  update = this.updateCampaign
-  delete = this.deleteCampaign
+  getAll: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return emailCampaignsController.getCampaigns(req, res, params, body, user)
+  },
+  create: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return emailCampaignsController.createCampaign(req, res, params, body, user)
+  },
+  getById: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return emailCampaignsController.getCampaignById(req, res, params, body, user)
+  },
+  update: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return emailCampaignsController.updateCampaign(req, res, params, body, user)
+  },
+  delete: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return emailCampaignsController.deleteCampaign(req, res, params, body, user)
+  },
 }
-
-export const emailCampaignsController = new EmailCampaignsController()

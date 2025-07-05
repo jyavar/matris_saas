@@ -111,5 +111,11 @@ export const authController = {
     }
   },
 
-
+  // Alias methods for route compatibility
+  signUp: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return authController.register(req, res, params, body, user)
+  },
+  signIn: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return authController.login(req, res, params, body, user)
+  },
 }

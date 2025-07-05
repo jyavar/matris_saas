@@ -249,6 +249,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.50.0
         version: 2.50.3
+      '@types/express':
+        specifier: ^5.0.3
+        version: 5.0.3
       '@types/stripe':
         specifier: ^8.0.417
         version: 8.0.417(@types/node@24.0.10)
@@ -261,6 +264,9 @@ importers:
       dotenv:
         specifier: ^16.5.0
         version: 16.6.1
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
       helmet:
         specifier: 7.0.0
         version: 7.0.0

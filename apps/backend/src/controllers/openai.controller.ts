@@ -1,9 +1,11 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { openaiService } from '../services/openai.service.js'
 import { ApiError } from '../utils/ApiError.js'
 import { enforceExactShape } from '../utils/enforceExactShape.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const generateTextSchema = z.object({
   user_id: z.string().min(1),
@@ -11,12 +13,21 @@ const generateTextSchema = z.object({
 })
 
 export const openaiController = {
-  async generateText(req: Request, res: Response, next: NextFunction) {
+  async generateText(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const user = req.user
-      if (!user?.id) throw new ApiError(401, 'Unauthorized')
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Unauthorized' }))
+        return
+      }
       const prompt =
-        req.body && typeof req.body.prompt === 'string' ? req.body.prompt : ''
+        body && typeof body.prompt === 'string' ? body.prompt : ''
       const user_id = user && typeof user.id === 'string' ? user.id : ''
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const input = enforceExactShape({
@@ -26,11 +37,13 @@ export const openaiController = {
       const parsed = generateTextSchema.safeParse(input)
 
       if (!parsed.success) {
-        return res.status(400).json({
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
           success: false,
           error: 'Validation error',
           details: parsed.error.errors,
-        })
+        }))
+        return
       }
 
       const result = await openaiService.generateText({
@@ -40,12 +53,14 @@ export const openaiController = {
 
       logger.info({ userId: parsed.data.user_id }, 'Text generated with OpenAI')
 
-      return res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: result,
-      })
+      }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 }

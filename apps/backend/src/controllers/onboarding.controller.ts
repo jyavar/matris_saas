@@ -1,8 +1,10 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 // Schemas de validación
 const startOnboardingSchema = z.object({
@@ -15,50 +17,76 @@ const completeOnboardingSchema = z.object({
 
 export const OnboardingController = {
   async getOnboarding(
-    req: Request,
-    res: Response,
-    next: NextFunction,
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const user = req.user
-      if (!user?.id) throw new ApiError(401, 'Unauthorized')
+      if (!user?.id) {
+        res.writeHead(401, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Unauthorized' }))
+        return
+      }
       const onboarding = await onboardingService.getOnboarding(user.id)
-      if (!onboarding) throw new ApiError(404, 'Onboarding not found')
-      res.status(200).json({ success: true, data: onboarding })
+      if (!onboarding) {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Onboarding not found' }))
+        return
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: true, data: onboarding }))
     } catch (error) {
-      next(error)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 
-  async startOnboarding(req: Request, res: Response, next: NextFunction) {
+  async startOnboarding(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const validated = startOnboardingSchema.parse(req.body)
+      const validated = startOnboardingSchema.parse(body)
 
       const onboarding = await onboardingService.startOnboarding({
         email: validated.email,
       })
 
       logger.info(
-        { userId: req.user?.id, email: validated.email },
+        { userId: user?.id, email: validated.email },
         'Onboarding started',
       )
 
-      return res.status(201).json({
+      res.writeHead(201, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: onboarding,
-      })
+      }))
     } catch (error) {
       if (error instanceof z.ZodError) {
-        next(new ApiError(400, 'Invalid input data'))
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
       } else {
-        next(error)
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
       }
     }
   },
 
-  async completeOnboarding(req: Request, res: Response, next: NextFunction) {
+  async completeOnboarding(
+    req: IncomingMessage,
+    res: ServerResponse,
+    params?: Record<string, string>,
+    body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const validated = completeOnboardingSchema.parse(req.body)
+      const validated = completeOnboardingSchema.parse(body)
 
       const onboarding = await onboardingService.completeOnboarding({
         user_id: validated.user_id,
@@ -66,17 +94,34 @@ export const OnboardingController = {
 
       logger.info({ userId: validated.user_id }, 'Onboarding completed')
 
-      return res.status(200).json({
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
         success: true,
         data: onboarding,
-      })
+      }))
     } catch (error) {
       if (error instanceof z.ZodError) {
-        next(new ApiError(400, 'Invalid input data'))
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
       } else {
-        next(error)
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
       }
     }
+  },
+
+  // Alias methods for route compatibility
+  getOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.getOnboarding(req, res, params, body, user)
+  },
+  updateOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.startOnboarding(req, res, params, body, user)
+  },
+  getOnboardingStepById: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.getOnboarding(req, res, params, body, user)
+  },
+  updateOnboardingStep: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.completeOnboarding(req, res, params, body, user)
   },
 }
 
