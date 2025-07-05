@@ -7,8 +7,8 @@ STRATO es un monorepo SaaS con arquitectura modular:
 ```
 matriz_cursor/
 ├── apps/
-│   ├── backend/          # API Node.js/Express + Supabase (puerto 3001)
-│   ├── backend-nest/     # API NestJS + Supabase (puerto 3002) - Migración en progreso
+│   ├── backend/          # API Node.js puro + Supabase (puerto 3001)
+│   ├── backend-nest/     # API NestJS + Supabase (puerto 3002)
 │   ├── frontend/         # React + Vite + TypeScript
 │   └── web/             # Next.js Landing + Control Tower
 ├── packages/             # Librerías compartidas
@@ -77,7 +77,7 @@ matriz_cursor/
 - **Workspace**: Para paquetes internos (@repo/db-types)
 
 ### Error Handling
-- **Controllers**: Try/catch con next(error)
+- **Controllers**: Try/catch con manejo de errores centralizado
 - **Services**: Throw ApiError con códigos HTTP
 - **Frontend**: Error boundaries y estados de error
 
@@ -685,7 +685,7 @@ jobs:
 ### Authentication
 - **Supabase Auth**: JWT tokens
 - **Middleware**: authMiddleware para rutas protegidas
-- **Rate Limiting**: Implementación nativa de limitación de peticiones para Node.js puro (sin Express)
+- **Rate Limiting**: Implementación nativa de limitación de peticiones para Node.js puro
 - **CORS**: Configurado para producción
 - **Validación de tokens**: Siempre validar JWT en endpoints protegidos. Ejemplo:
   ```ts
