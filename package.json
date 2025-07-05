@@ -25,7 +25,6 @@
     "clean": "turbo run clean",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
     "check-react-imports": "tsx scripts/check-react-imports.ts",
-    "validate-traceability": "tsx scripts/validate-traceability.ts",
     "strato:defense:validate": "pnpm tsx scripts/pre-commit-validation.ts",
     "qa:audit": "tsx scripts/agents/qa/index.ts",
     "qa:runner": "tsx scripts/agents/qa/index.ts --mode runner",

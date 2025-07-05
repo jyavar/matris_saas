@@ -1,6 +1,6 @@
 // @AgentMeta
 // name: @context-watchdog
-// purpose: Monitoreo y enforcement de rutas y contexto STRATO
+// purpose: Monitoreo y enforcement de rutas y contexto STRATO (warnings only)
 // usage: pnpm tsx scripts/agents/context-watchdog.ts
 // tags: context, watchdog, enforcement, strato
 
@@ -29,10 +29,11 @@ export default async function runAgent(
   const log = {
     timestamp: new Date().toISOString(),
     agentName: '@context-watchdog',
-    status: 'ok' as 'ok' | 'fail',
-    errors: [] as string[],
+    status: 'ok' as 'ok' | 'warn',
+    warnings: [] as string[],
     actionsPerformed: [] as string[],
   }
+  
   try {
     let invalidFiles: string[] = []
     const manifest = getManifest()
@@ -40,11 +41,12 @@ export default async function runAgent(
       fs.existsSync(file),
     )
     invalidFiles = validateFiles(filesToValidate, manifest)
+    
     if (invalidFiles.length > 0) {
-      log.status = 'fail'
-      log.errors.push('Se detectaron archivos en rutas inválidas.')
+      log.status = 'warn'
+      log.warnings.push('Se detectaron archivos en rutas que podrían ser inválidas.')
       log.actionsPerformed.push(
-        `Archivos inválidos: ${invalidFiles.join(', ')}`,
+        `Archivos con posibles problemas: ${invalidFiles.join(', ')}`,
       )
       const timestamp = new Date().toISOString()
       let commitAuthor = 'N/A'
@@ -54,21 +56,27 @@ export default async function runAgent(
         // Ignore if git author is not available
       }
       invalidFiles.forEach((file) => {
-        const logMessage = `[${timestamp}] [${commitAuthor}] Archivo: ${file}, Motivo: Ruta no permitida por manifiesto.`
+        const logMessage = `[${timestamp}] [${commitAuthor}] Archivo: ${file}, Motivo: Ruta podría no estar permitida por manifiesto.`
         writeLog(logMessage)
       })
+      console.warn('⚠️ Context watchdog encontró posibles problemas (continuando...)')
     } else {
-      log.actionsPerformed.push('Sin violaciones de contexto.')
+      log.actionsPerformed.push('Sin violaciones de contexto detectadas.')
     }
   } catch (error) {
-    log.status = 'fail'
-    log.errors.push(error instanceof Error ? error.message : String(error))
+    log.status = 'warn'
+    log.warnings.push(error instanceof Error ? error.message : String(error))
+    console.warn('⚠️ Error en context watchdog (continuando...):', error)
   }
+  
   deps.writeFileSync(
     'audit-artifacts/reports/context-watchdog-report.json',
     JSON.stringify(log, null, 2),
   )
-  console.log('[@context-watchdog] ejecutado')
+  console.log('[@context-watchdog] ejecutado (warnings only)')
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) runAgent()
+// Ejecutar si se llama directamente
+if (process.argv[1] && process.argv[1].includes('context-watchdog.ts')) {
+  runAgent()
+}

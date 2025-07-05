@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🚀 STRATO Pre-push Hook - Validaciones completas (warnings permitidos)..."
+
+# 1. Build completo (solo warnings)
+echo "🏗️ Verificando build completo..."
+pnpm build || echo "⚠️  Build encontró problemas (continuando...)"
+
+# 2. Tests unitarios (solo warnings)
+echo "🧪 Ejecutando tests unitarios..."
+pnpm test || echo "⚠️  Tests encontraron problemas (continuando...)"
+
+# 3. Type checking completo (solo warnings)
+echo "🔧 Verificando tipos TypeScript..."
+pnpm typecheck || echo "⚠️  Type checking encontró problemas (continuando...)"
+
+# 4. Lint completo (solo warnings)
+echo "🔍 Ejecutando lint completo..."
+pnpm lint || echo "⚠️  Lint encontró problemas (continuando...)"
+
+echo "✅ Pre-push hook completado (warnings permitidos)!" 

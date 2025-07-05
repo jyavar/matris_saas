@@ -137,6 +137,59 @@ Paths:
 - `apps/backend-nest/dist/auth/auth.controller.js` - Archivo fuente
 - `apps/backend-nest/dist/auth/auth.controller.d.ts` - Archivo fuente
 - `apps/backend/src/services/auth.service.ts` - Archivo fuente
+- `apps/backend/src/routes/auth.routes.ts` - Archivo fuente
+- `apps/backend/src/controllers/utils.auth.ts` - Archivo fuente
+- `apps/backend/src/controllers/types.auth.ts` - Archivo fuente
+- `apps/backend/src/controllers/index.auth.ts` - Archivo fuente
+- `apps/backend/src/controllers/auth.controller.ts` - Archivo fuente
+- `apps/backend/src/middleware/auth.middleware.ts` - Archivo fuente
+- `apps/frontend/src/components/ui/AuthForm.tsx` - Archivo fuente
+- `apps/frontend/src/components/ui/AuthForm.stories.tsx` - Archivo fuente
+- `apps/frontend/src/components/auth/ProtectedRoute.tsx` - Archivo fuente
+- `apps/backend-nest/src/auth/guards/jwt-auth.guard.ts` - Archivo fuente
+- `apps/backend-nest/src/auth/dto/auth.dto.ts` - Archivo fuente
+- `apps/backend-nest/dist/auth/guards/jwt-auth.guard.js` - Archivo fuente
+- `apps/backend-nest/dist/auth/guards/jwt-auth.guard.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/auth/dto/auth.dto.js` - Archivo fuente
+- `apps/backend-nest/dist/auth/dto/auth.dto.d.ts` - Archivo fuente
+- `apps/backend/src/tests/mocks/authMiddleware.mock.ts` - Archivo fuente
+- `apps/backend/dist/src/services/auth.service.js` - Archivo fuente
+- `apps/backend/dist/src/routes/auth.routes.js` - Archivo fuente
+- `apps/backend/dist/src/middleware/auth.middleware.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/utils.auth.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/types.auth.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/index.auth.js` - Archivo fuente
+- `apps/backend/dist/src/controllers/auth.controller.js` - Archivo fuente
+- `apps/backend/dist/src/tests/mocks/authMiddleware.mock.js` - Archivo fuente
+- `apps/frontend/src/app/api/auth/signup-tenant/route.ts` - Archivo fuente
+
+### **Test Files**
+- `apps/frontend/src/tests/AuthForm.test.tsx` - Archivo de test
+- `apps/backend/src/tests/auth.test.ts` - Archivo de test
+- `apps/frontend/src/components/auth/ProtectedRoute.test.tsx` - Archivo de test
+- `apps/backend/dist/src/tests/auth.test.js` - Archivo de test
+
+### **Config Files**
+- `apps/web/node_modules/class-variance-authority/package.json` - Archivo de configuración
+- `apps/frontend/node_modules/class-variance-authority/package.json` - Archivo de configuración
+
+### **Doc Files**
+- `apps/web/node_modules/class-variance-authority/README.md` - Archivo de documentación
+- `apps/frontend/test-results/tests-e2e-ui-AuthForm-login-exitoso-y-acceso-a-profile/error-context.md` - Archivo de documentación
+- `apps/frontend/node_modules/class-variance-authority/README.md` - Archivo de documentación
+- `apps/backend/src/controllers/README.auth.md` - Archivo de documentación## **Source Files**
+- `apps/frontend/src/services/auth.api.ts` - Archivo fuente
+- `apps/frontend/src/contexts/AuthContext.tsx` - Archivo fuente
+- `apps/backend-nest/src/auth/auth.service.ts` - Archivo fuente
+- `apps/backend-nest/src/auth/auth.module.ts` - Archivo fuente
+- `apps/backend-nest/src/auth/auth.controller.ts` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.service.js` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.service.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.module.js` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.module.d.ts` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.controller.js` - Archivo fuente
+- `apps/backend-nest/dist/auth/auth.controller.d.ts` - Archivo fuente
+- `apps/backend/src/services/auth.service.ts` - Archivo fuente
 - `apps/backend/src/middleware/auth.middleware.ts` - Archivo fuente
 - `apps/backend/src/routes/auth.routes.ts` - Archivo fuente
 - `apps/backend/src/controllers/utils.auth.ts` - Archivo fuente
