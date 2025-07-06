@@ -1,4 +1,4 @@
-import { ApiError } from '../utils/ApiError.js'
+
 
 export type ProfileDTO = {
   id: string

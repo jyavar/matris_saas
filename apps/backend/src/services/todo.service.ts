@@ -1,7 +1,5 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 
-import { ApiError } from '../utils/ApiError.js'
-
 export type TodoDTO = {
   id: number
   task: string

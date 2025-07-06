@@ -3,10 +3,11 @@ import NodeCache from 'node-cache'
 import { createDeflate,createGzip } from 'zlib'
 
 import { logAction } from '../services/logger.service.js'
+import { AuthenticatedUser } from '../types/express/index.js'
 
 // Extended request interface for performance middleware
 interface ExtendedRequest extends IncomingMessage {
-  user?: { id: string }
+  _user?: AuthenticatedUser
 }
 
 // Cache configuration
@@ -22,7 +23,7 @@ const cache = new NodeCache({
 export const compressionMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void,
+  _next: () => void,
 ): void => {
   // Don't compress if client doesn't support it
   if (req.headers['x-no-compression']) {
@@ -35,14 +36,10 @@ export const compressionMiddleware = (
   if (acceptEncoding.includes('gzip')) {
     res.setHeader('Content-Encoding', 'gzip')
     const gzip = createGzip()
-    res.write = gzip.write.bind(gzip)
-    res.end = gzip.end.bind(gzip)
     gzip.pipe(res)
   } else if (acceptEncoding.includes('deflate')) {
     res.setHeader('Content-Encoding', 'deflate')
     const deflate = createDeflate()
-    res.write = deflate.write.bind(deflate)
-    res.end = deflate.end.bind(deflate)
     deflate.pipe(res)
   }
 
@@ -53,7 +50,7 @@ export const compressionMiddleware = (
  * Cache middleware for GET requests
  */
 export const cacheMiddleware = (duration: number = 300) => {
-  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
+  return (req: IncomingMessage, res: ServerResponse, _next: () => void): void => {
     // Only cache GET requests
     if (req.method !== 'GET') {
       next()
@@ -77,16 +74,19 @@ export const cacheMiddleware = (duration: number = 300) => {
 
     // Override res.end to cache the response
     const originalEnd = res.end
-    res.end = function(chunk?: string | Buffer, encoding?: BufferEncoding | Function, cb?: Function) {
+    res.end = function(chunk?: string | Buffer, encoding?: BufferEncoding, cb?: (() => void)) {
       try {
         if (chunk && res.statusCode === 200) {
           const data = JSON.parse(chunk.toString())
           cache.set(key, data, duration)
         }
-      } catch (error) {
+      } catch {
         // Ignore parsing errors
       }
-      return originalEnd.call(this, chunk, encoding, cb)
+      if (typeof encoding === 'function') {
+        return originalEnd.call(this, chunk, 'utf8', encoding as (() => void))
+      }
+      return originalEnd.call(this, chunk, encoding || 'utf8', cb)
     }
 
     next()
@@ -99,7 +99,7 @@ export const cacheMiddleware = (duration: number = 300) => {
 export const performanceMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void,
+  _next: () => void,
 ): void => {
   const start = Date.now()
 
@@ -118,7 +118,7 @@ export const performanceMiddleware = (
 
   // Add response time tracking
   const originalEnd = res.end
-  res.end = function(chunk?: any, encoding?: any, cb?: any) {
+  res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
     const duration = Date.now() - start
 
     // Log performance metrics
@@ -155,7 +155,7 @@ export const performanceMiddleware = (
 export const memoryMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void,
+  _next: () => void,
 ): void => {
   const memUsage = process.memoryUsage()
 
@@ -181,7 +181,7 @@ export const memoryMiddleware = (
 export const cacheUtils = {
   get: (key: string) => cache.get(key),
   set: (key: string, value: unknown, ttl?: number) =>
-    cache.set(key, value, ttl),
+    cache.set(key, value, ttl || 0),
   del: (key: string) => cache.del(key),
   flush: () => {
     const keys = cache.keys()

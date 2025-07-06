@@ -4,7 +4,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 declare global {
   namespace Express {
     export interface Request {
-      user?: User
+      _user?: User
     }
   }
 }
@@ -25,9 +25,9 @@ export type RequestBody = Record<string, unknown>
 export type ControllerHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  params?: Record<string, string>,
-  body?: RequestBody,
-  user?: AuthenticatedUser,
+  _params?: Record<string, string>,
+  _body?: RequestBody,
+  _user?: AuthenticatedUser,
 ) => Promise<void>
 
 // Middleware handler type

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-07-06T07:55:44.288Z",
+  "summary": {
+    "filesScanned": 146,
+    "filesWithAny": 0,
+    "totalAnyUsages": 0,
+    "critical": 0,
+    "tolerable": 0,
+    "disabled": 0
+  },
+  "classification": {
+    "critical": [],
+    "tolerable": [],
+    "disabled": []
+  },
+  "recommendations": {
+    "immediate": [],
+    "batch": []
+  }
+}

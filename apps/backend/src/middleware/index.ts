@@ -10,6 +10,7 @@ export * from './cors.middleware.js'
 export * from './errorHandler.middleware.js'
 export * from './performance.middleware.js'
 export * from './rateLimit.middleware.js'
+export * from './security.middleware.js'
 export { createValidationMiddleware } from './validation.middleware.js'
 
 // Logging Middleware

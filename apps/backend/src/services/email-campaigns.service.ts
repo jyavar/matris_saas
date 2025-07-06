@@ -1,4 +1,4 @@
-import { ApiError } from '../utils/ApiError.js'
+
 import logger from './logger.service.js'
 
 // Tipos estrictos para campañas de email
@@ -88,7 +88,7 @@ class EmailCampaignsService {
       campaign.sent_at = new Date().toISOString()
       logger.info({ campaignId: id }, 'Email campaign sent')
       return { success: true }
-    } catch (error) {
+    } catch {
       logger.error({ error, campaignId: id }, 'Error sending campaign')
       return { success: false, error: 'Failed to send campaign' }
     }

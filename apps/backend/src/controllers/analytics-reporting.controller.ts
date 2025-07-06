@@ -3,7 +3,6 @@ import { z } from 'zod'
 
 import { analyticsReportingService } from '../services/analytics-reporting.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
 
 const createReportSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -12,32 +11,20 @@ const createReportSchema = z.object({
 })
 
 export const analyticsReportingController = {
-  async getReports(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getReports(req: IncomingMessage, res: ServerResponse): Promise<void> {
     try {
       const reports = await analyticsReportingService.getReports()
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, data: reports, count: reports.length }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 
-  async getReportById(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getReportById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: false, error: 'Report ID is required' }))
@@ -51,22 +38,16 @@ export const analyticsReportingController = {
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, data: report }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 
-  async createReport(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async createReport(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
       const validated = createReportSchema.parse(
-        body,
+        _body,
       ) as import('../services/analytics-reporting.service').CreateReportData
       const report = await analyticsReportingService.createReport(validated)
       res.writeHead(201, { 'Content-Type': 'application/json' })
@@ -82,15 +63,9 @@ export const analyticsReportingController = {
     }
   },
 
-  async deleteReport(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async deleteReport(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: false, error: 'Report ID is required' }))
@@ -104,7 +79,7 @@ export const analyticsReportingController = {
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, message: 'Report deleted' }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }

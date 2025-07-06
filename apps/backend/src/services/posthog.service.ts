@@ -1,6 +1,5 @@
 import { PostHog } from 'posthog-node'
 
-import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 const POSTHOG_API_KEY = process.env.POSTHOG_API_KEY
@@ -37,7 +36,7 @@ export class PostHogService {
         event,
         properties,
       })
-    } catch (error) {
+    } catch {
       console.warn(`Error enviando evento a PostHog: ${error}`)
     }
   }
@@ -46,7 +45,7 @@ export class PostHogService {
     if (posthogClient) {
       try {
         await posthogClient.shutdown()
-      } catch (error) {
+      } catch {
         console.warn(`Error cerrando PostHog: ${error}`)
       }
     }

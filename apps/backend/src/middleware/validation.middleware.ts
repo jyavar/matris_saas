@@ -8,9 +8,9 @@ import { sendValidationError } from '../utils/response.helper'
 
 // Extended request interface for validation
 interface ExtendedRequest extends IncomingMessage {
-  body?: unknown
+  _body?: unknown
   query?: Record<string, string>
-  params?: Record<string, string>
+  _params?: Record<string, string>
   validatedBody?: unknown
   validatedHeaders?: unknown
 }
@@ -24,7 +24,7 @@ interface ValidationConfig {
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ) => Promise<void>
 
 /**
@@ -34,7 +34,7 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     try {
       const body = await parseBody(req) as RequestBody
@@ -67,7 +67,7 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
  * Query validation middleware
  */
 export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
-  return async (req: IncomingMessage, res: ServerResponse, next: () => void): Promise<void> => {
+  return async (req: IncomingMessage, res: ServerResponse, _next: () => void): Promise<void> => {
     try {
       const url = req.url || ''
       const queryString = url.split('?')[1] || ''
@@ -103,7 +103,7 @@ export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
  * Params validation middleware
  */
 export const validateParams = (schema: z.ZodSchema): MiddlewareHandler => {
-  return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+  return async (req: IncomingMessage, res: ServerResponse, _next: () => void) => {
     try {
       const url = req.url || ''
       const pathParams: Record<string, string> = {}
@@ -150,7 +150,7 @@ export const validateHeaders = (schema: ZodSchema): MiddlewareHandler => {
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     try {
       const headers = req.headers as Record<string, string>
@@ -176,7 +176,7 @@ export const validateContentType = (allowedTypes: string[]): MiddlewareHandler =
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     const contentType = req.headers['content-type'] || ''
     
@@ -199,7 +199,7 @@ export const validateFileSize = (maxSize: number): MiddlewareHandler => {
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     const contentLength = parseInt(req.headers['content-length'] || '0', 10)
     
@@ -220,7 +220,7 @@ export const validateRateLimit = (maxRequests: number, windowMs: number): Middle
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     const ip = req.socket.remoteAddress || 'unknown'
     const now = Date.now()
@@ -240,7 +240,7 @@ export const validateRateLimit = (maxRequests: number, windowMs: number): Middle
 }
 
 export const createValidationMiddleware = (config: ValidationConfig) => {
-  return async (req: IncomingMessage, res: ServerResponse, next: () => void): Promise<void> => {
+  return async (req: IncomingMessage, res: ServerResponse, _next: () => void): Promise<void> => {
     try {
       // Validate body if schema provided
       if (config.body && req.method !== 'GET' && req.method !== 'DELETE') {
@@ -290,7 +290,7 @@ export const createValidationMiddleware = (config: ValidationConfig) => {
         logAction('validation_middleware_error', 'system', {
           url: req.url,
           method: req.method,
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
 
         res.writeHead(500, { 'Content-Type': 'application/json' })

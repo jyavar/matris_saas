@@ -1,6 +1,5 @@
 import { z } from 'zod'
 
-import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 export const onboardingSchema = z.object({

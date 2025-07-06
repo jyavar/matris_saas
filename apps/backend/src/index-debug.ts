@@ -89,7 +89,7 @@ const server = createServer(async (req, res) => {
   // Handle all other routes through the router
   try {
     await router.handleRequest(req, res)
-  } catch (error) {
+  } catch {
     logger.error('Error handling request:', error)
     sendJson(res, 500, { success: false, error: 'Internal server error' })
   }

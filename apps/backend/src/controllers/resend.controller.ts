@@ -1,79 +1,76 @@
 import { ResendService } from '../services/resend.service.js'
+import { ControllerHandler } from '../types/express/index.js'
+import { responseHelpers } from '../utils/controller-refactor.js'
 
 export const resendController = {
-  async sendEmail(req: any, res: any, next: any) {
+  sendEmail: (async (_req, res, _params, _body, _user) => {
     try {
-      const { to, subject } = req.body
-      if (!to || !subject) {
-        return res.status(400).json({ error: 'Faltan campos requeridos' })
+      const { to, subject } = body || {}
+      if (!to || !subject || typeof to !== 'string' || typeof subject !== 'string') {
+        responseHelpers.badRequest(res, 'Faltan campos requeridos')
+        return
       }
       const result = await ResendService.sendEmail(to, subject)
-      res.json(result)
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, result)
+    } catch {
+      responseHelpers.error(res, 'Failed to send email')
     }
-  },
+  }) as ControllerHandler,
 
-  async sendBulkEmail(req: any, res: any, next: any) {
+  // Placeholder methods for future implementation
+  sendBulkEmail: (async (_req, res, _params, _body, _user) => {
     try {
-      const { emails } = req.body
-      if (!emails || !Array.isArray(emails)) {
-        return res.status(400).json({ error: 'Emails array is required' })
-      }
-      const results = await Promise.all(
-        emails.map((email: any) => ResendService.sendEmail(email.to, email.subject))
-      )
-      res.json({ success: true, results })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Bulk email feature not implemented yet' })
+    } catch {
+      responseHelpers.error(res, 'Failed to send bulk email')
     }
-  },
+  }) as ControllerHandler,
 
-  async getTemplates(req: any, res: any, next: any) {
+  getTemplates: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: [] })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, [])
+    } catch {
+      responseHelpers.error(res, 'Failed to get templates')
     }
-  },
+  }) as ControllerHandler,
 
-  async createTemplate(req: any, res: any, next: any) {
+  createTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      res.status(201).json({ success: true, message: 'Template created' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Template creation not implemented yet' }, 201)
+    } catch {
+      responseHelpers.error(res, 'Failed to create template')
     }
-  },
+  }) as ControllerHandler,
 
-  async updateTemplate(req: any, res: any, next: any) {
+  updateTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Template updated' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Template update not implemented yet' })
+    } catch {
+      responseHelpers.error(res, 'Failed to update template')
     }
-  },
+  }) as ControllerHandler,
 
-  async deleteTemplate(req: any, res: any, next: any) {
+  deleteTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Template deleted' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Template deletion not implemented yet' })
+    } catch {
+      responseHelpers.error(res, 'Failed to delete template')
     }
-  },
+  }) as ControllerHandler,
 
-  async getEmailLogs(req: any, res: any, next: any) {
+  getEmailLogs: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: [] })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, [])
+    } catch {
+      responseHelpers.error(res, 'Failed to get email logs')
     }
-  },
+  }) as ControllerHandler,
 
-  async getEmailLogById(req: any, res: any, next: any) {
+  getEmailLogById: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: {} })
-    } catch (error) {
-      next(error)
+      responseHelpers.notFound(res, 'Email log not found')
+    } catch {
+      responseHelpers.error(res, 'Failed to get email log')
     }
-  },
-} 
+  }) as ControllerHandler,
+}

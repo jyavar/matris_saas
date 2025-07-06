@@ -107,7 +107,7 @@ export class TestHelper {
     overrides: Partial<IncomingMessage> = {}
   ): IncomingMessage {
     const req = this.createMockRequest(overrides)
-    ;(req as { user?: AuthenticatedUser }).user = user
+    ;(req as { _user?: AuthenticatedUser }).user = user
     return req
   }
 

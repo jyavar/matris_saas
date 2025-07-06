@@ -5,7 +5,7 @@ import type { ControllerHandler, RequestBody, RouteDefinition } from '../types/e
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ) => void | Promise<void>
 
 /**
@@ -95,8 +95,8 @@ export class Router {
       }
 
       const body = await this.parseRequestBody(req)
-      await route.handler(req, res, params, body as RequestBody | undefined)
-    } catch (error) {
+      await route.handler(req, res, _params, body as RequestBody | undefined)
+    } catch {
       console.error('Request handling error:', error)
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
@@ -164,11 +164,7 @@ export class Router {
   /**
    * Execute middlewares
    */
-  private async executeMiddlewares(
-    middlewares: MiddlewareHandler[],
-    req: IncomingMessage,
-    res: ServerResponse
-  ): Promise<void> {
+  private async executeMiddlewares(middlewares: MiddlewareHandler[], req: IncomingMessage, res: ServerResponse): Promise<void> {
     for (const middleware of middlewares) {
       await new Promise<void>((resolve, reject) => {
         const result = middleware(req, res, () => {
@@ -219,7 +215,7 @@ export class Router {
           } else {
             resolve({})
           }
-        } catch (error) {
+        } catch {
           reject(error)
         }
       })

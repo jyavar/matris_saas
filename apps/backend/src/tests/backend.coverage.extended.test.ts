@@ -46,7 +46,7 @@ async function resetDatabase() {
 //   const email = `test-${id}@example.com`
 //   const password = await hashPassword('password123')
 //   const user = await db.user.create({ data: { id, email, password, ...overrides } })
-//   return user.id
+//   return _user?.id
 // }
 async function getRealToken() {
   const email = `test-${Date.now()}@example.com`

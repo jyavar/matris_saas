@@ -1,3 +1,4 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 /**
@@ -165,20 +166,20 @@ export function sanitizeParams(params: Record<string, unknown>): Record<string, 
  */
 export function createRouteValidator<T>(
   schema: z.ZodSchema<T>,
-  dataExtractor: (req: any) => unknown = (req) => req.body
+  dataExtractor: (req: IncomingMessage & { body?: unknown }) => unknown = (req) => req.body
 ) {
-  return (req: any, res: any, next: () => void) => {
+  return (req: IncomingMessage & { body?: unknown; validated?: T }, res: ServerResponse, _next: () => void) => {
     try {
       const data = dataExtractor(req)
       const validated = validateOrThrow(schema, data, 'request data')
       req.validated = validated
       next()
-    } catch (error) {
+    } catch {
       res.writeHead(400, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({
         success: false,
         error: 'Validation failed',
-        message: error instanceof Error ? error.message : 'Unknown validation error'
+        message: (error instanceof Error ? error.message : 'Unknown validation error')
       }))
     }
   }

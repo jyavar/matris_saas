@@ -1,9 +1,9 @@
 import { createServer, ServerResponse } from 'http'
 import { parse } from 'url'
 
+import { analyticsRoutes } from './routes/analytics.routes'
 // Import all route modules
 import { analyticsReportingRoutes } from './routes/analytics-reporting.routes'
-import { analyticsRoutes } from './routes/analytics.routes'
 import { authRoutes } from './routes/auth.routes'
 import { automationRoutes } from './routes/automation.routes'
 import { billingRoutes } from './routes/billing.routes'
@@ -33,8 +33,16 @@ function sendJson(res: ServerResponse, status: number, data: unknown): void {
   res.end(JSON.stringify(data))
 }
 
+// Interface for route definition
+interface RouteDefinition {
+  method: string
+  path: string
+  handler: Function
+  middlewares?: Function[]
+}
+
 // Helper function to register routes safely
-function registerRoutes(routes: any[], basePath: string = '') {
+function registerRoutes(routes: RouteDefinition[], basePath: string = '') {
   routes.forEach(route => {
     const method = route.method.toLowerCase() as keyof typeof router
     if (typeof router[method] === 'function') {
@@ -150,7 +158,7 @@ const server = createServer(async (req, res) => {
   // Handle all other routes through the router
   try {
     await router.handleRequest(req, res)
-  } catch (error) {
+  } catch {
     logger.error('Error handling request:', error)
     sendJson(res, 500, { success: false, error: 'Internal server error' })
   }

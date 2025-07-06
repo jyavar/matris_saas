@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-export const loggerMock: Record<string, any> = {
+export const loggerMock: Record<string, unknown> = {
   info: vi.fn(),
   warn: vi.fn(),
   error: vi.fn(),

@@ -15,7 +15,7 @@ describe('Campaigns Routes', () => {
       .get('/api/campaigns')
     console.log('GET /campaigns response:', {
       status: res.status,
-      body: res.body,
+      body: res._body,
       headers: res.headers
     })
     expect(res.status).toBe(200)

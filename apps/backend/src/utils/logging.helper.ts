@@ -99,7 +99,7 @@ export const performanceLog = {
     } catch (error) {
       performanceLog.end(operation, startTime, {
         ...context,
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -153,11 +153,11 @@ export const requestLog = {
  * Database logging helper
  */
 export const dbLog = {
-  query: (query: string, params?: unknown[], context?: LogContext) => {
+  query: (query: string, _params?: unknown[], context?: LogContext) => {
     log.debug('Database query', {
       ...context,
       query,
-      params,
+      _params,
       timestamp: new Date().toISOString(),
     })
   },

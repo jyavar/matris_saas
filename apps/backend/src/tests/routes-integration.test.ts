@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { createServer, Server } from 'http'
 import { AddressInfo } from 'net'
+import { afterAll,beforeAll, describe, expect, it } from 'vitest'
 
 // Import the main server instance
 import { server } from '../index'

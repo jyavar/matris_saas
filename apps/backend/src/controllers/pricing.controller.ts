@@ -1,9 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
+
 import { logAction } from '../services/logger.service.js'
 import { pricingSchema, pricingService } from '../services/pricing.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
-import { sendSuccess, sendCreated, sendError, sendNotFound } from '../utils/response.helper.js'
 import { parseBody, parseParams } from '../utils/request.helper.js'
 
 export const pricingController = {
@@ -19,7 +18,7 @@ export const pricingController = {
       sendSuccess(res, plans)
     } catch (error) {
       logAction('pricing_plans_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to get plans', 500)
     }
@@ -51,7 +50,7 @@ export const pricingController = {
     } catch (error) {
       logAction('pricing_plan_error', req.user?.id || 'anonymous', {
         planId: req.url?.split('/').pop(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to get plan', 500)
     }
@@ -85,7 +84,7 @@ export const pricingController = {
       }
 
       logAction('pricing_subscription_create_error', req.user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to create subscription', 500)
     }
@@ -113,7 +112,7 @@ export const pricingController = {
     } catch (error) {
       logAction('pricing_subscription_get_error', req.user?.id || 'anonymous', {
         subscriptionId: req.url?.split('/').pop(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to get subscription', 500)
     }
@@ -148,7 +147,7 @@ export const pricingController = {
     } catch (error) {
       logAction('pricing_subscription_update_error', req.user?.id || 'anonymous', {
         subscriptionId: req.url?.split('/').pop(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to update subscription', 500)
     }
@@ -176,7 +175,7 @@ export const pricingController = {
     } catch (error) {
       logAction('pricing_subscription_cancel_error', req.user?.id || 'anonymous', {
         subscriptionId: req.url?.split('/').pop(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to cancel subscription', 500)
     }
@@ -216,7 +215,7 @@ export const pricingController = {
     } catch (error) {
       logAction('pricing_usage_check_error', req.user?.id || 'anonymous', {
         planId: req.url?.split('/').pop(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       sendError(res, 'Failed to check usage', 500)
     }

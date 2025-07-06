@@ -17,8 +17,9 @@ describe('RuntimeService', () => {
     vi.resetModules()
     vi.restoreAllMocks()
     // Limpiar jobs global si existe
-    if (globalThis.jobs) {
-      for (const k of Object.keys(globalThis.jobs)) delete globalThis.jobs[k]
+    const global = globalThis as { jobs?: Record<string, unknown> }
+    if (global.jobs) {
+      for (const k of Object.keys(global.jobs)) delete global.jobs[k]
     }
   })
 

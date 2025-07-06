@@ -1,198 +1,230 @@
 import { RuntimeService } from '../services/runtime.service.js'
+import { ControllerHandler } from '../types/express/index.js'
+import { responseHelpers } from '../utils/controller-refactor.js'
 
 export const runtimeController = {
-  async getStatus(req: any, res: any, next: any) {
+  getStatus: (async (_req, res, _params, _body, _user) => {
     try {
       const jobs = RuntimeService.listJobs()
-      res.json({ success: true, data: { jobs, count: jobs.length } })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { jobs, count: jobs.length })
+    } catch {
+      responseHelpers.error(res, 'Failed to get runtime status')
     }
-  },
+  }) as ControllerHandler,
 
-  async getHealth(req: any, res: any, next: any) {
+  getHealth: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, status: 'healthy' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { status: 'healthy' })
+    } catch {
+      responseHelpers.error(res, 'Health check failed')
     }
-  },
+  }) as ControllerHandler,
 
-  async getMetrics(req: any, res: any, next: any) {
+  getMetrics: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: {} })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, {})
+    } catch {
+      responseHelpers.error(res, 'Failed to get metrics')
     }
-  },
+  }) as ControllerHandler,
 
-  async getLogs(req: any, res: any, next: any) {
+  getLogs: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: [] })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, [])
+    } catch {
+      responseHelpers.error(res, 'Failed to get logs')
     }
-  },
+  }) as ControllerHandler,
 
-  async restart(req: any, res: any, next: any) {
+  restart: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Restart initiated' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Restart initiated' })
+    } catch {
+      responseHelpers.error(res, 'Failed to restart')
     }
-  },
+  }) as ControllerHandler,
 
-  async shutdown(req: any, res: any, next: any) {
+  shutdown: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Shutdown initiated' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Shutdown initiated' })
+    } catch {
+      responseHelpers.error(res, 'Failed to shutdown')
     }
-  },
+  }) as ControllerHandler,
 
-  async getConfig(req: any, res: any, next: any) {
+  getConfig: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: {} })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, {})
+    } catch {
+      responseHelpers.error(res, 'Failed to get config')
     }
-  },
+  }) as ControllerHandler,
 
-  async updateConfig(req: any, res: any, next: any) {
+  updateConfig: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Config updated' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Config updated' })
+    } catch {
+      responseHelpers.error(res, 'Failed to update config')
     }
-  },
+  }) as ControllerHandler,
 
-  async getAgents(req: any, res: any, next: any) {
+  getAgents: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: ['refactor'] })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, ['refactor'])
+    } catch {
+      responseHelpers.error(res, 'Failed to get agents')
     }
-  },
+  }) as ControllerHandler,
 
-  async startAgent(req: any, res: any, next: any) {
+  startAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const { name } = req.params
-      res.json({ success: true, message: `Agent ${name} started` })
-    } catch (error) {
-      next(error)
+      const name = params?.name
+      if (!name) {
+        responseHelpers.badRequest(res, 'Agent name is required')
+        return
+      }
+      responseHelpers.success(res, { message: `Agent ${name} started` })
+    } catch {
+      responseHelpers.error(res, 'Failed to start agent')
     }
-  },
+  }) as ControllerHandler,
 
-  async stopAgent(req: any, res: any, next: any) {
+  stopAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const { name } = req.params
-      res.json({ success: true, message: `Agent ${name} stopped` })
-    } catch (error) {
-      next(error)
+      const name = params?.name
+      if (!name) {
+        responseHelpers.badRequest(res, 'Agent name is required')
+        return
+      }
+      responseHelpers.success(res, { message: `Agent ${name} stopped` })
+    } catch {
+      responseHelpers.error(res, 'Failed to stop agent')
     }
-  },
+  }) as ControllerHandler,
 
-  async getAgentStatus(req: any, res: any, next: any) {
+  getAgentStatus: (async (_req, res, _params, _body, _user) => {
     try {
-      const { name } = req.params
-      res.json({ success: true, data: { name, status: 'running' } })
-    } catch (error) {
-      next(error)
+      const name = params?.name
+      if (!name) {
+        responseHelpers.badRequest(res, 'Agent name is required')
+        return
+      }
+      responseHelpers.success(res, { name, status: 'running' })
+    } catch {
+      responseHelpers.error(res, 'Failed to get agent status')
     }
-  },
+  }) as ControllerHandler,
 
-  async getAgentLogs(req: any, res: any, next: any) {
+  getAgentLogs: (async (_req, res, _params, _body, _user) => {
     try {
-      const { name } = req.params
-      res.json({ success: true, data: [] })
-    } catch (error) {
-      next(error)
+      const name = params?.name
+      if (!name) {
+        responseHelpers.badRequest(res, 'Agent name is required')
+        return
+      }
+      responseHelpers.success(res, [])
+    } catch {
+      responseHelpers.error(res, 'Failed to get agent logs')
     }
-  },
+  }) as ControllerHandler,
 
-  async runAgent(req: any, res: any, next: any) {
+  runAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const { name } = req.params
-      const result = await RuntimeService.runAgent(name, req.body)
+      const name = params?.name
+      if (!name) {
+        responseHelpers.badRequest(res, 'Agent name is required')
+        return
+      }
+      const result = await RuntimeService.runAgent(name, body)
       if (result.ok) {
-        res.json({ success: true, result: result.result })
+        responseHelpers.success(res, { result: result.result })
       } else {
-        res.status(400).json({ success: false, error: result.error })
+        responseHelpers.badRequest(res, result.error)
       }
-    } catch (error) {
-      next(error)
+    } catch {
+      responseHelpers.error(res, 'Failed to run agent')
     }
-  },
+  }) as ControllerHandler,
 
-  async getTasks(req: any, res: any, next: any) {
+  getTasks: (async (_req, res, _params, _body, _user) => {
     try {
       const jobs = RuntimeService.listJobs()
-      res.json({ success: true, data: jobs })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, jobs)
+    } catch {
+      responseHelpers.error(res, 'Failed to get tasks')
     }
-  },
+  }) as ControllerHandler,
 
-  async createTask(req: any, res: any, next: any) {
+  createTask: (async (_req, res, _params, _body, _user) => {
     try {
-      const { id, schedule } = req.body
+      const { id, schedule } = body || {}
       if (!id || !schedule) {
-        return res.status(400).json({ error: 'Missing id or schedule' })
+        responseHelpers.badRequest(res, 'Missing id or schedule')
+        return
       }
-      const job = RuntimeService.createJob(id, schedule, () => {
+      const job = RuntimeService.createJob(id, schedule as string, () => {
         // Placeholder: aquí se ejecutaría la lógica real del job
       })
-      res.status(201).json({ success: true, data: job })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, job, 201)
+    } catch {
+      responseHelpers.error(res, 'Failed to create task')
     }
-  },
+  }) as ControllerHandler,
 
-  async getTaskById(req: any, res: any, next: any) {
+  getTaskById: (async (_req, res, _params, _body, _user) => {
     try {
-      const { id } = req.params
+      const id = params?.id
+      if (!id) {
+        responseHelpers.badRequest(res, 'Task ID is required')
+        return
+      }
       const jobs = RuntimeService.listJobs()
       const job = jobs.find(j => j.id === id)
       if (!job) {
-        return res.status(404).json({ error: 'Task not found' })
+        responseHelpers.notFound(res, 'Task not found')
+        return
       }
-      res.json({ success: true, data: job })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, job)
+    } catch {
+      responseHelpers.error(res, 'Failed to get task')
     }
-  },
+  }) as ControllerHandler,
 
-  async updateTask(req: any, res: any, next: any) {
+  updateTask: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Task updated' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Task updated' })
+    } catch {
+      responseHelpers.error(res, 'Failed to update task')
     }
-  },
+  }) as ControllerHandler,
 
-  async deleteTask(req: any, res: any, next: any) {
+  deleteTask: (async (_req, res, _params, _body, _user) => {
     try {
-      const { id } = req.params
+      const id = params?.id
+      if (!id) {
+        responseHelpers.badRequest(res, 'Task ID is required')
+        return
+      }
       RuntimeService.deleteJob(id)
-      res.json({ success: true, message: 'Task deleted' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Task deleted' })
+    } catch {
+      responseHelpers.error(res, 'Failed to delete task')
     }
-  },
+  }) as ControllerHandler,
 
-  async executeTask(req: any, res: any, next: any) {
+  executeTask: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, message: 'Task executed' })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, { message: 'Task executed' })
+    } catch {
+      responseHelpers.error(res, 'Failed to execute task')
     }
-  },
+  }) as ControllerHandler,
 
-  async getTaskResult(req: any, res: any, next: any) {
+  getTaskResult: (async (_req, res, _params, _body, _user) => {
     try {
-      res.json({ success: true, data: {} })
-    } catch (error) {
-      next(error)
+      responseHelpers.success(res, {})
+    } catch {
+      responseHelpers.error(res, 'Failed to get task result')
     }
-  },
-} 
+  }) as ControllerHandler,
+}

@@ -2,13 +2,12 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { ZodError } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
-import { ApiError } from '../utils/ApiError.js'
 import { sendError, sendValidationError } from '../utils/response.helper.js'
 
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ) => Promise<void>
 
 /**
@@ -18,12 +17,12 @@ export const errorHandlerMiddleware = async (
   error: Error,
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   try {
     // Log the error
     logAction('error_handler', 'system', {
-      error: error.message,
+      error: (error as Error).message,
       stack: error.stack,
       url: req.url,
       method: req.method,
@@ -36,25 +35,25 @@ export const errorHandlerMiddleware = async (
     }
 
     if (error instanceof ApiError) {
-      return sendError(res, error.message, error.statusCode)
+      return sendError(res, (error as Error).message, error.statusCode)
     }
 
     // Handle database errors
-    if (error.message.includes('duplicate key') || error.message.includes('unique constraint')) {
+    if ((error as Error).message.includes('duplicate key') || (error as Error).message.includes('unique constraint')) {
       return sendError(res, 'Resource already exists', 409)
     }
 
-    if (error.message.includes('foreign key constraint')) {
+    if ((error as Error).message.includes('foreign key constraint')) {
       return sendError(res, 'Referenced resource not found', 400)
     }
 
     // Handle network errors
-    if (error.message.includes('ECONNREFUSED') || error.message.includes('ENOTFOUND')) {
+    if ((error as Error).message.includes('ECONNREFUSED') || (error as Error).message.includes('ENOTFOUND')) {
       return sendError(res, 'Service temporarily unavailable', 503)
     }
 
     // Handle timeout errors
-    if (error.message.includes('timeout') || error.message.includes('ETIMEDOUT')) {
+    if ((error as Error).message.includes('timeout') || (error as Error).message.includes('ETIMEDOUT')) {
       return sendError(res, 'Request timeout', 408)
     }
 
@@ -62,7 +61,7 @@ export const errorHandlerMiddleware = async (
     const statusCode = 500
     const message = process.env.NODE_ENV === 'production' 
       ? 'Internal server error' 
-      : error.message
+      : (error as Error).message
 
     return sendError(res, message, statusCode)
   } catch (handlerError) {
@@ -80,10 +79,10 @@ export const errorHandlerMiddleware = async (
  * Async error wrapper for route handlers
  */
 export const handleAsync = (fn: (req: IncomingMessage, res: ServerResponse) => Promise<void>) => {
-  return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
+  return async(req: IncomingMessage, res: ServerResponse): Promise<void> => {
     try {
       await fn(req, res)
-    } catch (error) {
+    } catch {
       await errorHandlerMiddleware(error as Error, req, res, () => {})
     }
   }
@@ -95,7 +94,7 @@ export const handleAsync = (fn: (req: IncomingMessage, res: ServerResponse) => P
 export const notFoundHandler: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   logAction('route_not_found', 'anonymous', {
     url: req.url,
@@ -112,7 +111,7 @@ export const notFoundHandler: MiddlewareHandler = async (
 export const methodNotAllowedHandler: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   logAction('method_not_allowed', 'anonymous', {
     url: req.url,

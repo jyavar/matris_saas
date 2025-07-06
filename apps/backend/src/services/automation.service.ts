@@ -1,5 +1,5 @@
+import { ApiError } from '../lib/errors.js'
 import { supabase } from '../lib/supabase.js'
-import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 // Tipos estrictos para Automation Engine
@@ -78,7 +78,7 @@ export class AutomationService {
       }
 
       return data || []
-    } catch (error) {
+    } catch {
       logger.error({ error }, 'Error in getWorkflows')
       throw error
     }
@@ -104,7 +104,7 @@ export class AutomationService {
       }
 
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, id }, 'Error in getWorkflowById')
       throw error
     }
@@ -161,7 +161,7 @@ export class AutomationService {
         'Workflow created successfully',
       )
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, workflowData }, 'Error in createWorkflow')
       throw error
     }
@@ -220,7 +220,7 @@ export class AutomationService {
 
       logger.info({ workflowId: id }, 'Workflow updated successfully')
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, id, updateData }, 'Error in updateWorkflow')
       throw error
     }
@@ -240,7 +240,7 @@ export class AutomationService {
 
       logger.info({ workflowId: id }, 'Workflow deleted successfully')
       return true
-    } catch (error) {
+    } catch {
       logger.error({ error, id }, 'Error in deleteWorkflow')
       throw error
     }
@@ -262,7 +262,7 @@ export class AutomationService {
       }
 
       return data || []
-    } catch (error) {
+    } catch {
       logger.error({ error }, 'Error in getJobs')
       throw error
     }
@@ -288,7 +288,7 @@ export class AutomationService {
       }
 
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, id }, 'Error in getJobById')
       throw error
     }
@@ -342,7 +342,7 @@ export class AutomationService {
         'Job created and started processing',
       )
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, workflowId }, 'Error in executeWorkflow')
       throw error
     }
@@ -376,7 +376,7 @@ export class AutomationService {
 
       logger.info({ jobId }, 'Job paused successfully')
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, jobId }, 'Error in pauseJob')
       throw error
     }
@@ -415,7 +415,7 @@ export class AutomationService {
 
       logger.info({ jobId }, 'Job resumed successfully')
       return data
-    } catch (error) {
+    } catch {
       logger.error({ error, jobId }, 'Error in resumeJob')
       throw error
     }
@@ -451,7 +451,7 @@ export class AutomationService {
         .update({
           status: 'failed',
           completed_at: new Date().toISOString(),
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         .eq('id', jobId)
 

@@ -5,7 +5,6 @@ import { billingService } from '../services/billing.service.js'
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, ControllerHandler,RequestBody } from '../types/express/index.js'
 import { parseBody, parseParams,parseQuery } from '../utils/request.helper.js'
-import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from '../utils/response.helper.js'
 
 // Schemas
 const createInvoiceSchema = z.object({
@@ -35,15 +34,15 @@ export const getInvoices: ControllerHandler = async (req: IncomingMessage, res: 
     const query = parseQuery(req.url || '')
     const { page, limit, offset } = getPaginationParams(query)
     
-    const invoices = await billingService.getAllInvoices(user.id)
+    const invoices = await billingService.getAllInvoices(user?.id)
     
-    logAction('billing_invoices_retrieved', user.id, { count: invoices.length })
+    logAction('billing_invoices_retrieved', user?.id, { count: invoices.length })
     
     return sendSuccess(res, {
       data: invoices,
       pagination: { page, limit, total: invoices.length }
     })
-  } catch (error) {
+  } catch {
     return sendError(res, 'Failed to retrieve invoices', 500)
   }
 }
@@ -68,10 +67,10 @@ export const getInvoiceById: ControllerHandler = async (req: IncomingMessage, re
       return sendNotFound(res, 'Invoice not found')
     }
 
-    logAction('billing_invoice_retrieved', user.id, { invoice_id: invoiceId })
+    logAction('billing_invoice_retrieved', user?.id, { invoice_id: invoiceId })
     
     return sendSuccess(res, invoice)
-  } catch (error) {
+  } catch {
     return sendError(res, 'Failed to retrieve invoice', 500)
   }
 }
@@ -87,7 +86,7 @@ export const createInvoice: ControllerHandler = async (req: IncomingMessage, res
     const validatedData = createInvoiceSchema.parse(body)
 
     const invoice = await billingService.createInvoice({
-      customer_id: user.id,
+      customer_id: user?.id,
       amount: validatedData.amount,
       currency: validatedData.currency,
       description: validatedData.description,
@@ -98,7 +97,7 @@ export const createInvoice: ControllerHandler = async (req: IncomingMessage, res
       return sendError(res, 'Failed to create invoice', 500)
     }
 
-    logAction('billing_invoice_created', user.id, { 
+    logAction('billing_invoice_created', user?.id, { 
       invoice_id: invoice.id,
       amount: validatedData.amount 
     })
@@ -135,7 +134,7 @@ export const updateInvoice: ControllerHandler = async (req: IncomingMessage, res
       return sendNotFound(res, 'Invoice not found')
     }
 
-    logAction('billing_invoice_updated', user.id, { 
+    logAction('billing_invoice_updated', user?.id, { 
       invoice_id: invoiceId,
       changes: Object.keys(validatedData) 
     })
@@ -169,10 +168,10 @@ export const deleteInvoice: ControllerHandler = async (req: IncomingMessage, res
       return sendNotFound(res, 'Invoice not found')
     }
 
-    logAction('billing_invoice_deleted', user.id, { invoice_id: invoiceId })
+    logAction('billing_invoice_deleted', user?.id, { invoice_id: invoiceId })
     
     return sendSuccess(res, { message: 'Invoice deleted successfully' })
-  } catch (error) {
+  } catch {
     return sendError(res, 'Failed to delete invoice', 500)
   }
 }

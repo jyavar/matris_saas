@@ -7,7 +7,7 @@ import type { AuthenticatedUser } from '../types/express'
 
 // Mocks globales
 vi.mock('../middleware/auth.middleware', () => ({
-  authMiddleware: (_req: IncomingMessage, _res: ServerResponse, next: () => void) => {
+  authMiddleware: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
     if (_req) {
       (_req as unknown as { user: AuthenticatedUser }).user = {
         id: 'test-user-id',

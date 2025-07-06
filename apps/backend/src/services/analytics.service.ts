@@ -1,8 +1,8 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 import { z } from 'zod'
 
+import { ApiError } from '../lib/errors.js'
 import { Json } from '../types/supabase.types.js'
-import { ApiError } from '../utils/ApiError.js'
 import { logAction } from './logger.service.js'
 import { supabase } from './supabase.service.js'
 
@@ -76,7 +76,7 @@ export const analyticsService = {
         .select()
 
       if (error) {
-        throw new ApiError(400, `Failed to track event: ${error.message}`)
+        throw new ApiError(400, `Failed to track event: ${(error as Error).message}`)
       }
 
       logAction(
@@ -95,7 +95,7 @@ export const analyticsService = {
         String(eventData.user_id ?? 'anonymous'),
         {
           event_name: eventData.event_name,
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         },
       )
       throw error
@@ -127,7 +127,7 @@ export const analyticsService = {
         .select()
 
       if (error) {
-        throw new ApiError(400, `Failed to track metric: ${error.message}`)
+        throw new ApiError(400, `Failed to track metric: ${(error as Error).message}`)
       }
 
       logAction(
@@ -147,7 +147,7 @@ export const analyticsService = {
         String(metricData.user_id ?? 'anonymous'),
         {
           metric_name: metricData.metric_name,
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         },
       )
       throw error
@@ -189,7 +189,7 @@ export const analyticsService = {
       const { data, error } = await queryBuilder
 
       if (error) {
-        throw new ApiError(400, `Failed to get events: ${error.message}`)
+        throw new ApiError(400, `Failed to get events: ${(error as Error).message}`)
       }
 
       logAction('analytics_events_queried', 'system', {
@@ -200,7 +200,7 @@ export const analyticsService = {
       return data || []
     } catch (error) {
       logAction('analytics_events_query_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -238,7 +238,7 @@ export const analyticsService = {
       const { data, error } = await queryBuilder
 
       if (error) {
-        throw new ApiError(400, `Failed to get metrics: ${error.message}`)
+        throw new ApiError(400, `Failed to get metrics: ${(error as Error).message}`)
       }
 
       logAction('analytics_metrics_queried', 'system', {
@@ -249,7 +249,7 @@ export const analyticsService = {
       return data || []
     } catch (error) {
       logAction('analytics_metrics_query_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -342,7 +342,7 @@ export const analyticsService = {
       return summary
     } catch (error) {
       logAction('analytics_summary_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -368,7 +368,7 @@ export const analyticsService = {
       if (error) {
         throw new ApiError(
           400,
-          `Failed to get user analytics: ${error.message}`,
+          `Failed to get user analytics: ${(error as Error).message}`,
         )
       }
 
@@ -387,7 +387,7 @@ export const analyticsService = {
       const userAnalytics: UserAnalytics = {
         user_id: userId,
         total_events: userEvents.length,
-        last_seen: userEvents.length > 0 ? new Date(userEvents[0].created_at) : new Date(),
+        last_seen: userEvents.length > 0 ? new Date(userEvents[0]?.created_at || new Date()) : new Date(),
         events_breakdown: Object.entries(eventsBreakdown)
           .map(([event_name, count]) => ({ event_name, count }))
           .sort((a, b) => b.count - a.count),
@@ -401,7 +401,7 @@ export const analyticsService = {
       return userAnalytics
     } catch (error) {
       logAction('analytics_user_data_error', userId, {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -411,7 +411,7 @@ export const analyticsService = {
   async getAllAnalytics() {
     const { data, error } = await supabase.from('analytics').select('*')
     if (error) {
-      throw new ApiError(400, error.message)
+      throw new ApiError(400, (error as Error).message)
     }
     return data
   },
@@ -426,7 +426,7 @@ export const analyticsService = {
       if (error.code === 'PGRST116') {
         throw new ApiError(404, 'Analytics not found')
       }
-      throw new ApiError(400, error.message)
+      throw new ApiError(400, (error as Error).message)
     }
     return data
   },
@@ -440,7 +440,7 @@ export const analyticsService = {
       if (error.code === '23505') {
         throw new ApiError(409, 'Analytics already exists')
       }
-      throw new ApiError(400, error.message)
+      throw new ApiError(400, (error as Error).message)
     }
     return data
   },
@@ -455,7 +455,7 @@ export const analyticsService = {
       if (error.code === 'PGRST116') {
         throw new ApiError(404, 'Analytics not found')
       }
-      throw new ApiError(400, error.message)
+      throw new ApiError(400, (error as Error).message)
     }
     return data
   },
@@ -469,7 +469,7 @@ export const analyticsService = {
       if (error.code === 'PGRST116') {
         throw new ApiError(404, 'Analytics not found')
       }
-      throw new ApiError(400, error.message)
+      throw new ApiError(400, (error as Error).message)
     }
     return data
   },

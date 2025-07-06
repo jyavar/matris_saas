@@ -23,7 +23,7 @@ describe.skip('Onboarding Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({
-      authMiddleware: (_req: IncomingMessage, _res: ServerResponse, next: () => void) => {
+      authMiddleware: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
         // Mock authentication by setting user in request
         if (_req) {
           (_req as unknown as { user: AuthenticatedUser }).user = {
@@ -95,5 +95,4 @@ describe.skip('Onboarding Endpoints', () => {
     })
   })
 })
-
 

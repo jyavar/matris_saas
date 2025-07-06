@@ -1,6 +1,5 @@
 import OpenAI from 'openai'
 
-import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 export interface GenerateTextData {

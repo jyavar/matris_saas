@@ -4,7 +4,6 @@ import { z } from 'zod'
 import logger from '../services/logger.service.js'
 import { openaiService } from '../services/openai.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
 import { enforceExactShape } from '../utils/enforceExactShape.js'
 
 const generateTextSchema = z.object({
@@ -13,13 +12,7 @@ const generateTextSchema = z.object({
 })
 
 export const openaiController = {
-  async generateText(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async generateText(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -27,8 +20,8 @@ export const openaiController = {
         return
       }
       const prompt =
-        body && typeof body.prompt === 'string' ? body.prompt : ''
-      const user_id = user && typeof user.id === 'string' ? user.id : ''
+        _body && typeof _body.prompt === 'string' ? _body.prompt : ''
+      const user_id = user && typeof user?.id === 'string' ? user?.id : ''
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const input = enforceExactShape({
         prompt: prompt as string,
@@ -58,7 +51,7 @@ export const openaiController = {
         success: true,
         data: result,
       }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }

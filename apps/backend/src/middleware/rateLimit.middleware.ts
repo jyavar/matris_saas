@@ -36,7 +36,7 @@ const cleanupExpiredEntries = (): void => {
 setInterval(cleanupExpiredEntries, 60000)
 
 export const createRateLimit = (config: RateLimitConfig) => {
-  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
+  return (req: IncomingMessage, res: ServerResponse, _next: () => void): void => {
     const clientKey = getClientIp(req)
     const now = Date.now()
 

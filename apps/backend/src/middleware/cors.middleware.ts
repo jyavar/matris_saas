@@ -30,7 +30,7 @@ const allowedHeaders = [
 export const corsMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void,
+  _next: () => void,
 ): void => {
   const origin = req.headers.origin
 
@@ -65,7 +65,7 @@ export const corsMiddleware = (
 export const devCorsMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void,
+  _next: () => void,
 ): void => {
   if (process.env.NODE_ENV === 'development') {
     res.setHeader('Access-Control-Allow-Origin', '*')

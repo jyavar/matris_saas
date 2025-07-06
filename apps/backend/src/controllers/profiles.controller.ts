@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
 import { profilesService } from '../services/profiles.service.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 const updateProfileSchema = z.object({
   username: z.string().min(1, 'Username is required').optional(),
@@ -14,13 +15,7 @@ export const profilesController = {
   /**
    * Get current user profile
    */
-  async getMe(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  async getMe(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -31,7 +26,7 @@ export const profilesController = {
         return
       }
 
-      const profile = await profilesService.getProfileById(user.id, user.tenant_id || 'default')
+      const profile = await profilesService.getProfileById(user?.id, user?.tenant_id || 'default')
 
       if (!profile) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
@@ -42,7 +37,7 @@ export const profilesController = {
         return
       }
 
-      logAction('profile_requested', user.id, {})
+      logAction('profile_requested', user?.id, {})
 
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({
@@ -51,7 +46,7 @@ export const profilesController = {
       }))
     } catch (error) {
       logAction('profile_request_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -60,13 +55,7 @@ export const profilesController = {
   /**
    * Get all profiles (admin only)
    */
-  async getAllProfiles(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  async getAllProfiles(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -78,9 +67,9 @@ export const profilesController = {
       }
 
       // TODO: Add admin check
-      const profiles = await profilesService.getAllProfiles(user.tenant_id || 'default')
+      const profiles = await profilesService.getAllProfiles(user?.tenant_id || 'default')
 
-      logAction('profiles_requested', user.id, {
+      logAction('profiles_requested', user?.id, {
         count: profiles.length,
       })
 
@@ -92,7 +81,7 @@ export const profilesController = {
       }))
     } catch (error) {
       logAction('profiles_request_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -101,15 +90,9 @@ export const profilesController = {
   /**
    * Get profile by ID
    */
-  async getProfileById(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  async getProfileById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -128,7 +111,7 @@ export const profilesController = {
         return
       }
 
-      const profile = await profilesService.getProfileById(id, user.tenant_id || 'default')
+      const profile = await profilesService.getProfileById(id, user?.tenant_id || 'default')
 
       if (!profile) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
@@ -139,7 +122,7 @@ export const profilesController = {
         return
       }
 
-      logAction('profile_by_id_requested', user.id, {
+      logAction('profile_by_id_requested', user?.id, {
         targetProfileId: id,
       })
 
@@ -150,7 +133,7 @@ export const profilesController = {
       }))
     } catch (error) {
       logAction('profile_by_id_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -159,13 +142,7 @@ export const profilesController = {
   /**
    * Update current user profile
    */
-  async updateProfile(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  async updateProfile(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -176,10 +153,10 @@ export const profilesController = {
         return
       }
 
-      const validatedData = updateProfileSchema.parse(body)
-      const profile = await profilesService.updateProfile(user.id, user.tenant_id || 'default', validatedData)
+      const validatedData = updateProfileSchema.parse(_body)
+      const profile = await profilesService.updateProfile(user?.id, user?.tenant_id || 'default', validatedData)
 
-      logAction('profile_updated', user.id, {
+      logAction('profile_updated', user?.id, {
         updates: validatedData,
       })
 
@@ -198,7 +175,7 @@ export const profilesController = {
         }))
       } else {
         logAction('profile_update_error', user?.id || 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
       }
@@ -208,15 +185,9 @@ export const profilesController = {
   /**
    * Delete profile (admin only)
    */
-  async deleteProfile(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  async deleteProfile(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -236,9 +207,9 @@ export const profilesController = {
       }
 
       // TODO: Add admin check
-      await profilesService.deleteProfile(id, user.tenant_id || 'default')
+      await profilesService.deleteProfile(id, user?.tenant_id || 'default')
 
-      logAction('profile_deleted', user.id, {
+      logAction('profile_deleted', user?.id, {
         targetProfileId: id,
       })
 
@@ -249,7 +220,7 @@ export const profilesController = {
       }))
     } catch (error) {
       logAction('profile_delete_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }

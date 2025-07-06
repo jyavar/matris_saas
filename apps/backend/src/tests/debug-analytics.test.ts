@@ -46,7 +46,7 @@ describe('Debug Analytics', () => {
       .send(invalidEventData)
 
     console.error('Response status:', response.status)
-    console.error('Response body:', JSON.stringify(response.body, null, 2))
+    console.error('Response body:', JSON.stringify(response._body, null, 2))
     console.error('Response headers:', response.headers)
     console.log('[TEST][RESPONSE BODY]', response.body)
 

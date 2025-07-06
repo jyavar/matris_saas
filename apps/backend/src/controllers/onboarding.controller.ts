@@ -4,7 +4,6 @@ import { z } from 'zod'
 import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
 
 // Schemas de validación
 const startOnboardingSchema = z.object({
@@ -16,20 +15,14 @@ const completeOnboardingSchema = z.object({
 })
 
 export const OnboardingController = {
-  async getOnboarding(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getOnboarding(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: false, error: 'Unauthorized' }))
         return
       }
-      const onboarding = await onboardingService.getOnboarding(user.id)
+      const onboarding = await onboardingService.getOnboarding(user?.id)
       if (!onboarding) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: false, error: 'Onboarding not found' }))
@@ -37,21 +30,15 @@ export const OnboardingController = {
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, data: onboarding }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 
-  async startOnboarding(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async startOnboarding(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const validated = startOnboardingSchema.parse(body)
+      const validated = startOnboardingSchema.parse(_body)
 
       const onboarding = await onboardingService.startOnboarding({
         email: validated.email,
@@ -78,15 +65,9 @@ export const OnboardingController = {
     }
   },
 
-  async completeOnboarding(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async completeOnboarding(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
-      const validated = completeOnboardingSchema.parse(body)
+      const validated = completeOnboardingSchema.parse(_body)
 
       const onboarding = await onboardingService.completeOnboarding({
         user_id: validated.user_id,
@@ -111,17 +92,17 @@ export const OnboardingController = {
   },
 
   // Alias methods for route compatibility
-  getOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return OnboardingController.getOnboarding(req, res, params, body, user)
+  getOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.getOnboarding(req, res, _params, _body, user)
   },
-  updateOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return OnboardingController.startOnboarding(req, res, params, body, user)
+  updateOnboardingStatus: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.startOnboarding(req, res, _params, _body, user)
   },
-  getOnboardingStepById: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return OnboardingController.getOnboarding(req, res, params, body, user)
+  getOnboardingStepById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.getOnboarding(req, res, _params, _body, user)
   },
-  updateOnboardingStep: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return OnboardingController.completeOnboarding(req, res, params, body, user)
+  updateOnboardingStep: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return OnboardingController.completeOnboarding(req, res, _params, _body, user)
   },
 }
 

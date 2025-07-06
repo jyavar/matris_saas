@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
+
 import { server } from '../index.js'
 
 /**
@@ -55,7 +56,7 @@ export class TestServer {
    */
   async request(method: string, path: string, options: {
     headers?: Record<string, string>
-    body?: unknown
+    _body?: unknown
   } = {}) {
     const { headers = {}, body } = options
 
@@ -79,14 +80,14 @@ export class TestServer {
   /**
    * POST request
    */
-  async post(path: string, body?: unknown, options?: { headers?: Record<string, string> }) {
+  async post(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
     return this.request('POST', path, { ...options, body })
   }
 
   /**
    * PUT request
    */
-  async put(path: string, body?: unknown, options?: { headers?: Record<string, string> }) {
+  async put(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
     return this.request('PUT', path, { ...options, body })
   }
 
@@ -100,7 +101,7 @@ export class TestServer {
   /**
    * PATCH request
    */
-  async patch(path: string, body?: unknown, options?: { headers?: Record<string, string> }) {
+  async patch(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
     return this.request('PATCH', path, { ...options, body })
   }
 }

@@ -1,16 +1,11 @@
-import { IncomingMessage, ServerResponse } from 'http'
+
+import type { ControllerHandler } from '../types/express/index.js'
 
 export const healthController = {
   /**
    * Health check endpoint
    */
-  async getHealth(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: any,
-    user?: any,
-  ): Promise<void> {
+  getHealth: (async (_req, res, _params, _body, _user) => {
     try {
       const health = {
         status: 'healthy',
@@ -26,7 +21,7 @@ export const healthController = {
         success: true,
         data: health,
       }))
-    } catch (error) {
+    } catch {
       res.writeHead(503, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({
         success: false,
@@ -34,5 +29,5 @@ export const healthController = {
         timestamp: new Date().toISOString(),
       }))
     }
-  },
+  }) as ControllerHandler,
 }

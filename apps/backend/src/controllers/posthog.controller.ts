@@ -18,13 +18,7 @@ const identifyUserSchema = z.object({
 })
 
 export const PostHogController = {
-  async getHealth(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getHealth(req: IncomingMessage, res: ServerResponse): Promise<void> {
     try {
       const isConfigured = !!process.env.POSTHOG_API_KEY
       
@@ -36,21 +30,15 @@ export const PostHogController = {
           api_key_present: isConfigured,
         },
       }))
-    } catch (error) {
+    } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
     }
   },
 
-  async trackEvent(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async trackEvent(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
-      const validated = trackEventSchema.parse(body)
+      const validated = trackEventSchema.parse(_body)
 
       const result = await posthogService.trackEvent({
         event: validated.event,
@@ -79,15 +67,9 @@ export const PostHogController = {
     }
   },
 
-  async identifyUser(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async identifyUser(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
-      const validated = identifyUserSchema.parse(body)
+      const validated = identifyUserSchema.parse(_body)
 
       const result = await posthogService.identifyUser({
         user_id: validated.user_id,

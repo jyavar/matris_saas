@@ -3,15 +3,16 @@
 // generic CRUD operations with consistent error handling and logging
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
+
 import { z } from 'zod'
+
+import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
 import { parseBody, parseParams } from './request.helper.js'
 import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from './response.helper.js'
-import { logAction } from '../services/logger.service.js'
-import { ApiError } from './ApiError.js'
 
 export interface CrudService<T, CreateDTO, UpdateDTO> {
-  getAll: (userId: string, params?: Record<string, any>) => Promise<T[]>
+  getAll: (userId: string, _params?: Record<string, unknown>) => Promise<T[]>
   getById: (id: string, userId?: string) => Promise<T | null>
   create: (data: CreateDTO & { user_id: string }) => Promise<T | null>
   update: (id: string, data: UpdateDTO) => Promise<T | null>
@@ -40,7 +41,7 @@ async function withAuth<T>(
 
   try {
     if (requireAuth) {
-      const user = (req as { user?: AuthenticatedUser }).user
+      const user = (req as { _user?: AuthenticatedUser }).user
       if (!user) {
         return sendUnauthorized(res, 'User not authenticated')
       }
@@ -58,7 +59,7 @@ async function withAuth<T>(
     }
     
     if (error instanceof ApiError) {
-      return sendError(res, error.message, error.statusCode)
+      return sendError(res, (error as Error).message, error.statusCode)
     }
     
     console.error('Controller error:', error)
@@ -83,10 +84,10 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
      */
     async getAll(req: IncomingMessage, res: ServerResponse) {
       return withAuth(req, res, async (user) => {
-        const items = await service.getAll(user.id)
+        const items = await service.getAll(_user?.id)
         
         if (logActions) {
-          logAction(`${entityName}_list_retrieved`, user.id, { 
+          logAction(`${entityName}_list_retrieved`, _user?.id, { 
             count: items.length,
             ip: req.socket.remoteAddress 
           })
@@ -107,14 +108,14 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
           return sendError(res, `${entityName} ID is required`, 400)
         }
         
-        const item = await service.getById(id, user.id)
+        const item = await service.getById(id, _user?.id)
         
         if (!item) {
           return sendNotFound(res, `${entityName} not found`)
         }
         
         if (logActions) {
-          logAction(`${entityName}_retrieved`, user.id, { 
+          logAction(`${entityName}_retrieved`, _user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })
@@ -141,7 +142,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         
         const item = await service.create({ 
           ...validatedData, 
-          user_id: user.id 
+          user_id: _user?.id 
         })
         
         if (!item) {
@@ -149,8 +150,8 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_created`, user.id, { 
-            id: (item as any).id,
+          logAction(`${entityName}_created`, _user?.id, { 
+            id: (item as { id: unknown }).id,
             ip: req.socket.remoteAddress 
           })
         }
@@ -187,7 +188,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_updated`, user.id, { 
+          logAction(`${entityName}_updated`, _user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })
@@ -215,7 +216,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_deleted`, user.id, { 
+          logAction(`${entityName}_deleted`, _user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })
@@ -234,12 +235,12 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
  * Creates a controller with only read operations (no create, update, delete)
  */
 export function createReadOnlyController<T>(
-  service: Pick<CrudService<T, any, any>, 'getAll' | 'getById'>,
+  service: Pick<CrudService<T, unknown, unknown>, 'getAll' | 'getById'>,
   entityName: string,
   options: ControllerOptions = {}
 ) {
   const crudController = createCrudController(
-    service as CrudService<T, any, any>,
+    service as CrudService<T, unknown, unknown>,
     entityName,
     options
   )

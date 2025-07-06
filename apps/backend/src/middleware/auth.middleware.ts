@@ -4,13 +4,12 @@ import { z } from 'zod'
 import { supabase } from '../lib/supabase.js'
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, MiddlewareHandler } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
 import { sendError,sendUnauthorized } from '../utils/response.helper.js'
 
 // Extend IncomingMessage to include user property
 declare module 'http' {
   interface IncomingMessage {
-    user?: AuthenticatedUser
+    _user?: AuthenticatedUser
   }
 }
 
@@ -24,7 +23,7 @@ const authHeaderSchema = z.object({
 export const authMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization
@@ -51,13 +50,13 @@ export const authMiddleware: MiddlewareHandler = async (
     }
 
     // Add user to request object
-    ;(req as { user?: AuthenticatedUser }).user = {
-      id: user.id,
+    ;(req as { _user?: AuthenticatedUser }).user = {
+      id: _user?.id,
       email: user.email || '',
       role: user.user_metadata?.role || 'user',
     }
 
-    logAction('auth_success', user.id, {
+    logAction('auth_success', _user?.id, {
       email: user.email,
       ip: req.socket.remoteAddress,
     })
@@ -65,7 +64,7 @@ export const authMiddleware: MiddlewareHandler = async (
     next()
   } catch (error) {
     logAction('auth_error', 'anonymous', {
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: (error instanceof Error ? error.message : 'Unknown error'),
       ip: req.socket.remoteAddress,
     })
     return sendError(res, 'Authentication failed', 500)
@@ -78,7 +77,7 @@ export const authMiddleware: MiddlewareHandler = async (
 export const optionalAuthMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization
@@ -100,13 +99,13 @@ export const optionalAuthMiddleware: MiddlewareHandler = async (
 
     if (!error && user) {
       // Add user to request object
-      ;(req as { user?: AuthenticatedUser }).user = {
-        id: user.id,
+      ;(req as { _user?: AuthenticatedUser }).user = {
+        id: _user?.id,
         email: user.email || '',
         role: user.user_metadata?.role || 'user',
       }
 
-      logAction('optional_auth_success', user.id, {
+      logAction('optional_auth_success', _user?.id, {
         email: user.email,
         ip: req.socket.remoteAddress,
       })
@@ -116,7 +115,7 @@ export const optionalAuthMiddleware: MiddlewareHandler = async (
   } catch (error) {
     // Don't fail on optional auth errors, just log and continue
     logAction('optional_auth_error', 'anonymous', {
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: (error instanceof Error ? error.message : 'Unknown error'),
       ip: req.socket.remoteAddress,
     })
     next()
@@ -130,17 +129,17 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
   return async (
     req: IncomingMessage,
     res: ServerResponse,
-    next: () => void
+    _next: () => void
   ): Promise<void> => {
     try {
-      const user = (req as { user?: AuthenticatedUser }).user
+      const user = (req as { _user?: AuthenticatedUser }).user
 
       if (!user) {
         return sendUnauthorized(res, 'Authentication required')
       }
 
       if (user.role !== requiredRole && user.role !== 'admin') {
-        logAction('auth_role_denied', user.id, {
+        logAction('auth_role_denied', _user?.id, {
           required_role: requiredRole,
           user_role: user.role,
           ip: req.socket.remoteAddress,
@@ -148,7 +147,7 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
         return sendUnauthorized(res, 'Insufficient permissions')
       }
 
-      logAction('auth_role_granted', user.id, {
+      logAction('auth_role_granted', _user?.id, {
         required_role: requiredRole,
         user_role: user.role,
         ip: req.socket.remoteAddress,
@@ -157,7 +156,7 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
       next()
     } catch (error) {
       logAction('auth_role_error', 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
         ip: req.socket.remoteAddress,
       })
       return sendError(res, 'Authorization failed', 500)
@@ -171,31 +170,31 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
 export const requireAdmin: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser }).user
 
     if (!user) {
       return sendUnauthorized(res, 'Authentication required')
     }
 
     if (user.role !== 'admin') {
-      logAction('auth_admin_denied', user.id, {
+      logAction('auth_admin_denied', _user?.id, {
         user_role: user.role,
         ip: req.socket.remoteAddress,
       })
       return sendUnauthorized(res, 'Admin access required')
     }
 
-    logAction('auth_admin_granted', user.id, {
+    logAction('auth_admin_granted', _user?.id, {
       ip: req.socket.remoteAddress,
     })
 
     next()
   } catch (error) {
     logAction('auth_admin_error', 'anonymous', {
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: (error instanceof Error ? error.message : 'Unknown error'),
       ip: req.socket.remoteAddress,
     })
     return sendError(res, 'Authorization failed', 500)

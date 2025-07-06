@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email format'),
@@ -17,23 +16,13 @@ const registerSchema = z.object({
   name: z.string().min(1, 'Name is required'),
 })
 
-const refreshTokenSchema = z.object({
-  refreshToken: z.string().min(1, 'Refresh token is required'),
-})
-
 export const authController = {
   /**
    * User login
    */
-  async login(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async login(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
-      const validatedData = loginSchema.parse(body)
+      const validatedData = loginSchema.parse(_body)
       const result = await authService.signIn(validatedData)
 
       logAction('user_login', 'anonymous', {
@@ -55,7 +44,7 @@ export const authController = {
         }))
       } else {
         logAction('user_login_error', 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -69,15 +58,9 @@ export const authController = {
   /**
    * User registration
    */
-  async register(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async register(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
     try {
-      const validatedData = registerSchema.parse(body)
+      const validatedData = registerSchema.parse(_body)
       const result = await authService.signUp(validatedData)
 
       logAction('user_registered', 'anonymous', {
@@ -100,7 +83,7 @@ export const authController = {
         }))
       } else {
         logAction('user_registration_error', 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -112,10 +95,10 @@ export const authController = {
   },
 
   // Alias methods for route compatibility
-  signUp: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return authController.register(req, res, params, body, user)
+  signUp: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return authController.register(req, res, _params, _body, user)
   },
-  signIn: async (req: IncomingMessage, res: ServerResponse, params?: Record<string, string>, body?: RequestBody, user?: AuthenticatedUser) => {
-    return authController.login(req, res, params, body, user)
+  signIn: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+    return authController.login(req, res, _params, _body, user)
   },
 }

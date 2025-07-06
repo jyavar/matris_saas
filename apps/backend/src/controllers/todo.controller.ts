@@ -25,13 +25,7 @@ export const todoController = {
   /**
    * Get all todos for current user
    */
-  async getAllTodos(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getAllTodos(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -42,9 +36,9 @@ export const todoController = {
         return
       }
 
-      const todos = await todoService.getAllTodos(user.id, user.tenant_id || '')
+      const todos = await todoService.getAllTodos(user?.id, user?.tenant_id || '')
 
-      logAction('todos_requested', user.id, {
+      logAction('todos_requested', user?.id, {
         count: todos.length,
       })
 
@@ -56,7 +50,7 @@ export const todoController = {
       }))
     } catch (error) {
       logAction('todos_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -65,15 +59,9 @@ export const todoController = {
   /**
    * Get todo by ID
    */
-  async getTodoById(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async getTodoById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -103,7 +91,7 @@ export const todoController = {
         return
       }
 
-      logAction('todo_requested', user.id, {
+      logAction('todo_requested', user?.id, {
         todoId: id,
       })
 
@@ -114,7 +102,7 @@ export const todoController = {
       }))
     } catch (error) {
       logAction('todo_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }
@@ -123,13 +111,7 @@ export const todoController = {
   /**
    * Create todo
    */
-  async createTodo(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async createTodo(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
     try {
       if (!user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
@@ -140,7 +122,7 @@ export const todoController = {
         return
       }
 
-      const validatedData = createTodoSchema.parse(body)
+      const validatedData = createTodoSchema.parse(_body)
       const todoPayload = {
         task: validatedData.title,
         is_completed: validatedData.completed,
@@ -150,7 +132,7 @@ export const todoController = {
       }
       const todo = await todoService.createTodo(todoPayload)
 
-      logAction('todo_created', user.id, {
+      logAction('todo_created', user?.id, {
         todoTitle: validatedData.title,
         priority: validatedData.priority,
       })
@@ -170,7 +152,7 @@ export const todoController = {
         }))
       } else {
         logAction('todo_create_error', user?.id || 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
       }
@@ -180,15 +162,9 @@ export const todoController = {
   /**
    * Update todo
    */
-  async updateTodo(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async updateTodo(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, __body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -207,7 +183,7 @@ export const todoController = {
         return
       }
 
-      const validatedData = updateTodoSchema.parse(body)
+      const validatedData = updateTodoSchema.parse(_body)
       const updatePayload: Record<string, unknown> = {}
       if (validatedData.title !== undefined) updatePayload.task = validatedData.title
       if (validatedData.completed !== undefined) updatePayload.is_completed = validatedData.completed
@@ -225,7 +201,7 @@ export const todoController = {
         return
       }
 
-      logAction('todo_updated', user.id, {
+      logAction('todo_updated', user?.id, {
         todoId: id,
         updates: validatedData,
       })
@@ -245,7 +221,7 @@ export const todoController = {
         }))
       } else {
         logAction('todo_update_error', user?.id || 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
       }
@@ -255,15 +231,9 @@ export const todoController = {
   /**
    * Delete todo
    */
-  async deleteTodo(
-    req: IncomingMessage,
-    res: ServerResponse,
-    params?: Record<string, string>,
-    body?: RequestBody,
-    user?: AuthenticatedUser,
-  ): Promise<void> {
+  async deleteTodo(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
-      const { id } = params || {}
+      const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
@@ -293,7 +263,7 @@ export const todoController = {
         return
       }
 
-      logAction('todo_deleted', user.id, {
+      logAction('todo_deleted', user?.id, {
         todoId: id,
       })
 
@@ -304,7 +274,7 @@ export const todoController = {
       }))
     } catch (error) {
       logAction('todo_delete_error', user?.id || 'anonymous', {
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
     }

@@ -50,7 +50,7 @@ describe('billingService', () => {
     } as Response)
     const result = await billingService.getAllInvoices('cus-1')
     expect(result).toHaveLength(1)
-    expect(result[0].id).toBe('inv-1')
+    expect(result[0]?.id).toBe('inv-1')
   })
 
   it('getAllInvoices lanza error si fetch falla', async () => {

@@ -7,28 +7,28 @@ export * from './auth.controller.js'
 
 // Business Controllers  
 export * from './billing.controller.js'
-export * from './pricing.controller.js'
-export * from './payments.controller.js'
 export * from './campaigns.controller.js'
 export * from './email-campaigns.controller.js'
 export * from './onboarding.controller.js'
+export * from './payments.controller.js'
+export * from './pricing.controller.js'
 
 // Core Controllers
+export * from './health.controller.js'
 export * from './profiles.controller.js'
 export * from './todo.controller.js'
-export * from './health.controller.js'
 
 // Analytics Controllers
 export * from './analytics.controller.js'
-export * from './reporting.controller.js'
 export { PostHogController } from './posthog.controller.js'
+export * from './reporting.controller.js'
 
 // Infrastructure Controllers
+export * from './automation.controller.js'
 export * from './openai.controller.js'
 export * from './resend.controller.js'
-export * from './automation.controller.js'
 export * from './runtime.controller.js'
 
 // Utilities and Helpers
-export * from './launchboard.controller.js'
 export * from './analytics-reporting.controller.js'
+export * from './launchboard.controller.js'

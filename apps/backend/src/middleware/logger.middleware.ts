@@ -5,7 +5,7 @@ import { logAction } from '../services/logger.service.js'
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ) => Promise<void>
 
 /**
@@ -14,7 +14,7 @@ type MiddlewareHandler = (
 export const loggerMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   const startTime = Date.now()
   const requestId = generateRequestId()
@@ -47,7 +47,10 @@ export const loggerMiddleware: MiddlewareHandler = async (
     })
 
     // Call original end method
-    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
+    if (typeof encoding === 'function') {
+      return originalEnd.call(this, chunk, 'utf8', encoding)
+    }
+    return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
   next()
@@ -56,10 +59,10 @@ export const loggerMiddleware: MiddlewareHandler = async (
 /**
  * Performance logging middleware
  */
-export const performanceMiddleware: MiddlewareHandler = async (
+export const performanceLoggingMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   const startTime = Date.now()
   const requestId = generateRequestId()
@@ -90,7 +93,10 @@ export const performanceMiddleware: MiddlewareHandler = async (
     }
 
     // Call original end method
-    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
+    if (typeof encoding === 'function') {
+      return originalEnd.call(this, chunk, 'utf8', encoding)
+    }
+    return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
   next()
@@ -102,7 +108,7 @@ export const performanceMiddleware: MiddlewareHandler = async (
 export const securityMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   const ip = req.socket.remoteAddress
   const userAgent = req.headers['user-agent']
@@ -139,7 +145,7 @@ export const securityMiddleware: MiddlewareHandler = async (
 export const errorLoggingMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  next: () => void
+  _next: () => void
 ): Promise<void> => {
   const originalEnd = res.end
   res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
@@ -155,7 +161,10 @@ export const errorLoggingMiddleware: MiddlewareHandler = async (
       })
     }
 
-    return originalEnd.call(this, chunk, typeof encoding === 'string' ? encoding : undefined, typeof encoding === 'function' ? encoding : cb)
+    if (typeof encoding === 'function') {
+      return originalEnd.call(this, chunk, 'utf8', encoding)
+    }
+    return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
   next()
