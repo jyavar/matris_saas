@@ -1,21 +1,19 @@
-"use client"
-
 /**
- * Página principal STRATO Core OS™
- * @description Landing page moderna y modular usando componentes template
+ * Página de prueba para componentes template
+ * @description Página para verificar que todos los componentes template funcionan correctamente
  */
 
 import React from 'react'
 
 import {
-  BaseLayout,
+  Footer,
   HeroSection,
+  Navbar,
   NewsletterForm,
   PricingCards,
-  Testimonials} from '../components/template'
+  Testimonials} from '../../components/template'
 
-// Ejemplo de datos para PricingCards y Testimonials
-const pricingCards = [
+const samplePricingCards = [
   {
     title: 'Starter',
     price: '$29/mes',
@@ -61,7 +59,7 @@ const pricingCards = [
   }
 ]
 
-const testimonials = [
+const sampleTestimonials = [
   {
     content: 'STRATO ha transformado completamente nuestro flujo de desarrollo. Los agentes inteligentes nos ahorran horas de trabajo manual.',
     author: 'María García',
@@ -82,49 +80,38 @@ const testimonials = [
   }
 ]
 
-const handleNewsletterSubmit = async (email: string) => {
-  // Aquí iría la lógica real de suscripción
-  // eslint-disable-next-line no-console
-  console.log('Newsletter subscription:', email)
-}
+export default function TemplateTestPage() {
+  const handleNewsletterSubmit = async (email: string) => {
+    console.log('Newsletter subscription:', email)
+    // Aquí iría la lógica real de suscripción
+  }
 
-const HomePage: React.FC = () => {
   return (
-    <BaseLayout>
-      <main className="min-h-screen bg-background flex flex-col items-center w-full">
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      
+      <main>
         <HeroSection 
-          title="STRATO Core OS™"
-          description="Framework SaaS enterprise-grade para desarrollo moderno, modular y seguro."
-          ctaText="Comenzar ahora"
+          title="Prueba de Componentes Template"
+          description="Esta página demuestra todos los componentes template extraídos de BadtzUI y adaptados para STRATO."
+          ctaText="Ver Dashboard"
           ctaHref="/dashboard"
-          secondaryCtaText="Ver documentación"
+          secondaryCtaText="Documentación"
           secondaryCtaHref="/docs"
         />
-        <PricingCards cards={pricingCards} />
-        <Testimonials testimonials={testimonials} />
-        <section className="w-full py-16 px-6 lg:px-8 flex justify-center">
-          <div className="max-w-2xl w-full">
+        
+        <PricingCards cards={samplePricingCards} />
+        
+        <Testimonials testimonials={sampleTestimonials} />
+        
+        <div className="py-16 px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
             <NewsletterForm onSubmit={handleNewsletterSubmit} />
           </div>
-        </section>
-        {/* CTA final */}
-        <section className="w-full py-12 flex flex-col items-center">
-          <h2 className="text-2xl font-bold mb-4 text-center">¿Listo para experimentar STRATO?</h2>
-          <a
-            href="/dashboard"
-            className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold text-lg shadow hover:bg-primary/90 transition-colors"
-          >
-            Ir al Dashboard
-          </a>
-        </section>
-        {/* Toggle dark mode si existe soporte shadcn/ui */}
-        <div className="fixed bottom-6 right-6 z-50">
-          {/* Si tienes un componente de toggle, reemplaza aquí */}
-          {/* <ModeToggle /> */}
         </div>
       </main>
-    </BaseLayout>
+      
+      <Footer />
+    </div>
   )
-}
-
-export default HomePage
+} 

@@ -1,4 +1,5 @@
-'use client'
+import '../index.css'
+
 import React from 'react'
 
 import { AuthProvider } from '../contexts/AuthContext'
@@ -10,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="antialiased">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
