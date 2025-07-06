@@ -113,7 +113,7 @@ export class BudgetAuditorService {
       practical_amount: practicalAmount,
       deviation_amount: deviationAmount,
       deviation_percentage: deviationPercentage,
-      is_alert,
+      is_alert: isAlert,
       alert_threshold: ALERT_THRESHOLD,
       date_range: {
         from: budget.date_from,
@@ -193,25 +193,25 @@ export class BudgetAuditorService {
         : 0
 
       // Agrupar por empresa
-      const companies: Record<number, { name: string; budgets_count: number; alerts_count: number }> = {}
+      const companiesSummary: Record<number, { name: string; budgets_count: number; alerts_count: number }> = {}
       
       for (const budget of budgets) {
         const companyId = budget.company_id[0]
         const companyName = companies.get(companyId) || 'Unknown Company'
         
-        if (!companies[companyId]) {
-          companies[companyId] = {
+        if (!companiesSummary[companyId]) {
+          companiesSummary[companyId] = {
             name: companyName,
             budgets_count: 0,
             alerts_count: 0
           }
         }
         
-        companies[companyId].budgets_count++
+        companiesSummary[companyId].budgets_count++
         
         const comparison = comparisons.find(c => c.budget_id === budget.id)
         if (comparison?.is_alert) {
-          companies[companyId].alerts_count++
+          companiesSummary[companyId].alerts_count++
         }
       }
 
@@ -226,7 +226,7 @@ export class BudgetAuditorService {
         },
         comparisons,
         alerts,
-        companies
+        companies: companiesSummary
       }
 
       logger.info(

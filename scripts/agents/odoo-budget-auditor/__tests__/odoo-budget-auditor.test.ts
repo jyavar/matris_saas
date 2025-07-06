@@ -66,6 +66,12 @@ describe('Odoo Budget Auditor', () => {
 
   describe('OdooBudgetAuditor Class', () => {
     it('should initialize with configuration', () => {
+      const mockOdooService = {
+        getConnectionInfo: vi.fn().mockReturnValue({ url: 'http://localhost:8069' })
+      }
+
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+
       const auditor = new OdooBudgetAuditor(mockConfig)
       
       expect(auditor.getConfig()).toEqual(mockConfig)
@@ -268,6 +274,12 @@ describe('Odoo Budget Auditor', () => {
     })
 
     it('should use default values for optional fields', () => {
+      const mockOdooService = {
+        getConnectionInfo: vi.fn().mockReturnValue({ url: 'http://localhost:8069' })
+      }
+
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+
       const minimalConfig = {
         host: 'localhost',
         port: 8069,
