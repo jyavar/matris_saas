@@ -1,20 +1,14 @@
 /* eslint-disable */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { defineConfig } from 'vitest/config'
 import { resolve } from 'path'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@backend': resolve(__dirname, 'src'),
-      '@backend/*': resolve(__dirname, 'src/*'),
-    },
-  },
   test: {
     environment: 'node',
     globals: true,
-    setupFiles: './vitest.setup.ts',
+    setupFiles: ['./vitest.setup.ts'],
     envFile: '../../.env.test',
     // Optimizaciones para tests unitarios rápidos
     testTimeout: 5000, // 5 segundos máximo por test
@@ -28,7 +22,7 @@ export default defineConfig({
     },
     // Configuración de coverage optimizada
     coverage: {
-      provider: 'v8',
+      provider: 'istanbul',
       reporter: ['text', 'html', 'json', 'json-summary'],
       // Excluir archivos que no necesitan coverage en tests unitarios
       exclude: [
@@ -38,11 +32,18 @@ export default defineConfig({
         '**/*.d.ts',
         '**/vitest.setup.ts',
         '**/vitest.config.ts',
+        '**/tests/**',
+        '**/mocks/**',
       ],
     },
     // Configuración de mocks globales
     mockReset: true,
     restoreMocks: true,
     clearMocks: true,
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
   },
 })
