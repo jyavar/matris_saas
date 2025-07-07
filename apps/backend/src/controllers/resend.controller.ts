@@ -1,11 +1,11 @@
 import { ResendService } from '../services/resend.service.js'
 import { ControllerHandler } from '../types/express/index.js'
 import { responseHelpers } from '../utils/controller-refactor.js'
-
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 export const resendController = {
   sendEmail: (async (_req, res, _params, _body, _user) => {
     try {
-      const { to, subject } = body || {}
+      const { to, subject } = _body || {}
       if (!to || !subject || typeof to !== 'string' || typeof subject !== 'string') {
         responseHelpers.badRequest(res, 'Faltan campos requeridos')
         return

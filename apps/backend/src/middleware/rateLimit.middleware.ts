@@ -87,7 +87,7 @@ export const createRateLimit = (config: RateLimitConfig) => {
     res.setHeader('X-RateLimit-Remaining', (config.maxRequests - store[clientKey].count).toString())
     res.setHeader('X-RateLimit-Reset', new Date(store[clientKey].resetTime).toISOString())
 
-    next()
+    _next()
   }
 }
 

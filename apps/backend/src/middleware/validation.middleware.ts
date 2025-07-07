@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { z, ZodSchema } from 'zod'
 
-import { logAction } from '../services/logger.service'
-import type { RequestBody } from '../types/express/index'
-import { parseBody, parseParams,parseQuery } from '../utils/request.helper'
-import { sendValidationError } from '../utils/response.helper'
+import { logAction } from '../services/logger.service.js'
+import type { RequestBody } from '../types/express/index.js'
+import { parseBody, parseParams, parseQuery } from '../utils/request.helper.js'
+import { sendValidationError } from '../utils/response.helper.js'
 
 // Extended request interface for validation
 interface ExtendedRequest extends IncomingMessage {
@@ -43,7 +43,7 @@ export const validateBody = (schema: ZodSchema): MiddlewareHandler => {
       // Add validated data to request
       ;(req as ExtendedRequest).validatedBody = validatedData
       
-      next()
+_next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
@@ -79,7 +79,7 @@ export const validateQuery = (schema: z.ZodSchema): MiddlewareHandler => {
       })
 
       schema.parse(queryObj)
-      next()
+_next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
@@ -123,7 +123,7 @@ export const validateParams = (schema: z.ZodSchema): MiddlewareHandler => {
       }
 
       schema.parse(pathParams)
-      next()
+_next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
@@ -159,7 +159,7 @@ export const validateHeaders = (schema: ZodSchema): MiddlewareHandler => {
       // Add validated data to request
       ;(req as ExtendedRequest).validatedHeaders = validatedData
       
-      next()
+_next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         return sendValidationError(res, error.errors, 'Invalid headers')
@@ -188,7 +188,7 @@ export const validateContentType = (allowedTypes: string[]): MiddlewareHandler =
       return sendValidationError(res, [], `Content-Type must be one of: ${allowedTypes.join(', ')}`)
     }
     
-    next()
+    _next()
   }
 }
 
@@ -207,7 +207,7 @@ export const validateFileSize = (maxSize: number): MiddlewareHandler => {
       return sendValidationError(res, [], `File size exceeds maximum allowed size of ${maxSize} bytes`)
     }
     
-    next()
+    _next()
   }
 }
 
@@ -235,7 +235,7 @@ export const validateRateLimit = (maxRequests: number, windowMs: number): Middle
       userRequests.count++
     }
     
-    next()
+    _next()
   }
 }
 
@@ -248,7 +248,7 @@ export const createValidationMiddleware = (config: ValidationConfig) => {
         const validatedBody = config.body.parse(body)
         
         // Attach validated body to request
-        ;(req as ExtendedRequest).body = validatedBody
+        ;(req as ExtendedRequest)._body = validatedBody
       }
 
       // Validate query parameters if schema provided
@@ -264,14 +264,14 @@ export const createValidationMiddleware = (config: ValidationConfig) => {
       if (config.params) {
         // URL parameters would be extracted by the router
         // For now, we'll assume they're attached to req.params
-        const params = (req as ExtendedRequest).params || {}
+        const params = (req as ExtendedRequest)._params || {}
         const validatedParams = config.params.parse(params)
         
         // Attach validated params to request
-        ;(req as ExtendedRequest).params = validatedParams
+        ;(req as ExtendedRequest)._params = validatedParams
       }
 
-      next()
+_next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         logAction('validation_error', 'system', {

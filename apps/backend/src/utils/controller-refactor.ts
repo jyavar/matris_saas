@@ -16,14 +16,14 @@ export function createControllerMethod(
 ): ControllerHandler {
   return async (_req, res, _params, _body, _user) => {
     try {
-      const result = await handler(_params, _body, user)
+      const result = await handler(_params, _body, _user)
       
       if (result && result.status) {
         // Handle custom status responses
-        res.writeHead(result.status, { 'Content-Type': 'application/json' })
+        res.writeHead((result as any).status, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
-          success: result.status < 400,
-          ...result.data
+          success: (result as any).status < 400,
+          ...(result as any).data
         }))
       } else {
         // Default success response
@@ -53,7 +53,7 @@ export function migrateController(controller: Record<string, unknown>): Record<s
   
   for (const [key, method] of Object.entries(controller)) {
     if (typeof method === 'function') {
-      migrated[key] = createControllerMethod(async (_params, _body, user) => {
+      migrated[key] = createControllerMethod(async (_params, _body, _user) => {
         // Simple migration - returns empty object for now
         return {}
       })

@@ -6,8 +6,8 @@ import type {
   UpdateWorkflowData,
 } from '../services/automation.service.js'
 import { automationService } from '../services/automation.service.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 // Schemas de validación
 const createWorkflowSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -61,26 +61,20 @@ export const automationController = {
   /**
    * GET /automation/workflows - Obtener todos los workflows
    */
-  async getWorkflows(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getWorkflows(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       const workflows = await automationService.getWorkflows()
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: workflows,
-        count: workflows.length,
-      }))
+      return sendSuccess(res, workflows)
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   /**
    * GET /automation/workflows/:id - Obtener workflow por ID
    */
-  async getWorkflowById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async getWorkflowById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -93,19 +87,12 @@ export const automationController = {
       const workflow = await automationService.getWorkflowById(id)
 
       if (!workflow) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: workflow,
-      }))
+      return sendSuccess(res, workflow)
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
@@ -120,8 +107,6 @@ export const automationController = {
       // Obtener userId del usuario autenticado
       const userId = user?.id
       if (!userId) {
-        res.writeHead(401, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'User not authenticated' }))
         return
       }
 
@@ -130,19 +115,12 @@ export const automationController = {
         userId,
       )
 
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: workflow,
-        message: 'Workflow created successfully',
-      }))
+      return sendCreated(res, workflow)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
@@ -150,7 +128,7 @@ export const automationController = {
   /**
    * PUT /automation/workflows/:id - Actualizar workflow
    */
-  async updateWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody): Promise<void> {
+  async updateWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -169,24 +147,15 @@ export const automationController = {
       )
 
       if (!workflow) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: workflow,
-        message: 'Workflow updated successfully',
-      }))
+      return sendSuccess(res, workflow || {})
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
@@ -194,7 +163,7 @@ export const automationController = {
   /**
    * DELETE /automation/workflows/:id - Eliminar workflow
    */
-  async deleteWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async deleteWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -207,8 +176,6 @@ export const automationController = {
       const deleted = await automationService.deleteWorkflow(id)
 
       if (!deleted) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow not found' }))
         return
       }
 
@@ -218,34 +185,27 @@ export const automationController = {
         message: 'Workflow deleted successfully',
       }))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   /**
    * GET /automation/jobs - Obtener todos los jobs
    */
-  async getJobs(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getJobs(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       const jobs = await automationService.getJobs()
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: jobs,
-        count: jobs.length,
-      }))
+      return sendSuccess(res, jobs)
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   /**
    * GET /automation/jobs/:id - Obtener job por ID
    */
-  async getJobById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async getJobById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -258,26 +218,19 @@ export const automationController = {
       const job = await automationService.getJobById(id)
 
       if (!job) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Job not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: job,
-      }))
+      return sendSuccess(res, job)
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   /**
    * POST /automation/workflows/:id/execute - Ejecutar workflow
    */
-  async executeWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody): Promise<void> {
+  async executeWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -293,24 +246,15 @@ export const automationController = {
       const job = await automationService.executeWorkflow(id, validatedData)
 
       if (!job) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: job,
-        message: 'Workflow execution started',
-      }))
+      return sendSuccess(res, job || {})
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
@@ -318,7 +262,7 @@ export const automationController = {
   /**
    * POST /automation/jobs/:id/pause - Pausar job
    */
-  async pauseJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async pauseJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -331,27 +275,19 @@ export const automationController = {
       const job = await automationService.pauseJob(id)
 
       if (!job) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Job not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: job,
-        message: 'Job paused successfully',
-      }))
+      return sendSuccess(res, job || {})
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   /**
    * POST /automation/jobs/:id/resume - Reanudar job
    */
-  async resumeJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async resumeJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -364,37 +300,29 @@ export const automationController = {
       const job = await automationService.resumeJob(id)
 
       if (!job) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Job not found' }))
         return
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: job,
-        message: 'Job resumed successfully',
-      }))
+      return sendSuccess(res, job || {})
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   // Alias methods for route compatibility
   getAutomations: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.getWorkflows(req, res, _params, _body, user)
+    return automationController.getWorkflows(req, res, user)
   },
   createAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.createWorkflow(req, res, _params, _body, user)
+    return automationController.createWorkflow(req, res, _body, user)
   },
   getAutomationById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.getWorkflowById(req, res, _params, _body, user)
+    return automationController.getWorkflowById(req, res, _params, user)
   },
   updateAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
     return automationController.updateWorkflow(req, res, _params, _body, user)
   },
   deleteAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.deleteWorkflow(req, res, _params, _body, user)
+    return automationController.deleteWorkflow(req, res, _params, user)
   },
 }

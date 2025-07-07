@@ -28,7 +28,7 @@ export default defineConfig({
     },
     // Configuración de coverage optimizada
     coverage: {
-      provider: 'istanbul',
+      provider: 'v8',
       reporter: ['text', 'html', 'json', 'json-summary'],
       // Excluir archivos que no necesitan coverage en tests unitarios
       exclude: [

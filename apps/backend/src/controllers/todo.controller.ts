@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { logAction } from '../services/logger.service.js'
 import { todoService } from '../services/todo.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 const createTodoSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   description: z.string().optional(),
@@ -25,9 +25,9 @@ export const todoController = {
   /**
    * Get all todos for current user
    */
-  async getAllTodos(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
+  async getAllTodos(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
     try {
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -36,20 +36,15 @@ export const todoController = {
         return
       }
 
-      const todos = await todoService.getAllTodos(user?.id, user?.tenant_id || '')
+      const todos = await todoService.getAllTodos(_user?.id, user?.tenant_id || '')
 
-      logAction('todos_requested', user?.id, {
+      logAction('todos_requested', _user?.id, {
         count: todos.length,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: todos,
-        count: todos.length,
-      }))
+      return sendSuccess(res, todos)
     } catch (error) {
-      logAction('todos_error', user?.id || 'anonymous', {
+      logAction('todos_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
@@ -71,7 +66,7 @@ export const todoController = {
         return
       }
 
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -91,17 +86,13 @@ export const todoController = {
         return
       }
 
-      logAction('todo_requested', user?.id, {
+      logAction('todo_requested', _user?.id, {
         todoId: id,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: todo,
-      }))
+      return sendSuccess(res, todo)
     } catch (error) {
-      logAction('todo_error', user?.id || 'anonymous', {
+      logAction('todo_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
@@ -111,9 +102,9 @@ export const todoController = {
   /**
    * Create todo
    */
-  async createTodo(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
+  async createTodo(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
     try {
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -132,26 +123,17 @@ export const todoController = {
       }
       const todo = await todoService.createTodo(todoPayload)
 
-      logAction('todo_created', user?.id, {
+      logAction('todo_created', _user?.id, {
         todoTitle: validatedData.title,
         priority: validatedData.priority,
       })
 
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: todo,
-      }))
+      return sendCreated(res, todo)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid todo data',
-          details: error.errors,
-        }))
+        return sendValidationError(res, error.errors, 'Invalid todo data')
       } else {
-        logAction('todo_create_error', user?.id || 'anonymous', {
+        logAction('todo_create_error', _user?.id || 'anonymous', {
           error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
@@ -174,7 +156,7 @@ export const todoController = {
         return
       }
 
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -183,7 +165,7 @@ export const todoController = {
         return
       }
 
-      const validatedData = updateTodoSchema.parse(_body)
+      const validatedData = updateTodoSchema.parse(__body)
       const updatePayload: Record<string, unknown> = {}
       if (validatedData.title !== undefined) updatePayload.task = validatedData.title
       if (validatedData.completed !== undefined) updatePayload.is_completed = validatedData.completed
@@ -201,26 +183,17 @@ export const todoController = {
         return
       }
 
-      logAction('todo_updated', user?.id, {
+      logAction('todo_updated', _user?.id, {
         todoId: id,
         updates: validatedData,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: todo,
-      }))
+      return sendSuccess(res, todo)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid todo data',
-          details: error.errors,
-        }))
+        return sendValidationError(res, error.errors, 'Invalid todo data')
       } else {
-        logAction('todo_update_error', user?.id || 'anonymous', {
+        logAction('todo_update_error', _user?.id || 'anonymous', {
           error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
@@ -243,7 +216,7 @@ export const todoController = {
         return
       }
 
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -263,7 +236,7 @@ export const todoController = {
         return
       }
 
-      logAction('todo_deleted', user?.id, {
+      logAction('todo_deleted', _user?.id, {
         todoId: id,
       })
 
@@ -273,7 +246,7 @@ export const todoController = {
         message: 'Todo deleted successfully',
       }))
     } catch (error) {
-      logAction('todo_delete_error', user?.id || 'anonymous', {
+      logAction('todo_delete_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error

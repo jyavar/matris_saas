@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { authSchema } from '../lib/schemas.js'
 import { supabase } from '../lib/supabase.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const authService = {
   async signUp(credentials: z.infer<typeof authSchema>) {
@@ -24,13 +25,13 @@ export const authService = {
 
     if (error) {
       if ((error as Error).message === 'Invalid login credentials') {
-        throw new ApiError(401, 'Invalid login credentials')
+        throw new ApiError('Invalid login credentials', 401)
       }
       throw new Error((error as Error).message)
     }
 
     if (!data.session) {
-      throw new ApiError(401, 'Could not sign in')
+      throw new ApiError('Could not sign in', 401)
     }
 
     return data

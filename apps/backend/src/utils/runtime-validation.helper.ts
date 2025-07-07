@@ -173,8 +173,8 @@ export function createRouteValidator<T>(
       const data = dataExtractor(req)
       const validated = validateOrThrow(schema, data, 'request data')
       req.validated = validated
-      next()
-    } catch {
+      _next()
+    } catch (error) {
       res.writeHead(400, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({
         success: false,

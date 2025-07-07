@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { logAction } from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 // Schemas
 export const pricingSchema = z.object({
@@ -112,7 +113,7 @@ export const pricingService = {
       logAction('pricing_get_plans_error', 'system', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
-      throw new ApiError(500, 'Failed to get plans')
+      throw new ApiError('Failed to get plans', 500)
     }
   },
 
@@ -130,7 +131,7 @@ export const pricingService = {
         planId,
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
-      throw new ApiError(500, 'Failed to get plan')
+      throw new ApiError('Failed to get plan', 500)
     }
   },
 
@@ -144,7 +145,7 @@ export const pricingService = {
       // Validate plan exists
       const plan = await this.getPlanById(planId)
       if (!plan) {
-        throw new ApiError(404, 'Plan not found')
+        throw new ApiError('Plan not found', 404)
       }
 
       // For free plan, return success without Stripe
@@ -164,7 +165,7 @@ export const pricingService = {
 
       // For paid plans, create mock subscription (Stripe integration pending)
       if (!customerId) {
-        throw new ApiError(400, 'Customer ID required for paid plans')
+        throw new ApiError('Customer ID required for paid plans', 400)
       }
 
       logAction('pricing_subscription_created', customerId, {
@@ -285,7 +286,7 @@ export const pricingService = {
         // Extract plan from mock ID
         const planId = subscriptionId.split('_')[1]
         if (!planId) {
-          throw new ApiError(400, 'Invalid subscription ID format')
+          throw new ApiError('Invalid subscription ID format', 400)
         }
         const plan = await this.getPlanById(planId)
         return {
@@ -323,7 +324,7 @@ export const pricingService = {
     try {
       const plan = await this.getPlanById(planId)
       if (!plan) {
-        throw new ApiError(404, 'Plan not found')
+        throw new ApiError('Plan not found', 404)
       }
 
       const exceeded: string[] = []

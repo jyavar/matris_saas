@@ -27,7 +27,7 @@ export const compressionMiddleware = (
 ): void => {
   // Don't compress if client doesn't support it
   if (req.headers['x-no-compression']) {
-    next()
+    _next()
     return
   }
 
@@ -43,7 +43,7 @@ export const compressionMiddleware = (
     deflate.pipe(res)
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -53,17 +53,17 @@ export const cacheMiddleware = (duration: number = 300) => {
   return (req: IncomingMessage, res: ServerResponse, _next: () => void): void => {
     // Only cache GET requests
     if (req.method !== 'GET') {
-      next()
+      _next()
       return
     }
 
     // Skip cache if explicitly requested
     if (req.headers['cache-control'] === 'no-cache') {
-      next()
+      _next()
       return
     }
 
-    const key = `cache:${req.url}:${(req as ExtendedRequest).user?.id || 'anonymous'}`
+    const key = `cache:${req.url}:${(req as ExtendedRequest)._user?.id || 'anonymous'}`
     const cachedResponse = cache.get(key)
 
     if (cachedResponse) {
@@ -74,7 +74,7 @@ export const cacheMiddleware = (duration: number = 300) => {
 
     // Override res.end to cache the response
     const originalEnd = res.end
-    res.end = function(chunk?: string | Buffer, encoding?: BufferEncoding, cb?: (() => void)) {
+    res.end = function(chunk?: any, encoding?: any, cb?: any) {
       try {
         if (chunk && res.statusCode === 200) {
           const data = JSON.parse(chunk.toString())
@@ -89,7 +89,7 @@ export const cacheMiddleware = (duration: number = 300) => {
       return originalEnd.call(this, chunk, encoding || 'utf8', cb)
     }
 
-    next()
+    _next()
   }
 }
 
@@ -146,7 +146,7 @@ export const performanceMiddleware = (
     return originalEnd.call(this, chunk, encoding, cb)
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -172,7 +172,7 @@ export const memoryMiddleware = (
     })
   }
 
-  next()
+  _next()
 }
 
 /**

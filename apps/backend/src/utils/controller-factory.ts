@@ -8,6 +8,7 @@ import { z } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
+import { ApiError } from './ApiError.js'
 import { parseBody, parseParams } from './request.helper.js'
 import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from './response.helper.js'
 
@@ -41,7 +42,7 @@ async function withAuth<T>(
 
   try {
     if (requireAuth) {
-      const user = (req as { _user?: AuthenticatedUser }).user
+      const user = (req as { _user?: AuthenticatedUser })._user
       if (!user) {
         return sendUnauthorized(res, 'User not authenticated')
       }
@@ -84,10 +85,10 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
      */
     async getAll(req: IncomingMessage, res: ServerResponse) {
       return withAuth(req, res, async (user) => {
-        const items = await service.getAll(_user?.id)
+        const items = await service.getAll(user?.id)
         
         if (logActions) {
-          logAction(`${entityName}_list_retrieved`, _user?.id, { 
+          logAction(`${entityName}_list_retrieved`, user?.id, { 
             count: items.length,
             ip: req.socket.remoteAddress 
           })
@@ -108,14 +109,14 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
           return sendError(res, `${entityName} ID is required`, 400)
         }
         
-        const item = await service.getById(id, _user?.id)
+        const item = await service.getById(id, user?.id)
         
         if (!item) {
           return sendNotFound(res, `${entityName} not found`)
         }
         
         if (logActions) {
-          logAction(`${entityName}_retrieved`, _user?.id, { 
+          logAction(`${entityName}_retrieved`, user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })
@@ -142,7 +143,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         
         const item = await service.create({ 
           ...validatedData, 
-          user_id: _user?.id 
+          user_id: user?.id 
         })
         
         if (!item) {
@@ -150,7 +151,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_created`, _user?.id, { 
+          logAction(`${entityName}_created`, user?.id, { 
             id: (item as { id: unknown }).id,
             ip: req.socket.remoteAddress 
           })
@@ -188,7 +189,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_updated`, _user?.id, { 
+          logAction(`${entityName}_updated`, user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })
@@ -216,7 +217,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
         }
         
         if (logActions) {
-          logAction(`${entityName}_deleted`, _user?.id, { 
+          logAction(`${entityName}_deleted`, user?.id, { 
             id,
             ip: req.socket.remoteAddress 
           })

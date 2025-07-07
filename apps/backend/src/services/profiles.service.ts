@@ -1,4 +1,5 @@
 
+import { ApiError } from '../utils/ApiError.js'
 
 export type ProfileDTO = {
   id: string
@@ -104,7 +105,7 @@ export const profilesService = {
     if (!res.ok) throw new ApiError(res.status, await res.text())
     const data = (await res.json()) as unknown[]
     const profiles = data.filter(isProfileDTO)
-    if (!profiles.length) throw new ApiError(404, 'Profile not found')
+    if (!profiles.length) throw new ApiError('Profile not found', 404)
     return profiles[0]
   },
 }

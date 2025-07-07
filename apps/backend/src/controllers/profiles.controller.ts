@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { logAction } from '../services/logger.service.js'
 import { profilesService } from '../services/profiles.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 const updateProfileSchema = z.object({
   username: z.string().min(1, 'Username is required').optional(),
   full_name: z.string().min(1, 'Full name is required').optional(),
@@ -15,9 +15,9 @@ export const profilesController = {
   /**
    * Get current user profile
    */
-  async getMe(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
+  async getMe(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
     try {
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -26,7 +26,7 @@ export const profilesController = {
         return
       }
 
-      const profile = await profilesService.getProfileById(user?.id, user?.tenant_id || 'default')
+      const profile = await profilesService.getProfileById(_user?.id, user?.tenant_id || 'default')
 
       if (!profile) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
@@ -37,15 +37,11 @@ export const profilesController = {
         return
       }
 
-      logAction('profile_requested', user?.id, {})
+      logAction('profile_requested', _user?.id, {})
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: profile,
-      }))
+      return sendSuccess(res, profile)
     } catch (error) {
-      logAction('profile_request_error', user?.id || 'anonymous', {
+      logAction('profile_request_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
@@ -55,9 +51,9 @@ export const profilesController = {
   /**
    * Get all profiles (admin only)
    */
-  async getAllProfiles(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser): Promise<void> {
+  async getAllProfiles(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
     try {
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -69,18 +65,13 @@ export const profilesController = {
       // TODO: Add admin check
       const profiles = await profilesService.getAllProfiles(user?.tenant_id || 'default')
 
-      logAction('profiles_requested', user?.id, {
+      logAction('profiles_requested', _user?.id, {
         count: profiles.length,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: profiles,
-        count: profiles.length,
-      }))
+      return sendSuccess(res, {})
     } catch (error) {
-      logAction('profiles_request_error', user?.id || 'anonymous', {
+      logAction('profiles_request_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
@@ -102,7 +93,7 @@ export const profilesController = {
         return
       }
 
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -111,7 +102,7 @@ export const profilesController = {
         return
       }
 
-      const profile = await profilesService.getProfileById(id, user?.tenant_id || 'default')
+      const profile = await profilesService.getProfileById(id, _user?.tenant_id || 'default')
 
       if (!profile) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
@@ -122,17 +113,13 @@ export const profilesController = {
         return
       }
 
-      logAction('profile_by_id_requested', user?.id, {
+      logAction('profile_by_id_requested', _user?.id, {
         targetProfileId: id,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: profile,
-      }))
+      return sendSuccess(res, profile)
     } catch (error) {
-      logAction('profile_by_id_error', user?.id || 'anonymous', {
+      logAction('profile_by_id_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error
@@ -142,9 +129,9 @@ export const profilesController = {
   /**
    * Update current user profile
    */
-  async updateProfile(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
+  async updateProfile(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
     try {
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -154,27 +141,18 @@ export const profilesController = {
       }
 
       const validatedData = updateProfileSchema.parse(_body)
-      const profile = await profilesService.updateProfile(user?.id, user?.tenant_id || 'default', validatedData)
+      const profile = await profilesService.updateProfile(_user?.id, user?.tenant_id || 'default', validatedData)
 
-      logAction('profile_updated', user?.id, {
+      logAction('profile_updated', _user?.id, {
         updates: validatedData,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: profile,
-      }))
+      return sendSuccess(res, profile)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid profile data',
-          details: error.errors,
-        }))
+        return sendValidationError(res, error.errors, 'Invalid profile data')
       } else {
-        logAction('profile_update_error', user?.id || 'anonymous', {
+        logAction('profile_update_error', _user?.id || 'anonymous', {
           error: (error instanceof Error ? error.message : 'Unknown error'),
         })
         throw error
@@ -197,7 +175,7 @@ export const profilesController = {
         return
       }
 
-      if (!user?.id) {
+      if (!_user?.id) {
         res.writeHead(401, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({
           success: false,
@@ -207,9 +185,9 @@ export const profilesController = {
       }
 
       // TODO: Add admin check
-      await profilesService.deleteProfile(id, user?.tenant_id || 'default')
+      await profilesService.deleteProfile(id, _user?.tenant_id || 'default')
 
-      logAction('profile_deleted', user?.id, {
+      logAction('profile_deleted', _user?.id, {
         targetProfileId: id,
       })
 
@@ -219,7 +197,7 @@ export const profilesController = {
         message: 'Profile deleted successfully',
       }))
     } catch (error) {
-      logAction('profile_delete_error', user?.id || 'anonymous', {
+      logAction('profile_delete_error', _user?.id || 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
       })
       throw error

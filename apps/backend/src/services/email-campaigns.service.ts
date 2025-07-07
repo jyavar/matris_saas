@@ -1,5 +1,6 @@
 
 import logger from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 // Tipos estrictos para campañas de email
 export interface EmailCampaign {
@@ -42,7 +43,7 @@ class EmailCampaignsService {
 
   async createCampaign(data: CreateCampaignData): Promise<EmailCampaign> {
     if (!data.name || !data.subject || !data.content || !Array.isArray(data.recipients) || data.recipients.length === 0) {
-      throw new ApiError(400, 'Invalid campaign data')
+      throw new ApiError('Invalid campaign data', 400)
     }
     const campaign: EmailCampaign = {
       id: `campaign-${Date.now()}`,
@@ -88,7 +89,7 @@ class EmailCampaignsService {
       campaign.sent_at = new Date().toISOString()
       logger.info({ campaignId: id }, 'Email campaign sent')
       return { success: true }
-    } catch {
+    } catch (error) {
       logger.error({ error, campaignId: id }, 'Error sending campaign')
       return { success: false, error: 'Failed to send campaign' }
     }

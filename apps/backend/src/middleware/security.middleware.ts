@@ -60,7 +60,7 @@ export const securityHeadersMiddleware: MiddlewareHandler = async (
   res.setHeader('X-API-Version', '1.0')
   res.setHeader('X-Request-ID', req.headers['x-request-id'] || generateRequestId())
 
-  next()
+  _next()
 }
 
 /**
@@ -74,7 +74,7 @@ export const csrfProtectionMiddleware: MiddlewareHandler = async (
 ): Promise<void> => {
   // Skip CSRF protection for GET, HEAD, OPTIONS requests
   if (req.method && ['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
-    next()
+    _next()
     return
   }
 
@@ -91,7 +91,7 @@ export const csrfProtectionMiddleware: MiddlewareHandler = async (
     return
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -105,7 +105,7 @@ export const contentTypeValidationMiddleware: MiddlewareHandler = async (
 ): Promise<void> => {
   // Skip for GET, HEAD, OPTIONS requests
   if (req.method && ['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
-    next()
+    _next()
     return
   }
 
@@ -135,7 +135,7 @@ export const contentTypeValidationMiddleware: MiddlewareHandler = async (
     }
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -156,7 +156,7 @@ export const requestSizeLimitMiddleware = (maxSize: number = 1024 * 1024): Middl
       return
     }
 
-    next()
+    _next()
   }
 }
 

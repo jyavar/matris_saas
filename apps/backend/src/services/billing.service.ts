@@ -1,4 +1,5 @@
 import type { TablesInsert, TablesUpdate } from '../types/supabase.types.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export type InvoiceDTO = {
   id: string
@@ -45,7 +46,7 @@ async function fetchInvoices(
       Authorization: `Bearer ${SUPABASE_KEY}`,
     },
   })
-  if (!res.ok) throw new ApiError(res.status, await res.text())
+  if (!res.ok) throw new ApiError(await res.text(), res.status)
   const data = (await res.json()) as unknown[]
   return data.filter(isInvoiceDTO)
 }
@@ -72,7 +73,7 @@ export const billingService = {
       },
       body: JSON.stringify(invoice),
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const invoices = data.filter(isInvoiceDTO)
     return invoices[0] || null
@@ -90,7 +91,7 @@ export const billingService = {
       },
       body: JSON.stringify(invoice),
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const invoices = data.filter(isInvoiceDTO)
     return invoices[0] || null
@@ -106,10 +107,10 @@ export const billingService = {
         Prefer: 'return=representation',
       },
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const invoices = data.filter(isInvoiceDTO)
-    if (!invoices.length) throw new ApiError(404, 'Invoice not found')
+    if (!invoices.length) throw new ApiError('Invoice not found', 404)
     return invoices[0]
   },
 }

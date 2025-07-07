@@ -1,16 +1,17 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const devRoutes = [
   { method: 'GET', path: '/error-test', handler: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
     // Test a custom ApiError
-    next()
+    _next()
     throw new ApiError(418, "I'm a teapot")
   } },
   { method: 'GET', path: '/unexpected-error-test', handler: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
     // Test a generic error
-    next()
+    _next()
     throw 'Unexpected error'
   } },
   { method: 'GET', path: '/protected', middlewares: [authMiddleware], handler: (_req: IncomingMessage, res: ServerResponse) => {

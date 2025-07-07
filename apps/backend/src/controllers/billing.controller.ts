@@ -3,9 +3,9 @@ import { z } from 'zod'
 
 import { billingService } from '../services/billing.service.js'
 import { logAction } from '../services/logger.service.js'
-import type { AuthenticatedUser, ControllerHandler,RequestBody } from '../types/express/index.js'
+import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
 import { parseBody, parseParams,parseQuery } from '../utils/request.helper.js'
-
+import { sendCreated, sendError, sendSuccess, sendUnauthorized, sendNotFound } from '../utils/response.helper.js'
 // Schemas
 const createInvoiceSchema = z.object({
   amount: z.number().positive(),
@@ -26,7 +26,7 @@ const updateInvoiceSchema = z.object({
 // Controller methods
 export const getInvoices: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
@@ -49,7 +49,7 @@ export const getInvoices: ControllerHandler = async (req: IncomingMessage, res: 
 
 export const getInvoiceById: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
@@ -77,7 +77,7 @@ export const getInvoiceById: ControllerHandler = async (req: IncomingMessage, re
 
 export const createInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
@@ -113,7 +113,7 @@ export const createInvoice: ControllerHandler = async (req: IncomingMessage, res
 
 export const updateInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
@@ -150,7 +150,7 @@ export const updateInvoice: ControllerHandler = async (req: IncomingMessage, res
 
 export const deleteInvoice: ControllerHandler = async (req: IncomingMessage, res: ServerResponse) => {
   try {
-    const user = (req as { user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }

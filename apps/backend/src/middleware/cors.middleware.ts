@@ -1,6 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-const allowedOrigins = [
+import { env } from '../config/env.schema.js'
+
+const allowedOrigins = env.ALLOWED_ORIGINS.length > 0 ? env.ALLOWED_ORIGINS : [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
@@ -58,7 +60,7 @@ export const corsMiddleware = (
   res.setHeader('Access-Control-Allow-Methods', allowedMethods.join(', '))
   res.setHeader('Access-Control-Allow-Headers', allowedHeaders.join(', '))
 
-  next()
+_next()
 }
 
 // Development CORS middleware (more permissive)
@@ -74,5 +76,5 @@ export const devCorsMiddleware = (
     res.setHeader('Access-Control-Allow-Credentials', 'true')
   }
 
-  next()
+_next()
 } 

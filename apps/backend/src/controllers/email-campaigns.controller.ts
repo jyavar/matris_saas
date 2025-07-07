@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 const createCampaignSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   subject: z.string().min(1, 'Subject is required'),
@@ -22,18 +22,16 @@ const updateCampaignSchema = z.object({
 })
 
 export const emailCampaignsController = {
-  async getCampaigns(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getCampaigns(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       const campaigns = await emailCampaignsService.getCampaigns()
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: campaigns, count: campaigns.length }))
+      return sendSuccess(res, { campaigns, count: campaigns.length })
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async getCampaignById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async getCampaignById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -43,38 +41,31 @@ export const emailCampaignsController = {
       }
       const campaign = await emailCampaignsService.getCampaignById(id)
       if (!campaign) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
         return
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: campaign }))
+      return sendSuccess(res, campaign )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async createCampaign(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
+  async createCampaign(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validated = createCampaignSchema.parse(
         _body,
       ) as import('../services/email-campaigns.service').CreateCampaignData
       const campaign = await emailCampaignsService.createCampaign(validated)
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: campaign, message: 'Campaign created' }))
+      return sendCreated(res, campaign, 'Campaign created')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
 
-  async updateCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody): Promise<void> {
+  async updateCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -85,24 +76,19 @@ export const emailCampaignsController = {
       const validated = updateCampaignSchema.parse(_body)
       const campaign = await emailCampaignsService.updateCampaign(id, validated)
       if (!campaign) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
         return
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: campaign, message: 'Campaign updated' }))
+      return sendSuccess(res, campaign, 200, 'Campaign updated')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
 
-  async deleteCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async deleteCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -112,19 +98,16 @@ export const emailCampaignsController = {
       }
       const deleted = await emailCampaignsService.deleteCampaign(id)
       if (!deleted) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Campaign not found' }))
         return
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, message: 'Campaign deleted' }))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async sendCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async sendCampaign(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -141,25 +124,24 @@ export const emailCampaignsController = {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, message: 'Campaign sent' }))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   // Métodos alias para compatibilidad con el router
   getAll: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.getCampaigns(req, res, _params, _body, user)
+    return emailCampaignsController.getCampaigns(req, res, user)
   },
   create: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.createCampaign(req, res, _params, _body, user)
+    return emailCampaignsController.createCampaign(req, res, _body, user)
   },
   getById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.getCampaignById(req, res, _params, _body, user)
+    return emailCampaignsController.getCampaignById(req, res, _params, user)
   },
   update: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
     return emailCampaignsController.updateCampaign(req, res, _params, _body, user)
   },
   delete: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.deleteCampaign(req, res, _params, _body, user)
+    return emailCampaignsController.deleteCampaign(req, res, _params, user)
   },
 }

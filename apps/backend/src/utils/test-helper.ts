@@ -107,7 +107,7 @@ export class TestHelper {
     overrides: Partial<IncomingMessage> = {}
   ): IncomingMessage {
     const req = this.createMockRequest(overrides)
-    ;(req as { _user?: AuthenticatedUser }).user = user
+    ;(req as { _user?: AuthenticatedUser })._user = user
     return req
   }
 
@@ -230,7 +230,7 @@ export class TestHelper {
   /**
    * Wait for a specified number of milliseconds
    */
-  static async wait(ms: number): Promise<void> {
+  static async wait(ms: number, _user?: AuthenticatedUser): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 

@@ -2,10 +2,10 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 // Schemas de validación
 export const reportingController = {
-  async getUsageReport(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getUsageReport(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // Parse query parameters
       const url = new URL(req.url || '', `http://localhost`)
@@ -22,12 +22,11 @@ export const reportingController = {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify(report))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async getEventReport(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getEventReport(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // Parse query parameters
       const url = new URL(req.url || '', `http://localhost`)
@@ -45,8 +44,7 @@ export const reportingController = {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify(report))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 } 

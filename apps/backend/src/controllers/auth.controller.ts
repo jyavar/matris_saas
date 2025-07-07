@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email format'),
@@ -20,7 +21,7 @@ export const authController = {
   /**
    * User login
    */
-  async login(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
+  async login(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validatedData = loginSchema.parse(_body)
       const result = await authService.signIn(validatedData)
@@ -29,28 +30,15 @@ export const authController = {
         email: validatedData.email,
       })
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: result,
-      }))
+      return sendSuccess(res, result, 200, 'Login successful')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid login data',
-          details: error.errors,
-        }))
+        return sendValidationError(res, error.errors, 'Invalid login data')
       } else {
         logAction('user_login_error', 'anonymous', {
           error: (error instanceof Error ? error.message : 'Unknown error'),
         })
-        res.writeHead(401, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid credentials',
-        }))
+        return sendError(res, 'Invalid credentials', 401)
       }
     }
   },
@@ -58,7 +46,7 @@ export const authController = {
   /**
    * User registration
    */
-  async register(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
+  async register(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validatedData = registerSchema.parse(_body)
       const result = await authService.signUp(validatedData)
@@ -68,37 +56,24 @@ export const authController = {
         name: validatedData.name,
       })
 
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: result,
-      }))
+      return sendCreated(res, result, 'User registered successfully')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Invalid registration data',
-          details: error.errors,
-        }))
+        return sendValidationError(res, error.errors, 'Invalid registration data')
       } else {
         logAction('user_registration_error', 'anonymous', {
           error: (error instanceof Error ? error.message : 'Unknown error'),
         })
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Registration failed',
-        }))
+        return sendError(res, 'Registration failed', 400)
       }
     }
   },
 
   // Alias methods for route compatibility
-  signUp: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return authController.register(req, res, _params, _body, user)
+  signUp: async (req: IncomingMessage, res: ServerResponse, _body?: RequestBody) => {
+    return authController.register(req, res, _body)
   },
-  signIn: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return authController.login(req, res, _params, _body, user)
+  signIn: async (req: IncomingMessage, res: ServerResponse, _body?: RequestBody) => {
+    return authController.login(req, res, _body)
   },
 }

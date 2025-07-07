@@ -1,6 +1,7 @@
-import { ApiError } from '../lib/errors.js'
+import { ApiError } from '../utils/ApiError.js'
 import { supabase } from '../lib/supabase.js'
 import logger from './logger.service.js'
+import type { AuthenticatedUser } from '../types/express/index.js'
 
 // Tipos estrictos para Automation Engine
 export interface WorkflowStep {
@@ -74,13 +75,13 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error }, 'Error fetching workflows')
-        throw new ApiError(500, 'Failed to fetch workflows')
+        throw new ApiError('Failed to fetch workflows', 500)
       }
 
       return data || []
-    } catch {
-      logger.error({ error }, 'Error in getWorkflows')
-      throw error
+    } catch (err) {
+      logger.error({ error: err }, 'Error in getWorkflows')
+      throw err
     }
   }
 
@@ -99,12 +100,12 @@ export class AutomationService {
         if (error.code === 'PGRST116') {
           return null // No encontrado
         }
-        logger.error({ error, id }, 'Error fetching workflow')
-        throw new ApiError(500, 'Failed to fetch workflow')
+        logger.error({ error }, 'Error fetching workflow')
+        throw new ApiError('Failed to fetch workflow', 500)
       }
 
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, id }, 'Error in getWorkflowById')
       throw error
     }
@@ -124,7 +125,7 @@ export class AutomationService {
         !workflowData.steps ||
         workflowData.steps.length === 0
       ) {
-        throw new ApiError(400, 'Name and steps are required')
+        throw new ApiError('Name and steps are required', 400)
       }
 
       // Generar IDs para los steps
@@ -152,8 +153,8 @@ export class AutomationService {
         .single()
 
       if (error) {
-        logger.error({ error, workflowData }, 'Error creating workflow')
-        throw new ApiError(500, 'Failed to create workflow')
+        logger.error({ error }, 'Error creating workflow')
+        throw new ApiError('Failed to create workflow', 500)
       }
 
       logger.info(
@@ -161,8 +162,8 @@ export class AutomationService {
         'Workflow created successfully',
       )
       return data
-    } catch {
-      logger.error({ error, workflowData }, 'Error in createWorkflow')
+    } catch (error) {
+      logger.error({ error }, 'Error in createWorkflow')
       throw error
     }
   }
@@ -215,12 +216,12 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error, id, updateData }, 'Error updating workflow')
-        throw new ApiError(500, 'Failed to update workflow')
+        throw new ApiError('Failed to update workflow', 500)
       }
 
       logger.info({ workflowId: id }, 'Workflow updated successfully')
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, id, updateData }, 'Error in updateWorkflow')
       throw error
     }
@@ -235,12 +236,12 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error, id }, 'Error deleting workflow')
-        throw new ApiError(500, 'Failed to delete workflow')
+        throw new ApiError('Failed to delete workflow', 500)
       }
 
       logger.info({ workflowId: id }, 'Workflow deleted successfully')
       return true
-    } catch {
+    } catch (error) {
       logger.error({ error, id }, 'Error in deleteWorkflow')
       throw error
     }
@@ -258,11 +259,11 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error }, 'Error fetching jobs')
-        throw new ApiError(500, 'Failed to fetch jobs')
+        throw new ApiError('Failed to fetch jobs', 500)
       }
 
       return data || []
-    } catch {
+    } catch (error) {
       logger.error({ error }, 'Error in getJobs')
       throw error
     }
@@ -284,11 +285,11 @@ export class AutomationService {
           return null // No encontrado
         }
         logger.error({ error, id }, 'Error fetching job')
-        throw new ApiError(500, 'Failed to fetch job')
+        throw new ApiError('Failed to fetch job', 500)
       }
 
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, id }, 'Error in getJobById')
       throw error
     }
@@ -309,7 +310,7 @@ export class AutomationService {
       }
 
       if (workflow.status !== 'active') {
-        throw new ApiError(400, 'Workflow is not active')
+        throw new ApiError('Workflow is not active', 400)
       }
 
       // Crear job
@@ -329,7 +330,7 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error, workflowId }, 'Error creating job')
-        throw new ApiError(500, 'Failed to create job')
+        throw new ApiError('Failed to create job', 500)
       }
 
       // Iniciar ejecución asíncrona
@@ -342,7 +343,7 @@ export class AutomationService {
         'Job created and started processing',
       )
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, workflowId }, 'Error in executeWorkflow')
       throw error
     }
@@ -359,7 +360,7 @@ export class AutomationService {
       }
 
       if (job.status !== 'running') {
-        throw new ApiError(400, 'Job is not running')
+        throw new ApiError('Job is not running', 400)
       }
 
       const { data, error } = await supabase
@@ -371,12 +372,12 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error, jobId }, 'Error pausing job')
-        throw new ApiError(500, 'Failed to pause job')
+        throw new ApiError('Failed to pause job', 500)
       }
 
       logger.info({ jobId }, 'Job paused successfully')
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, jobId }, 'Error in pauseJob')
       throw error
     }
@@ -393,7 +394,7 @@ export class AutomationService {
       }
 
       if (job.status !== 'paused') {
-        throw new ApiError(400, 'Job is not paused')
+        throw new ApiError('Job is not paused', 400)
       }
 
       const { data, error } = await supabase
@@ -405,7 +406,7 @@ export class AutomationService {
 
       if (error) {
         logger.error({ error, jobId }, 'Error resuming job')
-        throw new ApiError(500, 'Failed to resume job')
+        throw new ApiError('Failed to resume job', 500)
       }
 
       // Continuar procesamiento
@@ -415,7 +416,7 @@ export class AutomationService {
 
       logger.info({ jobId }, 'Job resumed successfully')
       return data
-    } catch {
+    } catch (error) {
       logger.error({ error, jobId }, 'Error in resumeJob')
       throw error
     }
@@ -424,7 +425,7 @@ export class AutomationService {
   /**
    * Procesa un job (método privado)
    */
-  private async processJob(jobId: string): Promise<void> {
+  private async processJob(jobId: string, _user?: AuthenticatedUser): Promise<void> {
     try {
       // Actualizar status a running
       await supabase.from('jobs').update({ status: 'running' }).eq('id', jobId)

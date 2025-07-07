@@ -1,6 +1,7 @@
 import OpenAI from 'openai'
 
 import logger from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export interface GenerateTextData {
   prompt: string
@@ -52,7 +53,7 @@ export class OpenAIService {
   }
 
   async generateText(data: GenerateTextData): Promise<GenerateTextResult> {
-    if (!data.prompt) throw new ApiError(400, 'Prompt is required')
+    if (!data.prompt) throw new ApiError('Prompt is required', 400)
     // Simulación de integración OpenAI
     logger.info(
       { user_id: data.user_id, prompt: data.prompt },

@@ -2,20 +2,21 @@ import { IncomingMessage, ServerResponse } from 'http'
 
 import { launchboardService } from '../services/launchboard.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 
+// Import Widget interface from service
+import type { Widget } from '../services/launchboard.service.js'
 export const launchboardController = {
-  async getDashboards(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getDashboards(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       const dashboards = await launchboardService.getDashboards()
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: dashboards }))
+      return sendSuccess(res, dashboards )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async getDashboardById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async getDashboardById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -29,15 +30,13 @@ export const launchboardController = {
         res.end(JSON.stringify({ success: false, message: 'Dashboard not found' }))
         return
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: dashboard }))
+      return sendSuccess(res, dashboard )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async createDashboard(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
+  async createDashboard(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { name, widgets } = _body || {}
       if (!name || typeof name !== 'string' || !widgets || !Array.isArray(widgets)) {
@@ -49,15 +48,13 @@ export const launchboardController = {
         name,
         widgets,
       })
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: dashboard }))
+      return sendCreated(res, dashboard )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async updateDashboard(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody): Promise<void> {
+  async updateDashboard(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -68,22 +65,20 @@ export const launchboardController = {
       const { name, widgets } = _body || {}
       const dashboard = await launchboardService.updateDashboard(id, {
         name: name as string,
-        widgets: Array.isArray(widgets) ? widgets as unknown[] : [],
+        widgets: Array.isArray(widgets) ? widgets as Widget[] : [],
       })
       if (!dashboard) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: false, message: 'Dashboard not found' }))
         return
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: dashboard }))
+      return sendSuccess(res, dashboard )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async deleteDashboard(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async deleteDashboard(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -100,25 +95,24 @@ export const launchboardController = {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true }))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
   // Alias methods for route compatibility
-  getLaunchboard: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.getDashboards(req, res, _params, _body, user)
+  getLaunchboard: async (req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser) => {
+    return launchboardController.getDashboards(req, res, user)
   },
   createLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.createDashboard(req, res, _params, _body, user)
+    return launchboardController.createDashboard(req, res, _body, user)
   },
   getLaunchboardItemById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.getDashboardById(req, res, _params, _body, user)
+    return launchboardController.getDashboardById(req, res, _params, user)
   },
   updateLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
     return launchboardController.updateDashboard(req, res, _params, _body, user)
   },
   deleteLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.deleteDashboard(req, res, _params, _body, user)
+    return launchboardController.deleteDashboard(req, res, _params, user)
   },
 }

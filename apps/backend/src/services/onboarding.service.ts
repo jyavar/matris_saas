@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import logger from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 export const onboardingSchema = z.object({
   email: z.string().email(),
@@ -32,7 +33,7 @@ class OnboardingService {
   }
 
   async startOnboarding(data: StartOnboardingData): Promise<Onboarding> {
-    if (!data.email) throw new ApiError(400, 'Email is required')
+    if (!data.email) throw new ApiError('Email is required', 400)
     const onboarding: Onboarding = {
       user_id: `user-${Date.now()}`,
       email: data.email,
@@ -47,9 +48,9 @@ class OnboardingService {
   }
 
   async completeOnboarding(data: CompleteOnboardingData): Promise<Onboarding> {
-    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    if (!data.user_id) throw new ApiError('user_id is required', 400)
     const onboarding = this.onboardings.find((o) => o.user_id === data.user_id)
-    if (!onboarding) throw new ApiError(404, 'Onboarding not found')
+    if (!onboarding) throw new ApiError('Onboarding not found', 404)
     onboarding.setup_complete = true
     logger.info({ userId: onboarding.user_id }, 'Onboarding completed')
     return onboarding

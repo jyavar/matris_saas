@@ -58,13 +58,13 @@ export class TestServer {
     headers?: Record<string, string>
     _body?: unknown
   } = {}) {
-    const { headers = {}, body } = options
+    const { headers = {}, _body } = options
 
     const req = request(this.server)[method.toLowerCase()](path)
       .set(headers)
 
-    if (body) {
-      req.send(body)
+    if (_body) {
+      req.send(_body)
     }
 
     return req
@@ -81,14 +81,14 @@ export class TestServer {
    * POST request
    */
   async post(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('POST', path, { ...options, body })
+    return this.request('POST', path, { ...options, _body })
   }
 
   /**
    * PUT request
    */
   async put(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('PUT', path, { ...options, body })
+    return this.request('PUT', path, { ...options, _body })
   }
 
   /**
@@ -102,7 +102,7 @@ export class TestServer {
    * PATCH request
    */
   async patch(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('PATCH', path, { ...options, body })
+    return this.request('PATCH', path, { ...options, _body })
   }
 }
 

@@ -254,7 +254,7 @@ export const retry = async <T>(
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await fn()
-    } catch {
+    } catch (error) {
       lastError = error as Error
       if (attempt === maxAttempts) break
       await sleep(delay * Math.pow(2, attempt - 1))

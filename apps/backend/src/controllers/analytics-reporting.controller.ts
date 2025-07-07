@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { analyticsReportingService } from '../services/analytics-reporting.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 const createReportSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   type: z.string().min(1, 'Type is required'),
@@ -11,18 +11,16 @@ const createReportSchema = z.object({
 })
 
 export const analyticsReportingController = {
-  async getReports(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getReports(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       const reports = await analyticsReportingService.getReports()
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: reports, count: reports.length }))
+      return sendSuccess(res, { reports, count: reports.length })
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async getReportById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async getReportById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -32,38 +30,31 @@ export const analyticsReportingController = {
       }
       const report = await analyticsReportingService.getReportById(id)
       if (!report) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Report not found' }))
         return
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: report }))
+      return sendSuccess(res, report )
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 
-  async createReport(req: IncomingMessage, res: ServerResponse, _body?: RequestBody): Promise<void> {
+  async createReport(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validated = createReportSchema.parse(
         _body,
       ) as import('../services/analytics-reporting.service').CreateReportData
       const report = await analyticsReportingService.createReport(validated)
-      res.writeHead(201, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: true, data: report, message: 'Report created' }))
+      return sendCreated(res, report, 'Report created')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Invalid input data', details: error.errors }))
+        return sendValidationError(res, error.errors, 'Invalid input data')
       } else {
-        res.writeHead(500, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+        return sendError(res, 'Internal server error', 500)
       }
     }
   },
 
-  async deleteReport(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>): Promise<void> {
+  async deleteReport(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
@@ -73,15 +64,12 @@ export const analyticsReportingController = {
       }
       const deleted = await analyticsReportingService.deleteReport(id)
       if (!deleted) {
-        res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Report not found' }))
         return
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, message: 'Report deleted' }))
     } catch {
-      res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      return sendError(res, 'Internal server error', 500)
     }
   },
 }

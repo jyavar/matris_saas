@@ -1,4 +1,5 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
+import { ApiError } from '../utils/ApiError.js'
 
 export type TodoDTO = {
   id: number
@@ -98,7 +99,7 @@ export const todoService = {
     if (!res.ok) throw new ApiError(res.status, await res.text())
     const data = (await res.json()) as unknown[]
     const todos = data.filter(isTodoDTO)
-    if (!todos.length) throw new ApiError(404, 'Todo not found')
+    if (!todos.length) throw new ApiError('Todo not found', 404)
     return todos[0]
   },
 }

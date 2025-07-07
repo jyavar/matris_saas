@@ -1,6 +1,6 @@
 
 import type { ControllerHandler } from '../types/express/index.js'
-
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 export const healthController = {
   /**
    * Health check endpoint
@@ -16,18 +16,9 @@ export const healthController = {
         version: process.version,
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        data: health,
-      }))
+      return sendSuccess(res, health)
     } catch {
-      res.writeHead(503, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: 'Service unavailable',
-        timestamp: new Date().toISOString(),
-      }))
+      return sendError(res, 'Service unavailable', 503)
     }
   }) as ControllerHandler,
 }

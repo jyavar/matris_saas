@@ -50,18 +50,19 @@ export const authMiddleware: MiddlewareHandler = async (
     }
 
     // Add user to request object
-    ;(req as { _user?: AuthenticatedUser }).user = {
-      id: _user?.id,
+    const authenticatedUser = {
+      id: user.id,
       email: user.email || '',
       role: user.user_metadata?.role || 'user',
     }
+    ;(req as { _user?: AuthenticatedUser })._user = authenticatedUser
 
-    logAction('auth_success', _user?.id, {
+    logAction('auth_success', authenticatedUser.id, {
       email: user.email,
       ip: req.socket.remoteAddress,
     })
 
-    next()
+_next()
   } catch (error) {
     logAction('auth_error', 'anonymous', {
       error: (error instanceof Error ? error.message : 'Unknown error'),
@@ -83,14 +84,14 @@ export const optionalAuthMiddleware: MiddlewareHandler = async (
     const authHeader = req.headers.authorization
 
     if (!authHeader) {
-      next()
+  _next()
       return
     }
 
     const token = authHeader.replace('Bearer ', '')
 
     if (!token) {
-      next()
+  _next()
       return
     }
 
@@ -99,26 +100,27 @@ export const optionalAuthMiddleware: MiddlewareHandler = async (
 
     if (!error && user) {
       // Add user to request object
-      ;(req as { _user?: AuthenticatedUser }).user = {
-        id: _user?.id,
+      const authenticatedUser = {
+        id: user.id,
         email: user.email || '',
         role: user.user_metadata?.role || 'user',
       }
+      ;(req as { _user?: AuthenticatedUser })._user = authenticatedUser
 
-      logAction('optional_auth_success', _user?.id, {
+      logAction('optional_auth_success', authenticatedUser.id, {
         email: user.email,
         ip: req.socket.remoteAddress,
       })
     }
 
-    next()
+_next()
   } catch (error) {
     // Don't fail on optional auth errors, just log and continue
     logAction('optional_auth_error', 'anonymous', {
       error: (error instanceof Error ? error.message : 'Unknown error'),
       ip: req.socket.remoteAddress,
     })
-    next()
+_next()
   }
 }
 
@@ -132,14 +134,14 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
     _next: () => void
   ): Promise<void> => {
     try {
-      const user = (req as { _user?: AuthenticatedUser }).user
+      const user = (req as { _user?: AuthenticatedUser })._user
 
       if (!user) {
         return sendUnauthorized(res, 'Authentication required')
       }
 
       if (user.role !== requiredRole && user.role !== 'admin') {
-        logAction('auth_role_denied', _user?.id, {
+        logAction('auth_role_denied', user.id, {
           required_role: requiredRole,
           user_role: user.role,
           ip: req.socket.remoteAddress,
@@ -147,13 +149,13 @@ export const requireRole = (requiredRole: string): MiddlewareHandler => {
         return sendUnauthorized(res, 'Insufficient permissions')
       }
 
-      logAction('auth_role_granted', _user?.id, {
+      logAction('auth_role_granted', user.id, {
         required_role: requiredRole,
         user_role: user.role,
         ip: req.socket.remoteAddress,
       })
 
-      next()
+  _next()
     } catch (error) {
       logAction('auth_role_error', 'anonymous', {
         error: (error instanceof Error ? error.message : 'Unknown error'),
@@ -173,25 +175,25 @@ export const requireAdmin: MiddlewareHandler = async (
   _next: () => void
 ): Promise<void> => {
   try {
-    const user = (req as { _user?: AuthenticatedUser }).user
+    const user = (req as { _user?: AuthenticatedUser })._user
 
     if (!user) {
       return sendUnauthorized(res, 'Authentication required')
     }
 
     if (user.role !== 'admin') {
-      logAction('auth_admin_denied', _user?.id, {
+      logAction('auth_admin_denied', user.id, {
         user_role: user.role,
         ip: req.socket.remoteAddress,
       })
       return sendUnauthorized(res, 'Admin access required')
     }
 
-    logAction('auth_admin_granted', _user?.id, {
+    logAction('auth_admin_granted', user.id, {
       ip: req.socket.remoteAddress,
     })
 
-    next()
+_next()
   } catch (error) {
     logAction('auth_admin_error', 'anonymous', {
       error: (error instanceof Error ? error.message : 'Unknown error'),

@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendError } from '../utils/response.helper.js'
+import { sendError, sendSuccess } from '../utils/response.helper.js'
 
 export const paymentsController = {
-  async createPaymentIntent(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async createPaymentIntent(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // TODO: Implement payment intent creation
       res.writeHead(200, { 'Content-Type': 'application/json' })
@@ -17,7 +17,7 @@ export const paymentsController = {
     }
   },
 
-  async confirmPayment(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async confirmPayment(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // TODO: Implement payment confirmation
       res.writeHead(200, { 'Content-Type': 'application/json' })
@@ -30,20 +30,17 @@ export const paymentsController = {
     }
   },
 
-  async getPaymentMethods(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async getPaymentMethods(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // TODO: Implement get payment methods
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ 
-        success: true, 
-        data: [] 
-      }))
+      return sendSuccess(res, [] 
+      )
     } catch {
       sendError(res, 'Failed to get payment methods', 500)
     }
   },
 
-  async addPaymentMethod(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async addPaymentMethod(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // TODO: Implement add payment method
       res.writeHead(200, { 'Content-Type': 'application/json' })
@@ -56,7 +53,7 @@ export const paymentsController = {
     }
   },
 
-  async removePaymentMethod(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async removePaymentMethod(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
       // TODO: Implement remove payment method
       res.writeHead(200, { 'Content-Type': 'application/json' })

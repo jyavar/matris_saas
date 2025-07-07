@@ -1,7 +1,7 @@
 import { RuntimeService } from '../services/runtime.service.js'
 import { ControllerHandler } from '../types/express/index.js'
 import { responseHelpers } from '../utils/controller-refactor.js'
-
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 export const runtimeController = {
   getStatus: (async (_req, res, _params, _body, _user) => {
     try {
@@ -78,7 +78,7 @@ export const runtimeController = {
 
   startAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const name = params?.name
+      const name = _params?.name
       if (!name) {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
@@ -91,7 +91,7 @@ export const runtimeController = {
 
   stopAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const name = params?.name
+      const name = _params?.name
       if (!name) {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
@@ -104,7 +104,7 @@ export const runtimeController = {
 
   getAgentStatus: (async (_req, res, _params, _body, _user) => {
     try {
-      const name = params?.name
+      const name = _params?.name
       if (!name) {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
@@ -117,7 +117,7 @@ export const runtimeController = {
 
   getAgentLogs: (async (_req, res, _params, _body, _user) => {
     try {
-      const name = params?.name
+      const name = _params?.name
       if (!name) {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
@@ -130,12 +130,12 @@ export const runtimeController = {
 
   runAgent: (async (_req, res, _params, _body, _user) => {
     try {
-      const name = params?.name
+      const name = _params?.name
       if (!name) {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
       }
-      const result = await RuntimeService.runAgent(name, body)
+      const result = await RuntimeService.runAgent(name, _body as Record<string, unknown>)
       if (result.ok) {
         responseHelpers.success(res, { result: result.result })
       } else {
@@ -157,12 +157,12 @@ export const runtimeController = {
 
   createTask: (async (_req, res, _params, _body, _user) => {
     try {
-      const { id, schedule } = body || {}
+      const { id, schedule } = _body || {}
       if (!id || !schedule) {
         responseHelpers.badRequest(res, 'Missing id or schedule')
         return
       }
-      const job = RuntimeService.createJob(id, schedule as string, () => {
+      const job = RuntimeService.createJob(id as string, schedule as string, () => {
         // Placeholder: aquí se ejecutaría la lógica real del job
       })
       responseHelpers.success(res, job, 201)
@@ -173,7 +173,7 @@ export const runtimeController = {
 
   getTaskById: (async (_req, res, _params, _body, _user) => {
     try {
-      const id = params?.id
+      const id = _params?.id
       if (!id) {
         responseHelpers.badRequest(res, 'Task ID is required')
         return
@@ -200,7 +200,7 @@ export const runtimeController = {
 
   deleteTask: (async (_req, res, _params, _body, _user) => {
     try {
-      const id = params?.id
+      const id = _params?.id
       if (!id) {
         responseHelpers.badRequest(res, 'Task ID is required')
         return

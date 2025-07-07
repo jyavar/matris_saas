@@ -53,7 +53,7 @@ export const loggerMiddleware: MiddlewareHandler = async (
     return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -99,7 +99,7 @@ export const performanceLoggingMiddleware: MiddlewareHandler = async (
     return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -136,7 +136,7 @@ export const securityMiddleware: MiddlewareHandler = async (
     })
   }
 
-  next()
+  _next()
 }
 
 /**
@@ -167,7 +167,7 @@ export const errorLoggingMiddleware: MiddlewareHandler = async (
     return originalEnd.call(this, chunk, encoding || 'utf8', cb)
   }
 
-  next()
+  _next()
 }
 
 // Helper functions

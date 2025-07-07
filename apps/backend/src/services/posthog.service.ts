@@ -1,6 +1,7 @@
 import { PostHog } from 'posthog-node'
 
 import logger from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 const POSTHOG_API_KEY = process.env.POSTHOG_API_KEY
 const posthogClient: PostHog | undefined = POSTHOG_API_KEY
@@ -36,7 +37,7 @@ export class PostHogService {
         event,
         properties,
       })
-    } catch {
+    } catch (error) {
       console.warn(`Error enviando evento a PostHog: ${error}`)
     }
   }
@@ -45,7 +46,7 @@ export class PostHogService {
     if (posthogClient) {
       try {
         await posthogClient.shutdown()
-      } catch {
+      } catch (error) {
         console.warn(`Error cerrando PostHog: ${error}`)
       }
     }
@@ -54,8 +55,8 @@ export class PostHogService {
   async trackEvent(
     data: TrackEventData,
   ): Promise<{ event: string; status: string }> {
-    if (!data.event) throw new ApiError(400, 'Event is required')
-    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    if (!data.event) throw new ApiError('Event is required', 400)
+    if (!data.user_id) throw new ApiError('user_id is required', 400)
     logger.info(
       { user_id: data.user_id, event: data.event, properties: data.properties },
       'PostHog track',
@@ -67,7 +68,7 @@ export class PostHogService {
   async identifyUser(
     data: IdentifyUserData,
   ): Promise<{ user_id: string; status: string }> {
-    if (!data.user_id) throw new ApiError(400, 'user_id is required')
+    if (!data.user_id) throw new ApiError('user_id is required', 400)
     logger.info(
       { user_id: data.user_id, traits: data.traits },
       'PostHog identify',

@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { ZodError } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 import { sendError, sendValidationError } from '../utils/response.helper.js'
 
 type MiddlewareHandler = (
@@ -35,7 +36,7 @@ export const errorHandlerMiddleware = async (
     }
 
     if (error instanceof ApiError) {
-      return sendError(res, (error as Error).message, error.statusCode)
+      return sendError(res, error.message, error.statusCode)
     }
 
     // Handle database errors
@@ -82,7 +83,7 @@ export const handleAsync = (fn: (req: IncomingMessage, res: ServerResponse) => P
   return async(req: IncomingMessage, res: ServerResponse): Promise<void> => {
     try {
       await fn(req, res)
-    } catch {
+    } catch (error) {
       await errorHandlerMiddleware(error as Error, req, res, () => {})
     }
   }

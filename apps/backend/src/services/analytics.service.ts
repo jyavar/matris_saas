@@ -1,7 +1,7 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 import { z } from 'zod'
 
-import { ApiError } from '../lib/errors.js'
+import { ApiError } from '../utils/ApiError.js'
 import { Json } from '../types/supabase.types.js'
 import { logAction } from './logger.service.js'
 import { supabase } from './supabase.service.js'
@@ -76,7 +76,7 @@ export const analyticsService = {
         .select()
 
       if (error) {
-        throw new ApiError(400, `Failed to track event: ${(error as Error).message}`)
+        throw new ApiError(`Failed to track event: ${(error as Error).message}`, 400)
       }
 
       logAction(
@@ -127,7 +127,7 @@ export const analyticsService = {
         .select()
 
       if (error) {
-        throw new ApiError(400, `Failed to track metric: ${(error as Error).message}`)
+        throw new ApiError(`Failed to track metric: ${(error as Error).message}`, 400)
       }
 
       logAction(
@@ -189,7 +189,7 @@ export const analyticsService = {
       const { data, error } = await queryBuilder
 
       if (error) {
-        throw new ApiError(400, `Failed to get events: ${(error as Error).message}`)
+        throw new ApiError(`Failed to get events: ${(error as Error).message}`, 400)
       }
 
       logAction('analytics_events_queried', 'system', {
@@ -238,7 +238,7 @@ export const analyticsService = {
       const { data, error } = await queryBuilder
 
       if (error) {
-        throw new ApiError(400, `Failed to get metrics: ${(error as Error).message}`)
+        throw new ApiError(`Failed to get metrics: ${(error as Error).message}`, 400)
       }
 
       logAction('analytics_metrics_queried', 'system', {
@@ -273,8 +273,8 @@ export const analyticsService = {
       const { count: totalEvents, error: eventsError } = await eventsQuery
       if (eventsError)
         throw new ApiError(
-          400,
           `Failed to get total events: ${eventsError.message}`,
+          400,
         )
 
       // Get unique users
@@ -285,8 +285,8 @@ export const analyticsService = {
       const { data: userEvents, error: usersError } = await usersQuery
       if (usersError)
         throw new ApiError(
-          400,
           `Failed to get unique users: ${usersError.message}`,
+          400,
         )
 
       const uniqueUsers = new Set(
@@ -300,8 +300,8 @@ export const analyticsService = {
 
       if (topEventsError)
         throw new ApiError(
-          400,
           `Failed to get top events: ${topEventsError.message}`,
+          400,
         )
 
       const eventCounts =
@@ -367,8 +367,8 @@ export const analyticsService = {
 
       if (error) {
         throw new ApiError(
-          400,
           `Failed to get user analytics: ${(error as Error).message}`,
+          400,
         )
       }
 
@@ -411,7 +411,7 @@ export const analyticsService = {
   async getAllAnalytics() {
     const { data, error } = await supabase.from('analytics').select('*')
     if (error) {
-      throw new ApiError(400, (error as Error).message)
+      throw new ApiError((error as Error).message, 400)
     }
     return data
   },
@@ -424,9 +424,9 @@ export const analyticsService = {
       .single()
     if (error) {
       if (error.code === 'PGRST116') {
-        throw new ApiError(404, 'Analytics not found')
+        throw new ApiError('Analytics not found', 404)
       }
-      throw new ApiError(400, (error as Error).message)
+      throw new ApiError((error as Error).message, 400)
     }
     return data
   },
@@ -438,9 +438,9 @@ export const analyticsService = {
       .select()
     if (error) {
       if (error.code === '23505') {
-        throw new ApiError(409, 'Analytics already exists')
+        throw new ApiError('Analytics already exists', 409)
       }
-      throw new ApiError(400, (error as Error).message)
+      throw new ApiError((error as Error).message, 400)
     }
     return data
   },
@@ -453,9 +453,9 @@ export const analyticsService = {
       .select()
     if (error) {
       if (error.code === 'PGRST116') {
-        throw new ApiError(404, 'Analytics not found')
+        throw new ApiError('Analytics not found', 404)
       }
-      throw new ApiError(400, (error as Error).message)
+      throw new ApiError((error as Error).message, 400)
     }
     return data
   },
@@ -467,9 +467,9 @@ export const analyticsService = {
       .eq('id', id)
     if (error) {
       if (error.code === 'PGRST116') {
-        throw new ApiError(404, 'Analytics not found')
+        throw new ApiError('Analytics not found', 404)
       }
-      throw new ApiError(400, (error as Error).message)
+      throw new ApiError((error as Error).message, 400)
     }
     return data
   },

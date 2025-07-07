@@ -140,7 +140,7 @@ export const sanitizeInput = (input: unknown): unknown => {
  * Extract user from request (if authenticated)
  */
 export const getUserFromRequest = (req: IncomingMessage): AuthenticatedUser | undefined => {
-  return (req as { _user?: AuthenticatedUser }).user
+  return (req as { _user?: AuthenticatedUser })._user
 }
 
 /**
@@ -155,7 +155,7 @@ export const getTenantFromRequest = (req: IncomingMessage): string | null => {
  * Check if request is authenticated
  */
 export const isAuthenticated = (req: IncomingMessage): boolean => {
-  return !!(req as { _user?: AuthenticatedUser }).user
+  return !!(req as { _user?: AuthenticatedUser })._user
 }
 
 /**

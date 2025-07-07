@@ -1,5 +1,6 @@
 
 import logger from './logger.service.js'
+import { ApiError } from '../utils/ApiError.js'
 
 // Tipos estrictos para reportes
 export interface AnalyticsReport {
@@ -29,7 +30,7 @@ class AnalyticsReportingService {
 
   async createReport(data: CreateReportData): Promise<AnalyticsReport> {
     if (!data.name || !data.type || !data.data) {
-      throw new ApiError(400, 'Invalid report data')
+      throw new ApiError('Invalid report data', 400)
     }
     // Simulación de integración con PostHog
     // Aquí se podría hacer fetch a PostHog API
