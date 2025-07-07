@@ -1,0 +1,26 @@
+{
+  "name": "@strato/agents",
+  "version": "1.0.0",
+  "description": "STRATO Core OS™ Intelligent Agents Testing Suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:basic": "vitest run __tests__/agents-basic.test.ts",
+    "test:setup": "vitest run __tests__/agents-setup.test.ts"
+  },
+  "keywords": [
+    "strato",
+    "agents",
+    "testing",
+    "automation",
+    "qa"
+  ],
+  "author": "STRATO Core OS™ Team",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^3.2.4",
+    "@vitest/coverage-istanbul": "^3.2.4"
+  }
+} 
