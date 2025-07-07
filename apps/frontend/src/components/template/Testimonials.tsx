@@ -1,75 +1,102 @@
-/**
- * Testimonials - Componente de testimonios de clientes
- * @description Muestra testimonios de usuarios con avatares y información
- */
+'use client'
 
 import React from 'react'
+import { motion } from 'framer-motion'
+import { Star } from 'lucide-react'
 
-import { TestimonialProps, TestimonialsProps } from '../../types/template'
-import { Icons } from './Icons'
+const testimonials = [
+  {
+    name: 'María García',
+    role: 'CTO, TechStartup',
+    content: 'STRATO Core OS™ transformó completamente nuestro desarrollo. Los agentes inteligentes automatizaron el 80% de nuestras tareas repetitivas.',
+    rating: 5,
+    avatar: '👩‍💼'
+  },
+  {
+    name: 'Carlos Rodríguez',
+    role: 'Lead Developer, EnterpriseCorp',
+    content: 'La arquitectura modular y la seguridad enterprise nos permitieron escalar sin preocupaciones. El rendimiento es excepcional.',
+    rating: 5,
+    avatar: '👨‍💻'
+  },
+  {
+    name: 'Ana Martínez',
+    role: 'Product Manager, InnovateLab',
+    content: 'Los componentes UI y el sistema de analytics nos ayudaron a lanzar productos 3 veces más rápido. ¡Increíble experiencia!',
+    rating: 5,
+    avatar: '👩‍🎨'
+  }
+]
 
-const Testimonial: React.FC<TestimonialProps> = ({
-  content,
-  author,
-  role,
-  company,
-  avatar,
-}) => {
+export default function Testimonials() {
   return (
-    <div className="p-6 border border-border rounded-lg bg-background">
-      <div className="flex items-start gap-4">
-        {avatar ? (
-          <img
-            src={avatar}
-            alt={author}
-            className="w-12 h-12 rounded-full object-cover"
-          />
-        ) : (
-          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-            <Icons.logo className="h-6 w-6 text-muted-foreground" />
-          </div>
-        )}
-
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground mb-4 italic">
-            &ldquo;{content}&rdquo;
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Lo que dicen nuestros clientes
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Descubre cómo STRATO Core OS™ está transformando el desarrollo 
+            de aplicaciones SaaS en todo el mundo
           </p>
+        </motion.div>
 
-          <div>
-            <div className="font-medium text-sm">{author}</div>
-            <div className="text-xs text-muted-foreground">
-              {role} en {company}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export const Testimonials: React.FC<TestimonialsProps> = ({
-  testimonials,
-  title = 'Lo que dicen nuestros usuarios',
-  description = 'Descubre cómo STRATO está transformando el desarrollo de aplicaciones',
-}) => {
-  return (
-    <section className="py-16 px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{title}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {description}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Testimonial key={index} {...testimonial} />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-200"
+            >
+              <div className="flex items-center mb-4">
+                <div className="text-3xl mr-4">{testimonial.avatar}</div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">
+                    {testimonial.name}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+
+              <p className="text-gray-700 leading-relaxed">
+                "{testimonial.content}"
+              </p>
+            </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <div className="inline-flex items-center space-x-2 text-gray-600">
+            <span className="text-2xl">⭐</span>
+            <span className="font-semibold">4.9/5</span>
+            <span>basado en 500+ reseñas</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
-}
-
-export default Testimonials
+} 

@@ -1,97 +1,97 @@
 'use client'
 
-/**
- * NewsletterForm - Componente de formulario de newsletter
- * @description Formulario para suscripción al newsletter con validación
- */
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Mail, Check } from 'lucide-react'
 
-import React from 'react'
-
-import { NewsletterFormProps } from '../../types/template'
-import { Icons } from './Icons'
-
-export const NewsletterForm: React.FC<NewsletterFormProps> = ({
-  title = 'Mantente actualizado',
-  description = 'Recibe las últimas noticias y actualizaciones de STRATO',
-  placeholder = 'tu@email.com',
-  buttonText = 'Suscribir',
-  onSubmit,
-}) => {
-  const [email, setEmail] = React.useState('')
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [isSubmitted, setIsSubmitted] = React.useState(false)
+export default function NewsletterForm() {
+  const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!email || !email.includes('@')) {
-      return
-    }
+    if (!email) return
 
     setIsLoading(true)
-
-    try {
-      if (onSubmit) {
-        await onSubmit(email)
-      }
-      setIsSubmitted(true)
-      setEmail('')
-    } catch (error) {
-      console.error('Error al suscribir:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  if (isSubmitted) {
-    return (
-      <div className="text-center p-6 border border-green-200 rounded-lg bg-green-50 dark:bg-green-950 dark:border-green-800">
-        <Icons.logo className="h-8 w-8 mx-auto mb-2 text-green-600" />
-        <h3 className="font-medium text-green-800 dark:text-green-200 mb-1">
-          ¡Gracias por suscribirte!
-        </h3>
-        <p className="text-sm text-green-600 dark:text-green-300">
-          Te mantendremos informado sobre las últimas novedades.
-        </p>
-      </div>
-    )
+    
+    // Simular envío
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    setIsSubmitted(true)
+    setIsLoading(false)
+    setEmail('')
   }
 
   return (
-    <div className="p-6 border border-border rounded-lg bg-background">
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground text-sm">{description}</p>
+    <section className="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Mantente actualizado con STRATO
+          </h2>
+          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+            Recibe las últimas actualizaciones, tutoriales y mejores prácticas 
+            directamente en tu bandeja de entrada
+          </p>
+
+          {!isSubmitted ? (
+            <motion.form
+              onSubmit={handleSubmit}
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="relative flex-1">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu@email.com"
+                    className="w-full pl-10 pr-4 py-3 bg-white rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                    required
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 disabled:opacity-50"
+                >
+                  {isLoading ? 'Enviando...' : 'Suscribirse'}
+                </motion.button>
+              </div>
+            </motion.form>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="max-w-md mx-auto"
+            >
+              <div className="flex items-center justify-center space-x-3 bg-white bg-opacity-20 rounded-lg p-6">
+                <Check className="w-6 h-6 text-white" />
+                <span className="text-white font-semibold">
+                  ¡Gracias por suscribirte! Te mantendremos informado.
+                </span>
+              </div>
+            </motion.div>
+          )}
+
+          <p className="text-sm text-purple-200 mt-4">
+            No spam, solo contenido valioso. Puedes cancelar en cualquier momento.
+          </p>
+        </motion.div>
       </div>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="flex gap-2">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={placeholder}
-            className="flex-1 px-3 py-2 border border-border rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            required
-          />
-          <button
-            type="submit"
-            disabled={isLoading || !email}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            {isLoading ? (
-              <>
-                <Icons.spinner className="h-4 w-4 animate-spin" />
-                Enviando...
-              </>
-            ) : (
-              buttonText
-            )}
-          </button>
-        </div>
-      </form>
-    </div>
+    </section>
   )
-}
-
-export default NewsletterForm
+} 

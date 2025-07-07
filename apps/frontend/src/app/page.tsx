@@ -1,130 +1,21 @@
-"use client"
+'use client'
 
-/**
- * Página principal STRATO Core OS™
- * @description Landing page moderna y modular usando componentes template
- */
+import HeroSection from '@/components/template/HeroSection'
+import FeaturesSection from '@/components/template/FeaturesSection'
+import PricingCards from '@/components/template/PricingCards'
+import Testimonials from '@/components/template/Testimonials'
+import NewsletterForm from '@/components/template/NewsletterForm'
+import CallToAction from '@/components/template/CallToAction'
 
-import React from 'react'
-
-import {
-  BaseLayout,
-  HeroSection,
-  NewsletterForm,
-  PricingCards,
-  Testimonials} from '../components/template'
-
-// Ejemplo de datos para PricingCards y Testimonials
-const pricingCards = [
-  {
-    title: 'Starter',
-    price: '$29/mes',
-    description: 'Perfecto para proyectos pequeños',
-    features: [
-      'Hasta 5 agentes',
-      'Soporte por email',
-      'Documentación básica',
-      'Actualizaciones mensuales'
-    ],
-    ctaText: 'Comenzar gratis',
-    ctaHref: '/signup'
-  },
-  {
-    title: 'Pro',
-    price: '$99/mes',
-    description: 'Para equipos en crecimiento',
-    features: [
-      'Hasta 25 agentes',
-      'Soporte prioritario',
-      'Documentación completa',
-      'Actualizaciones semanales',
-      'Integraciones avanzadas'
-    ],
-    ctaText: 'Comenzar prueba',
-    ctaHref: '/signup',
-    popular: true
-  },
-  {
-    title: 'Enterprise',
-    price: '$299/mes',
-    description: 'Para grandes organizaciones',
-    features: [
-      'Agentes ilimitados',
-      'Soporte 24/7',
-      'Documentación personalizada',
-      'Actualizaciones diarias',
-      'Integraciones personalizadas',
-      'SLA garantizado'
-    ],
-    ctaText: 'Contactar ventas',
-    ctaHref: '/contact'
-  }
-]
-
-const testimonials = [
-  {
-    content: 'STRATO ha transformado completamente nuestro flujo de desarrollo. Los agentes inteligentes nos ahorran horas de trabajo manual.',
-    author: 'María García',
-    role: 'CTO',
-    company: 'TechCorp'
-  },
-  {
-    content: 'La arquitectura modular nos permite escalar sin problemas. Es exactamente lo que necesitábamos para nuestro SaaS.',
-    author: 'Carlos Rodríguez',
-    role: 'Lead Developer',
-    company: 'StartupXYZ'
-  },
-  {
-    content: 'Los componentes son increíblemente reutilizables y el tipado estricto nos ha ayudado a evitar muchos errores.',
-    author: 'Ana López',
-    role: 'Frontend Engineer',
-    company: 'DigitalAgency'
-  }
-]
-
-const handleNewsletterSubmit = async (email: string) => {
-  // Aquí iría la lógica real de suscripción
-  // eslint-disable-next-line no-console
-  console.log('Newsletter subscription:', email)
-}
-
-const HomePage: React.FC = () => {
+export default function HomePage() {
   return (
-    <BaseLayout>
-      <main className="min-h-screen bg-background flex flex-col items-center w-full">
-        <HeroSection 
-          title="STRATO Core OS™"
-          description="Framework SaaS enterprise-grade para desarrollo moderno, modular y seguro."
-          ctaText="Comenzar ahora"
-          ctaHref="/dashboard"
-          secondaryCtaText="Ver documentación"
-          secondaryCtaHref="/docs"
-        />
-        <PricingCards cards={pricingCards} />
-        <Testimonials testimonials={testimonials} />
-        <section className="w-full py-16 px-6 lg:px-8 flex justify-center">
-          <div className="max-w-2xl w-full">
-            <NewsletterForm onSubmit={handleNewsletterSubmit} />
-          </div>
-        </section>
-        {/* CTA final */}
-        <section className="w-full py-12 flex flex-col items-center">
-          <h2 className="text-2xl font-bold mb-4 text-center">¿Listo para experimentar STRATO?</h2>
-          <a
-            href="/dashboard"
-            className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold text-lg shadow hover:bg-primary/90 transition-colors"
-          >
-            Ir al Dashboard
-          </a>
-        </section>
-        {/* Toggle dark mode si existe soporte shadcn/ui */}
-        <div className="fixed bottom-6 right-6 z-50">
-          {/* Si tienes un componente de toggle, reemplaza aquí */}
-          {/* <ModeToggle /> */}
-        </div>
-      </main>
-    </BaseLayout>
+    <>
+      <HeroSection />
+      <FeaturesSection />
+      <PricingCards />
+      <Testimonials />
+      <NewsletterForm />
+      <CallToAction />
+    </>
   )
 }
-
-export default HomePage

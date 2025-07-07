@@ -1,8 +1,13 @@
-import '../index.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-import React from 'react'
+const inter = Inter({ subsets: ["latin"] });
 
-import { AuthProvider } from '../contexts/AuthContext'
+export const metadata: Metadata = {
+  title: "STRATO Core OS™ - Framework SaaS Enterprise-Grade",
+  description: "Framework SaaS enterprise-grade para desarrollo moderno, modular y seguro con agentes inteligentes y automatización completa",
+};
 
 export default function RootLayout({
   children,
@@ -10,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        <AuthProvider>{children}</AuthProvider>
+    <html lang="es">
+      <body className={inter.className}>
+        {children}
       </body>
     </html>
-  )
+  );
 }

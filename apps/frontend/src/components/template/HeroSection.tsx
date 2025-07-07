@@ -1,76 +1,71 @@
-/**
- * HeroSection - Sección hero principal del template
- * @description Componente de hero con título, descripción, CTAs y badges de tecnologías
- */
+'use client'
 
-import Link from 'next/link'
 import React from 'react'
+import { motion } from 'framer-motion'
 
-import { HeroSectionProps } from '../../types/template'
-import { Icons } from './Icons'
-
-const techTags = [
-  { name: 'React', icon: <Icons.logo className="h-4 w-4" /> },
-  { name: 'Next.js', icon: <Icons.logo className="h-4 w-4" /> },
-  { name: 'TypeScript', icon: <Icons.logo className="h-4 w-4" /> },
-  { name: 'Tailwind', icon: <Icons.logo className="h-4 w-4" /> },
-]
-
-const TechBadge: React.FC<{
-  icon: React.ReactNode
-  children: React.ReactNode
-}> = ({ icon, children }) => (
-  <div className="flex items-center gap-2 px-3 py-1.5 bg-muted/50 border border-border rounded-lg text-sm">
-    {icon}
-    <span>{children}</span>
-  </div>
-)
-
-export const HeroSection: React.FC<HeroSectionProps> = ({
-  title = 'Framework SaaS enterprise-grade',
-  description = 'STRATO Core OS™ es un framework SaaS moderno para desarrollo de aplicaciones empresariales con arquitectura modular, agentes inteligentes y componentes reutilizables.',
-  ctaText = 'Comenzar',
-  ctaHref = '/dashboard',
-  secondaryCtaText = 'Documentación',
-  secondaryCtaHref = '/docs',
-}) => {
+export default function HeroSection() {
   return (
-    <section className="w-full h-full pt-10 md:pt-20 overflow-hidden relative">
-      <div className="lg:max-w-6xl mx-auto z-10 relative">
-        <div className="lg:text-center text-left flex flex-col items-start lg:items-center justify-center px-6 lg:px-8">
-          <h1 className="md:max-w-[700px] text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tighter mt-8 md:mt-10 text-balance bg-gradient-to-b from-foreground/80 via-foreground to-foreground/60 inline-block text-transparent bg-clip-text pb-2">
-            {title}
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            STRATO Core OS™
           </h1>
-          <p className="mt-4 text-balance tracking-tight sm:mt-3 max-w-[680px] text-muted-foreground text-base md:text-lg">
-            {description}
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Framework SaaS enterprise-grade para desarrollo moderno, modular y seguro 
+            con agentes inteligentes y automatización completa
           </p>
-          <div className="mt-8 flex gap-3.5">
-            <Link
-              href={ctaHref}
-              className="h-9 px-5 shadow-sm font-medium text-sm rounded-xl bg-foreground text-background hover:bg-foreground/85 flex items-center relative transition-colors duration-300"
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              {ctaText}
-            </Link>
-            {secondaryCtaText && secondaryCtaHref && (
-              <Link
-                href={secondaryCtaHref}
-                className="h-[38px] px-5 font-medium text-sm rounded-xl bg-muted text-foreground border border-border hover:border-border/40 flex items-center relative transition-colors duration-300"
-              >
-                {secondaryCtaText}
-              </Link>
-            )}
+              🚀 Comenzar Ahora
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-slate-900 transition-all duration-300"
+            >
+              📖 Documentación
+            </motion.button>
           </div>
-          <div className="flex items-center gap-2 flex-wrap max-w-lg lg:justify-center justify-start mt-10">
-            {techTags.map((tag) => (
-              <TechBadge key={tag.name} icon={tag.icon}>
-                {tag.name}
-              </TechBadge>
-            ))}
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">99.9%</div>
+            <div className="text-gray-400">Uptime Garantizado</div>
           </div>
-        </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">50+</div>
+            <div className="text-gray-400">Agentes Inteligentes</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">24/7</div>
+            <div className="text-gray-400">Soporte Enterprise</div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
-}
-
-export default HeroSection
+} 
