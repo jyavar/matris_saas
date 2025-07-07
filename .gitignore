@@ -79,3 +79,10 @@ node_modules
 node_modules
 node_modules
 node_modules
+
+# STRATO Clean Rules
+apps/frontend/.next/
+apps/frontend/node_modules/
+apps/frontend/supabase/
+apps/frontend/examples/
+
