@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument -- STRATO: archivo de test con mocks de App */
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { vi } from 'vitest';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { BillingController } from './billing.controller';
@@ -12,11 +12,11 @@ describe('BillingController (e2e)', () => {
   let app: INestApplication;
 
   const mockBillingService = {
-    createInvoice: vi.fn(),
-    getInvoiceById: vi.fn(),
-    getAllInvoices: vi.fn(),
-    updateInvoice: vi.fn(),
-    deleteInvoice: vi.fn(),
+    createInvoice: jest.fn(),
+    getInvoiceById: jest.fn(),
+    getAllInvoices: jest.fn(),
+    updateInvoice: jest.fn(),
+    deleteInvoice: jest.fn(),
   };
 
   beforeAll(async () => {
@@ -34,7 +34,7 @@ describe('BillingController (e2e)', () => {
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   afterAll(async () => {

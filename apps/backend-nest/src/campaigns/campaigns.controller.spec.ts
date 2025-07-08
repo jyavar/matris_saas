@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument -- STRATO: archivo de test con mocks de App */
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { vi } from 'vitest';
 
 import { CampaignsController } from './campaigns.controller';
 import { CampaignsService } from './campaigns.service';
@@ -11,9 +11,9 @@ describe('CampaignsController (e2e)', () => {
   // campaignsService no se usa directamente en las pruebas
 
   const mockCampaignsService = {
-    list: vi.fn(),
-    create: vi.fn(),
-    delete: vi.fn(),
+    list: jest.fn(),
+    create: jest.fn(),
+    delete: jest.fn(),
   };
 
   beforeAll(async () => {
@@ -30,7 +30,7 @@ describe('CampaignsController (e2e)', () => {
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   afterAll(async () => {

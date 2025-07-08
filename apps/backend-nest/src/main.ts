@@ -23,4 +23,4 @@ async function bootstrap() {
   console.log(`🚀 STRATO NestJS Backend running on port ${port}`);
   console.log(`📊 Health check: http://localhost:${port}/api/health`);
 }
-bootstrap();
+void bootstrap();

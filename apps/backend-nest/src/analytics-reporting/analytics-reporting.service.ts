@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  BadRequestException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 
 export interface AnalyticsReport {
   id: string;
@@ -23,10 +19,14 @@ export class AnalyticsReportingService {
   private reports: AnalyticsReport[] = [];
 
   async getReports(): Promise<AnalyticsReport[]> {
+    // Simulación de operación async
+    await Promise.resolve();
     return this.reports;
   }
 
   async getReportById(id: string): Promise<AnalyticsReport | null> {
+    // Simulación de operación async
+    await Promise.resolve();
     return this.reports.find((r) => r.id === id) || null;
   }
 
@@ -37,6 +37,8 @@ export class AnalyticsReportingService {
 
     // Simulación de integración con PostHog
     // Aquí se podría hacer fetch a PostHog API
+    await Promise.resolve(); // Simulación de operación async
+
     const report: AnalyticsReport = {
       id: `report-${Date.now()}`,
       name: data.name,
@@ -51,6 +53,9 @@ export class AnalyticsReportingService {
   }
 
   async deleteReport(id: string): Promise<boolean> {
+    // Simulación de operación async
+    await Promise.resolve();
+
     const idx = this.reports.findIndex((r) => r.id === id);
     if (idx === -1) return false;
 
