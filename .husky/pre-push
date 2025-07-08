@@ -1,5 +1,8 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🛡️ STRATO Pre-push Hook - Validación final antes de subir..."
+pnpm run strato:guard:strict
 
 echo "🚀 STRATO Pre-push Hook - Validaciones completas (warnings permitidos)..."
 
