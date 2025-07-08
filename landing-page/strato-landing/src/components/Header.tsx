@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { Menu, X, Bot, ChevronDown } from 'lucide-react'
+import { Bot, ChevronDown, Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -26,7 +26,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {/* Products Dropdown */}
-            <div className="relative">
+            <div className="relative group">
               <button
                 onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={() => setIsProductsOpen(false)}
@@ -35,25 +35,50 @@ export default function Header() {
                 Products
                 <ChevronDown className="ml-1 w-4 h-4" />
               </button>
+
+              {/* Invisible bridge to prevent gap */}
+              <div className="absolute top-full left-0 w-full h-2 bg-transparent" />
+
               {isProductsOpen && (
                 <div
                   onMouseEnter={() => setIsProductsOpen(true)}
                   onMouseLeave={() => setIsProductsOpen(false)}
-                  className="absolute top-full left-0 mt-2 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-xl"
+                  className="absolute top-full left-0 mt-0 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-xl"
                 >
                   <div className="p-4">
                     <div className="space-y-3">
-                      <Link href="/marketplace" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
-                        <div className="font-medium text-white">AI Agents Marketplace</div>
-                        <div className="text-sm text-gray-400">Buy and sell AI agents</div>
+                      <Link
+                        href="/marketplace"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
+                        <div className="font-medium text-white">
+                          AI Agents Marketplace
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          Buy and sell AI agents
+                        </div>
                       </Link>
-                      <Link href="/platform" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
-                        <div className="font-medium text-white">SaaS Platform</div>
-                        <div className="text-sm text-gray-400">Enterprise-grade SaaS</div>
+                      <Link
+                        href="/platform"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
+                        <div className="font-medium text-white">
+                          SaaS Platform
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          Enterprise-grade SaaS
+                        </div>
                       </Link>
-                      <Link href="/agents" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
-                        <div className="font-medium text-white">Intelligent Agents</div>
-                        <div className="text-sm text-gray-400">Code quality & automation</div>
+                      <Link
+                        href="/agents"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
+                        <div className="font-medium text-white">
+                          Intelligent Agents
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          Code quality & automation
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -62,7 +87,7 @@ export default function Header() {
             </div>
 
             {/* Resources Dropdown */}
-            <div className="relative">
+            <div className="relative group">
               <button
                 onMouseEnter={() => setIsResourcesOpen(true)}
                 onMouseLeave={() => setIsResourcesOpen(false)}
@@ -71,25 +96,46 @@ export default function Header() {
                 Resources
                 <ChevronDown className="ml-1 w-4 h-4" />
               </button>
+
+              {/* Invisible bridge to prevent gap */}
+              <div className="absolute top-full left-0 w-full h-2 bg-transparent" />
+
               {isResourcesOpen && (
                 <div
                   onMouseEnter={() => setIsResourcesOpen(true)}
                   onMouseLeave={() => setIsResourcesOpen(false)}
-                  className="absolute top-full left-0 mt-2 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-xl"
+                  className="absolute top-full left-0 mt-0 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-xl"
                 >
                   <div className="p-4">
                     <div className="space-y-3">
-                      <Link href="/docs" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
-                        <div className="font-medium text-white">Documentation</div>
-                        <div className="text-sm text-gray-400">API docs and guides</div>
+                      <Link
+                        href="/docs"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
+                        <div className="font-medium text-white">
+                          Documentation
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          API docs and guides
+                        </div>
                       </Link>
-                      <Link href="/templates" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
+                      <Link
+                        href="/templates"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
                         <div className="font-medium text-white">Templates</div>
-                        <div className="text-sm text-gray-400">Ready-to-use templates</div>
+                        <div className="text-sm text-gray-400">
+                          Ready-to-use templates
+                        </div>
                       </Link>
-                      <Link href="/community" className="block p-3 rounded-md hover:bg-gray-800 transition-colors">
+                      <Link
+                        href="/community"
+                        className="block p-3 rounded-md hover:bg-gray-800 transition-colors"
+                      >
                         <div className="font-medium text-white">Community</div>
-                        <div className="text-sm text-gray-400">Developer community</div>
+                        <div className="text-sm text-gray-400">
+                          Developer community
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -97,17 +143,26 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/pricing"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Pricing
             </Link>
-            <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/about"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               About
             </Link>
           </nav>
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/login"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Sign In
             </Link>
             <Link
@@ -123,7 +178,11 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-gray-300 hover:text-white"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -188,4 +247,4 @@ export default function Header() {
       </div>
     </header>
   )
-} 
+}
