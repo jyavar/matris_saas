@@ -3,6 +3,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 
 import { supabase } from '../lib/supabase';
 import {
@@ -14,6 +15,7 @@ import {
 
 @Injectable()
 export class AuthService {
+  constructor(private jwtService: JwtService) {}
   async signUp(credentials: SignUpDto): Promise<AuthResponseDto> {
     try {
       const { data, error } = await supabase.auth.signUp({

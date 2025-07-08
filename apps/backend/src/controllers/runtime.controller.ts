@@ -1,21 +1,18 @@
 import { RuntimeService } from '../services/runtime.service.js'
-import { ControllerHandler } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
-
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {
-  success: (res: any, data: any, statusCode = 200) => {
+  success: (res: unknown, data: unknown, statusCode = 200) => {
     res.status(statusCode).json({ success: true, data })
   },
-  error: (res: any, message: string, statusCode = 500) => {
+  error: (res: unknown, message: string, statusCode = 500) => {
     res.status(statusCode).json({ success: false, error: message })
   },
-  badRequest: (res: any, message: string) => {
+  badRequest: (res: unknown, message: string) => {
     res.status(400).json({ success: false, error: message })
   },
-  notFound: (res: any, message: string) => {
+  notFound: (res: unknown, message: string) => {
     res.status(404).json({ success: false, error: message })
-  }
+  },
 }
 export const runtimeController = {
   getStatus: (async (_req, res, _params, _body, _user) => {
@@ -150,7 +147,10 @@ export const runtimeController = {
         responseHelpers.badRequest(res, 'Agent name is required')
         return
       }
-      const result = await RuntimeService.runAgent(name, _body as Record<string, unknown>)
+      const result = await RuntimeService.runAgent(
+        name,
+        _body as Record<string, unknown>,
+      )
       if (result.ok) {
         responseHelpers.success(res, { result: result.result })
       } else {
@@ -177,9 +177,13 @@ export const runtimeController = {
         responseHelpers.badRequest(res, 'Missing id or schedule')
         return
       }
-      const job = RuntimeService.createJob(id as string, schedule as string, () => {
-        // Placeholder: aquí se ejecutaría la lógica real del job
-      })
+      const job = RuntimeService.createJob(
+        id as string,
+        schedule as string,
+        () => {
+          // Placeholder: aquí se ejecutaría la lógica real del job
+        },
+      )
       responseHelpers.success(res, job, 201)
     } catch {
       responseHelpers.error(res, 'Failed to create task')
@@ -194,7 +198,7 @@ export const runtimeController = {
         return
       }
       const jobs = RuntimeService.listJobs()
-      const job = jobs.find(j => j.id === id)
+      const job = jobs.find((j) => j.id === id)
       if (!job) {
         responseHelpers.notFound(res, 'Task not found')
         return

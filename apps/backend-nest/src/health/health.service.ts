@@ -23,11 +23,14 @@ export class HealthService {
   async checkDatabaseHealth(): Promise<boolean> {
     // Aquí se podría verificar la conexión a Supabase
     // Por ahora retornamos true como simulación
+    await Promise.resolve(); // Simulación de operación async
     return true;
   }
 
   async checkExternalServices(): Promise<Record<string, boolean>> {
     // Verificar servicios externos (Stripe, OpenAI, etc.)
+    await Promise.resolve(); // Simulación de operación async
+
     return {
       supabase: true,
       stripe: true,

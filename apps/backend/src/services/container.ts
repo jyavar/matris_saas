@@ -2,11 +2,15 @@ import { env } from '../config/env.schema.js'
 import { supabase } from '../lib/supabase.js'
 import { authService } from './auth.service.js'
 import { billingService } from './billing.service.js'
-import type { IConfig, IDatabase, ILogger,ServiceContainer } from './interfaces/index.js'
+import type {
+  IConfig,
+  IDatabase,
+  ILogger,
+  ServiceContainer,
+} from './interfaces/index.js'
 import logger from './logger.service.js'
 import { posthogService } from './posthog.service.js'
 import { resendService } from './resend.service.js'
-
 class Config implements IConfig {
   private config: Record<string, any>
 
@@ -73,7 +77,10 @@ export const serviceContainer: ServiceContainer = {
       if (error) throw error
       return user
     },
-    async updateUser(id: string, data: Partial<{ email: string; name: string }>) {
+    async updateUser(
+      id: string,
+      data: Partial<{ email: string; name: string }>,
+    ) {
       const { data: user, error } = await supabase
         .from('users')
         .update(data)
@@ -85,29 +92,34 @@ export const serviceContainer: ServiceContainer = {
       return user
     },
     async deleteUser(id: string) {
-      const { error } = await supabase
-        .from('users')
-        .delete()
-        .eq('id', id)
+      const { error } = await supabase.from('users').delete().eq('id', id)
 
       if (error) throw error
-    }
+    },
   },
   email: {
     async sendEmail(to: string, subject: string, html: string) {
       await resendService.sendEmail(to, subject, html)
     },
-    async sendTemplate(to: string, templateId: string, data: Record<string, any>) {
+    async sendTemplate(
+      to: string,
+      templateId: string,
+      data: Record<string, any>,
+    ) {
       await resendService.sendTemplate(to, templateId, data)
-    }
+    },
   },
   analytics: {
-    async track(event: string, userId?: string, properties?: Record<string, any>) {
+    async track(
+      event: string,
+      userId?: string,
+      properties?: Record<string, any>,
+    ) {
       await posthogService.track(event, userId, properties)
     },
     async identify(userId: string, traits: Record<string, any>) {
       await posthogService.identify(userId, traits)
-    }
+    },
   },
   storage: {
     async uploadFile(bucket: string, path: string, file: Buffer) {
@@ -117,16 +129,14 @@ export const serviceContainer: ServiceContainer = {
 
       if (error) throw error
 
-      const { data: { publicUrl } } = supabase.storage
-        .from(bucket)
-        .getPublicUrl(path)
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from(bucket).getPublicUrl(path)
 
       return { path: data.path, url: publicUrl }
     },
     async deleteFile(bucket: string, path: string) {
-      const { error } = await supabase.storage
-        .from(bucket)
-        .remove([path])
+      const { error } = await supabase.storage.from(bucket).remove([path])
 
       if (error) throw error
     },
@@ -137,8 +147,8 @@ export const serviceContainer: ServiceContainer = {
 
       if (error) throw error
       return data.signedUrl
-    }
-  }
+    },
+  },
 }
 
 export default serviceContainer

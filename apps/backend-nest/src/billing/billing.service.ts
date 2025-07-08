@@ -78,7 +78,7 @@ export class BillingService {
     }
 
     const data = (await res.json()) as unknown[];
-    return data.filter(this.isInvoiceDTO);
+    return data.filter((item) => this.isInvoiceDTO(item));
   }
 
   async getAllInvoices(customerId: string): Promise<InvoiceDTO[]> {
@@ -107,7 +107,7 @@ export class BillingService {
     }
 
     const data = (await res.json()) as unknown[];
-    const invoices = data.filter(this.isInvoiceDTO);
+    const invoices = data.filter((item) => this.isInvoiceDTO(item));
     return invoices[0] || null;
   }
 
@@ -131,7 +131,7 @@ export class BillingService {
     }
 
     const data = (await res.json()) as unknown[];
-    const invoices = data.filter(this.isInvoiceDTO);
+    const invoices = data.filter((item) => this.isInvoiceDTO(item));
     return invoices[0] || null;
   }
 
@@ -150,7 +150,7 @@ export class BillingService {
     }
 
     const data = (await res.json()) as unknown[];
-    const invoices = data.filter(this.isInvoiceDTO);
+    const invoices = data.filter((item) => this.isInvoiceDTO(item));
 
     if (!invoices.length) {
       throw new NotFoundException('Invoice not found');

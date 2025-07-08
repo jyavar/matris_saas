@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-import { logAction } from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import { logAction } from './logger.service.js'
 
 // Schemas
 export const pricingSchema = z.object({
@@ -111,7 +111,7 @@ export const pricingService = {
       return Object.values(PLANS) as unknown as Plan[]
     } catch (error) {
       logAction('pricing_get_plans_error', 'system', {
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw new ApiError('Failed to get plans', 500)
     }
@@ -129,7 +129,7 @@ export const pricingService = {
     } catch (error) {
       logAction('pricing_get_plan_error', 'system', {
         planId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw new ApiError('Failed to get plan', 500)
     }
@@ -183,7 +183,7 @@ export const pricingService = {
     } catch (error) {
       logAction('pricing_subscription_error', data.customerId || 'unknown', {
         planId: data.planId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -222,12 +222,14 @@ export const pricingService = {
       return {
         id: subscriptionId,
         status: 'active',
-        plan: planId ? (await this.getPlanById(planId)) || undefined : undefined,
+        plan: planId
+          ? (await this.getPlanById(planId)) || undefined
+          : undefined,
       }
     } catch (error) {
       logAction('pricing_subscription_update_error', 'unknown', {
         subscriptionId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -263,7 +265,7 @@ export const pricingService = {
     } catch (error) {
       logAction('pricing_subscription_cancel_error', 'unknown', {
         subscriptionId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -304,7 +306,7 @@ export const pricingService = {
     } catch (error) {
       logAction('pricing_subscription_get_error', 'unknown', {
         subscriptionId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -367,7 +369,7 @@ export const pricingService = {
     } catch (error) {
       logAction('pricing_usage_check_error', 'unknown', {
         planId,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }

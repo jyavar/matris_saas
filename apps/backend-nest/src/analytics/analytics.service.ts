@@ -23,6 +23,8 @@ interface QueryParams {
 export class AnalyticsService {
   async trackEvent(eventData: EventData) {
     // Mock implementation for now
+    await Promise.resolve(); // Simulación de operación async
+
     return {
       id: 1,
       event_name: eventData.event_name,
@@ -34,6 +36,8 @@ export class AnalyticsService {
 
   async trackMetric(metricData: MetricData) {
     // Mock implementation for now
+    await Promise.resolve(); // Simulación de operación async
+
     return {
       id: 1,
       metric_name: metricData.metric_name,
@@ -46,6 +50,8 @@ export class AnalyticsService {
 
   async getEvents(query: QueryParams) {
     // Mock implementation for now - using query for filtering
+    await Promise.resolve(); // Simulación de operación async
+
     const limit = query.limit || 10;
     const offset = query.offset || 0;
 
@@ -62,6 +68,8 @@ export class AnalyticsService {
 
   async getMetrics(query: QueryParams) {
     // Mock implementation for now - using query for filtering
+    await Promise.resolve(); // Simulación de operación async
+
     const limit = query.limit || 10;
     const offset = query.offset || 0;
 
@@ -79,6 +87,8 @@ export class AnalyticsService {
 
   async getAnalyticsSummary(startDate?: string, endDate?: string) {
     // Mock implementation for now
+    await Promise.resolve(); // Simulación de operación async
+
     return {
       total_events: 100,
       total_metrics: 50,

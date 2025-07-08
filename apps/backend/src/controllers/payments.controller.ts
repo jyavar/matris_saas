@@ -1,68 +1,92 @@
-import { IncomingMessage, ServerResponse } from 'http'
-
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendError, sendSuccess } from '../utils/response.helper.js'
+import type { AuthenticatedUser } from '../types/express/index.js'
 
 export const paymentsController = {
-  async createPaymentIntent(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async createPaymentIntent(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // TODO: Implement payment intent creation
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ 
-        success: true, 
-        data: { payment_intent_id: 'pi_mock_123' } 
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          data: { payment_intent_id: 'pi_mock_123' },
+        }),
+      )
     } catch {
       sendError(res, 'Failed to create payment intent', 500)
     }
   },
 
-  async confirmPayment(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async confirmPayment(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // TODO: Implement payment confirmation
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ 
-        success: true, 
-        data: { status: 'confirmed' } 
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          data: { status: 'confirmed' },
+        }),
+      )
     } catch {
       sendError(res, 'Failed to confirm payment', 500)
     }
   },
 
-  async getPaymentMethods(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getPaymentMethods(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // TODO: Implement get payment methods
-      return sendSuccess(res, [] 
-      )
+      return sendSuccess(res, [])
     } catch {
       sendError(res, 'Failed to get payment methods', 500)
     }
   },
 
-  async addPaymentMethod(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async addPaymentMethod(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // TODO: Implement add payment method
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ 
-        success: true, 
-        data: { payment_method_id: 'pm_mock_123' } 
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          data: { payment_method_id: 'pm_mock_123' },
+        }),
+      )
     } catch {
       sendError(res, 'Failed to add payment method', 500)
     }
   },
 
-  async removePaymentMethod(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async removePaymentMethod(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // TODO: Implement remove payment method
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ 
-        success: true, 
-        message: 'Payment method removed' 
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          message: 'Payment method removed',
+        }),
+      )
     } catch {
       sendError(res, 'Failed to remove payment method', 500)
     }
   },
-} 
+}

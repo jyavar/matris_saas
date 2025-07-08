@@ -1,10 +1,7 @@
-import { IncomingMessage, ServerResponse } from 'http'
 import NodeCache from 'node-cache'
-import { createDeflate,createGzip } from 'zlib'
-
+import { createDeflate, createGzip } from 'zlib'
 import { logAction } from '../services/logger.service.js'
 import { AuthenticatedUser } from '../types/express/index.js'
-
 // Extended request interface for performance middleware
 interface ExtendedRequest extends IncomingMessage {
   _user?: AuthenticatedUser
@@ -32,7 +29,7 @@ export const compressionMiddleware = (
   }
 
   const acceptEncoding = req.headers['accept-encoding'] || ''
-  
+
   if (acceptEncoding.includes('gzip')) {
     res.setHeader('Content-Encoding', 'gzip')
     const gzip = createGzip()
@@ -50,7 +47,11 @@ export const compressionMiddleware = (
  * Cache middleware for GET requests
  */
 export const cacheMiddleware = (duration: number = 300) => {
-  return (req: IncomingMessage, res: ServerResponse, _next: () => void): void => {
+  return (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _next: () => void,
+  ): void => {
     // Only cache GET requests
     if (req.method !== 'GET') {
       _next()
@@ -74,7 +75,7 @@ export const cacheMiddleware = (duration: number = 300) => {
 
     // Override res.end to cache the response
     const originalEnd = res.end
-    res.end = function(chunk?: any, encoding?: any, cb?: any) {
+    res.end = function (chunk?: unknown, encoding?: unknown, cb?: unknown) {
       try {
         if (chunk && res.statusCode === 200) {
           const data = JSON.parse(chunk.toString())
@@ -84,7 +85,7 @@ export const cacheMiddleware = (duration: number = 300) => {
         // Ignore parsing errors
       }
       if (typeof encoding === 'function') {
-        return originalEnd.call(this, chunk, 'utf8', encoding as (() => void))
+        return originalEnd.call(this, chunk, 'utf8', encoding as () => void)
       }
       return originalEnd.call(this, chunk, encoding || 'utf8', cb)
     }
@@ -118,7 +119,11 @@ export const performanceMiddleware = (
 
   // Add response time tracking
   const originalEnd = res.end
-  res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
+  res.end = function (
+    chunk?: unknown,
+    encoding?: BufferEncoding | (() => void),
+    cb?: () => void,
+  ) {
     const duration = Date.now() - start
 
     // Log performance metrics

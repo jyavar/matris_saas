@@ -1,13 +1,10 @@
-import { IncomingMessage, ServerResponse } from 'http'
-import { z } from 'zod'
-
 import type {
   CreateWorkflowData,
   UpdateWorkflowData,
 } from '../services/automation.service.js'
 import { automationService } from '../services/automation.service.js'
-import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { sendValidationError } from '../utils/response.helper.js'
 // Schemas de validación
 const createWorkflowSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -61,7 +58,11 @@ export const automationController = {
   /**
    * GET /automation/workflows - Obtener todos los workflows
    */
-  async getWorkflows(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getWorkflows(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const workflows = await automationService.getWorkflows()
 
@@ -74,13 +75,20 @@ export const automationController = {
   /**
    * GET /automation/workflows/:id - Obtener workflow por ID
    */
-  async getWorkflowById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async getWorkflowById(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow ID is required' }))
+        res.end(
+          JSON.stringify({ success: false, error: 'Workflow ID is required' }),
+        )
         return
       }
 
@@ -99,7 +107,12 @@ export const automationController = {
   /**
    * POST /automation/workflows - Crear nuevo workflow
    */
-  async createWorkflow(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, user?: AuthenticatedUser): Promise<void> {
+  async createWorkflow(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // Validar datos de entrada
       const validatedData = createWorkflowSchema.parse(_body)
@@ -128,13 +141,21 @@ export const automationController = {
   /**
    * PUT /automation/workflows/:id - Actualizar workflow
    */
-  async updateWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async updateWorkflow(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow ID is required' }))
+        res.end(
+          JSON.stringify({ success: false, error: 'Workflow ID is required' }),
+        )
         return
       }
 
@@ -163,13 +184,20 @@ export const automationController = {
   /**
    * DELETE /automation/workflows/:id - Eliminar workflow
    */
-  async deleteWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async deleteWorkflow(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow ID is required' }))
+        res.end(
+          JSON.stringify({ success: false, error: 'Workflow ID is required' }),
+        )
         return
       }
 
@@ -180,10 +208,12 @@ export const automationController = {
       }
 
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        message: 'Workflow deleted successfully',
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          message: 'Workflow deleted successfully',
+        }),
+      )
     } catch {
       return sendError(res, 'Internal server error', 500)
     }
@@ -192,7 +222,11 @@ export const automationController = {
   /**
    * GET /automation/jobs - Obtener todos los jobs
    */
-  async getJobs(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getJobs(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const jobs = await automationService.getJobs()
 
@@ -205,7 +239,12 @@ export const automationController = {
   /**
    * GET /automation/jobs/:id - Obtener job por ID
    */
-  async getJobById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async getJobById(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -230,13 +269,21 @@ export const automationController = {
   /**
    * POST /automation/workflows/:id/execute - Ejecutar workflow
    */
-  async executeWorkflow(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async executeWorkflow(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: false, error: 'Workflow ID is required' }))
+        res.end(
+          JSON.stringify({ success: false, error: 'Workflow ID is required' }),
+        )
         return
       }
 
@@ -262,7 +309,12 @@ export const automationController = {
   /**
    * POST /automation/jobs/:id/pause - Pausar job
    */
-  async pauseJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async pauseJob(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -287,7 +339,12 @@ export const automationController = {
   /**
    * POST /automation/jobs/:id/resume - Reanudar job
    */
-  async resumeJob(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async resumeJob(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
 
@@ -310,19 +367,49 @@ export const automationController = {
   },
 
   // Alias methods for route compatibility
-  getAutomations: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+  getAutomations: async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ) => {
     return automationController.getWorkflows(req, res, user)
   },
-  createAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+  createAutomation: async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ) => {
     return automationController.createWorkflow(req, res, _body, user)
   },
-  getAutomationById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+  getAutomationById: async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ) => {
     return automationController.getWorkflowById(req, res, _params, user)
   },
-  updateAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+  updateAutomation: async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ) => {
     return automationController.updateWorkflow(req, res, _params, _body, user)
   },
-  deleteAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
+  deleteAutomation: async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    user?: AuthenticatedUser,
+  ) => {
     return automationController.deleteWorkflow(req, res, _params, user)
   },
 }

@@ -1,7 +1,7 @@
-import { ApiError } from '../utils/ApiError.js'
 import { supabase } from '../lib/supabase.js'
-import logger from './logger.service.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
+import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 // Tipos estrictos para Automation Engine
 export interface WorkflowStep {
@@ -425,7 +425,10 @@ export class AutomationService {
   /**
    * Procesa un job (método privado)
    */
-  private async processJob(jobId: string, _user?: AuthenticatedUser): Promise<void> {
+  private async processJob(
+    jobId: string,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // Actualizar status a running
       await supabase.from('jobs').update({ status: 'running' }).eq('id', jobId)
@@ -452,7 +455,7 @@ export class AutomationService {
         .update({
           status: 'failed',
           completed_at: new Date().toISOString(),
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         .eq('id', jobId)
 

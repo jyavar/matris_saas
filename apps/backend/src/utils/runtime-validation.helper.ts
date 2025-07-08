@@ -9,10 +9,10 @@ import { z } from 'zod'
 export const ValidationSchemas = {
   // User ID validation
   userId: z.string().uuid('Invalid user ID format'),
-  
+
   // Email validation
   email: z.string().email('Invalid email format'),
-  
+
   // Campaign data validation
   campaignData: z.object({
     title: z.string().min(1, 'Title is required').max(100, 'Title too long'),
@@ -21,7 +21,7 @@ export const ValidationSchemas = {
     startDate: z.string().datetime('Invalid start date format'),
     endDate: z.string().datetime('Invalid end date format'),
   }),
-  
+
   // Analytics event validation
   analyticsEvent: z.object({
     event: z.string().min(1, 'Event name is required'),
@@ -29,13 +29,13 @@ export const ValidationSchemas = {
     userId: z.string().uuid().optional(),
     timestamp: z.number().positive().optional(),
   }),
-  
+
   // Pagination parameters
   pagination: z.object({
     page: z.number().int().positive().default(1),
     limit: z.number().int().positive().max(100).default(10),
   }),
-  
+
   // ID parameter
   idParam: z.object({
     id: z.string().uuid('Invalid ID format'),
@@ -48,18 +48,18 @@ export const ValidationSchemas = {
 export function validateOrThrow<T>(
   schema: z.ZodSchema<T>,
   data: unknown,
-  context: string = 'data'
+  context: string = 'data',
 ): T {
   const result = schema.safeParse(data)
-  
+
   if (!result.success) {
-    const errors = result.error.errors.map(err => 
-      `${err.path.join('.')}: ${err.message}`
-    ).join(', ')
-    
+    const errors = result.error.errors
+      .map((err) => `${err.path.join('.')}: ${err.message}`)
+      .join(', ')
+
     throw new Error(`Validation failed for ${context}: ${errors}`)
   }
-  
+
   return result.data
 }
 
@@ -68,17 +68,17 @@ export function validateOrThrow<T>(
  */
 export function validateSafely<T>(
   schema: z.ZodSchema<T>,
-  data: unknown
+  data: unknown,
 ): { success: true; data: T } | { success: false; errors: string[] } {
   const result = schema.safeParse(data)
-  
+
   if (!result.success) {
-    const errors = result.error.errors.map(err => 
-      `${err.path.join('.')}: ${err.message}`
+    const errors = result.error.errors.map(
+      (err) => `${err.path.join('.')}: ${err.message}`,
     )
     return { success: false, errors }
   }
-  
+
   return { success: true, data: result.data }
 }
 
@@ -108,14 +108,18 @@ export function isNumber(value: unknown): value is number {
  */
 export function isUUID(value: unknown): value is string {
   if (!isString(value)) return false
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
   return uuidRegex.test(value)
 }
 
 /**
  * Ensures a value is a string, throwing if not
  */
-export function ensureString(value: unknown, context: string = 'value'): string {
+export function ensureString(
+  value: unknown,
+  context: string = 'value',
+): string {
   if (!isString(value)) {
     throw new Error(`Expected ${context} to be a string, got ${typeof value}`)
   }
@@ -125,7 +129,10 @@ export function ensureString(value: unknown, context: string = 'value'): string 
 /**
  * Ensures a value is a number, throwing if not
  */
-export function ensureNumber(value: unknown, context: string = 'value'): number {
+export function ensureNumber(
+  value: unknown,
+  context: string = 'value',
+): number {
   if (!isNumber(value)) {
     throw new Error(`Expected ${context} to be a number, got ${typeof value}`)
   }
@@ -145,9 +152,11 @@ export function ensureUUID(value: unknown, context: string = 'value'): string {
 /**
  * Sanitizes and validates request parameters
  */
-export function sanitizeParams(params: Record<string, unknown>): Record<string, string> {
+export function sanitizeParams(
+  params: Record<string, unknown>,
+): Record<string, string> {
   const sanitized: Record<string, string> = {}
-  
+
   for (const [key, value] of Object.entries(params)) {
     if (isString(value)) {
       sanitized[key] = value.trim()
@@ -157,7 +166,7 @@ export function sanitizeParams(params: Record<string, unknown>): Record<string, 
       sanitized[key] = String(value)
     }
   }
-  
+
   return sanitized
 }
 
@@ -166,9 +175,15 @@ export function sanitizeParams(params: Record<string, unknown>): Record<string, 
  */
 export function createRouteValidator<T>(
   schema: z.ZodSchema<T>,
-  dataExtractor: (req: IncomingMessage & { body?: unknown }) => unknown = (req) => req.body
+  dataExtractor: (req: IncomingMessage & { body?: unknown }) => unknown = (
+    req,
+  ) => req.body,
 ) {
-  return (req: IncomingMessage & { body?: unknown; validated?: T }, res: ServerResponse, _next: () => void) => {
+  return (
+    req: IncomingMessage & { body?: unknown; validated?: T },
+    res: ServerResponse,
+    _next: () => void,
+  ) => {
     try {
       const data = dataExtractor(req)
       const validated = validateOrThrow(schema, data, 'request data')
@@ -176,11 +191,14 @@ export function createRouteValidator<T>(
       _next()
     } catch (error) {
       res.writeHead(400, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: 'Validation failed',
-        message: (error instanceof Error ? error.message : 'Unknown validation error')
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: 'Validation failed',
+          message:
+            error instanceof Error ? error.message : 'Unknown validation error',
+        }),
+      )
     }
   }
 }

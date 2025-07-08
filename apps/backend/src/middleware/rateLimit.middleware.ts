@@ -25,7 +25,7 @@ const getClientIp = (req: IncomingMessage): string => {
 
 const cleanupExpiredEntries = (): void => {
   const now = Date.now()
-  Object.keys(store).forEach(key => {
+  Object.keys(store).forEach((key) => {
     if (store[key] && store[key].resetTime < now) {
       delete store[key]
     }
@@ -36,7 +36,11 @@ const cleanupExpiredEntries = (): void => {
 setInterval(cleanupExpiredEntries, 60000)
 
 export const createRateLimit = (config: RateLimitConfig) => {
-  return (req: IncomingMessage, res: ServerResponse, _next: () => void): void => {
+  return (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _next: () => void,
+  ): void => {
     const clientKey = getClientIp(req)
     const now = Date.now()
 
@@ -71,11 +75,13 @@ export const createRateLimit = (config: RateLimitConfig) => {
         'Retry-After': Math.ceil(config.windowMs / 1000).toString(),
       })
 
-      res.end(JSON.stringify({
-        success: false,
-        error: config.message || 'Too many requests',
-        retryAfter: Math.ceil(config.windowMs / 1000),
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: config.message || 'Too many requests',
+          retryAfter: Math.ceil(config.windowMs / 1000),
+        }),
+      )
       return
     }
 
@@ -84,8 +90,14 @@ export const createRateLimit = (config: RateLimitConfig) => {
 
     // Add rate limit headers
     res.setHeader('X-RateLimit-Limit', config.maxRequests.toString())
-    res.setHeader('X-RateLimit-Remaining', (config.maxRequests - store[clientKey].count).toString())
-    res.setHeader('X-RateLimit-Reset', new Date(store[clientKey].resetTime).toISOString())
+    res.setHeader(
+      'X-RateLimit-Remaining',
+      (config.maxRequests - store[clientKey].count).toString(),
+    )
+    res.setHeader(
+      'X-RateLimit-Reset',
+      new Date(store[clientKey].resetTime).toISOString(),
+    )
 
     _next()
   }

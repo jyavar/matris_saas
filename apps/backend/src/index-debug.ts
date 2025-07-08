@@ -54,7 +54,7 @@ router.get('/metrics', async (req, res) => {
 
 const server = createServer(async (req, res) => {
   const { pathname } = parse(req.url || '', true)
-  
+
   // Built-in health and metrics endpoints
   if (req.method === 'GET' && pathname === '/api/health') {
     return sendJson(res, 200, {
@@ -62,10 +62,10 @@ const server = createServer(async (req, res) => {
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
       memory: process.memoryUsage(),
-      version
+      version,
     })
   }
-  
+
   if (req.method === 'GET' && pathname === '/api/metrics') {
     const memUsage = process.memoryUsage()
     const cpuUsage = process.cpuUsage()

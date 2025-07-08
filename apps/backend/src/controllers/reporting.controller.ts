@@ -1,16 +1,17 @@
-import { IncomingMessage, ServerResponse } from 'http'
-import { z } from 'zod'
+import type { AuthenticatedUser } from '../types/express/index.js'
 
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 // Schemas de validación
 export const reportingController = {
-  async getUsageReport(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getUsageReport(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // Parse query parameters
       const url = new URL(req.url || '', `http://localhost`)
       const period = url.searchParams.get('period') || '2024-07'
-      
+
       // Mock usage report data
       const report = {
         totalUsers: 150,
@@ -26,13 +27,17 @@ export const reportingController = {
     }
   },
 
-  async getEventReport(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getEventReport(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       // Parse query parameters
       const url = new URL(req.url || '', `http://localhost`)
       const event = url.searchParams.get('event') || 'login'
       const period = url.searchParams.get('period') || '2024-07'
-      
+
       // Mock event report data
       const report = {
         event,
@@ -47,4 +52,4 @@ export const reportingController = {
       return sendError(res, 'Internal server error', 500)
     }
   },
-} 
+}

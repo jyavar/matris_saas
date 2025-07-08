@@ -32,10 +32,12 @@ export class EmailCampaignsService {
   private campaigns: EmailCampaign[] = [];
 
   async getCampaigns(): Promise<EmailCampaign[]> {
+    await Promise.resolve(); // Simulación de operación async
     return this.campaigns;
   }
 
   async getCampaignById(id: string): Promise<EmailCampaign | null> {
+    await Promise.resolve(); // Simulación de operación async
     return this.campaigns.find((c) => c.id === id) || null;
   }
 
@@ -49,6 +51,9 @@ export class EmailCampaignsService {
     ) {
       throw new BadRequestException('Invalid campaign data');
     }
+
+    await Promise.resolve(); // Simulación de operación async
+
     const campaign: EmailCampaign = {
       id: `campaign-${Date.now()}`,
       name: data.name,
@@ -75,6 +80,8 @@ export class EmailCampaignsService {
   }
 
   async deleteCampaign(id: string): Promise<boolean> {
+    await Promise.resolve(); // Simulación de operación async
+
     const idx = this.campaigns.findIndex((c) => c.id === id);
     if (idx === -1) return false;
     this.campaigns.splice(idx, 1);

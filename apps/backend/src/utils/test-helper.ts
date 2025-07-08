@@ -1,4 +1,3 @@
-import { IncomingMessage, ServerResponse } from 'http'
 import { createServer } from 'http'
 
 import type { AuthenticatedUser } from '../types/express/index.js'
@@ -10,7 +9,9 @@ export class TestHelper {
   /**
    * Create a mock request object
    */
-  static createMockRequest(overrides: Partial<IncomingMessage> = {}): IncomingMessage {
+  static createMockRequest(
+    overrides: Partial<IncomingMessage> = {},
+  ): IncomingMessage {
     const req = {
       method: 'GET',
       url: '/test',
@@ -38,8 +39,11 @@ export class TestHelper {
       headersSent: false,
       body: null,
       headers: {} as Record<string, string>,
-      
-      writeHead: function(statusCode: number, headers?: Record<string, string>) {
+
+      writeHead: function (
+        statusCode: number,
+        headers?: Record<string, string>,
+      ) {
         this.statusCode = statusCode
         if (headers) {
           Object.assign(this.headers, headers)
@@ -47,29 +51,29 @@ export class TestHelper {
         this.headersSent = true
         return this
       },
-      
-      end: function(chunk?: unknown) {
+
+      end: function (chunk?: unknown) {
         if (chunk) {
           this.body = chunk
         }
         this.headersSent = true
         return this
       },
-      
-      setHeader: function(name: string, value: string) {
+
+      setHeader: function (name: string, value: string) {
         this.headers[name] = value
         return this
       },
-      
-      getHeader: function(name: string) {
+
+      getHeader: function (name: string) {
         return this.headers[name]
       },
-      
-      removeHeader: function(name: string) {
+
+      removeHeader: function (name: string) {
         delete this.headers[name]
       },
-      
-      write: function(chunk: unknown) {
+
+      write: function (chunk: unknown) {
         if (this.body === null) {
           this.body = chunk
         } else {
@@ -90,7 +94,9 @@ export class TestHelper {
   /**
    * Create a mock authenticated user
    */
-  static createMockUser(overrides: Partial<AuthenticatedUser> = {}): AuthenticatedUser {
+  static createMockUser(
+    overrides: Partial<AuthenticatedUser> = {},
+  ): AuthenticatedUser {
     return {
       id: 'test-user-id',
       email: 'test@example.com',
@@ -104,7 +110,7 @@ export class TestHelper {
    */
   static createAuthenticatedRequest(
     user: AuthenticatedUser,
-    overrides: Partial<IncomingMessage> = {}
+    overrides: Partial<IncomingMessage> = {},
   ): IncomingMessage {
     const req = this.createMockRequest(overrides)
     ;(req as { _user?: AuthenticatedUser })._user = user
@@ -116,7 +122,7 @@ export class TestHelper {
    */
   static createAuthorizedRequest(
     token: string,
-    overrides: Partial<IncomingMessage> = {}
+    overrides: Partial<IncomingMessage> = {},
   ): IncomingMessage {
     const req = this.createMockRequest(overrides)
     req.headers = {
@@ -131,7 +137,7 @@ export class TestHelper {
    */
   static createJsonRequest(
     body: Record<string, unknown>,
-    overrides: Partial<IncomingMessage> = {}
+    overrides: Partial<IncomingMessage> = {},
   ): IncomingMessage {
     const req = this.createMockRequest({
       method: 'POST',
@@ -146,7 +152,7 @@ export class TestHelper {
     const bodyString = JSON.stringify(body)
     let bodyIndex = 0
 
-    req.read = function(size?: number) {
+    req.read = function (size?: number) {
       if (bodyIndex >= bodyString.length) {
         return null
       }
@@ -163,11 +169,11 @@ export class TestHelper {
    */
   static createQueryRequest(
     query: Record<string, string>,
-    overrides: Partial<IncomingMessage> = {}
+    overrides: Partial<IncomingMessage> = {},
   ): IncomingMessage {
     const queryString = new URLSearchParams(query).toString()
     const url = `/test?${queryString}`
-    
+
     return this.createMockRequest({
       url,
       ...overrides,
@@ -179,7 +185,7 @@ export class TestHelper {
    */
   static createPathRequest(
     path: string,
-    overrides: Partial<IncomingMessage> = {}
+    overrides: Partial<IncomingMessage> = {},
   ): IncomingMessage {
     return this.createMockRequest({
       url: path,
@@ -190,20 +196,30 @@ export class TestHelper {
   /**
    * Assert response status code
    */
-  static assertStatus(res: ServerResponse & { statusCode: number }, expectedStatus: number): void {
+  static assertStatus(
+    res: ServerResponse & { statusCode: number },
+    expectedStatus: number,
+  ): void {
     if (res.statusCode !== expectedStatus) {
-      throw new Error(`Expected status ${expectedStatus}, got ${res.statusCode}`)
+      throw new Error(
+        `Expected status ${expectedStatus}, got ${res.statusCode}`,
+      )
     }
   }
 
   /**
    * Assert response body contains expected data
    */
-  static assertBody(res: ServerResponse & { body: unknown }, expectedData: unknown): void {
+  static assertBody(
+    res: ServerResponse & { body: unknown },
+    expectedData: unknown,
+  ): void {
     const body = typeof res.body === 'string' ? JSON.parse(res.body) : res.body
-    
+
     if (JSON.stringify(body) !== JSON.stringify(expectedData)) {
-      throw new Error(`Expected body ${JSON.stringify(expectedData)}, got ${JSON.stringify(body)}`)
+      throw new Error(
+        `Expected body ${JSON.stringify(expectedData)}, got ${JSON.stringify(body)}`,
+      )
     }
   }
 
@@ -213,17 +229,21 @@ export class TestHelper {
   static assertHeader(
     res: ServerResponse & { headers: Record<string, string> },
     name: string,
-    value: string
+    value: string,
   ): void {
     if (res.headers[name] !== value) {
-      throw new Error(`Expected header ${name}=${value}, got ${res.headers[name]}`)
+      throw new Error(
+        `Expected header ${name}=${value}, got ${res.headers[name]}`,
+      )
     }
   }
 
   /**
    * Create a test server for integration tests
    */
-  static createTestServer(handler: (req: IncomingMessage, res: ServerResponse) => void) {
+  static createTestServer(
+    handler: (req: IncomingMessage, res: ServerResponse) => void,
+  ) {
     return createServer(handler)
   }
 
@@ -231,14 +251,16 @@ export class TestHelper {
    * Wait for a specified number of milliseconds
    */
   static async wait(ms: number, _user?: AuthenticatedUser): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms))
+    return new Promise((resolve) => setTimeout(resolve, ms))
   }
 
   /**
    * Generate a random string for testing
    */
   static randomString(length: number = 10): string {
-    return Math.random().toString(36).substring(2, length + 2)
+    return Math.random()
+      .toString(36)
+      .substring(2, length + 2)
   }
 
   /**
@@ -254,4 +276,4 @@ export class TestHelper {
   static randomId(): string {
     return `test-${this.randomString(8)}-${this.randomString(4)}-${this.randomString(4)}-${this.randomString(4)}-${this.randomString(12)}`
   }
-} 
+}

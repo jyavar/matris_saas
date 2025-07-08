@@ -5,7 +5,7 @@
 // Authentication Controllers
 export * from './auth.controller.js'
 
-// Business Controllers  
+// Business Controllers
 export * from './billing.controller.js'
 export * from './campaigns.controller.js'
 export * from './email-campaigns.controller.js'

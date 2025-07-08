@@ -1,4 +1,4 @@
-import { createHash,randomBytes } from 'crypto'
+import { createHash, randomBytes } from 'crypto'
 
 /**
  * Generate a random string
@@ -95,7 +95,11 @@ export const toSnakeCase = (str: string): string => {
 /**
  * Truncate string to specified length
  */
-export const truncate = (str: string, length: number, suffix: string = '...'): string => {
+export const truncate = (
+  str: string,
+  length: number,
+  suffix: string = '...',
+): string => {
   if (str.length <= length) return str
   return str.substring(0, length - suffix.length) + suffix
 }
@@ -144,7 +148,10 @@ export const deepClone = <T>(obj: T): T => {
 /**
  * Merge objects deeply
  */
-export const deepMerge = <T extends Record<string, unknown>>(target: T, ...sources: Partial<T>[]): T => {
+export const deepMerge = <T extends Record<string, unknown>>(
+  target: T,
+  ...sources: Partial<T>[]
+): T => {
   if (!sources.length) return target
   const source = sources.shift()
 
@@ -154,7 +161,10 @@ export const deepMerge = <T extends Record<string, unknown>>(target: T, ...sourc
     for (const key in source) {
       if (isObject(source[key])) {
         if (!target[key]) Object.assign(target, { [key]: {} })
-        deepMerge(target[key] as Record<string, unknown>, source[key] as Record<string, unknown>)
+        deepMerge(
+          target[key] as Record<string, unknown>,
+          source[key] as Record<string, unknown>,
+        )
       } else {
         Object.assign(target, { [key]: source[key] })
       }
@@ -226,12 +236,15 @@ export const groupBy = <T extends Record<string, unknown>, K extends keyof T>(
   array: T[],
   key: K,
 ): Record<string, T[]> => {
-  return array.reduce((groups, item) => {
-    const group = String(item[key])
-    groups[group] = groups[group] || []
-    groups[group].push(item)
-    return groups
-  }, {} as Record<string, T[]>)
+  return array.reduce(
+    (groups, item) => {
+      const group = String(item[key])
+      groups[group] = groups[group] || []
+      groups[group].push(item)
+      return groups
+    },
+    {} as Record<string, T[]>,
+  )
 }
 
 /**
@@ -293,4 +306,4 @@ export const throttle = <T extends (...args: unknown[]) => unknown>(
       setTimeout(() => (inThrottle = false), limit)
     }
   }
-} 
+}

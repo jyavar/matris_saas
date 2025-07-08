@@ -6,36 +6,42 @@ import { z } from 'zod'
 export const commonSchemas = {
   // Pagination
   pagination: z.object({
-    page: z.string().optional().transform(val => parseInt(val || '1')),
-    limit: z.string().optional().transform(val => parseInt(val || '10')),
+    page: z
+      .string()
+      .optional()
+      .transform((val) => parseInt(val || '1')),
+    limit: z
+      .string()
+      .optional()
+      .transform((val) => parseInt(val || '10')),
   }),
-  
+
   // ID parameters
   idParam: z.object({
     id: z.string().uuid(),
   }),
-  
+
   // Email validation
   email: z.string().email(),
-  
+
   // Password validation
   password: z.string().min(8).max(128),
-  
+
   // UUID validation
   uuid: z.string().uuid(),
-  
+
   // Date validation
   date: z.string().datetime(),
-  
+
   // URL validation
   url: z.string().url(),
-  
+
   // Phone number validation (basic)
   phone: z.string().regex(/^\+?[\d\s\-()]+$/),
-  
+
   // Currency amount
   amount: z.number().positive(),
-  
+
   // Percentage (0-100)
   percentage: z.number().min(0).max(100),
 }
@@ -44,7 +50,8 @@ export const commonSchemas = {
  * Validate UUID format
  */
 export const isValidUUID = (uuid: string): boolean => {
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
   return uuidRegex.test(uuid)
 }
 
@@ -158,15 +165,15 @@ export const validateRequired = (
   obj: Record<string, unknown>,
   requiredFields: string[],
 ): { success: true } | { success: false; missing: string[] } => {
-  const missing = requiredFields.filter(field => {
+  const missing = requiredFields.filter((field) => {
     const value = obj[field]
     return value === undefined || value === null || value === ''
   })
-  
+
   if (missing.length > 0) {
     return { success: false, missing }
   }
-  
+
   return { success: true }
 }
 
@@ -200,11 +207,11 @@ export const validateDateRange = (
 ): boolean => {
   const start = new Date(startDate)
   const end = new Date(endDate)
-  
+
   if (isNaN(start.getTime()) || isNaN(end.getTime())) {
     return false
   }
-  
+
   return start <= end
 }
 
@@ -214,17 +221,19 @@ export const validateDateRange = (
 export const validatePagination = (
   page: unknown,
   limit: unknown,
-): { success: true; page: number; limit: number } | { success: false; error: string } => {
+):
+  | { success: true; page: number; limit: number }
+  | { success: false; error: string } => {
   const pageNum = sanitizeNumber(page)
   const limitNum = sanitizeNumber(limit)
-  
+
   if (pageNum === null || limitNum === null) {
     return { success: false, error: 'Invalid pagination parameters' }
   }
-  
+
   if (pageNum < 1 || limitNum < 1 || limitNum > 100) {
     return { success: false, error: 'Pagination parameters out of range' }
   }
-  
+
   return { success: true, page: pageNum, limit: limitNum }
-} 
+}

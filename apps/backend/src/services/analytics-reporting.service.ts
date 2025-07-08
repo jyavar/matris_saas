@@ -1,6 +1,5 @@
-
-import logger from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 // Tipos estrictos para reportes
 export interface AnalyticsReport {

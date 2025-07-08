@@ -5,7 +5,7 @@ import { logAction } from '../services/logger.service.js'
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ) => Promise<void>
 
 /**
@@ -14,7 +14,7 @@ type MiddlewareHandler = (
 export const loggerMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   const startTime = Date.now()
   const requestId = generateRequestId()
@@ -31,7 +31,11 @@ export const loggerMiddleware: MiddlewareHandler = async (
 
   // Override res.end to log response
   const originalEnd = res.end
-  res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
+  res.end = function (
+    chunk?: unknown,
+    encoding?: BufferEncoding | (() => void),
+    cb?: () => void,
+  ) {
     const duration = Date.now() - startTime
     const statusCode = res.statusCode
 
@@ -62,7 +66,7 @@ export const loggerMiddleware: MiddlewareHandler = async (
 export const performanceLoggingMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   const startTime = Date.now()
   const requestId = generateRequestId()
@@ -77,7 +81,11 @@ export const performanceLoggingMiddleware: MiddlewareHandler = async (
 
   // Override res.end to log performance
   const originalEnd = res.end
-  res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
+  res.end = function (
+    chunk?: unknown,
+    encoding?: BufferEncoding | (() => void),
+    cb?: () => void,
+  ) {
     const duration = Date.now() - startTime
 
     // Log slow requests (>1 second)
@@ -108,7 +116,7 @@ export const performanceLoggingMiddleware: MiddlewareHandler = async (
 export const securityMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   const ip = req.socket.remoteAddress
   const userAgent = req.headers['user-agent']
@@ -145,10 +153,14 @@ export const securityMiddleware: MiddlewareHandler = async (
 export const errorLoggingMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   const originalEnd = res.end
-  res.end = function(chunk?: unknown, encoding?: BufferEncoding | (() => void), cb?: () => void) {
+  res.end = function (
+    chunk?: unknown,
+    encoding?: BufferEncoding | (() => void),
+    cb?: () => void,
+  ) {
     // Log errors (4xx and 5xx status codes)
     if (res.statusCode >= 400) {
       logAction('request_error', 'anonymous', {
@@ -188,7 +200,7 @@ const isSuspiciousRequest = (req: IncomingMessage): boolean => {
     /javascript:/i, // Protocol injection
   ]
 
-  return suspiciousPatterns.some(pattern => 
-    pattern.test(url) || pattern.test(userAgent)
+  return suspiciousPatterns.some(
+    (pattern) => pattern.test(url) || pattern.test(userAgent),
   )
 }

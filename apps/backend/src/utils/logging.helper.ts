@@ -99,7 +99,7 @@ export const performanceLog = {
     } catch (error) {
       performanceLog.end(operation, startTime, {
         ...context,
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -217,7 +217,12 @@ export const securityLog = {
  * Business logic logging helper
  */
 export const businessLog = {
-  action: (action: string, userId: string, data?: unknown, context?: LogContext) => {
+  action: (
+    action: string,
+    userId: string,
+    data?: unknown,
+    context?: LogContext,
+  ) => {
     log.info(`Business: ${action}`, {
       ...context,
       userId,
@@ -259,7 +264,9 @@ export const debugLog = {
 
   object: (label: string, obj: unknown) => {
     if (process.env.NODE_ENV === 'development') {
-      log.debug(`Debug object: ${label}`, { object: JSON.stringify(obj, null, 2) })
+      log.debug(`Debug object: ${label}`, {
+        object: JSON.stringify(obj, null, 2),
+      })
     }
   },
 
@@ -271,4 +278,4 @@ export const debugLog = {
       log.debug(`Performance: ${label}`, { duration: end - start })
     }
   },
-} 
+}

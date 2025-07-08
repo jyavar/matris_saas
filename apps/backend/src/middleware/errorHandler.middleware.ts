@@ -1,14 +1,12 @@
-import { IncomingMessage, ServerResponse } from 'http'
 import { ZodError } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
-import { sendError, sendValidationError } from '../utils/response.helper.js'
-
+import { sendValidationError } from '../utils/response.helper.js'
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ) => Promise<void>
 
 /**
@@ -18,7 +16,7 @@ export const errorHandlerMiddleware = async (
   error: Error,
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   try {
     // Log the error
@@ -40,7 +38,10 @@ export const errorHandlerMiddleware = async (
     }
 
     // Handle database errors
-    if ((error as Error).message.includes('duplicate key') || (error as Error).message.includes('unique constraint')) {
+    if (
+      (error as Error).message.includes('duplicate key') ||
+      (error as Error).message.includes('unique constraint')
+    ) {
       return sendError(res, 'Resource already exists', 409)
     }
 
@@ -49,38 +50,49 @@ export const errorHandlerMiddleware = async (
     }
 
     // Handle network errors
-    if ((error as Error).message.includes('ECONNREFUSED') || (error as Error).message.includes('ENOTFOUND')) {
+    if (
+      (error as Error).message.includes('ECONNREFUSED') ||
+      (error as Error).message.includes('ENOTFOUND')
+    ) {
       return sendError(res, 'Service temporarily unavailable', 503)
     }
 
     // Handle timeout errors
-    if ((error as Error).message.includes('timeout') || (error as Error).message.includes('ETIMEDOUT')) {
+    if (
+      (error as Error).message.includes('timeout') ||
+      (error as Error).message.includes('ETIMEDOUT')
+    ) {
       return sendError(res, 'Request timeout', 408)
     }
 
     // Default error response
     const statusCode = 500
-    const message = process.env.NODE_ENV === 'production' 
-      ? 'Internal server error' 
-      : (error as Error).message
+    const message =
+      process.env.NODE_ENV === 'production'
+        ? 'Internal server error'
+        : (error as Error).message
 
     return sendError(res, message, statusCode)
   } catch (handlerError) {
     // If error handler itself fails, send a basic error response
     res.writeHead(500, { 'Content-Type': 'application/json' })
-    res.end(JSON.stringify({
-      success: false,
-      error: 'Internal server error',
-      timestamp: new Date().toISOString(),
-    }))
+    res.end(
+      JSON.stringify({
+        success: false,
+        error: 'Internal server error',
+        timestamp: new Date().toISOString(),
+      }),
+    )
   }
 }
 
 /**
  * Async error wrapper for route handlers
  */
-export const handleAsync = (fn: (req: IncomingMessage, res: ServerResponse) => Promise<void>) => {
-  return async(req: IncomingMessage, res: ServerResponse): Promise<void> => {
+export const handleAsync = (
+  fn: (req: IncomingMessage, res: ServerResponse) => Promise<void>,
+) => {
+  return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     try {
       await fn(req, res)
     } catch (error) {
@@ -95,7 +107,7 @@ export const handleAsync = (fn: (req: IncomingMessage, res: ServerResponse) => P
 export const notFoundHandler: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   logAction('route_not_found', 'anonymous', {
     url: req.url,
@@ -112,7 +124,7 @@ export const notFoundHandler: MiddlewareHandler = async (
 export const methodNotAllowedHandler: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   logAction('method_not_allowed', 'anonymous', {
     url: req.url,
@@ -120,13 +132,15 @@ export const methodNotAllowedHandler: MiddlewareHandler = async (
     ip: req.socket.remoteAddress,
   })
 
-  res.writeHead(405, { 
+  res.writeHead(405, {
     'Content-Type': 'application/json',
-    'Allow': 'GET, POST, PUT, DELETE, PATCH'
+    Allow: 'GET, POST, PUT, DELETE, PATCH',
   })
-  res.end(JSON.stringify({
-    success: false,
-    error: 'Method not allowed',
-    timestamp: new Date().toISOString(),
-  }))
+  res.end(
+    JSON.stringify({
+      success: false,
+      error: 'Method not allowed',
+      timestamp: new Date().toISOString(),
+    }),
+  )
 }
