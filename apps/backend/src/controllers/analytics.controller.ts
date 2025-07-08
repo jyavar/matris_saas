@@ -404,7 +404,7 @@ export const analyticsController = {
         return
       }
 
-      return sendSuccess(res, analytics, 'Analytics updated')
+      return sendSuccess(res, analytics, 200, 'Analytics updated')
     } catch (error) {
       if (error instanceof z.ZodError) {
         return sendValidationError(res, error.errors, 'Invalid input data')

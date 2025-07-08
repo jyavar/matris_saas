@@ -157,7 +157,7 @@ export const dbLog = {
     log.debug('Database query', {
       ...context,
       query,
-      __params,
+      params: _params,
       timestamp: new Date().toISOString(),
     })
   },

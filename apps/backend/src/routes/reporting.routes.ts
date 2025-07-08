@@ -1,8 +1,9 @@
 import { analyticsReportingController } from '../controllers/analytics-reporting.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const reportingRoutes = [
+export const reportingRoutes: RouteDefinition[] = [
   {
     method: 'GET',
     path: '/',

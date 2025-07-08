@@ -5,11 +5,13 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
 
+import { z } from 'zod'
+
 import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
 import { ApiError } from './ApiError.js'
 import { parseBody, parseParams } from './request.helper.js'
-import { sendNotFound, sendUnauthorized } from './response.helper.js'
+import { sendCreated,sendError, sendNotFound, sendSuccess, sendUnauthorized } from './response.helper.js'
 export interface CrudService<T, CreateDTO, UpdateDTO> {
   getAll: (userId: string, _params?: Record<string, unknown>) => Promise<T[]>
   getById: (id: string, userId?: string) => Promise<T | null>

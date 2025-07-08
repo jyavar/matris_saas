@@ -1,9 +1,10 @@
 import { todoController } from '../controllers/todo.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
 // Definición de rutas para Node.js puro
-export const todoRoutes = [
+export const todoRoutes: RouteDefinition[] = [
   {
     method: 'GET',
     path: '/',

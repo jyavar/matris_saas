@@ -6,6 +6,8 @@ import { openaiService } from '../services/openai.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import { enforceExactShape } from '../utils/enforceExactShape.js'
 import {
+  sendError,
+  sendSuccess,
   sendUnauthorized,
   sendValidationError,
 } from '../utils/response.helper.js'

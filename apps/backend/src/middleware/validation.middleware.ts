@@ -1,11 +1,12 @@
-import { ZodSchema } from 'zod'
+import { IncomingMessage, ServerResponse } from 'http'
+import { z, ZodSchema } from 'zod'
 
 import { logAction } from '../services/logger.service.js'
 import type { RequestBody } from '../types/express/index.js'
 import { parseBody, parseQuery } from '../utils/request.helper.js'
 import { sendValidationError } from '../utils/response.helper.js'
 // Extended request interface for validation
-interface ExtendedRequest extends IncomingMessage {
+type ExtendedRequest = IncomingMessage & {
   _body?: unknown
   query?: Record<string, string>
   _params?: Record<string, string>

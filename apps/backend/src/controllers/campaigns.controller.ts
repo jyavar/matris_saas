@@ -1,3 +1,6 @@
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
+
 import { CampaignsService } from '../services/campaigns.service.js'
 import { logAction } from '../services/logger.service.js'
 import type {
@@ -6,7 +9,7 @@ import type {
   RequestBody,
 } from '../types/express/index.js'
 import { parseBody, parseParams } from '../utils/request.helper.js'
-import { sendNotFound, sendValidationError } from '../utils/response.helper.js'
+import { sendError, sendNotFound, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 // Schemas
 const createCampaignSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -35,7 +38,7 @@ export const getCampaigns: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
@@ -58,13 +61,13 @@ export const getCampaignById: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id')
     const campaignId = params.id
 
     if (!campaignId) {
@@ -92,7 +95,7 @@ export const createCampaign: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
@@ -100,12 +103,12 @@ export const createCampaign: ControllerHandler = async (
 
     // Simple body parsing
     let body = ''
-    req.on('data', (chunk) => {
+    _req.on('data', (chunk) => {
       body += chunk.toString()
     })
 
     await new Promise<void>((resolve) => {
-      req.on('end', () => {
+      _req.on('end', () => {
         try {
           const data = JSON.parse(body)
           const validatedData = createCampaignSchema.parse(data)
@@ -155,15 +158,15 @@ export const updateCampaign: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id')
     const campaignId = params.id
-    const body = (await parseBody(req)) as RequestBody
+    const body = (await parseBody(_req)) as RequestBody
 
     if (!campaignId) {
       return sendError(res, 'Campaign ID is required', 400)
@@ -198,13 +201,13 @@ export const deleteCampaign: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id')
     const campaignId = params.id
 
     if (!campaignId) {
@@ -233,13 +236,13 @@ export const pauseCampaign: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id/pause')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id/pause')
     const campaignId = params.id
 
     if (!campaignId) {
@@ -267,13 +270,13 @@ export const resumeCampaign: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id/resume')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id/resume')
     const campaignId = params.id
 
     if (!campaignId) {
@@ -301,13 +304,13 @@ export const getCampaignAnalytics: ControllerHandler = async (
 ) => {
   try {
     // Set default user for tests if not present
-    const user = (req as { _user?: AuthenticatedUser })._user || {
+    const user = (_req as { _user?: AuthenticatedUser })._user || {
       id: 'test-user-id',
       email: 'test@example.com',
       role: 'user',
     }
 
-    const params = parseParams(req.url || '', '/api/campaigns/:id/analytics')
+    const params = parseParams(_req.url || '', '/api/campaigns/:id/analytics')
     const campaignId = params.id
 
     if (!campaignId) {

@@ -1,3 +1,7 @@
+import { IncomingMessage, ServerResponse } from 'http'
+
+import { sendError } from '../utils/response.helper.js'
+
 // Schemas de validación
 export const reportingController = {
   async getUsageReport(
@@ -7,7 +11,7 @@ export const reportingController = {
   ): Promise<void> {
     try {
       // Parse query parameters
-      const url = new URL(req.url || '', `http://localhost`)
+      const url = new URL(_req.url || '', `http://localhost`)
       const period = url.searchParams.get('period') || '2024-07'
 
       // Mock usage report data
@@ -32,7 +36,7 @@ export const reportingController = {
   ): Promise<void> {
     try {
       // Parse query parameters
-      const url = new URL(req.url || '', `http://localhost`)
+      const url = new URL(_req.url || '', `http://localhost`)
       const event = url.searchParams.get('event') || 'login'
       const period = url.searchParams.get('period') || '2024-07'
 

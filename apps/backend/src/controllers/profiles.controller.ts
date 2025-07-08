@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { logAction } from '../services/logger.service.js'
 import { profilesService } from '../services/profiles.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import { sendSuccess, sendValidationError } from '../utils/response.helper.js'
 const updateProfileSchema = z.object({
   username: z.string().min(1, 'Username is required').optional(),
   full_name: z.string().min(1, 'Full name is required').optional(),

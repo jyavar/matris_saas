@@ -36,4 +36,20 @@ export const authService = {
 
     return data
   },
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async signOut(_token: string) {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      throw new Error((error as Error).message)
+    }
+  },
+
+  async verifyToken(token: string) {
+    const { data, error } = await supabase.auth.getUser(token)
+    if (error) {
+      return null
+    }
+    return data
+  },
 }

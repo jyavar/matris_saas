@@ -1,10 +1,11 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import NodeCache from 'node-cache'
 import { createDeflate, createGzip } from 'zlib'
 
 import { logAction } from '../services/logger.service.js'
 import { AuthenticatedUser } from '../types/express/index.js'
 // Extended request interface for performance middleware
-interface ExtendedRequest extends IncomingMessage {
+type ExtendedRequest = IncomingMessage & {
   _user?: AuthenticatedUser
 }
 

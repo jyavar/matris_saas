@@ -1,6 +1,7 @@
 import { resendController } from '../controllers/resend.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const resendRoutes = [
+export const resendRoutes: RouteDefinition[] = [
   { method: 'POST', path: '/send', handler: resendController.sendEmail },
   {
     method: 'POST',

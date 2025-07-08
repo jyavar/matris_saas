@@ -16,6 +16,14 @@ declare module 'http' {
   }
 }
 
+type AuthenticatedRequest = IncomingMessage & {
+  _user?: {
+    id: string
+    email: string
+    role: string
+  }
+}
+
 /**
  * Authentication middleware for Node.js native HTTP
  */

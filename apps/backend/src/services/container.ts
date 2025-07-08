@@ -13,10 +13,10 @@ import { posthogService } from './posthog.service.js'
 import { resendService } from './resend.service.js'
 
 class Config implements IConfig {
-  private config: Record<string, string | number | boolean | undefined>
+  private config: Record<string, string | number | boolean | string[] | undefined>
 
   constructor() {
-    this.config = env
+    this.config = env as Record<string, string | number | boolean | string[] | undefined>
   }
 
   get<T>(key: string): T {

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 
 // Schemas de validación
 const startOnboardingSchema = z.object({

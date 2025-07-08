@@ -1,8 +1,9 @@
 import { analyticsController } from '../controllers/analytics.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const analyticsRoutes = [
+export const analyticsRoutes: RouteDefinition[] = [
   {
     method: 'POST',
     path: '/track/event',

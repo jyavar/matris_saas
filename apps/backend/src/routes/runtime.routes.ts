@@ -1,6 +1,7 @@
 import { runtimeController } from '../controllers/runtime.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const runtimeRoutes = [
+export const runtimeRoutes: RouteDefinition[] = [
   { method: 'GET', path: '/status', handler: runtimeController.getStatus },
   { method: 'GET', path: '/health', handler: runtimeController.getHealth },
   { method: 'GET', path: '/metrics', handler: runtimeController.getMetrics },

@@ -1,7 +1,8 @@
 import { launchboardController } from '../controllers/launchboard.controller.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const launchboardRoutes = [
+export const launchboardRoutes: RouteDefinition[] = [
   {
     method: 'GET',
     path: '/dashboards',

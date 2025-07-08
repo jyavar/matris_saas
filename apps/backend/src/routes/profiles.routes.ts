@@ -1,9 +1,17 @@
 import { profilesController } from '../controllers/profiles.controller.js'
+import type { ControllerHandler,RouteDefinition } from '../types/express/index.js'
 
-export const profilesRoutes = [
-  { method: 'GET', path: '/me', handler: profilesController.getMe },
-  { method: 'GET', path: '/', handler: profilesController.getAllProfiles },
-  { method: 'GET', path: '/:id', handler: profilesController.getProfileById },
-  { method: 'PATCH', path: '/:id', handler: profilesController.updateProfile },
-  { method: 'DELETE', path: '/:id', handler: profilesController.deleteProfile },
+// Create wrapper functions to match ControllerHandler signature
+const wrapHandler = (method: (...args: unknown[]) => Promise<void>): ControllerHandler => {
+  return async (req, res, params, body, user) => {
+    return method.call(profilesController, req, res, params, body, user)
+  }
+}
+
+export const profilesRoutes: RouteDefinition[] = [
+  { method: 'GET', path: '/me', handler: wrapHandler(profilesController.getMe) },
+  { method: 'GET', path: '/', handler: wrapHandler(profilesController.getAllProfiles) },
+  { method: 'GET', path: '/:id', handler: wrapHandler(profilesController.getProfileById) },
+  { method: 'PATCH', path: '/:id', handler: wrapHandler(profilesController.updateProfile) },
+  { method: 'DELETE', path: '/:id', handler: wrapHandler(profilesController.deleteProfile) },
 ]

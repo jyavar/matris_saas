@@ -1,3 +1,6 @@
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
+
 import { billingService } from '../services/billing.service.js'
 import { logAction } from '../services/logger.service.js'
 import type {
@@ -6,7 +9,7 @@ import type {
   RequestBody,
 } from '../types/express/index.js'
 import { parseBody, parseParams, parseQuery } from '../utils/request.helper.js'
-import { sendNotFound, sendUnauthorized } from '../utils/response.helper.js'
+import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from '../utils/response.helper.js'
 // Schemas
 const createInvoiceSchema = z.object({
   amount: z.number().positive(),
@@ -30,12 +33,12 @@ export const getInvoices: ControllerHandler = async (
   res: ServerResponse,
 ) => {
   try {
-    const user = (req as { _user?: AuthenticatedUser })._user
+    const user = (_req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
 
-    const query = parseQuery(req.url || '')
+    const query = parseQuery(_req.url || '')
     const { page, limit } = getPaginationParams(query)
 
     const invoices = await billingService.getAllInvoices(user?.id)
@@ -58,12 +61,12 @@ export const getInvoiceById: ControllerHandler = async (
   res: ServerResponse,
 ) => {
   try {
-    const user = (req as { _user?: AuthenticatedUser })._user
+    const user = (_req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
 
-    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const params = parseParams(_req.url || '', '/api/invoices/:id')
     const invoiceId = params.id
 
     if (!invoiceId) {
@@ -89,12 +92,12 @@ export const createInvoice: ControllerHandler = async (
   res: ServerResponse,
 ) => {
   try {
-    const user = (req as { _user?: AuthenticatedUser })._user
+    const user = (_req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
 
-    const body = (await parseBody(req)) as RequestBody
+    const body = (await parseBody(_req)) as RequestBody
     const validatedData = createInvoiceSchema.parse(body)
 
     const invoice = await billingService.createInvoice({
@@ -128,14 +131,14 @@ export const updateInvoice: ControllerHandler = async (
   res: ServerResponse,
 ) => {
   try {
-    const user = (req as { _user?: AuthenticatedUser })._user
+    const user = (_req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
 
-    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const params = parseParams(_req.url || '', '/api/invoices/:id')
     const invoiceId = params.id
-    const body = (await parseBody(req)) as RequestBody
+    const body = (await parseBody(_req)) as RequestBody
 
     if (!invoiceId) {
       return sendError(res, 'Invoice ID is required', 400)
@@ -168,12 +171,12 @@ export const deleteInvoice: ControllerHandler = async (
   res: ServerResponse,
 ) => {
   try {
-    const user = (req as { _user?: AuthenticatedUser })._user
+    const user = (_req as { _user?: AuthenticatedUser })._user
     if (!user) {
       return sendUnauthorized(res, 'User not authenticated')
     }
 
-    const params = parseParams(req.url || '', '/api/invoices/:id')
+    const params = parseParams(_req.url || '', '/api/invoices/:id')
     const invoiceId = params.id
 
     if (!invoiceId) {

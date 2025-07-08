@@ -55,7 +55,11 @@ export const analyticsReportingController = {
   ): Promise<void> {
     try {
       const validated = createReportSchema.parse(body)
-      const report = await analyticsReportingService.createReport(validated)
+      const report = await analyticsReportingService.createReport({
+        name: validated.name,
+        type: validated.type,
+        data: validated.data,
+      })
       return sendCreated(res, report, 'Report created')
     } catch (error) {
       if (error instanceof z.ZodError) {

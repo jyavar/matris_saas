@@ -1,6 +1,7 @@
 import { pricingController } from '../controllers/pricing.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const pricingRoutes = [
+export const pricingRoutes: RouteDefinition[] = [
   { method: 'GET', path: '/plans', handler: pricingController.getPlans },
   {
     method: 'GET',

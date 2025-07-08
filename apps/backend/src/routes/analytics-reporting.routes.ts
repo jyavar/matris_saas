@@ -1,6 +1,7 @@
 import { analyticsReportingController } from '../controllers/analytics-reporting.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const analyticsReportingRoutes = [
+export const analyticsReportingRoutes: RouteDefinition[] = [
   {
     method: 'GET',
     path: '/',

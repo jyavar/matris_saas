@@ -1,8 +1,9 @@
 import { emailCampaignsController } from '../controllers/email-campaigns.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const emailCampaignsRoutes = [
+export const emailCampaignsRoutes: RouteDefinition[] = [
   {
     method: 'GET',
     path: '/',

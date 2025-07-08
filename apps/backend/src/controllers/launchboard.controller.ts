@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Import Widget interface from service
+import { IncomingMessage, ServerResponse } from 'http'
+
 import type { Widget } from '../services/launchboard.service.js'
 import { launchboardService } from '../services/launchboard.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
 
 export const launchboardController = {
   async getDashboards(
@@ -28,7 +32,7 @@ export const launchboardController = {
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -86,7 +90,7 @@ export const launchboardController = {
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -119,7 +123,7 @@ export const launchboardController = {
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -144,7 +148,7 @@ export const launchboardController = {
     res: ServerResponse,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.getDashboards(req, res, user)
+    return launchboardController.getDashboards(_req, res)
   },
   createLaunchboardItem: async (
     _req: IncomingMessage,
@@ -153,7 +157,7 @@ export const launchboardController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.createDashboard(req, res, __body, user)
+    return launchboardController.createDashboard(_req, res, _body)
   },
   getLaunchboardItemById: async (
     _req: IncomingMessage,
@@ -162,7 +166,7 @@ export const launchboardController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.getDashboardById(req, res, __params, user)
+    return launchboardController.getDashboardById(_req, res, _params)
   },
   updateLaunchboardItem: async (
     _req: IncomingMessage,
@@ -171,7 +175,7 @@ export const launchboardController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.updateDashboard(req, res, __params, __body, user)
+    return launchboardController.updateDashboard(_req, res, _params, _body)
   },
   deleteLaunchboardItem: async (
     _req: IncomingMessage,
@@ -180,6 +184,6 @@ export const launchboardController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.deleteDashboard(req, res, __params, user)
+    return launchboardController.deleteDashboard(_req, res, _params)
   },
 }

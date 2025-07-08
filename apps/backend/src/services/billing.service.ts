@@ -113,4 +113,25 @@ export const billingService = {
     if (!invoices.length) throw new ApiError('Invoice not found', 404)
     return invoices[0]
   },
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async createCustomer(userId: string, _email: string) {
+    // Mock implementation - in real app would integrate with Stripe/payment processor
+    return { customerId: `cus_${userId}` }
+  },
+
+  async createSubscription(customerId: string, priceId: string) {
+    // Mock implementation - in real app would integrate with Stripe/payment processor
+    return { subscriptionId: `sub_${customerId}_${priceId}` }
+  },
+
+  async cancelSubscription(subscriptionId: string) {
+    // Mock implementation - in real app would integrate with Stripe/payment processor
+    console.log(`Cancelling subscription ${subscriptionId}`)
+  },
+
+  async getSubscription(subscriptionId: string) {
+    // Mock implementation - in real app would integrate with Stripe/payment processor
+    return { id: subscriptionId, status: 'active' }
+  },
 }

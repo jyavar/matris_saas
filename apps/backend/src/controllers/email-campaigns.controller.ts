@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 
 const createCampaignSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -68,7 +70,12 @@ export const emailCampaignsController = {
   ): Promise<void> {
     try {
       const validated = createCampaignSchema.parse(_body)
-      const campaign = await emailCampaignsService.createCampaign(validated)
+      const campaign = await emailCampaignsService.createCampaign({
+        name: validated.name,
+        subject: validated.subject,
+        content: validated.content,
+        recipients: validated.recipients
+      })
       return sendCreated(res, campaign, 'Campaign created')
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -177,7 +184,7 @@ export const emailCampaignsController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.getCampaigns(req, res, user)
+    return emailCampaignsController.getCampaigns(_req, res)
   },
   create: async (
     _req: IncomingMessage,
@@ -186,7 +193,7 @@ export const emailCampaignsController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.createCampaign(req, res, __body, user)
+    return emailCampaignsController.createCampaign(_req, res, _body)
   },
   getById: async (
     _req: IncomingMessage,
@@ -195,7 +202,7 @@ export const emailCampaignsController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.getCampaignById(req, res, __params, user)
+    return emailCampaignsController.getCampaignById(_req, res, _params)
   },
   update: async (
     _req: IncomingMessage,
@@ -205,11 +212,10 @@ export const emailCampaignsController = {
     user?: AuthenticatedUser,
   ) => {
     return emailCampaignsController.updateCampaign(
-      req,
+      _req,
       res,
-      __params,
-      __body,
-      user,
+      _params,
+      _body
     )
   },
   delete: async (
@@ -219,6 +225,6 @@ export const emailCampaignsController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.deleteCampaign(req, res, __params, user)
+    return emailCampaignsController.deleteCampaign(_req, res, _params)
   },
 }

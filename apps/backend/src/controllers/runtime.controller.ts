@@ -1,18 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { IncomingMessage, ServerResponse } from 'http'
+
 import { RuntimeService } from '../services/runtime.service.js'
+import type { ControllerHandler } from '../types/express/index.js'
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {
   success: (res: unknown, data: unknown, statusCode = 200) => {
-    res.status(statusCode).json({ success: true, data })
+    (res as ServerResponse).writeHead(statusCode, { 'Content-Type': 'application/json' });
+    (res as ServerResponse).end(JSON.stringify({ success: true, data }))
   },
   error: (res: unknown, message: string, statusCode = 500) => {
-    res.status(statusCode).json({ success: false, error: message })
+    (res as ServerResponse).writeHead(statusCode, { 'Content-Type': 'application/json' });
+    (res as ServerResponse).end(JSON.stringify({ success: false, error: message }))
   },
   badRequest: (res: unknown, message: string) => {
-    res.status(400).json({ success: false, error: message })
+    (res as ServerResponse).writeHead(400, { 'Content-Type': 'application/json' });
+    (res as ServerResponse).end(JSON.stringify({ success: false, error: message }))
   },
   notFound: (res: unknown, message: string) => {
-    res.status(404).json({ success: false, error: message })
+    (res as ServerResponse).writeHead(404, { 'Content-Type': 'application/json' });
+    (res as ServerResponse).end(JSON.stringify({ success: false, error: message }))
   },
 }
 export const runtimeController = {

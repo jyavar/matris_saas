@@ -1,6 +1,7 @@
 import { PostHogController } from '../controllers/posthog.controller.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const posthogRoutes = [
+export const posthogRoutes: RouteDefinition[] = [
   { method: 'POST', path: '/track', handler: PostHogController.trackEvent },
   {
     method: 'POST',

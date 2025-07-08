@@ -1,8 +1,9 @@
 import { paymentsController } from '../controllers/payments.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { handleAsync } from '../middleware/errorHandler.middleware.js'
+import type { RouteDefinition } from '../types/express/index.js'
 
-export const paymentsRoutes = [
+export const paymentsRoutes: RouteDefinition[] = [
   {
     method: 'POST',
     path: '/create-payment-intent',
