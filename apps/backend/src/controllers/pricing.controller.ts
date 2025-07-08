@@ -16,7 +16,7 @@ export const pricingController = {
    * Get all available plans
    */
   async getPlans(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -37,7 +37,7 @@ export const pricingController = {
    * Get a specific plan by ID
    */
   async getPlanById(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -72,7 +72,7 @@ export const pricingController = {
    * Create a subscription
    */
   async createSubscription(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -114,7 +114,7 @@ export const pricingController = {
    * Get subscription details
    */
   async getSubscription(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -156,7 +156,7 @@ export const pricingController = {
    * Update a subscription
    */
   async updateSubscription(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -201,7 +201,7 @@ export const pricingController = {
    * Cancel a subscription
    */
   async cancelSubscription(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {
@@ -244,7 +244,7 @@ export const pricingController = {
    * Check usage against plan limits
    */
   async checkUsage(
-    req: IncomingMessage & { user?: AuthenticatedUser },
+    _req: IncomingMessage & { user?: AuthenticatedUser },
     res: ServerResponse,
   ) {
     try {

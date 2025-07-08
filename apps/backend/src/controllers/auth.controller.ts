@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { authService } from '../services/auth.service.js'
 import { logAction } from '../services/logger.service.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
+import type { RequestBody } from '../types/express/index.js'
 import {
   sendCreated,
   sendError,
@@ -27,13 +27,12 @@ export const authController = {
    * User login
    */
   async login(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    body?: RequestBody,
   ): Promise<void> {
     try {
-      const validatedData = loginSchema.parse(_body)
+      const validatedData = loginSchema.parse(body)
       const result = await authService.signIn(validatedData)
 
       logAction('user_login', 'anonymous', {
@@ -46,7 +45,7 @@ export const authController = {
         return sendValidationError(res, error.errors, 'Invalid login data')
       } else {
         logAction('user_login_error', 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          _error: error instanceof Error ? error.message : 'Unknown error',
         })
         return sendError(res, 'Invalid credentials', 401)
       }
@@ -57,13 +56,12 @@ export const authController = {
    * User registration
    */
   async register(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    body?: RequestBody,
   ): Promise<void> {
     try {
-      const validatedData = registerSchema.parse(_body)
+      const validatedData = registerSchema.parse(body)
       const result = await authService.signUp(validatedData)
 
       logAction('user_registered', 'anonymous', {
@@ -81,7 +79,7 @@ export const authController = {
         )
       } else {
         logAction('user_registration_error', 'anonymous', {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          _error: error instanceof Error ? error.message : 'Unknown error',
         })
         return sendError(res, 'Registration failed', 400)
       }
@@ -92,15 +90,15 @@ export const authController = {
   signUp: async (
     req: IncomingMessage,
     res: ServerResponse,
-    _body?: RequestBody,
+    body?: RequestBody,
   ) => {
-    return authController.register(req, res, _body)
+    return authController.register(req, res, body)
   },
   signIn: async (
     req: IncomingMessage,
     res: ServerResponse,
-    _body?: RequestBody,
+    body?: RequestBody,
   ) => {
-    return authController.login(req, res, _body)
+    return authController.login(req, res, body)
   },
 }

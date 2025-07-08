@@ -46,16 +46,16 @@ export interface IBillingService {
     priceId: string,
   ): Promise<{ subscriptionId: string }>
   cancelSubscription(subscriptionId: string): Promise<void>
-  getSubscription(subscriptionId: string): Promise<any>
+  getSubscription(subscriptionId: string): Promise<Record<string, unknown>>
 }
 
 export interface IUserService {
   createUser(data: { email: string; name: string }): Promise<{ id: string }>
-  getUserById(id: string): Promise<any>
+  getUserById(id: string): Promise<Record<string, unknown>>
   updateUser(
     id: string,
     data: Partial<{ email: string; name: string }>,
-  ): Promise<any>
+  ): Promise<Record<string, unknown>>
   deleteUser(id: string): Promise<void>
 }
 
@@ -64,7 +64,7 @@ export interface IEmailService {
   sendTemplate(
     to: string,
     templateId: string,
-    data: Record<string, any>,
+    data: Record<string, unknown>,
   ): Promise<void>
 }
 
@@ -72,9 +72,9 @@ export interface IAnalyticsService {
   track(
     event: string,
     userId?: string,
-    properties?: Record<string, any>,
+    properties?: Record<string, unknown>,
   ): Promise<void>
-  identify(userId: string, traits: Record<string, any>): Promise<void>
+  identify(userId: string, traits: Record<string, unknown>): Promise<void>
 }
 
 export interface IStorageService {

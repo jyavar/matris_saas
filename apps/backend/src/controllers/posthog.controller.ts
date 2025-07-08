@@ -1,7 +1,11 @@
+import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
+
 import logger from '../services/logger.service.js'
 import { posthogService } from '../services/posthog.service.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import type { RequestBody } from '../types/express/index.js'
+import { sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+
 // Schemas de validación
 const trackEventSchema = z.object({
   event: z.string().min(1),
@@ -16,9 +20,9 @@ const identifyUserSchema = z.object({
 
 export const PostHogController = {
   async getHealth(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const isConfigured = !!process.env.POSTHOG_API_KEY
@@ -39,10 +43,10 @@ export const PostHogController = {
   },
 
   async trackEvent(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const validated = trackEventSchema.parse(_body)
@@ -69,10 +73,10 @@ export const PostHogController = {
   },
 
   async identifyUser(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const validated = identifyUserSchema.parse(_body)

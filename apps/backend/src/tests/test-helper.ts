@@ -1,7 +1,7 @@
-import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 
-import { server } from '../index.js';
+import { server } from '../index.js'
+
 /**
  * Test helper for Node.js pure HTTP server
  */
@@ -55,15 +55,15 @@ export class TestServer {
    */
   async request(method: string, path: string, options: {
     headers?: Record<string, string>
-    _body?: unknown
+    body?: unknown
   } = {}) {
-    const { headers = {}, _body } = options
+    const { headers = {}, body } = options
 
     const req = request(this.server)[method.toLowerCase()](path)
       .set(headers)
 
-    if (_body) {
-      req.send(_body)
+    if (body) {
+      req.send(body)
     }
 
     return req
@@ -79,15 +79,15 @@ export class TestServer {
   /**
    * POST request
    */
-  async post(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('POST', path, { ...options, _body })
+  async post(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
+    return this.request('POST', path, options)
   }
 
   /**
    * PUT request
    */
-  async put(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('PUT', path, { ...options, _body })
+  async put(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
+    return this.request('PUT', path, options)
   }
 
   /**
@@ -100,8 +100,8 @@ export class TestServer {
   /**
    * PATCH request
    */
-  async patch(path: string, _body?: unknown, options?: { headers?: Record<string, string> }) {
-    return this.request('PATCH', path, { ...options, _body })
+  async patch(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
+    return this.request('PATCH', path, options)
   }
 }
 

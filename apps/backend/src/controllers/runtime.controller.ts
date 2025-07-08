@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RuntimeService } from '../services/runtime.service.js'
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {

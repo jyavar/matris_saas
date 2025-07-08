@@ -55,11 +55,11 @@ export {
 
 // Logging helpers
 export {
-  LogLevel,
   businessLog,
   dbLog,
   debugLog,
   log,
+  LogLevel,
   performanceLog,
   requestLog,
   securityLog,

@@ -16,7 +16,7 @@ const generateTextSchema = z.object({
 
 export const openaiController = {
   async generateText(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
     user?: AuthenticatedUser,

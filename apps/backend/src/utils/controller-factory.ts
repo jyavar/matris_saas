@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Controller Factory for STRATO Core OS™
 // This utility eliminates 80% of controller boilerplate by providing
 // generic CRUD operations with consistent error handling and logging

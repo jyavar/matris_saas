@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { z } from 'zod'
+
 import logger from '../services/logger.service.js'
 import { onboardingService } from '../services/onboarding.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'

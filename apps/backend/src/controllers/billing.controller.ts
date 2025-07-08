@@ -26,7 +26,7 @@ const updateInvoiceSchema = z.object({
 
 // Controller methods
 export const getInvoices: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -36,7 +36,7 @@ export const getInvoices: ControllerHandler = async (
     }
 
     const query = parseQuery(req.url || '')
-    const { page, limit, offset } = getPaginationParams(query)
+    const { page, limit } = getPaginationParams(query)
 
     const invoices = await billingService.getAllInvoices(user?.id)
 
@@ -54,7 +54,7 @@ export const getInvoices: ControllerHandler = async (
 }
 
 export const getInvoiceById: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -85,7 +85,7 @@ export const getInvoiceById: ControllerHandler = async (
 }
 
 export const createInvoice: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -124,7 +124,7 @@ export const createInvoice: ControllerHandler = async (
 }
 
 export const updateInvoice: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -164,7 +164,7 @@ export const updateInvoice: ControllerHandler = async (
 }
 
 export const deleteInvoice: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -202,6 +202,5 @@ const getPaginationParams = (query: Record<string, string>) => {
   return {
     page: Math.max(1, page),
     limit: Math.min(100, Math.max(1, limit)),
-    offset: (page - 1) * limit,
   }
 }

@@ -30,7 +30,7 @@ const updateCampaignSchema = z.object({
 
 // Controller methods
 export const getCampaigns: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -47,13 +47,13 @@ export const getCampaigns: ControllerHandler = async (
 
     // Return exactly what the test expects
     return sendSuccess(res, { campaigns, count: campaigns.length })
-  } catch (error) {
+  } catch {
     return sendError(res, 'Failed to retrieve campaigns', 500)
   }
 }
 
 export const getCampaignById: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -87,7 +87,7 @@ export const getCampaignById: ControllerHandler = async (
 }
 
 export const createCampaign: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -150,7 +150,7 @@ export const createCampaign: ControllerHandler = async (
 }
 
 export const updateCampaign: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -193,7 +193,7 @@ export const updateCampaign: ControllerHandler = async (
 }
 
 export const deleteCampaign: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -228,7 +228,7 @@ export const deleteCampaign: ControllerHandler = async (
 }
 
 export const pauseCampaign: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -262,7 +262,7 @@ export const pauseCampaign: ControllerHandler = async (
 }
 
 export const resumeCampaign: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {
@@ -296,7 +296,7 @@ export const resumeCampaign: ControllerHandler = async (
 }
 
 export const getCampaignAnalytics: ControllerHandler = async (
-  req: IncomingMessage,
+  _req: IncomingMessage,
   res: ServerResponse,
 ) => {
   try {

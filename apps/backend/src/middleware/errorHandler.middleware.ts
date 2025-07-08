@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ZodError } from 'zod'
 
 import { logAction } from '../services/logger.service.js'

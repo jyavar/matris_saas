@@ -1,7 +1,9 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
+
 import { analyticsReportingService } from '../services/analytics-reporting.service.js'
-import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendValidationError } from '../utils/response.helper.js'
+import type { RequestBody } from '../types/express/index.js'
+import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
 
 const createReportSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -11,9 +13,8 @@ const createReportSchema = z.object({
 
 export const analyticsReportingController = {
   async getReports(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
   ): Promise<void> {
     try {
       const reports = await analyticsReportingService.getReports()
@@ -24,17 +25,16 @@ export const analyticsReportingController = {
   },
 
   async getReportById(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    params?: Record<string, string>,
   ): Promise<void> {
     try {
-      const { id } = _params || {}
+      const { id } = params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Report ID is required' }),
+          JSON.stringify({ success: false, _error: 'Report ID is required' }),
         )
         return
       }
@@ -49,13 +49,12 @@ export const analyticsReportingController = {
   },
 
   async createReport(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    body?: RequestBody,
   ): Promise<void> {
     try {
-      const validated = createReportSchema.parse(_body)
+      const validated = createReportSchema.parse(body)
       const report = await analyticsReportingService.createReport(validated)
       return sendCreated(res, report, 'Report created')
     } catch (error) {
@@ -68,17 +67,16 @@ export const analyticsReportingController = {
   },
 
   async deleteReport(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    params?: Record<string, string>,
   ): Promise<void> {
     try {
-      const { id } = _params || {}
+      const { id } = params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Report ID is required' }),
+          JSON.stringify({ success: false, _error: 'Report ID is required' }),
         )
         return
       }

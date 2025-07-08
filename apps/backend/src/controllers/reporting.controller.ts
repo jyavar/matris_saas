@@ -1,11 +1,9 @@
-import type { AuthenticatedUser } from '../types/express/index.js'
-
 // Schemas de validación
 export const reportingController = {
   async getUsageReport(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // Parse query parameters
@@ -28,9 +26,9 @@ export const reportingController = {
   },
 
   async getEventReport(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // Parse query parameters

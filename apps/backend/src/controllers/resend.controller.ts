@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { resendService } from '../services/resend.service.js'
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {

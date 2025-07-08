@@ -16,7 +16,7 @@ export const profilesController = {
    * Get current user profile
    */
   async getMe(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     user?: AuthenticatedUser,
     _user?: AuthenticatedUser,
@@ -64,7 +64,7 @@ export const profilesController = {
    * Get all profiles (admin only)
    */
   async getAllProfiles(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     user?: AuthenticatedUser,
     _user?: AuthenticatedUser,
@@ -103,7 +103,7 @@ export const profilesController = {
    * Get profile by ID
    */
   async getProfileById(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _user?: AuthenticatedUser,
@@ -165,7 +165,7 @@ export const profilesController = {
    * Update current user profile
    */
   async updateProfile(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
     user?: AuthenticatedUser,
@@ -211,7 +211,7 @@ export const profilesController = {
    * Delete profile (admin only)
    */
   async deleteProfile(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _user?: AuthenticatedUser,

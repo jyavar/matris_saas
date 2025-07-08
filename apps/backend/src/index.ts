@@ -23,6 +23,7 @@ import { resendRoutes } from './routes/resend.routes'
 import { runtimeRoutes } from './routes/runtime.routes'
 import { todoRoutes } from './routes/todo.routes'
 import logger from './services/logger.service'
+import type { RouteDefinition } from './types/express'
 import { createRouter } from './utils/router'
 const version = process.env.npm_package_version || '1.0.0'
 const router = createRouter()
@@ -32,21 +33,13 @@ function sendJson(res: ServerResponse, status: number, data: unknown): void {
   res.end(JSON.stringify(data))
 }
 
-// Interface for route definition
-interface RouteDefinition {
-  method: string
-  path: string
-  handler: (...args: unknown[]) => unknown
-  middlewares?: (...args: unknown[]) => unknown[]
-}
-
 // Helper function to register routes safely
 function registerRoutes(routes: RouteDefinition[], basePath: string = '') {
   routes.forEach((route) => {
     const method = route.method.toLowerCase() as keyof typeof router
     if (typeof router[method] === 'function') {
       const fullPath = basePath ? `${basePath}${route.path}` : route.path
-      ;(router[method] as Function)(
+      ;(router[method] as (path: string, handler: RouteDefinition['handler'], middlewares?: RouteDefinition['middlewares']) => void)(
         fullPath,
         route.handler,
         route.middlewares || [],

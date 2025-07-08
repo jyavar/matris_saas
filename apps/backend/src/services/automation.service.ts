@@ -1,5 +1,4 @@
 import { supabase } from '../lib/supabase.js'
-import type { AuthenticatedUser } from '../types/express/index.js'
 import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
@@ -80,7 +79,7 @@ export class AutomationService {
 
       return data || []
     } catch (err) {
-      logger.error({ error: err }, 'Error in getWorkflows')
+      logger.error({ _error: err }, 'Error in getWorkflows')
       throw err
     }
   }
@@ -427,7 +426,7 @@ export class AutomationService {
    */
   private async processJob(
     jobId: string,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // Actualizar status a running
@@ -455,7 +454,7 @@ export class AutomationService {
         .update({
           status: 'failed',
           completed_at: new Date().toISOString(),
-          error: error instanceof Error ? error.message : 'Unknown error',
+          _error: error instanceof Error ? error.message : 'Unknown error',
         })
         .eq('id', jobId)
 

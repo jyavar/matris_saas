@@ -5,9 +5,9 @@ import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 
 export const launchboardController = {
   async getDashboards(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const dashboards = await launchboardService.getDashboards()
@@ -18,17 +18,17 @@ export const launchboardController = {
   },
 
   async getDashboardById(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -47,10 +47,10 @@ export const launchboardController = {
   },
 
   async createDashboard(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { name, widgets } = _body || {}
@@ -75,18 +75,18 @@ export const launchboardController = {
   },
 
   async updateDashboard(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -109,17 +109,17 @@ export const launchboardController = {
   },
 
   async deleteDashboard(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Dashboard ID is required' }),
+          JSON.stringify({ success: false, _error: 'Dashboard ID is required' }),
         )
         return
       }
@@ -140,46 +140,46 @@ export const launchboardController = {
 
   // Alias methods for route compatibility
   getLaunchboard: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     user?: AuthenticatedUser,
   ) => {
     return launchboardController.getDashboards(req, res, user)
   },
   createLaunchboardItem: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.createDashboard(req, res, _body, user)
+    return launchboardController.createDashboard(req, res, __body, user)
   },
   getLaunchboardItemById: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.getDashboardById(req, res, _params, user)
+    return launchboardController.getDashboardById(req, res, __params, user)
   },
   updateLaunchboardItem: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.updateDashboard(req, res, _params, _body, user)
+    return launchboardController.updateDashboard(req, res, __params, __body, user)
   },
   deleteLaunchboardItem: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return launchboardController.deleteDashboard(req, res, _params, user)
+    return launchboardController.deleteDashboard(req, res, __params, user)
   },
 }

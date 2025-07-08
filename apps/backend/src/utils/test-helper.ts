@@ -250,7 +250,7 @@ export class TestHelper {
   /**
    * Wait for a specified number of milliseconds
    */
-  static async wait(ms: number, _user?: AuthenticatedUser): Promise<void> {
+  static async wait(ms: number, ): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
 

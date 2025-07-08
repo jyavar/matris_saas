@@ -26,7 +26,7 @@ export const todoController = {
    * Get all todos for current user
    */
   async getAllTodos(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     user?: AuthenticatedUser,
     _user?: AuthenticatedUser,
@@ -65,7 +65,7 @@ export const todoController = {
    * Get todo by ID
    */
   async getTodoById(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _user?: AuthenticatedUser,
@@ -124,7 +124,7 @@ export const todoController = {
    * Create todo
    */
   async createTodo(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
     user?: AuthenticatedUser,
@@ -174,7 +174,7 @@ export const todoController = {
    * Update todo
    */
   async updateTodo(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     __body?: RequestBody,
@@ -251,7 +251,7 @@ export const todoController = {
    * Delete todo
    */
   async deleteTodo(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _user?: AuthenticatedUser,

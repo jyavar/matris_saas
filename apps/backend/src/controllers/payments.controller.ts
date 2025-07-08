@@ -1,10 +1,8 @@
-import type { AuthenticatedUser } from '../types/express/index.js'
-
 export const paymentsController = {
   async createPaymentIntent(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // TODO: Implement payment intent creation
@@ -21,9 +19,9 @@ export const paymentsController = {
   },
 
   async confirmPayment(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // TODO: Implement payment confirmation
@@ -40,9 +38,9 @@ export const paymentsController = {
   },
 
   async getPaymentMethods(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // TODO: Implement get payment methods
@@ -53,9 +51,9 @@ export const paymentsController = {
   },
 
   async addPaymentMethod(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // TODO: Implement add payment method
@@ -72,9 +70,9 @@ export const paymentsController = {
   },
 
   async removePaymentMethod(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       // TODO: Implement remove payment method

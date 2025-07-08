@@ -1,5 +1,6 @@
 import NodeCache from 'node-cache'
 import { createDeflate, createGzip } from 'zlib'
+
 import { logAction } from '../services/logger.service.js'
 import { AuthenticatedUser } from '../types/express/index.js'
 // Extended request interface for performance middleware

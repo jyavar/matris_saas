@@ -1,5 +1,6 @@
+import { IncomingMessage, ServerResponse } from 'http'
+
 import type {
-  AuthenticatedUser,
   ControllerHandler,
   RequestBody,
   RouteDefinition,
@@ -103,13 +104,13 @@ export class Router {
   async handleRequest(
     req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     const route = this.findRoute(req.method || 'GET', req.url || '')
 
     if (!route) {
       res.writeHead(404, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Not found' }))
+      res.end(JSON.stringify({ success: false, _error: 'Not found' }))
       return
     }
 
@@ -124,10 +125,10 @@ export class Router {
       const body = await this.parseRequestBody(req)
       await route.handler(req, res, params, body as RequestBody | undefined)
     } catch (error) {
-      console.error('Request handling error:', error)
+      console.error('Request handling _error:', error)
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(
-        JSON.stringify({ success: false, error: 'Internal server error' }),
+        JSON.stringify({ success: false, _error: 'Internal server error' }),
       )
     }
   }
@@ -197,7 +198,7 @@ export class Router {
     middlewares: MiddlewareHandler[],
     req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     for (const middleware of middlewares) {
       await new Promise<void>((resolve, reject) => {

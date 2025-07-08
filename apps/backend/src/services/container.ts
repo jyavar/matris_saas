@@ -11,8 +11,9 @@ import type {
 import logger from './logger.service.js'
 import { posthogService } from './posthog.service.js'
 import { resendService } from './resend.service.js'
+
 class Config implements IConfig {
-  private config: Record<string, any>
+  private config: Record<string, string | number | boolean | undefined>
 
   constructor() {
     this.config = env
@@ -54,8 +55,8 @@ export const serviceContainer: ServiceContainer = {
   logger: new Logger(),
   database: new Database(),
   config: new Config(),
-  auth: authService as any,
-  billing: billingService as any,
+  auth: authService as typeof authService,
+  billing: billingService as typeof billingService,
   user: {
     async createUser(data: { email: string; name: string }) {
       const { data: user, error } = await supabase
@@ -104,7 +105,7 @@ export const serviceContainer: ServiceContainer = {
     async sendTemplate(
       to: string,
       templateId: string,
-      data: Record<string, any>,
+      data: Record<string, unknown>,
     ) {
       await resendService.sendTemplate(to, templateId, data)
     },
@@ -113,11 +114,11 @@ export const serviceContainer: ServiceContainer = {
     async track(
       event: string,
       userId?: string,
-      properties?: Record<string, any>,
+      properties?: Record<string, unknown>,
     ) {
       await posthogService.track(event, userId, properties)
     },
-    async identify(userId: string, traits: Record<string, any>) {
+    async identify(userId: string, traits: Record<string, unknown>) {
       await posthogService.identify(userId, traits)
     },
   },

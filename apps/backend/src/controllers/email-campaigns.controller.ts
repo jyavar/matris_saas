@@ -1,4 +1,5 @@
 import { z } from 'zod'
+
 import { emailCampaignsService } from '../services/email-campaigns.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import { sendValidationError } from '../utils/response.helper.js'
@@ -22,9 +23,9 @@ const updateCampaignSchema = z.object({
 
 export const emailCampaignsController = {
   async getCampaigns(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const campaigns = await emailCampaignsService.getCampaigns()
@@ -35,17 +36,17 @@ export const emailCampaignsController = {
   },
 
   async getCampaignById(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Campaign ID is required' }),
+          JSON.stringify({ success: false, _error: 'Campaign ID is required' }),
         )
         return
       }
@@ -60,10 +61,10 @@ export const emailCampaignsController = {
   },
 
   async createCampaign(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const validated = createCampaignSchema.parse(_body)
@@ -79,18 +80,18 @@ export const emailCampaignsController = {
   },
 
   async updateCampaign(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Campaign ID is required' }),
+          JSON.stringify({ success: false, _error: 'Campaign ID is required' }),
         )
         return
       }
@@ -110,17 +111,17 @@ export const emailCampaignsController = {
   },
 
   async deleteCampaign(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Campaign ID is required' }),
+          JSON.stringify({ success: false, _error: 'Campaign ID is required' }),
         )
         return
       }
@@ -136,17 +137,17 @@ export const emailCampaignsController = {
   },
 
   async sendCampaign(
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
-    _user?: AuthenticatedUser,
+    
   ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
         res.end(
-          JSON.stringify({ success: false, error: 'Campaign ID is required' }),
+          JSON.stringify({ success: false, _error: 'Campaign ID is required' }),
         )
         return
       }
@@ -156,7 +157,7 @@ export const emailCampaignsController = {
         res.end(
           JSON.stringify({
             success: false,
-            error: result.error || 'Send failed',
+            _error: result.error || 'Send failed',
           }),
         )
         return
@@ -170,7 +171,7 @@ export const emailCampaignsController = {
 
   // Métodos alias para compatibilidad con el router
   getAll: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
@@ -179,25 +180,25 @@ export const emailCampaignsController = {
     return emailCampaignsController.getCampaigns(req, res, user)
   },
   create: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.createCampaign(req, res, _body, user)
+    return emailCampaignsController.createCampaign(req, res, __body, user)
   },
   getById: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.getCampaignById(req, res, _params, user)
+    return emailCampaignsController.getCampaignById(req, res, __params, user)
   },
   update: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
@@ -206,18 +207,18 @@ export const emailCampaignsController = {
     return emailCampaignsController.updateCampaign(
       req,
       res,
-      _params,
-      _body,
+      __params,
+      __body,
       user,
     )
   },
   delete: async (
-    req: IncomingMessage,
+    _req: IncomingMessage,
     res: ServerResponse,
     _params?: Record<string, string>,
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return emailCampaignsController.deleteCampaign(req, res, _params, user)
+    return emailCampaignsController.deleteCampaign(req, res, __params, user)
   },
 }
