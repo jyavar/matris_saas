@@ -66,10 +66,6 @@ export default function LoginPage() {
               }
               placeholder="tu@email.com"
               required
-              error=""
-              helperText=""
-              leftIcon={null}
-              rightIcon={null}
               id="email"
             />
 
@@ -82,16 +78,11 @@ export default function LoginPage() {
               }
               placeholder="••••••••"
               required
-              error=""
-              helperText=""
-              leftIcon={null}
-              rightIcon={null}
               id="password"
             />
 
             <Button
               type="submit"
-              loading={loading}
               className="w-full"
               disabled={loading}
             >

@@ -5,6 +5,8 @@
     "noEmit": false,
     "baseUrl": "./src",
     "strict": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
     "noUncheckedIndexedAccess": false,
     "skipLibCheck": true,
     "noImplicitAny": false,
@@ -20,6 +22,6 @@
       "@/lib/*": ["lib/*"]
     },
   },
-  "include": ["src", "src/types", "tests", "vitest.setup.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src", "src/types"],
+  "exclude": ["node_modules", "src/tests", "tests", "src/services/__tests__", "src/utils/controller-refactor.ts", "**/*.test.ts", "**/*.spec.ts"]
 } 

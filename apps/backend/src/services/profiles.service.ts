@@ -1,4 +1,3 @@
-
 import { ApiError } from '../utils/ApiError.js'
 
 export type ProfileDTO = {
@@ -34,7 +33,7 @@ async function fetchProfiles(
       Authorization: `Bearer ${SUPABASE_KEY}`,
     },
   })
-  if (!res.ok) throw new ApiError(res.status, await res.text())
+  if (!res.ok) throw new ApiError(await res.text(), res.status)
   const data = (await res.json()) as unknown[]
   return data.filter(isProfileDTO)
 }
@@ -60,7 +59,7 @@ export const profilesService = {
       },
       body: JSON.stringify(profile),
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const profiles = data.filter(isProfileDTO)
     return profiles[0] || null
@@ -84,7 +83,7 @@ export const profilesService = {
         body: JSON.stringify(profile),
       },
     )
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const profiles = data.filter(isProfileDTO)
     return profiles[0] || null
@@ -102,7 +101,7 @@ export const profilesService = {
         },
       },
     )
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const profiles = data.filter(isProfileDTO)
     if (!profiles.length) throw new ApiError('Profile not found', 404)

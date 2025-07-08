@@ -1,7 +1,22 @@
 import { RuntimeService } from '../services/runtime.service.js'
 import { ControllerHandler } from '../types/express/index.js'
-import { responseHelpers } from '../utils/controller-refactor.js'
 import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
+
+// Simple response helpers to replace controller-refactor
+const responseHelpers = {
+  success: (res: any, data: any, statusCode = 200) => {
+    res.status(statusCode).json({ success: true, data })
+  },
+  error: (res: any, message: string, statusCode = 500) => {
+    res.status(statusCode).json({ success: false, error: message })
+  },
+  badRequest: (res: any, message: string) => {
+    res.status(400).json({ success: false, error: message })
+  },
+  notFound: (res: any, message: string) => {
+    res.status(404).json({ success: false, error: message })
+  }
+}
 export const runtimeController = {
   getStatus: (async (_req, res, _params, _body, _user) => {
     try {

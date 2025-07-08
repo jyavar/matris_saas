@@ -38,7 +38,7 @@ async function fetchTodos(
       Authorization: `Bearer ${SUPABASE_KEY}`,
     },
   })
-  if (!res.ok) throw new ApiError(res.status, await res.text())
+  if (!res.ok) throw new ApiError(await res.text(), res.status)
   const data = (await res.json()) as unknown[]
   return data.filter(isTodoDTO)
 }
@@ -64,7 +64,7 @@ export const todoService = {
       },
       body: JSON.stringify(todo),
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const todos = data.filter(isTodoDTO)
     return todos[0] || null
@@ -81,7 +81,7 @@ export const todoService = {
       },
       body: JSON.stringify(todo),
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const todos = data.filter(isTodoDTO)
     return todos[0] || null
@@ -96,7 +96,7 @@ export const todoService = {
         Prefer: 'return=representation',
       },
     })
-    if (!res.ok) throw new ApiError(res.status, await res.text())
+    if (!res.ok) throw new ApiError(await res.text(), res.status)
     const data = (await res.json()) as unknown[]
     const todos = data.filter(isTodoDTO)
     if (!todos.length) throw new ApiError('Todo not found', 404)

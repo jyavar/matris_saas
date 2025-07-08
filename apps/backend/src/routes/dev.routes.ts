@@ -7,7 +7,7 @@ export const devRoutes = [
   { method: 'GET', path: '/error-test', handler: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
     // Test a custom ApiError
     _next()
-    throw new ApiError(418, "I'm a teapot")
+    throw new ApiError("I'm a teapot", 418)
   } },
   { method: 'GET', path: '/unexpected-error-test', handler: (_req: IncomingMessage, _res: ServerResponse, _next: () => void) => {
     // Test a generic error

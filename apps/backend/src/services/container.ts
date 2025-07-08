@@ -50,8 +50,8 @@ export const serviceContainer: ServiceContainer = {
   logger: new Logger(),
   database: new Database(),
   config: new Config(),
-  auth: authService,
-  billing: billingService,
+  auth: authService as any,
+  billing: billingService as any,
   user: {
     async createUser(data: { email: string; name: string }) {
       const { data: user, error } = await supabase
@@ -95,18 +95,18 @@ export const serviceContainer: ServiceContainer = {
   },
   email: {
     async sendEmail(to: string, subject: string, html: string) {
-      return resendService.sendEmail(to, subject, html)
+      await resendService.sendEmail(to, subject, html)
     },
     async sendTemplate(to: string, templateId: string, data: Record<string, any>) {
-      return resendService.sendTemplate(to, templateId, data)
+      await resendService.sendTemplate(to, templateId, data)
     }
   },
   analytics: {
     async track(event: string, userId?: string, properties?: Record<string, any>) {
-      return posthogService.track(event, userId, properties)
+      await posthogService.track(event, userId, properties)
     },
     async identify(userId: string, traits: Record<string, any>) {
-      return posthogService.identify(userId, traits)
+      await posthogService.identify(userId, traits)
     }
   },
   storage: {

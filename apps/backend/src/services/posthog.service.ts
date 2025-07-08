@@ -52,6 +52,19 @@ export class PostHogService {
     }
   }
 
+  async track(event: string, userId?: string, properties?: Record<string, any>) {
+    if (userId) {
+      PostHogService.captureEvent(userId, event, properties)
+    }
+    return { event, status: 'tracked' }
+  }
+
+  async identify(userId: string, traits: Record<string, any>) {
+    // Use static method for actual tracking
+    PostHogService.captureEvent(userId, '$identify', traits)
+    return { user_id: userId, status: 'identified' }
+  }
+
   async trackEvent(
     data: TrackEventData,
   ): Promise<{ event: string; status: string }> {
