@@ -1,6 +1,6 @@
-import { supabase } from '../lib/supabase.js'
+import { supabase} from '../lib/supabase.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
-import { ApiError } from '../utils/ApiError.js'
+import { ApiError} from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 // Tipos estrictos para Automation Engine

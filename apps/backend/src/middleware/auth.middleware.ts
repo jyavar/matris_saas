@@ -1,10 +1,10 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
-import { supabase } from '../lib/supabase.js'
-import { logAction } from '../services/logger.service.js'
+import { supabase} from '../lib/supabase.js'
+import { logAction} from '../services/logger.service.js'
 import type { AuthenticatedUser, MiddlewareHandler } from '../types/express/index.js'
-import { sendError,sendUnauthorized } from '../utils/response.helper.js'
+import { sendUnauthorized} from '../utils/response.helper.js'
 
 // Extend IncomingMessage to include user property
 declare module 'http' {
@@ -13,7 +13,7 @@ declare module 'http' {
   }
 }
 
-const authHeaderSchema = z.object({
+const /* authHeaderSchema */ = z.object({
   authorization: z.string().startsWith('Bearer '),
 })
 

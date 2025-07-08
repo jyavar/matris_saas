@@ -1,10 +1,10 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
-import { posthogService } from '../services/posthog.service.js'
+import { posthogService} from '../services/posthog.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { sendValidationError} from '../utils/response.helper.js'
 // Schemas de validación
 const trackEventSchema = z.object({
   event: z.string().min(1),

@@ -1,9 +1,9 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
-import { analyticsReportingService } from '../services/analytics-reporting.service.js'
+import { analyticsReportingService} from '../services/analytics-reporting.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { sendValidationError} from '../utils/response.helper.js'
 const createReportSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   type: z.string().min(1, 'Type is required'),
@@ -41,7 +41,7 @@ export const analyticsReportingController = {
   async createReport(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validated = createReportSchema.parse(
-        _body,
+        /* _body */$3
       ) as import('../services/analytics-reporting.service').CreateReportData
       const report = await analyticsReportingService.createReport(validated)
       return sendCreated(res, report, 'Report created')

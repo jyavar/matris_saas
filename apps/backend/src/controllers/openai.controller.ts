@@ -1,11 +1,11 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
 import logger from '../services/logger.service.js'
-import { openaiService } from '../services/openai.service.js'
+import { openaiService} from '../services/openai.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { enforceExactShape } from '../utils/enforceExactShape.js'
-import { sendCreated, sendError, sendSuccess, sendUnauthorized, sendValidationError } from '../utils/response.helper.js'
+import { enforceExactShape} from '../utils/enforceExactShape.js'
+import { sendUnauthorized, sendValidationError} from '../utils/response.helper.js'
 const generateTextSchema = z.object({
   user_id: z.string().min(1),
   prompt: z.string().min(1),

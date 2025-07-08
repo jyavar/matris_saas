@@ -1,10 +1,10 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 
 // Import Widget interface from service
 import type { Widget } from '../services/launchboard.service.js'
-import { launchboardService } from '../services/launchboard.service.js'
+import { launchboardService} from '../services/launchboard.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
+
 export const launchboardController = {
   async getDashboards(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {
@@ -103,15 +103,15 @@ export const launchboardController = {
     return launchboardController.getDashboards(req, res, user)
   },
   createLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.createDashboard(req, res, _body, user)
+    return launchboardController.createDashboard(req, res, _body user)
   },
   getLaunchboardItemById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.getDashboardById(req, res, _params, user)
+    return launchboardController.getDashboardById(req, res, _params user)
   },
   updateLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.updateDashboard(req, res, _params, _body, user)
+    return launchboardController.updateDashboard(req, res, _params _body user)
   },
   deleteLaunchboardItem: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return launchboardController.deleteDashboard(req, res, _params, user)
+    return launchboardController.deleteDashboard(req, res, _params user)
   },
 }

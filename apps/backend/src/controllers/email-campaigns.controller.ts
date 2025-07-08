@@ -1,9 +1,9 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
-import { emailCampaignsService } from '../services/email-campaigns.service.js'
+import { emailCampaignsService} from '../services/email-campaigns.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { sendValidationError} from '../utils/response.helper.js'
 const createCampaignSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   subject: z.string().min(1, 'Subject is required'),
@@ -52,8 +52,7 @@ export const emailCampaignsController = {
   async createCampaign(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
     try {
       const validated = createCampaignSchema.parse(
-        _body,
-      ) as import('../services/email-campaigns.service').CreateCampaignData
+        /* _body */$3 as import('../services/email-campaigns.service').CreateCampaignData
       const campaign = await emailCampaignsService.createCampaign(validated)
       return sendCreated(res, campaign, 'Campaign created')
     } catch (error) {
@@ -133,15 +132,15 @@ export const emailCampaignsController = {
     return emailCampaignsController.getCampaigns(req, res, user)
   },
   create: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.createCampaign(req, res, _body, user)
+    return emailCampaignsController.createCampaign(req, res, _body user)
   },
   getById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.getCampaignById(req, res, _params, user)
+    return emailCampaignsController.getCampaignById(req, res, _params user)
   },
   update: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.updateCampaign(req, res, _params, _body, user)
+    return emailCampaignsController.updateCampaign(req, res, _params _body user)
   },
   delete: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return emailCampaignsController.deleteCampaign(req, res, _params, user)
+    return emailCampaignsController.deleteCampaign(req, res, _params user)
   },
 }

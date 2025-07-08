@@ -26,10 +26,10 @@ export interface ICache {
 }
 
 export interface IAuthService {
-  signUp(data: { email: string; password: string; name: string }): Promise<{ user: any; session: any }>
-  signIn(data: { email: string; password: string }): Promise<{ user: any; session: any }>
+  signUp(data: { email: string; password: string; name: string }): Promise<{ user: unknown; session: unknown }>
+  signIn(data: { email: string; password: string }): Promise<{ user: unknown; session: unknown }>
   signOut(token: string): Promise<void>
-  verifyToken(token: string): Promise<{ user: any } | null>
+  verifyToken(token: string): Promise<{ user: unknown } | null>
 }
 
 export interface IBillingService {

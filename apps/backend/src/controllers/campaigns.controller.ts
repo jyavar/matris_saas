@@ -1,11 +1,11 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
-import { CampaignsService } from '../services/campaigns.service.js'
-import { logAction } from '../services/logger.service.js'
+import { CampaignsService} from '../services/campaigns.service.js'
+import { logAction} from '../services/logger.service.js'
 import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
-import { parseBody, parseParams } from '../utils/request.helper.js'
-import { sendCreated, sendError, sendNotFound, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { parseBody, parseParams} from '../utils/request.helper.js'
+import { sendNotFound, sendValidationError} from '../utils/response.helper.js'
 // Schemas
 const createCampaignSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -97,7 +97,7 @@ export const createCampaign: ControllerHandler = async (req: IncomingMessage, re
     await new Promise<void>((resolve) => {
       req.on('end', () => {
         try {
-          const data = JSON.parse(body)
+          const /* data */ = JSON.parse(body)
           const validatedData = createCampaignSchema.parse(data)
           const campaign = CampaignsService.create(validatedData.title)
 

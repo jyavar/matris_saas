@@ -1,13 +1,13 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
 import type {
   CreateWorkflowData,
   UpdateWorkflowData,
 } from '../services/automation.service.js'
-import { automationService } from '../services/automation.service.js'
+import { automationService} from '../services/automation.service.js'
 import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { sendValidationError} from '../utils/response.helper.js'
 // Schemas de validación
 const createWorkflowSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -314,15 +314,15 @@ export const automationController = {
     return automationController.getWorkflows(req, res, user)
   },
   createAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.createWorkflow(req, res, _body, user)
+    return automationController.createWorkflow(req, res, _body user)
   },
   getAutomationById: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.getWorkflowById(req, res, _params, user)
+    return automationController.getWorkflowById(req, res, _params user)
   },
   updateAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.updateWorkflow(req, res, _params, _body, user)
+    return automationController.updateWorkflow(req, res, _params _body user)
   },
   deleteAutomation: async (req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, user?: AuthenticatedUser) => {
-    return automationController.deleteWorkflow(req, res, _params, user)
+    return automationController.deleteWorkflow(req, res, _params user)
   },
 }

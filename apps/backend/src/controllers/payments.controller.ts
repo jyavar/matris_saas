@@ -1,7 +1,6 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
-import { sendError, sendSuccess } from '../utils/response.helper.js'
 
 export const paymentsController = {
   async createPaymentIntent(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {

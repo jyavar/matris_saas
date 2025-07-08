@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 
 import type { AuthenticatedUser, ControllerHandler, RequestBody, RouteDefinition } from '../types/express/index.js'
 

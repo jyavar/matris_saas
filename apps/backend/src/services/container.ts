@@ -1,11 +1,11 @@
-import { env } from '../config/env.schema.js'
-import { supabase } from '../lib/supabase.js'
-import { authService } from './auth.service.js'
-import { billingService } from './billing.service.js'
+import { env} from '../config/env.schema.js'
+import { supabase} from '../lib/supabase.js'
+import { authService} from './auth.service.js'
+import { billingService} from './billing.service.js'
 import type { IConfig, IDatabase, ILogger,ServiceContainer } from './interfaces/index.js'
 import logger from './logger.service.js'
-import { posthogService } from './posthog.service.js'
-import { resendService } from './resend.service.js'
+import { posthogService} from './posthog.service.js'
+import { resendService} from './resend.service.js'
 
 class Config implements IConfig {
   private config: Record<string, any>

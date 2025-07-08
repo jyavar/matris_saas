@@ -1,15 +1,12 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse} from 'http'
 import { z } from 'zod'
 
-import { numericIdParamSchema } from '../lib/schemas.js'
-import { analyticsService,
-  eventSchema,
-  metricSchema,
-  UserAnalytics } from '../services/analytics.service.js'
-import { logAction } from '../services/logger.service.js'
+import { numericIdParamSchema} from '../lib/schemas.js'
+import { analyticsService, eventSchema, metricSchema, UserAnalytics} from '../services/analytics.service.js'
+import { logAction} from '../services/logger.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import type { Json } from '../types/supabase.types.js'
-import { sendCreated, sendError, sendSuccess, sendValidationError } from '../utils/response.helper.js'
+import { sendValidationError} from '../utils/response.helper.js'
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
   payload: z.custom<Json>().optional(),

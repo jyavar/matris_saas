@@ -1,24 +1,23 @@
-import { RuntimeService } from '../services/runtime.service.js'
-import { ControllerHandler } from '../types/express/index.js'
-import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
+import { RuntimeService} from '../services/runtime.service.js'
+
 
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {
-  success: (res: any, data: any, statusCode = 200) => {
+  success: (res: unknown, data: unknown, statusCode = 200) => {
     res.status(statusCode).json({ success: true, data })
   },
-  error: (res: any, message: string, statusCode = 500) => {
+  error: (res: unknown, message: string, statusCode = 500) => {
     res.status(statusCode).json({ success: false, error: message })
   },
-  badRequest: (res: any, message: string) => {
+  badRequest: (res: unknown, message: string) => {
     res.status(400).json({ success: false, error: message })
   },
-  notFound: (res: any, message: string) => {
+  notFound: (res: unknown, message: string) => {
     res.status(404).json({ success: false, error: message })
   }
 }
 export const runtimeController = {
-  getStatus: (async (_req, res, _params, _body, _user) => {
+  getStatus: (async (_req, res, _params _body _user => {
     try {
       const jobs = RuntimeService.listJobs()
       responseHelpers.success(res, { jobs, count: jobs.length })
@@ -27,7 +26,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getHealth: (async (_req, res, _params, _body, _user) => {
+  getHealth: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { status: 'healthy' })
     } catch {
@@ -35,7 +34,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getMetrics: (async (_req, res, _params, _body, _user) => {
+  getMetrics: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, {})
     } catch {
@@ -43,7 +42,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getLogs: (async (_req, res, _params, _body, _user) => {
+  getLogs: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, [])
     } catch {
@@ -51,7 +50,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  restart: (async (_req, res, _params, _body, _user) => {
+  restart: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { message: 'Restart initiated' })
     } catch {
@@ -59,7 +58,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  shutdown: (async (_req, res, _params, _body, _user) => {
+  shutdown: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { message: 'Shutdown initiated' })
     } catch {
@@ -67,7 +66,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getConfig: (async (_req, res, _params, _body, _user) => {
+  getConfig: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, {})
     } catch {
@@ -75,7 +74,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  updateConfig: (async (_req, res, _params, _body, _user) => {
+  updateConfig: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { message: 'Config updated' })
     } catch {
@@ -83,7 +82,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getAgents: (async (_req, res, _params, _body, _user) => {
+  getAgents: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, ['refactor'])
     } catch {
@@ -91,7 +90,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  startAgent: (async (_req, res, _params, _body, _user) => {
+  startAgent: (async (_req, res, _params _body _user => {
     try {
       const name = _params?.name
       if (!name) {
@@ -104,7 +103,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  stopAgent: (async (_req, res, _params, _body, _user) => {
+  stopAgent: (async (_req, res, _params _body _user => {
     try {
       const name = _params?.name
       if (!name) {
@@ -117,7 +116,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getAgentStatus: (async (_req, res, _params, _body, _user) => {
+  getAgentStatus: (async (_req, res, _params _body _user => {
     try {
       const name = _params?.name
       if (!name) {
@@ -130,7 +129,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getAgentLogs: (async (_req, res, _params, _body, _user) => {
+  getAgentLogs: (async (_req, res, _params _body _user => {
     try {
       const name = _params?.name
       if (!name) {
@@ -143,7 +142,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  runAgent: (async (_req, res, _params, _body, _user) => {
+  runAgent: (async (_req, res, _params _body _user => {
     try {
       const name = _params?.name
       if (!name) {
@@ -161,7 +160,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getTasks: (async (_req, res, _params, _body, _user) => {
+  getTasks: (async (_req, res, _params _body _user => {
     try {
       const jobs = RuntimeService.listJobs()
       responseHelpers.success(res, jobs)
@@ -170,7 +169,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  createTask: (async (_req, res, _params, _body, _user) => {
+  createTask: (async (_req, res, _params _body _user => {
     try {
       const { id, schedule } = _body || {}
       if (!id || !schedule) {
@@ -186,7 +185,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getTaskById: (async (_req, res, _params, _body, _user) => {
+  getTaskById: (async (_req, res, _params _body _user => {
     try {
       const id = _params?.id
       if (!id) {
@@ -205,7 +204,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  updateTask: (async (_req, res, _params, _body, _user) => {
+  updateTask: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { message: 'Task updated' })
     } catch {
@@ -213,7 +212,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  deleteTask: (async (_req, res, _params, _body, _user) => {
+  deleteTask: (async (_req, res, _params _body _user => {
     try {
       const id = _params?.id
       if (!id) {
@@ -227,7 +226,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  executeTask: (async (_req, res, _params, _body, _user) => {
+  executeTask: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, { message: 'Task executed' })
     } catch {
@@ -235,7 +234,7 @@ export const runtimeController = {
     }
   }) as ControllerHandler,
 
-  getTaskResult: (async (_req, res, _params, _body, _user) => {
+  getTaskResult: (async (_req, res, _params _body _user => {
     try {
       responseHelpers.success(res, {})
     } catch {

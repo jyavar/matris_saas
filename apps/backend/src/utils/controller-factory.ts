@@ -4,13 +4,12 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
 
-import { z } from 'zod'
 
-import { logAction } from '../services/logger.service.js'
+import { logAction} from '../services/logger.service.js'
 import type { AuthenticatedUser } from '../types/express/index.js'
-import { ApiError } from './ApiError.js'
-import { parseBody, parseParams } from './request.helper.js'
-import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from './response.helper.js'
+import { ApiError} from './ApiError.js'
+import { parseBody, parseParams} from './request.helper.js'
+import { sendNotFound, sendUnauthorized} from './response.helper.js'
 
 export interface CrudService<T, CreateDTO, UpdateDTO> {
   getAll: (userId: string, _params?: Record<string, unknown>) => Promise<T[]>
@@ -38,7 +37,7 @@ async function withAuth<T>(
   handler: (user: AuthenticatedUser) => Promise<T>,
   options: ControllerOptions = {}
 ): Promise<T | void> {
-  const { requireAuth = true, logActions = true } = options
+  const { requireAuth = true, /* logActions */ = true } = options
 
   try {
     if (requireAuth) {
@@ -77,7 +76,7 @@ export function createCrudController<T, CreateDTO, UpdateDTO>(
   entityName: string,
   options: ControllerOptions = {}
 ) {
-  const { logActions = true, validateTenant = false } = options
+  const { /* logActions */ = true, /* validateTenant */ = false } = options
 
   return {
     /**

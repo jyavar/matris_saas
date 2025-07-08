@@ -1,29 +1,29 @@
-import { createServer, ServerResponse } from 'http'
-import { parse } from 'url'
+import { createServer, ServerResponse} from 'http'
+import { parse} from 'url'
 
-import { analyticsRoutes } from './routes/analytics.routes'
+import { analyticsRoutes} from './routes/analytics.routes'
 // Import all route modules
-import { analyticsReportingRoutes } from './routes/analytics-reporting.routes'
-import { authRoutes } from './routes/auth.routes'
-import { automationRoutes } from './routes/automation.routes'
-import { billingRoutes } from './routes/billing.routes'
-import { campaignsRoutes } from './routes/campaigns.routes'
-import { devRoutes } from './routes/dev.routes'
-import { emailCampaignsRoutes } from './routes/email-campaigns.routes'
-import { healthRoutes } from './routes/health.routes'
-import { launchboardRoutes } from './routes/launchboard.routes'
-import { onboardingRoutes } from './routes/onboarding.routes'
-import { openaiRoutes } from './routes/openai.routes'
-import { paymentsRoutes } from './routes/payments.routes'
-import { posthogRoutes } from './routes/posthog.routes'
-import { pricingRoutes } from './routes/pricing.routes'
-import { profilesRoutes } from './routes/profiles.routes'
-import { reportingRoutes } from './routes/reporting.routes'
-import { resendRoutes } from './routes/resend.routes'
-import { runtimeRoutes } from './routes/runtime.routes'
-import { todoRoutes } from './routes/todo.routes'
+import { analyticsReportingRoutes} from './routes/analytics-reporting.routes'
+import { authRoutes} from './routes/auth.routes'
+import { automationRoutes} from './routes/automation.routes'
+import { billingRoutes} from './routes/billing.routes'
+import { campaignsRoutes} from './routes/campaigns.routes'
+import { devRoutes} from './routes/dev.routes'
+import { emailCampaignsRoutes} from './routes/email-campaigns.routes'
+import { healthRoutes} from './routes/health.routes'
+import { launchboardRoutes} from './routes/launchboard.routes'
+import { onboardingRoutes} from './routes/onboarding.routes'
+import { openaiRoutes} from './routes/openai.routes'
+import { paymentsRoutes} from './routes/payments.routes'
+import { posthogRoutes} from './routes/posthog.routes'
+import { pricingRoutes} from './routes/pricing.routes'
+import { profilesRoutes} from './routes/profiles.routes'
+import { reportingRoutes} from './routes/reporting.routes'
+import { resendRoutes} from './routes/resend.routes'
+import { runtimeRoutes} from './routes/runtime.routes'
+import { todoRoutes} from './routes/todo.routes'
 import logger from './services/logger.service'
-import { createRouter } from './utils/router'
+import { createRouter} from './utils/router'
 
 const version = process.env.npm_package_version || '1.0.0'
 const router = createRouter()
@@ -37,8 +37,8 @@ function sendJson(res: ServerResponse, status: number, data: unknown): void {
 interface RouteDefinition {
   method: string
   path: string
-  handler: Function
-  middlewares?: Function[]
+  handler: (...args: unknown[]) => unknown
+  middlewares?: (...args: unknown[]) => unknown[]
 }
 
 // Helper function to register routes safely
