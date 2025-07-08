@@ -26,8 +26,14 @@ export class AuthResponseDto {
 
 export class SignInResponseDto {
   access_token: string;
+  refresh_token: string;
   user: {
     id: string;
     email: string;
   };
+}
+
+export class RefreshTokenDto {
+  @IsString()
+  refresh_token: string;
 }

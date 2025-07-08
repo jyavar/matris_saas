@@ -4,6 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { SecurityLoggerService } from '../security/security-logger.service';
 
 import { supabase } from '../lib/supabase';
 import {
@@ -11,11 +12,15 @@ import {
   SignInDto,
   SignInResponseDto,
   SignUpDto,
+  RefreshTokenDto,
 } from './dto/auth.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private jwtService: JwtService,
+    private securityLogger: SecurityLoggerService,
+  ) {}
   async signUp(credentials: SignUpDto): Promise<AuthResponseDto> {
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -30,6 +35,8 @@ export class AuthService {
       if (!data.user) {
         throw new BadRequestException('Error al crear usuario');
       }
+
+      this.securityLogger.logAuthSuccess(data.user.id, data.user.email || '');
 
       return {
         id: data.user.id,
@@ -51,6 +58,12 @@ export class AuthService {
       });
 
       if (error) {
+        this.securityLogger.logAuthFailure(
+          credentials.email,
+          undefined,
+          undefined,
+          error.message,
+        );
         if (error.message === 'Invalid login credentials') {
           throw new UnauthorizedException('Invalid login credentials');
         }
@@ -61,8 +74,11 @@ export class AuthService {
         throw new UnauthorizedException('Could not sign in');
       }
 
+      this.securityLogger.logAuthSuccess(data.user.id, data.user.email || '');
+
       return {
         access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token || '',
         user: {
           id: data.user.id,
           email: data.user.email || '',
@@ -73,6 +89,43 @@ export class AuthService {
         throw error;
       }
       throw new UnauthorizedException('Could not sign in');
+    }
+  }
+
+  async refreshToken(
+    refreshTokenDto: RefreshTokenDto,
+  ): Promise<SignInResponseDto> {
+    try {
+      const { data, error } = await supabase.auth.refreshSession({
+        refresh_token: refreshTokenDto.refresh_token,
+      });
+
+      if (error) {
+        throw new UnauthorizedException('Invalid refresh token');
+      }
+
+      if (!data.session || !data.user) {
+        throw new UnauthorizedException('Could not refresh token');
+      }
+
+      return {
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token || '',
+        user: {
+          id: data.user.id,
+          email: data.user.email || '',
+        },
+      };
+    } catch {
+      throw new UnauthorizedException('Could not refresh token');
+    }
+  }
+
+  async signOut(): Promise<void> {
+    try {
+      await supabase.auth.signOut();
+    } catch {
+      throw new BadRequestException('Error signing out');
     }
   }
 }

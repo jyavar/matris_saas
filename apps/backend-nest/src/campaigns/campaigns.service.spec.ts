@@ -1,24 +1,21 @@
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-
 import { CampaignsService } from './campaigns.service';
 
 describe('CampaignsService', () => {
   let service: CampaignsService;
-  type MockRepo = {
+  let mockRepo: {
     list: jest.Mock;
     create: jest.Mock;
     delete: jest.Mock;
   };
-
-  let mockRepo: MockRepo;
 
   beforeEach(() => {
     mockRepo = {
       list: jest.fn(),
       create: jest.fn(),
       delete: jest.fn(),
-    } as unknown as MockRepo;
+    };
     service = new CampaignsService();
+
     (service as any).repo = mockRepo;
   });
 

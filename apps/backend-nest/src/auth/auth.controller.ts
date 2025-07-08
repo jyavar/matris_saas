@@ -11,6 +11,7 @@ import {
   SignInDto,
   AuthResponseDto,
   SignInResponseDto,
+  RefreshTokenDto,
 } from './dto/auth.dto';
 import { Throttle } from '@nestjs/throttler';
 
@@ -19,6 +20,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
+  @Throttle({ short: { limit: 3, ttl: 60_000 } })
   @HttpCode(201)
   async signUp(
     @Body(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
@@ -28,12 +30,29 @@ export class AuthController {
   }
 
   @Post('signin')
-  @Throttle({ default: { limit: 5, ttl: 900_000 } })
+  @Throttle({ short: { limit: 5, ttl: 60_000 } })
   @HttpCode(200)
   async signIn(
     @Body(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
     body: SignInDto,
   ): Promise<SignInResponseDto> {
     return this.authService.signIn(body);
+  }
+
+  @Post('refresh')
+  @Throttle({ medium: { limit: 10, ttl: 900_000 } })
+  @HttpCode(200)
+  async refresh(
+    @Body(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+    body: RefreshTokenDto,
+  ): Promise<SignInResponseDto> {
+    return this.authService.refreshToken(body);
+  }
+
+  @Post('signout')
+  @HttpCode(200)
+  async signOut(): Promise<{ message: string }> {
+    await this.authService.signOut();
+    return { message: 'Successfully signed out' };
   }
 }

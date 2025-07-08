@@ -12,6 +12,7 @@ import { EmailCampaignsModule } from './email-campaigns/email-campaigns.module';
 import { HealthModule } from './health/health.module';
 import { AnalyticsReportingModule } from './analytics-reporting/analytics-reporting.module';
 import { LoggerModule } from './logger/logger.module';
+import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [
@@ -23,11 +24,23 @@ import { LoggerModule } from './logger/logger.module';
     EmailCampaignsModule,
     AnalyticsReportingModule,
     LoggerModule,
+    SecurityModule,
     ThrottlerModule.forRoot({
       throttlers: [
         {
-          ttl: 900_000, // 15 minutos en ms
-          limit: 1000, // 1000 requests por IP
+          name: 'short',
+          ttl: 60_000, // 1 minuto
+          limit: 100, // 100 requests por minuto
+        },
+        {
+          name: 'medium',
+          ttl: 900_000, // 15 minutos
+          limit: 500, // 500 requests por 15 min
+        },
+        {
+          name: 'long',
+          ttl: 3600_000, // 1 hora
+          limit: 1000, // 1000 requests por hora
         },
       ],
     }),
