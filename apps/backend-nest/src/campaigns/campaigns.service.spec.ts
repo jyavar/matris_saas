@@ -16,6 +16,7 @@ describe('CampaignsService', () => {
     };
     service = new CampaignsService();
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     (service as any).repo = mockRepo;
   });
 
