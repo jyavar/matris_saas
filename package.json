@@ -33,6 +33,7 @@
     "strato:defense:validate": "pnpm tsx scripts/pre-commit-validation.ts",
     "strato:guard": "pnpm run lint && pnpm run typecheck && pnpm run test",
     "strato:guard:strict": "pnpm run lint:strict && pnpm run typecheck:strict && pnpm run test:strict && pnpm run build:check",
+    "strato:score": "pnpm run test:coverage && pnpm run deps:check && pnpm run security:check",
     "security:check": "tsx scripts/security-check.ts",
     "deps:check": "pnpm audit && pnpm outdated",
     "merge:prepare": "bash scripts/hooks/prepare-merge-to-main.sh",
