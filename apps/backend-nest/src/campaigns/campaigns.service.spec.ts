@@ -5,21 +5,21 @@ import { CampaignsService } from './campaigns.service';
 describe('CampaignsService', () => {
   let service: CampaignsService;
   type MockRepo = {
-    list: Mock;
-    create: Mock;
-    delete: Mock;
+    list: jest.Mock;
+    create: jest.Mock;
+    delete: jest.Mock;
   };
 
   let mockRepo: MockRepo;
 
   beforeEach(() => {
     mockRepo = {
-      list: vi.fn(),
-      create: vi.fn(),
-      delete: vi.fn(),
+      list: jest.fn(),
+      create: jest.fn(),
+      delete: jest.fn(),
     } as unknown as MockRepo;
     service = new CampaignsService();
-    service['repo'] = mockRepo;
+    (service as any).repo = mockRepo;
   });
 
   it('should return list of campaigns', () => {
