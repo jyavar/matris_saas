@@ -4,9 +4,34 @@ import { handleAsync } from '../middleware/errorHandler.middleware.js'
 
 // Definición de rutas para Node.js puro
 export const todoRoutes = [
-  { method: 'GET', path: '/', middlewares: [authMiddleware], handler: handleAsync(todoController.getAllTodos) },
-  { method: 'POST', path: '/', middlewares: [authMiddleware], handler: handleAsync(todoController.createTodo) },
-  { method: 'GET', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.getTodoById) },
-  { method: 'PATCH', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.updateTodo) },
-  { method: 'DELETE', path: '/:id', middlewares: [authMiddleware], handler: handleAsync(todoController.deleteTodo) },
+  {
+    method: 'GET',
+    path: '/',
+    middlewares: [authMiddleware],
+    handler: handleAsync(todoController.getAllTodos),
+  },
+  {
+    method: 'POST',
+    path: '/',
+    middlewares: [authMiddleware],
+    handler: handleAsync(todoController.createTodo),
+  },
+  {
+    method: 'GET',
+    path: '/:id',
+    middlewares: [authMiddleware],
+    handler: handleAsync(todoController.getTodoById),
+  },
+  {
+    method: 'PATCH',
+    path: '/:id',
+    middlewares: [authMiddleware],
+    handler: handleAsync(todoController.updateTodo),
+  },
+  {
+    method: 'DELETE',
+    path: '/:id',
+    middlewares: [authMiddleware],
+    handler: handleAsync(todoController.deleteTodo),
+  },
 ]

@@ -1,4 +1,3 @@
-
 import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
@@ -38,11 +37,17 @@ class EmailCampaignsService {
   }
 
   async getCampaignById(id: string): Promise<EmailCampaign | null> {
-    return this.campaigns.find(c => c.id === id) || null
+    return this.campaigns.find((c) => c.id === id) || null
   }
 
   async createCampaign(data: CreateCampaignData): Promise<EmailCampaign> {
-    if (!data.name || !data.subject || !data.content || !Array.isArray(data.recipients) || data.recipients.length === 0) {
+    if (
+      !data.name ||
+      !data.subject ||
+      !data.content ||
+      !Array.isArray(data.recipients) ||
+      data.recipients.length === 0
+    ) {
       throw new ApiError('Invalid campaign data', 400)
     }
     const campaign: EmailCampaign = {
@@ -61,7 +66,10 @@ class EmailCampaignsService {
     return campaign
   }
 
-  async updateCampaign(id: string, update: UpdateCampaignData): Promise<EmailCampaign | null> {
+  async updateCampaign(
+    id: string,
+    update: UpdateCampaignData,
+  ): Promise<EmailCampaign | null> {
     const campaign = await this.getCampaignById(id)
     if (!campaign) return null
     Object.assign(campaign, update, { updated_at: new Date().toISOString() })
@@ -70,17 +78,20 @@ class EmailCampaignsService {
   }
 
   async deleteCampaign(id: string): Promise<boolean> {
-    const idx = this.campaigns.findIndex(c => c.id === id)
+    const idx = this.campaigns.findIndex((c) => c.id === id)
     if (idx === -1) return false
     this.campaigns.splice(idx, 1)
     logger.info({ campaignId: id }, 'Email campaign deleted')
     return true
   }
 
-  async sendCampaign(id: string): Promise<{ success: boolean; error?: string }> {
+  async sendCampaign(
+    id: string,
+  ): Promise<{ success: boolean; error?: string }> {
     const campaign = await this.getCampaignById(id)
     if (!campaign) return { success: false, error: 'Campaign not found' }
-    if (campaign.status === 'sent') return { success: false, error: 'Already sent' }
+    if (campaign.status === 'sent')
+      return { success: false, error: 'Already sent' }
     // Simulación de integración con Resend
     try {
       // Aquí iría la integración real con Resend
@@ -96,4 +107,4 @@ class EmailCampaignsService {
   }
 }
 
-export const emailCampaignsService = new EmailCampaignsService() 
+export const emailCampaignsService = new EmailCampaignsService()

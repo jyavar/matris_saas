@@ -1,12 +1,14 @@
-import { IncomingMessage, ServerResponse} from 'http'
-import { z } from 'zod'
-
-import { numericIdParamSchema} from '../lib/schemas.js'
-import { analyticsService, eventSchema, metricSchema, UserAnalytics} from '../services/analytics.service.js'
-import { logAction} from '../services/logger.service.js'
+import { numericIdParamSchema } from '../lib/schemas.js'
+import {
+  analyticsService,
+  eventSchema,
+  metricSchema,
+  UserAnalytics,
+} from '../services/analytics.service.js'
+import { logAction } from '../services/logger.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import type { Json } from '../types/supabase.types.js'
-import { sendValidationError} from '../utils/response.helper.js'
+import { sendValidationError } from '../utils/response.helper.js'
 const createAnalyticsSchema = z.object({
   event_name: z.string(),
   payload: z.custom<Json>().optional(),
@@ -23,7 +25,12 @@ export const analyticsController = {
   /**
    * Track an event
    */
-  async trackEvent(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async trackEvent(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const eventData = eventSchema.parse(_body)
       const event = await analyticsService.trackEvent(eventData)
@@ -34,7 +41,7 @@ export const analyticsController = {
         return sendValidationError(res, error.errors, 'Invalid event data')
       } else {
         logAction('analytics_track_event_error', 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -44,7 +51,12 @@ export const analyticsController = {
   /**
    * Track a metric
    */
-  async trackMetric(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async trackMetric(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const metricData = metricSchema.parse(_body)
       const metric = await analyticsService.trackMetric(metricData)
@@ -55,7 +67,7 @@ export const analyticsController = {
         return sendValidationError(res, error.errors, 'Invalid metric data')
       } else {
         logAction('analytics_track_metric_error', 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -65,11 +77,16 @@ export const analyticsController = {
   /**
    * Get events with filtering
    */
-  async getEvents(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getEvents(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const query = new URL(req.url || '', `http://${req.headers.host}`)
+        .searchParams
       const queryObj = Object.fromEntries(query.entries())
-      
+
       // Convert query parameters to match service schema
       const serviceQuery = {
         start_date: queryObj.startDate,
@@ -90,10 +107,14 @@ export const analyticsController = {
       return sendSuccess(res, events)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return sendValidationError(res, error.errors, 'Invalid query parameters')
+        return sendValidationError(
+          res,
+          error.errors,
+          'Invalid query parameters',
+        )
       } else {
         logAction('analytics_get_events_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -103,11 +124,16 @@ export const analyticsController = {
   /**
    * Get metrics with filtering
    */
-  async getMetrics(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getMetrics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const query = new URL(req.url || '', `http://${req.headers.host}`)
+        .searchParams
       const queryObj = Object.fromEntries(query.entries())
-      
+
       // Convert query parameters to match service schema
       const serviceQuery = {
         start_date: queryObj.startDate,
@@ -128,10 +154,14 @@ export const analyticsController = {
       return sendSuccess(res, metrics)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return sendValidationError(res, error.errors, 'Invalid query parameters')
+        return sendValidationError(
+          res,
+          error.errors,
+          'Invalid query parameters',
+        )
       } else {
         logAction('analytics_get_metrics_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -141,15 +171,23 @@ export const analyticsController = {
   /**
    * Get user analytics
    */
-  async getUserAnalytics(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
+  async getUserAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    user?: AuthenticatedUser,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const userId = (_params?.userId as string) || _user?.id
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'User ID is required',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'User ID is required',
+          }),
+        )
         return
       }
 
@@ -158,19 +196,23 @@ export const analyticsController = {
         userAnalytics = await analyticsService.getUserAnalytics(userId)
       } catch {
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'User not found',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'User not found',
+          }),
+        )
         return
       }
 
       if (!userAnalytics) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'User not found',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'User not found',
+          }),
+        )
         return
       }
 
@@ -182,23 +224,33 @@ export const analyticsController = {
       return sendSuccess(res, userAnalytics)
     } catch {
       res.writeHead(404, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: 'User ID is required',
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: 'User ID is required',
+        }),
+      )
     }
   },
 
   /**
    * Get analytics summary
    */
-  async getAnalyticsSummary(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async getAnalyticsSummary(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
-      const query = new URL(req.url || '', `http://${req.headers.host}`).searchParams
+      const query = new URL(req.url || '', `http://${req.headers.host}`)
+        .searchParams
       const startDate = query.get('startDate')
       const endDate = query.get('endDate')
 
-      const summary = await analyticsService.getAnalyticsSummary(startDate || undefined, endDate || undefined)
+      const summary = await analyticsService.getAnalyticsSummary(
+        startDate || undefined,
+        endDate || undefined,
+      )
 
       logAction('analytics_summary_requested', _user?.id || 'anonymous', {
         startDate,
@@ -208,7 +260,7 @@ export const analyticsController = {
       return sendSuccess(res, summary)
     } catch (error) {
       logAction('analytics_summary_error', _user?.id || 'anonymous', {
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -217,14 +269,25 @@ export const analyticsController = {
   /**
    * Get analytics summary (alias for getAnalyticsSummary)
    */
-  async getSummary(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async getSummary(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     return this.getAnalyticsSummary(req, res)
   },
 
   /**
    * Get all analytics
    */
-  async getAllAnalytics(req: IncomingMessage, res: ServerResponse, user?: AuthenticatedUser, _user?: AuthenticatedUser): Promise<void> {
+  async getAllAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    user?: AuthenticatedUser,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const analytics = await analyticsService.getAllAnalytics()
 
@@ -235,7 +298,7 @@ export const analyticsController = {
       return sendSuccess(res, analytics)
     } catch (error) {
       logAction('analytics_all_error', _user?.id || 'anonymous', {
-        error: (error instanceof Error ? error.message : 'Unknown error'),
+        error: error instanceof Error ? error.message : 'Unknown error',
       })
       throw error
     }
@@ -244,27 +307,38 @@ export const analyticsController = {
   /**
    * Get analytics by ID
    */
-  async getAnalyticsById(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async getAnalyticsById(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Analytics ID is required',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'Analytics ID is required',
+          }),
+        )
         return
       }
 
       const validatedId = numericIdParamSchema.parse({ id })
-      const analytics = await analyticsService.getAnalyticsById(Number(validatedId.id))
+      const analytics = await analyticsService.getAnalyticsById(
+        Number(validatedId.id),
+      )
 
       if (!analytics) {
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Analytics not found',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'Analytics not found',
+          }),
+        )
         return
       }
 
@@ -274,7 +348,7 @@ export const analyticsController = {
         return sendValidationError(res, error.errors, 'Invalid analytics ID')
       } else {
         logAction('analytics_by_id_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -284,15 +358,22 @@ export const analyticsController = {
   /**
    * Create analytics
    */
-  async createAnalytics(req: IncomingMessage, res: ServerResponse, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async createAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const validatedData = createAnalyticsSchema.parse(_body)
       if (!validatedData.event_name) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Event name is required',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'Event name is required',
+          }),
+        )
         return
       }
       const analytics = await analyticsService.createAnalytics({
@@ -312,7 +393,7 @@ export const analyticsController = {
         return sendValidationError(res, error.errors, 'Invalid analytics data')
       } else {
         logAction('analytics_create_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -322,21 +403,32 @@ export const analyticsController = {
   /**
    * Update analytics
    */
-  async updateAnalytics(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _body?: RequestBody, _user?: AuthenticatedUser): Promise<void> {
+  async updateAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Analytics ID is required',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'Analytics ID is required',
+          }),
+        )
         return
       }
 
       const validatedId = numericIdParamSchema.parse({ id })
       const validatedData = updateAnalyticsSchema.parse(_body)
-      const analytics = await analyticsService.updateAnalytics(Number(validatedId.id), validatedData)
+      const analytics = await analyticsService.updateAnalytics(
+        Number(validatedId.id),
+        validatedData,
+      )
 
       logAction('analytics_updated', _user?.id || 'anonymous', {
         analytics_id: validatedId.id,
@@ -349,7 +441,7 @@ export const analyticsController = {
         return sendValidationError(res, error.errors, 'Invalid analytics data')
       } else {
         logAction('analytics_update_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }
@@ -359,15 +451,22 @@ export const analyticsController = {
   /**
    * Delete analytics
    */
-  async deleteAnalytics(req: IncomingMessage, res: ServerResponse, _params?: Record<string, string>, _user?: AuthenticatedUser): Promise<void> {
+  async deleteAnalytics(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _params?: Record<string, string>,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     try {
       const { id } = _params || {}
       if (!id) {
         res.writeHead(400, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({
-          success: false,
-          error: 'Analytics ID is required',
-        }))
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: 'Analytics ID is required',
+          }),
+        )
         return
       }
 
@@ -379,16 +478,18 @@ export const analyticsController = {
       })
 
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: true,
-        message: 'Analytics deleted successfully',
-      }))
+      res.end(
+        JSON.stringify({
+          success: true,
+          message: 'Analytics deleted successfully',
+        }),
+      )
     } catch (error) {
       if (error instanceof z.ZodError) {
         return sendValidationError(res, error.errors, 'Invalid analytics ID')
       } else {
         logAction('analytics_delete_error', _user?.id || 'anonymous', {
-          error: (error instanceof Error ? error.message : 'Unknown error'),
+          error: error instanceof Error ? error.message : 'Unknown error',
         })
         throw error
       }

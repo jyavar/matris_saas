@@ -1,6 +1,4 @@
-import { resendService} from '../services/resend.service.js'
-
-
+import { resendService } from '../services/resend.service.js'
 // Simple response helpers to replace controller-refactor
 const responseHelpers = {
   success: (res: unknown, data: unknown, statusCode = 200) => {
@@ -14,13 +12,18 @@ const responseHelpers = {
   },
   notFound: (res: unknown, message: string) => {
     res.status(404).json({ success: false, error: message })
-  }
+  },
 }
 export const resendController = {
-  sendEmail: (async (_req, res, _params _body _user => {
+  sendEmail: (async (_req, res, _params, _body, _user) => {
     try {
       const { to, subject } = _body || {}
-      if (!to || !subject || typeof to !== 'string' || typeof subject !== 'string') {
+      if (
+        !to ||
+        !subject ||
+        typeof to !== 'string' ||
+        typeof subject !== 'string'
+      ) {
         responseHelpers.badRequest(res, 'Faltan campos requeridos')
         return
       }
@@ -32,15 +35,17 @@ export const resendController = {
   }) as ControllerHandler,
 
   // Placeholder methods for future implementation
-  sendBulkEmail: (async (_req, res, _params _body _user => {
+  sendBulkEmail: (async (_req, res, _params, _body, _user) => {
     try {
-      responseHelpers.success(res, { message: 'Bulk email feature not implemented yet' })
+      responseHelpers.success(res, {
+        message: 'Bulk email feature not implemented yet',
+      })
     } catch {
       responseHelpers.error(res, 'Failed to send bulk email')
     }
   }) as ControllerHandler,
 
-  getTemplates: (async (_req, res, _params _body _user => {
+  getTemplates: (async (_req, res, _params, _body, _user) => {
     try {
       responseHelpers.success(res, [])
     } catch {
@@ -48,31 +53,39 @@ export const resendController = {
     }
   }) as ControllerHandler,
 
-  createTemplate: (async (_req, res, _params _body _user => {
+  createTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      responseHelpers.success(res, { message: 'Template creation not implemented yet' }, 201)
+      responseHelpers.success(
+        res,
+        { message: 'Template creation not implemented yet' },
+        201,
+      )
     } catch {
       responseHelpers.error(res, 'Failed to create template')
     }
   }) as ControllerHandler,
 
-  updateTemplate: (async (_req, res, _params _body _user => {
+  updateTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      responseHelpers.success(res, { message: 'Template update not implemented yet' })
+      responseHelpers.success(res, {
+        message: 'Template update not implemented yet',
+      })
     } catch {
       responseHelpers.error(res, 'Failed to update template')
     }
   }) as ControllerHandler,
 
-  deleteTemplate: (async (_req, res, _params _body _user => {
+  deleteTemplate: (async (_req, res, _params, _body, _user) => {
     try {
-      responseHelpers.success(res, { message: 'Template deletion not implemented yet' })
+      responseHelpers.success(res, {
+        message: 'Template deletion not implemented yet',
+      })
     } catch {
       responseHelpers.error(res, 'Failed to delete template')
     }
   }) as ControllerHandler,
 
-  getEmailLogs: (async (_req, res, _params _body _user => {
+  getEmailLogs: (async (_req, res, _params, _body, _user) => {
     try {
       responseHelpers.success(res, [])
     } catch {
@@ -80,7 +93,7 @@ export const resendController = {
     }
   }) as ControllerHandler,
 
-  getEmailLogById: (async (_req, res, _params _body _user => {
+  getEmailLogById: (async (_req, res, _params, _body, _user) => {
     try {
       responseHelpers.notFound(res, 'Email log not found')
     } catch {

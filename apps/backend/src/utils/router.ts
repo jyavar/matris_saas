@@ -1,11 +1,14 @@
-import { IncomingMessage, ServerResponse} from 'http'
-
-import type { AuthenticatedUser, ControllerHandler, RequestBody, RouteDefinition } from '../types/express/index.js'
+import type {
+  AuthenticatedUser,
+  ControllerHandler,
+  RequestBody,
+  RouteDefinition,
+} from '../types/express/index.js'
 
 type MiddlewareHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ) => void | Promise<void>
 
 /**
@@ -17,7 +20,11 @@ export class Router {
   /**
    * Add a GET route
    */
-  get(path: string, handler: ControllerHandler, middlewares: MiddlewareHandler[] = []): void {
+  get(
+    path: string,
+    handler: ControllerHandler,
+    middlewares: MiddlewareHandler[] = [],
+  ): void {
     this.routes.push({
       method: 'GET',
       path,
@@ -29,7 +36,11 @@ export class Router {
   /**
    * Add a POST route
    */
-  post(path: string, handler: ControllerHandler, middlewares: MiddlewareHandler[] = []): void {
+  post(
+    path: string,
+    handler: ControllerHandler,
+    middlewares: MiddlewareHandler[] = [],
+  ): void {
     this.routes.push({
       method: 'POST',
       path,
@@ -41,7 +52,11 @@ export class Router {
   /**
    * Add a PUT route
    */
-  put(path: string, handler: ControllerHandler, middlewares: MiddlewareHandler[] = []): void {
+  put(
+    path: string,
+    handler: ControllerHandler,
+    middlewares: MiddlewareHandler[] = [],
+  ): void {
     this.routes.push({
       method: 'PUT',
       path,
@@ -53,7 +68,11 @@ export class Router {
   /**
    * Add a DELETE route
    */
-  delete(path: string, handler: ControllerHandler, middlewares: MiddlewareHandler[] = []): void {
+  delete(
+    path: string,
+    handler: ControllerHandler,
+    middlewares: MiddlewareHandler[] = [],
+  ): void {
     this.routes.push({
       method: 'DELETE',
       path,
@@ -65,7 +84,11 @@ export class Router {
   /**
    * Add a PATCH route
    */
-  patch(path: string, handler: ControllerHandler, middlewares: MiddlewareHandler[] = []): void {
+  patch(
+    path: string,
+    handler: ControllerHandler,
+    middlewares: MiddlewareHandler[] = [],
+  ): void {
     this.routes.push({
       method: 'PATCH',
       path,
@@ -77,9 +100,13 @@ export class Router {
   /**
    * Handle incoming request
    */
-  async handleRequest(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  async handleRequest(
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     const route = this.findRoute(req.method || 'GET', req.url || '')
-    
+
     if (!route) {
       res.writeHead(404, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: false, error: 'Not found' }))
@@ -88,7 +115,7 @@ export class Router {
 
     try {
       const params = this.extractParams(req.url || '', route.path)
-      
+
       // Execute middlewares if they exist
       if (route.middlewares && route.middlewares.length > 0) {
         await this.executeMiddlewares(route.middlewares, req, res)
@@ -99,7 +126,9 @@ export class Router {
     } catch (error) {
       console.error('Request handling error:', error)
       res.writeHead(500, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ success: false, error: 'Internal server error' }))
+      res.end(
+        JSON.stringify({ success: false, error: 'Internal server error' }),
+      )
     }
   }
 
@@ -107,7 +136,7 @@ export class Router {
    * Find matching route
    */
   private findRoute(method: string, path: string): RouteDefinition | undefined {
-    return this.routes.find(route => {
+    return this.routes.find((route) => {
       if (route.method !== method) return false
       return this.matchPath(route.path, path)
     })
@@ -164,13 +193,18 @@ export class Router {
   /**
    * Execute middlewares
    */
-  private async executeMiddlewares(middlewares: MiddlewareHandler[], req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
+  private async executeMiddlewares(
+    middlewares: MiddlewareHandler[],
+    req: IncomingMessage,
+    res: ServerResponse,
+    _user?: AuthenticatedUser,
+  ): Promise<void> {
     for (const middleware of middlewares) {
       await new Promise<void>((resolve, reject) => {
         const result = middleware(req, res, () => {
           resolve()
         })
-        
+
         if (result instanceof Promise) {
           result.then(resolve).catch(reject)
         }
@@ -198,11 +232,11 @@ export class Router {
   private async parseRequestBody(req: IncomingMessage): Promise<unknown> {
     return new Promise((resolve, reject) => {
       let body = ''
-      
+
       req.on('data', (chunk) => {
         body += chunk.toString()
       })
-      
+
       req.on('end', () => {
         try {
           if (body) {
@@ -219,7 +253,7 @@ export class Router {
           reject(error)
         }
       })
-      
+
       req.on('error', (error) => {
         reject(error)
       })
@@ -232,4 +266,4 @@ export class Router {
  */
 export const createRouter = (): Router => {
   return new Router()
-} 
+}

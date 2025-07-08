@@ -10,20 +10,20 @@ import { MiddlewareHandler } from '../types/express/index.js'
 export const securityHeadersMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   // Content Security Policy
   res.setHeader(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' https://cdn.posthog.com; " +
-    "style-src 'self' 'unsafe-inline'; " +
-    "img-src 'self' data: https:; " +
-    "font-src 'self' https:; " +
-    "connect-src 'self' https: wss:; " +
-    "frame-ancestors 'none'; " +
-    "base-uri 'self'; " +
-    "form-action 'self'"
+      "script-src 'self' 'unsafe-inline' https://cdn.posthog.com; " +
+      "style-src 'self' 'unsafe-inline'; " +
+      "img-src 'self' data: https:; " +
+      "font-src 'self' https:; " +
+      "connect-src 'self' https: wss:; " +
+      "frame-ancestors 'none'; " +
+      "base-uri 'self'; " +
+      "form-action 'self'",
   )
 
   // Prevent clickjacking attacks
@@ -39,17 +39,20 @@ export const securityHeadersMiddleware: MiddlewareHandler = async (
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
 
   // HTTP Strict Transport Security (HSTS)
-  if (req.headers['x-forwarded-proto'] === 'https' || (req.socket as TLSSocket).encrypted) {
+  if (
+    req.headers['x-forwarded-proto'] === 'https' ||
+    (req.socket as TLSSocket).encrypted
+  ) {
     res.setHeader(
       'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains; preload'
+      'max-age=31536000; includeSubDomains; preload',
     )
   }
 
   // Permissions Policy (replace Feature-Policy)
   res.setHeader(
     'Permissions-Policy',
-    'camera=(), microphone=(), geolocation=(), payment=(), usb=()'
+    'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
   )
 
   // Remove potentially revealing headers
@@ -58,7 +61,10 @@ export const securityHeadersMiddleware: MiddlewareHandler = async (
 
   // Set secure headers for API responses
   res.setHeader('X-API-Version', '1.0')
-  res.setHeader('X-Request-ID', req.headers['x-request-id'] || generateRequestId())
+  res.setHeader(
+    'X-Request-ID',
+    req.headers['x-request-id'] || generateRequestId(),
+  )
 
   _next()
 }
@@ -70,7 +76,7 @@ export const securityHeadersMiddleware: MiddlewareHandler = async (
 export const csrfProtectionMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   // Skip CSRF protection for GET, HEAD, OPTIONS requests
   if (req.method && ['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
@@ -79,15 +85,18 @@ export const csrfProtectionMiddleware: MiddlewareHandler = async (
   }
 
   // Check for CSRF token in headers
-  const csrfToken = req.headers['x-csrf-token'] || req.headers['x-requested-with']
-  
+  const csrfToken =
+    req.headers['x-csrf-token'] || req.headers['x-requested-with']
+
   if (!csrfToken) {
     res.writeHead(403, { 'Content-Type': 'application/json' })
-    res.end(JSON.stringify({
-      success: false,
-      error: 'CSRF protection: missing token',
-      code: 'CSRF_TOKEN_MISSING'
-    }))
+    res.end(
+      JSON.stringify({
+        success: false,
+        error: 'CSRF protection: missing token',
+        code: 'CSRF_TOKEN_MISSING',
+      }),
+    )
     return
   }
 
@@ -101,7 +110,7 @@ export const csrfProtectionMiddleware: MiddlewareHandler = async (
 export const contentTypeValidationMiddleware: MiddlewareHandler = async (
   req: IncomingMessage,
   res: ServerResponse,
-  _next: () => void
+  _next: () => void,
 ): Promise<void> => {
   // Skip for GET, HEAD, OPTIONS requests
   if (req.method && ['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
@@ -110,27 +119,31 @@ export const contentTypeValidationMiddleware: MiddlewareHandler = async (
   }
 
   const contentType = req.headers['content-type']
-  
+
   // Require content-type for requests with body
   if (req.method && ['POST', 'PUT', 'PATCH'].includes(req.method)) {
     if (!contentType) {
       res.writeHead(400, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: 'Content-Type header is required',
-        code: 'CONTENT_TYPE_MISSING'
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: 'Content-Type header is required',
+          code: 'CONTENT_TYPE_MISSING',
+        }),
+      )
       return
     }
 
     // Validate content type for JSON APIs
     if (!contentType.includes('application/json')) {
       res.writeHead(415, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: 'Content-Type must be application/json',
-        code: 'INVALID_CONTENT_TYPE'
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: 'Content-Type must be application/json',
+          code: 'INVALID_CONTENT_TYPE',
+        }),
+      )
       return
     }
   }
@@ -142,17 +155,25 @@ export const contentTypeValidationMiddleware: MiddlewareHandler = async (
  * Request size limit middleware
  * Prevents DoS attacks through large payloads
  */
-export const requestSizeLimitMiddleware = (maxSize: number = 1024 * 1024): MiddlewareHandler => {
-  return async (req: IncomingMessage, res: ServerResponse, _next: () => void): Promise<void> => {
+export const requestSizeLimitMiddleware = (
+  maxSize: number = 1024 * 1024,
+): MiddlewareHandler => {
+  return async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    _next: () => void,
+  ): Promise<void> => {
     const contentLength = parseInt(req.headers['content-length'] || '0', 10)
-    
+
     if (contentLength > maxSize) {
       res.writeHead(413, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({
-        success: false,
-        error: `Request size too large. Maximum allowed: ${maxSize} bytes`,
-        code: 'PAYLOAD_TOO_LARGE'
-      }))
+      res.end(
+        JSON.stringify({
+          success: false,
+          error: `Request size too large. Maximum allowed: ${maxSize} bytes`,
+          code: 'PAYLOAD_TOO_LARGE',
+        }),
+      )
       return
     }
 

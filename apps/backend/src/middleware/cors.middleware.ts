@@ -2,22 +2,18 @@ import { IncomingMessage, ServerResponse } from 'http'
 
 import { env } from '../config/env.schema.js'
 
-const allowedOrigins = env.ALLOWED_ORIGINS.length > 0 ? env.ALLOWED_ORIGINS : [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:5173',
-  'https://strato.app',
-  'https://app.strato.app',
-]
+const allowedOrigins =
+  env.ALLOWED_ORIGINS.length > 0
+    ? env.ALLOWED_ORIGINS
+    : [
+        'http://localhost:3000',
+        'http://localhost:3001',
+        'http://localhost:5173',
+        'https://strato.app',
+        'https://app.strato.app',
+      ]
 
-const allowedMethods = [
-  'GET',
-  'POST',
-  'PUT',
-  'DELETE',
-  'PATCH',
-  'OPTIONS',
-]
+const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
 
 const allowedHeaders = [
   'Content-Type',
@@ -39,7 +35,8 @@ export const corsMiddleware = (
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
     res.writeHead(200, {
-      'Access-Control-Allow-Origin': origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0],
+      'Access-Control-Allow-Origin':
+        origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0],
       'Access-Control-Allow-Methods': allowedMethods.join(', '),
       'Access-Control-Allow-Headers': allowedHeaders.join(', '),
       'Access-Control-Max-Age': '86400', // 24 hours
@@ -60,7 +57,7 @@ export const corsMiddleware = (
   res.setHeader('Access-Control-Allow-Methods', allowedMethods.join(', '))
   res.setHeader('Access-Control-Allow-Headers', allowedHeaders.join(', '))
 
-_next()
+  _next()
 }
 
 // Development CORS middleware (more permissive)
@@ -76,5 +73,5 @@ export const devCorsMiddleware = (
     res.setHeader('Access-Control-Allow-Credentials', 'true')
   }
 
-_next()
-} 
+  _next()
+}

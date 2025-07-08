@@ -1,6 +1,6 @@
-import { PostHog} from 'posthog-node'
+import { PostHog } from 'posthog-node'
 
-import { ApiError} from '../utils/ApiError.js'
+import { ApiError } from '../utils/ApiError.js'
 import logger from './logger.service.js'
 
 const POSTHOG_API_KEY = process.env.POSTHOG_API_KEY
@@ -52,7 +52,11 @@ export class PostHogService {
     }
   }
 
-  async track(event: string, userId?: string, properties?: Record<string, any>) {
+  async track(
+    event: string,
+    userId?: string,
+    properties?: Record<string, any>,
+  ) {
     if (userId) {
       PostHogService.captureEvent(userId, event, properties)
     }

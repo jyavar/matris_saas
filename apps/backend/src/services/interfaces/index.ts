@@ -26,15 +26,25 @@ export interface ICache {
 }
 
 export interface IAuthService {
-  signUp(data: { email: string; password: string; name: string }): Promise<{ user: unknown; session: unknown }>
-  signIn(data: { email: string; password: string }): Promise<{ user: unknown; session: unknown }>
+  signUp(data: {
+    email: string
+    password: string
+    name: string
+  }): Promise<{ user: unknown; session: unknown }>
+  signIn(data: {
+    email: string
+    password: string
+  }): Promise<{ user: unknown; session: unknown }>
   signOut(token: string): Promise<void>
   verifyToken(token: string): Promise<{ user: unknown } | null>
 }
 
 export interface IBillingService {
   createCustomer(userId: string, email: string): Promise<{ customerId: string }>
-  createSubscription(customerId: string, priceId: string): Promise<{ subscriptionId: string }>
+  createSubscription(
+    customerId: string,
+    priceId: string,
+  ): Promise<{ subscriptionId: string }>
   cancelSubscription(subscriptionId: string): Promise<void>
   getSubscription(subscriptionId: string): Promise<any>
 }
@@ -42,24 +52,43 @@ export interface IBillingService {
 export interface IUserService {
   createUser(data: { email: string; name: string }): Promise<{ id: string }>
   getUserById(id: string): Promise<any>
-  updateUser(id: string, data: Partial<{ email: string; name: string }>): Promise<any>
+  updateUser(
+    id: string,
+    data: Partial<{ email: string; name: string }>,
+  ): Promise<any>
   deleteUser(id: string): Promise<void>
 }
 
 export interface IEmailService {
   sendEmail(to: string, subject: string, html: string): Promise<void>
-  sendTemplate(to: string, templateId: string, data: Record<string, any>): Promise<void>
+  sendTemplate(
+    to: string,
+    templateId: string,
+    data: Record<string, any>,
+  ): Promise<void>
 }
 
 export interface IAnalyticsService {
-  track(event: string, userId?: string, properties?: Record<string, any>): Promise<void>
+  track(
+    event: string,
+    userId?: string,
+    properties?: Record<string, any>,
+  ): Promise<void>
   identify(userId: string, traits: Record<string, any>): Promise<void>
 }
 
 export interface IStorageService {
-  uploadFile(bucket: string, path: string, file: Buffer): Promise<{ path: string; url: string }>
+  uploadFile(
+    bucket: string,
+    path: string,
+    file: Buffer,
+  ): Promise<{ path: string; url: string }>
   deleteFile(bucket: string, path: string): Promise<void>
-  getSignedUrl(bucket: string, path: string, expiresIn?: number): Promise<string>
+  getSignedUrl(
+    bucket: string,
+    path: string,
+    expiresIn?: number,
+  ): Promise<string>
 }
 
 export interface ServiceContainer {

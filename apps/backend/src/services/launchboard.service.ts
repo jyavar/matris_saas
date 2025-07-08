@@ -32,7 +32,10 @@ export class LaunchboardService {
     return this.dashboards.find((d) => d.id === id) || null
   }
 
-  async createDashboard(data: { name: string; widgets: Widget[] }): Promise<Dashboard> {
+  async createDashboard(data: {
+    name: string
+    widgets: Widget[]
+  }): Promise<Dashboard> {
     const newDashboard: Dashboard = {
       id: `dashboard-${Date.now()}`,
       name: data.name,
@@ -42,7 +45,10 @@ export class LaunchboardService {
     return newDashboard
   }
 
-  async updateDashboard(id: string, data: Partial<{ name: string; widgets: Widget[] }>): Promise<Dashboard | null> {
+  async updateDashboard(
+    id: string,
+    data: Partial<{ name: string; widgets: Widget[] }>,
+  ): Promise<Dashboard | null> {
     const dashboard = this.dashboards.find((d) => d.id === id)
     if (!dashboard) return null
     if (data.name) dashboard.name = data.name
@@ -58,4 +64,4 @@ export class LaunchboardService {
   }
 }
 
-export const launchboardService = new LaunchboardService() 
+export const launchboardService = new LaunchboardService()

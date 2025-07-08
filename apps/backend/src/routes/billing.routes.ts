@@ -1,9 +1,10 @@
-import { 
+import {
   createInvoice,
   deleteInvoice,
   getInvoiceById,
   getInvoices,
-  updateInvoice} from '../controllers/billing.controller.js'
+  updateInvoice,
+} from '../controllers/billing.controller.js'
 
 export const billingRoutes = [
   { method: 'GET', path: '/invoices', handler: getInvoices },

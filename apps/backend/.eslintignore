@@ -1,1 +1,37 @@
-coverage/ 
+# Test files and directories
+src/tests/
+src/services/__tests__/
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Test utilities and helpers
+src/utils/test-helper.ts
+
+# Test configuration
+vitest.setup.ts
+vitest.config.ts
+vitest.config.mts
+
+# Build outputs
+dist/
+build/
+*.d.ts
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env*
+!.env.example
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.temp 

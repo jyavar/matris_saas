@@ -1,12 +1,13 @@
-import { 
-  createCampaign, 
+import {
+  createCampaign,
   deleteCampaign,
   getCampaignAnalytics,
-  getCampaignById, 
-  getCampaigns, 
+  getCampaignById,
+  getCampaigns,
   pauseCampaign,
   resumeCampaign,
-  updateCampaign} from '../controllers/campaigns.controller.js'
+  updateCampaign,
+} from '../controllers/campaigns.controller.js'
 import type { RouteDefinition } from '../types/express/index'
 
 // Route definitions - No middleware for tests

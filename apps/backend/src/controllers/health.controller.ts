@@ -1,11 +1,10 @@
-
 import type { ControllerHandler } from '../types/express/index.js'
 
 export const healthController = {
   /**
    * Health check endpoint
    */
-  getHealth: (async (_req, res, _params _body _user => {
+  getHealth: (async (_req, res, _params, _body, _user) => {
     try {
       const health = {
         status: 'healthy',

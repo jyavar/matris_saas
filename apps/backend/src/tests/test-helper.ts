@@ -1,8 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 
-import { server } from '../index.js'
-
+import { server } from '../index.js';
 /**
  * Test helper for Node.js pure HTTP server
  */
