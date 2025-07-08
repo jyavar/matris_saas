@@ -31,18 +31,18 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             {isLogin ? 'Iniciar sesión' : 'Crear cuenta'}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
             {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}{' '}
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
             >
               {isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí'}
             </button>
@@ -50,9 +50,17 @@ export default function LoginPage() {
         </div>
 
         <Card className="mt-8">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form
+            className="space-y-6"
+            onSubmit={handleSubmit}
+            aria-label={
+              isLogin
+                ? 'Formulario de inicio de sesión'
+                : 'Formulario de registro'
+            }
+          >
             {authError && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm dark:bg-red-900 dark:border-red-700 dark:text-red-200">
                 {authError}
               </div>
             )}
@@ -81,11 +89,7 @@ export default function LoginPage() {
               id="password"
             />
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full" disabled={loading}>
               {isLogin ? 'Iniciar sesión' : 'Crear cuenta'}
             </Button>
           </form>
@@ -94,7 +98,7 @@ export default function LoginPage() {
         <div className="text-center">
           <Link
             href="/"
-            className="font-medium text-blue-600 hover:text-blue-500 text-sm"
+            className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-sm"
           >
             ← Volver al inicio
           </Link>
