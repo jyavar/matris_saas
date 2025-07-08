@@ -1,11 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
+// Import Widget interface from service
+import type { Widget } from '../services/launchboard.service.js'
 import { launchboardService } from '../services/launchboard.service.js'
 import type { AuthenticatedUser, RequestBody } from '../types/express/index.js'
 import { sendCreated, sendError, sendSuccess } from '../utils/response.helper.js'
-
-// Import Widget interface from service
-import type { Widget } from '../services/launchboard.service.js'
 export const launchboardController = {
   async getDashboards(req: IncomingMessage, res: ServerResponse, _user?: AuthenticatedUser): Promise<void> {
     try {

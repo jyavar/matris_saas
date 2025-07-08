@@ -1,6 +1,6 @@
 
-import logger from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 // Tipos estrictos para campañas de email
 export interface EmailCampaign {

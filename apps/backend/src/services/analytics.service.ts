@@ -1,8 +1,8 @@
 import { TablesInsert, TablesUpdate } from '@repo/db-types'
 import { z } from 'zod'
 
-import { ApiError } from '../utils/ApiError.js'
 import { Json } from '../types/supabase.types.js'
+import { ApiError } from '../utils/ApiError.js'
 import { logAction } from './logger.service.js'
 import { supabase } from './supabase.service.js'
 

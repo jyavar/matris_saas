@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-import logger from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 export const onboardingSchema = z.object({
   email: z.string().email(),

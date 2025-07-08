@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 
-import logger from './logger.service.js'
 import { ApiError } from '../utils/ApiError.js'
+import logger from './logger.service.js'
 
 export interface GenerateTextData {
   prompt: string
