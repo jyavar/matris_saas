@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "message": "Dry-run completed successfully",
+  "executionTime": 1,
+  "metadata": {
+    "version": "2.0.0",
+    "environment": "test",
+    "timestamp": "2025-07-09T18:55:14.065Z",
+    "agentName": "@data"
+  },
+  "data": {
+    "timestamp": "2025-07-09T18:55:14.066Z",
+    "status": "SUCCESS",
+    "operations": {
+      "migration": {
+        "status": "SKIPPED",
+        "message": "Dry-run mode"
+      },
+      "seeding": {
+        "status": "SKIPPED",
+        "message": "Dry-run mode"
+      },
+      "validation": {
+        "status": "SKIPPED",
+        "message": "Dry-run mode"
+      },
+      "backup": {
+        "status": "SKIPPED",
+        "message": "Dry-run mode"
+      },
+      "analytics": {
+        "status": "SKIPPED",
+        "message": "Dry-run mode"
+      }
+    },
+    "summary": "Dry-run completed",
+    "errors": [],
+    "warnings": []
+  },
+  "insights": [],
+  "recommendations": []
+}

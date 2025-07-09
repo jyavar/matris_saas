@@ -4,7 +4,7 @@
  * @data Agent - Entry Point
  */
 
-import { DataAgent, type DataOptions } from './autofix'
+import { DataAgent, type DataOptions, type DataResult } from './autofix'
 import { commands } from './commands'
 
 export interface DataManagerOptions {
@@ -39,10 +39,11 @@ export class DataManager {
 
   async execute(): Promise<void> {
     switch (this.options.mode) {
-      case 'run':
+      case 'run': {
         const agent = new DataAgent(this.options)
         await agent.run()
         break
+      }
       case 'validate':
         await commands.validate()
         break
@@ -129,13 +130,13 @@ Options:
 }
 
 // For orchestrator
-export async function runAgent(): Promise<void> {
-  const manager = new DataManager({ mode: 'run' })
-  await manager.execute()
+export async function runAgent(options: Partial<DataOptions> = {}): Promise<DataResult> {
+  const agent = new DataAgent(options)
+  return await agent.run()
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(console.error)
 }
 
-export { DataAgent, commands }
+export { commands, DataAgent }

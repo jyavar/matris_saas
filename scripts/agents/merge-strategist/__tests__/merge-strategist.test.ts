@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { execSync } from 'child_process'
 import fs from 'fs'
 import { join } from 'path'
+import { beforeEach,describe, expect, it, vi } from 'vitest'
 
 // Mock de dependencias
 vi.mock('child_process', () => ({
@@ -26,8 +26,8 @@ vi.mock('path', () => ({
 }))
 
 // Importar después de los mocks
-import runAgent from '../plan-merge'
 import ConflictResolver from '../conflict-resolver'
+import runAgent from '../plan-merge'
 
 describe('@merge-strategist Agent', () => {
   const mockExecSync = vi.mocked(execSync)

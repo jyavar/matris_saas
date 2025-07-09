@@ -5,48 +5,46 @@
 // tags: context, watchdog, enforcement, strato, ai, orchestration, security
 
 import * as fs from 'fs'
-import * as process from 'process'
 import { join } from 'path'
+import * as process from 'process'
 import { z } from 'zod'
 
 import * as logic from './strato.logic.js'
 
-// Schema para score técnico
-const ContextScoreSchema = z.object({
-  timestamp: z.string(),
-  agentName: z.string(),
-  executionId: z.string(),
-  metrics: z.object({
-    filesAnalyzed: z.number(),
-    violationsDetected: z.number(),
-    criticalViolations: z.number(),
-    riskLevel: z.enum(['low', 'medium', 'high', 'critical']),
-    executionTimeMs: z.number(),
-    successRate: z.number(),
-    testCoverage: z.number(),
-    codeQuality: z.number(),
-    securityScore: z.number(),
-    overallScore: z.number(),
-  }),
-  details: z.object({
-    filesProcessed: z.array(z.string()),
-    violationsByType: z.record(z.string(), z.number()),
-    recommendations: z.array(z.string()),
-    warnings: z.array(z.string()),
-    errors: z.array(z.string()),
-  }),
-  compliance: z.object({
-    hasTests: z.boolean(),
-    hasValidation: z.boolean(),
-    hasLogging: z.boolean(),
-    hasSecurity: z.boolean(),
-    hasBackup: z.boolean(),
-    hasAI: z.boolean(),
-    hasOrchestration: z.boolean(),
-  }),
-})
-
-type ContextScore = z.infer<typeof ContextScoreSchema>
+// Elimino ContextScoreSchema y dejo solo el type:
+type ContextScore = {
+  timestamp: string
+  agentName: string
+  executionId: string
+  metrics: {
+    filesAnalyzed: number
+    violationsDetected: number
+    criticalViolations: number
+    riskLevel: 'low' | 'medium' | 'high' | 'critical'
+    executionTimeMs: number
+    successRate: number
+    testCoverage: number
+    codeQuality: number
+    securityScore: number
+    overallScore: number
+  }
+  details: {
+    filesProcessed: string[]
+    violationsByType: Record<string, number>
+    recommendations: string[]
+    warnings: string[]
+    errors: string[]
+  }
+  compliance: {
+    hasTests: boolean
+    hasValidation: boolean
+    hasLogging: boolean
+    hasSecurity: boolean
+    hasBackup: boolean
+    hasAI: boolean
+    hasOrchestration: boolean
+  }
+}
 
 // Schema para análisis de contexto con AI
 const ContextAnalysisSchema = z.object({
@@ -75,7 +73,7 @@ const OrchestrationConfigSchema = z.object({
   hooks: z.array(z.object({
     name: z.string(),
     type: z.enum(['pre', 'post', 'error']),
-    function: z.function().args(z.any(), z.any()).returns(z.promise(z.void())),
+    function: z.function().args(z.unknown(), z.unknown()).returns(z.promise(z.void())),
     priority: z.number().min(1).max(10).default(5),
     enabled: z.boolean().default(true),
   })).default([]),
@@ -112,8 +110,8 @@ class ContextWatchdog {
   private deps: ContextWatchdogDeps
   private projectRoot: string
   private config: OrchestrationConfig
-  private hooks: Map<string, any> = new Map()
-  private dependencies: Map<string, any> = new Map()
+  private hooks: Map<string, unknown> = new Map()
+  private dependencies: Map<string, unknown> = new Map()
 
   constructor(deps: ContextWatchdogDeps, config?: Partial<OrchestrationConfig>) {
     this.deps = deps
@@ -191,15 +189,15 @@ class ContextWatchdog {
     }
   }
 
-  addHook(hook: any): void {
-    this.hooks.set(hook.name, hook)
+  addHook(hook: unknown): void {
+    this.hooks.set((hook as { name: string }).name, hook)
   }
 
-  addDependency(dependency: any): void {
-    this.dependencies.set(dependency.agentName, dependency)
+  addDependency(dependency: unknown): void {
+    this.dependencies.set((dependency as { agentName: string }).agentName, dependency)
   }
 
-  async runAgent(input?: any): Promise<void> {
+  async runAgent(): Promise<void> {
     const executionId = `context-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
     const startTime = Date.now()
     
@@ -274,8 +272,15 @@ class ContextWatchdog {
         log.actionsPerformed.push('✅ Context analysis completed')
       })
 
-      // 5. Generar score técnico con métricas actualizadas
-      this.generateScore(log, startTime, executionId, true, orchestrationResult)
+      // 5. Verificar resultado de orquestación
+      if (!orchestrationResult.success) {
+        log.status = 'fail'
+        log.errors.push(...orchestrationResult.errors)
+        log.warnings.push(...orchestrationResult.warnings)
+      }
+      
+      // 6. Generar score técnico con métricas actualizadas
+      this.generateScore(log, startTime, executionId, orchestrationResult.success, orchestrationResult)
       
     } catch (error) {
       log.status = 'fail'
@@ -340,17 +345,17 @@ class ContextWatchdog {
 
   private async executeHooks(type: 'pre' | 'post' | 'error', result: ContextWatchdogResult): Promise<void> {
     const hooks = Array.from(this.hooks.values())
-      .filter(hook => hook.type === type && hook.enabled)
-      .sort((a, b) => b.priority - a.priority)
+      .filter(hook => (hook as { type: string }).type === type && (hook as { enabled: boolean }).enabled)
+      .sort((a, b) => (b as { priority: number }).priority - (a as { priority: number }).priority)
 
     for (const hook of hooks) {
       try {
-        console.log(`🔧 [${this.config.agentName}] Ejecutando hook: ${hook.name}`)
-        await hook.function(this, result)
-        result.hooksExecuted.push(hook.name)
+        console.log(`🔧 [${this.config.agentName}] Ejecutando hook: ${(hook as { name: string }).name}`)
+        await (hook as { function: (context: ContextWatchdog, result: ContextWatchdogResult) => Promise<void> }).function(this, result)
+        result.hooksExecuted.push((hook as { name: string }).name)
       } catch (error) {
-        console.error(`⚠️ [${this.config.agentName}] Error en hook ${hook.name}:`, error)
-        result.warnings.push(`Hook ${hook.name} failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+        console.error(`⚠️ [${this.config.agentName}] Error en hook ${(hook as { name: string }).name}:`, error)
+        result.warnings.push(`Hook ${(hook as { name: string }).name} failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
       }
     }
   }
@@ -360,35 +365,35 @@ class ContextWatchdog {
 
     for (const dep of dependencies) {
       try {
-        console.log(`🔗 [${this.config.agentName}] Verificando dependencia: ${dep.agentName}`)
+        console.log(`🔗 [${this.config.agentName}] Verificando dependencia: ${(dep as { agentName: string }).agentName}`)
         await this.waitForDependency(dep)
-        result.dependenciesMet.push(dep.agentName)
+        result.dependenciesMet.push((dep as { agentName: string }).agentName)
       } catch (error) {
-        if (dep.required) {
-          throw new Error(`Required dependency ${dep.agentName} failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+        if ((dep as { required: boolean }).required) {
+          throw new Error(`Required dependency ${(dep as { agentName: string }).agentName} failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
         } else {
-          console.warn(`⚠️ [${this.config.agentName}] Optional dependency ${dep.agentName} failed:`, error)
-          result.warnings.push(`Optional dependency ${dep.agentName} failed`)
+          console.warn(`⚠️ [${this.config.agentName}] Optional dependency ${(dep as { agentName: string }).agentName} failed:`, error)
+          result.warnings.push(`Optional dependency ${(dep as { agentName: string }).agentName} failed`)
         }
       }
     }
   }
 
-  private async waitForDependency(dependency: any): Promise<void> {
+  private async waitForDependency(dependency: unknown): Promise<void> {
     const startTime = Date.now()
     
-    while (Date.now() - startTime < dependency.timeout) {
+    while (Date.now() - startTime < (dependency as { timeout: number }).timeout) {
       if (Math.random() > 0.8) {
         return
       }
       await new Promise(resolve => setTimeout(resolve, 100))
     }
     
-    throw new Error(`Dependency ${dependency.agentName} timeout after ${dependency.timeout}ms`)
+    throw new Error(`Dependency ${(dependency as { agentName: string }).agentName} timeout after ${(dependency as { timeout: number }).timeout}ms`)
   }
 
   // Hooks implementados
-  private async validateEnvironment(context: any, result: ContextWatchdogResult): Promise<void> {
+  private async validateEnvironment(): Promise<void> {
     const requiredEnvVars = ['NODE_ENV']
     const missingVars = requiredEnvVars.filter(varName => !process.env[varName])
     
@@ -397,23 +402,23 @@ class ContextWatchdog {
     }
   }
 
-  private async backupContext(context: any, result: ContextWatchdogResult): Promise<void> {
+  private async backupContext(): Promise<void> {
     console.log(`💾 [${this.config.agentName}] Creando backup del contexto...`)
   }
 
-  private async generateContextReport(context: any, result: ContextWatchdogResult): Promise<void> {
+  private async generateContextReport(): Promise<void> {
     console.log(`📊 [${this.config.agentName}] Generando reporte de contexto...`)
   }
 
-  private async notifyContextStatus(context: any, result: ContextWatchdogResult): Promise<void> {
+  private async notifyContextStatus(): Promise<void> {
     console.log(`📢 [${this.config.agentName}] Notificando estado del contexto...`)
   }
 
-  private async handleContextError(context: any, result: ContextWatchdogResult): Promise<void> {
+  private async handleContextError(): Promise<void> {
     console.log(`🚨 [${this.config.agentName}] Manejando errores de contexto...`)
   }
 
-  private async analyzeContextWithAI(files: string[], manifest: any): Promise<ContextAnalysis[]> {
+  private async analyzeContextWithAI(files: string[], manifest: unknown): Promise<ContextAnalysis[]> {
     const analyses: ContextAnalysis[] = []
     
     for (const file of files) {
@@ -428,8 +433,8 @@ class ContextWatchdog {
         violationType,
         severity,
         confidence,
-        analysis: this.generateAnalysisText(file, violationType, severity),
-        recommendations: this.generateContextRecommendations(file, violationType, severity),
+        analysis: this.generateAnalysisText(file, violationType),
+        recommendations: this.generateContextRecommendations(file, violationType),
         riskFactors: this.identifyRiskFactors(file, violationType),
         aiModel: `context-watchdog-ai-${this.config.version}`,
         processingTime: Date.now() - startTime,
@@ -441,23 +446,26 @@ class ContextWatchdog {
     return analyses
   }
 
-  private determineViolationType(filePath: string, manifest: any): 'path' | 'naming' | 'structure' | 'security' {
+  private determineViolationType(filePath: string, manifest: unknown): 'path' | 'naming' | 'structure' | 'security' {
     const relativePath = filePath.replace(process.cwd(), '').replace(/^\//, '')
     
     // Verificar si está en rutas prohibidas
-    if (manifest.forbiddenPaths.some((pattern: string) => 
-      this.matchesPattern(relativePath, pattern)
-    )) {
-      return 'path'
+    if (manifest && typeof manifest === 'object' && 'forbiddenPaths' in manifest && Array.isArray((manifest as { forbiddenPaths: string[] }).forbiddenPaths)) {
+      const forbiddenPaths = (manifest as { forbiddenPaths: string[] }).forbiddenPaths
+      if (forbiddenPaths.some((pattern: string) => 
+        this.matchesPattern(relativePath, pattern)
+      )) {
+        return 'path'
+      }
     }
     
-    // Verificar convenciones de naming
-    if (filePath.includes('test') && !filePath.match(/\.test\.(ts|js|tsx|jsx)$/)) {
+    // Verificar naming
+    if (!/^[a-z0-9-]+(\.[a-z0-9]+)*$/.test(filePath.split('/').pop() || '')) {
       return 'naming'
     }
     
     // Verificar estructura
-    if (filePath.includes('src') && !this.isValidStructure(filePath)) {
+    if (!this.isValidStructure(filePath)) {
       return 'structure'
     }
     
@@ -494,7 +502,7 @@ class ContextWatchdog {
     return Math.min(confidence, 1.0)
   }
 
-  private generateAnalysisText(filePath: string, violationType: string, severity: string): string {
+  private generateAnalysisText(filePath: string, violationType: string): string {
     const templates = {
       path: `Archivo ${filePath} está en una ruta potencialmente prohibida.`,
       naming: `Archivo ${filePath} no sigue las convenciones de naming establecidas.`,
@@ -505,7 +513,7 @@ class ContextWatchdog {
     return templates[violationType as keyof typeof templates] || templates.path
   }
 
-  private generateContextRecommendations(filePath: string, violationType: string, severity: string): string[] {
+  private generateContextRecommendations(filePath: string, violationType: string): string[] {
     const recommendations: string[] = []
     
     if (violationType === 'path') {
@@ -517,7 +525,7 @@ class ContextWatchdog {
       recommendations.push('Renombrar siguiendo las convenciones del proyecto')
     }
     
-    if (severity === 'critical') {
+    if (violationType === 'security') {
       recommendations.push('Revisar inmediatamente antes del commit')
     }
     
@@ -549,23 +557,31 @@ class ContextWatchdog {
   }
 
   private generateScore(
-    log: any, 
+    log: unknown, 
     startTime: number, 
     executionId: string, 
-    success: boolean,
-    orchestrationResult?: ContextWatchdogResult
+    success: boolean
   ): void {
     try {
       const executionTime = Date.now() - startTime
-      const filesAnalyzed = log.analyses?.length || 0
-      const violationsDetected = log.violations?.length || 0
-      const criticalViolations = log.analyses?.filter((a: any) => a.severity === 'critical').length || 0
+      
+      // Validar y extraer datos del log de forma segura
+      const logData = log as {
+        analyses?: Array<{ severity: string; filePath: string; recommendations: string[] }>
+        violations?: string[]
+        warnings?: string[]
+        errors?: string[]
+      }
+      
+      const filesAnalyzed = logData.analyses?.length || 0
+      const violationsDetected = logData.violations?.length || 0
+      const criticalViolations = logData.analyses?.filter((a) => a.severity === 'critical').length || 0
       
       // Calcular métricas
       const successRate = success ? 1.0 : 0.0
       const testCoverage = 0.95
       const codeQuality = 0.92
-      const securityScore = log.errors.some((e: string) => e.includes('Security')) ? 0.5 : 0.95
+      const securityScore = logData.errors?.some((e: string) => e.includes('Security')) ? 0.5 : 0.95
       
       // Score general ponderado
       const overallScore = (
@@ -593,11 +609,11 @@ class ContextWatchdog {
           overallScore,
         },
         details: {
-          filesProcessed: log.analyses?.map((a: any) => a.filePath) || [],
-          violationsByType: this.calculateViolationsByType(log.analyses || []),
-          recommendations: log.analyses?.flatMap((a: any) => a.recommendations) || [],
-          warnings: log.warnings,
-          errors: log.errors,
+          filesProcessed: logData.analyses?.map((a) => a.filePath) || [],
+          violationsByType: this.calculateViolationsByType(logData.analyses || []),
+          recommendations: logData.analyses?.flatMap((a) => a.recommendations) || [],
+          warnings: logData.warnings || [],
+          errors: logData.errors || [],
         },
         compliance: {
           hasTests: true,
@@ -638,7 +654,7 @@ class ContextWatchdog {
     return violationTypes
   }
 
-  private saveReport(log: any): void {
+  private saveReport(log: unknown): void {
     this.deps.writeFileSync(
       'audit-artifacts/reports/context-watchdog-report.json',
       JSON.stringify(log, null, 2),
@@ -662,7 +678,7 @@ class ContextWatchdog {
   }
 
   // Métodos de acceso a la lógica
-  private getManifest() {
+  private getManifest(): unknown {
     return (this.deps.getManifest || logic.getManifest)()
   }
 
@@ -670,7 +686,7 @@ class ContextWatchdog {
     return (this.deps.getChangedFilesAgainstMain || logic.getChangedFilesAgainstMain)()
   }
 
-  private validateFiles(files: string[], manifest: any): string[] {
+  private validateFiles(files: string[], manifest: unknown): string[] {
     return (this.deps.validateFiles || logic.validateFiles)(files, manifest)
   }
 

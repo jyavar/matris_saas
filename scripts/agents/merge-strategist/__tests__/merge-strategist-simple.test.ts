@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
 import fs from 'fs'
+import { beforeEach,describe, expect, it, vi } from 'vitest'
 
 // Mock de dependencias
 vi.mock('fs', () => ({
@@ -47,8 +47,8 @@ vi.mock('path', () => ({
 }))
 
 // Importar después de los mocks
-import runAgent from '../plan-merge'
 import ConflictResolver from '../conflict-resolver'
+import runAgent from '../plan-merge'
 
 describe('@merge-strategist Agent - Simple Tests', () => {
   const mockWriteFileSync = vi.mocked(fs.writeFileSync)

@@ -4,8 +4,9 @@
  * @data Agent - Report Generator
  */
 
-import { writeFileSync, mkdirSync } from 'fs'
+import { mkdirSync,writeFileSync } from 'fs'
 import { join } from 'path'
+
 import { DataProcessingResult } from './processor'
 
 export interface DataReport {
@@ -65,7 +66,7 @@ export async function generateReport(
   // Ensure directory exists
   try {
     mkdirSync(outputDir, { recursive: true })
-  } catch (error) {
+  } catch {
     // Directory might already exist, continue
   }
   

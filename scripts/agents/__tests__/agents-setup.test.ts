@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { execSync } from 'child_process'
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { resolve, join } from 'path'
+import { existsSync, mkdirSync,readFileSync, writeFileSync } from 'fs'
+import { join,resolve } from 'path'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('Agents Setup Configuration', () => {
   beforeEach(() => {
@@ -88,39 +88,39 @@ describe('Agents Setup Configuration', () => {
   describe('External Service Mocks', () => {
     it('should have Supabase mock configured', () => {
       // Verificar que el mock de Supabase está disponible
-      expect(vi.mocked(require('@supabase/supabase-js').createClient)).toBeDefined()
+      expect(vi.mocked(await import('@supabase/supabase-js').createClient)).toBeDefined()
     })
 
     it('should have OpenAI mock configured', () => {
       // Verificar que el mock de OpenAI está disponible
-      expect(vi.mocked(require('openai').default)).toBeDefined()
+      expect(vi.mocked(await import('openai').default)).toBeDefined()
     })
 
     it('should have Stripe mock configured', () => {
       // Verificar que el mock de Stripe está disponible
-      expect(vi.mocked(require('stripe').default)).toBeDefined()
+      expect(vi.mocked(await import('stripe').default)).toBeDefined()
     })
 
     it('should have PostHog mock configured', () => {
       // Verificar que el mock de PostHog está disponible
-      expect(vi.mocked(require('posthog-node').PostHog)).toBeDefined()
+      expect(vi.mocked(await import('posthog-node').PostHog)).toBeDefined()
     })
 
     it('should have Resend mock configured', () => {
       // Verificar que el mock de Resend está disponible
-      expect(vi.mocked(require('resend').Resend)).toBeDefined()
+      expect(vi.mocked(await import('resend').Resend)).toBeDefined()
     })
   })
 
   describe('Utility Mocks', () => {
     it('should have minimatch mock configured', () => {
       // Verificar que el mock de minimatch está disponible
-      expect(vi.mocked(require('minimatch').minimatch)).toBeDefined()
+      expect(vi.mocked(await import('minimatch').minimatch)).toBeDefined()
     })
 
     it('should have zod mock configured', () => {
       // Verificar que el mock de zod está disponible
-      expect(vi.mocked(require('zod').z.object)).toBeDefined()
+      expect(vi.mocked(await import('zod').z.object)).toBeDefined()
     })
   })
 }) 

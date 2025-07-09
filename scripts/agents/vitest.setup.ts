@@ -1,7 +1,5 @@
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { vi } from 'vitest'
-import { execSync } from 'child_process'
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
 
 // Mock de child_process.execSync
 vi.mock('child_process', () => ({

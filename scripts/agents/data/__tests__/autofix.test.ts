@@ -1,157 +1,173 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { DataAgent, type DataOptions } from '../autofix'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-// Mock dependencies
-vi.mock('../config', () => ({
-  DataConfigManager: vi.fn().mockImplementation(() => ({
-    getConfig: vi.fn().mockReturnValue({
-      enabled: true,
-      timeout: 300000,
-      verbose: false,
-      dryRun: false,
-      saveReport: true,
-      exitOnFailure: true,
-      migrate: true,
-      seed: false,
-      validate: true,
-      backup: false,
-      analytics: true,
-      maxRetries: 3,
-      retryDelay: 1000
-    })
-  }))
-}))
+import runAgent, { type DataDeps, type DataOptions } from '../autofix'
 
-vi.mock('../log', () => ({
-  DataLogger: vi.fn().mockImplementation(() => ({
-    info: vi.fn(),
-    error: vi.fn(),
-    warn: vi.fn(),
-    debug: vi.fn()
-  }))
-}))
-
-vi.mock('../report', () => ({
-  generateReport: vi.fn().mockResolvedValue(undefined)
-}))
-
-vi.mock('../processor', () => ({
-  DataProcessor: vi.fn().mockImplementation(() => ({
-    processData: vi.fn().mockResolvedValue({
-      timestamp: new Date().toISOString(),
-      status: 'SUCCESS',
-      operations: {
-        migration: { status: 'SUCCESS', message: 'Migration completed' },
-        seeding: { status: 'SKIPPED', message: 'Seeding skipped' },
-        validation: { status: 'SUCCESS', message: 'Validation completed' },
-        backup: { status: 'SKIPPED', message: 'Backup skipped' },
-        analytics: { status: 'SUCCESS', message: 'Analytics completed' }
-      },
-      summary: 'All operations completed successfully',
-      errors: [],
-      warnings: []
-    })
-  }))
-}))
-
-describe('DataAgent', () => {
-  let agent: DataAgent
+describe('@data agent', () => {
+  let mockDeps: DataDeps
+  let mockOptions: Partial<DataOptions>
 
   beforeEach(() => {
     vi.clearAllMocks()
-    agent = new DataAgent()
+    
+    mockDeps = {
+      writeFileSync: vi.fn(),
+      readFileSync: vi.fn(),
+      existsSync: vi.fn(),
+      mkdirSync: vi.fn(),
+      copyFileSync: vi.fn(),
+    }
+    
+    mockOptions = {
+      outputPath: 'test-output/data-report.json',
+      environment: 'test',
+      enableAIInsights: true,
+      backupPrevious: true,
+      validateData: true,
+      dryRun: false,
+    }
   })
 
-  describe('constructor', () => {
-    it('should initialize with default options', () => {
-      expect(agent).toBeDefined()
+  describe('runAgent', () => {
+    it('debe ejecutar correctamente con configuración por defecto', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      const result = await runAgent({}, mockDeps)
+      
+      expect(result).toMatchObject({
+        success: expect.any(Boolean),
+        message: expect.any(String),
+        executionTime: expect.any(Number),
+        metadata: {
+          version: '2.0.0',
+          environment: 'development',
+          agentName: '@data',
+        },
+      })
     })
 
-    it('should accept custom options', () => {
-      const options: DataOptions = {
-        verbose: true,
-        dryRun: true,
-        migrate: false,
-        validate: false
+    it('debe ejecutar en modo dry-run correctamente', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      const result = await runAgent({ ...mockOptions, dryRun: true }, mockDeps)
+      
+      expect(result.success).toBe(true)
+      expect(result.message).toContain('Dry-run completed')
+      expect(result.data?.operations.migration.status).toBe('SKIPPED')
+    })
+
+    it('debe crear backup de reporte anterior si existe', async () => {
+      mockDeps.existsSync.mockImplementation((path: string) => {
+        return path === 'test-output/data-report.json'
+      })
+      mockDeps.readFileSync.mockReturnValue('{"previous": "data"}')
+      
+      await runAgent(mockOptions, mockDeps)
+      
+      expect(mockDeps.readFileSync).toHaveBeenCalledWith('test-output/data-report.json', 'utf8')
+      expect(mockDeps.writeFileSync).toHaveBeenCalledWith(
+        expect.stringMatching(/test-output\/data-report\.backup-.*\.json/),
+        '{"previous": "data"}'
+      )
+    })
+
+    it('debe manejar errores de configuración inválida', async () => {
+      const invalidOptions = {
+        ...mockOptions,
+        migrate: 'invalid' as unknown as boolean,
       }
-      const customAgent = new DataAgent(options)
-      expect(customAgent).toBeDefined()
+      
+      await expect(runAgent(invalidOptions, mockDeps)).rejects.toThrow(
+        'migrate must be a boolean'
+      )
+    })
+
+    it('debe generar insights AI cuando está habilitado', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      const result = await runAgent({ ...mockOptions, enableAIInsights: true }, mockDeps)
+      
+      expect(result.insights).toBeInstanceOf(Array)
+      expect(result.recommendations).toBeInstanceOf(Array)
+    })
+
+    it('debe omitir insights AI cuando está deshabilitado', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      const result = await runAgent({ ...mockOptions, enableAIInsights: false }, mockDeps)
+      
+      expect(result.insights).toEqual([])
+      expect(result.recommendations).toEqual([])
+    })
+
+    it('debe medir tiempo de ejecución correctamente', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      const result = await runAgent(mockOptions, mockDeps)
+      
+      expect(result.executionTime).toBeGreaterThanOrEqual(0)
+      expect(result.executionTime).toBeLessThan(5000) // Debe ser rápido
+    })
+
+    it('debe guardar reporte en la ruta especificada', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      await runAgent(mockOptions, mockDeps)
+      
+      expect(mockDeps.writeFileSync).toHaveBeenCalledWith(
+        'test-output/data-report.json',
+        expect.any(String)
+      )
+    })
+
+    it('debe crear directorio de salida si no existe', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
+      
+      await runAgent(mockOptions, mockDeps)
+      
+      expect(mockDeps.mkdirSync).toHaveBeenCalledWith('test-output', { recursive: true })
     })
   })
 
-  describe('run', () => {
-    it('should execute successfully with default options', async () => {
-      const result = await agent.run()
+  describe('estructura de datos', () => {
+    it('debe generar resultado con estructura correcta', async () => {
+      mockDeps.existsSync.mockReturnValue(false)
       
-      expect(result.success).toBe(true)
-      expect(result.message).toBe('All operations completed successfully')
-      expect(result.data).toBeDefined()
-      expect(result.errors).toBeDefined()
-    })
-
-    it('should handle dry-run mode', async () => {
-      // Mock DataConfigManager to return dryRun: true
-      const { DataConfigManager } = await import('../config')
-      vi.mocked(DataConfigManager).mockImplementation(() => ({
-        getConfig: vi.fn().mockReturnValue({
-          enabled: true,
-          timeout: 300000,
-          verbose: false,
-          dryRun: true, // This is the key change
-          saveReport: true,
-          exitOnFailure: true,
-          migrate: true,
-          seed: false,
-          validate: true,
-          backup: false,
-          analytics: true,
-          maxRetries: 3,
-          retryDelay: 1000
-        })
-      }))
-
-      const dryRunAgent = new DataAgent({ dryRun: true })
-      const result = await dryRunAgent.run()
+      const result = await runAgent(mockOptions, mockDeps)
       
-      expect(result.success).toBe(true)
-      expect(result.message).toBe('Dry-run completed successfully')
-      expect(result.data?.status).toBe('SUCCESS')
+      expect(result).toMatchObject({
+        success: expect.any(Boolean),
+        message: expect.any(String),
+        errors: expect.any(Array),
+        warnings: expect.any(Array),
+        insights: expect.any(Array),
+        recommendations: expect.any(Array),
+        executionTime: expect.any(Number),
+        metadata: {
+          version: expect.any(String),
+          environment: expect.any(String),
+          timestamp: expect.any(String),
+          agentName: expect.any(String),
+        },
+      })
     })
+  })
 
-    it('should handle errors gracefully', async () => {
-      const { DataProcessor } = await import('../processor')
-      vi.mocked(DataProcessor).mockImplementation(() => ({
-        processData: vi.fn().mockRejectedValue(new Error('Test error'))
-      } as any))
-
-      const errorAgent = new DataAgent()
-      await expect(errorAgent.run()).rejects.toThrow('Test error')
-    })
-
-    it('should return failure status when operations fail', async () => {
-      const { DataProcessor } = await import('../processor')
-      vi.mocked(DataProcessor).mockImplementation(() => ({
-        processData: vi.fn().mockResolvedValue({
-          timestamp: new Date().toISOString(),
-          status: 'FAILED',
-          operations: {
-            migration: { status: 'FAILED', message: 'Migration failed' },
-            seeding: { status: 'SKIPPED', message: 'Seeding skipped' },
-            validation: { status: 'SKIPPED', message: 'Validation skipped' },
-            backup: { status: 'SKIPPED', message: 'Backup skipped' },
-            analytics: { status: 'SKIPPED', message: 'Analytics skipped' }
-          },
-          summary: 'Operations failed',
-          errors: ['Migration failed'],
-          warnings: []
-        })
-      } as any))
-
-      const failureAgent = new DataAgent()
-      const result = await failureAgent.run()
+  describe('CLI integration', () => {
+    it('debe ejecutar correctamente desde CLI', async () => {
+      // Simular ejecución CLI
+      const originalArgv = process.argv
+      process.argv = ['node', 'autofix.ts']
       
-      expect(result.success).toBe(false)
-      expect(result.errors).toContain('Migration failed')
+      try {
+        mockDeps.existsSync.mockReturnValue(false)
+        
+        // Esto debería ejecutar sin errores
+        await runAgent(mockOptions, mockDeps)
+        
+        expect(mockDeps.writeFileSync).toHaveBeenCalled()
+      } finally {
+        process.argv = originalArgv
+      }
     })
   })
 }) 

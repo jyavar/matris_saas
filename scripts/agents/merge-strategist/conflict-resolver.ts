@@ -64,12 +64,12 @@ class ConflictResolver {
     return resolutions
   }
 
-  private async resolveConflict(conflict: Conflict): Promise<ConflictResolution> {
+  private async resolveConflict(_conflict: Conflict): Promise<ConflictResolution> {
     // Validar el conflicto
     const validatedConflict = ConflictSchema.parse(conflict)
 
     // Determinar estrategia de resolución basada en el tipo de archivo
-    const fileExtension = this.getFileExtension(validatedConflict.file)
+    const fileExtension = this.getFileExtension(_conflict.file)
     const resolutionStrategy = this.determineResolutionStrategy(fileExtension, validatedConflict)
 
     // Aplicar resolución
@@ -83,7 +83,7 @@ class ConflictResolver {
     return parts.length > 1 ? parts[parts.length - 1] || '' : ''
   }
 
-  private determineResolutionStrategy(fileExtension: string, conflict: Conflict): 'ours' | 'theirs' | 'auto' | 'manual' {
+  private determineResolutionStrategy(fileExtension: string, _conflict: Conflict): 'ours' | 'theirs' | 'auto' | 'manual' {
     // Estrategias basadas en tipo de archivo
     switch (fileExtension) {
       case 'json':
@@ -108,7 +108,7 @@ class ConflictResolver {
     }
   }
 
-  private async applyResolution(conflict: Conflict, strategy: 'ours' | 'theirs' | 'auto' | 'manual'): Promise<ConflictResolution> {
+  private async applyResolution(_conflict: Conflict, strategy: 'ours' | 'theirs' | 'auto' | 'manual'): Promise<ConflictResolution> {
     const baseResolution: ConflictResolution = {
       file: conflict.file,
       resolution: strategy,
@@ -138,7 +138,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveOurs(conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
+  private async resolveOurs(_conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
     // Resolver usando nuestra versión
     try {
       if (!this.deps.existsSync(conflict.file)) {
@@ -158,7 +158,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveTheirs(conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
+  private async resolveTheirs(_conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
     // Resolver usando su versión
     try {
       if (!this.deps.existsSync(conflict.file)) {
@@ -178,7 +178,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveAuto(conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
+  private async resolveAuto(_conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
     // Resolución automática inteligente
     try {
       if (!this.deps.existsSync(conflict.file)) {
@@ -219,7 +219,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveManual(conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
+  private async resolveManual(_conflict: Conflict, baseResolution: ConflictResolution): Promise<ConflictResolution> {
     // Marcar para resolución manual
     console.log(`⚠️ Manual resolution required for ${conflict.file}`)
     
@@ -230,7 +230,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveJsonConflict(conflict: Conflict): Promise<boolean> {
+  private async resolveJsonConflict(_conflict: Conflict): Promise<boolean> {
     try {
       // Lógica específica para archivos JSON
       // En un escenario real, aquí se implementaría la lógica de merge de JSON
@@ -240,7 +240,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveCodeConflict(conflict: Conflict): Promise<boolean> {
+  private async resolveCodeConflict(_conflict: Conflict): Promise<boolean> {
     try {
       // Lógica específica para archivos de código
       // En un escenario real, aquí se implementaría la lógica de merge de código
@@ -250,7 +250,7 @@ class ConflictResolver {
     }
   }
 
-  private async resolveTextConflict(conflict: Conflict): Promise<boolean> {
+  private async resolveTextConflict(_conflict: Conflict): Promise<boolean> {
     try {
       // Lógica específica para archivos de texto
       // En un escenario real, aquí se implementaría la lógica de merge de texto

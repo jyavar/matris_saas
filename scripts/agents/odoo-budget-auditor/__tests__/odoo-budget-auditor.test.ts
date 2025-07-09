@@ -3,11 +3,12 @@
  * @description Tests unitarios para el agente de auditoría de presupuestos
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { OdooBudgetAuditor, runAgent } from '../index'
-import { OdooService } from '../services/odoo.service'
-import { BudgetAuditorService } from '../services/budget-auditor.service'
+import { beforeEach,describe, expect, it, vi } from 'vitest'
+
 import { BudgetAuditReport } from '../config/odoo'
+import { OdooBudgetAuditor, runAgent } from '../index'
+import { BudgetAuditorService } from '../services/budget-auditor.service'
+import { OdooService } from '../services/odoo.service'
 
 // Mock de servicios
 vi.mock('../services/odoo.service')
@@ -70,7 +71,7 @@ describe('Odoo Budget Auditor', () => {
         getConnectionInfo: vi.fn().mockReturnValue({ url: 'http://localhost:8069' })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
 
       const auditor = new OdooBudgetAuditor(mockConfig)
       
@@ -99,8 +100,8 @@ describe('Odoo Budget Auditor', () => {
         })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
-      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
+      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService )
 
       const auditor = new OdooBudgetAuditor(mockConfig)
       const result = await auditor.runAudit()
@@ -121,7 +122,7 @@ describe('Odoo Budget Auditor', () => {
         logout: vi.fn().mockResolvedValue(undefined)
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
 
       const auditor = new OdooBudgetAuditor(mockConfig)
 
@@ -141,8 +142,8 @@ describe('Odoo Budget Auditor', () => {
         generateExecutiveSummary: vi.fn()
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
-      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
+      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService )
 
       const auditor = new OdooBudgetAuditor(mockConfig)
 
@@ -187,8 +188,8 @@ describe('Odoo Budget Auditor', () => {
         })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
-      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
+      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService )
 
       const result = await runAgent()
 
@@ -224,8 +225,8 @@ describe('Odoo Budget Auditor', () => {
         })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
-      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
+      vi.mocked(BudgetAuditorService).mockImplementation(() => mockBudgetAuditorService )
 
       const customConfig = {
         host: 'custom-host',
@@ -278,7 +279,7 @@ describe('Odoo Budget Auditor', () => {
         getConnectionInfo: vi.fn().mockReturnValue({ url: 'http://localhost:8069' })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
 
       const minimalConfig = {
         host: 'localhost',
@@ -304,7 +305,7 @@ describe('Odoo Budget Auditor', () => {
         getConnectionInfo: vi.fn().mockReturnValue({ url: 'http://localhost:8069' })
       }
 
-      vi.mocked(OdooService).mockImplementation(() => mockOdooService as any)
+      vi.mocked(OdooService).mockImplementation(() => mockOdooService )
 
       const auditor = new OdooBudgetAuditor(mockConfig)
       const connectionInfo = auditor.getConnectionInfo()

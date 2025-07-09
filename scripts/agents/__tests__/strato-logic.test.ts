@@ -1,7 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { resolve, join } from 'path'
 import { execSync } from 'child_process'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock de los módulos antes de importar
 vi.mock('fs')
@@ -11,7 +10,7 @@ vi.mock('minimatch')
 vi.mock('zod')
 
 // Importar después de los mocks
-import { getManifest, getChangedFilesAgainstMain, getStagedFiles, validateFiles, writeLog, runAgent } from '../strato.logic'
+import { getChangedFilesAgainstMain, getManifest, getStagedFiles, runAgent,validateFiles, writeLog } from '../strato.logic'
 
 describe('STRATO Logic Functions', () => {
   beforeEach(() => {

@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { beforeEach,describe, expect, it } from 'vitest'
+
 import { 
-  QAAgentConfigManager, 
   DEFAULT_QA_CONFIG, 
-  type QAAgentConfig
-} from '../config'
+  type QAAgentConfig,
+  QAAgentConfigManager} from '../config'
 
 describe('QAAgentConfigManager', () => {
   let configManager: QAAgentConfigManager
