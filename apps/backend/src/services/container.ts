@@ -105,7 +105,7 @@ export const serviceContainer: ServiceContainer = {
     async sendTemplate(
       to: string,
       templateId: string,
-      data: Record<string, unknown>,
+      data: Record<string, string | number | boolean | null | undefined>,
     ) {
       await resendService.sendTemplate(to, templateId, data)
     },
