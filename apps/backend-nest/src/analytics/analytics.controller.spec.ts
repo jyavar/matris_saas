@@ -1,17 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AnalyticsController } from './analytics.controller';
 import { AnalyticsService } from './analytics.service';
+import { vi } from 'vitest';
 
 describe('AnalyticsController', () => {
   let controller: AnalyticsController;
-  let analyticsService: jest.Mocked<AnalyticsService>;
+  let analyticsService: any;
 
   const mockAnalyticsService = {
-    trackEvent: jest.fn(),
-    trackMetric: jest.fn(),
-    getEvents: jest.fn(),
-    getMetrics: jest.fn(),
-    getAnalyticsSummary: jest.fn(),
+    trackEvent: vi.fn(),
+    trackMetric: vi.fn(),
+    getEvents: vi.fn(),
+    getMetrics: vi.fn(),
+    getAnalyticsSummary: vi.fn(),
   };
 
   beforeEach(async () => {
@@ -30,7 +31,7 @@ describe('AnalyticsController', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('trackEvent', () => {

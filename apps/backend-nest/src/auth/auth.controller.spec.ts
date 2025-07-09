@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { vi } from 'vitest';
 import {
   SignUpDto,
   SignInDto,
@@ -11,13 +12,13 @@ import {
 
 describe('AuthController', () => {
   let controller: AuthController;
-  let authService: jest.Mocked<AuthService>;
+  let authService: any;
 
   const mockAuthService = {
-    signUp: jest.fn(),
-    signIn: jest.fn(),
-    refreshToken: jest.fn(),
-    signOut: jest.fn(),
+    signUp: vi.fn(),
+    signIn: vi.fn(),
+    refreshToken: vi.fn(),
+    signOut: vi.fn(),
   };
 
   beforeEach(async () => {
@@ -36,7 +37,7 @@ describe('AuthController', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('signUp', () => {
