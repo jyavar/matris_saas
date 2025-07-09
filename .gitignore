@@ -86,3 +86,11 @@ apps/frontend/node_modules/
 apps/frontend/supabase/
 apps/frontend/examples/
 
+# Agent artifacts and backups
+audit-artifacts/backups/
+scripts/agents/test-output/
+test-output/
+AGENT_AUDIT_REPORT.md
+~BUSINESS_MODULES_AUDIT.md
+~REPO_INVENTORY.md
+
