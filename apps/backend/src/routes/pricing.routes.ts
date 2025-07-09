@@ -14,11 +14,6 @@ export const pricingRoutes: RouteDefinition[] = [
     handler: pricingController.createSubscription,
   },
   {
-    method: 'POST',
-    path: '/plans/:planId/usage',
-    handler: pricingController.checkUsage,
-  },
-  {
     method: 'GET',
     path: '/subscriptions/:subscriptionId',
     handler: pricingController.getSubscription,
@@ -32,5 +27,15 @@ export const pricingRoutes: RouteDefinition[] = [
     method: 'DELETE',
     path: '/subscriptions/:subscriptionId',
     handler: pricingController.cancelSubscription,
+  },
+  {
+    method: 'GET',
+    path: '/customers/:customerId/subscriptions',
+    handler: pricingController.getCustomerSubscriptions,
+  },
+  {
+    method: 'POST',
+    path: '/plans/:planId/usage',
+    handler: pricingController.checkUsage,
   },
 ]

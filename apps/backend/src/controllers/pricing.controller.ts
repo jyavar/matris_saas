@@ -11,6 +11,7 @@ import {
   sendNotFound,
   sendSuccess,
 } from '../utils/response.helper.js'
+
 export const pricingController = {
   /**
    * Get all available plans
@@ -22,11 +23,11 @@ export const pricingController = {
     try {
       const plans = await pricingService.getPlans()
 
-      logAction('pricing_plans_requested', _req._user?.id || 'anonymous', {})
+      logAction('pricing_plans_requested', _req.user?.id || 'anonymous', {})
 
       sendSuccess(res, plans)
     } catch (error) {
-      logAction('pricing_plans_error', _req._user?.id || 'anonymous', {
+      logAction('pricing_plans_error', _req.user?.id || 'anonymous', {
         error: error instanceof Error ? error.message : 'Unknown error',
       })
       sendError(res, 'Failed to get plans', 500)
@@ -54,13 +55,13 @@ export const pricingController = {
         return sendNotFound(res, 'Plan not found')
       }
 
-      logAction('pricing_plan_requested', _req._user?.id || 'anonymous', {
+      logAction('pricing_plan_requested', _req.user?.id || 'anonymous', {
         planId,
       })
 
       sendSuccess(res, plan)
     } catch (error) {
-      logAction('pricing_plan_error', _req._user?.id || 'anonymous', {
+      logAction('pricing_plan_error', _req.user?.id || 'anonymous', {
         planId: _req.url?.split('/').pop(),
         error: error instanceof Error ? error.message : 'Unknown error',
       })
@@ -81,9 +82,10 @@ export const pricingController = {
       const subscription =
         await pricingService.createSubscription(validatedData)
 
-      logAction('pricing_subscription_created', _req._user?.id || 'anonymous', {
+      logAction('pricing_subscription_created', _req.user?.id || 'anonymous', {
         planId: validatedData.planId,
         customerId: validatedData.customerId,
+        subscriptionId: subscription.id,
       })
 
       sendCreated(res, subscription)
@@ -101,7 +103,7 @@ export const pricingController = {
 
       logAction(
         'pricing_subscription_create_error',
-        _req._user?.id || 'anonymous',
+        _req.user?.id || 'anonymous',
         {
           error: error instanceof Error ? error.message : 'Unknown error',
         },
@@ -130,9 +132,13 @@ export const pricingController = {
 
       const subscription = await pricingService.getSubscription(subscriptionId)
 
+      if (!subscription) {
+        return sendNotFound(res, 'Subscription not found')
+      }
+
       logAction(
         'pricing_subscription_requested',
-        _req._user?.id || 'anonymous',
+        _req.user?.id || 'anonymous',
         {
           subscriptionId,
         },
@@ -142,7 +148,7 @@ export const pricingController = {
     } catch (error) {
       logAction(
         'pricing_subscription_get_error',
-        _req._user?.id || 'anonymous',
+        _req.user?.id || 'anonymous',
         {
           subscriptionId: _req.url?.split('/').pop(),
           error: error instanceof Error ? error.message : 'Unknown error',
@@ -178,7 +184,7 @@ export const pricingController = {
         validatedData,
       )
 
-      logAction('pricing_subscription_updated', _req._user?.id || 'anonymous', {
+      logAction('pricing_subscription_updated', _req.user?.id || 'anonymous', {
         subscriptionId,
         planId: validatedData.planId,
       })
@@ -187,7 +193,7 @@ export const pricingController = {
     } catch (error) {
       logAction(
         'pricing_subscription_update_error',
-        _req._user?.id || 'anonymous',
+        _req.user?.id || 'anonymous',
         {
           subscriptionId: _req.url?.split('/').pop(),
           error: error instanceof Error ? error.message : 'Unknown error',
@@ -215,28 +221,66 @@ export const pricingController = {
         return sendError(res, 'Subscription ID is required', 400)
       }
 
-      const subscription =
-        await pricingService.cancelSubscription(subscriptionId)
+      await pricingService.cancelSubscription(subscriptionId)
 
-      logAction(
-        'pricing_subscription_cancelled',
-        _req._user?.id || 'anonymous',
-        {
-          subscriptionId,
-        },
-      )
+      logAction('pricing_subscription_canceled', _req.user?.id || 'anonymous', {
+        subscriptionId,
+      })
 
-      sendSuccess(res, subscription)
+      sendSuccess(res, { message: 'Subscription canceled successfully' })
     } catch (error) {
       logAction(
         'pricing_subscription_cancel_error',
-        _req._user?.id || 'anonymous',
+        _req.user?.id || 'anonymous',
         {
           subscriptionId: _req.url?.split('/').pop(),
           error: error instanceof Error ? error.message : 'Unknown error',
         },
       )
       sendError(res, 'Failed to cancel subscription', 500)
+    }
+  },
+
+  /**
+   * Get customer subscriptions
+   */
+  async getCustomerSubscriptions(
+    _req: IncomingMessage & { user?: AuthenticatedUser },
+    res: ServerResponse,
+  ) {
+    try {
+      const params = parseParams(
+        _req.url || '',
+        '/api/pricing/customers/:customerId/subscriptions',
+      )
+      const customerId = params.customerId
+
+      if (!customerId) {
+        return sendError(res, 'Customer ID is required', 400)
+      }
+
+      const subscriptions = await pricingService.getCustomerSubscriptions(customerId)
+
+      logAction(
+        'pricing_customer_subscriptions_requested',
+        _req.user?.id || 'anonymous',
+        {
+          customerId,
+          count: subscriptions.length,
+        },
+      )
+
+      sendSuccess(res, subscriptions)
+    } catch (error) {
+      logAction(
+        'pricing_customer_subscriptions_error',
+        _req.user?.id || 'anonymous',
+        {
+          customerId: _req.url?.split('/')[4], // Extract customerId from URL
+          error: error instanceof Error ? error.message : 'Unknown error',
+        },
+      )
+      sendError(res, 'Failed to get customer subscriptions', 500)
     }
   },
 
@@ -279,14 +323,14 @@ export const pricingController = {
         apiCalls: Number(apiCalls),
       })
 
-      logAction('pricing_usage_checked', _req._user?.id || 'anonymous', {
+      logAction('pricing_usage_checked', _req.user?.id || 'anonymous', {
         planId,
         usage: { users, storage, apiCalls },
       })
 
       sendSuccess(res, usage)
     } catch (error) {
-      logAction('pricing_usage_check_error', _req._user?.id || 'anonymous', {
+      logAction('pricing_usage_check_error', _req.user?.id || 'anonymous', {
         planId: _req.url?.split('/').pop(),
         error: error instanceof Error ? error.message : 'Unknown error',
       })

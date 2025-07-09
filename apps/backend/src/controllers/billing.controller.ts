@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
-import { billingService } from '../services/billing.service.js'
+import { billingService, createCustomerSchema, createSubscriptionSchema, updateSubscriptionSchema } from '../services/billing.service.js'
 import { logAction } from '../services/logger.service.js'
 import type {
   AuthenticatedUser,
@@ -10,6 +10,7 @@ import type {
 } from '../types/express/index.js'
 import { parseBody, parseParams, parseQuery } from '../utils/request.helper.js'
 import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from '../utils/response.helper.js'
+
 // Schemas
 const createInvoiceSchema = z.object({
   amount: z.number().positive(),
@@ -194,6 +195,222 @@ export const deleteInvoice: ControllerHandler = async (
     return sendSuccess(res, { message: 'Invoice deleted successfully' })
   } catch {
     return sendError(res, 'Failed to delete invoice', 500)
+  }
+}
+
+// Customer management
+export const createCustomer: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const body = (await parseBody(_req)) as RequestBody
+    const validatedData = createCustomerSchema.parse(body)
+
+    const customer = await billingService.createCustomer(validatedData)
+
+    logAction('billing_customer_created', user?.id, {
+      customer_id: customer.id,
+      email: customer.email,
+    })
+
+    return sendCreated(res, customer)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return sendError(res, 'Invalid customer data', 400, error.errors)
+    }
+    return sendError(res, 'Failed to create customer', 500)
+  }
+}
+
+export const getCustomerById: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(_req.url || '', '/api/customers/:id')
+    const customerId = params.id
+
+    if (!customerId) {
+      return sendError(res, 'Customer ID is required', 400)
+    }
+
+    const customer = await billingService.getCustomerById(customerId)
+
+    if (!customer) {
+      return sendNotFound(res, 'Customer not found')
+    }
+
+    logAction('billing_customer_retrieved', user?.id, { customer_id: customerId })
+
+    return sendSuccess(res, customer)
+  } catch {
+    return sendError(res, 'Failed to retrieve customer', 500)
+  }
+}
+
+// Subscription management
+export const createSubscription: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const body = (await parseBody(_req)) as RequestBody
+    const validatedData = createSubscriptionSchema.parse(body)
+
+    const subscription = await billingService.createSubscription(validatedData)
+
+    logAction('billing_subscription_created', user?.id, {
+      subscription_id: subscription.id,
+      customer_id: validatedData.customerId,
+      price_id: validatedData.priceId,
+    })
+
+    return sendCreated(res, subscription)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return sendError(res, 'Invalid subscription data', 400, error.errors)
+    }
+    return sendError(res, 'Failed to create subscription', 500)
+  }
+}
+
+export const getSubscription: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(_req.url || '', '/api/subscriptions/:id')
+    const subscriptionId = params.id
+
+    if (!subscriptionId) {
+      return sendError(res, 'Subscription ID is required', 400)
+    }
+
+    const subscription = await billingService.getSubscription(subscriptionId)
+
+    if (!subscription) {
+      return sendNotFound(res, 'Subscription not found')
+    }
+
+    logAction('billing_subscription_retrieved', user?.id, { subscription_id: subscriptionId })
+
+    return sendSuccess(res, subscription)
+  } catch {
+    return sendError(res, 'Failed to retrieve subscription', 500)
+  }
+}
+
+export const updateSubscription: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(_req.url || '', '/api/subscriptions/:id')
+    const subscriptionId = params.id
+    const body = (await parseBody(_req)) as RequestBody
+
+    if (!subscriptionId) {
+      return sendError(res, 'Subscription ID is required', 400)
+    }
+
+    const validatedData = updateSubscriptionSchema.parse(body)
+
+    const subscription = await billingService.updateSubscription(subscriptionId, validatedData)
+
+    logAction('billing_subscription_updated', user?.id, {
+      subscription_id: subscriptionId,
+      changes: Object.keys(validatedData),
+    })
+
+    return sendSuccess(res, subscription)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return sendError(res, 'Invalid subscription data', 400, error.errors)
+    }
+    return sendError(res, 'Failed to update subscription', 500)
+  }
+}
+
+export const cancelSubscription: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(_req.url || '', '/api/subscriptions/:id')
+    const subscriptionId = params.id
+
+    if (!subscriptionId) {
+      return sendError(res, 'Subscription ID is required', 400)
+    }
+
+    await billingService.cancelSubscription(subscriptionId)
+
+    logAction('billing_subscription_canceled', user?.id, { subscription_id: subscriptionId })
+
+    return sendSuccess(res, { message: 'Subscription canceled successfully' })
+  } catch {
+    return sendError(res, 'Failed to cancel subscription', 500)
+  }
+}
+
+export const getCustomerSubscriptions: ControllerHandler = async (
+  _req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  try {
+    const user = (_req as { _user?: AuthenticatedUser })._user
+    if (!user) {
+      return sendUnauthorized(res, 'User not authenticated')
+    }
+
+    const params = parseParams(_req.url || '', '/api/customers/:customerId/subscriptions')
+    const customerId = params.customerId
+
+    if (!customerId) {
+      return sendError(res, 'Customer ID is required', 400)
+    }
+
+    const subscriptions = await billingService.getCustomerSubscriptions(customerId)
+
+    logAction('billing_customer_subscriptions_retrieved', user?.id, {
+      customer_id: customerId,
+      count: subscriptions.length,
+    })
+
+    return sendSuccess(res, subscriptions)
+  } catch {
+    return sendError(res, 'Failed to retrieve customer subscriptions', 500)
   }
 }
 
