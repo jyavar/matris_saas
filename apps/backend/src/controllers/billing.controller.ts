@@ -1,13 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { z } from 'zod'
 
-import { billingService, createCustomerSchema, createSubscriptionSchema, updateSubscriptionSchema } from '../services/billing.service.js'
+import { cancelSubscriptionExtended, createCustomerExtended, createCustomerSchema, createInvoiceExtended, createSubscriptionExtended, createSubscriptionSchema, deleteInvoiceExtended, getAllInvoicesExtended, getCustomerByIdExtended, getCustomerSubscriptionsExtended,getInvoiceByIdExtended, getSubscriptionExtended, updateInvoiceExtended, updateSubscriptionExtended, updateSubscriptionSchema } from '../services/billing.service.js'
 import { logAction } from '../services/logger.service.js'
-import type {
-  AuthenticatedUser,
-  ControllerHandler,
-  RequestBody,
-} from '../types/express/index.js'
+import type { AuthenticatedUser, ControllerHandler, RequestBody } from '../types/express/index.js'
 import { parseBody, parseParams, parseQuery } from '../utils/request.helper.js'
 import { sendCreated, sendError, sendNotFound, sendSuccess, sendUnauthorized } from '../utils/response.helper.js'
 
@@ -42,7 +38,7 @@ export const getInvoices: ControllerHandler = async (
     const query = parseQuery(_req.url || '')
     const { page, limit } = getPaginationParams(query)
 
-    const invoices = await billingService.getAllInvoices(user?.id)
+    const invoices = await getAllInvoicesExtended(user?.id)
 
     logAction('billing_invoices_retrieved', user?.id, {
       count: invoices.length,
@@ -74,7 +70,7 @@ export const getInvoiceById: ControllerHandler = async (
       return sendError(res, 'Invoice ID is required', 400)
     }
 
-    const invoice = await billingService.getInvoiceById(invoiceId)
+    const invoice = await getInvoiceByIdExtended(invoiceId)
 
     if (!invoice) {
       return sendNotFound(res, 'Invoice not found')
@@ -101,7 +97,7 @@ export const createInvoice: ControllerHandler = async (
     const body = (await parseBody(_req)) as RequestBody
     const validatedData = createInvoiceSchema.parse(body)
 
-    const invoice = await billingService.createInvoice({
+    const invoice = await createInvoiceExtended({
       customer_id: user?.id,
       amount: validatedData.amount,
       currency: validatedData.currency,
@@ -147,7 +143,7 @@ export const updateInvoice: ControllerHandler = async (
 
     const validatedData = updateInvoiceSchema.parse(body)
 
-    const invoice = await billingService.updateInvoice(invoiceId, validatedData)
+    const invoice = await updateInvoiceExtended(invoiceId, validatedData)
 
     if (!invoice) {
       return sendNotFound(res, 'Invoice not found')
@@ -184,7 +180,7 @@ export const deleteInvoice: ControllerHandler = async (
       return sendError(res, 'Invoice ID is required', 400)
     }
 
-    const deleted = await billingService.deleteInvoice(invoiceId)
+    const deleted = await deleteInvoiceExtended(invoiceId)
 
     if (!deleted) {
       return sendNotFound(res, 'Invoice not found')
@@ -212,7 +208,7 @@ export const createCustomer: ControllerHandler = async (
     const body = (await parseBody(_req)) as RequestBody
     const validatedData = createCustomerSchema.parse(body)
 
-    const customer = await billingService.createCustomer(validatedData)
+    const customer = await createCustomerExtended(validatedData)
 
     logAction('billing_customer_created', user?.id, {
       customer_id: customer.id,
@@ -245,7 +241,7 @@ export const getCustomerById: ControllerHandler = async (
       return sendError(res, 'Customer ID is required', 400)
     }
 
-    const customer = await billingService.getCustomerById(customerId)
+    const customer = await getCustomerByIdExtended(customerId)
 
     if (!customer) {
       return sendNotFound(res, 'Customer not found')
@@ -273,7 +269,7 @@ export const createSubscription: ControllerHandler = async (
     const body = (await parseBody(_req)) as RequestBody
     const validatedData = createSubscriptionSchema.parse(body)
 
-    const subscription = await billingService.createSubscription(validatedData)
+    const subscription = await createSubscriptionExtended(validatedData)
 
     logAction('billing_subscription_created', user?.id, {
       subscription_id: subscription.id,
@@ -307,7 +303,7 @@ export const getSubscription: ControllerHandler = async (
       return sendError(res, 'Subscription ID is required', 400)
     }
 
-    const subscription = await billingService.getSubscription(subscriptionId)
+    const subscription = await getSubscriptionExtended(subscriptionId)
 
     if (!subscription) {
       return sendNotFound(res, 'Subscription not found')
@@ -341,7 +337,7 @@ export const updateSubscription: ControllerHandler = async (
 
     const validatedData = updateSubscriptionSchema.parse(body)
 
-    const subscription = await billingService.updateSubscription(subscriptionId, validatedData)
+    const subscription = await updateSubscriptionExtended(subscriptionId, validatedData)
 
     logAction('billing_subscription_updated', user?.id, {
       subscription_id: subscriptionId,
@@ -374,7 +370,7 @@ export const cancelSubscription: ControllerHandler = async (
       return sendError(res, 'Subscription ID is required', 400)
     }
 
-    await billingService.cancelSubscription(subscriptionId)
+    await cancelSubscriptionExtended(subscriptionId)
 
     logAction('billing_subscription_canceled', user?.id, { subscription_id: subscriptionId })
 
@@ -401,14 +397,13 @@ export const getCustomerSubscriptions: ControllerHandler = async (
       return sendError(res, 'Customer ID is required', 400)
     }
 
-    const subscriptions = await billingService.getCustomerSubscriptions(customerId)
+    const subscriptions = await getCustomerSubscriptionsExtended(customerId)
 
     logAction('billing_customer_subscriptions_retrieved', user?.id, {
       customer_id: customerId,
-      count: subscriptions.length,
     })
 
-    return sendSuccess(res, subscriptions)
+    return sendSuccess(res, { data: subscriptions })
   } catch {
     return sendError(res, 'Failed to retrieve customer subscriptions', 500)
   }

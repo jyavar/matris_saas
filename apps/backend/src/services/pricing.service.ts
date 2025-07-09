@@ -1,7 +1,14 @@
 import { z } from 'zod'
 
 import { ApiError } from '../utils/ApiError.js'
-import { billingService } from './billing.service.js'
+import {
+  cancelSubscriptionExtended,
+  createSubscriptionExtended,
+  getCustomerSubscriptionsExtended,
+  getSubscriptionExtended,
+  updateSubscriptionExtended,
+  updateSubscriptionSchema,
+} from './billing.service.js'
 import { logAction } from './logger.service.js'
 import { stripeService } from './stripe.service.js'
 
@@ -214,7 +221,7 @@ export const pricingService = {
       })
 
       // Create subscription in billing service
-      const billingSubscription = await billingService.createSubscription({
+      const billingSubscription = await createSubscriptionExtended({
         customerId,
         priceId: plan.stripePriceId,
         quantity,
@@ -263,7 +270,7 @@ export const pricingService = {
       const { planId, quantity, metadata } = data
 
       // Get current subscription
-      const currentSubscription = await billingService.getSubscription(subscriptionId)
+      const currentSubscription = await getSubscriptionExtended(subscriptionId)
       if (!currentSubscription) {
         throw new ApiError('Subscription not found', 404)
       }
@@ -309,14 +316,11 @@ export const pricingService = {
         }
 
         // Update in Stripe and billing service
-        const updateData: Parameters<typeof billingService.updateSubscription>[1] = {}
+        const updateData: z.infer<typeof updateSubscriptionSchema> = {}
         if (quantity !== undefined) updateData.quantity = quantity
         if (metadata !== undefined) updateData.metadata = metadata
 
-        const updatedBillingSubscription = await billingService.updateSubscription(
-          subscriptionId,
-          updateData,
-        )
+        const updatedBillingSubscription = await updateSubscriptionExtended(subscriptionId, updateData)
 
         const subscription: Subscription = {
           id: updatedBillingSubscription.id,
@@ -341,14 +345,11 @@ export const pricingService = {
       }
 
       // Update without changing plan
-      const updateData: Parameters<typeof billingService.updateSubscription>[1] = {}
+      const updateData: z.infer<typeof updateSubscriptionSchema> = {}
       if (quantity !== undefined) updateData.quantity = quantity
       if (metadata !== undefined) updateData.metadata = metadata
 
-      const updatedBillingSubscription = await billingService.updateSubscription(
-        subscriptionId,
-        updateData,
-      )
+      const updatedBillingSubscription = await updateSubscriptionExtended(subscriptionId, updateData)
 
       const subscription: Subscription = {
         id: updatedBillingSubscription.id,
@@ -407,7 +408,7 @@ export const pricingService = {
       }
 
       // Get from billing service
-      const billingSubscription = await billingService.getSubscription(subscriptionId)
+      const billingSubscription = await getSubscriptionExtended(subscriptionId)
       if (!billingSubscription) {
         return null
       }
@@ -456,7 +457,7 @@ export const pricingService = {
       }
 
       // Cancel in billing service (which handles Stripe)
-      await billingService.cancelSubscription(subscriptionId)
+      await cancelSubscriptionExtended(subscriptionId)
 
       logAction('pricing_subscription_canceled', 'unknown', {
         subscriptionId,
@@ -546,7 +547,7 @@ export const pricingService = {
    */
   async getCustomerSubscriptions(customerId: string): Promise<Subscription[]> {
     try {
-      const billingSubscriptions = await billingService.getCustomerSubscriptions(customerId)
+      const billingSubscriptions = await getCustomerSubscriptionsExtended(customerId)
       
       const subscriptions: Subscription[] = []
 
