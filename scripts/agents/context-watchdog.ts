@@ -272,8 +272,15 @@ class ContextWatchdog {
         log.actionsPerformed.push('✅ Context analysis completed')
       })
 
-      // 5. Generar score técnico con métricas actualizadas
-      this.generateScore(log, startTime, executionId, true, orchestrationResult)
+      // 5. Verificar resultado de orquestación
+      if (!orchestrationResult.success) {
+        log.status = 'fail'
+        log.errors.push(...orchestrationResult.errors)
+        log.warnings.push(...orchestrationResult.warnings)
+      }
+      
+      // 6. Generar score técnico con métricas actualizadas
+      this.generateScore(log, startTime, executionId, orchestrationResult.success, orchestrationResult)
       
     } catch (error) {
       log.status = 'fail'

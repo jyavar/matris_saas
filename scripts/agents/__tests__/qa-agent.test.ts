@@ -1,7 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { execSync } from 'child_process'
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock de los módulos antes de importar
 vi.mock('child_process')

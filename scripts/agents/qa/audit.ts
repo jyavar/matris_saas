@@ -12,9 +12,9 @@
  */
 
 import { execSync } from 'child_process'
-import { readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
 import crypto from 'crypto'
+import { copyFileSync,existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs'
+import { join } from 'path'
 
 interface AuditResult {
   timestamp: string
@@ -279,7 +279,7 @@ class QAAgent {
     try {
       console.log('  🕵️  Checking for exposed secrets...')
       const secretPatterns = [
-        /(?<!\/\/.*)(api[_-]?key|secret|token|password)[^\n]*['\"][A-Za-z0-9_\-]{16,}['\"]/gi,
+        /(?<!\/\/.*)(api[_-]?key|secret|token|password)[^\n]*['\"][A-Za-z0-9_-]{16,}['\"]/gi,
         /['\"](sk_live|sk_test|pk_live|pk_test|ghp_[A-Za-z0-9]{36,})['\"]/gi,
         /['\"][A-Za-z0-9]{32,}['\"]/g // genérico
       ]
@@ -317,8 +317,8 @@ class QAAgent {
     try {
       console.log('  🔒 Checking permissions of sensitive files...')
       const sensitiveFiles = this.getProjectFiles(['.env', 'secrets', 'secrets.json', 'secrets.yml'])
-      const fs = require('fs')
-      let badPerms: string[] = []
+      const fs = await import('fs')
+      const badPerms: string[] = []
 
       for (const file of sensitiveFiles) {
         const stat = fs.statSync(file)
@@ -350,12 +350,12 @@ class QAAgent {
       console.log('  🛡️  Checking deep dependency vulnerabilities...')
       let auditResult = ''
       try {
-        auditResult = require('child_process').execSync('pnpm audit --json', { encoding: 'utf-8' })
-      } catch (e) {
+        auditResult = execSync('pnpm audit --json', { encoding: 'utf-8' })
+      } catch {
         // fallback a npm si pnpm no está disponible
         try {
-          auditResult = require('child_process').execSync('npm audit --json', { encoding: 'utf-8' })
-        } catch (err) {
+          auditResult = execSync('npm audit --json', { encoding: 'utf-8' })
+        } catch {
           this.results.checks.security = {
             status: 'WARNING',
             message: 'Could not run pnpm/npm audit'
@@ -416,10 +416,10 @@ class QAAgent {
   private getProjectFiles(extensions: string[]): string[] {
     const walk = (dir: string): string[] => {
       let results: string[] = []
-      const list = require('fs').readdirSync(dir)
+      const list = readdirSync(dir)
       for (const file of list) {
-        const filePath = require('path').join(dir, file)
-        const stat = require('fs').statSync(filePath)
+        const filePath = join(dir, file)
+        const stat = statSync(filePath)
         if (stat && stat.isDirectory()) {
           results = results.concat(walk(filePath))
         } else if (extensions.some(ext => filePath.endsWith(ext))) {
@@ -456,14 +456,12 @@ class QAAgent {
   }
 
   private backupPreviousReport(): void {
-    const fs = require('fs')
-    const path = require('path')
-    const reportPath = path.join(this.projectRoot, 'audit-artifacts', 'qa-audit.json')
-    if (fs.existsSync(reportPath)) {
-      const backupDir = path.join(this.projectRoot, 'audit-artifacts', 'backups')
-      if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true })
+    const reportPath = join(this.projectRoot, 'audit-artifacts', 'qa-audit.json')
+    if (existsSync(reportPath)) {
+      const backupDir = join(this.projectRoot, 'audit-artifacts', 'backups')
+      if (!existsSync(backupDir)) mkdirSync(backupDir, { recursive: true })
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-      fs.copyFileSync(reportPath, path.join(backupDir, `qa-audit-${timestamp}.json`))
+      copyFileSync(reportPath, join(backupDir, `qa-audit-${timestamp}.json`))
     }
   }
 

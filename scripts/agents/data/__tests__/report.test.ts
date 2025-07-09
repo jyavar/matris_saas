@@ -1,7 +1,8 @@
-import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
-import { generateReport, type DataReport } from '../report'
+import { mkdirSync,writeFileSync } from 'fs'
+import { afterEach,beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { type DataProcessingResult } from '../processor'
-import { writeFileSync, mkdirSync } from 'fs'
+import { type DataReport,generateReport } from '../report'
 
 // Mock fs module
 vi.mock('fs', () => ({

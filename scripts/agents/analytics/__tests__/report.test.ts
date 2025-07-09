@@ -1,5 +1,6 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest'
-import runAgent, { type AnalyticsConfig, type AnalyticsDeps, type AnalyticsData } from '../report'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import runAgent, { type AnalyticsConfig, type AnalyticsDeps } from '../report'
 
 describe('@analytics agent', () => {
   let mockDeps: AnalyticsDeps
@@ -9,10 +10,10 @@ describe('@analytics agent', () => {
     vi.clearAllMocks()
     
     mockDeps = {
-      writeFileSync: vi.fn() as any,
-      readFileSync: vi.fn() as any,
-      existsSync: vi.fn() as any,
-      mkdirSync: vi.fn() as any,
+      writeFileSync: vi.fn(),
+      readFileSync: vi.fn(),
+      existsSync: vi.fn(),
+      mkdirSync: vi.fn(),
     }
     
     mockConfig = {

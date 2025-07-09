@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { DataConfigManager, type DataConfig } from '../config'
+import { beforeEach,describe, expect, it } from 'vitest'
+
+import { type DataConfig,DataConfigManager } from '../config'
 
 describe('DataConfigManager', () => {
   let configManager: DataConfigManager
@@ -50,7 +51,7 @@ describe('DataConfigManager', () => {
         new DataConfigManager({
           timeout: -1000, // Invalid negative timeout
           maxRetries: -1  // Invalid negative retries
-        } as any)
+        } )
       }).toThrow()
     })
   })
@@ -84,7 +85,7 @@ describe('DataConfigManager', () => {
       expect(() => {
         configManager.updateConfig({
           timeout: -5000 // Invalid negative value
-        } as any)
+        } )
       }).toThrow()
     })
 

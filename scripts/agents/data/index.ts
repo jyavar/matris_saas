@@ -39,10 +39,11 @@ export class DataManager {
 
   async execute(): Promise<void> {
     switch (this.options.mode) {
-      case 'run':
+      case 'run': {
         const agent = new DataAgent(this.options)
         await agent.run()
         break
+      }
       case 'validate':
         await commands.validate()
         break
@@ -138,4 +139,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(console.error)
 }
 
-export { DataAgent, commands }
+export { commands, DataAgent }

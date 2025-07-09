@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { DataLogger, LogLevel } from '../log'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { DataLogger } from '../log'
 
 describe('DataLogger', () => {
   let logger: DataLogger

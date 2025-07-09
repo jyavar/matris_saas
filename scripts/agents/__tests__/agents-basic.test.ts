@@ -1,4 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { existsSync, readdirSync } from 'fs'
+import { join } from 'path'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Agents Basic Setup', () => {
   beforeEach(() => {
@@ -26,49 +28,40 @@ describe('Agents Basic Setup', () => {
   describe('Agent Structure', () => {
     it('should have correct agent directories', () => {
       // Verificar que los directorios de agentes existen
-      const fs = require('fs')
-      const path = require('path')
-      
       const currentDir = __dirname
-      const agentsDir = path.join(currentDir, '..')
+      const agentsDir = join(currentDir, '..')
       
       // Verificar que estamos en el directorio correcto
-      expect(fs.existsSync(agentsDir)).toBe(true)
+      expect(existsSync(agentsDir)).toBe(true)
       
       // Verificar que algunos agentes principales existen
-      const qaDir = path.join(agentsDir, 'qa')
-      const refactorDir = path.join(agentsDir, 'refactor')
-      const contextWatchdogDir = path.join(agentsDir, 'context-watchdog')
+      const qaDir = join(agentsDir, 'qa')
+      const refactorDir = join(agentsDir, 'refactor')
+      const contextWatchdogDir = join(agentsDir, 'context-watchdog')
       
-      expect(fs.existsSync(qaDir)).toBe(true)
-      expect(fs.existsSync(refactorDir)).toBe(true)
-      expect(fs.existsSync(contextWatchdogDir)).toBe(true)
+      expect(existsSync(qaDir)).toBe(true)
+      expect(existsSync(refactorDir)).toBe(true)
+      expect(existsSync(contextWatchdogDir)).toBe(true)
     })
   })
 
   describe('Configuration Files', () => {
     it('should have vitest setup file', () => {
-      const fs = require('fs')
-      const path = require('path')
-      
       const currentDir = __dirname
-      const agentsDir = path.join(currentDir, '..')
+      const agentsDir = join(currentDir, '..')
       
-      const vitestSetup = path.join(agentsDir, 'vitest.setup.ts')
+      const vitestSetup = join(agentsDir, 'vitest.setup.ts')
       
-      expect(fs.existsSync(vitestSetup)).toBe(true)
+      expect(existsSync(vitestSetup)).toBe(true)
     })
   })
 
   describe('Test Files', () => {
     it('should have test files in correct locations', () => {
-      const fs = require('fs')
-      const path = require('path')
-      
       const currentDir = __dirname
       
       // Verificar que este archivo de test existe
-      const testFiles = fs.readdirSync(currentDir)
+      const testFiles = readdirSync(currentDir)
       expect(testFiles).toContain('agents-basic.test.ts')
       expect(testFiles).toContain('agents-setup.test.ts')
       expect(testFiles).toContain('agents-integration.test.ts')
@@ -76,11 +69,11 @@ describe('Agents Basic Setup', () => {
   })
 
   describe('Package Dependencies', () => {
-    it('should have required dependencies available', () => {
+    it('should have required dependencies available', async () => {
       // Verificar que las dependencias están disponibles
-      expect(require('path')).toBeDefined()
-      expect(require('fs')).toBeDefined()
-      expect(require('child_process')).toBeDefined()
+      expect(await import('path')).toBeDefined()
+      expect(typeof existsSync).toBe('function')
+      expect(typeof join).toBe('function')
     })
   })
 
@@ -124,9 +117,8 @@ describe('Agents Basic Setup', () => {
   })
 
   describe('Output Directories', () => {
-    it('should have correct output directory structure', () => {
-      const fs = require('fs')
-      const path = require('path')
+    it('should have correct output directory structure', async () => {
+      const path = await import('path')
       
       // Verificar que los directorios de output existen o pueden ser creados
       const outputDirs = ['logs', 'audit-artifacts', 'backup', 'coverage']

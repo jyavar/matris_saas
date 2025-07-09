@@ -4,19 +4,19 @@
  */
 
 import pino from 'pino'
+
 import {
+  BUDGET_MODELS,
+  DEFAULT_ODOO_CONFIG,
+  ODOO_ENDPOINTS,
+  OdooAccountMove,
+  OdooBudget,
   OdooConfig,
+  OdooConnection,
   OdooCredentials,
   OdooEndpoint,
   OdooResponse,
-  OdooSession,
-  OdooBudget,
-  OdooAccountMove,
-  OdooConnection,
-  DEFAULT_ODOO_CONFIG,
-  ODOO_ENDPOINTS,
-  BUDGET_MODELS
-} from '../config/odoo'
+  OdooSession} from '../config/odoo'
 
 const logger = pino({
   name: 'odoo-service',

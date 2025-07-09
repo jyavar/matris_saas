@@ -24,7 +24,7 @@ const SecurityAIConfigSchema = z.object({
 type SecurityAIConfig = z.infer<typeof SecurityAIConfigSchema>
 
 // Schema para configuración de orquestación
-const SecurityOrchestrationSchema = z.object({
+// const SecurityOrchestrationSchema = z.object({
   hooks: z.array(z.object({
     name: z.string(),
     type: z.enum(['pre', 'post', 'error']),
@@ -36,7 +36,7 @@ const SecurityOrchestrationSchema = z.object({
   parallel: z.boolean().default(false),
 })
 
-type SecurityOrchestration = z.infer<typeof SecurityOrchestrationSchema>
+// type SecurityOrchestration = z.infer<typeof SecurityOrchestrationSchema> // Unused for now
 
 export interface SecurityAgentDeps {
   writeFileSync: (file: string, data: string) => void
@@ -314,7 +314,6 @@ export default async function runAgent(
 ): Promise<void> {
   // Configuraciones
   const aiConfig = SecurityAIConfigSchema.parse({})
-  const orchestrationConfig = SecurityOrchestrationSchema.parse({})
   
   const startTime = Date.now()
   const log = {

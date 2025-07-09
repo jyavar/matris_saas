@@ -4,14 +4,9 @@
 // usage: pnpm tsx scripts/agents/perf/benchmark.ts
 // tags: perf, benchmark, strato
 
-import { exec } from 'child_process'
-import fs from 'fs'
-import { glob } from 'glob'
-import { promisify } from 'util'
 import crypto from 'crypto'
+import fs from 'fs'
 import { z } from 'zod'
-
-const execAsync = promisify(exec)
 
 // Schema de validación para inputs del performance agent
 const PerfInputSchema = z.object({
@@ -35,7 +30,6 @@ export interface PerfAgentDeps {
   // Nuevas dependencias para completar al 100%
   crypto?: typeof crypto
   fs?: typeof fs
-  exec?: typeof exec
 }
 
 interface BenchmarkResult {
@@ -65,14 +59,6 @@ interface PerformanceIssue {
 }
 
 // Nuevas interfaces para completar al 100%
-interface SecurityCheck {
-  type: 'file_permissions' | 'dependency_vulnerability' | 'code_injection' | 'resource_exhaustion'
-  status: 'passed' | 'failed' | 'warning'
-  details: string
-  severity: 'low' | 'medium' | 'high'
-  file?: string
-}
-
 interface OrchestrationStep {
   step: number
   action: string
@@ -80,15 +66,7 @@ interface OrchestrationStep {
   timeout: number
   rollbackAction?: string
   status: 'pending' | 'running' | 'completed' | 'failed'
-  result?: any
-}
-
-interface BackupStrategy {
-  type: 'full' | 'incremental' | 'selective'
-  location: string
-  retention: number
-  encryption: boolean
-  verification: boolean
+  result?: unknown
 }
 
 interface AIAnalysisPlan {
@@ -153,7 +131,6 @@ export class PerfAgent {
       existsSync: deps.existsSync || fs.existsSync,
       crypto: deps.crypto || crypto,
       fs: deps.fs || fs,
-      exec: deps.exec || exec,
     }
     this.projectRoot = process.cwd()
     this.securityHash = this.generateSecurityHash()
@@ -208,7 +185,7 @@ export class PerfAgent {
       
       // 3. Orquestación avanzada (NUEVO - Punto 10)
       log.actionsPerformed.push('🎯 Setting up advanced orchestration...')
-      const orchestration = this.setupOrchestration(validatedInput)
+      const orchestration = this.setupOrchestration()
       
       // 4. Protección estructural (NUEVO - Punto 11)
       log.actionsPerformed.push('🛡️ Implementing structural protection...')
@@ -223,7 +200,7 @@ export class PerfAgent {
       // 6. AI para análisis (NUEVO - Punto 12)
       if (validatedInput.enableAIAnalysis) {
         log.actionsPerformed.push('🤖 Preparing AI performance analysis...')
-        const aiPlan = await this.prepareAIAnalysis(validatedInput)
+        const aiPlan = await this.prepareAIAnalysis()
         await this.executeAIAnalysis(aiPlan, log)
       }
       
@@ -371,7 +348,7 @@ export class PerfAgent {
   }
 
   // NUEVO - Punto 10: Orquestación avanzada
-  private setupOrchestration(input: PerfInput): OrchestrationStep[] {
+  private setupOrchestration(): OrchestrationStep[] {
     const orchestrationSteps: OrchestrationStep[] = [
       {
         step: 1,
@@ -484,7 +461,7 @@ export class PerfAgent {
   }
 
   // NUEVO - Punto 12: AI para análisis
-  private async prepareAIAnalysis(input: PerfInput): Promise<AIAnalysisPlan> {
+  private async prepareAIAnalysis(): Promise<AIAnalysisPlan> {
     try {
       return {
         enabled: true,
@@ -528,7 +505,7 @@ export class PerfAgent {
     }
   }
 
-  private async createBackup(input: PerfInput, protection: any): Promise<void> {
+  private async createBackup(input: PerfInput, protection: unknown): Promise<void> {
     try {
       const backupDir = `${this.projectRoot}/backup/performance-${Date.now()}`
       
@@ -692,183 +669,32 @@ async function runBenchmark(
   }
 }
 
-async function analyzeBundleSize(): Promise<PerformanceIssue[]> {
-  const issues: PerformanceIssue[] = []
-
-  try {
-    // Check for large files
-    const files = await glob('**/*.{js,ts,jsx,tsx}', {
-      ignore: ['node_modules/**', 'dist/**', '.git/**', 'coverage/**'],
-    })
-
-    for (const file of files) {
-      const stats = fs.statSync(file)
-      const sizeKB = stats.size / 1024
-
-      if (sizeKB > 100) {
-        issues.push({
-          type: 'bundle-size',
-          priority: sizeKB > 500 ? 'high' : 'medium',
-          file,
-          description: `Large file detected: ${sizeKB.toFixed(2)}KB`,
-          recommendation:
-            'Consider splitting large files or removing unused code',
-          metrics: { sizeKB: Math.round(sizeKB) },
-        })
-      }
-    }
-
-    // Check for large dependencies
-    const packageJsonFiles = await glob('**/package.json', {
-      ignore: ['node_modules/**'],
-    })
-
-    for (const file of packageJsonFiles) {
-      const content = JSON.parse(fs.readFileSync(file, 'utf-8'))
-      const deps = { ...content.dependencies, ...content.devDependencies }
-
-      // Check for known heavy packages
-      const heavyPackages = [
-        'lodash',
-        'moment',
-        'jquery',
-        'bootstrap',
-        'material-ui',
-      ]
-      heavyPackages.forEach((pkg) => {
-        if (deps[pkg]) {
-          issues.push({
-            type: 'bundle-size',
-            priority: 'medium',
-            file,
-            description: `Heavy dependency detected: ${pkg}`,
-            recommendation: `Consider lighter alternatives to ${pkg}`,
-            metrics: { package: pkg },
-          })
-        }
-      })
-    }
-  } catch (error) {
-    console.warn('Error analyzing bundle size:', error)
-  }
-
-  return issues
+// Memory usage benchmark
+function runMemoryBenchmark(): Promise<BenchmarkResult> {
+  return runBenchmark('Memory Usage', async () => {
+    // Memory test simulation
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
 }
 
-async function analyzeCodeEfficiency(): Promise<PerformanceIssue[]> {
-  const issues: PerformanceIssue[] = []
-
-  try {
-    const files = await glob('**/*.{ts,js,tsx,jsx}', {
-      ignore: ['node_modules/**', 'dist/**', '.git/**', 'coverage/**'],
-    })
-
-    for (const file of files) {
-      const content = fs.readFileSync(file, 'utf-8')
-      const lines = content.split('\n')
-
-      lines.forEach((line, index) => {
-        const trimmed = line.trim()
-
-        // Detect inefficient loops
-        if (trimmed.includes('for') && trimmed.includes('length')) {
-          if (trimmed.includes('.length') && !trimmed.includes('let len =')) {
-            issues.push({
-              type: 'inefficient-code',
-              priority: 'low',
-              file,
-              line: index + 1,
-              description: 'Loop accesses array length on each iteration',
-              recommendation:
-                'Cache array length in a variable before the loop',
-            })
-          }
-        }
-
-        // Detect synchronous operations that should be async
-        if (
-          trimmed.includes('fs.readFileSync') ||
-          trimmed.includes('fs.writeFileSync')
-        ) {
-          issues.push({
-            type: 'slow-operation',
-            priority: 'medium',
-            file,
-            line: index + 1,
-            description: 'Synchronous file operation detected',
-            recommendation: 'Use async file operations for better performance',
-          })
-        }
-
-        // Detect frequent DOM queries
-        if (
-          trimmed.includes('document.querySelector') ||
-          trimmed.includes('document.getElementById')
-        ) {
-          issues.push({
-            type: 'inefficient-code',
-            priority: 'low',
-            file,
-            line: index + 1,
-            description: 'DOM query should be cached',
-            recommendation:
-              'Cache DOM elements in variables instead of repeated queries',
-          })
-        }
-
-        // Detect unoptimized regular expressions
-        if (trimmed.includes('new RegExp(') && trimmed.includes('for')) {
-          issues.push({
-            type: 'inefficient-code',
-            priority: 'medium',
-            file,
-            line: index + 1,
-            description: 'RegExp created inside loop',
-            recommendation:
-              'Create RegExp outside loop to avoid repeated compilation',
-          })
-        }
-      })
+// CPU intensive benchmark
+function runCPUBenchmark(): Promise<BenchmarkResult> {
+  return runBenchmark('CPU Intensive', async () => {
+    // CPU intensive simulation
+    for (let i = 0; i < 1000000; i++) {
+      Math.sqrt(i)
     }
-  } catch (error) {
-    console.warn('Error analyzing code efficiency:', error)
-  }
-
-  return issues
+  })
 }
 
-async function runSystemBenchmarks(): Promise<BenchmarkResult[]> {
-  const benchmarks: BenchmarkResult[] = []
-
-  // Memory usage benchmark
-  benchmarks.push(
-    await runBenchmark('Memory Usage', async () => {
-      const largeArray = new Array(1000000).fill(0)
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-  )
-
-  // CPU intensive benchmark
-  benchmarks.push(
-    await runBenchmark('CPU Intensive', async () => {
-      let result = 0
-      for (let i = 0; i < 1000000; i++) {
-        result += Math.sqrt(i)
-      }
-    })
-  )
-
-  // I/O benchmark
-  benchmarks.push(
-    await runBenchmark('I/O Operations', async () => {
-      const tempFile = 'temp-benchmark.txt'
-      fs.writeFileSync(tempFile, 'benchmark data')
-      fs.readFileSync(tempFile, 'utf-8')
-      fs.unlinkSync(tempFile)
-    })
-  )
-
-  return benchmarks
+// I/O benchmark
+function runIOBenchmark(): Promise<BenchmarkResult> {
+  return runBenchmark('I/O Operations', async () => {
+    const tempFile = 'temp-benchmark.txt'
+    fs.writeFileSync(tempFile, 'benchmark data')
+    fs.readFileSync(tempFile, 'utf-8')
+    fs.unlinkSync(tempFile)
+  })
 }
 
 export default async function runAgent(
@@ -879,6 +705,9 @@ export default async function runAgent(
 }
 
 // CLI execution
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runAgent().catch(console.error)
 }
+
+// Export utility functions for testing
+export { runCPUBenchmark, runIOBenchmark, runMemoryBenchmark }

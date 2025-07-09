@@ -1,7 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { MergeStrategist, MergeStrategistDeps } from '../plan-merge'
-import fs from 'fs'
 import crypto from 'crypto'
+import fs from 'fs'
+import { beforeEach,describe, expect, it, vi } from 'vitest'
+
+import { MergeStrategist, MergeStrategistDeps } from '../plan-merge'
 
 const mockWriteFileSync = vi.fn()
 const mockReadFileSync = vi.fn(() => '{}')
@@ -93,9 +94,9 @@ describe('MergeStrategist - 100% Complete Implementation', () => {
       }
       const result = strategist['setupAdvancedOrchestration'](input, plan)
       expect(result.length).toBeGreaterThan(plan.orchestrationSteps.length)
-      expect(result.some((step: any) => step.action === 'Pre-merge hooks execution')).toBe(true)
-      expect(result.some((step: any) => step.action === 'Post-merge validation')).toBe(true)
-      expect(result.some((step: any) => step.action === 'Send notifications')).toBe(true)
+      expect(result.some((step: unknown) => step.action === 'Pre-merge hooks execution')).toBe(true)
+      expect(result.some((step: unknown) => step.action === 'Post-merge validation')).toBe(true)
+      expect(result.some((step: unknown) => step.action === 'Send notifications')).toBe(true)
     })
     it('should include rollback actions in orchestration', () => {
       const input = {
@@ -115,7 +116,7 @@ describe('MergeStrategist - 100% Complete Implementation', () => {
         ]
       }
       const result = strategist['setupAdvancedOrchestration'](input, plan)
-      const stepsWithRollback = result.filter((step: any) => step.rollbackAction)
+      const stepsWithRollback = result.filter((step: unknown) => step.rollbackAction)
       expect(stepsWithRollback.length).toBeGreaterThan(0)
     })
   })
@@ -203,7 +204,7 @@ describe('MergeStrategist - 100% Complete Implementation', () => {
       })
       expect(mockWriteFileSync).toHaveBeenCalled()
       const calls = mockWriteFileSync.mock.calls
-      const found = calls.some((call: any[]) =>
+      const found = calls.some((call: unknown[]) =>
         call[0].includes('merge-strategist-report.json') && call[1].includes('100% compliance')
       )
       expect(found).toBe(true)
@@ -253,7 +254,7 @@ describe('MergeStrategist - 100% Complete Implementation', () => {
         conflicts: null // Invalid plan to trigger error
       }
       await expect(
-        strategist['prepareAIResolution'](plan as any)
+        strategist['prepareAIResolution'](plan )
       ).rejects.toThrow('AI resolution preparation failed')
     })
   })

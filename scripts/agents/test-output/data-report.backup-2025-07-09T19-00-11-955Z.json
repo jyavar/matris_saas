@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "message": "Data processing completed with 1/5 successful operations. 1 errors, 5 warnings.",
+  "data": {
+    "timestamp": "2025-07-09T19:00:11.946Z",
+    "status": "FAILED",
+    "operations": {
+      "migration": {
+        "status": "SKIPPED",
+        "message": "Supabase not available, skipping migrations"
+      },
+      "seeding": {
+        "status": "SKIPPED",
+        "message": "No seed script found"
+      },
+      "validation": {
+        "status": "FAILED",
+        "message": "Data validation failed",
+        "duration": 0
+      },
+      "backup": {
+        "status": "SKIPPED",
+        "message": "No backup script found"
+      },
+      "analytics": {
+        "status": "SUCCESS",
+        "message": "Analytics processing completed - 480 records processed",
+        "details": "Processed 480 analytics records",
+        "duration": 0
+      }
+    },
+    "summary": "Data processing completed with 1/5 successful operations. 1 errors, 5 warnings.",
+    "errors": [
+      "Data validation failed"
+    ],
+    "warnings": [
+      "Database migrations skipped - Supabase not available",
+      "Database seeding skipped - No seed script found",
+      "Missing environment variables: SUPABASE_URL, SUPABASE_ANON_KEY, JWT_SECRET",
+      "Schema validation skipped - No migrations directory found",
+      "Backup operations skipped - No backup script found"
+    ]
+  },
+  "errors": [
+    "Data validation failed"
+  ],
+  "warnings": [
+    "Database migrations skipped - Supabase not available",
+    "Database seeding skipped - No seed script found",
+    "Missing environment variables: SUPABASE_URL, SUPABASE_ANON_KEY, JWT_SECRET",
+    "Schema validation skipped - No migrations directory found",
+    "Backup operations skipped - No backup script found"
+  ],
+  "insights": [
+    {
+      "type": "validation",
+      "message": "Validación de datos falló. Revisar reglas de validación.",
+      "priority": "high"
+    },
+    {
+      "type": "errors",
+      "message": "1 errores detectados durante el procesamiento.",
+      "priority": "high"
+    },
+    {
+      "type": "warnings",
+      "message": "5 advertencias detectadas. Revisar logs.",
+      "priority": "medium"
+    }
+  ],
+  "recommendations": [
+    {
+      "action": "Actualizar reglas de validación de datos",
+      "impact": "Mejorar integridad y calidad de datos",
+      "effort": "medium"
+    },
+    {
+      "action": "Revisar logs detallados y corregir errores",
+      "impact": "Eliminar fallos en el procesamiento",
+      "effort": "high"
+    }
+  ],
+  "executionTime": 3,
+  "metadata": {
+    "version": "2.0.0",
+    "environment": "test",
+    "timestamp": "2025-07-09T19:00:11.949Z",
+    "agentName": "@data"
+  }
+}

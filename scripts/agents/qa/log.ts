@@ -7,7 +7,7 @@
  * and contextual information
  */
 
-import { writeFileSync, appendFileSync, existsSync, mkdirSync } from 'fs'
+import { appendFileSync, existsSync, mkdirSync,writeFileSync } from 'fs'
 import { join } from 'path'
 
 export enum LogLevel {

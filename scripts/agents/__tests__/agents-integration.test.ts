@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('Agents Integration Test', () => {
   beforeEach(() => {
@@ -27,17 +27,17 @@ describe('Agents Integration Test', () => {
 
     it('should have external service mocks available', () => {
       // Verificar que los mocks de servicios externos están disponibles
-      expect(require('@supabase/supabase-js')).toBeDefined()
-      expect(require('openai')).toBeDefined()
-      expect(require('stripe')).toBeDefined()
-      expect(require('posthog-node')).toBeDefined()
-      expect(require('resend')).toBeDefined()
+      expect(await import('@supabase/supabase-js')).toBeDefined()
+      expect(await import('openai')).toBeDefined()
+      expect(await import('stripe')).toBeDefined()
+      expect(await import('posthog-node')).toBeDefined()
+      expect(await import('resend')).toBeDefined()
     })
   })
 
   describe('File System Operations', () => {
     it('should handle file operations with mocks', () => {
-      const { readFileSync, writeFileSync, existsSync, mkdirSync } = require('fs')
+      const { readFileSync, writeFileSync, existsSync, mkdirSync } = await import('fs')
       
       // Simular operaciones de archivo
       const content = readFileSync('test-file.txt', 'utf-8')
@@ -56,7 +56,7 @@ describe('Agents Integration Test', () => {
 
   describe('Child Process Operations', () => {
     it('should handle child process operations with mocks', () => {
-      const { execSync } = require('child_process')
+      const { execSync } = await import('child_process')
       
       const output = execSync('test-command')
       expect(output).toEqual(Buffer.from('mocked output'))
@@ -66,7 +66,7 @@ describe('Agents Integration Test', () => {
 
   describe('Path Operations', () => {
     it('should handle path operations with mocks', () => {
-      const { resolve, join } = require('path')
+      const { resolve, join } = await import('path')
       
       const resolved = resolve('test', 'path')
       expect(resolved).toBe('test/path')
@@ -89,16 +89,16 @@ describe('Agents Integration Test', () => {
 
   describe('Utility Functions', () => {
     it('should have utility mocks available', () => {
-      expect(require('minimatch')).toBeDefined()
-      expect(require('zod')).toBeDefined()
+      expect(await import('minimatch')).toBeDefined()
+      expect(await import('zod')).toBeDefined()
     })
   })
 
   describe('Agent Architecture', () => {
     it('should have correct agent structure', () => {
       // Verificar que la estructura de agentes está disponible
-      const fs = require('fs')
-      const path = require('path')
+      const fs = await import('fs')
+      const path = await import('path')
       
       // Simular verificación de estructura
       const agentDirs = ['qa', 'refactor', 'context-watchdog', 'data', 'security']
@@ -125,7 +125,7 @@ describe('Agents Integration Test', () => {
   describe('Mock Cleanup', () => {
     it('should clean up mocks between tests', () => {
       // Verificar que los mocks se limpian correctamente
-      const { readFileSync } = require('fs')
+      const { readFileSync } = await import('fs')
       
       // El mock debería estar limpio
       expect(readFileSync).toBeDefined()

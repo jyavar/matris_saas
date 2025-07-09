@@ -1,7 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { PerfAgent, PerfAgentDeps } from '../benchmark'
-import fs from 'fs'
 import crypto from 'crypto'
+import fs from 'fs'
+import { beforeEach,describe, expect, it, vi } from 'vitest'
+
+import { PerfAgent, PerfAgentDeps } from '../benchmark'
 
 const mockWriteFileSync = vi.fn()
 const mockReadFileSync = vi.fn(() => '{}')
@@ -176,7 +177,7 @@ describe('PerfAgent - 100% Complete Implementation', () => {
 
       const log = {
         aiAnalysisResults: []
-      } as any
+      } 
 
       await agent['executeAIAnalysis'](plan, log)
 
@@ -204,7 +205,7 @@ describe('PerfAgent - 100% Complete Implementation', () => {
 
       expect(mockWriteFileSync).toHaveBeenCalled()
       const calls = mockWriteFileSync.mock.calls
-      const found = calls.some((call: any[]) =>
+      const found = calls.some((call: unknown[]) =>
         call[0].includes('performance-report.json') && call[1].includes('100% compliance')
       )
       expect(found).toBe(true)
@@ -297,7 +298,7 @@ describe('PerfAgent - 100% Complete Implementation', () => {
       agent['prepareAIAnalysis'] = vi.fn().mockRejectedValue(new Error('AI analysis preparation failed'))
 
       await expect(
-        agent['prepareAIAnalysis']({} as any)
+        agent['prepareAIAnalysis']({} )
       ).rejects.toThrow('AI analysis preparation failed')
 
       // Restore original method
@@ -316,13 +317,13 @@ describe('PerfAgent - 100% Complete Implementation', () => {
       
       expect(mockWrite).toHaveBeenCalled()
       const calls = mockWrite.mock.calls
-      const found = calls.some((call: any[]) =>
+      const found = calls.some((call: unknown[]) =>
         call[0].includes('performance-report.json') && call[1].includes('@perf')
       )
       expect(found).toBe(true)
       
       // Parse the actual data to verify structure
-      const [, data] = calls.find((call: any[]) => call[0].includes('performance-report.json'))!
+      const [, data] = calls.find((call: unknown[]) => call[0].includes('performance-report.json'))!
       const log = JSON.parse(data)
       expect(log).toHaveProperty('timestamp')
       expect(log).toHaveProperty('agentName', '@perf')

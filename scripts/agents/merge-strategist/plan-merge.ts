@@ -4,11 +4,11 @@
 // usage: pnpm tsx scripts/agents/merge-strategist/plan-merge.ts
 // tags: merge, strategist, audit, strato
 
-import fs from 'fs'
-import { z } from 'zod'
 import { execSync } from 'child_process'
-import { join } from 'path'
 import crypto from 'crypto'
+import fs from 'fs'
+import { join } from 'path'
+import { z } from 'zod'
 
 // Schema de validación para inputs del merge
 const MergeInputSchema = z.object({
@@ -119,7 +119,7 @@ export interface MergeStrategistDeps {
   writeFileSync: (file: string, data: string) => void
   readFileSync?: (file: string, encoding: BufferEncoding) => string
   existsSync?: (file: string) => boolean
-  execSync?: (command: string, options?: any) => Buffer | string
+  execSync?: (command: string, options?: unknown) => Buffer | string
   // Nuevas dependencias para completar al 100%
   crypto?: typeof crypto
   fs?: typeof fs
@@ -276,7 +276,7 @@ export class MergeStrategist {
     }
   }
 
-  private async createMergePlan(input: MergeInput, currentState: any): Promise<MergePlan> {
+  private async createMergePlan(input: MergeInput, currentState: unknown): Promise<MergePlan> {
     try {
       // Simular análisis de conflictos
       const conflicts: MergeConflict[] = []
@@ -594,7 +594,7 @@ export class MergeStrategist {
     }
   }
 
-  private async createComprehensiveBackup(input: MergeInput, protection: any): Promise<void> {
+  private async createComprehensiveBackup(input: MergeInput, protection: unknown): Promise<void> {
     try {
       const backupDir = join(this.projectRoot, 'backup', `merge-${Date.now()}`)
       
@@ -713,7 +713,7 @@ export class MergeStrategist {
     }
   }
 
-  private saveReport(log: any): void {
+  private saveReport(log: unknown): void {
     try {
       const reportPath = join(this.projectRoot, 'audit-artifacts', 'reports', 'merge-strategist-report.json')
       
@@ -739,6 +739,6 @@ export default async function runAgent(
 }
 
 // CLI execution
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runAgent().catch(console.error)
 }

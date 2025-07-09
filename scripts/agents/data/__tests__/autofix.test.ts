@@ -1,5 +1,6 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest'
-import runAgent, { type DataOptions, type DataDeps, type DataResult } from '../autofix'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import runAgent, { type DataDeps, type DataOptions } from '../autofix'
 
 describe('@data agent', () => {
   let mockDeps: DataDeps
@@ -9,11 +10,11 @@ describe('@data agent', () => {
     vi.clearAllMocks()
     
     mockDeps = {
-      writeFileSync: vi.fn() as any,
-      readFileSync: vi.fn() as any,
-      existsSync: vi.fn() as any,
-      mkdirSync: vi.fn() as any,
-      copyFileSync: vi.fn() as any,
+      writeFileSync: vi.fn(),
+      readFileSync: vi.fn(),
+      existsSync: vi.fn(),
+      mkdirSync: vi.fn(),
+      copyFileSync: vi.fn(),
     }
     
     mockOptions = {

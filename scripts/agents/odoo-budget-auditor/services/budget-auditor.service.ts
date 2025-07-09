@@ -4,14 +4,14 @@
  */
 
 import pino from 'pino'
-import { OdooService } from './odoo.service'
+
 import {
-  OdooBudget,
-  OdooAccountMove,
-  BudgetComparison,
+  ALERT_THRESHOLD,
   BudgetAuditReport,
-  ALERT_THRESHOLD
-} from '../config/odoo'
+  BudgetComparison,
+  OdooAccountMove,
+  OdooBudget} from '../config/odoo'
+import { OdooService } from './odoo.service'
 
 const logger = pino({
   name: 'budget-auditor-service',

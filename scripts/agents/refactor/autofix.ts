@@ -29,7 +29,7 @@ const ProtectionConfigSchema = z.object({
   excludedPaths: z.array(z.string()).default(['node_modules', 'dist', '.git', 'coverage']),
 })
 
-type ProtectionConfig = z.infer<typeof ProtectionConfigSchema>
+// type ProtectionConfig = z.infer<typeof ProtectionConfigSchema> // Unused for now
 
 export interface RefactorDeps {
   writeFileSync: (file: string, data: string) => void
@@ -293,7 +293,7 @@ async function analyzeComplexity(): Promise<RefactorSuggestion[]> {
         }
 
         // Any type usage
-        if (trimmed.includes(': any') || trimmed.includes('<any>')) {
+        if (trimmed.includes(': unknown') || trimmed.includes('<any>')) {
           suggestions.push({
             type: 'pattern',
             priority: 'medium',
