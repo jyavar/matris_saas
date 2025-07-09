@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-07-08T20:02:02.708Z",
+  "status": "FAIL",
+  "checks": {
+    "linting": {
+      "status": "PASS",
+      "message": "All linting rules passed"
+    },
+    "tests": {
+      "status": "FAIL",
+      "message": "Some tests are failing",
+      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nbackend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nbackend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
+    },
+    "coverage": {
+      "status": "FAIL",
+      "message": "Could not determine test coverage",
+      "details": "Command failed: pnpm test:coverage\nturbo 2.5.4\n\n  x Missing tasks in project\n  `->   x Could not find task `test:coverage` in project\n\n"
+    },
+    "security": {
+      "status": "PASS",
+      "message": "No obvious security vulnerabilities detected"
+    },
+    "performance": {
+      "status": "PASS",
+      "message": "Build completed successfully"
+    }
+  },
+  "summary": "QA Audit: 3 passed, 2 failed, 0 warnings",
+  "recommendations": [
+    "Fix failing tests before proceeding"
+  ]
+}
