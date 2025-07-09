@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
+// Define tipos estrictos para los datos del template
+interface TemplateData {
+  [key: string]: string | number | boolean | null | undefined
+}
+
 export class ResendService {
   async sendEmail(
     to: string,
@@ -17,7 +22,7 @@ export class ResendService {
   async sendTemplate(
     to: string,
     templateId: string,
-    data: Record<string, any>,
+    data: TemplateData,
   ): Promise<{ ok: boolean; message: string }> {
     // Mock: simular envío de template
     return {

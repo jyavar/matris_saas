@@ -77,7 +77,7 @@ export const CommonFields = {
 
   // Metadata fields
   tags: () => z.array(z.string()).optional(),
-  metadata: () => z.record(z.string(), z.any()).optional(),
+  metadata: () => z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()])).optional(),
 
   // URL fields
   url: () => z.string().url('Invalid URL format'),

@@ -9,13 +9,13 @@ import { sendError, sendSuccess, sendValidationError } from '../utils/response.h
 // Schemas de validación
 const trackEventSchema = z.object({
   event: z.string().min(1),
-  properties: z.record(z.any()).optional(),
+  properties: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])).optional(),
   user_id: z.string().min(1),
 })
 
 const identifyUserSchema = z.object({
   user_id: z.string().min(1),
-  traits: z.record(z.any()).optional(),
+  traits: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])).optional(),
 })
 
 export const PostHogController = {
