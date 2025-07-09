@@ -1,16 +1,15 @@
 {
-  "timestamp": "2025-07-05T05:40:36.712Z",
+  "timestamp": "2025-07-08T20:02:02.708Z",
   "status": "FAIL",
   "checks": {
     "linting": {
-      "status": "FAIL",
-      "message": "Linting errors found",
-      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\n@strato/backend-nest:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n@strato/backend-nest#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "status": "PASS",
+      "message": "All linting rules passed"
     },
     "tests": {
       "status": "FAIL",
       "message": "Some tests are failing",
-      "details": "Command failed: pnpm test\nturbo 2.5.4\n\n@strato/backend-nest:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n@strato/backend-nest#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nbackend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nbackend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "coverage": {
       "status": "FAIL",
@@ -22,15 +21,12 @@
       "message": "No obvious security vulnerabilities detected"
     },
     "performance": {
-      "status": "FAIL",
-      "message": "Build failed",
-      "details": "Command failed: pnpm build\nturbo 2.5.4\n\nbackend:build: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run build exited (2)\nbackend#build: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run build exited (2)\n ERROR  run failed: command  exited (2)\n"
+      "status": "PASS",
+      "message": "Build completed successfully"
     }
   },
-  "summary": "QA Audit: 1 passed, 4 failed, 0 warnings",
+  "summary": "QA Audit: 3 passed, 2 failed, 0 warnings",
   "recommendations": [
-    "Fix linting errors before proceeding",
-    "Fix failing tests before proceeding",
-    "Fix build issues to improve performance"
+    "Fix failing tests before proceeding"
   ]
 }
