@@ -1,115 +1,141 @@
-import request from 'supertest'
+import { createServer, ServerResponse } from 'http'
+import { parse } from 'url'
+import { analyticsRoutes } from '../routes/analytics.routes'
+import { analyticsReportingRoutes } from '../routes/analytics-reporting.routes'
+import { authRoutes } from '../routes/auth.routes'
+import { automationRoutes } from '../routes/automation.routes'
+import { billingRoutes } from '../routes/billing.routes'
+import { campaignsRoutes } from '../routes/campaigns.routes'
+import { devRoutes } from '../routes/dev.routes'
+import { emailCampaignsRoutes } from '../routes/email-campaigns.routes'
+import { healthRoutes } from '../routes/health.routes'
+import { launchboardRoutes } from '../routes/launchboard.routes'
+import { onboardingRoutes } from '../routes/onboarding.routes'
+import { openaiRoutes } from '../routes/openai.routes'
+import { paymentsRoutes } from '../routes/payments.routes'
+import { posthogRoutes } from '../routes/posthog.routes'
+import { pricingRoutes } from '../routes/pricing.routes'
+import { profilesRoutes } from '../routes/profiles.routes'
+import { reportingRoutes } from '../routes/reporting.routes'
+import { resendRoutes } from '../routes/resend.routes'
+import { runtimeRoutes } from '../routes/runtime.routes'
+import { todoRoutes } from '../routes/todo.routes'
+import logger from '../services/logger.service'
+import type { RouteDefinition } from '../types/express'
+import { createRouter } from '../utils/router'
 
-import { server } from '../index.js'
+const version = process.env.npm_package_version || '1.0.0'
 
-/**
- * Test helper for Node.js pure HTTP server
- */
-export class TestServer {
-  private port: number
-  private server: typeof server
-
-  constructor(port = 0) {
-    this.port = port
-    this.server = server
-  }
-
-  /**
-   * Start the test server
-   */
-  async start(): Promise<void> {
-    return new Promise((resolve) => {
-      this.server.listen(this.port, () => {
-        resolve()
-      })
-    })
-  }
-
-  /**
-   * Stop the test server
-   */
-  async stop(): Promise<void> {
-    return new Promise((resolve) => {
-      this.server.close(() => {
-        resolve()
-      })
-    })
-  }
-
-  /**
-   * Get the server URL
-   */
-  getUrl(): string {
-    const address = this.server.address()
-    if (typeof address === 'string') {
-      return address
-    }
-    if (address && typeof address === 'object') {
-      return `http://localhost:${address.port}`
-    }
-    return 'http://localhost:3001'
-  }
-
-  /**
-   * Make a request to the server
-   */
-  async request(method: string, path: string, options: {
-    headers?: Record<string, string>
-    body?: unknown
-  } = {}) {
-    const { headers = {}, body } = options
-
-    const req = request(this.server)[method.toLowerCase()](path)
-      .set(headers)
-
-    if (body) {
-      req.send(body)
-    }
-
-    return req
-  }
-
-  /**
-   * GET request
-   */
-  async get(path: string, options?: { headers?: Record<string, string> }) {
-    return this.request('GET', path, options)
-  }
-
-  /**
-   * POST request
-   */
-  async post(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
-    return this.request('POST', path, options)
-  }
-
-  /**
-   * PUT request
-   */
-  async put(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
-    return this.request('PUT', path, options)
-  }
-
-  /**
-   * DELETE request
-   */
-  async delete(path: string, options?: { headers?: Record<string, string> }) {
-    return this.request('DELETE', path, options)
-  }
-
-  /**
-   * PATCH request
-   */
-  async patch(path: string, options?: { headers?: Record<string, string>; body?: unknown }) {
-    return this.request('PATCH', path, options)
-  }
+function sendJson(res: ServerResponse, status: number, data: unknown): void {
+  res.writeHead(status, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify(data))
 }
 
-/**
- * Create a test server instance
- */
-export const createTestServer = (port?: number): TestServer => {
-  return new TestServer(port)
+// Helper function to register routes safely
+function registerRoutes(routes: RouteDefinition[], basePath: string = '') {
+  const router = createRouter()
+  routes.forEach((route) => {
+    const method = route.method.toLowerCase() as keyof typeof router
+    if (typeof router[method] === 'function') {
+      const fullPath = basePath ? `${basePath}${route.path}` : route.path
+      ;(router[method] as (path: string, handler: RouteDefinition['handler'], middlewares?: RouteDefinition['middlewares']) => void)(
+        fullPath,
+        route.handler,
+        route.middlewares || [],
+      )
+    }
+  })
+  return router
+}
+
+export async function createTestServer() {
+  const router = createRouter()
+
+  // Register all route modules with their base paths
+  const analyticsReportingRouter = registerRoutes(analyticsReportingRoutes, '/api/analytics-reporting')
+  const analyticsRouter = registerRoutes(analyticsRoutes, '/api/analytics')
+  const authRouter = registerRoutes(authRoutes, '/api/auth')
+  const automationRouter = registerRoutes(automationRoutes, '/api/automation')
+  const billingRouter = registerRoutes(billingRoutes, '/api/billing')
+  const campaignsRouter = registerRoutes(campaignsRoutes)
+  const devRouter = registerRoutes(devRoutes, '/api/dev')
+  const emailCampaignsRouter = registerRoutes(emailCampaignsRoutes, '/api/email-campaigns')
+  const healthRouter = registerRoutes(healthRoutes, '/api/health')
+  const launchboardRouter = registerRoutes(launchboardRoutes, '/api/launchboard')
+  const onboardingRouter = registerRoutes(onboardingRoutes, '/api/onboarding')
+  const openaiRouter = registerRoutes(openaiRoutes, '/api/openai')
+  const paymentsRouter = registerRoutes(paymentsRoutes, '/api/payments')
+  const posthogRouter = registerRoutes(posthogRoutes, '/api/posthog')
+  const pricingRouter = registerRoutes(pricingRoutes, '/api/pricing')
+  const profilesRouter = registerRoutes(profilesRoutes, '/api/profiles')
+  const reportingRouter = registerRoutes(reportingRoutes, '/api/reporting')
+  const resendRouter = registerRoutes(resendRoutes, '/api/resend')
+  const runtimeRouter = registerRoutes(runtimeRoutes, '/api/runtime')
+  const todoRouter = registerRoutes(todoRoutes, '/api/todos')
+
+  // Health endpoint
+  router.get('/health', async (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(
+      JSON.stringify({
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        environment: process.env.NODE_ENV || 'development',
+      }),
+    )
+  })
+
+  router.get('/api/health', async (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(
+      JSON.stringify({
+        success: true,
+        data: {
+          status: 'OK',
+          timestamp: new Date().toISOString(),
+          uptime: process.uptime(),
+          environment: process.env.NODE_ENV || 'development',
+        },
+      }),
+    )
+  })
+
+  const server = createServer(async (req, res) => {
+    const { pathname } = parse(req.url || '', true)
+
+    // Built-in health and metrics endpoints
+    if (req.method === 'GET' && pathname === '/health') {
+      return sendJson(res, 200, {
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        environment: process.env.NODE_ENV || 'development',
+      })
+    }
+
+    if (req.method === 'GET' && pathname === '/api/health') {
+      return sendJson(res, 200, {
+        success: true,
+        data: {
+          status: 'OK',
+          timestamp: new Date().toISOString(),
+          uptime: process.uptime(),
+          environment: process.env.NODE_ENV || 'development',
+        },
+      })
+    }
+
+    // Handle all other routes through the router
+    try {
+      await router.handleRequest(req, res)
+    } catch (error) {
+      logger.error('Error handling request:', error)
+      sendJson(res, 500, { success: false, error: 'Internal server error' })
+    }
+  })
+
+  return server
 }
 
 /**
