@@ -6,7 +6,8 @@ import React from 'react'
 import { AuthProvider, useAuth } from './AuthContext'
 
 // Mock fetch
-global.fetch = vi.fn()
+const mockFetch = vi.fn()
+global.fetch = mockFetch
 
 // Mock localStorage
 const localStorageMock = {
@@ -59,7 +60,7 @@ describe('AuthContext', () => {
     const mockUser = { id: '1', email: 'test@example.com', name: 'Test User' }
     const mockResponse = { token: 'mock-token', user: mockUser }
     
-    vi.mocked(fetch).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => mockResponse,
     } as Response)
@@ -86,7 +87,7 @@ describe('AuthContext', () => {
   })
 
   it('should handle login failure', async () => {
-    vi.mocked(fetch).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: false,
     } as Response)
 
@@ -120,7 +121,7 @@ describe('AuthContext', () => {
 
   it('should clear error', async () => {
     // First trigger an error
-    vi.mocked(fetch).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: false,
     } as Response)
 
