@@ -1,0 +1,65 @@
+{
+  "timestamp": "2025-07-09T23:44:33.966Z",
+  "summary": {
+    "totalModules": 6,
+    "successfulModules": 0,
+    "failedModules": 6,
+    "averageCoverage": null
+  },
+  "modules": [
+    {
+      "module": "backend",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:43:24.366Z",
+      "status": "no-tests"
+    },
+    {
+      "module": "backend-nest",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:43:30.121Z",
+      "status": "error"
+    },
+    {
+      "module": "frontend",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:44:04.545Z",
+      "status": "error"
+    },
+    {
+      "module": "web",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:44:10.198Z",
+      "status": "error"
+    },
+    {
+      "module": "utils",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:44:10.617Z",
+      "status": "no-tests"
+    },
+    {
+      "module": "scripts",
+      "lines": 0,
+      "branches": 0,
+      "functions": 0,
+      "statements": 0,
+      "timestamp": "2025-07-09T23:44:12.172Z",
+      "status": "error"
+    }
+  ]
+}

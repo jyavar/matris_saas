@@ -25,12 +25,18 @@ describe('BillingController (e2e)', () => {
       providers: [{ provide: BillingService, useValue: mockBillingService }],
     })
       .overrideGuard(JwtAuthGuard)
-      .useValue({ canActivate: () => true })
+      .useValue({ 
+        canActivate: (context: any) => {
+          // Simular usuario autenticado
+          const request = context.switchToHttp().getRequest();
+          request.user = { id: 'user-1' };
+          return true;
+        }
+      })
       .compile();
 
     app = moduleRef.createNestApplication();
     await app.init();
-    // No need to get billingService as it's not used in tests
   });
 
   afterEach(() => {
@@ -50,7 +56,16 @@ describe('BillingController (e2e)', () => {
         description: 'Test',
         dueDate: '2025-01-01',
       };
-      const mockInvoice = { id: 'inv-1', ...dto };
+      const mockInvoice = { 
+        id: 'inv-1', 
+        customer_id: 'user-1',
+        amount: 100,
+        currency: 'USD',
+        description: 'Test',
+        due_date: '2025-01-01',
+        status: 'pending',
+        created_at: new Date().toISOString()
+      };
       mockBillingService.createInvoice.mockResolvedValueOnce(mockInvoice);
 
       const res = await request(app.getHttpServer())
@@ -61,8 +76,12 @@ describe('BillingController (e2e)', () => {
       expect(res.status).toBe(201);
       expect(res.body).toMatchObject(mockInvoice);
       expect(mockBillingService.createInvoice).toHaveBeenCalledWith({
-        ...dto,
-        customer_id: undefined,
+        customerId: 'user-1',
+        amount: 100,
+        currency: 'USD',
+        description: 'Test',
+        dueDate: '2025-01-01',
+        customer_id: 'user-1', // El controller agrega esto
       });
     });
 
@@ -90,10 +109,13 @@ describe('BillingController (e2e)', () => {
     it('should return invoice by id', async () => {
       const mockInvoice = {
         id: 'inv-1',
+        customer_id: 'user-1', // Debe coincidir con el usuario autenticado
         amount: 100,
+        currency: 'USD',
         description: 'Test',
-        dueDate: '2025-01-01',
-        customer_id: 'user-1',
+        due_date: '2025-01-01',
+        status: 'pending',
+        created_at: new Date().toISOString()
       };
       mockBillingService.getInvoiceById.mockResolvedValueOnce(mockInvoice);
       const res = await request(app.getHttpServer())
@@ -102,6 +124,7 @@ describe('BillingController (e2e)', () => {
       expect(res.status).toBe(200);
       expect(res.body).toMatchObject(mockInvoice);
     });
+    
     it('should return 404 if invoice not found', async () => {
       mockBillingService.getInvoiceById.mockResolvedValueOnce(null);
       const res = await request(app.getHttpServer())

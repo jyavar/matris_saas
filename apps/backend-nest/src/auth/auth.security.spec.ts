@@ -3,21 +3,37 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../app.module';
+import { CampaignsService } from '../campaigns/campaigns.service';
 
 describe('Auth Security Tests', () => {
   let app: INestApplication;
 
+  const mockCampaignsService = {
+    list: jest.fn(),
+    create: jest.fn(),
+    delete: jest.fn(),
+  };
+
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(CampaignsService)
+      .useValue(mockCampaignsService)
+      .compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
   afterAll(async () => {
-    await app.close();
+    if (app) {
+      await app.close();
+    }
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('Rate Limiting', () => {

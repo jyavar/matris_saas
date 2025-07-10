@@ -1,15 +1,16 @@
 {
-  "timestamp": "2025-07-08T20:02:02.708Z",
+  "timestamp": "2025-07-09T23:26:22.106Z",
   "status": "FAIL",
   "checks": {
     "linting": {
-      "status": "PASS",
-      "message": "All linting rules passed"
+      "status": "FAIL",
+      "message": "Linting errors found",
+      "details": "Command failed: pnpm lint\nturbo 2.5.4\n\n@strato/backend-nest:lint: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n@strato/backend-nest#lint: command (/Users/jose/Proyectos/matriz_cursor/apps/backend-nest) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run lint exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "tests": {
       "status": "FAIL",
       "message": "Some tests are failing",
-      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nbackend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nbackend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/backend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
+      "details": "Command failed: pnpm test\nturbo 2.5.4\n\nfrontend:test: ERROR: command finished with error: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\nfrontend#test: command (/Users/jose/Proyectos/matriz_cursor/apps/frontend) /Users/jose/Library/pnpm/.tools/pnpm/9.7.0/bin/pnpm run test exited (1)\n ERROR  run failed: command  exited (1)\n"
     },
     "coverage": {
       "status": "FAIL",
@@ -25,8 +26,94 @@
       "message": "Build completed successfully"
     }
   },
-  "summary": "QA Audit: 3 passed, 2 failed, 0 warnings",
+  "summary": "QA Audit: 2 passed, 3 failed, 0 warnings",
   "recommendations": [
-    "Fix failing tests before proceeding"
-  ]
+    "Fix linting errors before proceeding",
+    "Fix failing tests before proceeding",
+    "[AI] src/app.ts: Consider refactoring large functions into smaller units for better maintainability. (confidence: 92%)",
+    "[AI] src/utils/helpers.ts: Detected possible duplicate code blocks. Use utility functions to DRY. (confidence: 88%)",
+    "[AI] src/services/api.ts: API error handling could be improved with more granular error types. (confidence: 85%)"
+  ],
+  "orchestrationLog": [
+    {
+      "step": "Linting",
+      "status": "completed",
+      "dependencies": [],
+      "startedAt": "2025-07-09T23:26:22.107Z",
+      "endedAt": "2025-07-09T23:26:31.527Z"
+    },
+    {
+      "step": "Tests",
+      "status": "completed",
+      "dependencies": [
+        "Linting"
+      ],
+      "startedAt": "2025-07-09T23:26:31.527Z",
+      "endedAt": "2025-07-09T23:27:03.594Z"
+    },
+    {
+      "step": "Coverage",
+      "status": "completed",
+      "dependencies": [
+        "Tests"
+      ],
+      "startedAt": "2025-07-09T23:27:03.594Z",
+      "endedAt": "2025-07-09T23:27:04.904Z"
+    },
+    {
+      "step": "Secrets",
+      "status": "completed",
+      "dependencies": [
+        "Coverage"
+      ],
+      "startedAt": "2025-07-09T23:27:04.904Z",
+      "endedAt": "2025-07-09T23:27:07.682Z"
+    },
+    {
+      "step": "SensitiveFilePermissions",
+      "status": "completed",
+      "dependencies": [
+        "Secrets"
+      ],
+      "startedAt": "2025-07-09T23:27:07.682Z",
+      "endedAt": "2025-07-09T23:27:08.248Z"
+    },
+    {
+      "step": "DeepDependencyVulnerabilities",
+      "status": "completed",
+      "dependencies": [
+        "SensitiveFilePermissions"
+      ],
+      "startedAt": "2025-07-09T23:27:08.248Z",
+      "endedAt": "2025-07-09T23:27:13.775Z"
+    },
+    {
+      "step": "Security",
+      "status": "completed",
+      "dependencies": [
+        "DeepDependencyVulnerabilities"
+      ],
+      "startedAt": "2025-07-09T23:27:13.775Z",
+      "endedAt": "2025-07-09T23:27:13.776Z"
+    },
+    {
+      "step": "Performance",
+      "status": "completed",
+      "dependencies": [
+        "Security"
+      ],
+      "startedAt": "2025-07-09T23:27:13.776Z",
+      "endedAt": "2025-07-09T23:29:08.209Z"
+    },
+    {
+      "step": "AIInsights",
+      "status": "completed",
+      "dependencies": [
+        "Performance"
+      ],
+      "startedAt": "2025-07-09T23:29:08.209Z",
+      "endedAt": "2025-07-09T23:29:08.209Z"
+    }
+  ],
+  "integrityHash": "f9cbcac9a3a898915ffb1016c3ad928cb2f04eb09343f130ca3c254e9082db45"
 }
