@@ -24,10 +24,9 @@ describe('Email Campaigns Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({
-      authMiddleware: (_req: unknown, _res: unknown, _next: () => void) => {
-        const req = _req as { _user?: { id: string; email: string } }
-        if (req) req.user = { id: 'test-user', email: 'test@example.com' }
-        return next()
+      authMiddleware: (req: any, res: any, next: () => void) => {
+        req.user = { id: 'test-user', email: 'test@example.com' }
+        next()
       },
     }))
     vi.spyOn(emailCampaignsService, 'getCampaigns').mockResolvedValue([

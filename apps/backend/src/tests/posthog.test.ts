@@ -71,19 +71,19 @@ describe('PostHog Endpoints', () => {
     it('should return 400 for missing event', async () => {
       const res = await request(server)
         .post('/api/posthog/track')
-        .send({ ...createTestEvent(), event: '' })
+        .send({ event: '', user_id: 'test-user-id', properties: {} })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
-      expect(res.body.error).toBe('Validation error')
+      expect(res.body.error).toBe('Invalid input data')
     })
 
     it('should return 400 for missing user_id', async () => {
       const res = await request(server)
         .post('/api/posthog/track')
-        .send({ ...createTestEvent(), user_id: '' })
+        .send({ event: 'test_event', user_id: '', properties: {} })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
-      expect(res.body.error).toBe('Validation error')
+      expect(res.body.error).toBe('Invalid input data')
     })
 
     it('should handle PostHog service errors gracefully', async () => {
@@ -125,7 +125,7 @@ describe('PostHog Endpoints', () => {
         .send({ ...createTestTraits(), user_id: '' })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
-      expect(res.body.error).toBe('Validation error')
+      expect(res.body.error).toBe('Invalid input data')
     })
 
     it('should handle PostHog service errors gracefully', async () => {

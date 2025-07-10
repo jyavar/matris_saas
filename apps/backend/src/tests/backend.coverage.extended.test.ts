@@ -218,7 +218,7 @@ describe('Backend Extended Coverage', () => {
   })
 
   it('Health: should return 200 for healthcheck', async () => {
-    const res = await request(server).get('/health')
+    const res = await request(server).get('/api/health')
     expect(res.status).toBe(200)
     expect(res.body.status ?? res.body.ok ?? true).toBe(true)
   })
