@@ -1,132 +1,111 @@
 // Campaigns service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '@/lib/supabase'
+
+export type CampaignStatus = 'draft' | 'active' | 'paused' | 'completed'
 
 export interface Campaign {
   id: string
-  name: string
-  description: string
-  status: 'draft' | 'active' | 'paused' | 'completed'
-  type: 'email' | 'social' | 'ads' | 'automation'
+  title: string
+  description?: string
   budget: number
-  spent: number
+  start_date?: string
+  end_date?: string
+  target_audience?: Record<string, unknown>
+  status: CampaignStatus
+  created_at?: string
+  updated_at?: string
+}
+
+export interface CreateCampaignRequest {
+  title: string
+  description?: string
+  budget: number
+  start_date?: string
+  end_date?: string
+  target_audience?: Record<string, unknown>
+  status?: CampaignStatus
+}
+
+export interface UpdateCampaignRequest {
+  title?: string
+  description?: string
+  budget?: number
+  start_date?: string
+  end_date?: string
+  target_audience?: Record<string, unknown>
+  status?: CampaignStatus
+}
+
+export interface CampaignAnalytics {
+  campaign_id: string
   impressions: number
   clicks: number
   conversions: number
-  createdAt: string
-  updatedAt: string
-  targetAudience: string[]
-  channels: string[]
+  spend: number
+  ctr: number
+  cpa: number
+  created_at?: string
+}
+
+export interface CampaignsListResponse {
+  success: boolean
+  data: {
+    campaigns: Campaign[]
+    count: number
+  }
+  error?: string
 }
 
 export interface CampaignResponse {
   success: boolean
-  data?: Campaign | Campaign[]
+  data?: Campaign
   error?: string
 }
 
-export interface CreateCampaignRequest {
-  name: string
-  description: string
-  type: Campaign['type']
-  budget: number
-  targetAudience: string[]
-  channels: string[]
-}
-
-export interface UpdateCampaignRequest {
-  name?: string
-  description?: string
-  status?: Campaign['status']
-  budget?: number
-  targetAudience?: string[]
-  channels?: string[]
-}
-
-export interface CampaignMetrics {
-  impressions: number
-  clicks: number
-  conversions: number
-  ctr: number
-  cpc: number
-  cpa: number
-  spend: number
+export interface CampaignAnalyticsResponse {
+  success: boolean
+  data?: CampaignAnalytics
+  error?: string
 }
 
 export class CampaignsService {
-  static async getCampaigns(): Promise<CampaignResponse> {
+  static async list(): Promise<CampaignsListResponse> {
     try {
-      // TODO: Integrar con API real de campaigns
-      const mockCampaigns: Campaign[] = [
-        {
-          id: 'camp-1',
-          name: 'Black Friday Email Campaign',
-          description: 'Promoción especial para Black Friday',
-          status: 'active',
-          type: 'email',
-          budget: 1000,
-          spent: 450,
-          impressions: 15000,
-          clicks: 750,
-          conversions: 45,
-          createdAt: '2024-01-15T10:00:00Z',
-          updatedAt: '2024-01-20T15:30:00Z',
-          targetAudience: ['existing-customers', 'newsletter-subscribers'],
-          channels: ['email'],
+      const token = await getSessionToken()
+      const res = await fetch('/api/campaigns', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        {
-          id: 'camp-2',
-          name: 'Social Media Awareness',
-          description: 'Campaña de awareness en redes sociales',
-          status: 'draft',
-          type: 'social',
-          budget: 2000,
-          spent: 0,
-          impressions: 0,
-          clicks: 0,
-          conversions: 0,
-          createdAt: '2024-01-18T09:00:00Z',
-          updatedAt: '2024-01-18T09:00:00Z',
-          targetAudience: ['new-users', 'tech-enthusiasts'],
-          channels: ['facebook', 'instagram', 'linkedin'],
-        },
-      ]
-
-      return {
-        success: true,
-        data: mockCampaigns,
+      })
+      if (!res.ok) {
+        return { success: false, data: { campaigns: [], count: 0 }, error: `Error ${res.status}: ${res.statusText}` }
       }
+      const json = await res.json()
+      return { success: true, data: json }
     } catch (error) {
       return {
         success: false,
+        data: { campaigns: [], count: 0 },
         error: error instanceof Error ? error.message : 'Failed to fetch campaigns',
       }
     }
   }
 
-  static async getCampaignById(id: string): Promise<CampaignResponse> {
+  static async getById(id: string): Promise<CampaignResponse> {
     try {
-      // TODO: Integrar con API real de campaigns
-      const mockCampaign: Campaign = {
-        id,
-        name: 'Sample Campaign',
-        description: 'This is a sample campaign',
-        status: 'active',
-        type: 'email',
-        budget: 1000,
-        spent: 450,
-        impressions: 15000,
-        clicks: 750,
-        conversions: 45,
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: '2024-01-20T15:30:00Z',
-        targetAudience: ['existing-customers'],
-        channels: ['email'],
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
       }
-
-      return {
-        success: true,
-        data: mockCampaign,
-      }
+      const campaign = await res.json()
+      return { success: true, data: campaign }
     } catch (error) {
       return {
         success: false,
@@ -135,30 +114,23 @@ export class CampaignsService {
     }
   }
 
-  static async createCampaign(request: CreateCampaignRequest): Promise<CampaignResponse> {
+  static async create(request: CreateCampaignRequest): Promise<CampaignResponse> {
     try {
-      // TODO: Integrar con API real de campaigns
-      const newCampaign: Campaign = {
-        id: `camp-${Date.now()}`,
-        name: request.name,
-        description: request.description,
-        status: 'draft',
-        type: request.type,
-        budget: request.budget,
-        spent: 0,
-        impressions: 0,
-        clicks: 0,
-        conversions: 0,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        targetAudience: request.targetAudience,
-        channels: request.channels,
+      const token = await getSessionToken()
+      const res = await fetch('/api/campaigns', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
-
-      return {
-        success: true,
-        data: newCampaign,
-      }
+      const json = await res.json()
+      return { success: true, data: json.data }
     } catch (error) {
       return {
         success: false,
@@ -167,30 +139,23 @@ export class CampaignsService {
     }
   }
 
-  static async updateCampaign(id: string, request: UpdateCampaignRequest): Promise<CampaignResponse> {
+  static async update(id: string, request: UpdateCampaignRequest): Promise<CampaignResponse> {
     try {
-      // TODO: Integrar con API real de campaigns
-      const updatedCampaign: Campaign = {
-        id,
-        name: request.name || 'Updated Campaign',
-        description: request.description || 'Updated description',
-        status: request.status || 'active',
-        type: 'email',
-        budget: request.budget || 1000,
-        spent: 450,
-        impressions: 15000,
-        clicks: 750,
-        conversions: 45,
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: new Date().toISOString(),
-        targetAudience: request.targetAudience || ['existing-customers'],
-        channels: request.channels || ['email'],
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
-
-      return {
-        success: true,
-        data: updatedCampaign,
-      }
+      const campaign = await res.json()
+      return { success: true, data: campaign }
     } catch (error) {
       return {
         success: false,
@@ -199,12 +164,20 @@ export class CampaignsService {
     }
   }
 
-  static async deleteCampaign(id: string): Promise<{ success: boolean; error?: string }> {
+  static async delete(id: string): Promise<{ success: boolean; error?: string }> {
     try {
-      // TODO: Integrar con API real de campaigns
-      return {
-        success: true,
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
+      return { success: true }
     } catch (error) {
       return {
         success: false,
@@ -213,27 +186,69 @@ export class CampaignsService {
     }
   }
 
-  static async getCampaignMetrics(id: string): Promise<{ success: boolean; data?: CampaignMetrics; error?: string }> {
+  static async pause(id: string): Promise<CampaignResponse> {
     try {
-      // TODO: Integrar con API real de campaigns
-      const metrics: CampaignMetrics = {
-        impressions: 15000,
-        clicks: 750,
-        conversions: 45,
-        ctr: 5.0,
-        cpc: 0.6,
-        cpa: 10.0,
-        spend: 450,
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}/pause`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
-
-      return {
-        success: true,
-        data: metrics,
-      }
+      const campaign = await res.json()
+      return { success: true, data: campaign }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch campaign metrics',
+        error: error instanceof Error ? error.message : 'Failed to pause campaign',
+      }
+    }
+  }
+
+  static async resume(id: string): Promise<CampaignResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}/resume`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
+      }
+      const campaign = await res.json()
+      return { success: true, data: campaign }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to resume campaign',
+      }
+    }
+  }
+
+  static async getAnalytics(id: string): Promise<CampaignAnalyticsResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`/api/campaigns/${id}/analytics`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const analytics = await res.json()
+      return { success: true, data: analytics }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch campaign analytics',
       }
     }
   }
