@@ -274,6 +274,12 @@ importers:
 
   apps/frontend:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.50.3
+        version: 2.50.3
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       lucide-react:
         specifier: ^0.525.0
         version: 0.525.0(react@19.1.0)
@@ -286,6 +292,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
