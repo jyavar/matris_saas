@@ -52,14 +52,14 @@ export class AnalyticsService {
     // Mock implementation for now - using query for filtering
     await Promise.resolve(); // Simulación de operación async
 
-    const limit = query.limit || 10;
-    const offset = query.offset || 0;
+    const limit = query.limit ?? 10;
+    const offset = query.offset ?? 0;
 
     return [
       {
         id: 1,
         event_name: 'page_view',
-        user_id: query.user_id || 1,
+        user_id: query.user_id ?? 1,
         properties: {},
         created_at: new Date().toISOString(),
       },
@@ -70,15 +70,15 @@ export class AnalyticsService {
     // Mock implementation for now - using query for filtering
     await Promise.resolve(); // Simulación de operación async
 
-    const limit = query.limit || 10;
-    const offset = query.offset || 0;
+    const limit = query.limit ?? 10;
+    const offset = query.offset ?? 0;
 
     return [
       {
         id: 1,
         metric_name: 'session_duration',
         value: 300,
-        user_id: query.user_id || 1,
+        user_id: query.user_id ?? 1,
         tags: {},
         created_at: new Date().toISOString(),
       },

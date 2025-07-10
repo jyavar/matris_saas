@@ -91,11 +91,11 @@ export class AuthService {
         throw new BadRequestException('Error al crear usuario');
       }
 
-      this.securityLogger.logAuthSuccess(data.user.id, data.user.email || '');
+      this.securityLogger.logAuthSuccess(data.user.id, data.user.email ?? '');
 
       return {
         id: data.user.id,
-        email: data.user.email || '',
+        email: data.user.email ?? '',
       };
     } catch (error) {
       if (error instanceof BadRequestException) {
@@ -129,14 +129,14 @@ export class AuthService {
         throw new UnauthorizedException('Could not sign in');
       }
 
-      this.securityLogger.logAuthSuccess(data.user.id, data.user.email || '');
+      this.securityLogger.logAuthSuccess(data.user.id, data.user.email ?? '');
 
       return {
         access_token: data.session.access_token,
-        refresh_token: data.session.refresh_token || '',
+        refresh_token: data.session.refresh_token ?? '',
         user: {
           id: data.user.id,
-          email: data.user.email || '',
+          email: data.user.email ?? '',
         },
       };
     } catch (error) {
@@ -165,10 +165,10 @@ export class AuthService {
 
       return {
         access_token: data.session.access_token,
-        refresh_token: data.session.refresh_token || '',
+        refresh_token: data.session.refresh_token ?? '',
         user: {
           id: data.user.id,
-          email: data.user.email || '',
+          email: data.user.email ?? '',
         },
       };
     } catch {

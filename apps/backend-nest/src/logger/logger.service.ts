@@ -11,7 +11,7 @@ export class LoggerService implements NestLoggerService {
     level:
       process.env.NODE_ENV === 'test'
         ? 'error'
-        : process.env.LOG_LEVEL || 'info',
+        : (process.env.LOG_LEVEL ?? 'info'),
     ...(process.env.NODE_ENV === 'test'
       ? {}
       : {

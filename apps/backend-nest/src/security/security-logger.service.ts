@@ -12,7 +12,7 @@ export interface SecurityEvent {
   ip?: string;
   userAgent?: string;
   timestamp: Date;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 @Injectable()
@@ -100,7 +100,7 @@ export class SecurityLoggerService {
     email?: string,
     ip?: string,
     userAgent?: string,
-    details?: Record<string, any>,
+    details?: Record<string, unknown>,
   ): void {
     const event: SecurityEvent = {
       type: 'SUSPICIOUS_ACTIVITY',
