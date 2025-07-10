@@ -60,10 +60,10 @@ describe('Target Coverage Tests', () => {
       
       expect(validatePasswordStrength('StrongPass123!')).toEqual({ valid: true, reason: 'strong' })
       expect(validatePasswordStrength('weak')).toEqual({ valid: false, reason: 'too_short' })
-      expect(validatePasswordStrength('12345678')).toEqual({ valid: false, reason: 'no_uppercase' })
-      expect(validatePasswordStrength('ABCDEFGH')).toEqual({ valid: false, reason: 'no_lowercase' })
-      expect(validatePasswordStrength('abcdefgh')).toEqual({ valid: false, reason: 'no_number' })
-      expect(validatePasswordStrength('StrongPass123')).toEqual({ valid: false, reason: 'no_special' })
+      expect(validatePasswordStrength('12345678')).toEqual({ valid: false, reason: 'no_lowercase' }) // solo números, falta lowercase primero
+      expect(validatePasswordStrength('ABCDEFGH')).toEqual({ valid: false, reason: 'no_lowercase' }) // solo mayúsculas, falta lowercase primero
+      expect(validatePasswordStrength('abcdefgh')).toEqual({ valid: false, reason: 'no_uppercase' }) // solo minúsculas, falta uppercase
+      expect(validatePasswordStrength('StrongPass123')).toEqual({ valid: false, reason: 'no_special' }) // sin caracteres especiales
     })
 
     it('should validate URLs correctly', () => {

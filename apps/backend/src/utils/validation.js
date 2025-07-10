@@ -1,91 +1,61 @@
+import crypto from 'crypto';
 /**
- * Basic validation utilities for JavaScript compatibility
+ * Valida formato de email usando regex estándar
  */
-
-/**
- * Validate email format
- */
-function isValidEmail(email) {
-  if (typeof email !== 'string' || !email) return false
-  // More strict email validation for tests
-  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-  
-  // Additional checks for invalid patterns
-  if (email.includes('..')) return false // No consecutive dots
-  if (email.startsWith('.') || email.endsWith('.')) return false // No dots at start/end
-  if (email.startsWith('@') || email.endsWith('@')) return false // No @ at start/end
-  if (email.indexOf('@') !== email.lastIndexOf('@')) return false // Only one @
-  
-  return emailRegex.test(email)
+export function validateEmail(email) {
+    if (!email || typeof email !== 'string')
+        return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.trim());
 }
-
 /**
- * Validate password strength
+ * Valida fuerza de contraseña
+ * Requiere: mínimo 8 caracteres, al menos 1 número, 1 letra minúscula, 1 mayúscula
  */
-function validatePassword(password) {
-  if (typeof password !== 'string' || password.length < 8) {
-    return { valid: false, reason: 'too_short' }
-  }
-  
-  // Check in specific order for consistent test results
-  if (!/[A-Z]/.test(password)) {
-    return { valid: false, reason: 'no_uppercase' }
-  }
-  
-  if (!/[a-z]/.test(password)) {
-    return { valid: false, reason: 'no_lowercase' }
-  }
-  
-  if (!/\d/.test(password)) {
-    return { valid: false, reason: 'no_number' }
-  }
-  
-  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    return { valid: false, reason: 'no_special' }
-  }
-  
-  return { valid: true, reason: 'strong' }
+export function validatePassword(password) {
+    if (!password || typeof password !== 'string')
+        return false;
+    // Mínimo 8 caracteres
+    if (password.length < 8)
+        return false;
+    // Al menos una letra minúscula
+    if (!/[a-z]/.test(password))
+        return false;
+    // Al menos una letra mayúscula  
+    if (!/[A-Z]/.test(password))
+        return false;
+    // Al menos un número
+    if (!/\d/.test(password))
+        return false;
+    return true;
 }
-
 /**
- * Validate URL format
+ * Genera token aleatorio hexadecimal de 32 caracteres
  */
-function isValidURL(url) {
-  if (typeof url !== 'string' || !url) return false
-  try {
-    new URL(url)
-    return true
-  } catch {
-    return false
-  }
+export function generateToken(length = 16) {
+    return crypto.randomBytes(length).toString('hex');
 }
-
 /**
- * Format date consistently for tests
+ * Valida fuerza de contraseña con detalles del motivo de fallo
  */
-function formatDate(date) {
-  if (!(date instanceof Date)) return null
-  return date.toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric',
-    timeZone: 'UTC' // Ensure consistent timezone for tests
-  })
+export function validatePasswordStrength(password) {
+    if (!password || typeof password !== 'string') {
+        return { valid: false, reason: 'empty' };
+    }
+    if (password.length < 8) {
+        return { valid: false, reason: 'too_short' };
+    }
+    if (!/[a-z]/.test(password)) {
+        return { valid: false, reason: 'no_lowercase' };
+    }
+    if (!/[A-Z]/.test(password)) {
+        return { valid: false, reason: 'no_uppercase' };
+    }
+    if (!/\d/.test(password)) {
+        return { valid: false, reason: 'no_number' };
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        return { valid: false, reason: 'no_special' };
+    }
+    return { valid: true, reason: 'strong' };
 }
-
-/**
- * Calculate days difference
- */
-function daysDifference(date1, date2) {
-  if (!(date1 instanceof Date) || !(date2 instanceof Date)) return null
-  const diffTime = Math.abs(date2 - date1)
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-}
-
-module.exports = {
-  isValidEmail,
-  validatePassword,
-  isValidURL,
-  formatDate,
-  daysDifference
-} 

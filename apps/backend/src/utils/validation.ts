@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import { randomBytes } from 'crypto'
 
 /**
  * Valida formato de email usando regex estándar
@@ -36,7 +36,7 @@ export function validatePassword(password: string): boolean {
  * Genera token aleatorio hexadecimal de 32 caracteres
  */
 export function generateToken(length: number = 16): string {
-  return crypto.randomBytes(length).toString('hex')
+  return randomBytes(length).toString('hex')
 }
 
 /**
