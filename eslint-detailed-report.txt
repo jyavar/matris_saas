@@ -1,8 +1,0 @@
-
-> strato-core-os@1.0.0 lint /Users/jose/Proyectos/matriz_cursor
-> turbo run lint "--verbose"
-
-  × The --verbose flag is not supported. Please use --verbosity instead.
-  │  if you are trying to pass `--verbose` as a value, use `-- --verbose`.
-
- ELIFECYCLE  Command failed with exit code 1.
