@@ -1,30 +1,28 @@
 // Settings service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '@/lib/supabase'
 
+// Types matching backend
 export interface UserSettings {
   id: string
-  userId: string
+  user_id: string
   theme: 'light' | 'dark' | 'system'
-  language: 'es' | 'en'
-  timezone: string
+  language: string
   notifications: {
     email: boolean
     push: boolean
     sms: boolean
-    marketing: boolean
   }
   privacy: {
-    profileVisibility: 'public' | 'private' | 'team'
-    dataSharing: boolean
-    analytics: boolean
+    profile_visibility: 'public' | 'private' | 'team'
+    data_sharing: boolean
   }
   preferences: {
-    dashboardLayout: 'grid' | 'list'
-    defaultView: 'dashboard' | 'analytics' | 'campaigns'
-    autoSave: boolean
+    timezone: string
+    date_format: string
+    currency: string
   }
-  createdAt: string
-  updatedAt: string
+  created_at: string
+  updated_at: string
 }
 
 export interface SettingsResponse {
@@ -35,8 +33,7 @@ export interface SettingsResponse {
 
 export interface UpdateSettingsRequest {
   theme?: UserSettings['theme']
-  language?: UserSettings['language']
-  timezone?: string
+  language?: string
   notifications?: Partial<UserSettings['notifications']>
   privacy?: Partial<UserSettings['privacy']>
   preferences?: Partial<UserSettings['preferences']>
@@ -44,260 +41,131 @@ export interface UpdateSettingsRequest {
 
 export interface TeamSettings {
   id: string
-  teamId: string
+  team_id: string
   name: string
   description: string
-  members: Array<{
-    id: string
-    email: string
-    role: 'admin' | 'member' | 'viewer'
-    joinedAt: string
-  }>
   permissions: {
-    canInviteMembers: boolean
-    canManageBilling: boolean
-    canViewAnalytics: boolean
-    canManageCampaigns: boolean
+    invite_members: boolean
+    manage_billing: boolean
+    view_analytics: boolean
   }
-  createdAt: string
-  updatedAt: string
+  features: {
+    advanced_analytics: boolean
+    custom_branding: boolean
+    api_access: boolean
+  }
+  created_at: string
+  updated_at: string
 }
 
 export interface SystemSettings {
-  maintenance: boolean
-  maintenanceMessage: string
-  features: {
-    analytics: boolean
-    campaigns: boolean
-    billing: boolean
-    docs: boolean
+  id: string
+  maintenance_mode: boolean
+  feature_flags: Record<string, boolean>
+  integrations: {
+    stripe_enabled: boolean
+    posthog_enabled: boolean
+    resend_enabled: boolean
   }
-  limits: {
-    maxTeamMembers: number
-    maxCampaigns: number
-    maxStorage: number
-  }
+  created_at: string
+  updated_at: string
 }
 
-export class SettingsService {
-  static async getUserSettings(userId: string): Promise<SettingsResponse> {
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+
+class SettingsService {
+  private static async makeRequest<T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<{ success: boolean; data?: T; error?: string }> {
     try {
-      // TODO: Integrar con API real de settings
-      const mockSettings: UserSettings = {
-        id: 'settings-1',
-        userId,
-        theme: 'dark',
-        language: 'es',
-        timezone: 'America/Mexico_City',
-        notifications: {
-          email: true,
-          push: true,
-          sms: false,
-          marketing: false,
+      const token = await getSessionToken()
+      if (!token) {
+        return { success: false, error: 'No authentication token' }
+      }
+
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          ...options.headers,
         },
-        privacy: {
-          profileVisibility: 'team',
-          dataSharing: true,
-          analytics: true,
-        },
-        preferences: {
-          dashboardLayout: 'grid',
-          defaultView: 'dashboard',
-          autoSave: true,
-        },
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: '2024-01-20T15:30:00Z',
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        return {
+          success: false,
+          error: result.error || `HTTP ${response.status}: ${response.statusText}`,
+        }
       }
 
       return {
         success: true,
-        data: mockSettings,
+        data: result.data || result,
       }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch user settings',
+        error: error instanceof Error ? error.message : 'Network error',
       }
     }
+  }
+
+  // User Settings
+  static async getUserSettings(userId: string): Promise<SettingsResponse> {
+    return this.makeRequest<UserSettings>('/api/settings/user')
   }
 
   static async updateUserSettings(userId: string, request: UpdateSettingsRequest): Promise<SettingsResponse> {
-    try {
-      // TODO: Integrar con API real de settings
-      const updatedSettings: UserSettings = {
-        id: 'settings-1',
-        userId,
-        theme: request.theme || 'dark',
-        language: request.language || 'es',
-        timezone: request.timezone || 'America/Mexico_City',
-        notifications: {
-          email: request.notifications?.email ?? true,
-          push: request.notifications?.push ?? true,
-          sms: request.notifications?.sms ?? false,
-          marketing: request.notifications?.marketing ?? false,
-        },
-        privacy: {
-          profileVisibility: request.privacy?.profileVisibility || 'team',
-          dataSharing: request.privacy?.dataSharing ?? true,
-          analytics: request.privacy?.analytics ?? true,
-        },
-        preferences: {
-          dashboardLayout: request.preferences?.dashboardLayout || 'grid',
-          defaultView: request.preferences?.defaultView || 'dashboard',
-          autoSave: request.preferences?.autoSave ?? true,
-        },
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: new Date().toISOString(),
-      }
-
-      return {
-        success: true,
-        data: updatedSettings,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to update user settings',
-      }
-    }
+    return this.makeRequest<UserSettings>('/api/settings/user', {
+      method: 'PATCH',
+      body: JSON.stringify(request),
+    })
   }
 
+  // Team Settings
   static async getTeamSettings(teamId: string): Promise<{ success: boolean; data?: TeamSettings; error?: string }> {
-    try {
-      // TODO: Integrar con API real de settings
-      const mockTeamSettings: TeamSettings = {
-        id: 'team-settings-1',
-        teamId,
-        name: 'STRATO Team',
-        description: 'Main development team',
-        members: [
-          {
-            id: 'user-1',
-            email: 'john@example.com',
-            role: 'admin',
-            joinedAt: '2024-01-15T10:00:00Z',
-          },
-          {
-            id: 'user-2',
-            email: 'alice@example.com',
-            role: 'member',
-            joinedAt: '2024-01-16T09:00:00Z',
-          },
-        ],
-        permissions: {
-          canInviteMembers: true,
-          canManageBilling: true,
-          canViewAnalytics: true,
-          canManageCampaigns: true,
-        },
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: '2024-01-20T15:30:00Z',
-      }
-
-      return {
-        success: true,
-        data: mockTeamSettings,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch team settings',
-      }
-    }
+    return this.makeRequest<TeamSettings>(`/api/teams/${teamId}/settings`)
   }
 
   static async updateTeamSettings(teamId: string, request: Partial<TeamSettings>): Promise<{ success: boolean; data?: TeamSettings; error?: string }> {
-    try {
-      // TODO: Integrar con API real de settings
-      const updatedTeamSettings: TeamSettings = {
-        id: 'team-settings-1',
-        teamId,
-        name: request.name || 'STRATO Team',
-        description: request.description || 'Main development team',
-        members: request.members || [],
-        permissions: request.permissions || {
-          canInviteMembers: true,
-          canManageBilling: true,
-          canViewAnalytics: true,
-          canManageCampaigns: true,
-        },
-        createdAt: '2024-01-15T10:00:00Z',
-        updatedAt: new Date().toISOString(),
-      }
-
-      return {
-        success: true,
-        data: updatedTeamSettings,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to update team settings',
-      }
-    }
+    return this.makeRequest<TeamSettings>(`/api/teams/${teamId}/settings`, {
+      method: 'PATCH',
+      body: JSON.stringify(request),
+    })
   }
 
+  // System Settings
   static async getSystemSettings(): Promise<{ success: boolean; data?: SystemSettings; error?: string }> {
-    try {
-      // TODO: Integrar con API real de settings
-      const mockSystemSettings: SystemSettings = {
-        maintenance: false,
-        maintenanceMessage: '',
-        features: {
-          analytics: true,
-          campaigns: true,
-          billing: true,
-          docs: true,
-        },
-        limits: {
-          maxTeamMembers: 50,
-          maxCampaigns: 100,
-          maxStorage: 10737418240, // 10GB in bytes
-        },
-      }
-
-      return {
-        success: true,
-        data: mockSystemSettings,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch system settings',
-      }
-    }
+    return this.makeRequest<SystemSettings>('/api/settings/system')
   }
 
+  static async updateSystemSettings(request: Partial<SystemSettings>): Promise<{ success: boolean; data?: SystemSettings; error?: string }> {
+    return this.makeRequest<SystemSettings>('/api/settings/system', {
+      method: 'PATCH',
+      body: JSON.stringify(request),
+    })
+  }
+
+  // Export/Import Settings
   static async exportSettings(userId: string): Promise<{ success: boolean; data?: string; error?: string }> {
-    try {
-      // TODO: Integrar con API real de settings
-      const exportData = `User Settings Export - ${userId}\nGenerated: ${new Date().toISOString()}`
-      
-      return {
-        success: true,
-        data: exportData,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to export settings',
-      }
+    const result = await this.makeRequest<{ export_data: string }>('/api/settings/export')
+    return {
+      success: result.success,
+      data: result.data?.export_data,
+      error: result.error,
     }
   }
 
   static async importSettings(userId: string, settingsData: string): Promise<{ success: boolean; error?: string }> {
-    try {
-      // TODO: Integrar con API real de settings
-      console.log('Importing settings for user:', userId, settingsData)
-      
-      return {
-        success: true,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to import settings',
-      }
-    }
+    return this.makeRequest('/api/settings/import', {
+      method: 'POST',
+      body: JSON.stringify({ settings_data: settingsData }),
+    })
   }
-} 
+}
+
+export { SettingsService } 

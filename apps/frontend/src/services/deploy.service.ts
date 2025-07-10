@@ -1,213 +1,252 @@
-// Deploy service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '@/lib/supabase'
 
-export interface Deployment {
+// Tipos para el módulo Deploy
+export interface DeployStatus {
+  jobs: RuntimeJob[]
+  count: number
+}
+
+export interface RuntimeJob {
   id: string
-  name: string
-  environment: 'development' | 'staging' | 'production'
-  status: 'pending' | 'building' | 'deploying' | 'success' | 'failed'
-  version: string
-  commitHash: string
-  branch: string
-  createdAt: string
-  updatedAt: string
-  duration: number
-  logs: string[]
-  url?: string
+  schedule: string
+  task: () => void
+  running: boolean
+  ref?: unknown
 }
 
-export interface DeployResponse {
-  success: boolean
-  data?: Deployment | Deployment[]
-  error?: string
+export interface AgentStatus {
+  name: string
+  status: 'running' | 'stopped' | 'error'
 }
 
-export interface CreateDeploymentRequest {
-  name: string
-  environment: Deployment['environment']
-  branch: string
-  commitHash: string
+export interface AgentLog {
+  timestamp: string
+  level: 'info' | 'warn' | 'error'
+  message: string
 }
 
 export interface DeployConfig {
-  buildCommand: string
-  outputDirectory: string
-  environmentVariables: Record<string, string>
-  domains: string[]
+  environment: string
+  version: string
+  features: Record<string, boolean>
+}
+
+export interface DeployTask {
+  id: string
+  schedule: string
+  running: boolean
+  lastRun?: string
+  nextRun?: string
 }
 
 export interface DeployMetrics {
-  totalDeployments: number
-  successfulDeployments: number
-  failedDeployments: number
-  averageDeployTime: number
-  lastDeployment: string
+  uptime: number
+  memoryUsage: number
+  cpuUsage: number
+  activeJobs: number
 }
 
-export class DeployService {
-  static async getDeployments(): Promise<DeployResponse> {
+export interface DeployHealth {
+  status: 'healthy' | 'degraded' | 'unhealthy'
+  checks: Record<string, boolean>
+}
+
+export interface DeployLog {
+  timestamp: string
+  level: 'info' | 'warn' | 'error'
+  message: string
+  context?: Record<string, unknown>
+}
+
+// Tipos para requests
+export interface CreateTaskRequest {
+  id: string
+  schedule: string
+  description?: string
+}
+
+export interface UpdateConfigRequest {
+  environment?: string
+  version?: string
+  features?: Record<string, boolean>
+}
+
+export interface RunAgentRequest {
+  options?: Record<string, unknown>
+}
+
+// Tipos para responses
+export interface DeployResponse<T> {
+  success: boolean
+  data?: T
+  error?: string
+}
+
+export interface AgentRunResult {
+  result: unknown
+}
+
+export interface TaskExecutionResult {
+  message: string
+  taskId: string
+  status: 'success' | 'failed'
+}
+
+// Configuración del servicio
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+
+class DeployService {
+  private async makeRequest<T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<DeployResponse<T>> {
     try {
-      // TODO: Integrar con API real de deploy
-      const mockDeployments: Deployment[] = [
-        {
-          id: 'deploy-1',
-          name: 'Frontend v1.2.3',
-          environment: 'production',
-          status: 'success',
-          version: '1.2.3',
-          commitHash: 'abc123def456',
-          branch: 'main',
-          createdAt: '2024-01-20T10:00:00Z',
-          updatedAt: '2024-01-20T10:05:00Z',
-          duration: 300,
-          logs: ['Building...', 'Deploying...', 'Success!'],
-          url: 'https://app.example.com',
+      const token = await getSessionToken()
+      const url = `${API_BASE_URL}${endpoint}`
+      
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token && { Authorization: `Bearer ${token}` }),
+          ...options.headers,
         },
-        {
-          id: 'deploy-2',
-          name: 'Backend API v2.1.0',
-          environment: 'staging',
-          status: 'building',
-          version: '2.1.0',
-          commitHash: 'def456ghi789',
-          branch: 'develop',
-          createdAt: '2024-01-20T11:00:00Z',
-          updatedAt: '2024-01-20T11:02:00Z',
-          duration: 120,
-          logs: ['Building...'],
-        },
-      ]
+      })
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+        return {
+          success: false,
+          error: errorData.error || `HTTP ${response.status}: ${response.statusText}`,
+        }
+      }
+
+      const data = await response.json()
       return {
         success: true,
-        data: mockDeployments,
+        data: data.data || data,
       }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch deployments',
+        error: error instanceof Error ? error.message : 'Network error',
       }
     }
   }
 
-  static async getDeploymentById(id: string): Promise<DeployResponse> {
-    try {
-      // TODO: Integrar con API real de deploy
-      const mockDeployment: Deployment = {
-        id,
-        name: 'Sample Deployment',
-        environment: 'production',
-        status: 'success',
-        version: '1.0.0',
-        commitHash: 'abc123def456',
-        branch: 'main',
-        createdAt: '2024-01-20T10:00:00Z',
-        updatedAt: '2024-01-20T10:05:00Z',
-        duration: 300,
-        logs: ['Building...', 'Deploying...', 'Success!'],
-        url: 'https://app.example.com',
-      }
-
-      return {
-        success: true,
-        data: mockDeployment,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch deployment',
-      }
-    }
+  // Status y Health
+  async getStatus(): Promise<DeployResponse<DeployStatus>> {
+    return this.makeRequest<DeployStatus>('/status')
   }
 
-  static async createDeployment(request: CreateDeploymentRequest): Promise<DeployResponse> {
-    try {
-      // TODO: Integrar con API real de deploy
-      const newDeployment: Deployment = {
-        id: `deploy-${Date.now()}`,
-        name: request.name,
-        environment: request.environment,
-        status: 'pending',
-        version: '1.0.0',
-        commitHash: request.commitHash,
-        branch: request.branch,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        duration: 0,
-        logs: ['Initializing deployment...'],
-      }
-
-      return {
-        success: true,
-        data: newDeployment,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to create deployment',
-      }
-    }
+  async getHealth(): Promise<DeployResponse<DeployHealth>> {
+    return this.makeRequest<DeployHealth>('/health')
   }
 
-  static async cancelDeployment(id: string): Promise<{ success: boolean; error?: string }> {
-    try {
-      // TODO: Integrar con API real de deploy
-      return {
-        success: true,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to cancel deployment',
-      }
-    }
+  async getMetrics(): Promise<DeployResponse<DeployMetrics>> {
+    return this.makeRequest<DeployMetrics>('/metrics')
   }
 
-  static async getDeployConfig(): Promise<{ success: boolean; data?: DeployConfig; error?: string }> {
-    try {
-      // TODO: Integrar con API real de deploy
-      const config: DeployConfig = {
-        buildCommand: 'npm run build',
-        outputDirectory: 'dist',
-        environmentVariables: {
-          NODE_ENV: 'production',
-          API_URL: 'https://api.example.com',
-        },
-        domains: ['app.example.com', 'www.example.com'],
-      }
-
-      return {
-        success: true,
-        data: config,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch deploy config',
-      }
-    }
+  // Configuración
+  async getConfig(): Promise<DeployResponse<DeployConfig>> {
+    return this.makeRequest<DeployConfig>('/config')
   }
 
-  static async getDeployMetrics(): Promise<{ success: boolean; data?: DeployMetrics; error?: string }> {
-    try {
-      // TODO: Integrar con API real de deploy
-      const metrics: DeployMetrics = {
-        totalDeployments: 150,
-        successfulDeployments: 142,
-        failedDeployments: 8,
-        averageDeployTime: 245,
-        lastDeployment: '2024-01-20T10:00:00Z',
-      }
-
-      return {
-        success: true,
-        data: metrics,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch deploy metrics',
-      }
-    }
+  async updateConfig(config: UpdateConfigRequest): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>('/config', {
+      method: 'PUT',
+      body: JSON.stringify(config),
+    })
   }
-} 
+
+  // Gestión de Agentes
+  async getAgents(): Promise<DeployResponse<string[]>> {
+    return this.makeRequest<string[]>('/agents')
+  }
+
+  async startAgent(name: string): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>(`/agents/${name}/start`, {
+      method: 'POST',
+    })
+  }
+
+  async stopAgent(name: string): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>(`/agents/${name}/stop`, {
+      method: 'POST',
+    })
+  }
+
+  async getAgentStatus(name: string): Promise<DeployResponse<AgentStatus>> {
+    return this.makeRequest<AgentStatus>(`/agents/${name}/status`)
+  }
+
+  async getAgentLogs(name: string): Promise<DeployResponse<AgentLog[]>> {
+    return this.makeRequest<AgentLog[]>(`/agents/${name}/logs`)
+  }
+
+  async runAgent(name: string, options: RunAgentRequest = {}): Promise<DeployResponse<AgentRunResult>> {
+    return this.makeRequest<AgentRunResult>(`/agents/${name}/run`, {
+      method: 'POST',
+      body: JSON.stringify(options),
+    })
+  }
+
+  // Gestión de Tareas
+  async getTasks(): Promise<DeployResponse<DeployTask[]>> {
+    return this.makeRequest<DeployTask[]>('/tasks')
+  }
+
+  async createTask(task: CreateTaskRequest): Promise<DeployResponse<DeployTask>> {
+    return this.makeRequest<DeployTask>('/tasks', {
+      method: 'POST',
+      body: JSON.stringify(task),
+    })
+  }
+
+  async getTaskById(id: string): Promise<DeployResponse<DeployTask>> {
+    return this.makeRequest<DeployTask>(`/tasks/${id}`)
+  }
+
+  async updateTask(id: string, updates: Partial<CreateTaskRequest>): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>(`/tasks/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates),
+    })
+  }
+
+  async deleteTask(id: string): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>(`/tasks/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  async executeTask(id: string): Promise<DeployResponse<TaskExecutionResult>> {
+    return this.makeRequest<TaskExecutionResult>(`/tasks/${id}/execute`, {
+      method: 'POST',
+    })
+  }
+
+  async getTaskResult(id: string): Promise<DeployResponse<unknown>> {
+    return this.makeRequest<unknown>(`/tasks/${id}/result`)
+  }
+
+  // Logs del sistema
+  async getLogs(): Promise<DeployResponse<DeployLog[]>> {
+    return this.makeRequest<DeployLog[]>('/logs')
+  }
+
+  // Control del sistema
+  async restart(): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>('/restart', {
+      method: 'POST',
+    })
+  }
+
+  async shutdown(): Promise<DeployResponse<{ message: string }>> {
+    return this.makeRequest<{ message: string }>('/shutdown', {
+      method: 'POST',
+    })
+  }
+}
+
+export const deployService = new DeployService() 
