@@ -96,7 +96,7 @@ describe('Backend Extended Coverage', () => {
   it('Analytics: should return 400 when no query is provided', async () => {
     const token = await getRealToken()
     const res = await request(server)
-      .get('/analytics')
+      .get('/api/analytics')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(400)
   })
@@ -104,7 +104,7 @@ describe('Backend Extended Coverage', () => {
   it('Analytics: should return empty dataset for new user', async () => {
     const token = await getRealToken()
     const res = await request(server)
-      .get('/analytics?range=30d')
+      .get('/api/analytics?range=30d')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
     expect(res.body.data ?? []).toEqual([])
@@ -113,7 +113,7 @@ describe('Backend Extended Coverage', () => {
   it('Profiles: should fail to create profile with invalid fields', async () => {
     const token = await getRealToken()
     const res = await request(server)
-      .post('/profiles')
+      .post('/api/profiles')
       .set('Authorization', `Bearer ${token}`)
       .send({ username: '', age: -5 })
     expect(res.status).toBe(400)
@@ -123,7 +123,7 @@ describe('Backend Extended Coverage', () => {
     const token = await getRealToken()
     const nonExistentId = '00000000-0000-0000-0000-000000000999'
     const res = await request(server)
-      .get(`/profiles/${nonExistentId}`)
+      .get(`/api/profiles/${nonExistentId}`)
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(404)
   })
@@ -141,13 +141,13 @@ describe('Backend Extended Coverage', () => {
     const otherToken = otherSignIn.body.access_token
     // Obtener el id del perfil ajeno
     const otherProfileRes = await request(server)
-      .get('/profiles/me')
+      .get('/api/profiles/me')
       .set('Authorization', `Bearer ${otherToken}`)
     const otherProfileId = otherProfileRes.body.id
     // Ahora, con un usuario distinto, intentar actualizar ese perfil
     const token = await getRealToken()
     const res = await request(server)
-      .put(`/profiles/${otherProfileId}`)
+      .put(`/api/profiles/${otherProfileId}`)
       .set('Authorization', `Bearer ${token}`)
       .send({ username: 'Hacked' })
     expect(res.status).toBe(404)
@@ -156,7 +156,7 @@ describe('Backend Extended Coverage', () => {
   it('Todos: should not create a todo with empty body', async () => {
     const token = await getRealToken()
     const res = await request(server)
-      .post('/todos')
+      .post('/api/todos')
       .set('Authorization', `Bearer ${token}`)
       .send({ task: '' })
     expect(res.status).toBe(400)
@@ -166,7 +166,7 @@ describe('Backend Extended Coverage', () => {
     const token = await getRealToken()
     const nonExistentId = 999999
     const res = await request(server)
-      .delete(`/todos/${nonExistentId}`)
+      .delete(`/api/todos/${nonExistentId}`)
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(404)
   })
@@ -175,7 +175,7 @@ describe('Backend Extended Coverage', () => {
     const token = await getRealToken()
     // Mock: no actual database call needed for this test
     const res = await request(server)
-      .get('/todos')
+      .get('/api/todos')
       .set('Authorization', `Bearer ${token}`)
     expect(res.status).toBe(200)
     expect(Array.isArray(res.body.todos ?? res.body)).toBe(true)
@@ -212,7 +212,7 @@ describe('Backend Extended Coverage', () => {
   it('Auth: should reject expired token', async () => {
     const expiredToken = generateExpiredToken()
     const res = await request(server)
-      .get('/protected')
+      .get('/api/health') // Use an existing protected endpoint
       .set('Authorization', `Bearer ${expiredToken}`)
     expect(res.status).toBe(401)
   })
@@ -220,7 +220,7 @@ describe('Backend Extended Coverage', () => {
   it('Health: should return 200 for healthcheck', async () => {
     const res = await request(server).get('/health')
     expect(res.status).toBe(200)
-    expect(res.body.ok ?? true).toBe(true)
+    expect(res.body.status ?? res.body.ok ?? true).toBe(true)
   })
 
   it('AuthService: should reject login with wrong credentials', async () => {
