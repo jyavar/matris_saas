@@ -1,34 +1,53 @@
 'use client'
 
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
-import { AnalyticsService, AnalyticsData, ChartData, AnalyticsFilters, AnalyticsEvent } from '@/services/analytics.service'
+import { 
+  AnalyticsService, 
+  AnalyticsSummary, 
+  AnalyticsEvent, 
+  AnalyticsMetric,
+  UserAnalytics,
+  AnalyticsQuery,
+  TrackEventRequest,
+  TrackMetricRequest
+} from '@/services/analytics.service'
 
 interface AnalyticsState {
-  analyticsData: AnalyticsData | null
-  chartData: ChartData | null
+  summary: AnalyticsSummary | null
+  events: AnalyticsEvent[]
+  metrics: AnalyticsMetric[]
+  userAnalytics: UserAnalytics | null
   loading: boolean
   error: string | null
 }
 
 type AnalyticsAction =
   | { type: 'SET_LOADING'; payload: boolean }
-  | { type: 'SET_ANALYTICS_DATA'; payload: { data: AnalyticsData; chartData: ChartData } }
+  | { type: 'SET_SUMMARY'; payload: AnalyticsSummary }
+  | { type: 'SET_EVENTS'; payload: AnalyticsEvent[] }
+  | { type: 'SET_METRICS'; payload: AnalyticsMetric[] }
+  | { type: 'SET_USER_ANALYTICS'; payload: UserAnalytics }
   | { type: 'SET_ERROR'; payload: string }
   | { type: 'CLEAR_ERROR' }
 
 interface AnalyticsContextType {
   state: AnalyticsState
-  fetchAnalyticsData: (filters: AnalyticsFilters) => Promise<void>
-  trackEvent: (event: AnalyticsEvent) => Promise<void>
-  exportReport: (filters: AnalyticsFilters) => Promise<string | null>
+  fetchSummary: () => Promise<void>
+  fetchEvents: (query?: AnalyticsQuery) => Promise<void>
+  fetchMetrics: (query?: AnalyticsQuery) => Promise<void>
+  fetchUserAnalytics: (userId: string) => Promise<void>
+  trackEvent: (event: TrackEventRequest) => Promise<void>
+  trackMetric: (metric: TrackMetricRequest) => Promise<void>
   clearError: () => void
 }
 
 const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined)
 
 const initialState: AnalyticsState = {
-  analyticsData: null,
-  chartData: null,
+  summary: null,
+  events: [],
+  metrics: [],
+  userAnalytics: null,
   loading: false,
   error: null,
 }
@@ -37,13 +56,14 @@ function analyticsReducer(state: AnalyticsState, action: AnalyticsAction): Analy
   switch (action.type) {
     case 'SET_LOADING':
       return { ...state, loading: action.payload }
-    case 'SET_ANALYTICS_DATA':
-      return { 
-        ...state, 
-        analyticsData: action.payload.data, 
-        chartData: action.payload.chartData, 
-        error: null 
-      }
+    case 'SET_SUMMARY':
+      return { ...state, summary: action.payload, error: null }
+    case 'SET_EVENTS':
+      return { ...state, events: action.payload, error: null }
+    case 'SET_METRICS':
+      return { ...state, metrics: action.payload, error: null }
+    case 'SET_USER_ANALYTICS':
+      return { ...state, userAnalytics: action.payload, error: null }
     case 'SET_ERROR':
       return { ...state, error: action.payload, loading: false }
     case 'CLEAR_ERROR':
@@ -60,21 +80,15 @@ interface AnalyticsProviderProps {
 export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   const [state, dispatch] = useReducer(analyticsReducer, initialState)
 
-  const fetchAnalyticsData = async (filters: AnalyticsFilters): Promise<void> => {
+  const fetchSummary = async (): Promise<void> => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true })
-      const response = await AnalyticsService.getAnalyticsData(filters)
+      const response = await AnalyticsService.getAnalyticsSummary()
       
-      if (response.success && response.data && response.chartData) {
-        dispatch({ 
-          type: 'SET_ANALYTICS_DATA', 
-          payload: { 
-            data: response.data, 
-            chartData: response.chartData 
-          } 
-        })
+      if (response.success && response.data) {
+        dispatch({ type: 'SET_SUMMARY', payload: response.data })
       } else {
-        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to fetch analytics data' })
+        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to fetch analytics summary' })
       }
     } catch (error) {
       dispatch({ 
@@ -84,7 +98,61 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     }
   }
 
-  const trackEvent = async (event: AnalyticsEvent): Promise<void> => {
+  const fetchEvents = async (query?: AnalyticsQuery): Promise<void> => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true })
+      const response = await AnalyticsService.getEvents(query)
+      
+      if (response.success && response.data) {
+        dispatch({ type: 'SET_EVENTS', payload: response.data })
+      } else {
+        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to fetch events' })
+      }
+    } catch (error) {
+      dispatch({ 
+        type: 'SET_ERROR', 
+        payload: error instanceof Error ? error.message : 'An unexpected error occurred' 
+      })
+    }
+  }
+
+  const fetchMetrics = async (query?: AnalyticsQuery): Promise<void> => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true })
+      const response = await AnalyticsService.getMetrics(query)
+      
+      if (response.success && response.data) {
+        dispatch({ type: 'SET_METRICS', payload: response.data })
+      } else {
+        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to fetch metrics' })
+      }
+    } catch (error) {
+      dispatch({ 
+        type: 'SET_ERROR', 
+        payload: error instanceof Error ? error.message : 'An unexpected error occurred' 
+      })
+    }
+  }
+
+  const fetchUserAnalytics = async (userId: string): Promise<void> => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true })
+      const response = await AnalyticsService.getUserAnalytics(userId)
+      
+      if (response.success && response.data) {
+        dispatch({ type: 'SET_USER_ANALYTICS', payload: response.data })
+      } else {
+        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to fetch user analytics' })
+      }
+    } catch (error) {
+      dispatch({ 
+        type: 'SET_ERROR', 
+        payload: error instanceof Error ? error.message : 'An unexpected error occurred' 
+      })
+    }
+  }
+
+  const trackEvent = async (event: TrackEventRequest): Promise<void> => {
     try {
       const response = await AnalyticsService.trackEvent(event)
       
@@ -96,22 +164,15 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     }
   }
 
-  const exportReport = async (filters: AnalyticsFilters): Promise<string | null> => {
+  const trackMetric = async (metric: TrackMetricRequest): Promise<void> => {
     try {
-      const response = await AnalyticsService.exportReport(filters)
+      const response = await AnalyticsService.trackMetric(metric)
       
-      if (response.success && response.data) {
-        return response.data
-      } else {
-        dispatch({ type: 'SET_ERROR', payload: response.error || 'Failed to export report' })
-        return null
+      if (!response.success) {
+        console.error('Failed to track metric:', response.error)
       }
     } catch (error) {
-      dispatch({ 
-        type: 'SET_ERROR', 
-        payload: error instanceof Error ? error.message : 'An unexpected error occurred' 
-      })
-      return null
+      console.error('Error tracking metric:', error)
     }
   }
 
@@ -120,15 +181,18 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   }
 
   useEffect(() => {
-    // Load initial analytics data with default filters
-    fetchAnalyticsData({ timeRange: '30d' })
+    // Load initial analytics summary
+    fetchSummary()
   }, [])
 
   const value: AnalyticsContextType = {
     state,
-    fetchAnalyticsData,
+    fetchSummary,
+    fetchEvents,
+    fetchMetrics,
+    fetchUserAnalytics,
     trackEvent,
-    exportReport,
+    trackMetric,
     clearError,
   }
 

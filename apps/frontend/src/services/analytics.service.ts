@@ -1,93 +1,85 @@
 // Analytics service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '@/lib/supabase'
 
-export interface AnalyticsData {
-  period: string
-  users: number
-  sessions: number
-  conversionRate: number
-  revenue: number
-  growth: number
+export interface AnalyticsEvent {
+  id: number
+  event_name: string
+  user_id?: number
+  payload?: Record<string, unknown>
+  created_at: string
 }
 
-export interface ChartData {
-  labels: string[]
-  datasets: Array<{
-    label: string
-    data: number[]
-    backgroundColor: string
-  }>
+export interface AnalyticsMetric {
+  id: number
+  metric_name: string
+  value: number
+  user_id?: number
+  tags?: Record<string, string>
+  created_at: string
 }
 
-export interface AnalyticsResponse {
+export interface AnalyticsSummary {
+  total_events: number
+  unique_users: number
+  top_events: Array<{ event_name: string; count: number }>
+  daily_events: Array<{ date: string; count: number }>
+}
+
+export interface UserAnalytics {
+  user_id: string
+  total_events: number
+  last_seen: string
+  events_breakdown: Array<{ event_name: string; count: number }>
+}
+
+export interface AnalyticsQuery {
+  startDate?: string
+  endDate?: string
+  event_name?: string
+  user_id?: number
+  limit?: number
+  offset?: number
+}
+
+export interface TrackEventRequest {
+  event_name: string
+  user_id?: number
+  properties?: Record<string, unknown>
+  timestamp?: string
+}
+
+export interface TrackMetricRequest {
+  metric_name: string
+  value: number
+  user_id?: number
+  tags?: Record<string, string>
+  timestamp?: string
+}
+
+export interface AnalyticsResponse<T> {
   success: boolean
-  data?: AnalyticsData
-  chartData?: ChartData
+  data?: T
   error?: string
 }
 
-export interface AnalyticsFilters {
-  timeRange: '7d' | '30d' | '90d'
-  metric?: string
-  groupBy?: string
-}
-
-export interface AnalyticsEvent {
-  event: string
-  properties: Record<string, string | number | boolean>
-  timestamp: string
-}
-
 export class AnalyticsService {
-  static async getAnalyticsData(filters: AnalyticsFilters): Promise<AnalyticsResponse> {
+  static async trackEvent(request: TrackEventRequest): Promise<AnalyticsResponse<AnalyticsEvent>> {
     try {
-      // TODO: Integrar con API real de analytics
-      const mockData: AnalyticsData = {
-        period: filters.timeRange === '7d' ? 'Últimos 7 días' : filters.timeRange === '30d' ? 'Últimos 30 días' : 'Últimos 90 días',
-        users: 12450,
-        sessions: 45678,
-        conversionRate: 3.2,
-        revenue: 125000,
-        growth: 12.5,
+      const token = await getSessionToken()
+      const res = await fetch('/api/analytics/track/event', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
-
-      const mockChartData: ChartData = {
-        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
-        datasets: [
-          {
-            label: 'Usuarios Activos',
-            data: [1200, 1350, 1100, 1400, 1600, 1800, 1700],
-            backgroundColor: 'rgba(59, 130, 246, 0.8)',
-          },
-          {
-            label: 'Sesiones',
-            data: [4500, 5200, 4800, 5500, 6200, 6800, 6500],
-            backgroundColor: 'rgba(16, 185, 129, 0.8)',
-          },
-        ],
-      }
-
-      return {
-        success: true,
-        data: mockData,
-        chartData: mockChartData,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch analytics data',
-      }
-    }
-  }
-
-  static async trackEvent(event: AnalyticsEvent): Promise<{ success: boolean; error?: string }> {
-    try {
-      // TODO: Integrar con API real de analytics
-      console.log('Analytics event tracked:', event)
-      
-      return {
-        success: true,
-      }
+      const event = await res.json()
+      return { success: true, data: event }
     } catch (error) {
       return {
         success: false,
@@ -96,19 +88,155 @@ export class AnalyticsService {
     }
   }
 
-  static async exportReport(filters: AnalyticsFilters): Promise<{ success: boolean; data?: string; error?: string }> {
+  static async trackMetric(request: TrackMetricRequest): Promise<AnalyticsResponse<AnalyticsMetric>> {
     try {
-      // TODO: Integrar con API real de analytics
-      const reportData = `Analytics Report - ${filters.timeRange}\nGenerated: ${new Date().toISOString()}`
-      
-      return {
-        success: true,
-        data: reportData,
+      const token = await getSessionToken()
+      const res = await fetch('/api/analytics/track/metric', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
+      const metric = await res.json()
+      return { success: true, data: metric }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to export report',
+        error: error instanceof Error ? error.message : 'Failed to track metric',
+      }
+    }
+  }
+
+  static async getEvents(query?: AnalyticsQuery): Promise<AnalyticsResponse<AnalyticsEvent[]>> {
+    try {
+      const token = await getSessionToken()
+      const queryParams = new URLSearchParams()
+      
+      if (query?.startDate) queryParams.append('startDate', query.startDate)
+      if (query?.endDate) queryParams.append('endDate', query.endDate)
+      if (query?.event_name) queryParams.append('event_name', query.event_name)
+      if (query?.user_id !== undefined) queryParams.append('user_id', query.user_id.toString())
+      if (query?.limit !== undefined) queryParams.append('limit', query.limit.toString())
+      if (query?.offset !== undefined) queryParams.append('offset', query.offset.toString())
+
+      const res = await fetch(`/api/analytics/events?${queryParams.toString()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const events = await res.json()
+      return { success: true, data: events }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get events',
+      }
+    }
+  }
+
+  static async getMetrics(query?: AnalyticsQuery): Promise<AnalyticsResponse<AnalyticsMetric[]>> {
+    try {
+      const token = await getSessionToken()
+      const queryParams = new URLSearchParams()
+      
+      if (query?.startDate) queryParams.append('startDate', query.startDate)
+      if (query?.endDate) queryParams.append('endDate', query.endDate)
+      if (query?.event_name) queryParams.append('event_name', query.event_name)
+      if (query?.user_id !== undefined) queryParams.append('user_id', query.user_id.toString())
+      if (query?.limit !== undefined) queryParams.append('limit', query.limit.toString())
+      if (query?.offset !== undefined) queryParams.append('offset', query.offset.toString())
+
+      const res = await fetch(`/api/analytics/metrics?${queryParams.toString()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const metrics = await res.json()
+      return { success: true, data: metrics }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get metrics',
+      }
+    }
+  }
+
+  static async getAnalyticsSummary(): Promise<AnalyticsResponse<AnalyticsSummary>> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch('/api/analytics/summary', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const summary = await res.json()
+      return { success: true, data: summary }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get analytics summary',
+      }
+    }
+  }
+
+  static async getUserAnalytics(userId: string): Promise<AnalyticsResponse<UserAnalytics>> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`/api/analytics/users/${userId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const userAnalytics = await res.json()
+      return { success: true, data: userAnalytics }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get user analytics',
+      }
+    }
+  }
+
+  static async getAllAnalytics(): Promise<AnalyticsResponse<AnalyticsEvent[]>> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch('/api/analytics', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
+      }
+      const analytics = await res.json()
+      return { success: true, data: analytics }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get all analytics',
       }
     }
   }
