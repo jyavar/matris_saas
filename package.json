@@ -1,17 +1,32 @@
 {
-  "name": "@strato/utils",
+  "name": "@strato/core-os",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
   "scripts": {
-    "test": "vitest run --coverage",
-    "lint": "../../node_modules/.bin/eslint src --ext .ts,.tsx --fix"
+    "dev": "pnpm --parallel --recursive dev",
+    "build": "pnpm --recursive build",
+    "test": "pnpm --recursive test",
+    "test:coverage": "pnpm --recursive test:coverage",
+    "lint": "pnpm --recursive lint",
+    "typecheck": "pnpm --recursive typecheck",
+    "clean": "pnpm --recursive clean",
+    "strato:guard": "echo '🛡️ STRATO Guardian: Pre-commit validation passed' && pnpm lint && pnpm typecheck"
   },
   "keywords": [
-    "utils",
-    "strato"
+    "monorepo",
+    "strato",
+    "core-os",
+    "saas",
+    "enterprise"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
 }

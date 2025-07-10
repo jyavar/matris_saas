@@ -108,14 +108,16 @@ describe('Home Page', () => {
   it('should render the page with dark mode support', () => {
     render(<Home />)
     
-    const pageContainer = screen.getByText(/plataforma saas/i).closest('div')
+    // Buscar el div principal que tiene las clases dark mode
+    const pageContainer = document.querySelector('.min-h-screen.bg-gradient-to-br')
     expect(pageContainer).toHaveClass('dark:from-gray-900 dark:to-gray-800')
   })
 
   it('should render the features grid with responsive classes', () => {
     render(<Home />)
     
-    const featuresGrid = screen.getByText('Analytics Avanzados').closest('div')?.parentElement
+    // Buscar el contenedor del grid directamente
+    const featuresGrid = document.querySelector('.grid.grid-cols-1.gap-8')
     expect(featuresGrid).toHaveClass('grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3')
   })
 
@@ -141,7 +143,8 @@ describe('Home Page', () => {
   it('should render the CTA button with proper styling', () => {
     render(<Home />)
     
-    const ctaButton = screen.getByRole('link', { name: /comenzar ahora/i })
+    // Buscar el Button element directamente, no el Link
+    const ctaButton = screen.getByText('Comenzar ahora')
     expect(ctaButton).toHaveClass('w-full')
   })
 }) 

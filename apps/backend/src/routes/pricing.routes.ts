@@ -19,7 +19,7 @@ export const pricingRoutes: RouteDefinition[] = [
     handler: pricingController.getSubscription,
   },
   {
-    method: 'PATCH',
+    method: 'PUT',
     path: '/subscriptions/:subscriptionId',
     handler: pricingController.updateSubscription,
   },

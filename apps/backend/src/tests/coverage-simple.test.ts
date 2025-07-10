@@ -22,8 +22,10 @@ describe('Simple Coverage Tests', () => {
       expect(validatePassword('StrongPass123!')).toBe(true)
       expect(validatePassword('weak')).toBe(false)
       expect(validatePassword('')).toBe(false)
-      expect(validatePassword('12345678')).toBe(false) // solo números
-      expect(validatePassword('abcdefgh')).toBe(false) // solo letras
+      expect(validatePassword('12345678')).toBe(false) // solo números, falta mayúscula
+      expect(validatePassword('abcdefgh')).toBe(false) // solo letras, falta número y mayúscula
+      expect(validatePassword('ABCDEFGH')).toBe(false) // solo mayúsculas, falta minúscula y número
+      expect(validatePassword('Password1')).toBe(true) // válida
     })
 
     it('should generate valid tokens', () => {
