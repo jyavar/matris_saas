@@ -20,7 +20,7 @@ function createTestCampaign(overrides = {}) {
   }
 }
 
-describe.skip('Email Campaigns Endpoints', () => {
+describe('Email Campaigns Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({

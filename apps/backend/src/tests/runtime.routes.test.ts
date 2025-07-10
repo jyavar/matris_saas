@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { server } from '../index.js'
 import { RuntimeService } from '../services/runtime.service.js'
 
-describe.skip('Runtime Routes', () => {
+describe('Runtime Routes', () => {
   const job = {
     id: 'test-job',
     schedule: '* * * * *',

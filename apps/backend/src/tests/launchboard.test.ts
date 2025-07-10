@@ -25,7 +25,7 @@ interface TestDashboard {
   widgets: Array<{ id: string; type: string; data: object }>
 }
 
-describe.skip('Launchboard Endpoints', () => {
+describe('Launchboard Endpoints', () => {
   // Mock global de servicio
   const mockLaunchboardService = {
     getDashboards: vi.fn(),

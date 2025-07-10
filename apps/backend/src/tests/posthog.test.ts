@@ -51,7 +51,7 @@ function createTestTraits(overrides = {}) {
   }
 }
 
-describe.skip('PostHog Endpoints', () => {
+describe('PostHog Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })

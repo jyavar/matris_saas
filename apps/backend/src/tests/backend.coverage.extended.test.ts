@@ -60,7 +60,7 @@ beforeEach(async () => {
   await resetDatabase()
 })
 
-describe.skip('Backend Extended Coverage', () => {
+describe('Backend Extended Coverage', () => {
   it('Analytics: should return 400 when no query is provided', async () => {
     const token = await getRealToken()
     const res = await request(server)

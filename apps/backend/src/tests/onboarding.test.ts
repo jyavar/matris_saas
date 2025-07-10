@@ -19,7 +19,7 @@ function createTestOnboarding(overrides = {}) {
   }
 }
 
-describe.skip('Onboarding Endpoints', () => {
+describe('Onboarding Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mock('../middleware/auth.middleware', () => ({

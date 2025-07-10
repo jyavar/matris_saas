@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { server } from '../index'
 
-describe.skip('Pricing Module', () => {
+describe('Pricing Module', () => {
   let authToken: string
   const testUser = {
     email: 'test@example.com',
