@@ -19,7 +19,7 @@ vi.mock('../middleware/auth.middleware', () => ({
         created_at: new Date().toISOString(),
       } as AuthenticatedUser
     }
-    return next()
+    return _next()
   },
 }))
 
@@ -160,7 +160,7 @@ describe('PostHog Endpoints', () => {
       expect(res.body.success).toBe(true)
       expect(res.body.data).toMatchObject({
         status: expect.stringMatching(/configured|not_configured/),
-        timestamp: expect.any(String),
+        api_key_present: expect.any(Boolean),
       })
     })
 
