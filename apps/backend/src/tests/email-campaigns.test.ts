@@ -56,33 +56,33 @@ describe('Email Campaigns Endpoints', () => {
     )
   })
 
-  describe('GET /email-campaigns', () => {
+  describe('GET /api/email-campaigns', () => {
     it('should return all campaigns', async () => {
-      const res = await request(server).get('/email-campaigns')
+      const res = await request(server).get('/api/email-campaigns')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(Array.isArray(res.body.data)).toBe(true)
     })
   })
 
-  describe('GET /email-campaigns/:id', () => {
+  describe('GET /api/email-campaigns/:id', () => {
     it('should return a campaign by id', async () => {
-      const res = await request(server).get('/email-campaigns/campaign-1')
+      const res = await request(server).get('/api/email-campaigns/campaign-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.id).toBe('campaign-1')
     })
     it('should return 404 for non-existent campaign', async () => {
-      const res = await request(server).get('/email-campaigns/nonexistent')
+      const res = await request(server).get('/api/email-campaigns/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /email-campaigns', () => {
+  describe('POST /api/email-campaigns', () => {
     it('should create a campaign with valid data', async () => {
       const res = await request(server)
-        .post('/email-campaigns')
+        .post('/api/email-campaigns')
         .send({
           name: 'Welcome Campaign',
           subject: 'Welcome!',
@@ -95,17 +95,17 @@ describe('Email Campaigns Endpoints', () => {
     })
     it('should return 400 for invalid data', async () => {
       const res = await request(server)
-        .post('/email-campaigns')
+        .post('/api/email-campaigns')
         .send({ name: '', recipients: [] })
       expect(res.status).toBe(400)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('PUT /email-campaigns/:id', () => {
+  describe('PUT /api/email-campaigns/:id', () => {
     it('should update a campaign', async () => {
       const res = await request(server)
-        .put('/email-campaigns/campaign-1')
+        .put('/api/email-campaigns/campaign-1')
         .send({ name: 'Updated Campaign' })
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
@@ -113,34 +113,34 @@ describe('Email Campaigns Endpoints', () => {
     })
     it('should return 404 for non-existent campaign', async () => {
       const res = await request(server)
-        .put('/email-campaigns/nonexistent')
+        .put('/api/email-campaigns/nonexistent')
         .send({ name: 'Does not exist' })
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('DELETE /email-campaigns/:id', () => {
+  describe('DELETE /api/email-campaigns/:id', () => {
     it('should delete a campaign', async () => {
-      const res = await request(server).delete('/email-campaigns/campaign-1')
+      const res = await request(server).delete('/api/email-campaigns/campaign-1')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
     it('should return 404 for non-existent campaign', async () => {
-      const res = await request(server).delete('/email-campaigns/nonexistent')
+      const res = await request(server).delete('/api/email-campaigns/nonexistent')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
   })
 
-  describe('POST /email-campaigns/:id/send', () => {
+  describe('POST /api/email-campaigns/:id/send', () => {
     it('should send a campaign', async () => {
-      const res = await request(server).post('/email-campaigns/campaign-1/send')
+      const res = await request(server).post('/api/email-campaigns/campaign-1/send')
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
     })
     it('should return 404 for non-existent campaign', async () => {
-      const res = await request(server).post('/email-campaigns/nonexistent/send')
+      const res = await request(server).post('/api/email-campaigns/nonexistent/send')
       expect(res.status).toBe(404)
       expect(res.body.success).toBe(false)
     })
