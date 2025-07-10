@@ -1,18 +1,25 @@
 // Billing service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '@/lib/supabase' // Asume helper para obtener JWT
+
+export interface Invoice {
+  id: string
+  amount: number
+  currency: string
+  description?: string
+  customer_id: string
+  due_date?: string
+  status: 'paid' | 'cancelled' | 'pending'
+  created_at: string
+  updated_at: string
+}
 
 export interface BillingData {
-  currentPlan: string
-  monthlySpend: number
-  monthlyLimit: number
-  nextBillingDate: string
-  usagePercentage: number
-  invoices: Array<{
-    id: string
-    amount: number
-    status: 'paid' | 'pending' | 'overdue'
-    date: string
-  }>
+  invoices: Invoice[]
+  pagination?: {
+    page: number
+    limit: number
+    total: number
+  }
 }
 
 export interface BillingResponse {
@@ -23,44 +30,40 @@ export interface BillingResponse {
 
 export interface CreateInvoiceRequest {
   amount: number
-  description: string
-  customerId: string
+  currency: string
+  description?: string
+  customer_id?: string
+  due_date?: string
 }
 
-export interface UpdateBillingRequest {
-  plan?: string
-  paymentMethod?: string
+export interface UpdateInvoiceRequest {
+  amount?: number
+  currency?: string
+  description?: string
+  status?: 'paid' | 'cancelled' | 'pending'
+  due_date?: string
 }
 
 export class BillingService {
   static async getBillingData(): Promise<BillingResponse> {
     try {
-      // TODO: Integrar con API real de billing
-      const mockData: BillingData = {
-        currentPlan: 'Pro',
-        monthlySpend: 245.50,
-        monthlyLimit: 500,
-        nextBillingDate: '2024-02-15',
-        usagePercentage: 49.1,
-        invoices: [
-          {
-            id: 'INV-001',
-            amount: 245.50,
-            status: 'paid',
-            date: '2024-01-15',
-          },
-          {
-            id: 'INV-002',
-            amount: 198.75,
-            status: 'pending',
-            date: '2024-02-15',
-          },
-        ],
+      const token = await getSessionToken()
+      const res = await fetch('/api/invoices', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        return { success: false, error: `Error ${res.status}: ${res.statusText}` }
       }
-
+      const json = await res.json()
       return {
         success: true,
-        data: mockData,
+        data: {
+          invoices: json.data,
+          pagination: json.pagination,
+        },
       }
     } catch (error) {
       return {
@@ -72,23 +75,24 @@ export class BillingService {
 
   static async createInvoice(request: CreateInvoiceRequest): Promise<BillingResponse> {
     try {
-      // TODO: Integrar con API real de billing
-      const newInvoice = {
-        id: `INV-${Date.now()}`,
-        amount: request.amount,
-        status: 'pending' as const,
-        date: new Date().toISOString(),
+      const token = await getSessionToken()
+      const res = await fetch('/api/invoices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
       }
-
+      const invoice = await res.json()
       return {
         success: true,
         data: {
-          currentPlan: 'Pro',
-          monthlySpend: 245.50 + request.amount,
-          monthlyLimit: 500,
-          nextBillingDate: '2024-02-15',
-          usagePercentage: 49.1,
-          invoices: [newInvoice],
+          invoices: [invoice],
         },
       }
     } catch (error) {
@@ -99,24 +103,54 @@ export class BillingService {
     }
   }
 
-  static async updateBilling(request: UpdateBillingRequest): Promise<BillingResponse> {
+  static async updateInvoice(id: string, request: UpdateInvoiceRequest): Promise<BillingResponse> {
     try {
-      // TODO: Integrar con API real de billing
+      const token = await getSessionToken()
+      const res = await fetch(`/api/invoices/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
+      }
+      const invoice = await res.json()
       return {
         success: true,
         data: {
-          currentPlan: request.plan || 'Pro',
-          monthlySpend: 245.50,
-          monthlyLimit: 500,
-          nextBillingDate: '2024-02-15',
-          usagePercentage: 49.1,
-          invoices: [],
+          invoices: [invoice],
         },
       }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to update billing',
+        error: error instanceof Error ? error.message : 'Failed to update invoice',
+      }
+    }
+  }
+
+  static async deleteInvoice(id: string): Promise<{ success: boolean; error?: string }> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`/api/invoices/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null)
+        return { success: false, error: errorJson?.error || `Error ${res.status}` }
+      }
+      return { success: true }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete invoice',
       }
     }
   }
