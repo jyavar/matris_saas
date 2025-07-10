@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+
 import { SecurityLoggerService } from './security-logger.service';
 
 @Module({

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+
 import { AnalyticsReportingController } from './analytics-reporting.controller';
 import { AnalyticsReportingService } from './analytics-reporting.service';
 

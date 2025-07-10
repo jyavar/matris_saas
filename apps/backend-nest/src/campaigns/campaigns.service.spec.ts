@@ -1,4 +1,4 @@
-import { CampaignsService, Campaign } from './campaigns.service';
+import { Campaign, CampaignsService } from './campaigns.service';
 
 describe('CampaignsService', () => {
   let service: CampaignsService;

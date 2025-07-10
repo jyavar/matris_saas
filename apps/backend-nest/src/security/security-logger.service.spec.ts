@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { SecurityLoggerService } from './security-logger.service';
 
 describe('SecurityLoggerService', () => {

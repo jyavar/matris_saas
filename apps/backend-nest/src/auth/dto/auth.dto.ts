@@ -1,4 +1,5 @@
 import { IsEmail, IsString, MinLength } from 'class-validator';
+
 import { IsStrongPassword } from '../validators/password.validator';
 
 export class SignUpDto {

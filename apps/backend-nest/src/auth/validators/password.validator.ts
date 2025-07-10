@@ -1,8 +1,8 @@
 import {
-  ValidatorConstraint,
-  ValidatorConstraintInterface,
   registerDecorator,
   ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
 } from 'class-validator';
 
 @ValidatorConstraint({ name: 'isStrongPassword', async: false })
