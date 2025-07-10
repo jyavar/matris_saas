@@ -22,7 +22,7 @@ describe('BillingService', () => {
           SUPABASE_URL: 'https://test.supabase.co',
           SUPABASE_ANON_KEY: 'test-key',
         };
-        return config[key] || 'test';
+        return config[key] ?? 'test';
       }),
     } as unknown as ConfigService;
 

@@ -3,13 +3,67 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AnalyticsController } from './analytics.controller';
 import { AnalyticsService } from './analytics.service';
 
+interface EventData {
+  event_name: string;
+  user_id: number;
+  properties?: Record<string, unknown>;
+}
+
+interface MetricData {
+  metric_name: string;
+  value: number;
+  user_id: number;
+  tags?: Record<string, string>;
+}
+
+interface QueryParams {
+  limit?: number;
+  offset?: number;
+  user_id?: number;
+}
+
+interface AnalyticsEvent {
+  id: number;
+  event_name: string;
+  user_id: number;
+  properties: Record<string, unknown>;
+  created_at: string;
+}
+
+interface AnalyticsMetric {
+  id: number;
+  metric_name: string;
+  value: number;
+  user_id: number;
+  tags: Record<string, string>;
+  created_at: string;
+}
+
+interface AnalyticsSummary {
+  total_events: number;
+  total_metrics: number;
+  unique_users: number;
+  date_range: {
+    start: string | undefined;
+    end: string | undefined;
+  };
+}
+
 interface MockAnalyticsService {
-  trackEvent: jest.MockedFunction<(eventData: any) => Promise<any>>;
-  trackMetric: jest.MockedFunction<(metricData: any) => Promise<any>>;
-  getEvents: jest.MockedFunction<(query: any) => Promise<any[]>>;
-  getMetrics: jest.MockedFunction<(query: any) => Promise<any[]>>;
+  trackEvent: jest.MockedFunction<
+    (eventData: EventData) => Promise<AnalyticsEvent>
+  >;
+  trackMetric: jest.MockedFunction<
+    (metricData: MetricData) => Promise<AnalyticsMetric>
+  >;
+  getEvents: jest.MockedFunction<
+    (query: QueryParams) => Promise<AnalyticsEvent[]>
+  >;
+  getMetrics: jest.MockedFunction<
+    (query: QueryParams) => Promise<AnalyticsMetric[]>
+  >;
   getAnalyticsSummary: jest.MockedFunction<
-    (startDate?: string, endDate?: string) => Promise<any>
+    (startDate?: string, endDate?: string) => Promise<AnalyticsSummary>
   >;
 }
 
@@ -48,13 +102,13 @@ describe('AnalyticsController', () => {
 
   describe('trackEvent', () => {
     it('should track an analytics event', async () => {
-      const eventData = {
+      const eventData: EventData = {
         event_name: 'user_signup',
         user_id: 123,
         properties: { source: 'web' },
       };
 
-      const expectedEvent = {
+      const expectedEvent: AnalyticsEvent = {
         id: 1,
         event_name: 'user_signup',
         user_id: 123,
@@ -74,7 +128,7 @@ describe('AnalyticsController', () => {
     });
 
     it('should handle tracking errors', async () => {
-      const eventData = {
+      const eventData: EventData = {
         event_name: 'invalid_event',
         user_id: 123,
         properties: {},
@@ -92,14 +146,14 @@ describe('AnalyticsController', () => {
 
   describe('trackMetric', () => {
     it('should track a metric successfully', async () => {
-      const metricData = {
+      const metricData: MetricData = {
         metric_name: 'page_views',
         value: 150,
         user_id: 123,
         tags: { page: '/dashboard', browser: 'chrome' },
       };
 
-      const expectedMetric = {
+      const expectedMetric: AnalyticsMetric = {
         id: 1,
         metric_name: 'page_views',
         value: 150,
@@ -120,7 +174,7 @@ describe('AnalyticsController', () => {
     });
 
     it('should handle metric tracking errors', async () => {
-      const metricData = {
+      const metricData: MetricData = {
         metric_name: 'invalid_metric',
         value: -1,
         user_id: 123,
@@ -138,13 +192,13 @@ describe('AnalyticsController', () => {
 
   describe('getEvents', () => {
     it('should return events with query parameters', async () => {
-      const queryParams = {
+      const queryParams: QueryParams = {
         limit: 10,
         offset: 0,
         user_id: 123,
       };
 
-      const expectedEvents = [
+      const expectedEvents: AnalyticsEvent[] = [
         {
           id: 1,
           event_name: 'user_signup',
@@ -174,7 +228,7 @@ describe('AnalyticsController', () => {
     });
 
     it('should return empty events array when no events found', async () => {
-      const queryParams = { limit: 10, offset: 0 };
+      const queryParams: QueryParams = { limit: 10, offset: 0 };
 
       analyticsService.getEvents.mockResolvedValue([]);
 
@@ -191,13 +245,13 @@ describe('AnalyticsController', () => {
 
   describe('getMetrics', () => {
     it('should return metrics with query parameters', async () => {
-      const queryParams = {
+      const queryParams: QueryParams = {
         limit: 5,
         offset: 0,
         user_id: 123,
       };
 
-      const expectedMetrics = [
+      const expectedMetrics: AnalyticsMetric[] = [
         {
           id: 1,
           metric_name: 'page_views',
@@ -221,7 +275,7 @@ describe('AnalyticsController', () => {
     });
 
     it('should return empty metrics array when no metrics found', async () => {
-      const queryParams = { limit: 5, offset: 0 };
+      const queryParams: QueryParams = { limit: 5, offset: 0 };
 
       analyticsService.getMetrics.mockResolvedValue([]);
 
@@ -241,12 +295,14 @@ describe('AnalyticsController', () => {
       const startDate = '2024-01-01';
       const endDate = '2024-01-31';
 
-      const expectedSummary = {
+      const expectedSummary: AnalyticsSummary = {
         total_events: 1500,
         total_metrics: 750,
         unique_users: 250,
-        start_date: startDate,
-        end_date: endDate,
+        date_range: {
+          start: startDate,
+          end: endDate,
+        },
       };
 
       analyticsService.getAnalyticsSummary.mockResolvedValue(expectedSummary);
@@ -264,12 +320,14 @@ describe('AnalyticsController', () => {
     });
 
     it('should return analytics summary without date range', async () => {
-      const expectedSummary = {
+      const expectedSummary: AnalyticsSummary = {
         total_events: 5000,
         total_metrics: 2500,
         unique_users: 800,
-        start_date: undefined,
-        end_date: undefined,
+        date_range: {
+          start: undefined,
+          end: undefined,
+        },
       };
 
       analyticsService.getAnalyticsSummary.mockResolvedValue(expectedSummary);

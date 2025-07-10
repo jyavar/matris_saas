@@ -69,7 +69,7 @@ export class EmailCampaignsController {
   async send(@Param('id') id: string) {
     const result = await this.service.sendCampaign(id);
     if (!result.success) {
-      return { success: false, error: result.error || 'Send failed' };
+      return { success: false, error: result.error ?? 'Send failed' };
     }
     return { success: true, message: 'Campaign sent' };
   }

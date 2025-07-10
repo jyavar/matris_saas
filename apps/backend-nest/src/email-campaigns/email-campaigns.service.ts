@@ -38,7 +38,7 @@ export class EmailCampaignsService {
 
   async getCampaignById(id: string): Promise<EmailCampaign | null> {
     await Promise.resolve(); // Simulación de operación async
-    return this.campaigns.find((c) => c.id === id) || null;
+    return this.campaigns.find((c) => c.id === id) ?? null;
   }
 
   async createCampaign(data: CreateCampaignData): Promise<EmailCampaign> {

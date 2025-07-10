@@ -2,13 +2,10 @@ import '@testing-library/jest-dom'
 import React from 'react'
 import { vi } from 'vitest'
 
-// Make React available globally for JSX
-global.React = React
-
-// Setup globals for testing
+// Setup test environment
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation(query => ({
+  value: vi.fn().mockImplementation((query: string) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -19,3 +16,10 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 })
+
+// Mock Next.js Image component with proper typing
+vi.mock('next/image', () => ({
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    return React.createElement('img', props)
+  }
+}))

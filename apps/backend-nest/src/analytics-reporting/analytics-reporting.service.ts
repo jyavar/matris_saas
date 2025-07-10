@@ -27,7 +27,7 @@ export class AnalyticsReportingService {
   async getReportById(id: string): Promise<AnalyticsReport | null> {
     // Simulación de operación async
     await Promise.resolve();
-    return this.reports.find((r) => r.id === id) || null;
+    return this.reports.find((r) => r.id === id) ?? null;
   }
 
   async createReport(data: CreateReportData): Promise<AnalyticsReport> {

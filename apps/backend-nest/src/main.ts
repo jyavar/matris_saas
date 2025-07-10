@@ -54,7 +54,7 @@ async function bootstrap() {
   // Exception Filter global
   app.useGlobalFilters(new HttpGlobalExceptionFilter());
 
-  const port = process.env.PORT || 3002;
+  const port = process.env.PORT ?? 3002;
   await app.listen(port);
 
   console.log(`🚀 STRATO NestJS Backend running on port ${port}`);

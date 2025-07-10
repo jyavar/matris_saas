@@ -1,35 +1,50 @@
-import { BrainCircuit, Cuboid, ShieldCheck, Zap } from 'lucide-react'
 import * as React from 'react'
 
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card.js'
 
 type Feature = {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  icon: React.ReactNode
   title: string
   description: string
 }
 
 const features: Feature[] = [
   {
-    icon: (props) => <Cuboid {...props} />,
+    icon: (
+      <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    ),
     title: 'Elite Modularity',
     description:
       'Build scalable applications with a clean, modular architecture that grows with your needs.',
   },
   {
-    icon: (props) => <ShieldCheck {...props} />,
+    icon: (
+      <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     title: 'Core Auditing',
     description:
       'Maintain code quality and structural integrity with built-in dependency and architecture validation.',
   },
   {
-    icon: (props) => <BrainCircuit {...props} />,
+    icon: (
+      <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+    ),
     title: 'AI-Powered Agents',
     description:
       'Leverage intelligent agents for automated code generation, refactoring, and quality assurance.',
   },
   {
-    icon: (props) => <Zap {...props} />,
+    icon: (
+      <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
     title: 'Unmatched DX',
     description:
       'Experience a seamless developer workflow with pre-configured tools, scripts, and CI/CD pipelines.',
@@ -62,7 +77,7 @@ export function Features() {
               className="bg-background/50 border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1"
             >
               <CardHeader>
-                <feature.icon className="h-8 w-8 text-primary" />
+                {feature.icon}
                 <CardTitle className="mt-4">{feature.title}</CardTitle>
                 <CardDescription>{feature.description}</CardDescription>
               </CardHeader>

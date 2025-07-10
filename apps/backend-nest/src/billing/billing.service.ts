@@ -39,9 +39,9 @@ export class BillingService {
   private readonly invoicesEndpoint: string;
 
   constructor(private configService: ConfigService) {
-    this.supabaseUrl = this.configService.get<string>('SUPABASE_URL') || '';
+    this.supabaseUrl = this.configService.get<string>('SUPABASE_URL') ?? '';
     this.supabaseKey =
-      this.configService.get<string>('SUPABASE_ANON_KEY') || '';
+      this.configService.get<string>('SUPABASE_ANON_KEY') ?? '';
     this.invoicesEndpoint = `${this.supabaseUrl}/rest/v1/invoices`;
   }
 
@@ -87,7 +87,7 @@ export class BillingService {
 
   async getInvoiceById(id: string): Promise<InvoiceDTO | null> {
     const invoices = await this.fetchInvoices({ id });
-    return invoices[0] || null;
+    return invoices[0] ?? null;
   }
 
   async createInvoice(invoice: CreateInvoiceData): Promise<InvoiceDTO | null> {
@@ -108,7 +108,7 @@ export class BillingService {
 
     const data = (await res.json()) as unknown[];
     const invoices = data.filter((item) => this.isInvoiceDTO(item));
-    return invoices[0] || null;
+    return invoices[0] ?? null;
   }
 
   async updateInvoice(
@@ -132,7 +132,7 @@ export class BillingService {
 
     const data = (await res.json()) as unknown[];
     const invoices = data.filter((item) => this.isInvoiceDTO(item));
-    return invoices[0] || null;
+    return invoices[0] ?? null;
   }
 
   async deleteInvoice(id: string): Promise<InvoiceDTO> {
