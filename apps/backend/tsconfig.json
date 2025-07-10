@@ -8,8 +8,6 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": false,
-    "skipLibCheck": true,
-    "noImplicitAny": false,
     "strictNullChecks": false,
     "paths": {
       "@backend/*": ["./*"],

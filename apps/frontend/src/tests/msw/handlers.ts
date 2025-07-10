@@ -1,7 +1,11 @@
 import { rest } from 'msw'
 
+// Mock base URL for consistent testing
+const BASE_URL = 'http://localhost:3000'
+
 export const handlers = [
-  rest.post('/api/auth/login', (req, res, ctx) => {
+  // Supabase auth endpoints
+  rest.post(`${BASE_URL}/api/auth/login`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -17,7 +21,7 @@ export const handlers = [
       }),
     )
   }),
-  rest.post('/api/auth/register', (req, res, ctx) => {
+  rest.post(`${BASE_URL}/api/auth/register`, (req, res, ctx) => {
     return res(
       ctx.status(201),
       ctx.json({

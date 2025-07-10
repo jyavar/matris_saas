@@ -71,11 +71,12 @@ describe('Frontend Basic Tests', () => {
         return date.toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
-          day: 'numeric'
+          day: 'numeric',
+          timeZone: 'UTC' // Fix timezone issues in tests
         })
       }
       
-      const testDate = new Date('2024-01-15')
+      const testDate = new Date('2024-01-15T00:00:00.000Z') // Use UTC time
       expect(formatDate(testDate)).toContain('January 15, 2024')
     })
 
