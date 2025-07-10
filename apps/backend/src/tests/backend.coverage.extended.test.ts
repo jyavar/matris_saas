@@ -220,7 +220,9 @@ describe('Backend Extended Coverage', () => {
   it('Health: should return 200 for healthcheck', async () => {
     const res = await request(server).get('/api/health')
     expect(res.status).toBe(200)
-    expect(res.body.status ?? res.body.ok ?? true).toBe(true)
+    // Accept both boolean true and string "OK" as valid health responses
+    const healthStatus = res.body.status ?? res.body.ok ?? res.body
+    expect(healthStatus === true || healthStatus === 'OK').toBe(true)
   })
 
   it('AuthService: should reject login with wrong credentials', async () => {
