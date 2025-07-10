@@ -1,19 +1,20 @@
 import {
   Body,
   Controller,
-  Post,
   HttpCode,
+  Post,
   ValidationPipe,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
+
 import { AuthService } from './auth.service';
 import {
-  SignUpDto,
-  SignInDto,
   AuthResponseDto,
-  SignInResponseDto,
   RefreshTokenDto,
+  SignInDto,
+  SignInResponseDto,
+  SignUpDto,
 } from './dto/auth.dto';
-import { Throttle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController {

@@ -1,0 +1,40 @@
+=== ESLINT REPORT FOR STRATO CORE OS™ ===
+Generated: Wed Jul  9 21:00:14 -04 2025
+
+=== BACKEND (Node.js) ===
+
+> backend@1.0.0 lint /Users/jose/Proyectos/matriz_cursor/apps/backend
+> eslint . "--format=stylish"
+
+
+=== BACKEND-NEST (NestJS) ===
+
+> @strato/backend-nest@1.0.0 lint /Users/jose/Proyectos/matriz_cursor/apps/backend-nest
+> eslint "{src,apps,libs,test}/**/*.ts" --fix "--format=stylish"
+
+
+=== FRONTEND (React/Next.js) ===
+
+> frontend@0.1.0 lint /Users/jose/Proyectos/matriz_cursor/apps/frontend
+> next lint "--format=stylish"
+
+✔ No ESLint warnings or errors
+
+=== WEB (Next.js Landing) ===
+
+> web@0.1.0 lint /Users/jose/Proyectos/matriz_cursor/apps/web
+> next lint "--format=stylish"
+
+✔ No ESLint warnings or errors
+
+=== PACKAGES/DB-TYPES ===
+
+> @repo/db-types@1.0.0 lint /Users/jose/Proyectos/matriz_cursor/packages/db-types
+> eslint . --max-warnings 0 "--format=stylish"
+
+
+=== PACKAGES/UTILS ===
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command "lint" not found
+=== SUMMARY ===
+ESLint scan completed at Wed Jul  9 21:02:16 -04 2025

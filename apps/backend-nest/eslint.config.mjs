@@ -1,6 +1,7 @@
 // @ts-check
 import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -25,10 +26,25 @@ export default tseslint.config(
     },
   },
   {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      // STRATO TypeScript Standards - Progressive enforcement
+      '@typescript-eslint/no-explicit-any': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-unsafe-assignment': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-unsafe-call': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-unsafe-member-access': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-unsafe-return': 'warn', // Gradual enforcement
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn', // Gradual enforcement
+      '@typescript-eslint/prefer-optional-chain': 'warn', // Gradual enforcement
+      '@typescript-eslint/strict-boolean-expressions': 'off', // Too strict for gradual adoption
+      // Import organization
+      'simple-import-sort/imports': 'warn', // Gradual enforcement
+      'simple-import-sort/exports': 'warn', // Gradual enforcement
     },
   },
 );

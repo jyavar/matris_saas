@@ -4,15 +4,15 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { SecurityLoggerService } from '../security/security-logger.service';
 
 import { supabase } from '../lib/supabase';
+import { SecurityLoggerService } from '../security/security-logger.service';
 import {
   AuthResponseDto,
+  RefreshTokenDto,
   SignInDto,
   SignInResponseDto,
   SignUpDto,
-  RefreshTokenDto,
 } from './dto/auth.dto';
 
 // jest.mock de Supabase para todos los tests

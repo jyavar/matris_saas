@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function ControlTowerLayout({
@@ -92,10 +93,12 @@ export default function ControlTowerLayout({
                 notifications
               </span>
             </button>
-            <img
+            <Image
               src="https://randomuser.me/api/portraits/men/32.jpg"
               alt="avatar"
-              className="w-10 h-10 rounded-full border-2 border-blue-400"
+              width={40}
+              height={40}
+              className="rounded-full border-2 border-blue-400"
             />
           </div>
         </header>
