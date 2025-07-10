@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 
 export default function ControlTowerLayout({
@@ -93,7 +92,8 @@ export default function ControlTowerLayout({
                 notifications
               </span>
             </button>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="https://randomuser.me/api/portraits/men/32.jpg"
               alt="avatar"
               width={40}

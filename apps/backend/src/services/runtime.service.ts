@@ -17,7 +17,7 @@ export class RuntimeService {
 
   static createJob(id: string, schedule: string, task: () => void): RuntimeJob {
     if (jobs[id]) throw new Error('Job already exists')
-    const ref = cron.schedule(schedule, task, { scheduled: true })
+    const ref = cron.schedule(schedule, task)
     const job: RuntimeJob = { id, schedule, task, running: true, ref }
     jobs[id] = job
     return job
@@ -40,7 +40,6 @@ export class RuntimeService {
   static deleteJob(id: string): void {
     const job = jobs[id]
     if (!job || !job.ref) throw new Error('Job not found')
-    // @ts-expect-error - node-cron type issue
     job.ref.destroy()
     delete jobs[id]
   }
