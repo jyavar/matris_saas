@@ -9,6 +9,14 @@ import {
   RegisterCredentials,
   User,
 } from '@/types/auth'
+import {
+  signInWithEmail,
+  signUpWithEmail,
+  signOut,
+  getCurrentUser,
+  getCurrentSession,
+  SupabaseUser,
+} from '@/lib/supabase'
 
 interface AuthAction {
   type: 'SET_LOADING' | 'SET_USER' | 'SET_ERROR' | 'CLEAR_ERROR' | 'LOGOUT'
@@ -20,6 +28,16 @@ const initialState: AuthState = {
   loading: true,
   error: null,
 }
+
+// Helper para convertir SupabaseUser a User
+const mapSupabaseUserToUser = (supabaseUser: SupabaseUser): User => ({
+  id: supabaseUser.id,
+  email: supabaseUser.email,
+  name: supabaseUser.user_metadata?.name,
+  avatar_url: supabaseUser.user_metadata?.avatar_url,
+  created_at: supabaseUser.created_at,
+  updated_at: supabaseUser.updated_at,
+})
 
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -60,16 +78,16 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
 
-  // Simular verificación de sesión al cargar
+  // Verificación de sesión al cargar
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // TODO: Implementar verificación real con Supabase
-        const token = localStorage.getItem('auth_token')
-        if (token) {
-          // Verificar token con backend
-          // const user = await verifyToken(token)
-          // dispatch({ type: 'SET_USER', payload: user })
+        const session = await getCurrentSession()
+        if (session) {
+          const user = await getCurrentUser()
+          if (user) {
+            dispatch({ type: 'SET_USER', payload: mapSupabaseUserToUser(user) })
+          }
         }
       } catch (error) {
         console.error('Auth check failed:', error)
@@ -86,20 +104,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       dispatch({ type: 'SET_LOADING', payload: true })
       dispatch({ type: 'CLEAR_ERROR' })
 
-      // TODO: Implementar login real con backend
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      })
+      const { data, error } = await signInWithEmail(credentials.email, credentials.password)
 
-      if (!response.ok) {
-        throw new Error('Login failed')
+      if (error) {
+        throw new Error(error.message)
       }
 
-      const data = await response.json()
-      localStorage.setItem('auth_token', data.token)
-      dispatch({ type: 'SET_USER', payload: data.user })
+      if (data.user) {
+        dispatch({ type: 'SET_USER', payload: mapSupabaseUserToUser(data.user) })
+      }
     } catch (error) {
       dispatch({
         type: 'SET_ERROR',
@@ -113,20 +126,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       dispatch({ type: 'SET_LOADING', payload: true })
       dispatch({ type: 'CLEAR_ERROR' })
 
-      // TODO: Implementar registro real con backend
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      })
+      const { data, error } = await signUpWithEmail(
+        credentials.email,
+        credentials.password,
+        credentials.name ? { name: credentials.name } : undefined
+      )
 
-      if (!response.ok) {
-        throw new Error('Registration failed')
+      if (error) {
+        throw new Error(error.message)
       }
 
-      const data = await response.json()
-      localStorage.setItem('auth_token', data.token)
-      dispatch({ type: 'SET_USER', payload: data.user })
+      if (data.user) {
+        dispatch({ type: 'SET_USER', payload: mapSupabaseUserToUser(data.user) })
+      }
     } catch (error) {
       dispatch({
         type: 'SET_ERROR',
@@ -137,7 +149,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = async (): Promise<void> => {
     try {
-      localStorage.removeItem('auth_token')
+      const { error } = await signOut()
+      if (error) {
+        console.error('Logout error:', error.message)
+      }
       dispatch({ type: 'LOGOUT' })
     } catch (error) {
       console.error('Logout failed:', error)
