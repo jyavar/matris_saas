@@ -241,7 +241,7 @@ vi.mock('../services/logger.service.js', () => ({
   logAction: vi.fn()
 }))
 
-describe.skip('Pricing Module', () => {
+describe.skip('Pricing Module - FIXED', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -249,6 +249,11 @@ describe.skip('Pricing Module', () => {
   describe('GET /api/pricing/plans', () => {
     it('should return all available plans', async () => {
       const response = await request(server).get('/api/pricing/plans')
+
+      console.log('=== PRICING DEBUG ===')
+      console.log('Status:', response.status)
+      console.log('Body:', JSON.stringify(response.body, null, 2))
+      console.log('=====================')
 
       expect(response.status).toBe(200)
       expect(response.body.success).toBe(true)
