@@ -98,7 +98,9 @@ export const handleAsync = (
     try {
       await fn(req, res)
     } catch (error) {
-      await errorHandlerMiddleware(error as Error, req, res, () => {})
+      await errorHandlerMiddleware(error as Error, req, res, () => {
+        // Next function for error handler
+      })
     }
   }
 }
