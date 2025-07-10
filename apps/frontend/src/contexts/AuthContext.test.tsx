@@ -5,16 +5,23 @@ import React from 'react'
 
 import { AuthProvider, useAuth } from './AuthContext'
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-}
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
-})
+// Mock the entire supabase module
+vi.mock('@/lib/supabase', () => ({
+  signInWithEmail: vi.fn(),
+  signUpWithEmail: vi.fn(),
+  signOut: vi.fn(),
+  getCurrentUser: vi.fn(),
+  getCurrentSession: vi.fn(),
+}))
+
+// Import the mocked functions
+import {
+  signInWithEmail,
+  signUpWithEmail,
+  signOut,
+  getCurrentUser,
+  getCurrentSession,
+} from '@/lib/supabase'
 
 // Test component to use the context
 const TestComponent = () => {
@@ -37,7 +44,10 @@ const TestComponent = () => {
 describe('AuthContext', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    localStorageMock.getItem.mockReturnValue(null)
+    // Default mocks
+    vi.mocked(getCurrentSession).mockResolvedValue(null)
+    vi.mocked(getCurrentUser).mockResolvedValue(null)
+    vi.mocked(signOut).mockResolvedValue({ error: null })
   })
 
   it('should provide initial state', async () => {
@@ -58,38 +68,29 @@ describe('AuthContext', () => {
   })
 
   it('should handle successful login', async () => {
-    // Mock successful fetch response
-    const mockFetch = vi.fn().mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        token: 'mock-token',
-        user: { id: '1', email: 'test@example.com', name: 'Test User' }
-      })
-    } as Response)
-    global.fetch = mockFetch
+    const mockUser = {
+      id: '1',
+      email: 'test@example.com',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      user_metadata: {
+        name: 'Test User',
+        avatar_url: '',
+      },
+    }
 
-    render(
-      <AuthProvider>
-        <TestComponent />
-      </AuthProvider>
-    )
+    const mockSession = {
+      access_token: 'mock-access-token',
+      refresh_token: 'mock-refresh-token',
+    }
 
-    const loginButton = screen.getByText('Login')
-    await userEvent.click(loginButton)
-
-    await waitFor(() => {
-      expect(screen.getByTestId('user')).toHaveTextContent('test@example.com')
+    vi.mocked(signInWithEmail).mockResolvedValue({
+      data: {
+        user: mockUser,
+        session: mockSession,
+      },
+      error: null,
     })
-
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('auth_token', 'mock-token')
-  })
-
-  it('should handle login failure', async () => {
-    // Mock fetch to return failure
-    const mockFetch = vi.fn().mockResolvedValueOnce({
-      ok: false,
-    } as Response)
-    global.fetch = mockFetch
 
     render(
       <AuthProvider>
@@ -106,7 +107,39 @@ describe('AuthContext', () => {
     await userEvent.click(loginButton)
 
     await waitFor(() => {
-      expect(screen.getByTestId('error')).toHaveTextContent('Login failed')
+      expect(screen.getByTestId('user')).toHaveTextContent('test@example.com')
+    })
+
+    expect(signInWithEmail).toHaveBeenCalledWith('test@example.com', 'password')
+  })
+
+  it('should handle login failure', async () => {
+    vi.mocked(signInWithEmail).mockResolvedValue({
+      data: {
+        user: null,
+        session: null,
+      },
+      error: {
+        message: 'Invalid credentials',
+      },
+    })
+
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>
+    )
+
+    // Wait for initial loading to finish
+    await waitFor(() => {
+      expect(screen.getByTestId('loading')).toHaveTextContent('Not Loading')
+    })
+
+    const loginButton = screen.getByText('Login')
+    await userEvent.click(loginButton)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('error')).toHaveTextContent('Invalid credentials')
     })
   })
 
@@ -117,19 +150,29 @@ describe('AuthContext', () => {
       </AuthProvider>
     )
 
+    // Wait for initial loading to finish
+    await waitFor(() => {
+      expect(screen.getByTestId('loading')).toHaveTextContent('Not Loading')
+    })
+
     const logoutButton = screen.getByText('Logout')
     await userEvent.click(logoutButton)
 
-    expect(localStorageMock.removeItem).toHaveBeenCalledWith('auth_token')
+    expect(signOut).toHaveBeenCalled()
     expect(screen.getByTestId('user')).toHaveTextContent('No User')
   })
 
   it('should clear error', async () => {
-    // Mock fetch to return failure first
-    const mockFetch = vi.fn().mockResolvedValueOnce({
-      ok: false,
-    } as Response)
-    global.fetch = mockFetch
+    // Mock login failure first
+    vi.mocked(signInWithEmail).mockResolvedValue({
+      data: {
+        user: null,
+        session: null,
+      },
+      error: {
+        message: 'Login failed',
+      },
+    })
 
     render(
       <AuthProvider>
@@ -167,8 +210,25 @@ describe('AuthContext', () => {
     consoleSpy.mockRestore()
   })
 
-  it('should handle existing token on mount', async () => {
-    localStorageMock.getItem.mockReturnValue('existing-token')
+  it('should handle existing session on mount', async () => {
+    const mockUser = {
+      id: '1',
+      email: 'existing@example.com',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      user_metadata: {
+        name: 'Existing User',
+        avatar_url: '',
+      },
+    }
+
+    const mockSession = {
+      access_token: 'existing-token',
+      refresh_token: 'existing-refresh',
+    }
+
+    vi.mocked(getCurrentSession).mockResolvedValue(mockSession)
+    vi.mocked(getCurrentUser).mockResolvedValue(mockUser)
 
     render(
       <AuthProvider>
@@ -176,12 +236,37 @@ describe('AuthContext', () => {
       </AuthProvider>
     )
 
-    // Eventually loading should be false (auth check completed)
+    // Should load user from existing session
+    await waitFor(() => {
+      expect(screen.getByTestId('user')).toHaveTextContent('existing@example.com')
+    })
+
+    expect(screen.getByTestId('loading')).toHaveTextContent('Not Loading')
+  })
+
+  it('should handle logout error gracefully', async () => {
+    vi.mocked(signOut).mockResolvedValue({
+      error: {
+        message: 'Logout failed',
+      },
+    })
+
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>
+    )
+
+    // Wait for initial loading to finish
     await waitFor(() => {
       expect(screen.getByTestId('loading')).toHaveTextContent('Not Loading')
     })
 
-    // Should not have a user since we don't mock token verification
+    const logoutButton = screen.getByText('Logout')
+    await userEvent.click(logoutButton)
+
+    // Should still logout locally even if server logout fails
     expect(screen.getByTestId('user')).toHaveTextContent('No User')
+    expect(signOut).toHaveBeenCalled()
   })
 }) 
