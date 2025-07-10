@@ -251,7 +251,7 @@ describe('Frontend Coverage Tests', () => {
     })
 
     it('should merge objects', () => {
-      const merge = (target: Record<string, any>, source: Record<string, any>) => {
+      const merge = (target: Record<string, unknown>, source: Record<string, unknown>) => {
         return { ...target, ...source }
       }
       
@@ -263,11 +263,8 @@ describe('Frontend Coverage Tests', () => {
     })
 
     it('should pick object properties', () => {
-      const pick = <T extends Record<string, any>, K extends keyof T>(
-        obj: T,
-        keys: K[]
-      ): Pick<T, K> => {
-        const result = {} as Pick<T, K>
+      const pick = (obj: Record<string, unknown>, keys: string[]) => {
+        const result: Record<string, unknown> = {}
         keys.forEach(key => {
           if (key in obj) {
             result[key] = obj[key]

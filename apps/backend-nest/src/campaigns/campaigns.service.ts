@@ -14,9 +14,17 @@ const campaigns: Campaign[] = [];
 
 @Injectable()
 export class CampaignsService {
-  private repo: { list: () => Campaign[]; create: (name: string) => Campaign; delete: (id: string) => boolean };
+  private repo: {
+    list: () => Campaign[];
+    create: (name: string) => Campaign;
+    delete: (id: string) => boolean;
+  };
 
-  constructor(repo?: { list: () => Campaign[]; create: (name: string) => Campaign; delete: (id: string) => boolean }) {
+  constructor(repo?: {
+    list: () => Campaign[];
+    create: (name: string) => Campaign;
+    delete: (id: string) => boolean;
+  }) {
     if (repo) {
       this.repo = repo;
     } else {

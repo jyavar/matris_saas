@@ -16,38 +16,59 @@ import {
 } from './dto/auth.dto';
 
 // jest.mock de Supabase para todos los tests
-import { createClient } from '@supabase/supabase-js'
 jest.mock('@supabase/supabase-js', () => ({
   createClient: jest.fn(() => ({
     auth: {
-      signUp: jest.fn(() => Promise.resolve({ data: { user: { id: 'test-user-id', email: 'test@example.com' } }, error: null })),
-      signInWithPassword: jest.fn(() => Promise.resolve({ data: { user: { id: 'test-user-id', email: 'test@example.com' }, session: { access_token: 'test-token' } }, error: null })),
+      signUp: jest.fn(() =>
+        Promise.resolve({
+          data: { user: { id: 'test-user-id', email: 'test@example.com' } },
+          error: null,
+        }),
+      ),
+      signInWithPassword: jest.fn(() =>
+        Promise.resolve({
+          data: {
+            user: { id: 'test-user-id', email: 'test@example.com' },
+            session: { access_token: 'test-token' },
+          },
+          error: null,
+        }),
+      ),
       signOut: jest.fn(() => Promise.resolve({ error: null })),
-      refreshSession: jest.fn(() => Promise.resolve({ data: { session: { access_token: 'new-test-token' } }, error: null }))
+      refreshSession: jest.fn(() =>
+        Promise.resolve({
+          data: { session: { access_token: 'new-test-token' } },
+          error: null,
+        }),
+      ),
     },
     from: jest.fn(() => ({
       select: jest.fn(() => ({
         eq: jest.fn(() => ({
           single: jest.fn(() => Promise.resolve({ data: null, error: null })),
           limit: jest.fn(() => ({
-            range: jest.fn(() => Promise.resolve({ data: [], error: null }))
-          }))
+            range: jest.fn(() => Promise.resolve({ data: [], error: null })),
+          })),
         })),
         insert: jest.fn(() => ({
-          select: jest.fn(() => Promise.resolve({ data: [{ id: 1 }], error: null }))
+          select: jest.fn(() =>
+            Promise.resolve({ data: [{ id: 1 }], error: null }),
+          ),
         })),
         update: jest.fn(() => ({
           eq: jest.fn(() => ({
-            select: jest.fn(() => Promise.resolve({ data: [{ id: 1 }], error: null }))
-          }))
+            select: jest.fn(() =>
+              Promise.resolve({ data: [{ id: 1 }], error: null }),
+            ),
+          })),
         })),
         delete: jest.fn(() => ({
-          eq: jest.fn(() => Promise.resolve({ data: null, error: null }))
-        }))
-      }))
-    }))
-  }))
-}))
+          eq: jest.fn(() => Promise.resolve({ data: null, error: null })),
+        })),
+      })),
+    })),
+  })),
+}));
 
 @Injectable()
 export class AuthService {

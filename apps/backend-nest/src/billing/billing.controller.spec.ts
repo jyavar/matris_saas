@@ -25,13 +25,21 @@ describe('BillingController (e2e)', () => {
       providers: [{ provide: BillingService, useValue: mockBillingService }],
     })
       .overrideGuard(JwtAuthGuard)
-      .useValue({ 
-        canActivate: (context: any) => {
+      .useValue({
+        canActivate: (context: unknown) => {
           // Simular usuario autenticado
-          const request = context.switchToHttp().getRequest();
+          const request = (
+            context as {
+              switchToHttp: () => {
+                getRequest: () => { user: { id: string } };
+              };
+            }
+          )
+            .switchToHttp()
+            .getRequest();
           request.user = { id: 'user-1' };
           return true;
-        }
+        },
       })
       .compile();
 
@@ -56,15 +64,15 @@ describe('BillingController (e2e)', () => {
         description: 'Test',
         dueDate: '2025-01-01',
       };
-      const mockInvoice = { 
-        id: 'inv-1', 
+      const mockInvoice = {
+        id: 'inv-1',
         customer_id: 'user-1',
         amount: 100,
         currency: 'USD',
         description: 'Test',
         due_date: '2025-01-01',
         status: 'pending',
-        created_at: new Date().toISOString()
+        created_at: new Date().toISOString(),
       };
       mockBillingService.createInvoice.mockResolvedValueOnce(mockInvoice);
 
@@ -115,7 +123,7 @@ describe('BillingController (e2e)', () => {
         description: 'Test',
         due_date: '2025-01-01',
         status: 'pending',
-        created_at: new Date().toISOString()
+        created_at: new Date().toISOString(),
       };
       mockBillingService.getInvoiceById.mockResolvedValueOnce(mockInvoice);
       const res = await request(app.getHttpServer())
@@ -124,7 +132,7 @@ describe('BillingController (e2e)', () => {
       expect(res.status).toBe(200);
       expect(res.body).toMatchObject(mockInvoice);
     });
-    
+
     it('should return 404 if invoice not found', async () => {
       mockBillingService.getInvoiceById.mockResolvedValueOnce(null);
       const res = await request(app.getHttpServer())
