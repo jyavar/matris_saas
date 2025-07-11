@@ -21,6 +21,7 @@ import { profilesRoutes } from './routes/profiles.routes'
 import { reportingRoutes } from './routes/reporting.routes'
 import { resendRoutes } from './routes/resend.routes'
 import { runtimeRoutes } from './routes/runtime.routes'
+import { settingsRoutes } from './routes/settings.routes'
 import { todoRoutes } from './routes/todo.routes'
 import logger from './services/logger.service'
 import type { RouteDefinition } from './types/express'
@@ -68,6 +69,7 @@ registerRoutes(profilesRoutes, '/api/profiles')
 registerRoutes(reportingRoutes, '/api/reporting')
 registerRoutes(resendRoutes, '/api/resend')
 registerRoutes(runtimeRoutes, '/api/runtime')
+registerRoutes(settingsRoutes, '/api')
 registerRoutes(todoRoutes, '/api/todos')
 
 // Health endpoint
