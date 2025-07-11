@@ -8,14 +8,19 @@ import { authRoutes } from './routes/auth.routes'
 import { automationRoutes } from './routes/automation.routes'
 import { billingRoutes } from './routes/billing.routes'
 import { campaignsRoutes } from './routes/campaigns.routes'
+import { datasetsRoutes } from './routes/datasets.routes'
+import { deploymentRoutes } from './routes/deployment.routes'
 import { devRoutes } from './routes/dev.routes'
 import { emailCampaignsRoutes } from './routes/email-campaigns.routes'
 import { healthRoutes } from './routes/health.routes'
 import { launchboardRoutes } from './routes/launchboard.routes'
+import { mlRoutes } from './routes/ml.routes'
+import { modelsRoutes } from './routes/models.routes'
 import { onboardingRoutes } from './routes/onboarding.routes'
 import { openaiRoutes } from './routes/openai.routes'
 import { paymentsRoutes } from './routes/payments.routes'
 import { posthogRoutes } from './routes/posthog.routes'
+import { predictionRoutes } from './routes/prediction.routes'
 import { pricingRoutes } from './routes/pricing.routes'
 import { profilesRoutes } from './routes/profiles.routes'
 import { reportingRoutes } from './routes/reporting.routes'
@@ -23,6 +28,7 @@ import { resendRoutes } from './routes/resend.routes'
 import { runtimeRoutes } from './routes/runtime.routes'
 import { settingsRoutes } from './routes/settings.routes'
 import { todoRoutes } from './routes/todo.routes'
+import { trainingRoutes } from './routes/training.routes'
 import logger from './services/logger.service'
 import type { RouteDefinition } from './types/express'
 import { createRouter } from './utils/router'
@@ -56,14 +62,19 @@ registerRoutes(authRoutes, '/auth')
 registerRoutes(automationRoutes, '/api/automation')
 registerRoutes(billingRoutes, '/api/billing')
 registerRoutes(campaignsRoutes) // campaigns routes already have full paths
+registerRoutes(datasetsRoutes, '/api/ml/datasets')
+registerRoutes(deploymentRoutes, '/api/ml/deployments')
 registerRoutes(devRoutes, '/api/dev')
 registerRoutes(emailCampaignsRoutes, '/api/email-campaigns')
 registerRoutes(healthRoutes, '/api/health')
 registerRoutes(launchboardRoutes, '/api/launchboard')
+registerRoutes(mlRoutes, '/api/ml')
+registerRoutes(modelsRoutes, '/api/ml/models')
 registerRoutes(onboardingRoutes, '/api/onboarding')
 registerRoutes(openaiRoutes, '/api/openai')
 registerRoutes(paymentsRoutes, '/api/payments')
 registerRoutes(posthogRoutes, '/api/posthog')
+registerRoutes(predictionRoutes, '/api/ml/predictions')
 registerRoutes(pricingRoutes, '/api/pricing')
 registerRoutes(profilesRoutes, '/api/profiles')
 registerRoutes(reportingRoutes, '/api/reporting')
@@ -71,6 +82,7 @@ registerRoutes(resendRoutes, '/api/resend')
 registerRoutes(runtimeRoutes, '/api/runtime')
 registerRoutes(settingsRoutes, '/api')
 registerRoutes(todoRoutes, '/api/todos')
+registerRoutes(trainingRoutes, '/api/ml/training')
 
 // Health endpoint
 router.get('/health', async (req, res) => {

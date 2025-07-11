@@ -1,495 +1,352 @@
-import { TablesInsert, TablesUpdate } from '@repo/db-types'
-import { z } from 'zod'
+import { MLAnalysis, MLFeature } from '../types/ml.types.js'
 
-import { Json } from '../types/supabase.types.js'
-import { ApiError } from '../utils/ApiError.js'
-import { logAction } from './logger.service.js'
-import { supabase } from './supabase.service.js'
-
-// Schemas
-export const eventSchema = z.object({
-  event_name: z.string(),
-  user_id: z
-    .union([z.number(), z.string().transform((val) => parseInt(val, 10))])
-    .optional(),
-  properties: z.record(z.unknown()).optional(),
-  timestamp: z.date().optional(),
-})
-
-export const metricSchema = z.object({
-  metric_name: z.string(),
-  value: z.number(),
-  user_id: z
-    .union([z.number(), z.string().transform((val) => parseInt(val, 10))])
-    .optional(),
-  tags: z.record(z.string()).optional(),
-  timestamp: z.date().optional(),
-})
-
-export const analyticsQuerySchema = z.object({
-  start_date: z.string().optional(),
-  end_date: z.string().optional(),
-  event_name: z.string().optional(),
-  user_id: z.number().optional(),
-  limit: z.number().min(1).max(1000).default(100),
-  offset: z.number().min(0).default(0),
-})
-
-// Types
-export type EventData = z.infer<typeof eventSchema>
-export type MetricData = z.infer<typeof metricSchema>
-export type AnalyticsQuery = z.infer<typeof analyticsQuerySchema>
-
-export interface AnalyticsSummary {
-  total_events: number
-  unique_users: number
-  top_events: Array<{ event_name: string; count: number }>
-  daily_events: Array<{ date: string; count: number }>
-}
-
-export interface UserAnalytics {
-  user_id: string
-  total_events: number
-  last_seen: Date
-  events_breakdown: Array<{ event_name: string; count: number }>
-}
-
-export const analyticsService = {
-  /**
-   * Track an event
-   */
-  async trackEvent(eventData: EventData) {
-    try {
-      const validatedData = eventSchema.parse(eventData)
-      const timestamp = validatedData.timestamp || new Date()
-
-      const event = {
-        event_name: validatedData.event_name,
-        user_id: validatedData.user_id,
-        payload: toJson(validatedData.properties || {}),
-        created_at: timestamp.toISOString(),
-      }
-
-      const { data, error } = await supabase
-        .from('analytics')
-        .insert([event])
-        .select()
-
-      if (error) {
-        throw new ApiError(
-          `Failed to track event: ${(error as Error).message}`,
-          400,
-        )
-      }
-
-      logAction(
-        'analytics_event_tracked',
-        String(eventData.user_id ?? 'anonymous'),
-        {
-          event_name: validatedData.event_name,
-          properties: validatedData.properties,
+export class AnalyticsService {
+  private analyses: MLAnalysis[] = [
+    {
+      id: 'analysis-1',
+      dataset_id: 'dataset-1',
+      type: 'exploratory',
+      status: 'completed',
+      results: {
+        total_rows: 15000,
+        total_columns: 25,
+        missing_values: 150,
+        duplicate_rows: 0,
+        data_types: {
+          string: 5,
+          number: 15,
+          boolean: 3,
+          datetime: 2,
         },
-      )
-
-      return data[0]
-    } catch (error) {
-      logAction(
-        'analytics_event_error',
-        String(eventData.user_id ?? 'anonymous'),
-        {
-          event_name: eventData.event_name,
-          error: error instanceof Error ? error.message : 'Unknown error',
+        correlations: {
+          age_income: 0.45,
+          tenure_monthly_charges: 0.32,
+          income_total_charges: 0.78,
         },
-      )
-      throw error
-    }
-  },
-
-  /**
-   * Track a metric (stored as an event with metric data in payload)
-   */
-  async trackMetric(metricData: MetricData) {
-    try {
-      const validatedData = metricSchema.parse(metricData)
-      const timestamp = validatedData.timestamp || new Date()
-
-      const metric = {
-        event_name: `metric_${validatedData.metric_name}`,
-        user_id: validatedData.user_id,
-        payload: toJson({
-          value: validatedData.value,
-          tags: validatedData.tags || {},
-          metric_name: validatedData.metric_name,
-        }),
-        created_at: timestamp.toISOString(),
-      }
-
-      const { data, error } = await supabase
-        .from('analytics')
-        .insert([metric])
-        .select()
-
-      if (error) {
-        throw new ApiError(
-          `Failed to track metric: ${(error as Error).message}`,
-          400,
-        )
-      }
-
-      logAction(
-        'analytics_metric_tracked',
-        String(metricData.user_id ?? 'anonymous'),
-        {
-          metric_name: validatedData.metric_name,
-          value: validatedData.value,
-          tags: validatedData.tags,
+      },
+      visualizations: [
+        'correlation_matrix.png',
+        'missing_values_heatmap.png',
+        'feature_distributions.png',
+      ],
+      insights: [
+        'Strong correlation between income and total charges',
+        'Age shows moderate correlation with income',
+        'Missing values are minimal (1%)',
+        'No duplicate rows found',
+      ],
+      created_at: '2024-01-15T10:00:00Z',
+      duration: 180,
+    },
+    {
+      id: 'analysis-2',
+      dataset_id: 'dataset-2',
+      type: 'feature-importance',
+      status: 'completed',
+      results: {
+        feature_importance: {
+          previous_sales: 0.35,
+          region: 0.25,
+          season: 0.20,
+          product_category: 0.15,
+          marketing_spend: 0.05,
         },
-      )
-
-      return data[0]
-    } catch (error) {
-      logAction(
-        'analytics_metric_error',
-        String(metricData.user_id ?? 'anonymous'),
-        {
-          metric_name: metricData.metric_name,
-          error: error instanceof Error ? error.message : 'Unknown error',
+        model_performance: {
+          accuracy: 0.92,
+          precision: 0.91,
+          recall: 0.93,
+          f1_score: 0.92,
         },
-      )
-      throw error
+      },
+      visualizations: [
+        'feature_importance_bar.png',
+        'shap_values.png',
+        'permutation_importance.png',
+      ],
+      insights: [
+        'Previous sales is the most important feature',
+        'Region has significant impact on predictions',
+        'Seasonality plays a moderate role',
+        'Marketing spend has minimal impact',
+      ],
+      created_at: '2024-01-18T14:30:00Z',
+      duration: 240,
+    },
+    {
+      id: 'analysis-3',
+      dataset_id: 'dataset-3',
+      type: 'outlier-detection',
+      status: 'running',
+      results: {},
+      visualizations: [],
+      insights: [],
+      created_at: '2024-01-22T16:00:00Z',
+      duration: 0,
+    },
+  ]
+
+  private features: MLFeature[] = [
+    {
+      id: 'feature-1',
+      name: 'age',
+      type: 'numerical',
+      importance: 0.15,
+      correlation: 0.45,
+      missing_values: 0,
+      unique_values: 75,
+      mean: 42.5,
+      std: 12.3,
+      min: 18,
+      max: 95,
+      distribution: {
+        '18-30': 0.25,
+        '31-45': 0.35,
+        '46-60': 0.25,
+        '60+': 0.15,
+      },
+    },
+    {
+      id: 'feature-2',
+      name: 'income',
+      type: 'numerical',
+      importance: 0.25,
+      correlation: 0.78,
+      missing_values: 5,
+      unique_values: 1200,
+      mean: 65000,
+      std: 25000,
+      min: 20000,
+      max: 200000,
+      distribution: {
+        '20k-40k': 0.20,
+        '40k-60k': 0.30,
+        '60k-80k': 0.25,
+        '80k+': 0.25,
+      },
+    },
+    {
+      id: 'feature-3',
+      name: 'region',
+      type: 'categorical',
+      importance: 0.20,
+      correlation: 0.32,
+      missing_values: 0,
+      unique_values: 4,
+      distribution: {
+        'North': 0.30,
+        'South': 0.25,
+        'East': 0.25,
+        'West': 0.20,
+      },
+    },
+  ]
+
+  async getAllAnalyses(limit = 20, offset = 0, type?: string, status?: string): Promise<{
+    success: boolean
+    data: MLAnalysis[]
+    count: number
+    page: number
+    limit: number
+    total_pages: number
+  }> {
+    let filteredAnalyses = this.analyses
+
+    if (type) {
+      filteredAnalyses = filteredAnalyses.filter((analysis) => analysis.type === type)
     }
-  },
 
-  /**
-   * Get events with filtering
-   */
-  async getEvents(query: AnalyticsQuery) {
-    try {
-      const validatedQuery = analyticsQuerySchema.parse(query)
-      let queryBuilder = supabase
-        .from('analytics')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(validatedQuery.limit)
-        .range(
-          validatedQuery.offset,
-          validatedQuery.offset + validatedQuery.limit - 1,
-        )
-
-      if (validatedQuery.start_date) {
-        queryBuilder = queryBuilder.gte('created_at', validatedQuery.start_date)
-      }
-
-      if (validatedQuery.end_date) {
-        queryBuilder = queryBuilder.lte('created_at', validatedQuery.end_date)
-      }
-
-      if (validatedQuery.event_name) {
-        queryBuilder = queryBuilder.eq('event_name', validatedQuery.event_name)
-      }
-
-      if (validatedQuery.user_id) {
-        queryBuilder = queryBuilder.eq('user_id', validatedQuery.user_id)
-      }
-
-      const { data, error } = await queryBuilder
-
-      if (error) {
-        throw new ApiError(
-          `Failed to get events: ${(error as Error).message}`,
-          400,
-        )
-      }
-
-      logAction('analytics_events_queried', 'system', {
-        query: validatedQuery,
-        count: data?.length || 0,
-      })
-
-      return data || []
-    } catch (error) {
-      logAction('analytics_events_query_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      throw error
+    if (status) {
+      filteredAnalyses = filteredAnalyses.filter((analysis) => analysis.status === status)
     }
-  },
 
-  /**
-   * Get metrics with filtering
-   */
-  async getMetrics(query: AnalyticsQuery) {
-    try {
-      const validatedQuery = analyticsQuerySchema.parse(query)
-      let queryBuilder = supabase
-        .from('analytics')
-        .select('*')
-        .like('event_name', 'metric_%')
-        .order('created_at', { ascending: false })
-        .limit(validatedQuery.limit)
-        .range(
-          validatedQuery.offset,
-          validatedQuery.offset + validatedQuery.limit - 1,
-        )
+    const paginatedAnalyses = filteredAnalyses.slice(offset, offset + limit)
 
-      if (validatedQuery.start_date) {
-        queryBuilder = queryBuilder.gte('created_at', validatedQuery.start_date)
-      }
-
-      if (validatedQuery.end_date) {
-        queryBuilder = queryBuilder.lte('created_at', validatedQuery.end_date)
-      }
-
-      if (validatedQuery.user_id) {
-        queryBuilder = queryBuilder.eq('user_id', validatedQuery.user_id)
-      }
-
-      const { data, error } = await queryBuilder
-
-      if (error) {
-        throw new ApiError(
-          `Failed to get metrics: ${(error as Error).message}`,
-          400,
-        )
-      }
-
-      logAction('analytics_metrics_queried', 'system', {
-        query: validatedQuery,
-        count: data?.length || 0,
-      })
-
-      return data || []
-    } catch (error) {
-      logAction('analytics_metrics_query_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      throw error
+    return {
+      success: true,
+      data: paginatedAnalyses,
+      count: filteredAnalyses.length,
+      page: Math.floor(offset / limit) + 1,
+      limit,
+      total_pages: Math.ceil(filteredAnalyses.length / limit),
     }
-  },
+  }
 
-  /**
-   * Get analytics summary
-   */
-  async getAnalyticsSummary(
-    startDate?: string,
-    endDate?: string,
-  ): Promise<AnalyticsSummary> {
-    try {
-      // Get total events
-      let eventsQuery = supabase
-        .from('analytics')
-        .select('*', { count: 'exact' })
-      if (startDate) eventsQuery = eventsQuery.gte('created_at', startDate)
-      if (endDate) eventsQuery = eventsQuery.lte('created_at', endDate)
+  async getAnalysisById(id: string): Promise<MLAnalysis | null> {
+    return this.analyses.find((analysis) => analysis.id === id) || null
+  }
 
-      const { count: totalEvents, error: eventsError } = await eventsQuery
-      if (eventsError)
-        throw new ApiError(
-          `Failed to get total events: ${eventsError.message}`,
-          400,
-        )
-
-      // Get unique users
-      let usersQuery = supabase.from('analytics').select('user_id')
-      if (startDate) usersQuery = usersQuery.gte('created_at', startDate)
-      if (endDate) usersQuery = usersQuery.lte('created_at', endDate)
-
-      const { data: userEvents, error: usersError } = await usersQuery
-      if (usersError)
-        throw new ApiError(
-          `Failed to get unique users: ${usersError.message}`,
-          400,
-        )
-
-      const uniqueUsers = new Set(
-        userEvents?.map((e) => e.user_id).filter(Boolean),
-      ).size
-
-      // Get top events
-      const { data: allEvents, error: topEventsError } = await supabase
-        .from('analytics')
-        .select('event_name')
-
-      if (topEventsError)
-        throw new ApiError(
-          `Failed to get top events: ${topEventsError.message}`,
-          400,
-        )
-
-      const eventCounts =
-        allEvents?.reduce(
-          (acc, event) => {
-            acc[event.event_name] = (acc[event.event_name] || 0) + 1
-            return acc
-          },
-          {} as Record<string, number>,
-        ) || {}
-
-      const topEvents = Object.entries(eventCounts)
-        .map(([event_name, count]) => ({ event_name, count }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 10)
-
-      // Get daily events (mock data for now)
-      const dailyEvents = [
-        { date: '2025-07-01', count: Math.floor(Math.random() * 100) + 50 },
-        { date: '2025-07-02', count: Math.floor(Math.random() * 100) + 50 },
-        { date: '2025-07-03', count: Math.floor(Math.random() * 100) + 50 },
-      ]
-
-      const summary: AnalyticsSummary = {
-        total_events: totalEvents || 0,
-        unique_users: uniqueUsers,
-        top_events: topEvents,
-        daily_events: dailyEvents,
-      }
-
-      logAction('analytics_summary_generated', 'system', {
-        start_date: startDate,
-        end_date: endDate,
-        total_events: summary.total_events,
-        unique_users: summary.unique_users,
-      })
-
-      return summary
-    } catch (error) {
-      logAction('analytics_summary_error', 'system', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      throw error
+  async startAnalysis(
+    datasetId: string,
+    type: MLAnalysis['type']
+  ): Promise<MLAnalysis> {
+    const newAnalysis: MLAnalysis = {
+      id: `analysis-${Date.now()}`,
+      dataset_id: datasetId,
+      type,
+      status: 'running',
+      results: {},
+      visualizations: [],
+      insights: [],
+      created_at: new Date().toISOString(),
+      duration: 0,
     }
-  },
 
-  /**
-   * Get user analytics
-   */
-  async getUserAnalytics(userId: string): Promise<UserAnalytics | null> {
-    try {
-      // Handle invalid userId that can't be parsed as integer
-      const userIdNumber = parseInt(userId)
-      if (isNaN(userIdNumber)) {
-        return null
+    this.analyses.push(newAnalysis)
+
+    // Simulate analysis completion
+    setTimeout(async () => {
+      const analysisIndex = this.analyses.findIndex((a) => a.id === newAnalysis.id)
+      if (analysisIndex !== -1) {
+        const completedAnalysis = await this.generateAnalysisResults(newAnalysis, type)
+        this.analyses[analysisIndex] = completedAnalysis
       }
+    }, 30000) // 30 seconds simulation
 
-      const { data: userEvents, error } = await supabase
-        .from('analytics')
-        .select('*')
-        .eq('user_id', userIdNumber)
-        .order('created_at', { ascending: false })
+    return newAnalysis
+  }
 
-      if (error) {
-        throw new ApiError(
-          `Failed to get user analytics: ${(error as Error).message}`,
-          400,
-        )
-      }
+  async getFeatures(datasetId: string): Promise<MLFeature[]> {
+    return this.features.filter((feature) => feature.id.startsWith('feature'))
+  }
 
-      if (!userEvents || userEvents.length === 0) {
-        return null
-      }
+  async getFeatureById(id: string): Promise<MLFeature | null> {
+    return this.features.find((feature) => feature.id === id) || null
+  }
 
-      const eventsBreakdown = userEvents.reduce(
-        (acc, event) => {
-          acc[event.event_name] = (acc[event.event_name] || 0) + 1
-          return acc
-        },
-        {} as Record<string, number>,
-      )
-
-      const userAnalytics: UserAnalytics = {
-        user_id: userId,
-        total_events: userEvents.length,
-        last_seen:
-          userEvents.length > 0
-            ? new Date(userEvents[0]?.created_at || new Date())
-            : new Date(),
-        events_breakdown: Object.entries(eventsBreakdown)
-          .map(([event_name, count]) => ({ event_name, count }))
-          .sort((a, b) => b.count - a.count),
-      }
-
-      logAction('analytics_user_data_retrieved', userId, {
-        total_events: userAnalytics.total_events,
-        last_seen: userAnalytics.last_seen,
-      })
-
-      return userAnalytics
-    } catch (error) {
-      logAction('analytics_user_data_error', userId, {
-        error: error instanceof Error ? error.message : 'Unknown error',
-      })
-      throw error
+  async getDatasetInsights(datasetId: string): Promise<{
+    data_quality: Record<string, number>
+    feature_correlations: Record<string, number>
+    key_insights: string[]
+    recommendations: string[]
+  }> {
+    return {
+      data_quality: {
+        completeness: 0.98,
+        accuracy: 0.95,
+        consistency: 0.92,
+        timeliness: 0.99,
+      },
+      feature_correlations: {
+        age_income: 0.45,
+        tenure_monthly_charges: 0.32,
+        income_total_charges: 0.78,
+      },
+      key_insights: [
+        'Dataset has high data quality with 98% completeness',
+        'Strong correlation between income and total charges',
+        'Age shows moderate correlation with income',
+        'Missing values are minimal and well distributed',
+      ],
+      recommendations: [
+        'Consider feature engineering for age groups',
+        'Monitor data quality metrics regularly',
+        'Implement automated outlier detection',
+        'Add data validation rules for new entries',
+      ],
     }
-  },
+  }
 
-  // Legacy methods for backward compatibility
-  async getAllAnalytics() {
-    const { data, error } = await supabase.from('analytics').select('*')
-    if (error) {
-      throw new ApiError((error as Error).message, 400)
+  async getModelInsights(modelId: string): Promise<{
+    performance_metrics: Record<string, number>
+    feature_importance: Record<string, number>
+    bias_analysis: Record<string, unknown>
+    drift_detection: Record<string, unknown>
+  }> {
+    return {
+      performance_metrics: {
+        accuracy: 0.89,
+        precision: 0.87,
+        recall: 0.91,
+        f1_score: 0.89,
+        auc: 0.92,
+      },
+      feature_importance: {
+        monthly_charges: 0.25,
+        tenure: 0.20,
+        age: 0.15,
+        income: 0.10,
+        region: 0.08,
+      },
+      bias_analysis: {
+        gender_bias: 0.02,
+        age_bias: 0.05,
+        region_bias: 0.03,
+        overall_fairness: 0.95,
+      },
+      drift_detection: {
+        feature_drift: 0.08,
+        label_drift: 0.03,
+        data_drift: 0.06,
+        last_check: new Date().toISOString(),
+      },
     }
-    return data
-  },
+  }
 
-  async getAnalyticsById(id: number) {
-    const { data, error } = await supabase
-      .from('analytics')
-      .select('*')
-      .eq('id', id)
-      .single()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        throw new ApiError('Analytics not found', 404)
-      }
-      throw new ApiError((error as Error).message, 400)
+  private async generateAnalysisResults(
+    analysis: MLAnalysis,
+    type: MLAnalysis['type']
+  ): Promise<MLAnalysis> {
+    const results: Record<string, unknown> = {}
+    const visualizations: string[] = []
+    const insights: string[] = []
+
+    switch (type) {
+      case 'exploratory':
+        results.total_rows = 15000
+        results.total_columns = 25
+        results.missing_values = 150
+        results.correlations = { age_income: 0.45, tenure_monthly_charges: 0.32 }
+        visualizations.push('correlation_matrix.png', 'missing_values_heatmap.png')
+        insights.push('Strong correlation between income and total charges', 'Missing values are minimal')
+        break
+
+      case 'feature-importance':
+        results.feature_importance = {
+          monthly_charges: 0.25,
+          tenure: 0.20,
+          age: 0.15,
+        }
+        visualizations.push('feature_importance_bar.png', 'shap_values.png')
+        insights.push('Monthly charges is the most important feature', 'Tenure has significant impact')
+        break
+
+      case 'correlation':
+        results.correlation_matrix = {
+          age: { income: 0.45, tenure: 0.32 },
+          income: { age: 0.45, total_charges: 0.78 },
+        }
+        visualizations.push('correlation_heatmap.png')
+        insights.push('Strong positive correlation between income and total charges')
+        break
+
+      case 'outlier-detection':
+        results.outliers = {
+          total_outliers: 150,
+          outlier_percentage: 0.01,
+          outlier_features: ['income', 'monthly_charges'],
+        }
+        visualizations.push('outlier_scatter.png', 'box_plots.png')
+        insights.push('1% of data points are outliers', 'Outliers mainly in income and monthly charges')
+        break
+
+      case 'data-quality':
+        results.quality_metrics = {
+          completeness: 0.98,
+          accuracy: 0.95,
+          consistency: 0.92,
+        }
+        visualizations.push('quality_dashboard.png')
+        insights.push('High data quality with 98% completeness', 'Consistency could be improved')
+        break
     }
-    return data
-  },
 
-  async createAnalytics(analytics: TablesInsert<'analytics'>) {
-    const { data, error } = await supabase
-      .from('analytics')
-      .insert([analytics])
-      .select()
-    if (error) {
-      if (error.code === '23505') {
-        throw new ApiError('Analytics already exists', 409)
-      }
-      throw new ApiError((error as Error).message, 400)
+    return {
+      ...analysis,
+      status: 'completed',
+      results,
+      visualizations,
+      insights,
+      duration: 180 + Math.random() * 120,
     }
-    return data
-  },
-
-  async updateAnalytics(id: number, analytics: TablesUpdate<'analytics'>) {
-    const { data, error } = await supabase
-      .from('analytics')
-      .update(analytics)
-      .eq('id', id)
-      .select()
-    if (error) {
-      if (error.code === 'PGRST116') {
-        throw new ApiError('Analytics not found', 404)
-      }
-      throw new ApiError((error as Error).message, 400)
-    }
-    return data
-  },
-
-  async deleteAnalytics(id: number) {
-    const { data, error } = await supabase
-      .from('analytics')
-      .delete()
-      .eq('id', id)
-    if (error) {
-      if (error.code === 'PGRST116') {
-        throw new ApiError('Analytics not found', 404)
-      }
-      throw new ApiError((error as Error).message, 400)
-    }
-    return data
-  },
-}
-
-function toJson(obj: unknown): Json {
-  return obj as Json
+  }
 }
