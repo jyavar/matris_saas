@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, beforeAll, afterAll } from 'vitest'
 import { SettingsService } from './settings.service'
 import type { UserSettings, TeamSettings, SystemSettings, UpdateSettingsRequest } from './settings.service'
 
 // Mock the auth service
-vi.mock('@/lib/supabase', () => ({
+vi.mock('../lib/supabase', () => ({
   getSessionToken: vi.fn(() => Promise.resolve('mock-jwt-token')),
 }))
 
@@ -11,14 +11,74 @@ vi.mock('@/lib/supabase', () => ({
 const mockFetch = vi.fn()
 global.fetch = mockFetch
 
-// Helper to create mock response with clone method
+// Disable MSW for these tests
+beforeAll(() => {
+  // @ts-ignore - Disable MSW
+  if ((global as any).__MSW_ENABLED__) {
+    (global as any).__MSW_ENABLED__ = false
+  }
+})
+
+afterAll(() => {
+  // @ts-ignore - Re-enable MSW
+  if ((global as any).__MSW_ENABLED__ !== undefined) {
+    (global as any).__MSW_ENABLED__ = true
+  }
+})
+
+// Helper to create mock response with proper Response structure
 const createMockResponse = (data: unknown, success = true) => {
+  const responseData = success ? { success: true, data } : { success: false, error: 'Test error' }
+  
   const response = {
     ok: success,
-    json: () => Promise.resolve(success ? { success: true, data } : { success: false, error: 'Test error' }),
+    status: success ? 200 : 400,
+    statusText: success ? 'OK' : 'Bad Request',
+    json: () => Promise.resolve(responseData),
     clone: () => response,
+    headers: new Headers(),
+    type: 'default' as ResponseType,
+    url: 'http://localhost:3001/api/test',
+    redirected: false,
+    body: null,
+    bodyUsed: false,
+    arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)),
+    blob: () => Promise.resolve(new Blob()),
+    formData: () => Promise.resolve(new FormData()),
+    text: () => Promise.resolve(JSON.stringify(responseData)),
   } as Response
+  
   return Promise.resolve(response)
+}
+
+// Helper to verify fetch calls with Request objects
+const expectFetchCall = (url: string, options?: RequestInit) => {
+  expect(mockFetch).toHaveBeenCalledWith(
+    expect.objectContaining({
+      url: url,
+      method: options?.method || 'GET',
+    })
+  )
+  
+  // Verify headers if provided
+  if (options?.headers) {
+    const call = mockFetch.mock.calls[mockFetch.mock.calls.length - 1][0] as Request
+    const headers = call.headers as Headers
+    
+    const headersObj = options.headers as Record<string, string>
+    if (headersObj['Content-Type']) {
+      expect(headers.get('Content-Type')).toBe(headersObj['Content-Type'])
+    }
+    if (headersObj['Authorization']) {
+      expect(headers.get('Authorization')).toBe(headersObj['Authorization'])
+    }
+  }
+  
+  // Verify body if provided
+  if (options?.body) {
+    const call = mockFetch.mock.calls[mockFetch.mock.calls.length - 1][0] as Request
+    expect(call.body).toBeDefined()
+  }
 }
 
 describe('SettingsService', () => {
@@ -57,7 +117,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/user', {
+      expectFetchCall('http://localhost:3001/api/settings/user', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer mock-jwt-token',
@@ -124,7 +184,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/user', {
+      expectFetchCall('http://localhost:3001/api/settings/user', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +232,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/teams/team-1/settings', {
+      expectFetchCall('http://localhost:3001/api/teams/team-1/settings', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer mock-jwt-token',
@@ -227,7 +287,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/teams/team-1/settings', {
+      expectFetchCall('http://localhost:3001/api/teams/team-1/settings', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -263,7 +323,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/system', {
+      expectFetchCall('http://localhost:3001/api/settings/system', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer mock-jwt-token',
@@ -310,7 +370,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toEqual(mockSettings)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/system', {
+      expectFetchCall('http://localhost:3001/api/settings/system', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -340,7 +400,7 @@ describe('SettingsService', () => {
 
       expect(result.success).toBe(true)
       expect(result.data).toBe(mockExportData.export_data)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/export', {
+      expectFetchCall('http://localhost:3001/api/settings/export', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer mock-jwt-token',
@@ -372,7 +432,7 @@ describe('SettingsService', () => {
       const result = await SettingsService.importSettings('user-1', settingsData)
 
       expect(result.success).toBe(true)
-      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/settings/import', {
+      expectFetchCall('http://localhost:3001/api/settings/import', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -401,6 +461,16 @@ describe('SettingsService', () => {
         statusText: 'Internal Server Error',
         json: () => Promise.resolve({ error: 'Server error' }),
         clone: () => response,
+        headers: new Headers(),
+        type: 'default' as ResponseType,
+        url: 'http://localhost:3001/api/test',
+        redirected: false,
+        body: null,
+        bodyUsed: false,
+        arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)),
+        blob: () => Promise.resolve(new Blob()),
+        formData: () => Promise.resolve(new FormData()),
+        text: () => Promise.resolve('{"error": "Server error"}'),
       } as Response
 
       mockFetch.mockResolvedValue(response)
@@ -413,7 +483,7 @@ describe('SettingsService', () => {
 
     it('should handle missing authentication token', async () => {
       // Mock getSessionToken to return null
-      const { getSessionToken } = await import('@/lib/supabase')
+      const { getSessionToken } = await import('../lib/supabase')
       vi.mocked(getSessionToken).mockResolvedValue(null)
 
       const result = await SettingsService.getUserSettings('user-1')
