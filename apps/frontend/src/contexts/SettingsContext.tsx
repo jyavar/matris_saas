@@ -8,6 +8,8 @@ interface SettingsState {
   systemSettings: SystemSettings | null
   loading: boolean
   error: string | null
+  backendConnected: boolean
+  lastSync: string | null
 }
 
 type SettingsAction =
@@ -19,6 +21,8 @@ type SettingsAction =
   | { type: 'UPDATE_USER_SETTINGS'; payload: Partial<UserSettings> }
   | { type: 'UPDATE_TEAM_SETTINGS'; payload: Partial<TeamSettings> }
   | { type: 'UPDATE_SYSTEM_SETTINGS'; payload: Partial<SystemSettings> }
+  | { type: 'SET_BACKEND_CONNECTED'; payload: boolean }
+  | { type: 'SET_LAST_SYNC'; payload: string }
 
 interface SettingsContextType {
   state: SettingsState
@@ -31,6 +35,8 @@ interface SettingsContextType {
   exportSettings: (userId: string) => Promise<string | null>
   importSettings: (userId: string, settingsData: string) => Promise<void>
   clearError: () => void
+  checkBackendHealth: () => Promise<void>
+  retryConnection: () => Promise<void>
 }
 
 // Initial state
@@ -40,6 +46,8 @@ const initialState: SettingsState = {
   systemSettings: null,
   loading: false,
   error: null,
+  backendConnected: true, // Assume connected initially
+  lastSync: null,
 }
 
 // Reducer
@@ -50,29 +58,51 @@ function settingsReducer(state: SettingsState, action: SettingsAction): Settings
     case 'SET_ERROR':
       return { ...state, error: action.payload }
     case 'SET_USER_SETTINGS':
-      return { ...state, userSettings: action.payload, error: null }
+      return { 
+        ...state, 
+        userSettings: action.payload, 
+        error: null,
+        lastSync: new Date().toISOString()
+      }
     case 'SET_TEAM_SETTINGS':
-      return { ...state, teamSettings: action.payload, error: null }
+      return { 
+        ...state, 
+        teamSettings: action.payload, 
+        error: null,
+        lastSync: new Date().toISOString()
+      }
     case 'SET_SYSTEM_SETTINGS':
-      return { ...state, systemSettings: action.payload, error: null }
+      return { 
+        ...state, 
+        systemSettings: action.payload, 
+        error: null,
+        lastSync: new Date().toISOString()
+      }
     case 'UPDATE_USER_SETTINGS':
       return {
         ...state,
         userSettings: state.userSettings ? { ...state.userSettings, ...action.payload } : null,
         error: null,
+        lastSync: new Date().toISOString(),
       }
     case 'UPDATE_TEAM_SETTINGS':
       return {
         ...state,
         teamSettings: state.teamSettings ? { ...state.teamSettings, ...action.payload } : null,
         error: null,
+        lastSync: new Date().toISOString(),
       }
     case 'UPDATE_SYSTEM_SETTINGS':
       return {
         ...state,
         systemSettings: state.systemSettings ? { ...state.systemSettings, ...action.payload } : null,
         error: null,
+        lastSync: new Date().toISOString(),
       }
+    case 'SET_BACKEND_CONNECTED':
+      return { ...state, backendConnected: action.payload }
+    case 'SET_LAST_SYNC':
+      return { ...state, lastSync: action.payload }
     default:
       return state
   }
@@ -97,6 +127,35 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     dispatch({ type: 'SET_ERROR', payload: error })
   }
 
+  const setBackendConnected = (connected: boolean) => {
+    dispatch({ type: 'SET_BACKEND_CONNECTED', payload: connected })
+  }
+
+  // Health check for backend connectivity
+  const checkBackendHealth = async () => {
+    try {
+      const healthResult = await SettingsService.healthCheck()
+      setBackendConnected(healthResult.success)
+      
+      if (!healthResult.success) {
+        setError('Backend connection failed. Some features may be unavailable.')
+      } else {
+        setError(null) // Clear connection errors if health check passes
+      }
+    } catch (error) {
+      setBackendConnected(false)
+      setError('Cannot connect to backend server')
+    }
+  }
+
+  // Retry connection
+  const retryConnection = async () => {
+    setLoading(true)
+    setError(null)
+    await checkBackendHealth()
+    setLoading(false)
+  }
+
   const loadUserSettings = async (userId: string) => {
     try {
       setLoading(true)
@@ -108,9 +167,15 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_USER_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to load user settings')
+        // Check if it's a connection issue
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to load user settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to load user settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -127,9 +192,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_TEAM_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to load team settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to load team settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to load team settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -146,9 +216,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_SYSTEM_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to load system settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to load system settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to load system settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -165,9 +240,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_USER_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to update user settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to update user settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to update user settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -184,9 +264,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_TEAM_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to update team settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to update team settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to update team settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -203,9 +288,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         dispatch({ type: 'SET_SYSTEM_SETTINGS', payload: response.data })
       } else {
         setError(response.error || 'Failed to update system settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to update system settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to update system settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
@@ -222,10 +312,15 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         return response.data
       } else {
         setError(response.error || 'Failed to export settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
         return null
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to export settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to export settings'
+      setError(errorMessage)
+      setBackendConnected(false)
       return null
     } finally {
       setLoading(false)
@@ -240,21 +335,31 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       const response = await SettingsService.importSettings(userId, settingsData)
       
       if (response.success) {
-        // Reload user settings after import
+        // Reload settings after import
         await loadUserSettings(userId)
       } else {
         setError(response.error || 'Failed to import settings')
+        if (response.error?.includes('connect') || response.error?.includes('server')) {
+          setBackendConnected(false)
+        }
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to import settings')
+      const errorMessage = error instanceof Error ? error.message : 'Failed to import settings'
+      setError(errorMessage)
+      setBackendConnected(false)
     } finally {
       setLoading(false)
     }
   }
 
   const clearError = () => {
-    setError(null)
+    dispatch({ type: 'SET_ERROR', payload: null })
   }
+
+  // Initial health check on mount
+  useEffect(() => {
+    checkBackendHealth()
+  }, [])
 
   const value: SettingsContextType = {
     state,
@@ -267,6 +372,8 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     exportSettings,
     importSettings,
     clearError,
+    checkBackendHealth,
+    retryConnection,
   }
 
   return (
@@ -276,7 +383,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
   )
 }
 
-// Hook
+// Hook to use settings context
 export function useSettings() {
   const context = useContext(SettingsContext)
   if (context === undefined) {
