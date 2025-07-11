@@ -1,127 +1,207 @@
-import { getSessionToken } from '@/lib/supabase'
+// Deploy service for frontend
+import { getSessionToken } from '../lib/supabase'
 
-// Tipos para el módulo Deploy
-export interface DeployStatus {
-  jobs: RuntimeJob[]
-  count: number
-}
-
-export interface RuntimeJob {
+export interface DeployEnvironment {
   id: string
-  schedule: string
-  task: () => void
-  running: boolean
-  ref?: unknown
-}
-
-export interface AgentStatus {
   name: string
-  status: 'running' | 'stopped' | 'error'
+  description: string
+  type: 'development' | 'staging' | 'production'
+  url: string
+  branch: string
+  auto_deploy: boolean
+  health_check_url: string
+  created_at: string
+  updated_at: string
+  is_active: boolean
+  deployment_count: number
+  last_deployment?: string
 }
 
-export interface AgentLog {
-  timestamp: string
-  level: 'info' | 'warn' | 'error'
-  message: string
-}
-
-export interface DeployConfig {
-  environment: string
-  version: string
-  features: Record<string, boolean>
-}
-
-export interface DeployTask {
+export interface DeployPipeline {
   id: string
-  schedule: string
-  running: boolean
-  lastRun?: string
-  nextRun?: string
+  name: string
+  description: string
+  environment_id: string
+  steps: DeployStep[]
+  triggers: DeployTrigger[]
+  created_at: string
+  updated_at: string
+  is_active: boolean
+  success_rate: number
+  avg_duration: number
 }
 
-export interface DeployMetrics {
-  uptime: number
-  memoryUsage: number
-  cpuUsage: number
-  activeJobs: number
+export interface DeployStep {
+  id: string
+  name: string
+  type: 'build' | 'test' | 'deploy' | 'notify' | 'rollback'
+  command: string
+  timeout: number
+  retry_count: number
+  order: number
+  is_required: boolean
 }
 
-export interface DeployHealth {
-  status: 'healthy' | 'degraded' | 'unhealthy'
-  checks: Record<string, boolean>
+export interface DeployTrigger {
+  id: string
+  type: 'push' | 'pull_request' | 'manual' | 'schedule'
+  branch?: string
+  schedule?: string
+  conditions: Record<string, any>
+}
+
+export interface DeployBuild {
+  id: string
+  pipeline_id: string
+  environment_id: string
+  status: 'pending' | 'running' | 'success' | 'failed' | 'cancelled'
+  commit_hash: string
+  commit_message: string
+  branch: string
+  author: string
+  started_at: string
+  completed_at?: string
+  duration?: number
+  logs: DeployLog[]
+  artifacts: DeployArtifact[]
+  tests_passed?: number
+  tests_failed?: number
+  coverage?: number
 }
 
 export interface DeployLog {
-  timestamp: string
-  level: 'info' | 'warn' | 'error'
-  message: string
-  context?: Record<string, unknown>
-}
-
-// Tipos para requests
-export interface CreateTaskRequest {
   id: string
-  schedule: string
-  description?: string
+  build_id: string
+  step_id: string
+  level: 'info' | 'warn' | 'error' | 'debug'
+  message: string
+  timestamp: string
+  metadata?: Record<string, any>
 }
 
-export interface UpdateConfigRequest {
-  environment?: string
-  version?: string
-  features?: Record<string, boolean>
+export interface DeployArtifact {
+  id: string
+  build_id: string
+  name: string
+  type: 'build' | 'test' | 'deployment'
+  url: string
+  size: number
+  created_at: string
 }
 
-export interface RunAgentRequest {
-  options?: Record<string, unknown>
+export interface DeployDeployment {
+  id: string
+  build_id: string
+  environment_id: string
+  status: 'pending' | 'deploying' | 'success' | 'failed' | 'rolled_back'
+  version: string
+  deployed_at: string
+  deployed_by: string
+  rollback_to?: string
+  health_check_status: 'healthy' | 'unhealthy' | 'unknown'
+  metrics: {
+    response_time: number
+    error_rate: number
+    throughput: number
+  }
 }
 
-// Tipos para responses
-export interface DeployResponse<T> {
+export interface DeployResponse {
   success: boolean
-  data?: T
+  data?: DeployEnvironment | DeployEnvironment[] | DeployPipeline | DeployPipeline[] | DeployBuild | DeployBuild[] | DeployDeployment | DeployDeployment[]
   error?: string
 }
 
-export interface AgentRunResult {
-  result: unknown
+export interface ServiceHealth {
+  isHealthy: boolean
+  lastCheck: number
+  responseTime: number
+  errorRate: number
 }
 
-export interface TaskExecutionResult {
-  message: string
-  taskId: string
-  status: 'success' | 'failed'
-}
+export class DeployService {
+  private static API_BASE_URL = '/api/deploy'
+  private static circuitBreaker = {
+    failures: 0,
+    lastFailureTime: 0,
+    state: 'CLOSED' as 'CLOSED' | 'OPEN' | 'HALF_OPEN',
+    threshold: 5,
+    timeout: 60000, // 1 minute
+  }
 
-// Configuración del servicio
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
-
-class DeployService {
-  private async makeRequest<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<DeployResponse<T>> {
+  // Health check method
+  static async checkHealth(): Promise<ServiceHealth> {
+    const startTime = Date.now()
+    let res: Response | undefined
     try {
       const token = await getSessionToken()
-      const url = `${API_BASE_URL}${endpoint}`
       
-      const response = await fetch(url, {
-        ...options,
+      // Always try HEAD first, then fallback to GET if needed
+      try {
+        res = await fetch(`${this.API_BASE_URL}`, {
+          method: 'HEAD',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      } catch (err) {
+        // Fallback: if HEAD fails, try GET
+        res = await fetch(`${this.API_BASE_URL}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      }
+
+      const responseTime = Date.now() - startTime
+      
+      if (res.ok) {
+        this.circuitBreaker.failures = 0
+        this.circuitBreaker.state = 'CLOSED'
+        
+        return {
+          isHealthy: true,
+          lastCheck: Date.now(),
+          responseTime,
+          errorRate: 0,
+        }
+      } else {
+        throw new Error(`Health check failed with status ${res.status}`)
+      }
+    } catch (error) {
+      this.circuitBreaker.failures++
+      this.circuitBreaker.lastFailureTime = Date.now()
+      
+      if (this.circuitBreaker.failures >= this.circuitBreaker.threshold) {
+        this.circuitBreaker.state = 'OPEN'
+      }
+      
+      return {
+        isHealthy: false,
+        lastCheck: Date.now(),
+        responseTime: Date.now() - startTime,
+        errorRate: this.circuitBreaker.failures / (this.circuitBreaker.failures + 1),
+      }
+    }
+  }
+
+  // Get all environments
+  static async getEnvironments(): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/environments`, {
         headers: {
-          'Content-Type': 'application/json',
-          ...(token && { Authorization: `Bearer ${token}` }),
-          ...options.headers,
+          Authorization: `Bearer ${token}`,
         },
       })
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
-        return {
-          success: false,
-          error: errorData.error || `HTTP ${response.status}: ${response.statusText}`,
-        }
+      if (!res.ok) {
+        throw new Error(`Failed to fetch environments: ${res.status}`)
       }
 
-      const data = await response.json()
+      const data = await res.json()
+      
       return {
         success: true,
         data: data.data || data,
@@ -129,124 +209,621 @@ class DeployService {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Network error',
+        error: error instanceof Error ? error.message : 'Failed to fetch environments',
       }
     }
   }
 
-  // Status y Health
-  async getStatus(): Promise<DeployResponse<DeployStatus>> {
-    return this.makeRequest<DeployStatus>('/status')
+  // Get environment by ID
+  static async getEnvironmentById(environmentId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/environments/${environmentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch environment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch environment',
+      }
+    }
   }
 
-  async getHealth(): Promise<DeployResponse<DeployHealth>> {
-    return this.makeRequest<DeployHealth>('/health')
+  // Create environment
+  static async createEnvironment(environment: Omit<DeployEnvironment, 'id' | 'created_at' | 'updated_at' | 'deployment_count'>): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/environments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(environment),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to create environment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to create environment',
+      }
+    }
   }
 
-  async getMetrics(): Promise<DeployResponse<DeployMetrics>> {
-    return this.makeRequest<DeployMetrics>('/metrics')
+  // Update environment
+  static async updateEnvironment(environmentId: string, updates: Partial<DeployEnvironment>): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/environments/${environmentId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updates),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to update environment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to update environment',
+      }
+    }
   }
 
-  // Configuración
-  async getConfig(): Promise<DeployResponse<DeployConfig>> {
-    return this.makeRequest<DeployConfig>('/config')
+  // Delete environment
+  static async deleteEnvironment(environmentId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/environments/${environmentId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete environment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete environment',
+      }
+    }
   }
 
-  async updateConfig(config: UpdateConfigRequest): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>('/config', {
-      method: 'PUT',
-      body: JSON.stringify(config),
-    })
+  // Get pipelines
+  static async getPipelines(environmentId?: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const params = environmentId ? `?environment_id=${environmentId}` : ''
+      const res = await fetch(`${this.API_BASE_URL}/pipelines${params}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch pipelines: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch pipelines',
+      }
+    }
   }
 
-  // Gestión de Agentes
-  async getAgents(): Promise<DeployResponse<string[]>> {
-    return this.makeRequest<string[]>('/agents')
+  // Get pipeline by ID
+  static async getPipelineById(pipelineId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/pipelines/${pipelineId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch pipeline: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch pipeline',
+      }
+    }
   }
 
-  async startAgent(name: string): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>(`/agents/${name}/start`, {
-      method: 'POST',
-    })
+  // Create pipeline
+  static async createPipeline(pipeline: Omit<DeployPipeline, 'id' | 'created_at' | 'updated_at' | 'success_rate' | 'avg_duration'>): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/pipelines`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(pipeline),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to create pipeline: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to create pipeline',
+      }
+    }
   }
 
-  async stopAgent(name: string): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>(`/agents/${name}/stop`, {
-      method: 'POST',
-    })
+  // Update pipeline
+  static async updatePipeline(pipelineId: string, updates: Partial<DeployPipeline>): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/pipelines/${pipelineId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updates),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to update pipeline: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to update pipeline',
+      }
+    }
   }
 
-  async getAgentStatus(name: string): Promise<DeployResponse<AgentStatus>> {
-    return this.makeRequest<AgentStatus>(`/agents/${name}/status`)
+  // Delete pipeline
+  static async deletePipeline(pipelineId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/pipelines/${pipelineId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete pipeline: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete pipeline',
+      }
+    }
   }
 
-  async getAgentLogs(name: string): Promise<DeployResponse<AgentLog[]>> {
-    return this.makeRequest<AgentLog[]>(`/agents/${name}/logs`)
+  // Get builds
+  static async getBuilds(pipelineId?: string, status?: string, limit = 20, offset = 0): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString(),
+      })
+      
+      if (pipelineId) {
+        params.append('pipeline_id', pipelineId)
+      }
+      
+      if (status) {
+        params.append('status', status)
+      }
+
+      const res = await fetch(`${this.API_BASE_URL}/builds?${params}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch builds: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch builds',
+      }
+    }
   }
 
-  async runAgent(name: string, options: RunAgentRequest = {}): Promise<DeployResponse<AgentRunResult>> {
-    return this.makeRequest<AgentRunResult>(`/agents/${name}/run`, {
-      method: 'POST',
-      body: JSON.stringify(options),
-    })
+  // Get build by ID
+  static async getBuildById(buildId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/builds/${buildId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch build: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch build',
+      }
+    }
   }
 
-  // Gestión de Tareas
-  async getTasks(): Promise<DeployResponse<DeployTask[]>> {
-    return this.makeRequest<DeployTask[]>('/tasks')
+  // Trigger build
+  static async triggerBuild(pipelineId: string, commitHash?: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/pipelines/${pipelineId}/trigger`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ commit_hash: commitHash }),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to trigger build: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to trigger build',
+      }
+    }
   }
 
-  async createTask(task: CreateTaskRequest): Promise<DeployResponse<DeployTask>> {
-    return this.makeRequest<DeployTask>('/tasks', {
-      method: 'POST',
-      body: JSON.stringify(task),
-    })
+  // Cancel build
+  static async cancelBuild(buildId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/builds/${buildId}/cancel`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to cancel build: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to cancel build',
+      }
+    }
   }
 
-  async getTaskById(id: string): Promise<DeployResponse<DeployTask>> {
-    return this.makeRequest<DeployTask>(`/tasks/${id}`)
+  // Get build logs
+  static async getBuildLogs(buildId: string, stepId?: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const params = stepId ? `?step_id=${stepId}` : ''
+      const res = await fetch(`${this.API_BASE_URL}/builds/${buildId}/logs${params}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch build logs: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch build logs',
+      }
+    }
   }
 
-  async updateTask(id: string, updates: Partial<CreateTaskRequest>): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>(`/tasks/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updates),
-    })
+  // Get deployments
+  static async getDeployments(environmentId?: string, status?: string, limit = 20, offset = 0): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString(),
+      })
+      
+      if (environmentId) {
+        params.append('environment_id', environmentId)
+      }
+      
+      if (status) {
+        params.append('status', status)
+      }
+
+      const res = await fetch(`${this.API_BASE_URL}/deployments?${params}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch deployments: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch deployments',
+      }
+    }
   }
 
-  async deleteTask(id: string): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>(`/tasks/${id}`, {
-      method: 'DELETE',
-    })
+  // Get deployment by ID
+  static async getDeploymentById(deploymentId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/deployments/${deploymentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch deployment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch deployment',
+      }
+    }
   }
 
-  async executeTask(id: string): Promise<DeployResponse<TaskExecutionResult>> {
-    return this.makeRequest<TaskExecutionResult>(`/tasks/${id}/execute`, {
-      method: 'POST',
-    })
+  // Deploy build
+  static async deployBuild(buildId: string, environmentId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/builds/${buildId}/deploy`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ environment_id: environmentId }),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to deploy build: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to deploy build',
+      }
+    }
   }
 
-  async getTaskResult(id: string): Promise<DeployResponse<unknown>> {
-    return this.makeRequest<unknown>(`/tasks/${id}/result`)
+  // Rollback deployment
+  static async rollbackDeployment(deploymentId: string, targetVersion?: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/deployments/${deploymentId}/rollback`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ target_version: targetVersion }),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to rollback deployment: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to rollback deployment',
+      }
+    }
   }
 
-  // Logs del sistema
-  async getLogs(): Promise<DeployResponse<DeployLog[]>> {
-    return this.makeRequest<DeployLog[]>('/logs')
+  // Get deployment metrics
+  static async getDeploymentMetrics(deploymentId: string): Promise<DeployResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/deployments/${deploymentId}/metrics`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch deployment metrics: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch deployment metrics',
+      }
+    }
   }
 
-  // Control del sistema
-  async restart(): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>('/restart', {
-      method: 'POST',
-    })
+  // Get circuit breaker state
+  static getCircuitBreakerState() {
+    return {
+      failures: this.circuitBreaker.failures,
+      lastFailureTime: this.circuitBreaker.lastFailureTime,
+      state: this.circuitBreaker.state,
+    }
   }
 
-  async shutdown(): Promise<DeployResponse<{ message: string }>> {
-    return this.makeRequest<{ message: string }>('/shutdown', {
-      method: 'POST',
-    })
+  // Reset circuit breaker
+  static resetCircuitBreaker() {
+    this.circuitBreaker.failures = 0
+    this.circuitBreaker.state = 'CLOSED'
+    this.circuitBreaker.lastFailureTime = 0
   }
-}
 
-export const deployService = new DeployService() 
+  // Check if circuit breaker is open
+  static isCircuitBreakerOpen(): boolean {
+    if (this.circuitBreaker.state === 'OPEN') {
+      const now = Date.now()
+      if (now - this.circuitBreaker.lastFailureTime > this.circuitBreaker.timeout) {
+        this.circuitBreaker.state = 'HALF_OPEN'
+        return false
+      }
+      return true
+    }
+    return false
+  }
+} 

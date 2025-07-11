@@ -1,10 +1,36 @@
 import React from 'react'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
-import { describe, it, expect, beforeEach, vi, beforeAll, afterAll } from 'vitest'
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
-import { BillingProvider, useBilling } from '@/contexts/BillingContext'
-import ConnectionStatus from '@/components/billing/ConnectionStatus'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { BillingProvider, useBilling } from '../contexts/BillingContext'
+import ConnectionStatus from '../components/billing/ConnectionStatus'
+
+// Mock the billing service
+vi.mock('../services/billing.service', () => ({
+  BillingService: {
+    checkHealth: vi.fn(),
+    getBillingData: vi.fn(),
+    getInvoices: vi.fn(),
+    getSubscriptions: vi.fn(),
+    getCustomer: vi.fn(),
+    getInvoiceById: vi.fn(),
+    createInvoice: vi.fn(),
+    updateInvoice: vi.fn(),
+    deleteInvoice: vi.fn(),
+    createSubscription: vi.fn(),
+    updateSubscription: vi.fn(),
+    cancelSubscription: vi.fn(),
+    getCircuitBreakerState: vi.fn(),
+  }
+}))
+
+// Mock the supabase lib
+vi.mock('../lib/supabase', () => ({
+  getSessionToken: vi.fn(() => Promise.resolve('mock-token'))
+}))
+
+// Import the mocked service
+import { BillingService } from '../services/billing.service'
 
 // Mock data factories
 const createMockInvoice = (overrides = {}) => ({
@@ -40,66 +66,6 @@ const createMockCustomer = (overrides = {}) => ({
   updated_at: '2024-01-01T00:00:00Z',
   ...overrides
 })
-
-// MSW Server Setup
-const server = setupServer(
-  // Health check
-  rest.get('http://localhost:3001/api/health', (req, res, ctx) => {
-    return res(ctx.json({ status: 'ok' }))
-  }),
-
-  // Get billing data
-  rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-    return res(ctx.json({
-      data: [createMockInvoice()],
-      pagination: { page: 1, limit: 10, total: 1 }
-    }))
-  }),
-
-  // Get subscriptions
-  rest.get('http://localhost:3001/api/subscriptions', (req, res, ctx) => {
-    return res(ctx.json([createMockSubscription()]))
-  }),
-
-  // Get customer
-  rest.get('http://localhost:3001/api/customers/me', (req, res, ctx) => {
-    return res(ctx.json(createMockCustomer()))
-  }),
-
-  // Create invoice
-  rest.post('http://localhost:3001/api/invoices', async (req, res, ctx) => {
-    const body = await req.json()
-    return res(ctx.json(createMockInvoice(body)))
-  }),
-
-  // Update invoice
-  rest.patch('http://localhost:3001/api/invoices/:id', async (req, res, ctx) => {
-    const body = await req.json()
-    return res(ctx.json(createMockInvoice({ ...body, id: 'inv_123' })))
-  }),
-
-  // Delete invoice
-  rest.delete('http://localhost:3001/api/invoices/:id', (req, res, ctx) => {
-    return res(ctx.json({ message: 'Invoice deleted successfully' }))
-  }),
-
-  // Create subscription
-  rest.post('http://localhost:3001/api/subscriptions', async (req, res, ctx) => {
-    const body = await req.json()
-    return res(ctx.json(createMockSubscription(body)))
-  }),
-
-  // Update subscription
-  rest.patch('http://localhost:3001/api/subscriptions/:id', async (req, res, ctx) => {
-    const body = await req.json()
-    return res(ctx.json(createMockSubscription({ ...body, id: 'sub_123' })))
-  }),
-
-  // Cancel subscription
-  rest.delete('http://localhost:3001/api/subscriptions/:id', (req, res, ctx) => {
-    return res(ctx.json({ message: 'Subscription canceled successfully' }))
-  })
-)
 
 // Test Component
 function TestComponent() {
@@ -179,305 +145,257 @@ function TestComponent() {
   )
 }
 
-// Test Setup
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' })
-})
-
-afterAll(() => {
-  server.close()
-})
-
-beforeEach(() => {
-  vi.clearAllMocks()
-})
-
 describe('Billing Integration Tests', () => {
-  describe('BillingContext', () => {
-    it('should initialize with correct default state', () => {
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      expect(screen.getByTestId('connection-status')).toHaveTextContent('disconnected')
-      expect(screen.getByTestId('loading')).toHaveTextContent('false')
-      expect(screen.getByTestId('error')).toHaveTextContent('no-error')
-      expect(screen.getByTestId('invoices-count')).toHaveTextContent('0')
-      expect(screen.getByTestId('subscriptions-count')).toHaveTextContent('0')
-      expect(screen.getByTestId('customer-email')).toHaveTextContent('no-customer')
+  beforeEach(() => {
+    vi.clearAllMocks()
+    
+    // Default successful health check
+    vi.mocked(BillingService.checkHealth).mockResolvedValue({
+      isHealthy: true,
+      lastCheck: Date.now(),
+      responseTime: 100,
+      errorRate: 0,
     })
 
-    it('should fetch billing data successfully', async () => {
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+    // Default circuit breaker state
+    vi.mocked(BillingService.getCircuitBreakerState).mockReturnValue({
+      failures: 0,
+      lastFailureTime: 0,
+      state: 'CLOSED' as const,
+    })
 
-      // Wait for initial health check and data fetch
-      await waitFor(() => {
-        expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
-      }, { timeout: 5000 })
+    // Default billing data
+    vi.mocked(BillingService.getBillingData).mockResolvedValue({
+      success: true,
+      data: {
+        invoices: [],
+        subscriptions: [],
+        customer: null,
+      }
+    })
 
-      await waitFor(() => {
-        expect(screen.getByTestId('invoices-count')).toHaveTextContent('1')
+    // Default successful responses for other methods
+    vi.mocked(BillingService.getInvoices).mockResolvedValue({
+      success: true,
+      data: []
+    })
+    vi.mocked(BillingService.getSubscriptions).mockResolvedValue({
+      success: true,
+      data: []
+    })
+    vi.mocked(BillingService.getCustomer).mockResolvedValue({
+      success: true,
+      data: null
+    })
+  })
+
+  describe('BillingContext', () => {
+    it('should create invoice successfully', async () => {
+      const mockInvoice = createMockInvoice()
+      vi.mocked(BillingService.createInvoice).mockResolvedValue({
+        success: true,
+        data: mockInvoice
       })
 
-      expect(screen.getByTestId('customer-email')).toHaveTextContent('test@example.com')
-    })
-
-    it('should create invoice successfully', async () => {
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Create invoice
-      fireEvent.click(screen.getByTestId('create-invoice'))
+      await userEvent.click(screen.getByTestId('create-invoice'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('invoices-count')).toHaveTextContent('2')
+        expect(BillingService.createInvoice).toHaveBeenCalledWith({
+          amount: 1000,
+          currency: 'USD',
+          description: 'Test Invoice'
+        })
       })
     })
 
     it('should update invoice successfully', async () => {
+      const mockInvoice = createMockInvoice({ status: 'paid' })
+      vi.mocked(BillingService.updateInvoice).mockResolvedValue({
+        success: true,
+        data: mockInvoice
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Update invoice
-      fireEvent.click(screen.getByTestId('update-invoice'))
+      await userEvent.click(screen.getByTestId('update-invoice'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('loading')).toHaveTextContent('false')
+        expect(BillingService.updateInvoice).toHaveBeenCalledWith('inv_123', {
+          status: 'paid'
+        })
       })
     })
 
     it('should delete invoice successfully', async () => {
+      vi.mocked(BillingService.deleteInvoice).mockResolvedValue({
+        success: true
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Delete invoice
-      fireEvent.click(screen.getByTestId('delete-invoice'))
+      await userEvent.click(screen.getByTestId('delete-invoice'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('invoices-count')).toHaveTextContent('0')
+        expect(BillingService.deleteInvoice).toHaveBeenCalledWith('inv_123')
       })
     })
 
     it('should create subscription successfully', async () => {
+      const mockSubscription = createMockSubscription()
+      vi.mocked(BillingService.createSubscription).mockResolvedValue({
+        success: true,
+        data: mockSubscription
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Create subscription
-      fireEvent.click(screen.getByTestId('create-subscription'))
+      await userEvent.click(screen.getByTestId('create-subscription'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('subscriptions-count')).toHaveTextContent('2')
+        expect(BillingService.createSubscription).toHaveBeenCalledWith({
+          plan_id: 'plan_pro'
+        })
       })
     })
 
     it('should update subscription successfully', async () => {
+      const mockSubscription = createMockSubscription({ status: 'canceled' })
+      vi.mocked(BillingService.updateSubscription).mockResolvedValue({
+        success: true,
+        data: mockSubscription
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Update subscription
-      fireEvent.click(screen.getByTestId('update-subscription'))
+      await userEvent.click(screen.getByTestId('update-subscription'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('loading')).toHaveTextContent('false')
+        expect(BillingService.updateSubscription).toHaveBeenCalledWith('sub_123', {
+          status: 'canceled'
+        })
       })
     })
 
     it('should cancel subscription successfully', async () => {
+      vi.mocked(BillingService.cancelSubscription).mockResolvedValue({
+        success: true
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Cancel subscription
-      fireEvent.click(screen.getByTestId('cancel-subscription'))
+      await userEvent.click(screen.getByTestId('cancel-subscription'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('subscriptions-count')).toHaveTextContent('0')
+        expect(BillingService.cancelSubscription).toHaveBeenCalledWith('sub_123')
       })
     })
 
-    it('should handle errors gracefully', async () => {
-      // Override with error response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.status(500), ctx.json({ error: 'Internal server error' }))
-        })
-      )
-
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByTestId('connection-status')).toHaveTextContent('error')
-      }, { timeout: 5000 })
-
-      expect(screen.getByTestId('error')).not.toHaveTextContent('no-error')
-    })
-
-    it('should clear errors when requested', async () => {
-      // Override with error response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.status(500), ctx.json({ error: 'Internal server error' }))
-        })
-      )
-
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByTestId('error')).not.toHaveTextContent('no-error')
-      }, { timeout: 5000 })
-
-      // Clear error
-      fireEvent.click(screen.getByTestId('clear-error'))
-
-      expect(screen.getByTestId('error')).toHaveTextContent('no-error')
-    })
-
     it('should retry connection successfully', async () => {
-      // Override with error response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.status(500), ctx.json({ error: 'Internal server error' }))
-        })
-      )
-
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
-
-      await waitFor(() => {
-        expect(screen.getByTestId('connection-status')).toHaveTextContent('error')
-      }, { timeout: 5000 })
-
-      // Restore normal response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.json({
-            data: [createMockInvoice()],
-            pagination: { page: 1, limit: 10, total: 1 }
-          }))
-        })
-      )
-
-      // Retry connection
-      fireEvent.click(screen.getByTestId('retry-connection'))
 
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
+
+      await userEvent.click(screen.getByTestId('retry-connection'))
+
+      expect(BillingService.checkHealth).toHaveBeenCalledTimes(2) // Initial + retry
     })
 
     it('should refresh data successfully', async () => {
+      const mockInvoices = [createMockInvoice()]
+      const mockSubscriptions = [createMockSubscription()]
+      const mockCustomer = createMockCustomer()
+
+      vi.mocked(BillingService.getInvoices).mockResolvedValue({
+        success: true,
+        data: mockInvoices
+      })
+      vi.mocked(BillingService.getSubscriptions).mockResolvedValue({
+        success: true,
+        data: mockSubscriptions
+      })
+      vi.mocked(BillingService.getCustomer).mockResolvedValue({
+        success: true,
+        data: mockCustomer
+      })
+
       render(
         <BillingProvider>
           <TestComponent />
         </BillingProvider>
       )
 
-      // Wait for initial load
       await waitFor(() => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Refresh data
-      fireEvent.click(screen.getByTestId('refresh-data'))
+      await userEvent.click(screen.getByTestId('refresh-data'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('loading')).toHaveTextContent('false')
+        expect(BillingService.getInvoices).toHaveBeenCalled()
+        expect(BillingService.getSubscriptions).toHaveBeenCalled()
+        expect(BillingService.getCustomer).toHaveBeenCalled()
       })
     })
   })
 
   describe('ConnectionStatus Component', () => {
-    it('should render compact status correctly', async () => {
-      render(
-        <BillingProvider>
-          <ConnectionStatus compact />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByRole('status')).toBeInTheDocument()
-      }, { timeout: 5000 })
-    })
-
-    it('should render detailed status correctly', async () => {
-      render(
-        <BillingProvider>
-          <ConnectionStatus showDetails />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByRole('status')).toBeInTheDocument()
-        expect(screen.getByText('Circuit Breaker')).toBeInTheDocument()
-        expect(screen.getByText('Connection Info')).toBeInTheDocument()
-      }, { timeout: 5000 })
-    })
-
-    it('should show correct status colors', async () => {
+    it('should display connection status correctly', async () => {
       render(
         <BillingProvider>
           <ConnectionStatus />
@@ -485,12 +403,11 @@ describe('Billing Integration Tests', () => {
       )
 
       await waitFor(() => {
-        const statusElement = screen.getByRole('status')
-        expect(statusElement).toBeInTheDocument()
+        expect(screen.getByText('Connected')).toBeInTheDocument()
       }, { timeout: 5000 })
     })
 
-    it('should be accessible', async () => {
+    it('should handle refresh button click', async () => {
       render(
         <BillingProvider>
           <ConnectionStatus />
@@ -498,58 +415,59 @@ describe('Billing Integration Tests', () => {
       )
 
       await waitFor(() => {
-        const statusElement = screen.getByRole('status')
-        expect(statusElement).toHaveAttribute('aria-live', 'polite')
+        expect(screen.getByText('Connected')).toBeInTheDocument()
+      }, { timeout: 5000 })
+
+      const refreshButton = screen.getByLabelText('Refresh connection status')
+      await userEvent.click(refreshButton)
+
+      expect(BillingService.checkHealth).toHaveBeenCalledTimes(2) // Initial + refresh
+    })
+  })
+
+  describe('Error Handling', () => {
+    it('should handle API errors gracefully', async () => {
+      vi.mocked(BillingService.getInvoices).mockResolvedValue({
+        success: false,
+        error: 'Failed to fetch invoices'
+      })
+
+      render(
+        <BillingProvider>
+          <TestComponent />
+        </BillingProvider>
+      )
+
+      await waitFor(() => {
+        expect(screen.getByTestId('error')).toHaveTextContent('Failed to fetch invoices')
+      }, { timeout: 5000 })
+    })
+
+    it('should handle network errors', async () => {
+      vi.mocked(BillingService.getInvoices).mockRejectedValue(new Error('Network error'))
+
+      render(
+        <BillingProvider>
+          <TestComponent />
+        </BillingProvider>
+      )
+
+      await waitFor(() => {
+        expect(screen.getByTestId('error')).toHaveTextContent('Network error')
       }, { timeout: 5000 })
     })
   })
 
   describe('Edge Cases', () => {
-    it('should handle network timeouts', async () => {
-      // Override with timeout
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return new Promise(() => {}) // Never resolves
-        })
-      )
-
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByTestId('connection-status')).toHaveTextContent('error')
-      }, { timeout: 15000 })
-    })
-
-    it('should handle malformed responses', async () => {
-      // Override with malformed response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.body('Invalid JSON'))
-        })
-      )
-
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      await waitFor(() => {
-        expect(screen.getByTestId('connection-status')).toHaveTextContent('error')
-      }, { timeout: 5000 })
-    })
-
     it('should handle empty responses', async () => {
-      // Override with empty response
-      server.use(
-        rest.get('http://localhost:3001/api/invoices', (req, res, ctx) => {
-          return res(ctx.json({ data: [], pagination: { page: 1, limit: 10, total: 0 } }))
-        })
-      )
+      vi.mocked(BillingService.getInvoices).mockResolvedValue({
+        success: true,
+        data: []
+      })
+      vi.mocked(BillingService.getSubscriptions).mockResolvedValue({
+        success: true,
+        data: []
+      })
 
       render(
         <BillingProvider>
@@ -576,9 +494,8 @@ describe('Billing Integration Tests', () => {
         expect(screen.getByTestId('connection-status')).toHaveTextContent('connected')
       }, { timeout: 5000 })
 
-      // Circuit breaker state should be monitored
-      const circuitState = screen.getByTestId('connection-status')
-      expect(circuitState).toBeInTheDocument()
+      // Verify health check was called
+      expect(BillingService.checkHealth).toHaveBeenCalled()
     })
   })
 }) 

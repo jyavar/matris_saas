@@ -405,7 +405,7 @@ export class BillingService {
   }
 
   // Legacy compatibility methods
-  static async updateBilling(request: UpdateInvoiceRequest): Promise<BillingResponse> {
+  static async updateBilling(_request: UpdateInvoiceRequest): Promise<BillingResponse> {
     // This method is kept for backward compatibility
     // It should be replaced with specific update methods
     throw new Error('updateBilling is deprecated. Use updateInvoice or updateSubscription instead.')

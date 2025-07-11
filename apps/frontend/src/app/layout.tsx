@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { BillingProvider } from '@/contexts/BillingContext'
 import { AnalyticsProvider } from '@/contexts/AnalyticsContext'
+import { MLProvider } from '@/contexts/MLContext'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -44,7 +45,9 @@ export default function RootLayout({
         <AuthProvider>
           <BillingProvider>
             <AnalyticsProvider>
-              <main>{children}</main>
+              <MLProvider>
+                <main>{children}</main>
+              </MLProvider>
             </AnalyticsProvider>
           </BillingProvider>
         </AuthProvider>

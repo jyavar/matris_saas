@@ -10,8 +10,7 @@ import {
   UpdateSubscriptionRequest,
   Invoice,
   Subscription,
-  Customer,
-  BillingResponse
+  Customer
 } from '@/services/billing.service'
 
 // Connection Status Types

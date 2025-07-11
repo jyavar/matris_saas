@@ -1,108 +1,324 @@
 // Merge service for frontend
-import { supabase } from '@/lib/supabase'
+import { getSessionToken } from '../lib/supabase'
+
+export interface MergeStrategy {
+  id: string
+  name: string
+  description: string
+  type: 'squash' | 'merge' | 'rebase' | 'fast-forward'
+  auto_resolve_conflicts: boolean
+  require_review: boolean
+  require_tests: boolean
+  require_approval: boolean
+  min_approvals: number
+  protected_branches: string[]
+  created_at: string
+  updated_at: string
+  is_active: boolean
+  priority: number
+}
 
 export interface MergeRequest {
   id: string
   title: string
   description: string
-  sourceBranch: string
-  targetBranch: string
-  status: 'open' | 'merged' | 'closed' | 'conflicted'
+  source_branch: string
+  target_branch: string
+  status: 'open' | 'merged' | 'closed' | 'conflict' | 'review_required'
   author: string
   reviewers: string[]
-  createdAt: string
-  updatedAt: string
-  mergedAt?: string
-  closedAt?: string
-  filesChanged: number
+  approvals: number
+  conflicts: MergeConflict[]
+  strategy: MergeStrategy
+  created_at: string
+  updated_at: string
+  merged_at?: string
+  merge_commit?: string
+  files_changed: number
   additions: number
   deletions: number
-  conflicts: string[]
+}
+
+export interface MergeConflict {
+  id: string
+  file_path: string
+  conflict_type: 'content' | 'deletion' | 'addition'
+  status: 'unresolved' | 'resolved' | 'auto_resolved'
+  resolution?: string
+  created_at: string
+  resolved_at?: string
+}
+
+export interface MergeAnalysis {
+  id: string
+  merge_request_id: string
+  risk_level: 'low' | 'medium' | 'high' | 'critical'
+  impact_analysis: {
+    files_affected: number
+    breaking_changes: boolean
+    test_coverage: number
+    complexity_score: number
+  }
+  safety_score: number
+  recommendations: string[]
+  created_at: string
 }
 
 export interface MergeResponse {
   success: boolean
-  data?: MergeRequest | MergeRequest[]
+  data?: MergeStrategy | MergeStrategy[] | MergeRequest | MergeRequest[] | MergeConflict[] | MergeAnalysis
   error?: string
 }
 
-export interface CreateMergeRequest {
-  title: string
-  description: string
-  sourceBranch: string
-  targetBranch: string
-  author: string
-  reviewers: string[]
-}
-
-export interface UpdateMergeRequest {
-  title?: string
-  description?: string
-  status?: MergeRequest['status']
-  reviewers?: string[]
-}
-
-export interface MergeComment {
-  id: string
-  content: string
-  author: string
-  createdAt: string
-  lineNumber?: number
-  filePath?: string
-}
-
-export interface MergeMetrics {
-  totalRequests: number
-  openRequests: number
-  mergedRequests: number
-  closedRequests: number
-  averageMergeTime: number
-  conflictRate: number
+export interface ServiceHealth {
+  isHealthy: boolean
+  lastCheck: number
+  responseTime: number
+  errorRate: number
 }
 
 export class MergeService {
-  static async getMergeRequests(): Promise<MergeResponse> {
-    try {
-      // TODO: Integrar con API real de merge
-      const mockMergeRequests: MergeRequest[] = [
-        {
-          id: 'mr-1',
-          title: 'Add new billing features',
-          description: 'This PR adds new billing features including subscription management...',
-          sourceBranch: 'feature/billing-updates',
-          targetBranch: 'main',
-          status: 'open',
-          author: 'johndoe',
-          reviewers: ['alice', 'bob'],
-          createdAt: '2024-01-20T10:00:00Z',
-          updatedAt: '2024-01-20T15:30:00Z',
-          filesChanged: 12,
-          additions: 450,
-          deletions: 120,
-          conflicts: [],
-        },
-        {
-          id: 'mr-2',
-          title: 'Fix authentication bug',
-          description: 'Fixes a critical authentication bug in the login flow...',
-          sourceBranch: 'fix/auth-bug',
-          targetBranch: 'main',
-          status: 'merged',
-          author: 'alice',
-          reviewers: ['johndoe'],
-          createdAt: '2024-01-18T09:00:00Z',
-          updatedAt: '2024-01-19T14:00:00Z',
-          mergedAt: '2024-01-19T14:00:00Z',
-          filesChanged: 3,
-          additions: 25,
-          deletions: 8,
-          conflicts: [],
-        },
-      ]
+  private static API_BASE_URL = '/api/merge'
+  private static circuitBreaker = {
+    failures: 0,
+    lastFailureTime: 0,
+    state: 'CLOSED' as 'CLOSED' | 'OPEN' | 'HALF_OPEN',
+    threshold: 5,
+    timeout: 60000, // 1 minute
+  }
 
+  // Health check method
+  static async checkHealth(): Promise<ServiceHealth> {
+    const startTime = Date.now()
+    let res: Response | undefined
+    try {
+      const token = await getSessionToken()
+      
+      // Always try HEAD first, then fallback to GET if needed
+      try {
+        res = await fetch(`${this.API_BASE_URL}`, {
+          method: 'HEAD',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      } catch (err) {
+        // Fallback: if HEAD fails, try GET
+        res = await fetch(`${this.API_BASE_URL}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      }
+
+      const responseTime = Date.now() - startTime
+      
+      if (res.ok) {
+        this.circuitBreaker.failures = 0
+        this.circuitBreaker.state = 'CLOSED'
+        
+        return {
+          isHealthy: true,
+          lastCheck: Date.now(),
+          responseTime,
+          errorRate: 0,
+        }
+      } else {
+        throw new Error(`Health check failed with status ${res.status}`)
+      }
+    } catch (error) {
+      this.circuitBreaker.failures++
+      this.circuitBreaker.lastFailureTime = Date.now()
+      
+      if (this.circuitBreaker.failures >= this.circuitBreaker.threshold) {
+        this.circuitBreaker.state = 'OPEN'
+      }
+      
+      return {
+        isHealthy: false,
+        lastCheck: Date.now(),
+        responseTime: Date.now() - startTime,
+        errorRate: this.circuitBreaker.failures / (this.circuitBreaker.failures + 1),
+      }
+    }
+  }
+
+  // Get all merge strategies
+  static async getMergeStrategies(): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/strategies`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge strategies: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
       return {
         success: true,
-        data: mockMergeRequests,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch merge strategies',
+      }
+    }
+  }
+
+  // Get merge strategy by ID
+  static async getMergeStrategyById(strategyId: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/strategies/${strategyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge strategy: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch merge strategy',
+      }
+    }
+  }
+
+  // Create merge strategy
+  static async createMergeStrategy(strategy: Omit<MergeStrategy, 'id' | 'created_at' | 'updated_at'>): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/strategies`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(strategy),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to create merge strategy: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to create merge strategy',
+      }
+    }
+  }
+
+  // Update merge strategy
+  static async updateMergeStrategy(strategyId: string, updates: Partial<MergeStrategy>): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/strategies/${strategyId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updates),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to update merge strategy: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to update merge strategy',
+      }
+    }
+  }
+
+  // Delete merge strategy
+  static async deleteMergeStrategy(strategyId: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/strategies/${strategyId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete merge strategy: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete merge strategy',
+      }
+    }
+  }
+
+  // Get merge requests
+  static async getMergeRequests(status?: string, limit = 20, offset = 0): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString(),
+      })
+      
+      if (status) {
+        params.append('status', status)
+      }
+
+      const res = await fetch(`${this.API_BASE_URL}/requests?${params}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge requests: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
       }
     } catch (error) {
       return {
@@ -112,29 +328,25 @@ export class MergeService {
     }
   }
 
-  static async getMergeRequestById(id: string): Promise<MergeResponse> {
+  // Get merge request by ID
+  static async getMergeRequestById(requestId: string): Promise<MergeResponse> {
     try {
-      // TODO: Integrar con API real de merge
-      const mockMergeRequest: MergeRequest = {
-        id,
-        title: 'Sample Merge Request',
-        description: 'This is a sample merge request description...',
-        sourceBranch: 'feature/sample',
-        targetBranch: 'main',
-        status: 'open',
-        author: 'johndoe',
-        reviewers: ['alice', 'bob'],
-        createdAt: '2024-01-20T10:00:00Z',
-        updatedAt: '2024-01-20T15:30:00Z',
-        filesChanged: 5,
-        additions: 150,
-        deletions: 30,
-        conflicts: [],
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge request: ${res.status}`)
       }
 
+      const data = await res.json()
+      
       return {
         success: true,
-        data: mockMergeRequest,
+        data: data.data || data,
       }
     } catch (error) {
       return {
@@ -144,29 +356,28 @@ export class MergeService {
     }
   }
 
-  static async createMergeRequest(request: CreateMergeRequest): Promise<MergeResponse> {
+  // Create merge request
+  static async createMergeRequest(request: Omit<MergeRequest, 'id' | 'created_at' | 'updated_at' | 'status' | 'approvals' | 'conflicts' | 'files_changed' | 'additions' | 'deletions'>): Promise<MergeResponse> {
     try {
-      // TODO: Integrar con API real de merge
-      const newMergeRequest: MergeRequest = {
-        id: `mr-${Date.now()}`,
-        title: request.title,
-        description: request.description,
-        sourceBranch: request.sourceBranch,
-        targetBranch: request.targetBranch,
-        status: 'open',
-        author: request.author,
-        reviewers: request.reviewers,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        filesChanged: 0,
-        additions: 0,
-        deletions: 0,
-        conflicts: [],
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(request),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to create merge request: ${res.status}`)
       }
 
+      const data = await res.json()
+      
       return {
         success: true,
-        data: newMergeRequest,
+        data: data.data || data,
       }
     } catch (error) {
       return {
@@ -176,29 +387,28 @@ export class MergeService {
     }
   }
 
-  static async updateMergeRequest(id: string, request: UpdateMergeRequest): Promise<MergeResponse> {
+  // Update merge request
+  static async updateMergeRequest(requestId: string, updates: Partial<MergeRequest>): Promise<MergeResponse> {
     try {
-      // TODO: Integrar con API real de merge
-      const updatedMergeRequest: MergeRequest = {
-        id,
-        title: request.title || 'Updated Merge Request',
-        description: request.description || 'Updated description...',
-        sourceBranch: 'feature/updated',
-        targetBranch: 'main',
-        status: request.status || 'open',
-        author: 'johndoe',
-        reviewers: request.reviewers || ['alice'],
-        createdAt: '2024-01-20T10:00:00Z',
-        updatedAt: new Date().toISOString(),
-        filesChanged: 5,
-        additions: 150,
-        deletions: 30,
-        conflicts: [],
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updates),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to update merge request: ${res.status}`)
       }
 
+      const data = await res.json()
+      
       return {
         success: true,
-        data: updatedMergeRequest,
+        data: data.data || data,
       }
     } catch (error) {
       return {
@@ -208,87 +418,208 @@ export class MergeService {
     }
   }
 
-  static async mergeRequest(id: string): Promise<{ success: boolean; error?: string }> {
+  // Execute merge
+  static async executeMerge(requestId: string, strategyId: string): Promise<MergeResponse> {
     try {
-      // TODO: Integrar con API real de merge
-      return {
-        success: true,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to merge request',
-      }
-    }
-  }
-
-  static async closeMergeRequest(id: string): Promise<{ success: boolean; error?: string }> {
-    try {
-      // TODO: Integrar con API real de merge
-      return {
-        success: true,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to close merge request',
-      }
-    }
-  }
-
-  static async getMergeComments(id: string): Promise<{ success: boolean; data?: MergeComment[]; error?: string }> {
-    try {
-      // TODO: Integrar con API real de merge
-      const mockComments: MergeComment[] = [
-        {
-          id: 'comment-1',
-          content: 'Great work! Just a small suggestion...',
-          author: 'alice',
-          createdAt: '2024-01-20T11:00:00Z',
-          lineNumber: 15,
-          filePath: 'src/components/Button.tsx',
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}/merge`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        {
-          id: 'comment-2',
-          content: 'This looks good to me',
-          author: 'bob',
-          createdAt: '2024-01-20T12:00:00Z',
-        },
-      ]
+        body: JSON.stringify({ strategy_id: strategyId }),
+      })
 
+      if (!res.ok) {
+        throw new Error(`Failed to execute merge: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
       return {
         success: true,
-        data: mockComments,
+        data: data.data || data,
       }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch merge comments',
+        error: error instanceof Error ? error.message : 'Failed to execute merge',
       }
     }
   }
 
-  static async getMergeMetrics(): Promise<{ success: boolean; data?: MergeMetrics; error?: string }> {
+  // Get merge conflicts
+  static async getMergeConflicts(requestId: string): Promise<MergeResponse> {
     try {
-      // TODO: Integrar con API real de merge
-      const metrics: MergeMetrics = {
-        totalRequests: 150,
-        openRequests: 25,
-        mergedRequests: 115,
-        closedRequests: 10,
-        averageMergeTime: 2.5,
-        conflictRate: 0.15,
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}/conflicts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge conflicts: ${res.status}`)
       }
 
+      const data = await res.json()
+      
       return {
         success: true,
-        data: metrics,
+        data: data.data || data,
       }
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch merge metrics',
+        error: error instanceof Error ? error.message : 'Failed to fetch merge conflicts',
       }
     }
+  }
+
+  // Resolve merge conflict
+  static async resolveMergeConflict(conflictId: string, resolution: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/conflicts/${conflictId}/resolve`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ resolution }),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to resolve merge conflict: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to resolve merge conflict',
+      }
+    }
+  }
+
+  // Analyze merge impact
+  static async analyzeMergeImpact(requestId: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}/analyze`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to analyze merge impact: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to analyze merge impact',
+      }
+    }
+  }
+
+  // Get merge analysis
+  static async getMergeAnalysis(requestId: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}/analysis`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch merge analysis: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch merge analysis',
+      }
+    }
+  }
+
+  // Approve merge request
+  static async approveMergeRequest(requestId: string): Promise<MergeResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/requests/${requestId}/approve`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to approve merge request: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to approve merge request',
+      }
+    }
+  }
+
+  // Get circuit breaker state
+  static getCircuitBreakerState() {
+    return {
+      failures: this.circuitBreaker.failures,
+      lastFailureTime: this.circuitBreaker.lastFailureTime,
+      state: this.circuitBreaker.state,
+    }
+  }
+
+  // Reset circuit breaker
+  static resetCircuitBreaker() {
+    this.circuitBreaker.failures = 0
+    this.circuitBreaker.state = 'CLOSED'
+    this.circuitBreaker.lastFailureTime = 0
+  }
+
+  // Check if circuit breaker is open
+  static isCircuitBreakerOpen(): boolean {
+    if (this.circuitBreaker.state === 'OPEN') {
+      const now = Date.now()
+      if (now - this.circuitBreaker.lastFailureTime > this.circuitBreaker.timeout) {
+        this.circuitBreaker.state = 'HALF_OPEN'
+        return false
+      }
+      return true
+    }
+    return false
   }
 } 

@@ -1,50 +1,53 @@
-// Docs service for frontend
+// Profiles service for frontend
 import { getSessionToken } from '../lib/supabase'
 
-export interface DocItem {
+export interface UserProfile {
   id: string
-  title: string
-  slug: string
-  content: string
-  excerpt: string
-  category: string
-  tags: string[]
-  author: string
-  version: string
-  status: 'draft' | 'published' | 'archived'
+  email: string
+  full_name: string
+  avatar_url?: string
+  bio?: string
+  location?: string
+  website?: string
+  company?: string
+  job_title?: string
+  phone?: string
+  timezone?: string
+  language?: string
+  preferences: {
+    theme: 'light' | 'dark' | 'auto'
+    notifications: {
+      email: boolean
+      push: boolean
+      sms: boolean
+    }
+    privacy: {
+      profile_visible: boolean
+      activity_visible: boolean
+    }
+  }
   created_at: string
   updated_at: string
-  published_at?: string
-  read_time: number
-  views: number
-  rating?: number
-  featured: boolean
+  last_login?: string
+  status: 'active' | 'inactive' | 'suspended'
 }
 
-export interface DocCategory {
-  id: string
-  name: string
-  slug: string
-  description: string
-  icon: string
-  color: string
-  parent_id?: string
-  order: number
-  doc_count: number
+export interface ProfileUpdateData {
+  full_name?: string
+  bio?: string
+  location?: string
+  website?: string
+  company?: string
+  job_title?: string
+  phone?: string
+  timezone?: string
+  language?: string
+  preferences?: Partial<UserProfile['preferences']>
 }
 
-export interface DocSearchResult {
-  item: DocItem
-  score: number
-  highlights: {
-    field: string
-    snippet: string
-  }[]
-}
-
-export interface DocResponse {
+export interface ProfileResponse {
   success: boolean
-  data?: DocItem | DocItem[] | DocCategory[] | DocSearchResult[]
+  data?: UserProfile | UserProfile[]
   error?: string
 }
 
@@ -55,8 +58,8 @@ export interface ServiceHealth {
   errorRate: number
 }
 
-export class DocsService {
-  private static API_BASE_URL = '/api/docs'
+export class ProfilesService {
+  private static API_BASE_URL = '/api/profiles'
   private static circuitBreaker = {
     failures: 0,
     lastFailureTime: 0,
@@ -122,27 +125,18 @@ export class DocsService {
     }
   }
 
-  // Get all documentation
-  static async getAllDocs(limit = 20, offset = 0, category?: string): Promise<DocResponse> {
+  // Get current user profile
+  static async getCurrentProfile(): Promise<ProfileResponse> {
     try {
       const token = await getSessionToken()
-      const params = new URLSearchParams({
-        limit: limit.toString(),
-        offset: offset.toString(),
-      })
-      
-      if (category) {
-        params.append('category', category)
-      }
-
-      const res = await fetch(`${this.API_BASE_URL}?${params}`, {
+      const res = await fetch(`${this.API_BASE_URL}/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
 
       if (!res.ok) {
-        throw new Error(`Failed to fetch docs: ${res.status}`)
+        throw new Error(`Failed to fetch profile: ${res.status}`)
       }
 
       const data = await res.json()
@@ -154,23 +148,23 @@ export class DocsService {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch docs',
+        error: error instanceof Error ? error.message : 'Failed to fetch profile',
       }
     }
   }
 
-  // Get documentation by ID
-  static async getDocById(docId: string): Promise<DocResponse> {
+  // Get profile by ID
+  static async getProfileById(profileId: string): Promise<ProfileResponse> {
     try {
       const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/${docId}`, {
+      const res = await fetch(`${this.API_BASE_URL}/${profileId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
 
       if (!res.ok) {
-        throw new Error(`Failed to fetch doc: ${res.status}`)
+        throw new Error(`Failed to fetch profile: ${res.status}`)
       }
 
       const data = await res.json()
@@ -182,205 +176,26 @@ export class DocsService {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch doc',
+        error: error instanceof Error ? error.message : 'Failed to fetch profile',
       }
     }
   }
 
-  // Get documentation by slug
-  static async getDocBySlug(slug: string): Promise<DocResponse> {
+  // Update current user profile
+  static async updateProfile(updateData: ProfileUpdateData): Promise<ProfileResponse> {
     try {
       const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/slug/${slug}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch doc: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch doc',
-      }
-    }
-  }
-
-  // Get documentation categories
-  static async getCategories(): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/categories`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch categories: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch categories',
-      }
-    }
-  }
-
-  // Search documentation
-  static async searchDocs(query: string, limit = 10, offset = 0, category?: string): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const params = new URLSearchParams({
-        q: query,
-        limit: limit.toString(),
-        offset: offset.toString(),
-      })
-      
-      if (category) {
-        params.append('category', category)
-      }
-
-      const res = await fetch(`${this.API_BASE_URL}/search?${params}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to search docs: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to search docs',
-      }
-    }
-  }
-
-  // Get featured documentation
-  static async getFeaturedDocs(limit = 5): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/featured?limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch featured docs: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch featured docs',
-      }
-    }
-  }
-
-  // Get related documentation
-  static async getRelatedDocs(docId: string, limit = 5): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/${docId}/related?limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch related docs: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch related docs',
-      }
-    }
-  }
-
-  // Increment view count
-  static async incrementViews(docId: string): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/${docId}/views`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!res.ok) {
-        throw new Error(`Failed to increment views: ${res.status}`)
-      }
-
-      const data = await res.json()
-      
-      return {
-        success: true,
-        data: data.data || data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to increment views',
-      }
-    }
-  }
-
-  // Rate documentation
-  static async rateDoc(docId: string, rating: number): Promise<DocResponse> {
-    try {
-      const token = await getSessionToken()
-      const res = await fetch(`${this.API_BASE_URL}/${docId}/rate`, {
-        method: 'POST',
+      const res = await fetch(`${this.API_BASE_URL}/me`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ rating }),
+        body: JSON.stringify(updateData),
       })
 
       if (!res.ok) {
-        throw new Error(`Failed to rate doc: ${res.status}`)
+        throw new Error(`Failed to update profile: ${res.status}`)
       }
 
       const data = await res.json()
@@ -392,7 +207,125 @@ export class DocsService {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to rate doc',
+        error: error instanceof Error ? error.message : 'Failed to update profile',
+      }
+    }
+  }
+
+  // Upload avatar
+  static async uploadAvatar(file: File): Promise<ProfileResponse> {
+    try {
+      const token = await getSessionToken()
+      const formData = new FormData()
+      formData.append('avatar', file)
+
+      const res = await fetch(`${this.API_BASE_URL}/me/avatar`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to upload avatar: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to upload avatar',
+      }
+    }
+  }
+
+  // Delete avatar
+  static async deleteAvatar(): Promise<ProfileResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/me/avatar`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete avatar: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete avatar',
+      }
+    }
+  }
+
+  // Get user activity
+  static async getActivity(limit = 10, offset = 0): Promise<ProfileResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/me/activity?limit=${limit}&offset=${offset}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch activity: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch activity',
+      }
+    }
+  }
+
+  // Search profiles
+  static async searchProfiles(query: string, limit = 10, offset = 0): Promise<ProfileResponse> {
+    try {
+      const token = await getSessionToken()
+      const res = await fetch(`${this.API_BASE_URL}/search?q=${encodeURIComponent(query)}&limit=${limit}&offset=${offset}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Failed to search profiles: ${res.status}`)
+      }
+
+      const data = await res.json()
+      
+      return {
+        success: true,
+        data: data.data || data,
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to search profiles',
       }
     }
   }
