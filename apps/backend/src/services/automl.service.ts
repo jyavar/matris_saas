@@ -188,7 +188,14 @@ export class AutoMLService {
         progress: 0,
         created_at: new Date().toISOString(),
         business_objective: validatedData.business_objective,
-        constraints: validatedData.constraints,
+        constraints: {
+          max_training_time: validatedData.constraints.max_training_time || 60,
+          max_models: validatedData.constraints.max_models,
+          target_accuracy: validatedData.constraints.target_accuracy,
+          interpretability_required: validatedData.constraints.interpretability_required,
+          deployment_ready: validatedData.constraints.deployment_ready,
+          business_metrics: validatedData.constraints.business_metrics,
+        },
       }
 
       this.jobs.push(job)
@@ -240,7 +247,7 @@ export class AutoMLService {
         job.progress = progress
         await this.delay(1000) // 1 segundo por paso
         
-        if (job.status === 'cancelled') return
+        if (job.status !== 'running') return
       }
 
       // Generar resultados

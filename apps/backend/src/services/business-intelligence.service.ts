@@ -636,6 +636,60 @@ export class BusinessIntelligenceService {
         : 0,
     }
   }
+
+  // ===== TEMPLATES =====
+  async getTemplates(): Promise<Array<{ id: string; name: string; type: string; description: string }>> {
+    return [
+      {
+        id: 'executive-dashboard',
+        name: 'Dashboard Ejecutivo',
+        type: 'dashboard',
+        description: 'Template para dashboard ejecutivo con KPIs principales'
+      },
+      {
+        id: 'operational-dashboard',
+        name: 'Dashboard Operacional',
+        type: 'dashboard',
+        description: 'Template para dashboard operacional con métricas de eficiencia'
+      },
+      {
+        id: 'sales-report',
+        name: 'Reporte de Ventas',
+        type: 'report',
+        description: 'Template para reportes de ventas y análisis de rendimiento'
+      }
+    ]
+  }
+
+  async getTemplateById(id: string): Promise<{ id: string; name: string; type: string; description: string; config: Record<string, unknown> } | null> {
+    const templates = await this.getTemplates()
+    const template = templates.find(t => t.id === id)
+    
+    if (!template) return null
+
+    const config = {
+      'executive-dashboard': {
+        widgets: ['revenue', 'customer_satisfaction', 'sales_trend'],
+        filters: ['date_range', 'business_unit'],
+        kpis: ['revenue', 'customer_satisfaction', 'cost_efficiency']
+      },
+      'operational-dashboard': {
+        widgets: ['productivity', 'quality_metrics', 'team_performance'],
+        filters: ['date_range', 'team'],
+        kpis: ['productivity', 'quality_score', 'response_time']
+      },
+      'sales-report': {
+        sections: ['executive_summary', 'sales_analysis', 'recommendations'],
+        metrics: ['total_sales', 'conversion_rate', 'customer_acquisition'],
+        visualizations: ['sales_trend', 'funnel_analysis']
+      }
+    }
+
+    return {
+      ...template,
+      config: config[id as keyof typeof config] || {}
+    }
+  }
 }
 
 export const businessIntelligenceService = new BusinessIntelligenceService() 

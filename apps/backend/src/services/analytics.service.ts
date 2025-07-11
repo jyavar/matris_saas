@@ -1,4 +1,12 @@
+import { z } from 'zod'
 import { MLAnalysis, MLFeature } from '../types/ml.types.js'
+
+export const eventSchema = z.object({
+  event_name: z.string().min(1, 'event_name is required'),
+  user_id: z.string().optional(),
+  timestamp: z.string().optional(),
+  properties: z.record(z.unknown()).optional(),
+})
 
 export class AnalyticsService {
   private analyses: MLAnalysis[] = [

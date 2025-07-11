@@ -13,9 +13,10 @@ export const posthogMock = {
   shutdown: vi.fn(),
 }
 
-export const logActionMock = vi.fn((action: string, userId: string, details: Record<string, unknown> = {}): Record<string, unknown> => {
-  if (!userId) throw new Error('userId is required')
-  loggerMock.info({ userId, action, details }, `Action: ${action}`)
+export const logActionMock = vi.fn((action: string, userId: string, details: Record<string, unknown> = {}): void => {
+  if (!userId || userId === '') throw new Error('userId is required')
+  ;(loggerMock.info as any)({ action, userId, ...details }, `Action: ${action}`)
   posthogMock.capture(userId, action, details)
-  return { userId, action, details }
-}) 
+})
+
+export const logAction = logActionMock 
