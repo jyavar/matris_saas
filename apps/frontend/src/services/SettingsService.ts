@@ -150,30 +150,30 @@ export class SettingsService {
   }
 
   // Transform legacy format to new format
-  private transformToNewFormat(legacySettings: any): Settings {
+  private transformToNewFormat(legacySettings: Record<string, unknown>): Settings {
     return {
-      theme: legacySettings.theme || 'system',
-      language: legacySettings.language || 'en',
+      theme: (legacySettings.theme as string) || 'system',
+      language: (legacySettings.language as string) || 'en',
       notifications: {
-        email: legacySettings.notifications?.email ?? true,
-        push: legacySettings.notifications?.push ?? true,
-        sms: legacySettings.notifications?.sms ?? false
+        email: (legacySettings.notifications as Record<string, unknown>)?.email ?? true,
+        push: (legacySettings.notifications as Record<string, unknown>)?.push ?? true,
+        sms: (legacySettings.notifications as Record<string, unknown>)?.sms ?? false
       },
       privacy: {
-        dataSharing: legacySettings.privacy?.data_sharing ?? false,
-        analytics: legacySettings.privacy?.analytics ?? true,
-        marketing: legacySettings.privacy?.marketing ?? false
+        dataSharing: (legacySettings.privacy as Record<string, unknown>)?.data_sharing ?? false,
+        analytics: (legacySettings.privacy as Record<string, unknown>)?.analytics ?? true,
+        marketing: (legacySettings.privacy as Record<string, unknown>)?.marketing ?? false
       },
       performance: {
-        autoSave: legacySettings.preferences?.auto_save ?? true,
-        cacheEnabled: legacySettings.preferences?.cache_enabled ?? true,
-        compression: legacySettings.preferences?.compression ?? true
+        autoSave: (legacySettings.preferences as Record<string, unknown>)?.auto_save ?? true,
+        cacheEnabled: (legacySettings.preferences as Record<string, unknown>)?.cache_enabled ?? true,
+        compression: (legacySettings.preferences as Record<string, unknown>)?.compression ?? true
       }
     }
   }
 
   // Legacy methods for backward compatibility
-  static async getUserSettings(userId: string): Promise<{ success: boolean; data?: any; error?: string }> {
+  static async getUserSettings(userId: string): Promise<{ success: boolean; data?: Settings; error?: string }> {
     try {
       const service = new SettingsService()
       const data = await service.getSettings()
@@ -186,7 +186,7 @@ export class SettingsService {
     }
   }
 
-  static async updateUserSettings(userId: string, request: any): Promise<{ success: boolean; data?: any; error?: string }> {
+  static async updateUserSettings(userId: string, request: Partial<Settings>): Promise<{ success: boolean; data?: Settings; error?: string }> {
     try {
       const service = new SettingsService()
       const data = await service.updateSettings(request)
