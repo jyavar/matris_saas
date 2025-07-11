@@ -606,6 +606,89 @@ export class GuidedWorkflowService {
       total_templates: this.templates.length,
     }
   }
+
+  async getTemplateById(id: string): Promise<WorkflowTemplate | null> {
+    return this.templates.find(t => t.id === id) || null
+  }
+
+  // ===== MISSING METHODS =====
+  async validateWorkflow(workflowId: string, validationRules?: any): Promise<any> {
+    const workflow = this.workflows.find(w => w.id === workflowId)
+    if (!workflow) {
+      throw new ApiError('Workflow no encontrado', 404)
+    }
+
+    // Mock validation logic
+    const errors: any[] = []
+    const warnings: any[] = []
+
+    // Validate workflow structure
+    if (!workflow.steps || workflow.steps.length === 0) {
+      errors.push({
+        type: 'structure',
+        message: 'Workflow must have at least one step',
+        severity: 'error'
+      })
+    }
+
+    // Validate step dependencies
+    workflow.steps.forEach(step => {
+      step.dependencies.forEach(depId => {
+        const dependencyExists = workflow.steps.some(s => s.id === depId)
+        if (!dependencyExists) {
+          errors.push({
+            type: 'dependency',
+            message: `Step ${step.id} depends on non-existent step ${depId}`,
+            severity: 'error'
+          })
+        }
+      })
+    })
+
+    // Validate business outcomes
+    if (!workflow.business_outcomes || workflow.business_outcomes.length === 0) {
+      warnings.push({
+        type: 'business_logic',
+        message: 'Workflow should define clear business outcomes',
+        severity: 'warning'
+      })
+    }
+
+    const validation = {
+      workflow_id: workflowId,
+      is_valid: errors.length === 0,
+      errors,
+      warnings,
+      validated_at: new Date().toISOString(),
+      validation_rules: validationRules || 'default'
+    }
+
+    logger.info({ workflowId, isValid: validation.is_valid, errorsCount: errors.length }, 'Workflow validation completed')
+    return validation
+  }
+
+  async getValidationErrors(workflowId: string): Promise<any[]> {
+    const validation = await this.validateWorkflow(workflowId)
+    return [...validation.errors, ...validation.warnings]
+  }
+
+  async getWorkflowStatus(workflowId: string): Promise<{ status: string; executions: number; latest_execution?: WorkflowExecution }> {
+    const workflow = this.workflows.find(w => w.id === workflowId)
+    if (!workflow) {
+      throw new ApiError('Workflow no encontrado', 404)
+    }
+
+    const workflowExecutions = this.executions.filter(e => e.workflow_id === workflowId)
+    const latestExecution = workflowExecutions.sort((a, b) => 
+      new Date(b.started_at).getTime() - new Date(a.started_at).getTime()
+    )[0]
+
+    return {
+      status: workflow.status,
+      executions: workflowExecutions.length,
+      latest_execution: latestExecution
+    }
+  }
 }
 
 export const guidedWorkflowService = new GuidedWorkflowService() 

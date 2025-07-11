@@ -658,6 +658,7 @@ export class ReportingService {
             executive_summary: true,
             page_numbers: true,
             table_of_contents: true,
+            appendices: true,
           },
         },
       },
@@ -719,6 +720,100 @@ export class ReportingService {
         custom_config: this.generateDefaultConfig('sales'),
       },
     ]
+  }
+
+  // ===== MISSING METHODS =====
+  async deleteReport(id: string): Promise<boolean> {
+    const index = this.reports.findIndex(r => r.id === id)
+    if (index === -1) return false
+    
+    this.reports.splice(index, 1)
+    logger.info({ reportId: id }, 'Report deleted')
+    return true
+  }
+
+  async downloadReport(id: string, format?: string): Promise<string | null> {
+    const report = this.reports.find(r => r.id === id)
+    if (!report) return null
+    
+    // Mock download URL generation
+    const downloadUrl = `https://api.example.com/downloads/reports/${id}?format=${format || 'pdf'}&token=mock-token`
+    logger.info({ reportId: id, format }, 'Report download URL generated')
+    return downloadUrl
+  }
+
+  async scheduleReport(id: string, scheduleData: { schedule: string, recipients: string[] }): Promise<any> {
+    const report = this.reports.find(r => r.id === id)
+    if (!report) return null
+    
+    // Mock scheduled report
+    const scheduledReport = {
+      id: `schedule-${Date.now()}`,
+      report_id: id,
+      schedule: scheduleData.schedule,
+      recipients: scheduleData.recipients,
+      created_at: new Date().toISOString(),
+      next_execution: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+      status: 'active'
+    }
+    
+    logger.info({ reportId: id, schedule: scheduleData.schedule }, 'Report scheduled')
+    return scheduledReport
+  }
+
+  async createTemplate(templateData: any): Promise<ReportTemplate> {
+    const template: ReportTemplate = {
+      id: `template-${Date.now()}`,
+      name: templateData.name,
+      description: templateData.description || '',
+      type: templateData.type,
+      category: templateData.category || 'custom',
+      industry: templateData.industry || [],
+      use_cases: templateData.use_cases || [],
+      template: templateData.template || {},
+      estimated_setup_time: templateData.estimated_setup_time || 30,
+    }
+    
+    this.templates.push(template)
+    logger.info({ templateId: template.id }, 'Report template created')
+    return template
+  }
+
+  async calculateMetrics(reportId: string, metricTypes?: string[]): Promise<any> {
+    const report = this.reports.find(r => r.id === reportId)
+    if (!report) return null
+    
+    // Mock metrics calculation
+    const metrics = {
+      report_id: reportId,
+      calculated_at: new Date().toISOString(),
+      metrics: [
+        {
+          name: 'total_revenue',
+          value: 125000,
+          unit: 'USD',
+          trend: 'up',
+          change_percentage: 15.5
+        },
+        {
+          name: 'conversion_rate',
+          value: 23.5,
+          unit: '%',
+          trend: 'up',
+          change_percentage: 2.3
+        },
+        {
+          name: 'customer_acquisition_cost',
+          value: 45.50,
+          unit: 'USD',
+          trend: 'down',
+          change_percentage: -8.2
+        }
+      ]
+    }
+    
+    logger.info({ reportId, metricTypes }, 'Metrics calculated')
+    return metrics
   }
 
   // ===== MÉTRICAS =====

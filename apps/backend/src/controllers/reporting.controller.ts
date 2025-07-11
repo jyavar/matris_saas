@@ -285,7 +285,7 @@ export class ReportingController {
   static async getTemplates(req: any, res: any) {
     try {
       const { industry } = req.query
-      const templates = await reportingService.getTemplates(industry as string)
+      const templates = await reportingService.getTemplates(industry as 'customer' | 'marketing' | 'sales' | 'operations' | 'finance' | 'ml_performance')
       
       logAction('reporting_templates_retrieved', req.user?.id || 'anonymous', {
         count: templates.length,
@@ -348,7 +348,7 @@ export class ReportingController {
       if (reportId) {
         insights = await reportingService.generateAutoInsights(reportId as string)
       } else {
-        insights = await reportingService.generateAutoInsights()
+        insights = await reportingService.generateAutoInsights('default')
       }
       
       logAction('reporting_auto_insights_generated', req.user?.id || 'anonymous', {
@@ -467,6 +467,198 @@ export class ReportingController {
       })
     } catch (error) {
       logger.error({ error, userId: req.user?.id }, 'Error al obtener métricas de reporting')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== MISSING METHODS =====
+  static async deleteReport(req: any, res: any) {
+    try {
+      const { id } = req.params
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'Report ID is required',
+        })
+      }
+
+      // Mock report deletion
+      const deleted = await reportingService.deleteReport(id)
+      
+      if (!deleted) {
+        return res.status(404).json({
+          success: false,
+          error: 'Report not found',
+        })
+      }
+
+      logAction('reporting_report_deleted', req.user?.id || 'anonymous', {
+        report_id: id,
+      })
+
+      res.status(200).json({
+        success: true,
+        message: 'Report deleted successfully',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error deleting report')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async downloadReport(req: any, res: any) {
+    try {
+      const { id } = req.params
+      const { format } = req.query
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'Report ID is required',
+        })
+      }
+
+      // Mock report download
+      const downloadUrl = await reportingService.downloadReport(id, format as string)
+      
+      if (!downloadUrl) {
+        return res.status(404).json({
+          success: false,
+          error: 'Report not found or not ready for download',
+        })
+      }
+
+      logAction('reporting_report_downloaded', req.user?.id || 'anonymous', {
+        report_id: id,
+        format: format || 'pdf',
+      })
+
+      res.status(200).json({
+        success: true,
+        data: { download_url: downloadUrl },
+        message: 'Report download link generated',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error downloading report')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async scheduleReport(req: any, res: any) {
+    try {
+      const { id } = req.params
+      const { schedule, recipients } = req.body
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'Report ID is required',
+        })
+      }
+
+      if (!schedule) {
+        return res.status(400).json({
+          success: false,
+          error: 'Schedule is required',
+        })
+      }
+
+      // Mock report scheduling
+      const scheduledReport = await reportingService.scheduleReport(id, {
+        schedule,
+        recipients: recipients || [],
+      })
+
+      logAction('reporting_report_scheduled', req.user?.id || 'anonymous', {
+        report_id: id,
+        schedule,
+        recipients_count: recipients?.length || 0,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: scheduledReport,
+        message: 'Report scheduled successfully',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error scheduling report')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async createReportTemplate(req: any, res: any) {
+    try {
+      const templateData = req.body
+      
+      if (!templateData.name || !templateData.type) {
+        return res.status(400).json({
+          success: false,
+          error: 'Template name and type are required',
+        })
+      }
+
+      // Mock template creation
+      const template = await reportingService.createTemplate(templateData)
+
+      logAction('reporting_template_created', req.user?.id || 'anonymous', {
+        template_id: template.id,
+        template_name: template.name,
+        template_type: template.type,
+      })
+
+      res.status(201).json({
+        success: true,
+        data: template,
+        message: 'Report template created successfully',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error creating report template')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async calculateMetrics(req: any, res: any) {
+    try {
+      const { report_id, metric_types } = req.body
+      
+      if (!report_id) {
+        return res.status(400).json({
+          success: false,
+          error: 'Report ID is required',
+        })
+      }
+
+      // Mock metrics calculation
+      const metrics = await reportingService.calculateMetrics(report_id, metric_types)
+
+      logAction('reporting_metrics_calculated', req.user?.id || 'anonymous', {
+        report_id,
+        metric_types: metric_types || [],
+      })
+
+      res.status(200).json({
+        success: true,
+        data: metrics,
+        message: 'Metrics calculated successfully',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error calculating metrics')
       res.status(500).json({
         success: false,
         error: 'Error interno del servidor',

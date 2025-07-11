@@ -25,6 +25,7 @@ export interface ExplainabilityResults {
   visualizations: VisualizationConfig[]
   risk_assessment: RiskAssessment
   next_actions: NextAction[]
+  business_insights: string[]
 }
 
 export interface ExecutiveSummary {
@@ -365,6 +366,15 @@ export class ExplainabilityService {
             dependencies: ['Infraestructura lista'],
             success_criteria: ['Dashboard operativo', 'Alertas configuradas'],
           },
+        ],
+        business_insights: [
+          'La edad del cliente es el factor más determinante en las decisiones del modelo',
+          'Clientes con historial de compras sólido tienen 3x más probabilidad de conversión',
+          'El comportamiento de navegación reciente es un predictor clave del interés',
+          'Segmentos de clientes jóvenes profesionales muestran mayor potencial de crecimiento',
+          'La estacionalidad afecta significativamente los patrones de compra',
+          'Campañas de retención dirigidas pueden reducir el churn en un 40%',
+          'La personalización basada en ML puede aumentar las ventas cruzadas en un 25%',
         ],
       }
 

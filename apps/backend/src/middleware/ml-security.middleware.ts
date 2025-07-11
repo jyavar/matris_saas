@@ -432,7 +432,7 @@ export const mlLoggingMiddleware: MiddlewareHandler = async (
       timestamp: new Date().toISOString(),
     })
 
-    originalEnd.call(this, chunk, encoding)
+    return originalEnd.call(this, chunk, encoding)
   }
 
   _next()
