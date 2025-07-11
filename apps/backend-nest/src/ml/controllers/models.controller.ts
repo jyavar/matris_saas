@@ -126,7 +126,7 @@ export class ModelsController {
   async evaluateModel(
     @Param('id') id: string,
     @Body() body: { testDatasetId: string },
-  ): Promise<MLResponse<{
+  ): Promise<MLResponseDto<{
     accuracy: number;
     precision: number;
     recall: number;

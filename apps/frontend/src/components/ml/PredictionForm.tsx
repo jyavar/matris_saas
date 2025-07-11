@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { useML } from '@/contexts/MLContext'
 import { MLService } from '@/services/ml.service'

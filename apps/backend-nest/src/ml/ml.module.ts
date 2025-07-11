@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 import { MLController } from './ml.controller';
 import { MLService } from './ml.service';
@@ -15,6 +16,8 @@ import { TrainingService } from './services/training.service';
 import { PredictionService } from './services/prediction.service';
 import { AnalyticsService } from './services/analytics.service';
 import { DeploymentService } from './services/deployment.service';
+import { MLAuditService } from './services/ml-audit.service';
+import { MLSecurityGuard } from './guards/ml-security.guard';
 
 @Module({
   imports: [
@@ -53,6 +56,11 @@ import { DeploymentService } from './services/deployment.service';
     PredictionService,
     AnalyticsService,
     DeploymentService,
+    MLAuditService,
+    {
+      provide: APP_GUARD,
+      useClass: MLSecurityGuard,
+    },
   ],
   exports: [
     MLService,
@@ -62,6 +70,7 @@ import { DeploymentService } from './services/deployment.service';
     PredictionService,
     AnalyticsService,
     DeploymentService,
+    MLAuditService,
   ],
 })
 export class MLModule {} 

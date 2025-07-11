@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { useML } from '@/contexts/MLContext'
 import { MLTrainingJob } from '@/services/ml.service'

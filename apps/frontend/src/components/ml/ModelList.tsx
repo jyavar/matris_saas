@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { useML } from '@/contexts/MLContext'
 import { MLModel } from '@/services/ml.service'

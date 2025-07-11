@@ -6,6 +6,7 @@ import { analyticsRoutes } from './routes/analytics.routes'
 import { analyticsReportingRoutes } from './routes/analytics-reporting.routes'
 import { authRoutes } from './routes/auth.routes'
 import { automationRoutes } from './routes/automation.routes'
+import { automlRoutes } from './routes/automl.routes'
 import { billingRoutes } from './routes/billing.routes'
 import { campaignsRoutes } from './routes/campaigns.routes'
 import { datasetsRoutes } from './routes/datasets.routes'
@@ -23,7 +24,6 @@ import { posthogRoutes } from './routes/posthog.routes'
 import { predictionRoutes } from './routes/prediction.routes'
 import { pricingRoutes } from './routes/pricing.routes'
 import { profilesRoutes } from './routes/profiles.routes'
-import { reportingRoutes } from './routes/reporting.routes'
 import { resendRoutes } from './routes/resend.routes'
 import { runtimeRoutes } from './routes/runtime.routes'
 import { settingsRoutes } from './routes/settings.routes'
@@ -60,6 +60,7 @@ registerRoutes(analyticsReportingRoutes, '/api/analytics-reporting')
 registerRoutes(analyticsRoutes, '/api/analytics')
 registerRoutes(authRoutes, '/auth')
 registerRoutes(automationRoutes, '/api/automation')
+registerRoutes(automlRoutes, '/api/automl')
 registerRoutes(billingRoutes, '/api/billing')
 registerRoutes(campaignsRoutes) // campaigns routes already have full paths
 registerRoutes(datasetsRoutes, '/api/ml/datasets')
@@ -77,7 +78,6 @@ registerRoutes(posthogRoutes, '/api/posthog')
 registerRoutes(predictionRoutes, '/api/ml/predictions')
 registerRoutes(pricingRoutes, '/api/pricing')
 registerRoutes(profilesRoutes, '/api/profiles')
-registerRoutes(reportingRoutes, '/api/reporting')
 registerRoutes(resendRoutes, '/api/resend')
 registerRoutes(runtimeRoutes, '/api/runtime')
 registerRoutes(settingsRoutes, '/api')
