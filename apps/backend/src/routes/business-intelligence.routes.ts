@@ -1,41 +1,106 @@
-import { Router } from 'express'
 import { BusinessIntelligenceController } from '../controllers/business-intelligence.controller.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 import { standardRateLimit } from '../middleware/rateLimit.middleware.js'
 import { createValidationMiddleware } from '../middleware/validation.middleware.js'
+import type { RouteDefinition } from '../types/express/index'
 
-const router = Router()
+// ===== RUTAS DE BUSINESS INTELLIGENCE =====
+export const businessIntelligenceRoutes: RouteDefinition[] = [
+  // ===== RUTAS DE DASHBOARDS =====
+  {
+    method: 'POST',
+    path: '/dashboards',
+    handler: BusinessIntelligenceController.createDashboard,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/dashboards',
+    handler: BusinessIntelligenceController.getDashboards,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/dashboards/:id',
+    handler: BusinessIntelligenceController.getDashboardById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'PUT',
+    path: '/dashboards/:id',
+    handler: BusinessIntelligenceController.updateDashboard,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== MIDDLEWARE DE AUTENTICACIÓN Y RATE LIMITING =====
-router.use(authMiddleware)
-router.use(standardRateLimit)
+  // ===== RUTAS DE WIDGETS =====
+  {
+    method: 'POST',
+    path: '/widgets',
+    handler: BusinessIntelligenceController.createWidget,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE DASHBOARDS =====
-router.post('/dashboards', createValidationMiddleware, BusinessIntelligenceController.createDashboard)
-router.get('/dashboards', BusinessIntelligenceController.getDashboards)
-router.get('/dashboards/:id', BusinessIntelligenceController.getDashboardById)
-router.put('/dashboards/:id', createValidationMiddleware, BusinessIntelligenceController.updateDashboard)
+  // ===== RUTAS DE REPORTES =====
+  {
+    method: 'GET',
+    path: '/reports/executive',
+    handler: BusinessIntelligenceController.generateExecutiveReport,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/reports/operational',
+    handler: BusinessIntelligenceController.generateOperationalReport,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE WIDGETS =====
-router.post('/widgets', createValidationMiddleware, BusinessIntelligenceController.createWidget)
+  // ===== RUTAS DE INSIGHTS =====
+  {
+    method: 'GET',
+    path: '/insights',
+    handler: BusinessIntelligenceController.generateAutoInsights,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/insights/:id',
+    handler: BusinessIntelligenceController.getInsightById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'PUT',
+    path: '/insights/:id/status',
+    handler: BusinessIntelligenceController.updateInsightStatus,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE REPORTES =====
-router.get('/reports/executive', BusinessIntelligenceController.generateExecutiveReport)
-router.get('/reports/operational', BusinessIntelligenceController.generateOperationalReport)
+  // ===== RUTAS DE TEMPLATES =====
+  {
+    method: 'GET',
+    path: '/templates',
+    handler: BusinessIntelligenceController.getTemplates,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/templates/:id',
+    handler: BusinessIntelligenceController.getTemplateById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE INSIGHTS =====
-router.get('/insights', BusinessIntelligenceController.generateAutoInsights)
-router.get('/insights/:id', BusinessIntelligenceController.getInsightById)
-router.put('/insights/:id/status', createValidationMiddleware, BusinessIntelligenceController.updateInsightStatus)
+  // ===== RUTAS DE MÉTRICAS =====
+  {
+    method: 'GET',
+    path: '/metrics',
+    handler: BusinessIntelligenceController.getBIMetrics,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE TEMPLATES =====
-router.get('/templates', BusinessIntelligenceController.getTemplates)
-router.get('/templates/:id', BusinessIntelligenceController.getTemplateById)
-
-// ===== RUTAS DE MÉTRICAS =====
-router.get('/metrics', BusinessIntelligenceController.getBIMetrics)
-
-// ===== RUTAS DE ESTADO =====
-router.get('/status', BusinessIntelligenceController.getBIStatus)
-
-export default router 
+  // ===== RUTAS DE ESTADO =====
+  {
+    method: 'GET',
+    path: '/status',
+    handler: BusinessIntelligenceController.getBIStatus,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+] 

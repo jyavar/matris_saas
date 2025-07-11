@@ -1,35 +1,114 @@
-import { Router } from 'express'
 import { ExplainabilityController } from '../controllers/explainability.controller.js'
-import { standardRateLimit } from '../middleware/rateLimit.middleware.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { standardRateLimit } from '../middleware/rateLimit.middleware.js'
 import { createValidationMiddleware } from '../middleware/validation.middleware.js'
+import type { RouteDefinition } from '../types/express/index'
 
-const router = Router()
+// ===== RUTAS DE EXPLAINABILITY =====
+export const explainabilityRoutes: RouteDefinition[] = [
+  // ===== RUTAS DE EXPLICACIONES =====
+  {
+    method: 'POST',
+    path: '/explanations',
+    handler: ExplainabilityController.generateExplanation,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/explanations/:id',
+    handler: ExplainabilityController.getExplanationById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== MIDDLEWARE DE AUTENTICACIÓN Y RATE LIMITING =====
-router.use(authMiddleware)
-router.use(standardRateLimit)
+  // ===== RUTAS DE FEATURE IMPORTANCE =====
+  {
+    method: 'POST',
+    path: '/feature-importance',
+    handler: ExplainabilityController.calculateFeatureImportance,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/feature-importance/:modelId',
+    handler: ExplainabilityController.getFeatureImportance,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE REQUESTS =====
-router.post('/requests', createValidationMiddleware, ExplainabilityController.createExplainabilityRequest)
-router.get('/requests', ExplainabilityController.getRequests)
-router.get('/requests/:id', ExplainabilityController.getRequestById)
+  // ===== RUTAS DE SHAP VALUES =====
+  {
+    method: 'POST',
+    path: '/shap-values',
+    handler: ExplainabilityController.calculateShapValues,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/shap-values/:predictionId',
+    handler: ExplainabilityController.getShapValues,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE EXPLICACIONES =====
-router.post('/predictions/explain', createValidationMiddleware, ExplainabilityController.generatePredictionExplanation)
+  // ===== RUTAS DE LIME EXPLANATIONS =====
+  {
+    method: 'POST',
+    path: '/lime-explanations',
+    handler: ExplainabilityController.generateLimeExplanation,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/lime-explanations/:id',
+    handler: ExplainabilityController.getLimeExplanation,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE REPORTES EJECUTIVOS =====
-router.get('/reports/executive/:model_id', ExplainabilityController.generateExecutiveReport)
+  // ===== RUTAS DE MODEL INTERPRETABILITY =====
+  {
+    method: 'GET',
+    path: '/interpretability/:modelId',
+    handler: ExplainabilityController.getModelInterpretability,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'POST',
+    path: '/interpretability/compare',
+    handler: ExplainabilityController.compareModelInterpretability,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE FLUJO GUIADO =====
-router.get('/guide', ExplainabilityController.getExplainabilityGuide)
-router.get('/templates', ExplainabilityController.getExplanationTemplates)
-router.get('/examples', ExplainabilityController.getExplanationExamples)
+  // ===== RUTAS DE BUSINESS INSIGHTS =====
+  {
+    method: 'POST',
+    path: '/business-insights',
+    handler: ExplainabilityController.generateBusinessInsights,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/business-insights/:modelId',
+    handler: ExplainabilityController.getBusinessInsights,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE MÉTRICAS =====
-router.get('/metrics', ExplainabilityController.getExplainabilityMetrics)
+  // ===== RUTAS DE EXPLANATION TEMPLATES =====
+  {
+    method: 'GET',
+    path: '/templates',
+    handler: ExplainabilityController.getExplanationTemplates,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'POST',
+    path: '/templates',
+    handler: ExplainabilityController.createExplanationTemplate,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE ESTADO =====
-router.get('/status', ExplainabilityController.getExplainabilityStatus)
-
-export default router 
+  // ===== RUTAS DE ESTADO =====
+  {
+    method: 'GET',
+    path: '/status',
+    handler: ExplainabilityController.getExplainabilityStatus,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+] 

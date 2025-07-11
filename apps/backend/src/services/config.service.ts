@@ -3,7 +3,7 @@ import { z } from 'zod'
 const configSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('test'),
   LOG_LEVEL: z.string().default('info'),
-  PORT: z.coerce.number().default(3001),
+  PORT: z.coerce.number().default(3004),
   SUPABASE_URL: z.string().url().default('https://test.supabase.co'),
   SUPABASE_SERVICE_ROLE_KEY: z.string().default('test-key'),
 })
@@ -21,7 +21,7 @@ export const getConfig = (): Config => {
     config = {
       NODE_ENV: 'test',
       LOG_LEVEL: 'error',
-      PORT: 3001,
+      PORT: 3004,
       SUPABASE_URL: 'https://test.supabase.co',
       SUPABASE_SERVICE_ROLE_KEY: 'test-key',
     }

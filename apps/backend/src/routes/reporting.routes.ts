@@ -1,39 +1,102 @@
-import { Router } from 'express'
 import { ReportingController } from '../controllers/reporting.controller.js'
-import { standardRateLimit } from '../middleware/rateLimit.middleware.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
+import { standardRateLimit } from '../middleware/rateLimit.middleware.js'
 import { createValidationMiddleware } from '../middleware/validation.middleware.js'
+import type { RouteDefinition } from '../types/express/index'
 
-const router = Router()
+// ===== RUTAS DE REPORTING =====
+export const reportingRoutes: RouteDefinition[] = [
+  // ===== RUTAS DE REPORTES =====
+  {
+    method: 'POST',
+    path: '/reports',
+    handler: ReportingController.createReport,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/reports',
+    handler: ReportingController.getReports,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/reports/:id',
+    handler: ReportingController.getReportById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'PUT',
+    path: '/reports/:id',
+    handler: ReportingController.updateReport,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'DELETE',
+    path: '/reports/:id',
+    handler: ReportingController.deleteReport,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== MIDDLEWARE DE AUTENTICACIÓN Y RATE LIMITING =====
-router.use(authMiddleware)
-router.use(standardRateLimit)
+  // ===== RUTAS DE GENERACIÓN =====
+  {
+    method: 'POST',
+    path: '/reports/:id/generate',
+    handler: ReportingController.generateReport,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'GET',
+    path: '/reports/:id/download',
+    handler: ReportingController.downloadReport,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'POST',
+    path: '/reports/:id/schedule',
+    handler: ReportingController.scheduleReport,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE REPORTES =====
-router.post('/reports', createValidationMiddleware, ReportingController.createReport)
-router.get('/reports', ReportingController.getReports)
-router.get('/reports/:id', ReportingController.getReportById)
-router.put('/reports/:id', createValidationMiddleware, ReportingController.updateReport)
+  // ===== RUTAS DE TEMPLATES =====
+  {
+    method: 'GET',
+    path: '/templates',
+    handler: ReportingController.getReportTemplates,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'POST',
+    path: '/templates',
+    handler: ReportingController.createReportTemplate,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
+  {
+    method: 'GET',
+    path: '/templates/:id',
+    handler: ReportingController.getReportTemplateById,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
 
-// ===== RUTAS DE GENERACIÓN =====
-router.post('/generate', createValidationMiddleware, ReportingController.generateReport)
-router.get('/executions/:id', ReportingController.getExecutionById)
-router.get('/executions/report/:reportId', ReportingController.getReportExecutions)
+  // ===== RUTAS DE MÉTRICAS =====
+  {
+    method: 'GET',
+    path: '/metrics',
+    handler: ReportingController.getReportingMetrics,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+  {
+    method: 'POST',
+    path: '/metrics/calculate',
+    handler: ReportingController.calculateMetrics,
+    middlewares: [authMiddleware, standardRateLimit, createValidationMiddleware],
+  },
 
-// ===== RUTAS DE TEMPLATES =====
-router.get('/templates', ReportingController.getTemplates)
-router.get('/templates/:id', ReportingController.getTemplateById)
-
-// ===== RUTAS DE INSIGHTS =====
-router.get('/insights', ReportingController.generateAutoInsights)
-router.get('/insights/:id', ReportingController.getInsightById)
-router.put('/insights/:id/status', createValidationMiddleware, ReportingController.updateInsightStatus)
-
-// ===== RUTAS DE MÉTRICAS =====
-router.get('/metrics', ReportingController.getReportingMetrics)
-
-// ===== RUTAS DE ESTADO =====
-router.get('/status', ReportingController.getReportingStatus)
-
-export default router
+  // ===== RUTAS DE ESTADO =====
+  {
+    method: 'GET',
+    path: '/status',
+    handler: ReportingController.getReportingStatus,
+    middlewares: [authMiddleware, standardRateLimit],
+  },
+]

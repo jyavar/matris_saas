@@ -8,11 +8,14 @@ import { authRoutes } from './routes/auth.routes'
 import { automationRoutes } from './routes/automation.routes'
 import { automlRoutes } from './routes/automl.routes'
 import { billingRoutes } from './routes/billing.routes'
+import { businessIntelligenceRoutes } from './routes/business-intelligence.routes'
 import { campaignsRoutes } from './routes/campaigns.routes'
 import { datasetsRoutes } from './routes/datasets.routes'
 import { deploymentRoutes } from './routes/deployment.routes'
 import { devRoutes } from './routes/dev.routes'
 import { emailCampaignsRoutes } from './routes/email-campaigns.routes'
+import { explainabilityRoutes } from './routes/explainability.routes'
+import { guidedWorkflowRoutes } from './routes/guided-workflow.routes'
 import { healthRoutes } from './routes/health.routes'
 import { launchboardRoutes } from './routes/launchboard.routes'
 import { mlRoutes } from './routes/ml.routes'
@@ -24,6 +27,7 @@ import { posthogRoutes } from './routes/posthog.routes'
 import { predictionRoutes } from './routes/prediction.routes'
 import { pricingRoutes } from './routes/pricing.routes'
 import { profilesRoutes } from './routes/profiles.routes'
+import { reportingRoutes } from './routes/reporting.routes'
 import { resendRoutes } from './routes/resend.routes'
 import { runtimeRoutes } from './routes/runtime.routes'
 import { settingsRoutes } from './routes/settings.routes'
@@ -62,11 +66,14 @@ registerRoutes(authRoutes, '/auth')
 registerRoutes(automationRoutes, '/api/automation')
 registerRoutes(automlRoutes, '/api/automl')
 registerRoutes(billingRoutes, '/api/billing')
+registerRoutes(businessIntelligenceRoutes, '/api/business-intelligence')
 registerRoutes(campaignsRoutes) // campaigns routes already have full paths
 registerRoutes(datasetsRoutes, '/api/ml/datasets')
 registerRoutes(deploymentRoutes, '/api/ml/deployments')
 registerRoutes(devRoutes, '/api/dev')
 registerRoutes(emailCampaignsRoutes, '/api/email-campaigns')
+registerRoutes(explainabilityRoutes, '/api/ml/explainability')
+registerRoutes(guidedWorkflowRoutes, '/api/ml/workflows')
 registerRoutes(healthRoutes, '/api/health')
 registerRoutes(launchboardRoutes, '/api/launchboard')
 registerRoutes(mlRoutes, '/api/ml')
@@ -78,6 +85,7 @@ registerRoutes(posthogRoutes, '/api/posthog')
 registerRoutes(predictionRoutes, '/api/ml/predictions')
 registerRoutes(pricingRoutes, '/api/pricing')
 registerRoutes(profilesRoutes, '/api/profiles')
+registerRoutes(reportingRoutes, '/api/ml/reporting')
 registerRoutes(resendRoutes, '/api/resend')
 registerRoutes(runtimeRoutes, '/api/runtime')
 registerRoutes(settingsRoutes, '/api')
