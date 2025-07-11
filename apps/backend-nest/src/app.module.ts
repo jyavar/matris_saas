@@ -13,6 +13,7 @@ import { EmailCampaignsModule } from './email-campaigns/email-campaigns.module';
 import { HealthModule } from './health/health.module';
 import { LoggerModule } from './logger/logger.module';
 import { SecurityModule } from './security/security.module';
+import { MLModule } from './ml/ml.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SecurityModule } from './security/security.module';
     AnalyticsReportingModule,
     LoggerModule,
     SecurityModule,
+    MLModule,
     ThrottlerModule.forRoot({
       throttlers: [
         {

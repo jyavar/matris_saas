@@ -1,57 +1,517 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { z } from 'zod'
+import { ApiError } from '../utils/ApiError.js'
+import { reportingService } from '../services/reporting.service.js'
+import logger from '../services/logger.service.js'
+import { logAction } from '../services/logger.service.js'
 
-import { sendError } from '../utils/response.helper.js'
+// Schemas de validación para endpoints
+const createReportSchema = z.object({
+  name: z.string().min(1, 'Nombre es requerido'),
+  description: z.string().max(500),
+  type: z.enum(['executive', 'operational', 'analytical', 'compliance', 'custom']),
+  category: z.enum(['sales', 'marketing', 'operations', 'finance', 'customer', 'ml_performance']),
+  format: z.enum(['pdf', 'excel', 'powerpoint', 'dashboard', 'email']),
+  schedule: z.enum(['realtime', 'hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'on_demand']),
+  recipients: z.array(z.string().email()),
+  data_sources: z.array(z.string()),
+  template_id: z.string().optional(),
+})
 
-// Schemas de validación
-export const reportingController = {
-  async getUsageReport(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    
-  ): Promise<void> {
+const generateReportSchema = z.object({
+  report_id: z.string().min(1, 'Report ID es requerido'),
+  filters: z.record(z.unknown()).optional(),
+  format: z.enum(['pdf', 'excel', 'powerpoint', 'dashboard', 'email']).optional(),
+})
+
+export class ReportingController {
+  // ===== GESTIÓN DE REPORTES =====
+  static async createReport(req: any, res: any) {
     try {
-      // Parse query parameters
-      const url = new URL(_req.url || '', `http://localhost`)
-      const period = url.searchParams.get('period') || '2024-07'
+      const validatedData = createReportSchema.parse(req.body)
+      
+      const report = await reportingService.createReport(validatedData)
+      
+      logAction('reporting_report_created', req.user?.id || 'anonymous', {
+        report_id: report.id,
+        type: report.type,
+        category: report.category,
+        schedule: report.schedule,
+      })
 
-      // Mock usage report data
-      const report = {
-        totalUsers: 150,
-        activeUsers: 89,
-        period,
-        generatedAt: new Date().toISOString(),
+      res.status(201).json({
+        success: true,
+        message: 'Reporte creado exitosamente',
+        data: report,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al crear reporte')
+      
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({
+          success: false,
+          error: 'Datos inválidos',
+          details: error.errors,
+        })
+      }
+      
+      if (error instanceof ApiError) {
+        return res.status(error.statusCode).json({
+          success: false,
+          error: error.message,
+        })
+      }
+      
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getReports(req: any, res: any) {
+    try {
+      const { category } = req.query
+      const reports = await reportingService.getReports(category)
+      
+      logAction('reporting_reports_retrieved', req.user?.id || 'anonymous', {
+        count: reports.length,
+        category,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: reports,
+        count: reports.length,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener reportes')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getReportById(req: any, res: any) {
+    try {
+      const { id } = req.params
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de reporte es requerido',
+        })
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify(report))
-    } catch {
-      return sendError(res, 'Internal server error', 500)
-    }
-  },
-
-  async getEventReport(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    
-  ): Promise<void> {
-    try {
-      // Parse query parameters
-      const url = new URL(_req.url || '', `http://localhost`)
-      const event = url.searchParams.get('event') || 'login'
-      const period = url.searchParams.get('period') || '2024-07'
-
-      // Mock event report data
-      const report = {
-        event,
-        count: 45,
-        period,
-        generatedAt: new Date().toISOString(),
+      const report = await reportingService.getReportById(id)
+      
+      if (!report) {
+        return res.status(404).json({
+          success: false,
+          error: 'Reporte no encontrado',
+        })
       }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify(report))
-    } catch {
-      return sendError(res, 'Internal server error', 500)
+      logAction('reporting_report_retrieved', req.user?.id || 'anonymous', {
+        report_id: id,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: report,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener reporte')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
     }
-  },
+  }
+
+  static async updateReport(req: any, res: any) {
+    try {
+      const { id } = req.params
+      const updateData = req.body
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de reporte es requerido',
+        })
+      }
+
+      const report = await reportingService.updateReport(id, updateData)
+      
+      if (!report) {
+        return res.status(404).json({
+          success: false,
+          error: 'Reporte no encontrado',
+        })
+      }
+
+      logAction('reporting_report_updated', req.user?.id || 'anonymous', {
+        report_id: id,
+      })
+
+      res.status(200).json({
+        success: true,
+        message: 'Reporte actualizado exitosamente',
+        data: report,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al actualizar reporte')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== GENERACIÓN DE REPORTES =====
+  static async generateReport(req: any, res: any) {
+    try {
+      const validatedData = generateReportSchema.parse(req.body)
+      
+      const execution = await reportingService.generateReport(validatedData)
+      
+      logAction('reporting_report_generation_started', req.user?.id || 'anonymous', {
+        execution_id: execution.id,
+        report_id: execution.report_id,
+        format: validatedData.format,
+      })
+
+      res.status(201).json({
+        success: true,
+        message: 'Generación de reporte iniciada',
+        data: execution,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al generar reporte')
+      
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({
+          success: false,
+          error: 'Datos inválidos',
+          details: error.errors,
+        })
+      }
+      
+      if (error instanceof ApiError) {
+        return res.status(error.statusCode).json({
+          success: false,
+          error: error.message,
+        })
+      }
+      
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getExecutionById(req: any, res: any) {
+    try {
+      const { id } = req.params
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de ejecución es requerido',
+        })
+      }
+
+      const execution = await reportingService.getExecutionById(id)
+      
+      if (!execution) {
+        return res.status(404).json({
+          success: false,
+          error: 'Ejecución no encontrada',
+        })
+      }
+
+      logAction('reporting_execution_retrieved', req.user?.id || 'anonymous', {
+        execution_id: id,
+        status: execution.status,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: execution,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener ejecución')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getReportExecutions(req: any, res: any) {
+    try {
+      const { reportId } = req.params
+      
+      if (!reportId) {
+        return res.status(400).json({
+          success: false,
+          error: 'Report ID es requerido',
+        })
+      }
+
+      const executions = await reportingService.getReportExecutions(reportId)
+      
+      logAction('reporting_report_executions_retrieved', req.user?.id || 'anonymous', {
+        report_id: reportId,
+        count: executions.length,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: executions,
+        count: executions.length,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener ejecuciones de reporte')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== TEMPLATES =====
+  static async getTemplates(req: any, res: any) {
+    try {
+      const { industry } = req.query
+      const templates = await reportingService.getTemplates(industry as string)
+      
+      logAction('reporting_templates_retrieved', req.user?.id || 'anonymous', {
+        count: templates.length,
+        industry,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: templates,
+        count: templates.length,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener templates')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getTemplateById(req: any, res: any) {
+    try {
+      const { id } = req.params
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de template es requerido',
+        })
+      }
+
+      const template = await reportingService.getTemplateById(id)
+      
+      if (!template) {
+        return res.status(404).json({
+          success: false,
+          error: 'Template no encontrado',
+        })
+      }
+
+      res.status(200).json({
+        success: true,
+        data: template,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener template')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== INSIGHTS AUTOMÁTICOS =====
+  static async generateAutoInsights(req: any, res: any) {
+    try {
+      const { reportId } = req.query
+      let insights
+      
+      if (reportId) {
+        insights = await reportingService.generateAutoInsights(reportId as string)
+      } else {
+        insights = await reportingService.generateAutoInsights()
+      }
+      
+      logAction('reporting_auto_insights_generated', req.user?.id || 'anonymous', {
+        count: insights.length,
+        report_id: reportId,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: insights,
+        message: 'Insights automáticos generados exitosamente',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al generar insights automáticos')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async getInsightById(req: any, res: any) {
+    try {
+      const { id } = req.params
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de insight es requerido',
+        })
+      }
+
+      const insights = await reportingService.getInsights()
+      const insight = insights.find(i => i.id === id)
+      
+      if (!insight) {
+        return res.status(404).json({
+          success: false,
+          error: 'Insight no encontrado',
+        })
+      }
+
+      res.status(200).json({
+        success: true,
+        data: insight,
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener insight')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  static async updateInsightStatus(req: any, res: any) {
+    try {
+      const { id } = req.params
+      const { status } = req.body
+      
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          error: 'ID de insight es requerido',
+        })
+      }
+
+      if (!status) {
+        return res.status(400).json({
+          success: false,
+          error: 'Status es requerido',
+        })
+      }
+
+      const updated = await reportingService.updateInsightStatus(id, status)
+      
+      if (!updated) {
+        return res.status(404).json({
+          success: false,
+          error: 'Insight no encontrado',
+        })
+      }
+
+      logAction('reporting_insight_status_updated', req.user?.id || 'anonymous', {
+        insight_id: id,
+        status,
+      })
+
+      res.status(200).json({
+        success: true,
+        message: 'Status de insight actualizado exitosamente',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al actualizar status de insight')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== MÉTRICAS =====
+  static async getReportingMetrics(req: any, res: any) {
+    try {
+      const metrics = await reportingService.getReportingMetrics()
+      
+      logAction('reporting_metrics_retrieved', req.user?.id || 'anonymous', {
+        total_reports: metrics.total_reports,
+        success_rate: metrics.success_rate,
+      })
+
+      res.status(200).json({
+        success: true,
+        data: metrics,
+        message: 'Métricas de Reporting',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener métricas de reporting')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
+
+  // ===== ESTADO DEL SERVICIO =====
+  static async getReportingStatus(req: any, res: any) {
+    try {
+      const status = {
+        service: 'Reporting',
+        status: 'operational',
+        version: '1.0.0',
+        features: {
+          automated_reporting: true,
+          executive_summaries: true,
+          scheduled_reports: true,
+          multiple_formats: true,
+          auto_insights: true,
+        },
+        capabilities: [
+          'Generación automática de reportes',
+          'Resúmenes ejecutivos personalizados',
+          'Programación de reportes',
+          'Múltiples formatos de salida',
+          'Insights automáticos',
+        ],
+        supported_types: ['executive', 'operational', 'analytical', 'compliance', 'custom'],
+        supported_formats: ['pdf', 'excel', 'powerpoint', 'dashboard', 'email'],
+        supported_schedules: ['realtime', 'hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'on_demand'],
+        last_updated: new Date().toISOString(),
+      }
+
+      res.status(200).json({
+        success: true,
+        data: status,
+        message: 'Estado del servicio Reporting',
+      })
+    } catch (error) {
+      logger.error({ error, userId: req.user?.id }, 'Error al obtener estado de reporting')
+      res.status(500).json({
+        success: false,
+        error: 'Error interno del servidor',
+      })
+    }
+  }
 }

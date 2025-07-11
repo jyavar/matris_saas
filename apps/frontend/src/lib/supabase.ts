@@ -12,9 +12,9 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // Tipos para Supabase Auth
 export interface SupabaseUser {
   id: string
-  email: string
+  email?: string
   created_at: string
-  updated_at: string
+  updated_at?: string
   user_metadata?: {
     name?: string
     avatar_url?: string
@@ -64,4 +64,9 @@ export const getCurrentUser = async (): Promise<SupabaseUser | null> => {
 export const getCurrentSession = async (): Promise<{ access_token: string; refresh_token: string } | null> => {
   const { data: { session } } = await supabase.auth.getSession()
   return session
+}
+
+export const getSessionToken = async (): Promise<string | null> => {
+  const { data: { session } } = await supabase.auth.getSession()
+  return session?.access_token || null
 } 
