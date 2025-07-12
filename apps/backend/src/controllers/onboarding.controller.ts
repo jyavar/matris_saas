@@ -24,7 +24,7 @@ const completeOnboardingSchema = z.object({
   preferences: z.record(z.unknown()).optional(),
 })
 
-export const OnboardingController = {
+export const onboardingController = {
   /**
    * GET /api/onboarding - Obtener onboarding del usuario
    */
@@ -250,7 +250,7 @@ export const OnboardingController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return OnboardingController.getOnboarding(req, res, _params, _body, user)
+    return onboardingController.getOnboarding(req, res, _params, _body, user)
   },
   
   updateOnboardingStatus: async (
@@ -260,7 +260,7 @@ export const OnboardingController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return OnboardingController.updateOnboarding(req, res, params, _body, user)
+    return onboardingController.updateOnboarding(req, res, params, _body, user)
   },
   
   getOnboardingStepById: async (
@@ -270,7 +270,7 @@ export const OnboardingController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return OnboardingController.getOnboardingProgress(req, res, params, _body, user)
+    return onboardingController.getOnboardingProgress(req, res, params, _body, user)
   },
   
   updateOnboardingStep: async (
@@ -280,8 +280,6 @@ export const OnboardingController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return OnboardingController.updateOnboarding(req, res, params, _body, user)
+    return onboardingController.updateOnboarding(req, res, params, _body, user)
   },
 }
-
-export const onboardingController = OnboardingController
