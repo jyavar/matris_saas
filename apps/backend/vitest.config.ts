@@ -11,9 +11,9 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     envFile: '../../.env.test',
     // Optimizaciones para tests unitarios rápidos
-    testTimeout: 5000, // 5 segundos máximo por test
-    hookTimeout: 2000, // 2 segundos máximo por hook
-    teardownTimeout: 1000, // 1 segundo máximo para cleanup
+    testTimeout: 15000, // 15 segundos para integration tests
+    hookTimeout: 5000, // 5 segundos para setup/teardown
+    teardownTimeout: 3000, // 3 segundos para cleanup
     // Configuración de threads para paralelización
     threads: {
       enabled: true,

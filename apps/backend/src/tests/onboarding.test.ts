@@ -66,9 +66,10 @@ function createTestOnboarding(overrides: Partial<TestOnboarding> = {}): TestOnbo
 }
 
 describe('Onboarding Endpoints', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks()
-    const mockOnboardingService = vi.mocked(require('../services/onboarding.service')).onboardingService
+    const { onboardingService } = await import('../services/onboarding.service')
+    const mockOnboardingService = vi.mocked(onboardingService)
     vi.mocked(mockOnboardingService.getOnboarding).mockResolvedValue(createTestOnboarding())
     vi.mocked(mockOnboardingService.startOnboarding).mockResolvedValue(createTestOnboarding({ setup_complete: false }))
     vi.mocked(mockOnboardingService.completeOnboarding).mockResolvedValue(createTestOnboarding({ setup_complete: true }))
