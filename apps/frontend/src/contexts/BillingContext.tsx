@@ -73,6 +73,7 @@ interface BillingContextType {
   cancelSubscription: (id: string) => Promise<void>
   
   // Utility operations
+  updateBilling: (request: any) => Promise<void>
   clearError: () => void
   checkHealth: () => Promise<boolean>
   retryConnection: () => Promise<void>
@@ -484,6 +485,27 @@ export function BillingProvider({ children }: BillingProviderProps) {
   }, [updateCircuitBreakerState])
 
   // Utility operations
+  const updateBilling = useCallback(async (request: any): Promise<void> => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true })
+      const response = await BillingService.updateBilling(request)
+      
+      if (response.success && response.data) {
+        dispatch({ type: 'SET_BILLING_DATA', payload: response.data })
+      } else {
+        dispatch({ type: 'SET_ERROR', payload: response.error || 'Billing update failed' })
+      }
+    } catch (error) {
+      dispatch({ 
+        type: 'SET_ERROR', 
+        payload: error instanceof Error ? error.message : 'Billing update failed' 
+      })
+    } finally {
+      dispatch({ type: 'SET_LOADING', payload: false })
+      updateCircuitBreakerState()
+    }
+  }, [updateCircuitBreakerState])
+
   const clearError = useCallback((): void => {
     dispatch({ type: 'CLEAR_ERROR' })
   }, [])
@@ -534,6 +556,7 @@ export function BillingProvider({ children }: BillingProviderProps) {
     createSubscription,
     updateSubscription,
     cancelSubscription,
+    updateBilling,
     clearError,
     checkHealth,
     retryConnection,

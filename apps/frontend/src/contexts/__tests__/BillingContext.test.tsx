@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import { BillingProvider, useBilling } from '../BillingContext'
 import { BillingService } from '../../services/billing.service'
 
@@ -9,6 +9,16 @@ vi.mock('@/services/billing.service', () => ({
     getBillingData: vi.fn(),
     createInvoice: vi.fn(),
     updateBilling: vi.fn(),
+    checkHealth: vi.fn(),
+    getCircuitBreakerState: vi.fn(),
+    getSubscriptions: vi.fn(),
+    getCustomer: vi.fn(),
+    updateInvoice: vi.fn(),
+    deleteInvoice: vi.fn(),
+    getInvoiceById: vi.fn(),
+    createSubscription: vi.fn(),
+    updateSubscription: vi.fn(),
+    cancelSubscription: vi.fn(),
   },
 }))
 
@@ -36,6 +46,18 @@ function TestComponent() {
 describe('BillingContext', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    
+    // Setup default mocks - these can be overridden in individual tests
+    vi.mocked(BillingService.checkHealth).mockResolvedValue(false) // Default to fail health check
+    vi.mocked(BillingService.getCircuitBreakerState).mockReturnValue({
+      failures: 0,
+      lastFailureTime: 0,
+      state: 'CLOSED'
+    })
+    vi.mocked(BillingService.getBillingData).mockResolvedValue({
+      success: false,
+      error: 'Failed to fetch billing data',
+    })
   })
 
   describe('BillingProvider', () => {
@@ -51,16 +73,19 @@ describe('BillingContext', () => {
 
     it('should provide initial state', async () => {
       // Mock the service to return no data initially
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockResolvedValue({
         success: true,
         data: undefined,
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
       // Wait for the initial load to complete
       await waitFor(() => {
@@ -88,16 +113,19 @@ describe('BillingContext', () => {
         ],
       }
 
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockResolvedValue({
         success: true,
         data: mockBillingData,
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('billing-data')).toHaveTextContent('Pro')
@@ -107,18 +135,21 @@ describe('BillingContext', () => {
     })
 
     it('should handle loading state correctly', async () => {
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockImplementation(
         () => new Promise((resolve) => setTimeout(() => resolve({ success: true, data: undefined }), 100))
       )
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      // Should show loading initially
-      expect(screen.getByTestId('loading')).toHaveTextContent('true')
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+        
+        // Should show loading initially
+        expect(screen.getByTestId('loading')).toHaveTextContent('true')
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('loading')).toHaveTextContent('false')
@@ -126,16 +157,19 @@ describe('BillingContext', () => {
     })
 
     it('should handle errors on initial load', async () => {
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockResolvedValue({
         success: false,
         error: 'Failed to fetch billing data',
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('Failed to fetch billing data')
@@ -270,24 +304,29 @@ describe('BillingContext', () => {
     })
 
     it('should provide clearError function', async () => {
-      // First set an error
+      // Setup: health check passes, but getBillingData fails
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockResolvedValue({
         success: false,
         error: 'Test error',
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('Test error')
       })
 
       // Clear the error
-      screen.getByText('Clear Error').click()
+      await act(async () => {
+        screen.getByText('Clear Error').click()
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('no-error')
@@ -295,18 +334,28 @@ describe('BillingContext', () => {
     })
 
     it('should handle service errors in createInvoice', async () => {
+      // Override default mocks to allow health check and initial load to succeed
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
+      vi.mocked(BillingService.getBillingData).mockResolvedValue({
+        success: true,
+        data: undefined,
+      })
       vi.mocked(BillingService.createInvoice).mockResolvedValue({
         success: false,
         error: 'Invoice creation failed',
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
-      screen.getByText('Create Invoice').click()
+      await act(async () => {
+        screen.getByText('Create Invoice').click()
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('Invoice creation failed')
@@ -314,18 +363,28 @@ describe('BillingContext', () => {
     })
 
     it('should handle service errors in updateBilling', async () => {
+      // Override default mocks
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
+      vi.mocked(BillingService.getBillingData).mockResolvedValue({
+        success: true,
+        data: undefined,
+      })
       vi.mocked(BillingService.updateBilling).mockResolvedValue({
         success: false,
         error: 'Billing update failed',
       })
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
-      screen.getByText('Update Billing').click()
+      await act(async () => {
+        screen.getByText('Update Billing').click()
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('Billing update failed')
@@ -333,15 +392,25 @@ describe('BillingContext', () => {
     })
 
     it('should handle network errors in service calls', async () => {
+      // Override default mocks
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
+      vi.mocked(BillingService.getBillingData).mockResolvedValue({
+        success: true,
+        data: undefined,
+      })
       vi.mocked(BillingService.createInvoice).mockRejectedValue(new Error('Network error'))
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+      })
 
-      screen.getByText('Create Invoice').click()
+      await act(async () => {
+        screen.getByText('Create Invoice').click()
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('error')).toHaveTextContent('Network error')
@@ -388,18 +457,21 @@ describe('BillingContext', () => {
     })
 
     it('should set loading state during operations', async () => {
+      vi.mocked(BillingService.checkHealth).mockResolvedValue(true)
       vi.mocked(BillingService.getBillingData).mockImplementation(
         () => new Promise((resolve) => setTimeout(() => resolve({ success: true, data: undefined }), 100))
       )
 
-      render(
-        <BillingProvider>
-          <TestComponent />
-        </BillingProvider>
-      )
-
-      // Should be loading initially
-      expect(screen.getByTestId('loading')).toHaveTextContent('true')
+      await act(async () => {
+        render(
+          <BillingProvider>
+            <TestComponent />
+          </BillingProvider>
+        )
+        
+        // Check loading state immediately after render
+        expect(screen.getByTestId('loading')).toHaveTextContent('true')
+      })
 
       await waitFor(() => {
         expect(screen.getByTestId('loading')).toHaveTextContent('false')

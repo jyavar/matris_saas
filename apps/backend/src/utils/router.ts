@@ -123,7 +123,9 @@ export class Router {
       }
 
       const body = await this.parseRequestBody(req)
-      await route.handler(req, res, params, body as RequestBody | undefined)
+      // Extract user from request if set by auth middleware
+      const user = (req as any)._user
+      await route.handler(req, res, params, body as RequestBody | undefined, user)
     } catch (error) {
       console.error('Request handling _error:', error)
       res.writeHead(500, { 'Content-Type': 'application/json' })
