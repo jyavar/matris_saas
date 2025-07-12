@@ -23,8 +23,8 @@ import type { AuthenticatedUser } from '../types/express'
 
 // Mock de autenticación - hoisted
 vi.mock('../middleware/auth.middleware', () => ({
-  authMiddleware: vi.fn<Parameters<MiddlewareHandler>, ReturnType<MiddlewareHandler>>((req: IncomingMessage & { user?: AuthenticatedUser }, _res, next) => {
-    req.user = {
+  authMiddleware: vi.fn<Parameters<MiddlewareHandler>, ReturnType<MiddlewareHandler>>((req: IncomingMessage & { _user?: AuthenticatedUser }, _res, next) => {
+    req._user = {
       id: 'test-user-id',
       email: 'test@example.com',
       tenant_id: 'test-tenant',
@@ -78,6 +78,7 @@ describe('Onboarding Endpoints', () => {
   describe('GET /onboarding', () => {
     it('should return onboarding info for user', async () => {
       const res = await request(server).get('/api/onboarding')
+      console.log('GET /api/onboarding response:', res.status, res.body)
       expect(res.status).toBe(200)
       expect(res.body.success).toBe(true)
       expect(res.body.data.user_id).toBe('test-user-id')
@@ -89,6 +90,7 @@ describe('Onboarding Endpoints', () => {
       const res = await request(server)
         .post('/api/onboarding/start')
         .send({ email: 'test@example.com' })
+      console.log('POST /api/onboarding/start response:', res.status, res.body)
       expect(res.status).toBe(201)
       expect(res.body.success).toBe(true)
       expect(res.body.data.setup_complete).toBe(false)

@@ -31,17 +31,23 @@ export const OnboardingController = {
   async getOnboarding(
     req: IncomingMessage,
     res: ServerResponse,
-    user?: AuthenticatedUser,
+    _params?: Record<string, string>,
+    _body?: RequestBody,
     _user?: AuthenticatedUser,
   ): Promise<void> {
     try {
-      const userId = _user?.id || user?.id
+      console.log('DEBUG: getOnboarding called with _user:', _user)
+      const userId = _user?.id
       if (!userId) {
+        console.log('DEBUG: No userId found, user not authenticated')
         return sendError(res, 'User not authenticated', 401)
       }
 
+      console.log('DEBUG: Calling onboardingService.getOnboarding with userId:', userId)
       const onboarding = await onboardingService.getOnboarding(userId)
+      console.log('DEBUG: onboardingService.getOnboarding returned:', onboarding)
       if (!onboarding) {
+        console.log('DEBUG: No onboarding found, returning 404')
         return sendError(res, 'Onboarding not found', 404)
       }
 
@@ -58,6 +64,7 @@ export const OnboardingController = {
   async startOnboarding(
     req: IncomingMessage,
     res: ServerResponse,
+    _params?: Record<string, string>,
     _body?: RequestBody,
     _user?: AuthenticatedUser,
   ): Promise<void> {
@@ -127,6 +134,7 @@ export const OnboardingController = {
   async completeOnboarding(
     req: IncomingMessage,
     res: ServerResponse,
+    _params?: Record<string, string>,
     _body?: RequestBody,
     _user?: AuthenticatedUser,
   ): Promise<void> {
@@ -242,7 +250,7 @@ export const OnboardingController = {
     _body?: RequestBody,
     user?: AuthenticatedUser,
   ) => {
-    return OnboardingController.getOnboarding(req, res, user, user)
+    return OnboardingController.getOnboarding(req, res, _params, _body, user)
   },
   
   updateOnboardingStatus: async (
