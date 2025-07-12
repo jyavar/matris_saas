@@ -11,7 +11,9 @@
     "lint": "pnpm --recursive lint",
     "typecheck": "pnpm --recursive typecheck",
     "clean": "pnpm --recursive clean",
-    "strato:guard": "echo '🛡️ STRATO Guardian: Pre-commit validation passed' && pnpm lint && pnpm typecheck"
+    "strato:guard": "echo '🛡️ STRATO Guardian: Pre-commit validation passed' && pnpm lint && pnpm typecheck",
+    "audit:complete": "tsx scripts/audit-complete.ts",
+    "audit:full": "pnpm audit:complete && pnpm test:coverage && pnpm lint && pnpm typecheck"
   },
   "keywords": [
     "monorepo",

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 
+import { SecurityModule } from '../security/security.module';
 import { MLController } from './ml.controller';
 import { MLService } from './ml.service';
 import { ModelsController } from './controllers/models.controller';
@@ -21,6 +22,7 @@ import { MLSecurityGuard } from './guards/ml-security.guard';
 
 @Module({
   imports: [
+    SecurityModule,
     ThrottlerModule.forRoot([
       {
         name: 'ml-short',

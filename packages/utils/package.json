@@ -12,5 +12,7 @@
     "utils",
     "strato"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "^1.6.1"
+  }
 }

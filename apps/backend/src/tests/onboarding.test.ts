@@ -1,52 +1,77 @@
 import type { IncomingMessage, ServerResponse } from 'http'
 import request from 'supertest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import type { Onboarding, StartOnboardingData, CompleteOnboardingData } from '../services/onboarding.service'
+import type { MockInstance } from 'vitest'
+import type { MiddlewareHandler } from '../types/express'
+
+// Mock de servicios antes de importar el server
+vi.mock('../services/onboarding.service', () => {
+  const actual = vi.importActual<typeof import('../services/onboarding.service')>('../services/onboarding.service')
+  return {
+    ...actual,
+    onboardingService: {
+      getOnboarding: vi.fn(),
+      startOnboarding: vi.fn(),
+      completeOnboarding: vi.fn(),
+    },
+  }
+})
 
 import { server } from '../index'
-import { onboardingService } from '../services/onboarding.service'
 import type { AuthenticatedUser } from '../types/express'
 
 // Mock de autenticación - hoisted
 vi.mock('../middleware/auth.middleware', () => ({
-  authMiddleware: (req: any, res: any, next: () => void) => {
+  authMiddleware: vi.fn<Parameters<MiddlewareHandler>, ReturnType<MiddlewareHandler>>((req: IncomingMessage & { user?: AuthenticatedUser }, _res, next) => {
     req.user = {
       id: 'test-user-id',
       email: 'test@example.com',
       tenant_id: 'test-tenant',
-      app_metadata: {},
-      user_metadata: {},
-      aud: 'authenticated',
-      created_at: new Date().toISOString(),
-    }
+    } satisfies AuthenticatedUser
     next()
-  },
+  }),
 }))
 
 // Factory para datos de onboarding
-function createTestOnboarding(overrides = {}) {
+interface TestOnboarding {
+  id: string
+  user_id: string
+  email: string
+  name?: string
+  tenant_id: string
+  step: 'welcome' | 'profile' | 'preferences' | 'verification' | 'complete'
+  welcome_sent: boolean
+  setup_complete: boolean
+  preferences?: Record<string, unknown>
+  created_at: string
+  updated_at: string
+}
+
+function createTestOnboarding(overrides: Partial<TestOnboarding> = {}): TestOnboarding {
   return {
+    id: 'test-onboarding-id',
     user_id: 'test-user-id',
     email: 'test@example.com',
+    name: 'Test User',
     tenant_id: 'test-tenant',
+    step: 'welcome',
     welcome_sent: false,
     setup_complete: false,
+    preferences: {},
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
     ...overrides,
   }
 }
 
-describe.skip('Onboarding Endpoints', () => {
+describe('Onboarding Endpoints', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.spyOn(onboardingService, 'getOnboarding').mockResolvedValue(
-      createTestOnboarding(),
-    )
-    vi.spyOn(onboardingService, 'startOnboarding').mockResolvedValue(
-      createTestOnboarding({ setup_complete: false }),
-    )
-    vi.spyOn(onboardingService, 'completeOnboarding').mockResolvedValue(
-      createTestOnboarding({ setup_complete: true }),
-    )
+    const mockOnboardingService = vi.mocked(require('../services/onboarding.service')).onboardingService
+    vi.mocked(mockOnboardingService.getOnboarding).mockResolvedValue(createTestOnboarding())
+    vi.mocked(mockOnboardingService.startOnboarding).mockResolvedValue(createTestOnboarding({ setup_complete: false }))
+    vi.mocked(mockOnboardingService.completeOnboarding).mockResolvedValue(createTestOnboarding({ setup_complete: true }))
   })
 
   describe('GET /onboarding', () => {
