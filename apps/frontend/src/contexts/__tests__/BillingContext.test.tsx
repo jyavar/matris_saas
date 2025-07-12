@@ -9,6 +9,8 @@ vi.mock('@/services/billing.service', () => ({
     getBillingData: vi.fn(),
     createInvoice: vi.fn(),
     updateBilling: vi.fn(),
+    checkHealth: vi.fn(),
+    getCircuitBreakerState: vi.fn(),
   },
 }))
 
